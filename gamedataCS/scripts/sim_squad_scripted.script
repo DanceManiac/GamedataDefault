@@ -102,6 +102,9 @@ function sim_squad_scripted:get_script_target()
 			self.need_free_update = false
 		end
 	end
+	if self.parsed_targets[self.next_target] == nil then
+		self.next_target = 1
+	end
 
 
 	local nt = self:pick_next_target()
@@ -254,6 +257,9 @@ function sim_squad_scripted:update()
 		end
 		--' Если у нас нет текущей цели - просим выдать нам задание.
 		self:get_next_action()
+	end
+	if not self.items_spawned and self.smart_id ~= nil then
+		self:spawn_box_items(self.smart_id)
 	end
 end
 function sim_squad_scripted:save(packet)
