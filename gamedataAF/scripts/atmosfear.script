@@ -1,0 +1,274 @@
+--------------------------------------------------------------------------------
+-- AtmosFear class and functions -----------------------------------------------
+-- Made by Cromm Cruac ---------------------------------------------------------
+-- for AtmosFear 3 -------------------------------------------------------------
+-- 25.06.2011 ------------------------------------------------------------------
+--------------------------------------------------------------------------------
+local atmosfear = nil
+
+class "CAtmosFear"
+function CAtmosFear:__init()
+	self.aspectRatio = 1
+	if(device().width/device().height>(1024/768+0.01)) then
+		self.aspectRatio = 0.8
+	end
+	--self.debugMessages=debug_ui.get_debug_ui():create_elements(20)
+	self.param_ini = ini_file("atmosfear_parameters.ltx")
+	self:loadDefaultParameters()
+	--self.debugMessages[18]:SetText("aspectRatio="..tostring(self.aspectRatio))
+end
+
+function CAtmosFear:initialize()
+	--self.fallout_manager = fallout_manager.get_fallout_manager()
+	--self.psi_storm_manager = psi_storm_manager.get_psi_storm_manager()
+end
+
+function CAtmosFear:update()
+
+	-- DRUG PROTECTIONS CHECK
+	local g_time=CTimeToSec(game.get_game_time())
+	local expiration = xr_logic.pstor_retrieve(db.actor,"drug_psy_blockade_expiration")
+	if expiration~=nil then
+		if g_time<expiration then
+			self.drug_telepatic_protection = system_ini():r_float("drug_psy_blockade","boost_telepat_protection")
+		else
+			self.drug_telepatic_protection = nil
+		end
+	end
+	expiration = xr_logic.pstor_retrieve(db.actor,"drug_radioprotector_expiration")
+	if expiration~=nil then
+		if g_time<expiration then
+			self.drug_radiation_protection = system_ini():r_float("drug_radioprotector","boost_radiation_protection")
+		else
+			self.drug_radiation_protection = nil
+		end
+	end
+	expiration = xr_logic.pstor_retrieve(db.actor,"drug_antidot_expiration")
+	if expiration~=nil then
+		if g_time<expiration then
+			self.drug_chemical_burn_protection = system_ini():r_float("drug_antidot","boost_chemburn_protection")
+		else
+			self.drug_chemical_burn_protection = nil
+		end
+	end
+
+end
+
+function CAtmosFear:hit_power(power,hit_type)
+	local hit_types={"burn", "shock", "chemical_burn", "radiation", "telepatic"}
+	local suit_factors={10,1,5,33,10}
+	local drug_factors={1,1,5,33,10}
+	local artefact_factors={10,5,10,10,10}
+	
+	local suit_protection = db.actor:get_current_outfit_protection(hit_type)*suit_factors[hit_type+1]
+	local helmet_protection = 0
+	local helmet = db.actor:item_in_slot(12)
+	if helmet ~= nil then
+		helmet_protection = system_ini():r_float(helmet:section(),hit_types[hit_type+1].."_protection")*suit_factors[hit_type+1]
+	end
+	
+	local drug_protection = 0
+	if hit_type == 2 and self.drug_chemical_burn_protection ~= nil then
+		drug_protection=self.drug_chemical_burn_protection*drug_factors[hit_type+1]
+	elseif hit_type == 3 and self.drug_radiation_protection ~= nil then
+		drug_protection=self.drug_radiation_protection*drug_factors[hit_type+1]
+	elseif hit_type == 4 and self.drug_telepatic_protection ~= nil then
+		drug_protection=self.drug_telepatic_protection*drug_factors[hit_type+1]
+	end
+	protection = (suit_protection + helmet_protection + drug_protection)
+	if protection > 1 then 
+		protection = 1
+	end
+	hit_power=power*(1-protection)
+	--self.debugMessages[5]:SetText("suit_protection="..tostring(suit_protection))	
+	--self.debugMessages[6]:SetText("helmet_protection="..tostring(helmet_protection))	
+	--self.debugMessages[7]:SetText("drug_protection="..tostring(drug_protection))	
+	--self.debugMessages[8]:SetText("protection="..tostring(protection))	
+	--self.debugMessages[9]:SetText("hit power ("..tostring(hit_types[hit_type+1])..")="..tostring(hit_power))
+	--self.debugMessages[11]:SetText("gametime="..tostring(CTimeToSec(game.get_game_time())))
+	--self.debugMessages[12]:SetText("expiration set to="..tostring(xr_logic.pstor_retrieve(db.actor,"drug_psy_blockade_expiration")))
+	return hit_power
+end
+
+function CAtmosFear:save(packet)
+	set_save_marker(packet, "save", false, "AtmosFear")
+	packet:w_stringZ(self.opt_weather_balance_presets)
+	packet:w_stringZ(self.opt_weather_length_presets)
+	packet:w_stringZ(self.opt_zaton_period_good)
+	packet:w_stringZ(self.opt_zaton_period_bad)
+	packet:w_u32(self.opt_zaton_period_good_length)
+	packet:w_u32(self.opt_zaton_period_bad_length)
+	packet:w_stringZ(self.opt_jupiter_period_good)
+	packet:w_stringZ(self.opt_jupiter_period_bad)
+	packet:w_u32(self.opt_jupiter_period_good_length)
+	packet:w_u32(self.opt_jupiter_period_bad_length)
+	packet:w_stringZ(self.opt_pripyat_period_good)
+	packet:w_stringZ(self.opt_pripyat_period_bad)
+	packet:w_u32(self.opt_pripyat_period_good_length)
+	packet:w_u32(self.opt_pripyat_period_bad_length)
+	packet:w_u32(self.opt_enable_blowout)				
+	packet:w_u32(self.opt_blowout_freq)
+	packet:w_stringZ(self.opt_blowout_fate)
+	packet:w_stringZ(self.opt_blowout_warning)
+	packet:w_stringZ(self.opt_blowout_task)
+	packet:w_u32(self.opt_enable_fallout)					
+	packet:w_u32(self.opt_fallout_freq)
+	packet:w_stringZ(self.opt_fallout_fate)
+	packet:w_stringZ(self.opt_fallout_warning)
+	packet:w_stringZ(self.opt_fallout_task)
+	packet:w_u32(self.opt_enable_psi_storm)					
+	packet:w_u32(self.opt_psi_storm_freq)
+	packet:w_stringZ(self.opt_psi_storm_fate)
+	packet:w_stringZ(self.opt_psi_storm_warning)
+	packet:w_stringZ(self.opt_psi_storm_task)
+	packet:w_stringZ(self.opt_moon_phase)
+	packet:w_stringZ(self.opt_night_brightness)
+	set_save_marker(packet, "save", true, "AtmosFear")
+end
+
+function CAtmosFear:load(packet)
+	set_save_marker(packet, "load", false, "AtmosFear")
+	self.opt_weather_balance_presets 			= packet:r_stringZ()
+	self.opt_weather_length_presets				= packet:r_stringZ()
+	self.opt_zaton_period_good					= packet:r_stringZ()
+	self.opt_zaton_period_bad					= packet:r_stringZ()
+	self.opt_zaton_period_good_length			= packet:r_u32()
+	self.opt_zaton_period_bad_length			= packet:r_u32()
+	self.opt_jupiter_period_good				= packet:r_stringZ()
+	self.opt_jupiter_period_bad					= packet:r_stringZ()
+	self.opt_jupiter_period_good_length			= packet:r_u32()
+	self.opt_jupiter_period_bad_length			= packet:r_u32()
+	self.opt_pripyat_period_good				= packet:r_stringZ()
+	self.opt_pripyat_period_bad					= packet:r_stringZ()
+	self.opt_pripyat_period_good_length			= packet:r_u32()
+	self.opt_pripyat_period_bad_length			= packet:r_u32()
+	self.opt_enable_blowout						= packet:r_u32()				
+	self.opt_blowout_freq						= packet:r_u32()
+	self.opt_blowout_fate						= packet:r_stringZ()
+	self.opt_blowout_warning					= packet:r_stringZ()
+	self.opt_blowout_task						= packet:r_stringZ()
+	self.opt_enable_fallout						= packet:r_u32()					
+	self.opt_fallout_freq						= packet:r_u32()
+	self.opt_fallout_fate						= packet:r_stringZ()
+	self.opt_fallout_warning					= packet:r_stringZ()
+	self.opt_fallout_task						= packet:r_stringZ()
+	self.opt_enable_psi_storm					= packet:r_u32()					
+	self.opt_psi_storm_freq						= packet:r_u32()
+	self.opt_psi_storm_fate						= packet:r_stringZ()
+	self.opt_psi_storm_warning					= packet:r_stringZ()
+	self.opt_psi_storm_task						= packet:r_stringZ()
+	self.opt_moon_phase							= packet:r_stringZ()
+	self.opt_night_brightness					= packet:r_stringZ()
+	set_save_marker(packet, "load", true, "AtmosFear")
+end
+
+function CAtmosFear:loadDefaultParameters()
+	local parameters = xr_s.parse_ini_section_to_array(self.param_ini,"atmosfear_default_parameters")
+	self.opt_weather_balance_presets	= parameters["opt_weather_balance_presets"]
+	self.opt_weather_length_presets		= parameters["opt_weather_length_presets"]
+
+	self.opt_zaton_period_good			= parameters["opt_zaton_period_good"]
+	self.opt_zaton_period_bad			= parameters["opt_zaton_period_bad"]
+	self.opt_zaton_period_good_length	= tonumber(parameters["opt_zaton_period_good_length"])
+	self.opt_zaton_period_bad_length	= tonumber(parameters["opt_zaton_period_bad_length"])
+	self.opt_jupiter_period_good		= parameters["opt_jupiter_period_good"]
+	self.opt_jupiter_period_bad			= parameters["opt_jupiter_period_bad"]
+	self.opt_jupiter_period_good_length	= tonumber(parameters["opt_jupiter_period_good_length"])
+	self.opt_jupiter_period_bad_length	= tonumber(parameters["opt_jupiter_period_bad_length"])
+	self.opt_pripyat_period_good		= parameters["opt_pripyat_period_good"]
+	self.opt_pripyat_period_bad			= parameters["opt_pripyat_period_bad"]
+	self.opt_pripyat_period_good_length	= tonumber(parameters["opt_pripyat_period_good_length"])
+	self.opt_pripyat_period_bad_length	= tonumber(parameters["opt_pripyat_period_bad_length"])
+
+	self.opt_enable_blowout				= tonumber(parameters["opt_enable_blowout"])
+	self.opt_blowout_freq				= tonumber(parameters["opt_blowout_freq"])
+	self.opt_blowout_fate				= parameters["opt_blowout_fate"]
+	self.opt_blowout_warning			= parameters["opt_blowout_warning"]
+	self.opt_blowout_task				= parameters["opt_blowout_task"]
+	self.opt_enable_fallout				= tonumber(parameters["opt_enable_fallout"])
+	self.opt_fallout_freq				= tonumber(parameters["opt_fallout_freq"])
+	self.opt_fallout_fate				= parameters["opt_fallout_fate"]
+	self.opt_fallout_warning			= parameters["opt_fallout_warning"]
+	self.opt_fallout_task				= parameters["opt_fallout_task"]
+	self.opt_enable_psi_storm			= tonumber(parameters["opt_enable_psi_storm"])
+	self.opt_psi_storm_freq				= tonumber(parameters["opt_psi_storm_freq"])
+	self.opt_psi_storm_fate				= parameters["opt_psi_storm_fate"]
+	self.opt_psi_storm_warning			= parameters["opt_psi_storm_warning"]
+	self.opt_psi_storm_task				= parameters["opt_psi_storm_task"]
+
+	self.opt_moon_phase					= parameters["opt_moon_phase"]
+	self.opt_night_brightness			= parameters["opt_night_brightness"]
+	
+	self.god_mode						= str_to_bool(parameters["opt_god_mode"])
+end
+
+function CAtmosFear:loadDefaultConsoleSettings()
+	local console=get_console()
+	console:execute("r2_dof_far 800")
+	console:execute("r2_aa off")
+	console:execute("r2_allow_r1_lights off")
+	console:execute("r2_dof -0.400000,1.400000,500.000000")
+	console:execute("r2_dof_enable on")
+	console:execute("r2_dof_kernel 2.")
+	console:execute("r2_dof_sky 0.")
+	console:execute("r2_exp_donttest_shad off")
+	console:execute("r2_gi off")
+	console:execute("r2_ls_bloom_fast off")
+	console:execute("r2_sun on")
+	console:execute("r2_sun_depth_far_bias -0.00002")
+	console:execute("r2_sun_depth_far_scale 1.")
+	console:execute("r2_sun_depth_near_bias 0.00007")
+	console:execute("r2_sun_depth_near_scale 1.")
+	console:execute("r2_sun_details on")
+	console:execute("r2_sun_far 180.")
+	console:execute("r2_sun_focus on")
+	console:execute("r2_sun_lumscale 1.")
+	console:execute("r2_sun_lumscale_amb 0.1")
+	console:execute("r2_sun_lumscale_hemi 0.6")
+	console:execute("r2_sun_near 30.")
+	console:execute("r2_sun_near_border 0.75")
+	console:execute("r2_sun_quality st_opt_high")
+	console:execute("r2_sun_shafts st_opt_low")
+	console:execute("r2_sun_tsm on")
+	console:execute("r2_sun_tsm_bias -0.01")
+	console:execute("r2_sun_tsm_proj 0.3")
+	console:execute("r2_tf_mipbias 0.")
+	console:execute("r2_tonemap on")
+	console:execute("r2_tonemap_adaptation 0.2")
+	console:execute("r2_tonemap_amount 1.")
+	console:execute("r2_tonemap_lowlum 0.4")
+	console:execute("r2_tonemap_middlegray 1.1")
+	console:execute("rs_c_brightness 1.")
+	console:execute("rs_c_contrast 1.")
+	console:execute("rs_c_gamma 1.")
+end
+
+function str_to_bool(str)
+	if str=="true" then
+		return true
+	elseif str=="false" then
+		return false
+	else
+		return nil
+	end
+end
+
+function CTimeToSec(ctime)
+	local Y, M, D, h, m, s, ms = 0, 0, 0, 0, 0, 0, 0
+	Y, M, D, h, m, s, ms = ctime:get(Y, M, D, h, m, s, ms)
+	return D*24*60*60 + h*60*60 + m*60 + s
+end	
+
+function CTimeAddSec(ctime,sec)
+	local Y, M, D, h, m, s, ms = 0, 0, 0, 0, 0, 0, 0
+	Y, M, D, h, m, s, ms = ctime:get(Y, M, D, h, m, s, ms)
+	return D*24*60*60 + h*60*60 + m*60 + s + sec
+end	
+
+function get_atmosfear()
+	if atmosfear == nil then
+		atmosfear = CAtmosFear()
+	end
+	return atmosfear
+end
+
