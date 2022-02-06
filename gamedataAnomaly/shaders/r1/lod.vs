@@ -52,7 +52,7 @@ vf main (vv v)
 	float3 	L_rgb 	= rgbh.rgb;						// precalculated RGB lighting
 	float3 	L_hemi 	= L_hemi_color * rgbh.w;				// hemisphere
 	float3 	L_sun 	= L_sun_color  * sun * sun_c;				// sun
-	float3 	L_final	= L_rgb + L_hemi + L_sun + L_ambient;
+	float3 	L_final	= L_rgb + L_hemi + L_sun + v_ambient;
 
 	o.c		= float4	(L_final,v.sun_af.z);
 	o.f 		= factor	;

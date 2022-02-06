@@ -119,7 +119,7 @@ void UpdateTC( inout p_bumped I)
 	float2	new_tc  = I.tcdh + height * normalize(eye);	//
 
 	//	Output the result
-	I.tcdh	= new_tc;
+	I.tcdh.xy	= new_tc;
 }
 
 #else	//	USE_PARALLAX
@@ -143,7 +143,7 @@ surface_bumped sload_i( p_bumped I)
 	S.base		= tbase(I.tcdh);				//	IN:  rgb.a
 	S.normal	= Nu.wzy + (NuE.xyz - 1.0h);	//	(Nu.wzyx - .5h) + (E-.5)
 	S.gloss		= Nu.x*Nu.x;					//	S.gloss = Nu.x*Nu.x;
-	S.height	= NuE.z;
+	S.height	= NuE.w;
 	//S.height	= 0;
 
 #ifdef        USE_TDETAIL
@@ -162,6 +162,7 @@ surface_bumped sload_i( p_bumped I)
 	float4 detail		= s_detail.Sample( smp_base, I.tcdbump);
 	S.base.rgb			= S.base.rgb * detail.rgb * 2;
 	S.gloss				= S.gloss * detail.w * 2;
+
 #endif        //	USE_TDETAIL_BUMP
 #endif
 
@@ -185,7 +186,7 @@ surface_bumped sload_i( p_bumped I, float2 pixeloffset )
 	S.base		= tbase(I.tcdh);				//	IN:  rgb.a
 	S.normal	= Nu.wzyx + (NuE.xyz - 1.0h);	//	(Nu.wzyx - .5h) + (E-.5)
 	S.gloss		= Nu.x*Nu.x;					//	S.gloss = Nu.x*Nu.x;
-	S.height	= NuE.z;
+	S.height	= NuE.w;
 	//S.height	= 0;
 
 #ifdef        USE_TDETAIL
@@ -222,21 +223,14 @@ surface_bumped sload_i( p_bumped I, float2 pixeloffset )
 surface_bumped sload ( p_bumped I)
 {
       surface_bumped      S   = sload_i	(I);
-		S.normal.z			*=	0.5;		//. make bump twice as contrast (fake, remove me if possible)
-
-#ifdef	GBUFFER_OPTIMIZATION
-	   S.height = 0;
-#endif	//	GBUFFER_OPTIMIZATION
+	//	S.normal.z			*=	0.5;		//. make bump twice as contrast (fake, remove me if possible)
       return              S;
 }
 
 surface_bumped sload ( p_bumped I, float2 pixeloffset )
 {
       surface_bumped      S   = sload_i	(I, pixeloffset );
-		S.normal.z			*=	0.5;		//. make bump twice as contrast (fake, remove me if possible)
-#ifdef	GBUFFER_OPTIMIZATION
-	   S.height = 0;
-#endif	//	GBUFFER_OPTIMIZATION
+	//	S.normal.z			*=	0.5;		//. make bump twice as contrast (fake, remove me if possible)
       return              S;
 }
 

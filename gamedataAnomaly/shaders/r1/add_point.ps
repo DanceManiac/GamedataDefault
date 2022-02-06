@@ -15,5 +15,5 @@ half4 	main_ps_1_1	( vf_point I )	: COLOR
 	half 	final_a 	= final_color.w;
 	
 	// out
-	return  final_color*2;	//half4	(final_rgb,final_a);
+	return  half4	(final_rgb*2.0,final_a);	//final_color*2;
 }

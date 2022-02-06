@@ -5,6 +5,7 @@ struct vf
 	float4 hpos	: POSITION;
 	float4 C	: COLOR0;
 	float2 tc	: TEXCOORD0;
+	float  fog	: FOG;
 };
 
 uniform float4 		consts; // {1/quant,1/quant,diffusescale,ambient}
@@ -38,6 +39,10 @@ vf main (v_detail v)
 	float 	inten 	= H * dp;
 	float2 	result	= calc_xz_wave	(dir2D.xz*inten,frac);
 	pos		= float4(pos.x+result.x, pos.y, pos.z+result.y, 1);
+	
+	// Calc fog
+	o.fog 		= calc_fogging 	(pos);
+	
 	o.hpos		= mul	(m_WVP,pos);
 
 	// Fake lighting

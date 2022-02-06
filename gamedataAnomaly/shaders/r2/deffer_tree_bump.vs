@@ -24,7 +24,6 @@ p_bumped 	main 	(v_tree I)
 	float4 	w_pos 	= float4(pos.x+result.x, pos.y, pos.z+result.y, 1);
 	float2 	tc 		= (I.tc * consts).xy;
 	float 	hemi 	= I.Nh.w * c_scale.w + c_bias.w;
-//	float 	hemi 	= I.Nh.w;
 
 	// Eye-space pos/normal
 	p_bumped 		O;
@@ -41,9 +40,15 @@ p_bumped 	main 	(v_tree I)
 	// Calculate the 3x3 transform from tangent space to eye-space
 	// TangentToEyeSpace = object2eye * tangent2object
 	//		     = object2eye * transpose(object2tangent) (since the inverse of a rotation is its transpose)
-	float3 	N 		= unpack_bx4(I.Nh);	// just scale (assume normal in the -.5f, .5f)
-	float3 	T 		= unpack_bx4(I.T);	//
-	float3 	B 		= unpack_bx4(I.B);	//
+	float3 N = normalize(I.P.xyz); //Spherical normals trick
+	float3 B = float3(0,0,1);
+
+	if (abs(dot(N, B)) > 0.99f) 
+		B = float3(0,1,0);
+		
+	float3 T = normalize(cross(N, B));
+	B = normalize(cross(N, T));	
+	
 	float3x3 xform	= mul	((float3x3)m_xform_v, float3x3(
 						T.x,B.x,N.x,
 						T.y,B.y,N.y,

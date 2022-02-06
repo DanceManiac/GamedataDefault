@@ -23,7 +23,7 @@ vf main (v_vert v)
 	float3 	L_rgb 	= v.color.xyz;						// precalculated RGB lighting
 	float3 	L_hemi 	= v_hemi(N)*v.N.w;					// hemisphere
 	float3 	L_sun 	= v_sun(N)*v.color.w;					// sun
-	float3 	L_final	= L_rgb + L_hemi + L_sun + L_ambient;
+	float3 	L_final	= L_rgb + L_hemi + L_sun + v_ambient;
 
 	float2	dt 	= calc_detail		(v.P);
 

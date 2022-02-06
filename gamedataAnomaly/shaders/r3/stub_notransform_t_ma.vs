@@ -5,9 +5,6 @@
 v2p_TL main ( v_TL_positiont I )
 {
 	v2p_TL O;
-
-//	O.HPos = P;
-
 	{
 		I.P.xy += 0.5f;
 		O.HPos.x = I.P.x/1024 * 2 - 1;

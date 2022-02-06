@@ -29,9 +29,9 @@ p_flat 	main 	(v_tree I)
 	// Final xform
 	float3	Pe		= mul		(m_V,  f_pos				);
 	float 	hemi 	= I.Nh.w*c_scale.w + c_bias.w;
-    //float 	hemi 	= I.Nh.w;
+
 	o.hpos			= mul		(m_VP, f_pos				);
-	o.N 			= mul		((float3x3)m_xform_v, unpack_bx2(I.Nh)	);
+	o.N 			= normalize(mul((float3x3)m_xform_v, I.P.xyz));
 	o.tcdh 			= float4	((I.tc * consts).xyyy		);
 	o.position		= float4	(Pe, hemi					);
 

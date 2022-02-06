@@ -20,6 +20,9 @@ uniform float3 		eye_position;
 uniform half3		eye_direction;
 uniform half3		eye_normal;
 uniform	half4 		dt_params;
+uniform float3		pp_img_corrections;
+uniform float3		pp_img_cg;
+
 
 half3 	unpack_normal	(half3 v)	{ return 2*v-1;			}
 half3 	unpack_bx2	(half3 v)	{ return 2*v-1; 		}

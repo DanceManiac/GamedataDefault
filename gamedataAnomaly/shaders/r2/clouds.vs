@@ -22,8 +22,6 @@ vf main (vi v)
 
 	o.hpos 		= mul		(m_WVP, v.p);	// xform, input in world coords
 	
-//	if (length(float3(v.p.x,0,v.p.z))>CLOUD_FADE)	o.color.w = 0	;
-
 	// generate tcs
 	float2  d0	= v.dir.xy*2-1;
 	float2  d1	= v.dir.wz*2-1;

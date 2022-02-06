@@ -20,10 +20,10 @@ vf main (vi v)
 {
 	vf 		o;
 
-	float4	tpos	    = mul	(1000, v.p);
+    float4 tpos		= float4(2000*v.p.x, 2000*v.p.y, 2000*v.p.z, 2000*v.p.w);
         o.hpos              = mul       (m_WVP, tpos);						// xform, input in world coords, 1000 - magic number
 	o.hpos.z	    = o.hpos.w;
-	o.c		= v.c;				// copy color
+	o.c		= v.c*2;				// copy color
 	o.tc0		= v.tc0;			// copy tc
 	o.tc1		= v.tc1;			// copy tc
 

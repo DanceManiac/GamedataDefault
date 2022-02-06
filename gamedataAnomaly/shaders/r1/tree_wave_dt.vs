@@ -55,7 +55,7 @@ vf main (av v)
 	float3 	L_hemi 	= v_hemi_wrap(N,.75f)* L_unpack.w;					// hemisphere
 //	float3 	L_sun 	= v_sun_wrap (N,.25f)* (L_base*c_sun.x+c_sun.y);	// sun
 	float3 	L_sun 	= v_sun (N)* (L_base*c_sun.x+c_sun.y);				// sun
-	float3 	L_final	= L_rgb + L_hemi + L_sun + L_ambient;
+	float3 	L_final	= L_rgb + L_hemi + L_sun + v_ambient;
 
 	// final xform, color, tc
 	o.tc0.xy	= (v.misc * consts).xy;

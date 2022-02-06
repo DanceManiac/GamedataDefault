@@ -1,5 +1,5 @@
 #ifndef TESS_H_INCLUDED
-#	define TESS_H_INCLUDED
+#define TESS_H_INCLUDED
 
 // Output patch constant data.
 struct PNPatch

@@ -20,16 +20,14 @@ vf main (vi v)
 {
         vf                 	o;
 
-	float4	tpos	    = mul	(1000, v.p);
-        o.hpos              = mul       (m_WVP, tpos);						// xform, input in world coords, 1000 - magic number
-	o.hpos.z	    = o.hpos.w;
+    float4 tpos		= float4(2000*v.p.x, 2000*v.p.y, 2000*v.p.z, 2000*v.p.w);
+    o.hpos          = mul       (m_WVP, tpos);
+    	o.hpos.z	    = o.hpos.w;
         o.tc0               = v.tc0;                        					// copy tc
         o.tc1               = v.tc1;                        					// copy tc
-#ifdef USE_VTF
+
         float	scale		= tex2Dlod	(s_tonemap,float4(.5,.5,.5,.5)).x ;
-        o.c                	= float4	( v.c.rgb*scale*2, v.c.a );      		// copy color, pre-scale by tonemap //float4 ( v.c.rgb*scale*2, v.c.a );
-#else
-        o.c                	= v.c       ;										// copy color, low precision
-#endif
+        o.c                	= float4	( v.c.rgb*scale*1.7, v.c.a );      		// copy color, pre-scale by tonemap //float4 ( v.c.rgb*scale*2, v.c.a );
+
         return              o;
 }

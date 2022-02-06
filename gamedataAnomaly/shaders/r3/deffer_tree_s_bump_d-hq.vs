@@ -1,2 +1,3 @@
-#define USE_TREEWAVE
-#include "deffer_tree_bump_d-hq.vs"
+#define	USE_TDETAIL
+#define USE_PARALLAX
+#include "deffer_tree_s_bump.vs"

@@ -13,41 +13,79 @@ struct 	v2p
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////
-uniform half4 		weight[2];
+uniform float4 		weight[2];
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Pixel
 // Separable gauss filter: 	2*7 + 1 + 7*2 = 29 samples
 // Samples:			0-central, -1, -2,..., -7, 1, 2,... 7
 // Approximated i-count:	15t + 15a + 7a(d) + 1(out) = 38, HLSL compiled to 38 :)
-half4 	main		( v2p I )	: COLOR
+float4 	main		( v2p I )	: COLOR
 {
 	// central
-	half4 accum 	=	weight[1].w * tex2D	(s_bloom, I.tc0);
+	float4 accum;
 
-	// left (7)
-	// right (7) - no swizles on 'texld', so this is dep-read infact
-	accum		+= 	weight[0].x * tex2D	(s_bloom, I.tc1.xy);
-	accum		+= 	weight[0].x * tex2D	(s_bloom, I.tc1.wz);
+	accum		=	weight[1].w * tex2D	( s_bloom, I.tc0 );
 
-	accum		+= 	weight[0].y * tex2D	(s_bloom, I.tc2.xy);
-	accum		+= 	weight[0].y * tex2D	(s_bloom, I.tc2.wz);
+	accum		+= 	weight[0].x * tex2D	( s_bloom, I.tc1.xy );
+	accum		+= 	weight[0].x * tex2D	( s_bloom, I.tc1.wz );
+	accum		+= 	weight[0].x * tex2D	( s_bloom, I.tc2.xy );
+	accum		+= 	weight[0].x * tex2D	( s_bloom, I.tc2.wz );
+	accum		+= 	weight[0].x * tex2D	( s_bloom, I.tc3.xy );
+	accum		+= 	weight[0].x * tex2D	( s_bloom, I.tc3.wz );
+	accum		+= 	weight[1].x * tex2D	( s_bloom, I.tc4.xy );
+	accum		+= 	weight[1].x * tex2D	( s_bloom, I.tc4.wz );
+	accum		+= 	weight[1].x * tex2D	( s_bloom, I.tc5.xy );
+	accum		+= 	weight[1].x * tex2D	( s_bloom, I.tc5.wz );
+	accum		+= 	weight[1].x * tex2D	( s_bloom, I.tc6.xy );
+	accum		+= 	weight[1].x * tex2D	( s_bloom, I.tc6.wz );
+	accum		+= 	weight[1].x * tex2D	( s_bloom, I.tc7.xy );
+	accum		+= 	weight[1].x * tex2D	( s_bloom, I.tc7.wz );
+	
+	accum		+= 	weight[0].y * tex2D	( s_bloom, I.tc1.xz );
+	accum		+= 	weight[0].y * tex2D	( s_bloom, I.tc1.wy );
+	accum		+= 	weight[0].y * tex2D	( s_bloom, I.tc2.xz );
+	accum		+= 	weight[0].y * tex2D	( s_bloom, I.tc2.wy );
+	accum		+= 	weight[0].y * tex2D	( s_bloom, I.tc3.xz );
+	accum		+= 	weight[0].y * tex2D	( s_bloom, I.tc3.wy );
+	accum		+= 	weight[1].y * tex2D	( s_bloom, I.tc4.xz );
+	accum		+= 	weight[1].y * tex2D	( s_bloom, I.tc4.wy );
+	accum		+= 	weight[1].y * tex2D	( s_bloom, I.tc5.xz );
+	accum		+= 	weight[1].y * tex2D	( s_bloom, I.tc5.wy );
+	accum		+= 	weight[1].y * tex2D	( s_bloom, I.tc6.xz );
+	accum		+= 	weight[1].y * tex2D	( s_bloom, I.tc6.wy );
+	accum		+= 	weight[1].y * tex2D	( s_bloom, I.tc7.xz );
+	accum		+= 	weight[1].y * tex2D	( s_bloom, I.tc7.wy );
 
-	accum		+= 	weight[0].z * tex2D	(s_bloom, I.tc3.xy);
-	accum		+= 	weight[0].z * tex2D	(s_bloom, I.tc3.wz);
-
-	accum		+= 	weight[0].w * tex2D	(s_bloom, I.tc4.xy);
-	accum		+= 	weight[0].w * tex2D	(s_bloom, I.tc4.wz);
-
-	accum		+= 	weight[1].x * tex2D	(s_bloom, I.tc5.xy);
-	accum		+= 	weight[1].x * tex2D	(s_bloom, I.tc5.wz);
-
-	accum		+= 	weight[1].y * tex2D	(s_bloom, I.tc6.xy);
-	accum		+= 	weight[1].y * tex2D	(s_bloom, I.tc6.wz);
-
-	accum		+= 	weight[1].z * tex2D	(s_bloom, I.tc7.xy);
-	accum		+= 	weight[1].z * tex2D	(s_bloom, I.tc7.wz);
-
+	accum		+= 	weight[0].z * tex2D	( s_bloom, I.tc1.xz );
+	accum		+= 	weight[0].z * tex2D	( s_bloom, I.tc1.wy );
+	accum		+= 	weight[0].z * tex2D	( s_bloom, I.tc2.xz );
+	accum		+= 	weight[0].z * tex2D	( s_bloom, I.tc2.wy );
+	accum		+= 	weight[0].z * tex2D	( s_bloom, I.tc3.xz );
+	accum		+= 	weight[0].z * tex2D	( s_bloom, I.tc3.wy );
+	accum		+= 	weight[1].z * tex2D	( s_bloom, I.tc4.xz );
+	accum		+= 	weight[1].z * tex2D	( s_bloom, I.tc4.wy );
+	accum		+= 	weight[1].z * tex2D	( s_bloom, I.tc5.xz );
+	accum		+= 	weight[1].z * tex2D	( s_bloom, I.tc5.wy );
+	accum		+= 	weight[1].z * tex2D	( s_bloom, I.tc6.xz );
+	accum		+= 	weight[1].z * tex2D	( s_bloom, I.tc6.wy );
+	accum		+= 	weight[1].z * tex2D	( s_bloom, I.tc7.xz );
+	accum		+= 	weight[1].z * tex2D	( s_bloom, I.tc7.wy );
+	
+	accum		+= 	weight[0].w * tex2D	( s_bloom, I.tc1.xz );
+	accum		+= 	weight[0].w * tex2D	( s_bloom, I.tc1.wy );
+	accum		+= 	weight[0].w * tex2D	( s_bloom, I.tc2.xz );
+	accum		+= 	weight[0].w * tex2D	( s_bloom, I.tc2.wy );
+	accum		+= 	weight[0].w * tex2D	( s_bloom, I.tc3.xz );
+	accum		+= 	weight[0].w * tex2D	( s_bloom, I.tc3.wy );
+	accum		+= 	weight[1].w * tex2D	( s_bloom, I.tc4.xz );
+	accum		+= 	weight[1].w * tex2D	( s_bloom, I.tc4.wy );
+	accum		+= 	weight[1].w * tex2D	( s_bloom, I.tc5.xz );
+	accum		+= 	weight[1].w * tex2D	( s_bloom, I.tc5.wy );
+	accum		+= 	weight[1].w * tex2D	( s_bloom, I.tc6.xz );
+	accum		+= 	weight[1].w * tex2D	( s_bloom, I.tc6.wy );
+	accum		+= 	weight[1].w * tex2D	( s_bloom, I.tc7.xz );
+	accum		+= 	weight[1].w * tex2D	( s_bloom, I.tc7.wy );
 	// OK
-	return 		accum;
+	return 		( accum / 4 );
 }
