@@ -631,6 +631,10 @@ end
 function on_actor_satiety()
 end
 
+--' Жажда
+function on_actor_thirst()
+end
+
 --' іадиация
 function on_actor_radiation()
 
@@ -866,4 +870,11 @@ function show_all_ui(show)
 --	    db.actor:hide_weapon()
 			db.actor:disable_hit_marks(true)
 	end
+end
+
+--//M.F.S. Team
+
+function ReadString(iSec,sLin,fIni)
+	if not fIni then fIni=system_ini() end
+	return fIni:r_string(iSec,sLin)
 end
