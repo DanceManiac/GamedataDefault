@@ -1,0 +1,31 @@
+------------------------------ Copyright 13.06.16 Charsi -----------------------------
+---------------------------- Рандомные загрузочные экраны ----------------------------
+
+
+function on_save()
+	local sactor = alife():actor()
+	local gvid = sactor and sactor.m_game_vertex_id
+	local lvlid = gvid and game_graph():vertex(gvid):level_id()
+	if lvlid ~= alife():level_id() then
+		reset_map( alife():level_name(lvlid) )
+	end
+end
+
+function reset_map(lname)
+	local fs = getFS()
+	local id = 0
+	while fs:exist("$game_textures$","intro\\intro_"..lname..(id+1)..".dds") do
+		id = id + 1
+	end
+	if id > 0 then
+		local intro = fs:update_path("$game_textures$","intro\\")
+		local rr = math.random(id)
+		local path_from = intro.."intro_"..lname..rr..".dds"
+		local path_to = intro.."intro_"..lname..".dds"
+		fs:file_copy(path_from, path_to)
+	end
+end
+
+
+---------------------------- Рандомные загрузочные экраны ----------------------------
+------------------------------ Copyright 13.06.16 Charsi -----------------------------

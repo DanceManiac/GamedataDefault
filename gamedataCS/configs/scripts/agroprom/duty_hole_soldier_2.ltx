@@ -6,31 +6,23 @@ prior = 42
 [walker]
 path_walk = agr_duty_hole_soldier_2_walk
 path_look = agr_duty_hole_soldier_2_look
-on_info = {+snork} camper
+on_info = {+sattack} camper %=play_sound(agr_squad_snorks_attack_1:dolg:agr_smart_terrain_5_7)%
 out_restr = agr_out_restr_hole
+meet = no_meet
 
 [camper]
 path_walk = agr_duty_hole_soldier_2_walk
 path_look = agr_duty_hole_soldier_2_look
-faction = dolg
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
-on_info = {+sattack -agr_snork_shout_sound} remark@2
+on_info = {+death_1 +death_2 +death_3 +death_4 +death_5 +death_6 +death_7 +death_8 +death_9 +death_6_bl} camper@def
 out_restr = agr_out_restr_hole
-
-[remark@2]
-anim = threat
-target = agr_duty_hole_soldier_3_look, 0
-snd = agr_hole_attack_0
-on_signal = sound_end | camper@2
 meet = no_meet
-combat_ignore_cond = always
-faction = dolg
-on_info = %+agr_snork_shout_sound%
 
-[camper@2]
+[camper@def]
 path_walk = agr_duty_hole_soldier_2_walk
 path_look = agr_duty_hole_soldier_2_look
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 out_restr = agr_out_restr_hole
+meet = meet

@@ -42,6 +42,7 @@
     <info_portion id="val_come_to_freedom_base_west"></info_portion>
   
     <info_portion id="val_kill_flesh"></info_portion>
+
     <info_portion id="val_kill_flesh_done"></info_portion>
     <info_portion id="val_kill_flesh_complete"></info_portion>
   
@@ -67,7 +68,7 @@
 
     <info_portion id="val_go_to_trader"></info_portion>
     <info_portion id="val_go_to_trader_done"></info_portion>
-    <info_portion id="val_go_to_trader_complete"></info_portion>
+    <info_portion id="val_go_to_trader_complete"><article>private_12_note</article></info_portion>
     <info_portion id="val_talked_to_trader_dialog"></info_portion>
     
     <info_portion id="val_deliver_ammo_done"></info_portion>
@@ -77,6 +78,7 @@
 
     <info_portion id="val_go_to_freedom_leader_done"></info_portion>
     <info_portion id="val_go_to_freedom_leader_complete"></info_portion>
+
     <info_portion id="val_talked_to_freedom_leader"></info_portion>
 
     <info_portion id="val_kill_komendant_done"></info_portion>
@@ -111,11 +113,12 @@
 
     <info_portion id="val_help_freedom_done"></info_portion>
   
-    <info_portion id="val_take_pda_done"></info_portion>
+    <info_portion id="val_take_pda_done"><article>private_13_note</article></info_portion>
     <info_portion id="val_take_pda_complete"></info_portion>
 
     <info_portion id="val_deliver_pda_done"></info_portion>
-    <info_portion id="val_deliver_pda_complete"></info_portion>
+
+    <info_portion id="val_deliver_pda_complete"><article>private_14_note</article></info_portion>
 
     <info_portion id="val_bring_to_fang_done"></info_portion>
     <info_portion id="val_bring_to_fang_complete"></info_portion>

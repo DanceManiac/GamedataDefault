@@ -1,0 +1,42 @@
+[logic]
+active = remark@work2
+prior = 42
+
+[remark@work2]
+path_walk = mar_smart_terrain_csky_base_bar_stalker_2_walk
+on_info = smartcover@2
+anim = wait
+
+[smartcover@2]
+path_walk = mar_smart_terrain_csky_base_bar_stalker_2_walk
+cover_name = mar_csky_bar_anim_cover_2
+loophole_name = lead_stand_lean_on_bar
+cover_state = idle_fire
+on_info = {+start_surge_info} walker@surge_hide2
+on_info2 = {=is_good_weather -mar_snd_good_weather =dist_to_actor_le(8)} smartcover@2a %=play_sound(mar_good_weather) +mar_snd_good_weather%
+on_info3 = {+lim_visited_level} %=destroy_object%
+meet = meet@2
+
+[smartcover@2a]
+path_walk = mar_smart_terrain_csky_base_bar_stalker_2_walk
+cover_name = mar_csky_bar_anim_cover_2
+loophole_name = lead_stand_lean_on_bar
+cover_state = idle_fire
+on_info = {+start_surge_info} walker@surge_hide2
+on_info2 = {!is_good_weather =is_heavy_rain =dist_to_actor_le(8)} smartcover@2 %=disable_info_weather(mar_snd_good_weather)%
+on_info3 = {+lim_visited_level} %=destroy_object%
+meet = meet@2
+
+[walker@surge_hide2]
+path_walk = mar_smart_terrain_csky_base_surge_hide_1
+on_info = {-start_surge_info} smartcover@2
+meet = no_meet
+
+[meet@2]
+meet_state        = 2| wait@nil
+meet_state_wpn        = 2| wait@nil
+victim                 = 2| actor
+victim_wpn                 = 2| actor
+use                = true
+use_wpn = true
+abuse                = false

@@ -5,10 +5,11 @@ active = sr_idle@start
 on_info = {+yan_ready_actor_cut2} sr_idle@start_surge
 
 [sr_idle@start_surge]
-on_game_timer = 3600 | sr_idle@stop %+start_surge -yan_ready_actor_cut2 =stc_boom% 
+on_game_timer = 3600 | {=actor_in_zone(yan_space_restrictor_no_weapon_actor_base_cut2)} sr_idle@stop %+start_surge -yan_ready_actor_cut2 =stc_boom%
+on_game_timer2 = 3600 | {!actor_in_zone(yan_space_restrictor_no_weapon_actor_base_cut2)} sr_idle@stop %+start_surge -yan_ready_actor_cut2 =stc_boom =hit_psy_actor% 
 on_info = {+yan_quest_levsha} sr_idle@stop_surge
 
 [sr_idle@stop]
-on_game_timer = 150 |  sr_idle@start_surge %-start_surge% 
+on_game_timer = 150 | sr_idle@start_surge %-start_surge% 
 
 [sr_idle@stop_surge]

@@ -21,8 +21,10 @@ local issue_condlist = true
 local mechanic_name = ""
 local char_ini = ini_file("item_upgrades.ltx")
 local param_ini = ini_file("misc\\stalkers_upgarde_info.ltx")
+local upgrades_not_installed = {}
 
 function precondition_functor_a( param1, section )
+	upgrades_not_installed[section] = true
 	if not char_ini:line_exist(section, "cost") then
 		abort("line \"cost\" does not exists in section "..section)
 	end
@@ -50,13 +52,17 @@ function precondition_functor_a( param1, section )
 	return 0 ---true
 end
 
+-- Kirgudu
 function effect_functor_a( param2, section, loading ) --( string, string, int )
-	if loading == 0 then
-		local money = char_ini:r_u32(section, "cost")
-		xr_statistic.inc_spent_money_counter(money)
-		db.actor:give_money(money*-1)
-	end
+    if loading == 0 then
+        local price = char_ini:r_u32(section, "cost")
+        local money = db.actor:money()
+        if money < price then price = money end
+        xr_statistic.inc_spent_money_counter(price)
+        db.actor:give_money(price*-1)
+    end
 end
+-- Kirgudu
 
 function prereq_functor_a( param3, section )
     if issue_condlist then
@@ -64,9 +70,9 @@ function prereq_functor_a( param3, section )
 			local price = char_ini:r_u32(section, "cost")
 			local cash = db.actor:money()
 			if cash < price then
-				return game.translate_string("st_upgr_cost")..": "..price.." RU\\n"..game.translate_string("ui_inv_not_enought_money")..": "..price-cash.." RU"
+				return game.translate_string("st_upgr_cost")..": "..price.." "..game.translate_string("rubles").."\\n"..game.translate_string("ui_inv_not_enought_money")..": "..price-cash.." "..game.translate_string("rubles")
 			elseif cash >= price then
-				return game.translate_string("st_upgr_cost").." "..price.." RU"
+				return game.translate_string("st_upgr_cost").." "..price.." "..game.translate_string("rubles")
 			end
 		end
 		return " "
@@ -102,7 +108,7 @@ function property_functor_a( param1, name )
 		if not char_ini:line_exist(section, "value2") or not char_ini:r_string(section, "value2") then
 			if name == "prop_ammo_size" then
 				return t_prorerty_name.." "..value.." "..game.translate_string("st_upgr_ammunition")
-			elseif name == "prop_tonnage" then
+			elseif (name == "prop_tonnage" or name == "prop_weightoutfit" or name == "prop_weight") then
 				return t_prorerty_name.." "..value.." "..game.translate_string("st_kg")
 			end
 			return t_prorerty_name.." "..value.."%"
@@ -154,14 +160,14 @@ function property_functor_a( param1, name )
 				if sum > 0 then
 					if name == "prop_ammo_size" then
 						return t_prorerty_name.." +"..sum.." "..game.translate_string("st_upgr_ammunition")
-					elseif name == "prop_tonnage" then
+					elseif (name == "prop_tonnage" or name == "prop_weightoutfit" or name == "prop_weight") then
 						return t_prorerty_name.." +"..sum.." "..game.translate_string("st_kg")
 					end
 					return t_prorerty_name.." +"..sum.."%"..complementary
 				else
 					if name == "prop_ammo_size" then
 						return t_prorerty_name.." "..sum.." "..game..translate_string("st_upgr_ammunition")
-					elseif name == "prop_tonnage" then
+					elseif (name == "prop_tonnage" or name == "prop_weightoutfit" or name == "prop_weight") then
 						return t_prorerty_name.." "..sum.." "..game.translate_string("st_kg")
 					end
 					return t_prorerty_name.." "..sum.."%"..complementary
@@ -199,9 +205,12 @@ function issue_property( param1, name )
 	end
 end
 
-local function how_much_repair( item_name, item_condition )
+local function how_much_repair( item_name, item_condition, mechanic )
 	local ltx = system_ini()
 	local cost = ltx:r_u32(item_name, "cost")
+--	if db.actor:character_community() == "actor_csky" then
+--		cost = 0
+--	end
 	local class = ltx:r_string(item_name, "class")
 	local cof = 0.8
 	if class == "E_STLK" then
@@ -209,19 +218,26 @@ local function how_much_repair( item_name, item_condition )
 	else
 		cof = 0.8
 	end
-	return math.floor(cost*(1-item_condition)*cof)
+	local final_price = math.floor(cost*(1-item_condition)*cof)
+	if item_condition <= 0.5 and item_condition > 0.25 then
+		final_price = final_price * 2
+	elseif item_condition <= 0.25 then
+		final_price = final_price * 3
+	end
+	local mechanic_se_obj = alife():object(mechanic)
+	--error_log(mechanic)
+	if mechanic_se_obj and mechanic_se_obj:community() == db.actor:character_community() then
+		final_price = math.floor(final_price/2)
+	end
+	
+	return final_price --math.floor(cost*(1-item_condition)*cof)
 end
 
 function can_repair_item( item_name, item_condition, mechanic ) --( string, float, string )
-	-- if not param_ini:line_exist(mechanic, item_name) then
-		-- return false
-	-- end
-	-- if param_ini:line_exist(mechanic, "he_upgrade_nothing") then
-		-- if not (param_ini:r_string(mechanic, item_name) == "repair") then
-			-- return false
-		-- end
-	-- end
-	local price = how_much_repair( item_name, item_condition )
+	if(item_name == "shram_outfit") then
+		return false
+	end
+	local price = how_much_repair( item_name, item_condition, mechanic )
 	if db.actor:money() < price then
 		return false
 	end
@@ -229,30 +245,34 @@ function can_repair_item( item_name, item_condition, mechanic ) --( string, floa
 end
 
 function question_repair_item( item_name, item_condition, can, mechanic ) --( string, float, bool, string )
-	-- if not param_ini:line_exist(mechanic, item_name) then
-		-- return "st_upgr_inability_repair"
-	-- end
-	-- if param_ini:line_exist(mechanic, "he_upgrade_nothing") then
-		-- if not (param_ini:r_string(mechanic, item_name) == "repair") then
-			-- return "st_upgr_inability_repair"
-		-- end
-	-- end
-	local price = how_much_repair( item_name, item_condition )
-	if db.actor:money() < price then
-		return game.translate_string("st_upgr_cost")..": "..price.." RU\\n"..game.translate_string("ui_inv_not_enought_money")..": "..price-db.actor:money().." RU"
+	if(item_name == "shram_outfit") then
+		return game.translate_string("st_shram_outfit_cannot_be_repaired")
 	end
-	return game.translate_string("st_upgr_cost").." "..price.." RU. "..game.translate_string("ui_inv_repair").."?"
+	local price = how_much_repair( item_name, item_condition, mechanic )
+	if db.actor:money() < price then
+		return game.translate_string("st_upgr_cost")..": "..price.." "..game.translate_string("rubles").."\\n"..game.translate_string("ui_inv_not_enought_money")..": "..price-db.actor:money().." "..game.translate_string("rubles")
+	end
+	return game.translate_string("st_upgr_cost").." "..price.." "..game.translate_string("rubles").." "..game.translate_string("ui_inv_repair").."?"
 end
 
+-- Kirgudu
 function effect_repair_item( item_name, item_condition ) --( string, float )
-	if mechanic_name ~= "kat_cs_commander" then
-		local price = how_much_repair( item_name, item_condition )
-	    xr_statistic.inc_spent_money_counter(price)
-		db.actor:give_money(price*-1)
-	end
+    if mechanic_name ~= "kat_cs_commander" then
+        local price = how_much_repair( item_name, item_condition, mechanic_name )
+        local money = db.actor:money()
+        if money < price then price = money end
+        xr_statistic.inc_spent_money_counter(price)
+        db.actor:give_money(price*-1)
+    end
 end
+-- Kirgudu
 
 function can_upgrade_item( item_name, mechanic ) --( string, string )
+	--error_log(string.format(tostring(item_name)))
+	upgrades_not_installed = {}
+	mechanic_name = mechanic
+	item_name = string.gsub(item_name, "_slotted", "")
+	--error_log(string.format("checking %s",item_name))
 	if param_ini:line_exist(mechanic, "he_upgrade_nothing") then
 		return false
 	end
@@ -262,7 +282,7 @@ function can_upgrade_item( item_name, mechanic ) --( string, string )
 	-- if param_ini:r_string(mechanic, item_name) == "repair" then
 		-- return false
 	-- end
-	mechanic_name = mechanic
+	--error_log(string.format("Can upgrade item - %s", mechanic))
 	return true
 end
 

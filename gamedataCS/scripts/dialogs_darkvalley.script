@@ -1,41 +1,68 @@
 function transfer_ammo(first_speaker, second_speaker)
-		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "ammo_5.56x45_ap", 4)
-		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "grenade_rgd5", 3)
+		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "ashot_ammo_package", 1)
+end
+
+function actor_has_ashot_ammo_package(first_speaker, second_speaker)
+		return first_speaker:object("ashot_ammo_package") ~= nil
+end
+
+function transfer_freedom_trader_ammo_package(first_speaker, second_speaker)
+		dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "ashot_ammo_package")
 end
 
 function is_day(first_speaker, second_speaker)
-	return level.get_time_hours() > 3 and level.get_time_hours() < 23
+	return level.get_time_hours() > 5 and level.get_time_hours() < 23
 end
 
 function is_not_day(first_speaker, second_speaker)
 	return is_day(first_speaker, second_speaker) == false
 end
 
+-- Jurok --
 function return_freedom_pda(first_speaker, second_speaker)
-	if db.actor:object("device_pda_freedom") ~= nil then
-		dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "device_pda_freedom")
-	end
+	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "device_pda_freedom")
+end
+
+function actor_has_freedom_pda(first_speaker, second_speaker)
+	return db.actor:object("device_pda_freedom") ~= nil
+end
+
+function actor_not_has_freedom_pda(first_speaker, second_speaker)
+	return db.actor:object("device_pda_freedom") == nil
 end
 
 function return_komendant_pda(first_speaker, second_speaker)
-	if db.actor:object("device_pda_comendant") ~= nil then
-		dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "device_pda_comendant")
-	end
+	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "device_pda_comendant")
 end
+
+function actor_has_komendant_pda(first_speaker, second_speaker)
+	return db.actor:object("device_pda_comendant") ~= nil
+end
+
+function actor_not_has_komendant_pda(first_speaker, second_speaker)
+	return db.actor:object("device_pda_comendant") == nil
+end
+-- Jurok --
+
+-- WARWER --
+function actor_has_device_pda_bloodsucker_guide(first_speaker, second_speaker)
+	return first_speaker:object("device_pda_bloodsucker") ~= nil
+end
+-- WARWER --
 
 function return_pda_bloodsucker(first_speaker, second_speaker)
 	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "device_pda_bloodsucker")
 end
 
 function give_reward_for_destroy_killer_base(first_speaker, second_speaker)
-	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "flesh_up_abcd_svu")
+	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "svoboda_heavy_outfit")
 end
 
 function freedom_join_reward(first_speaker, second_speaker)
 	if not has_alife_info("val_joined_freedom") then
-		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "svoboda_heavy_outfit")
-		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_sig550_up2")
-		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_addon_scope_susat")
+		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "svoboda_light2_outfit")
+		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_sig550")
+		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_addon_scope_acog")
 		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "ammo_5.56x45_ap", 3)
 		dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "medkit_scientic", 3)
 		db.actor:give_info_portion("val_joined_freedom")
@@ -46,6 +73,33 @@ function barman_give_reward_for_bandits(first_speaker, second_speaker)
 	dialogs.relocate_money(first_speaker, 1000, "in")
 end
 
+function val_bandit_pda_return_freedom_leader(first_speaker, second_speaker)
+	xr_effects.give_inited_task(nil, nil, {"storyline", "val_bandit_pda_return_freedom_leader", "freedom"})
+end
+
+function actor_has_val_bandit_spy_quest_pda(first_speaker, second_speaker)
+		return first_speaker:object("val_bandit_spy_quest_pda") ~= nil
+end
+
+function transfer_freedom_leader_bandit_pda(first_speaker, second_speaker)
+		dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "val_bandit_spy_quest_pda")
+end
+
+function give_money_for_bandit_pda(first_speaker, second_speaker)
+	        	dialogs.relocate_money(first_speaker, 1000, "in")
+end
+
 function is_bloobsucker_task_complete(first_speaker, second_speaker)
 	return has_alife_info("val_night_bloodsucker_complete") or has_alife_info("val_night_bloodsucker_fail")
+end
+
+function kill_boars(first_speaker, second_speaker)
+	dialogs.relocate_money(first_speaker, 1000, "in")
+end
+
+function spawn_val_comendant_dead()
+	local spawn_id = alife():spawn_id(spawn_story_ids.val_comendant_dead)
+	if spawn_id then
+		obj = alife():create(spawn_id)
+	end
 end

@@ -2,7 +2,7 @@
 active = sr_idle@start
 
 [sr_idle@start]
-on_info = sr_idle@close1 %=disable_level_changer(1025:tips_agroprom_undeground) =disable_level_changer(1026:tips_agroprom_undeground)%
+on_info = {+mar_intro_start} sr_idle@close1 %=disable_level_changer(1025:tips_agroprom_undeground) =disable_level_changer(1026:level_changer_disabled)%
 
 [sr_idle@close1]
 on_info = {+agr_actor_inside_9} sr_idle@close2 %=enable_level_changer(1025)%

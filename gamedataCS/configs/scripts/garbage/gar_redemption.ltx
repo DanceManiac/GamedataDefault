@@ -1,15 +1,20 @@
 [logic@robber_1]
 active = kamp
 suitable = {-gar_quest_redemption_done =check_npc_name(gar_bandit_robber_1)}
+relation = enemy
+sympathy = 0
 prior = 120
 
 [logic@robber_2]
 active = kamp
 suitable = {-gar_quest_redemption_done =check_npc_name(gar_bandit_robber_2)}
+relation = enemy
+sympathy = 0
 prior = 120
 
 [kamp]
 center_point = kamp_2
 path_walk = kamp_2_task
 def_state_moving = walk
+on_info = {=dist_to_actor_le(150)} %=set_squad_goodwill(gar_bandit_robbers:enemy)%
 meet = no_meet

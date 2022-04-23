@@ -1,37 +1,94 @@
 [logic]
 active = walker@prisoner
-meet = meet
 on_death = death
 wounded = wounded
 
 [walker@prisoner]
 path_walk = esc_wolf_brother_walk_1
 path_look = esc_wolf_brother_look_1
-on_info2 = {+esc_wolf_brother_2} walker@run
-meet = meet
-on_info = {-esc_wolf_brother_info =squad_exist(esc_smart_terrain_9_10_bandit_other_squad)} walker@prisoner %=set_squad_goodwill_to_npc(esc_smart_terrain_9_10_bandit_other_squad:friend) +esc_wolf_brother_info%
+meet = no_meet
+on_info = {!squad_exist(esc_smart_terrain_9_10_bandit_other_squad)} remark@prisoner, {+esc_bandit_take_money} walker@prisoner_1, {+esc_bandit_take_all_money} walker@prisoner_1
+on_info2 = {=npc_has_weapon(429) -esc_bandit_take_money} walker@gg_smart_ass_woodpecker %=set_squad_goodwill(esc_smart_terrain_9_10_bandit_other_squad:enemy) =set_squad_goodwill_to_npc(esc_smart_terrain_9_10_bandit_other_squad:enemy) +esc_wolf_brother_has_weapon_info%, {=npc_has_weapon(429) -esc_bandit_take_all_money} walker@gg_smart_ass_woodpecker %=set_squad_goodwill(esc_smart_terrain_9_10_bandit_other_squad:enemy) =set_squad_goodwill_to_npc(esc_smart_terrain_9_10_bandit_other_squad:enemy) +esc_wolf_brother_has_weapon_info%
 combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+
+[remark@prisoner]
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+anim = wait
+target = actor
+meet = meet@no_break
+on_info = {-esc_wolf_brother_info} remark@prisoner %+esc_wolf_brother_info%
+on_info2 = {+esc_wolf_brother_2} remark@run
+
+[walker@prisoner_1]
+path_walk = esc_wolf_brother_walk_1
+path_look = esc_wolf_brother_look_1
+meet = meet@no_break
+on_info = {-esc_wolf_brother_info} walker@prisoner_1 %+esc_wolf_brother_info%
+on_info2 = {+esc_wolf_brother_2} remark@run
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+
+[walker@gg_smart_ass_woodpecker]
+path_walk = esc_wolf_brother_walk_1
+path_look = esc_wolf_brother_look_1
+on_info = {+esc_wolf_brother_2} remark@run
+meet = meet
+
+[remark@run]
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+anim = wait
+target = actor
+on_info = walker@run
+meet = no_meet
 
 [walker@run]
 path_walk = esc_wolf_brother_walk_2
 path_look = esc_wolf_brother_look_2
-def_state_moving = run
+def_state_moving = assault
 meet = no_meet
-on_npc_in_zone = 429 | esc_space_restrictors_2_12_sr_defense | walker@walk
-on_actor_dist_ge_nvis = 100 | walker@death %+esc_wolf_brother_fail =kill_npc%
-
-[walker@walk]
-path_walk = esc_wolf_brother_walk_3
-path_look = esc_wolf_brother_look_3
-meet = meet
-def_state_moving = walk
-on_info = %+esc_wolf_brother_3%
+on_info = {+esc_wolf_brother_4} walker@walk_final
+on_npc_in_zone = 429 | esc_space_restrictors_2_12_sr_defense | {-esc_wolf_brother_meet_info} walker@walk %=play_sound(esc_wolf_brother_thanx:stalker:esc_wolf_brother_name) +esc_wolf_brother_meet_info +esc_wolf_brother_3%
+on_actor_dist_ge_nvis = 50 | walker@death %=kill_brother +esc_brother_kaput_info%
+combat_ignore_cond = true
 
 [walker@death]
 path_walk = esc_wolf_brother_walk_3
 path_look = esc_wolf_brother_look_3
-meet = meet
+meet = no_meet
 def_state_moving = walk
+on_info = {+esc_wolf_brother_3} walker@walk %=actor_friend%
+on_info2 = {+start_surge_info} walker@surge_hide_wolf_brother
+
+[walker@walk]
+path_walk = esc_wolf_brother_walk_3
+path_look = esc_wolf_brother_look_3
+meet = no_meet
+def_state_moving = run
+on_info = {+esc_wolf_brother_3} walker@walk_final %=actor_friend%
+on_info2 = {+start_surge_info} walker@surge_hide_wolf_brother
+
+[walker@walk_final]
+path_walk = esc_wolf_brother_walk_3
+path_look = esc_wolf_brother_look_3
+on_info = {=smart_population_le(esc_smart_terrain_2_12:5)} walker@walk_final_work
+on_info2 = {+start_surge_info} walker@surge_hide_wolf_brother
+on_info3 = {!squad_exist(red_pursuit_bounty_hunters_squad_1) !squad_exist(red_pursuit_bounty_hunters_squad_2)} %=actor_friend%
+meet = meet
+
+[walker@surge_hide_wolf_brother]
+path_walk = esc_smart_terrain_2_12_sleep_2
+on_info = {-start_surge_info} walker@walk_final
+meet = no_meet
+
+[walker@walk_final_work]
+path_walk = esc_smart_terrain_2_12_walker_1_walk
+path_look = esc_smart_terrain_2_12_walker_1_look
+on_info = {=smart_population_ge(esc_smart_terrain_2_12:7)} walker@walk_final
+on_info2 = {+start_surge_info} walker@surge_hide_wolf_brother
+meet = meet
 
 [death]
 on_info = %+esc_wolf_brother_fail%
@@ -42,3 +99,24 @@ hp_state_see    = 0|wounded_heavy@help_heavy
 hp_victim       = 0|nil
 hp_fight        = 0|false
 hp_cover        = 0|false
+
+[meet@no_break]
+meet_state	= 3| nil@nil
+meet_state_wpn	= 3| nil@nil
+victim 		= 3| nil
+victim_wpn 	= 3| nil
+meet_dialog = esc_wolf_brother
+use = true
+use_wpn = true
+allow_break = false
+trade_enable = false
+abuse = false
+
+[meet]
+meet_state	= 3| nil@nil
+meet_state_wpn	= 3| nil@nil
+victim 		= 3| actor
+victim_wpn 	= 3| actor
+use = true
+use_wpn = true
+abuse = false

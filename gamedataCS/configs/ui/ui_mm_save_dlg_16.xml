@@ -33,7 +33,7 @@
     <texture>ui_menu_options_dlg</texture>
 
     <caption x="54" y="10" width="416" height="25" complex_mode="0">
-      <text font="graffiti22" r="184" g="168" b="131">ui_mm_save_game</text>
+      <text font="graffiti22" r="215" g="195" b="170">ui_mm_save_game</text>
     </caption>
 
     <edit x="54" y="55" width="204" height="23" file_name_mode="1">

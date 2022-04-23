@@ -1,0 +1,27 @@
+[logic]
+active = ph_door@horror_knock
+
+[ph_door@horror_knock]
+locked = true
+closed = true
+snd_open_start = 
+snd_close_start = 
+snd_close_stop = 
+on_info = {~60 =actor_in_zone(val_underground_door_marker)} ph_door@horror_wait %=hit_npc(x18_point_knock:door:0:1500) =play_particle_on_path(hit_fx\hit_stucco_statik:dar_knock_points:70) =play_sound(trader_door_close_stop)%, ph_door@horror_silence
+
+[ph_door@horror_wait]
+locked = true
+closed = true
+snd_open_start = 
+snd_close_start = 
+snd_close_stop = 
+on_timer = 2500 | ph_door@horror_knock
+
+[ph_door@horror_silence]
+locked = true
+closed = true
+snd_open_start = 
+snd_close_start = 
+snd_close_stop = 
+on_timer = 2000 | ph_door@horror_knock
+on_use = %+val_x18_door_info%

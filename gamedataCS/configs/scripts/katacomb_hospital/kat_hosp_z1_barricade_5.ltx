@@ -21,7 +21,17 @@ combat_ignore_cond = true
 cover_name = hosp_barricade_commander_smartcover
 cover_state = idle_target
 loophole_name = br_com
-on_actor_dist_le_nvis = 7 | smartcover@hide2 %+hospital_z1_komander_speak =play_sound(clear_sky_about_hall:csky:st_ui_pda_legend_squad)%
+on_actor_dist_le_nvis = 5 | smartcover@hide1 %=play_sound(clear_sky_about_hall:csky_3:st_ui_pda_legend_squad) =disable_ui =actor_look(barricade_hide_5_walk)%
+meet = no_meet
+
+[smartcover@hide1]
+use_in_combat = true
+invulnerable = true
+combat_ignore_cond = true
+cover_name = hosp_barricade_commander_smartcover
+cover_state = idle_target
+loophole_name = br_com
+on_signal = sound_end | smartcover@hide2 %+hospital_z1_komander_speak% 
 meet = no_meet
 
 [smartcover@hide2]
@@ -31,7 +41,6 @@ combat_ignore_cond = true
 cover_name = hosp_barricade_commander_smartcover
 cover_state = fire_target
 loophole_name = br_com
-;target_path = actor
 on_info = {+sniper_fire_scene} smartcover@hide3
 meet = no_meet
 
@@ -52,8 +61,6 @@ combat_ignore_cond = true
 cover_name = hosp_barricade_commander_smartcover
 cover_state = fire_target
 loophole_name = br_com
-;target_path = actor
-;on_game_timer = 100 | camper@hide5 %+katacomb_task_sniper_back =play_sound(clear_sky_wait)%
 on_signal = sound_end | smartcover@hide5 %+katacomb_task_sniper_back =play_sound(clear_sky_wait:csky:st_ui_pda_legend_squad)%
 meet = no_meet
 
@@ -66,7 +73,7 @@ cover_name = hosp_barricade_commander_smartcover
 cover_state = lookout_target
 loophole_name = br_com
 on_info = {+cover_fire_go} smartcover@hide6 %=play_sound(clear_sky_go:csky:st_ui_pda_legend_squad)%
-on_info2 = {+sniper_off  +rush_6 -minigun_off} camper@rush %=play_sound(clear_sky_start_raid:csky:st_ui_pda_legend_squad)%, {+sniper_off  +rush_6 +minigun_off} camper@rush
+on_info2 = {+sniper_off  +rush_6 -minigun_off} camper@rush %=play_sound(clear_sky_start_raid:csky_3:st_ui_pda_legend_squad)%, {+sniper_off  +rush_6 +minigun_off} camper@rush
 
 [smartcover@hide6]
 use_in_combat = true
@@ -74,7 +81,6 @@ meet = no_meet
 invulnerable = true
 combat_ignore_cond = true
 cover_name = hosp_barricade_commander_smartcover
-;cover_state = lookout_target
 loophole_name = br_com
 on_info = {+hospital_z1_badly} smartcover@hide5 %-hospital_z1_badly =play_sound(clear_sky_badly:csky:st_ui_pda_legend_squad)%
 on_info2 = {+sniper_off +rush_6 -minigun_off} camper@rush %=play_sound(clear_sky_start_raid:csky:st_ui_pda_legend_squad)%, {+sniper_off  +rush_6 +minigun_off} camper@rush
@@ -127,9 +133,23 @@ no_retreat = true
 def_state_moving = sneak_run
 def_state_campering = threat_na
 def_state_campering_fire = threat_sniper_fire
+on_info = {+minigun_off} camper@final1 %=play_sound(clear_sky_gunner_killed:csky:st_ui_pda_legend_squad)%
+invulnerable = true
+meet = no_meet
+
+[camper@final1]
+out_restr = kat_hosp_z1_cs_final_restr
+danger = danger_condition
+path_walk = barricade_final_3_walk
+path_look = barricade_final_3_look
+radius = 0
+no_retreat = true
+def_state_moving = sneak_run
+def_state_campering = threat_na
+def_state_campering_fire = threat_sniper_fire
 on_info = {+hospital_last_wave_spawn} camper@final2 %=play_sound(clear_sky_thanks_actor:csky:st_ui_pda_legend_squad)%
 invulnerable = true
-;meet = no_meet
+meet = no_meet
 
 [camper@final2]
 out_restr = kat_hosp_z1_cs_final_restr
@@ -141,7 +161,20 @@ def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 no_retreat = true
 invulnerable = true
-;meet = no_meet
+meet = no_meet
+on_signal = sound_end | camper@final3
+
+[camper@final3]
+out_restr = kat_hosp_z1_cs_final_restr
+danger = danger_condition
+path_walk = barricade_final_3_walk
+path_look = barricade_final_3_look
+radius = 0
+def_state_campering = threat_na
+def_state_campering_fire = threat_fire
+no_retreat = true
+invulnerable = true
+meet = meet
 
 [danger_condition]
 ignore_distance_corpse = 0

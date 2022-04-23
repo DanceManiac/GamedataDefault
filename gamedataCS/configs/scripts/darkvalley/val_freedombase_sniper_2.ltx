@@ -1,0 +1,24 @@
+[logic]
+active = walker
+on_death = death
+
+[walker]
+path_walk = val_smart_terrain_7_5_sniper_1_walk
+path_look = val_smart_terrain_7_5_sniper_1_look
+on_info = {+start_surge_info} walker@surge_hide
+combat_ignore_cond = {!is_enemy_actor}
+meet = meet
+
+[walker@surge_hide]
+path_walk = val_smart_terrain_7_5_surge_hide_1
+on_info = {-start_surge_info} walker
+meet = no_meet
+
+[meet]
+meet_state = 2 | guard@nil
+meet_state_wpn = 2 | threat@meet_weapon_wait
+victim = 2 | nil
+victim_wpn = 2 | actor
+
+[death]
+on_info = %+val_freedombase_sniper_2_dead%

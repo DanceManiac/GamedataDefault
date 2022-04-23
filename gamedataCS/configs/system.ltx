@@ -1,18 +1,15 @@
 #include "defines.ltx"
 #include "prefetch\prefetch.ltx"
-;#include "weathers\environment.ltx"
 #include "creatures\monsters.ltx"
 #include "creatures\stalkers.ltx"
 #include "weapons\weapons.ltx"
 #include "misc\inventory_upgrades.ltx"
 #include "misc\items.ltx"
 #include "misc\monster_items.ltx"
-
 #include "creatures\actor.ltx"
 #include "misc\bridge.ltx"
 #include "zones\zones.ltx"
 #include "misc\postprocess.ltx"
-
 #include "misc\outfit.ltx"
 #include "misc\artefacts.ltx"
 #include "misc\devices.ltx"
@@ -20,22 +17,17 @@
 #include "misc\quest_items.ltx"
 #include "misc\upgrade_items.ltx"
 #include "models\dynamic_objects.ltx"
-
-
 #include "misc\effectors.ltx"
 #include "creatures\helicopter.ltx"
 #include "external.ltx"
-
 #include "creatures\game_relations.ltx"
-
+#include "creatures\vechicles.ltx"
 #include "mp\mp_actor.ltx"
 #include "mp\team_logo.ltx"
 #include "mp\weapons_mp\ammo_mp.ltx"
 #include "mp\weapons_mp\weapons_mp.ltx"
 #include "mp\weapons_mp\outfit_mp.ltx"
 #include "mp\weapons_mp\items_mp.ltx"
-
-;Game types
 #include "mp\SoundMessages\mp_snd_messages.ltx"
 #include "mp\SoundMessages\ahunt_snd_messages.ltx"
 #include "mp\SoundMessages\cta_snd_messages.ltx"
@@ -46,678 +38,596 @@
 #include "mp\artefacthunt_game.ltx"
 #include "mp\capturetheartefact_game.ltx"
 #include "mp\anticheat_active_params.ltx"
-
 #include "evaluation.ltx"
 #include "fonts.ltx"
-
 #include "alife.ltx"
-; SIMULATION
 #include "misc\simulation.ltx"
-
-; Respawns
 #include "misc\respawn.ltx"
 #include "creatures\spawn_sections.ltx"
-
-; Extra Content
 #include "extracontent.ltx"
-
 #include "localization.ltx"
-
 #include "smart_cover.ltx"
+#include "misc\ai_additions\_system.ltx"
 
 [zone_pick_dof]
-near 	= -70.0
-far 	= 70.0
+near = -70.0
+far = 70.0
 
 [sound]
 occlusion_scale = 0.4
-snd_collide_min_volume=0.1
-snd_collide_max_volume=200.
+snd_collide_min_volume = 0.1
+snd_collide_max_volume = 200.
 
 [demo_record]
-speed0    = 0.3
-speed1    = 3.0
-speed2    = 15.0
-speed3    = 60.0
-ang_speed0  = 0.1
-ang_speed1  = 0.5
-ang_speed2  = 7.0
-ang_speed3  = 2.0
-
+speed0 = 0.3
+speed1 = 3.0
+speed2 = 10.0  ;15.0
+speed3 = 30.0  ;60.0
+ang_speed0 = 0.1
+ang_speed1 = 0.5
+ang_speed2 = 3.0  ;7.0
+ang_speed3 = 1.0  ;2.0
 
 [info_portions]
-;список xml файлов, содержаих info_portions
-files = info_portions, info_katacomb, info_generator, info_red_forest, info_limansk, info_marsh, info_darkvalley, info_military, info_garbage, info_escape, info_agroprom, info_agroprom_underground, info_yantar, info_stancia_2, info_upgrades
+files = info_ogsm, info_portions, info_katacomb, info_generator, info_red_forest, info_limansk, info_marsh, info_darkvalley, info_military, info_garbage, info_escape, info_agroprom, info_agroprom_underground, info_yantar, info_stancia_2, info_upgrades, info_notepad
 
 [encyclopedia]
 files = encyclopedia_infos, storyline_info_to_diary, encyclopedia_weapons, encyclopedia_mutants, encyclopedia_zone, encyclopedia_social, encyclopedia_equipment, encyclopedia_tutorial
 
 [dialogs]
-files = dialogs, dialogs_marsh, dialogs_escape, dialogs_garbadge, dialogs_darkvalley, dialogs_agroprom, dialogs_yantar, dialogs_redforest, dialogs_military, dialogs_limansk
+files = dialogs, dialogs_marsh, dialogs_escape, dialogs_garbadge, dialogs_darkvalley, dialogs_agroprom, dialogs_yantar, dialogs_redforest, dialogs_military, dialogs_limansk, dialogs_ogsm_flashes, dialogs_ogsm_items, rt_dialogs, dialogs_rareitems
 
 [profiles]
-;список xml файлов, содержаих профили сталкеров и торговцев
-files =  npc_profile
-;список xml файлов, содержаих описаниљ конкретнvх сталкеров и торговцев
-specific_characters_files = character_desc_general, character_desc_generator, character_desc_katacomb, character_desc_escape, character_desc_marsh, character_desc_red_forest, character_desc_limansk, character_desc_garbage, character_desc_darkvalley, character_desc_agroprom, character_desc_yantar, character_desc_military, character_desc_stancia_2
-
+files = npc_profile
+specific_characters_files = character_desc_general, character_desc_generator, character_desc_katacomb, character_desc_escape, character_desc_marsh, character_desc_red_forest, character_desc_limansk, character_desc_garbage, character_desc_darkvalley, character_desc_agroprom, character_desc_yantar, character_desc_military, character_desc_stancia_2, character_desc_ogsm
 
 [game_tasks]
 files = game_tasks
 
 [inventory]
-take_dist   = 2
-max_weight    = 50
-max_ruck    = 56
-max_belt    = 5 ;16
-slots     = 11
-slots_count   = 12
+take_dist = 2
+max_weight = 50
+max_ruck = 56
+max_belt = 5
+slots = 11
+slots_count = 12
 
-slot_persistent_1  	= true   ;knife
-slot_active_1  		= true
+slot_persistent_1	= true ;knife
+slot_active_1		= true
 
-slot_persistent_2  	= false  ;pistol
-slot_active_2  		= true
+slot_persistent_2	= false ;pistol
+slot_active_2		= true
 
-slot_persistent_3  	= false  ;automatic
-slot_active_3  		= true
+slot_persistent_3	= false ;automatic
+slot_active_3		= true
 
-slot_persistent_4  	= true   ;grenades
-slot_active_4  		= true
+slot_persistent_4	= true ;grenades
+slot_active_4		= true
 
-slot_persistent_5  	= true   ;binocular
-slot_active_5  		= true
+slot_persistent_5	= true ;binocular
+slot_active_5		= true
 
-slot_persistent_6  	= true   ;bolt
-slot_active_6  		= true
+slot_persistent_6	= true ;bolt
+slot_active_6		= true
 
-slot_persistent_7  	= false  ;outfit
-slot_active_7  		= false
+slot_persistent_7	= false ;outfit
+slot_active_7		= false
 
-slot_persistent_8  	= true   ;pda
-slot_active_8  		= false
+slot_persistent_8	= true ;pda
+slot_active_8		= false
 
-slot_persistent_9  	= true   ;detector
-slot_active_9  		= false
+slot_persistent_9	= true ;detector
+slot_active_9		= false
 
-slot_persistent_10  	= true  ;torch
-slot_active_10  	= fasle
+slot_persistent_10	= true ;torch
+slot_active_10		= false
 
-slot_persistent_11  	= false ;artefact
-slot_active_11  	= true
+slot_persistent_11	= false ;artefact
+slot_active_11		= true
 
-slot_persistent_12  	= false ;flare
-slot_active_12  	= false
-
+slot_persistent_12	= false ;flare
+slot_active_12		= false
 
 [lights_hanging_lamp]
 GroupControlSection = spawn_group
-$spawn        = "physics\hanging lamp"
-class       = O_HLAMP
-script_binding      = bind_physic_object.init
-
+$spawn = "physics\hanging lamp"
+class = O_HLAMP
+script_binding = bind_physic_object.init
 
 [lights_signal_light]
 GroupControlSection = spawn_group
-$spawn        = "physics\signal_light"
-class       = O_HLAMP
-script_binding      = bind_signal_light.init
-
+$spawn = "physics\signal_light"
+class = O_HLAMP
+script_binding = bind_signal_light.init
 
 [search_light]
 GroupControlSection = spawn_group
-$spawn        = "physics\search light"
-class       = O_SEARCH
-cform       = skeleton
-visual        = dynamics\light\projector.ogf
-script_binding      = bind_physic_object.init
+$spawn = "physics\search light"
+class = O_SEARCH
+cform = skeleton
+visual = dynamics\light\projector.ogf
+script_binding = bind_physic_object.init
 
 [explosion_marks]
-wallmarks     = wm\wm_grenade
-dist        = 0.5 ;2.4  ;
-size        = 0.6 ;0.4  ;
-max_count     = 5
+wallmarks = wm\wm_grenade
+dist = 0.5
+size = 0.6
+max_count = 5
 
 [bloody_marks]
-wallmarks     = wm\wm_blood_1,wm\wm_blood_2,wm\wm_blood_3
-dist        = 2.0 ;2.4  ;(м) max расстољние отлета крови
-max_size      = 0.4 ;0.3  ;(м)радиус пљтна при хите силой nominal hit по большому объекту (по маленькому *0.5)
-min_size      = 0.06      ;(м)минимальнvй радиус пљтна
-nominal_hit     = 0.5     ;величина номинального хита, при котором разлетаетсљ максимум крови (max_size)
+wallmarks			= wm\wm_blood_1,wm\wm_blood_2,wm\wm_blood_3,wm\wm_blood_4,wm\wm_blood_5,wm\wm_blood_6,wm\wm_blood_7,wm\wm_blood_8,wm\wm_blood_9
+dist				= 3.0 ;(м) max расстояние отлета крови
+max_size			= 0.4 ;(м) радиус пятна при хите силой nominal hit по большому объекту (по маленькому *0.5)
+min_size			= 0.1 ;(м) минимальный радиус пятна
+nominal_hit			= 0.3 ;величина номинального хита, при котором разлетается максимум крови (max_size)
 
-;капли крови
+blood_drops			= wm\wm_blood_drop_1,wm\wm_blood_drop_2,wm\wm_blood_drop_3,wm\wm_blood_drop_4
+start_blood_size	= 0.4 ;размер раны чтоб начала капать кровь
+stop_blood_size		= 0.025 ;размер раны чтоб кровь остановилась (должно быть меньше start_blood_size)
 
-blood_drops     = wm\wm_blood_drop_1,wm\wm_blood_drop_2,wm\wm_blood_drop_3,wm\wm_blood_drop_4
-start_blood_size  = 0.4     ;размер ранv чтоб начала капать кровь
-stop_blood_size   = 0.025     ;размер ранv чтоб кровь остановилась (должно бvть меньше start_blood_size)
-
-blood_drop_time     = 0.1     ;OBSOLETE
-blood_drop_time_min = 0.3     ;
-blood_drop_time_max = 2.0     ;
-blood_drop_size   = 0.1     ;размер капли (м) крови, котораљ упала
-
+blood_drop_time     = 0.1
+blood_drop_time_min = 0.3
+blood_drop_time_max = 2.0
+blood_drop_size		= 0.1 ;размер капли (м) крови, которая упала
 
 [entity_fire_particles]
-fire_particles = damage_fx\burn_creatures
-start_burn_size = 0.0003    ;размер ожега после которого начать играть партиклv огнљ
-stop_burn_size  = 0.0001    ;размер ожега после которого остановить партиклv
-min_burn_time = 10000   ;минимальное времљ отvгрvша партиклов (даже если рана уже зажила)
+fire_particles		= damage_fx\burn_creatures
+start_burn_size		= 0.0003 ;размер ожега после которого начать играть партиклv огнљ
+stop_burn_size		= 0.0001 ;размер ожега после которого остановить партиклv
+min_burn_time		= 10000 ;минимальное времљ отvгрvша партиклов (даже если рана уже зажила)
 
-[hud_cursor]
-;все размерv в процентах от длинv экрана
-cross_length    = 0.015         ;длина "палочки" прицела
-min_radius      = 0.0         ;минимальнvй радиус прицела (при нулевой дисперсии)
-max_radius      = 1.0         ;максимальнvй радиус
-radius_lerp_speed = 0.08          ;скорость интерполљции положений прицела
-cross_color     = 0.7,0.7,0.7,0.5   ;цвет прицела
-disp_scale      = 0.08          ;масштаб прицела (относительно радиан)
+[hud_cursor];Все размеры в процентах от длины экрана
+cross_length		= 0.015 ;длина "палочки" прицела
+min_radius			= 0.0 ;минимальнvй радиус прицела (при нулевой дисперсии)
+max_radius			= 1.0 ;максимальнvй радиус
+radius_lerp_speed	= 0.08 ;скорость интерполяции положений прицела
+cross_color			= 0.7,0.7,0.7,0.5 ;цвет прицела
+disp_scale			= 0.08 ;масштаб прицела (относительно радиан)
 
 [hud_hitmark]
-hit_mark_texture 	= ui\ui_hud_hit_mark; ui\ui_empty
-grenade_mark_texture 	= ui\ui_hud_grenade_mark
+hit_mark_texture = ui\ui_hud_hit_mark
+grenade_mark_texture = ui\ui_hud_grenade_mark
 ;ui\ui_hud_hit_mark
-;ui\ui_hud_hit_mark_01
-;ui\ui_hud_hit_mark_02
-;ui\ui_hud_hit_mark_03
-;ui\ui_hud_hit_mark_04
-;ui\ui_hud_hit_mark_05
-;ui\ui_hud_hit_mark_06
-;ui\ui_hud_hit_mark_07
-;ui\ui_hud_hit_mark_08
-;ui\ui_hud_hit_mark_09
-;ui\ui_hud_hit_mark_10
-;ui\ui_hud_hit_mark_11
-;ui\ui_hud_hit_mark_12
-;ui\ui_hud_hit_mark_13
-;ui\ui_hud_hit_mark_14
-;ui\ui_hud_hit_mark_15
-;ui\ui_hud_hit_mark_16
-;ui\ui_hud_hit_mark_17
-;ui\ui_hud_hit_mark_18
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; inventory items
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-[document]
-GroupControlSection = spawn_group
-;discovery_dependency =
-$spawn        = "documents\document 01"
-;$prefetch      = 32
-class       = II_DOC
-cform       = skeleton
-visual        = dynamics\equipments\item_document_1.ogf
-
-inv_name      = Document
-inv_name_short    = Document
-inv_weight      = 1 ;0.2
-
-inv_grid_width    = 1
-inv_grid_height   = 1
-inv_grid_x      = 0
-inv_grid_y      = 0
-cost        = 0
-
-
-
 
 [spectator]
- $player        = on
-class                   = SPECT
-
+$player = on
+class = SPECT
 
 [??tg_event]
-class        = EVENT
+class = EVENT
 
 [m_car]
 GroupControlSection = spawn_group
 discovery_dependency =
-$spawn      = "vehicles\car"
-cform                   = skeleton
-class                   = SCRPTCAR
+$spawn = "vehicles\car"
+cform = skeleton
+class = SCRPTCAR
 
-inv_weight        = 1000
-cost          = 100000
-inv_grid_width      = 1
-inv_grid_height     = 1
+inv_weight = 1000
+cost = 100000
+inv_grid_width = 1
+inv_grid_height = 1
 
-script_binding      = bind_physic_object.init
-
+script_binding = bind_physic_object.init
 
 [actor_firsteye_cam]
-lim_pitch                = -1.5, 1.5
-lim_yaw                  = 0, 0
-rot_speed                = 3.14, 3.14, 0
+lim_pitch			= -1.5, 1.5
+lim_yaw				= 0, 0
+rot_speed			= 3.14, 3.14, 0
 
 [actor_ladder_cam]
-lim_pitch                = -1.5, 1.5
-lim_yaw                  = -1.0, 1.0
-rot_speed                = 3.14, 3.14, 0
+lim_pitch			= -1.5, 1.5
+lim_yaw				= -1.0, 1.0
+rot_speed			= 3.14, 3.14, 0
 
 [actor_free_cam]
-;----------------
-lim_pitch                = -1.5, 1.5
-lim_yaw                  = 0, 0
-lim_zoom                 = 0.4, 10
-rot_speed                = 3.14, 1.0, 10
+lim_pitch			= -1.5, 1.5
+lim_yaw				= 0, 0
+lim_zoom			= 1, 2
+rot_speed 			= 3.14, 1.0, 10
 
 [actor_look_cam]
-lim_pitch                = -0.7, 1
-lim_yaw                  = 0, 0
-lim_zoom                 = 1, 5
-rot_speed                = 3.14, 6.28, 10
+lim_pitch			= -0.7, 1
+lim_yaw				= 0, 0
+lim_zoom			= 1, 2
+rot_speed			= 3.14, 6.28, 10
 
 [actor_look_cam_psp]
-lim_pitch                = -0.7, 1
-lim_yaw                  = 0, 0
-lim_zoom                 = 1, 5
-rot_speed                = 2, 2, 2
-offset          = 0.4,0.2,-1.1
-autoaim_speed_y     = 0.5, 3.14    ;min,max speed
-autoaim_speed_x     = 0.5, 3.14
+lim_pitch			= -0.7, 1
+lim_yaw				= 0, 0
+lim_zoom			= 1, 5
+rot_speed			= 2, 2, 2
+offset				= 0.4,0.2,-1.1
+autoaim_speed_y		        = 0.5, 3.14 
+autoaim_speed_x		        = 0.5, 3.14
 
 [mounted_weapon_cam]
-lim_pitch                = -0.5, 0.5
-lim_yaw                  = -2.0, 2.0
-rot_speed                = 3.14, 1.0, 0
+lim_pitch			= -0.5, 0.5
+lim_yaw				= -2.0, 2.0
+rot_speed			= 3.14, 1.0, 0
 
 [car_firsteye_cam]
-lim_pitch                = -0.5, 0.3
-lim_yaw                  = -2.0, 2.0
-rot_speed                = 3.14, 1.0, 0
+lim_pitch			= -0.5, 0.3
+lim_yaw				= -2.0, 2.0
+rot_speed			= 3.14, 1.0, 0
 
 [car_free_cam]
-lim_pitch                = -1, 1.56 ;0, 1.56
-lim_yaw                  = 0, 0 ;0, 0
-lim_zoom                 = 1, 10 ;1, 7
-rot_speed                = 3.14, 1.0, 10 ;3.14, 1.0, 10
+lim_pitch			= -1, 1.56
+lim_yaw				= 0, 0
+lim_zoom			= 1, 10
+rot_speed			= 3.14, 1.0, 10
 
 [car_look_cam]
-lim_pitch                = 0, 1.56
-lim_yaw                  = 0  , 0
-lim_zoom                 = 1, 7
-rot_speed                = 25, 1.0, 10
+lim_pitch			= 0, 1.56
+lim_yaw				= 0, 0
+lim_zoom			= 1, 7
+rot_speed			= 25, 1.0, 10
 
 [heli_free_cam]
-lim_pitch                = -1.5, 1.5
-lim_yaw                  = 0, 0
-lim_zoom                 = 5, 25
-rot_speed                = 3.14, 1.0, 10
+lim_pitch			= -1.5, 1.5
+lim_yaw				= 0, 0
+lim_zoom			= 5, 25
+rot_speed			= 3.14, 1.0, 10
 
 [heli_front_cam]
-;lim_yaw    = -0.01,0.01
-lim_pitch                = -1.2, 1.2
-lim_yaw                  = -1.5, 1.5
-rot_speed                = 3.14, 1.5, 0
+lim_pitch			= -1.2, 1.2
+lim_yaw				= -1.5, 1.5
+rot_speed			= 3.14, 1.5, 0
 
 [heli_look_cam]
-lim_pitch                = 0, 1.56
-lim_yaw                  = 0, 0
-lim_zoom                 = 5, 15
-rot_speed                = 3.14, 1.0, 10
+lim_pitch			= 0, 1.56
+lim_yaw				= 0, 0
+lim_zoom			= 5, 15
+rot_speed			= 3.14, 1.0, 10
 
 [interface]
-font_game                = font_game
-font_small               = font_small
-
+font_game = font_game
+font_small = font_small
 
 [graph_point]
-class                = AI_GRAPH
-$spawn               = "ai\graph point"
+class = AI_GRAPH
+$spawn = "ai\graph point"
 
-;-----------------------------------------------------------------
-; Trade
-;-----------------------------------------------------------------
-[trade]
-;коэффициентv изменениљ ценv при торговле в зависимости от отношениљ к персонажу
-;линейно апроксимируітсљ между значениљ
-buy_price_factor_hostile  = 1   ;коэффициент покупки при goodwill = -100
-buy_price_factor_friendly = 1   ;коэффициент покупки при goodwill = 100
-sell_price_factor_hostile = 1   ;коэффициент покупки при goodwill = -100
-sell_price_factor_friendly  = 1   ;коэффициент покупки при goodwill = 100
-
-
-
-;-----------------------------------------------------------------
+[trade];Коэффициенты изменения цены при торговле в зависимости от отношения к персонажу, линейно апроксимируется между значениями
+buy_price_factor_hostile = 1 ;коэффициент покупки при goodwill = -100
+buy_price_factor_friendly = 1 ;коэффициент покупки при goodwill = 100
+sell_price_factor_hostile = 1 ;коэффициент покупки при goodwill = -100
+sell_price_factor_friendly = 1 ;коэффициент покупки при goodwill = 100
 
 [spawn_group_zone]
-GroupControlSection     = spawn_group_zone
-$spawn            = "ai\group zone"                 ; option for Level Editor
-class           = AI_SPGRP
+GroupControlSection = spawn_group_zone
+$spawn = "ai\group zone"
+class = AI_SPGRP
 
 [spawn_group]
-GroupControlSection     = spawn_group
-$spawn            = "ai\spawn group"                ; option for Level Editor
-class           = AI_SPGRP
+GroupControlSection = spawn_group
+$spawn = "ai\spawn group"
+class = AI_SPGRP
 
 [level_changer]
 GroupControlSection =
-$spawn      = "ai\level changer"
-;$prefetch    = 4
-class     = LVL_CHNG
+$spawn = "ai\level changer"
+class = LVL_CHNG
 script_binding  = bind_level_changer.bind
 
-shape_transp_color    = 255, 255, 255, 100
-shape_edge_color    = 32, 32, 32, 255
+shape_transp_color = 255, 255, 255, 100
+shape_edge_color = 32, 32, 32, 255
 
 [script_zone]
 GroupControlSection =
-$spawn      = "ai\script zone"
-;$prefetch    = 4
-class     = SCRIPTZN
-script_binding  = xr_zones.bind
+$spawn = "ai\script zone"
+class = SCRIPTZN
+script_binding = xr_zones.bind
 
 [physics]
-object_damage_factor    = 1.2f
+object_damage_factor = 1.2f
 
-;*****************************************
-; ++=+іLT+і- Lі+=
-;*****************************************
 [stalker_names_stalker]
-name_cnt    = 102
+name_cnt = 102
 last_name_cnt = 599
 
 [stalker_names_bandit]
-name_cnt    = 36
+name_cnt = 36
 last_name_cnt = 180
 
 [stalker_names_science]
-name_cnt    = 14
+name_cnt = 14
 last_name_cnt = 27
 
 [stalker_names_private]
-name_cnt    = 1
+name_cnt = 2
 last_name_cnt = 200
 
 [stalker_names_sergeant]
-name_cnt    = 1
+name_cnt = 2
 last_name_cnt = 200
 
 [stalker_names_lieutenant]
-name_cnt    = 1
+name_cnt = 2
 last_name_cnt = 200
 
 [stalker_names_captain]
-name_cnt    = 1
+name_cnt = 2
 last_name_cnt = 200
 
-
 [script_object]
-GroupControlSection     = spawn_group
-$spawn            = "script\script object"            ; option for Level Editor
-$npc            = on                      ; option for Level Editor
-; $prefetch           = 32                    ;
-Scheduled         = on                      ; option for ALife Simulator
-Human             = off                     ; option for ALife Simulator
-cform                       = skeleton                    ; collision class
-class                       = SCRPTOBJ                    ; AI class
+GroupControlSection = spawn_group
+$spawn = "script\script object"
+$npc = on
+Scheduled = on
+Human = off
+cform = skeleton
+class = SCRPTOBJ
 
-;параметрv показvваниљ входљих сообений PDA в главном мені
-[maingame_ui]
+[maingame_ui];Параметры показывания входящих сообщений PDA в главном меню.
 pda_msgs_max_show_time = 20000
 info_msgs_max_show_time = 10000
-snd_new_contact         = detectors\contact_1
-snd_new_contact1        = detectors\contact_8
+snd_new_contact = detectors\contact_1
+snd_new_contact1 = detectors\contact_8
 
 [hud_sound]
-hud_sound_vol_k		= 0.85f
+hud_sound_vol_k = 0.85f
 
 [attachable_item]
-GroupControlSection   = spawn_group
-discovery_dependency  =
-$spawn          = "equipment\attachable_item"
-cform                   = skeleton
-class         = II_ATTCH
-cost          = 100
-inv_name        = "Attachable item"
-inv_name_short      = "Attachable item"
-inv_weight        = .5
-inv_grid_width      = 2
-inv_grid_height     = 1
-inv_grid_x        = 16
-inv_grid_y        = 12
-attach_angle_offset   = 0, -3.14, 1.6
-attach_position_offset  = 0.105, 0.00, 0.085
-attach_bone_name    = bip01_head
+GroupControlSection = spawn_group
+discovery_dependency =
+$spawn = "equipment\attachable_item"
+cform = skeleton
+class = II_ATTCH
+cost = 100
+inv_name = "Attachable item"
+inv_name_short = "Attachable item"
+inv_weight = .5
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 16
+inv_grid_y = 12
+attach_angle_offset = 0, -3.14, 1.6
+attach_position_offset = 0.105, 0.00, 0.085
+attach_bone_name = bip01_head
 
 [new_attachable_item]
-GroupControlSection   = spawn_group
-discovery_dependency  =
-$spawn          = "equipment\new_attachable_item"
-cform                   = skeleton
-class         = II_BTTCH
-cost          = 100
-inv_name        = "Attachable item"
-inv_name_short      = "Attachable item"
-inv_weight        = .5
-inv_grid_width      = 2
-inv_grid_height     = 1
-inv_grid_x        = 16
-inv_grid_y        = 12
-attach_angle_offset   = 0, -3.14, 1.6
-attach_position_offset  = 0.105, 0.00, 0.085
-attach_bone_name    = bip01_head
-
-[hand_radio]:identity_immunities
-GroupControlSection   = spawn_group
-discovery_dependency  =
-$spawn          = "equipment\hand_radio"
-cform                   = skeleton
-class         = II_ATTCH
-visual                  = dynamics\devices\dev_fmradio\dev_fmradio.ogf
-cost          = 0
-inv_name        = "hand_radio"
-inv_name_short      = "hand_radio"
-inv_weight        = .5
-inv_grid_width      = 2
-inv_grid_height     = 1
-inv_grid_x        = 16
-inv_grid_y        = 12
-attach_angle_offset   = -1.5708,0.1919,3.1416    ;устанавливаетсљ в радианах Angle*PI/180
-attach_position_offset  = 0.075, 0.066, 0.023
-attach_bone_name    = bip01_l_hand
-auto_attach       = false
+GroupControlSection = spawn_group
+discovery_dependency =
+$spawn = "equipment\new_attachable_item"
+cform = skeleton
+class = II_BTTCH
+cost = 100
+inv_name = "Attachable item"
+inv_name_short = "Attachable item"
+inv_weight = .5
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 16
+inv_grid_y = 12
+attach_angle_offset = 0, -3.14, 1.6
+attach_position_offset = 0.105, 0.00, 0.085
+attach_bone_name = bip01_head
 
 [breakable_object]
-class           = O_BRKBL
-remove_time         = 10      ;after remove_time seconds object will be removed after it is breaked
-hit_break_threthhold    = 0.      ;weapon impact can stand breakable_object
-collision_break_threthhold  = 2000.f  ;collision impact can stand breakable_object
-immunity_factor       = 1.3     ;hit power multiplier
+class = O_BRKBL
+remove_time = 10 ;after remove_time seconds object will be removed after it is breaked
+hit_break_threthhold = 0. ;weapon impact can stand breakable_object
+collision_break_threthhold = 2000.f ;collision impact can stand breakable_object
+immunity_factor = 1.3 ;hit power multiplier
 
 [climable_object]
-class           = O_CLMBL
+class = O_CLMBL
 
 [zone_team_base]
-$spawn      = "network\team base"
-class     = Z_TEAMBS
+$spawn = "network\team base"
+class = Z_TEAMBS
 GroupControlSection = spawn_group_zone
 
 [multiplayer_skins]
 stalker_killer_head_1 = 0,380
-stalker_killer_antigas  = 128,380
+stalker_killer_antigas = 128,380
 stalker_killer_head_3 = 256,380
-stalker_killer_mask   = 384,380
-stalker_killer_exoskeleton  = 512,380
-stalker_sci_killer    = 640,380
+stalker_killer_mask = 384,380
+stalker_killer_exoskeleton = 512,380
+stalker_sci_killer = 640,380
 stalker_killer_military = 768,380
 
-stalker_sv_balon_10   = 0,705
-stalker_sv_hood_9   = 128,705
-stalker_sv_rukzak_3   = 256,705
-stalker_sv_rukzak_2   = 384,705
-stalker_sv_exoskeleton  = 512,705
-stalker_sci_svoboda   = 640,705
-stalker_sv_military   = 768,705
+stalker_sv_balon_10 = 0,705
+stalker_sv_hood_9 = 128,705
+stalker_sv_rukzak_3 = 256,705
+stalker_sv_rukzak_2 = 384,705
+stalker_sv_exoskeleton = 512,705
+stalker_sci_svoboda = 640,705
+stalker_sv_military = 768,705
 
 [main_ingame_indicators_thresholds]
-radiation       = 0.1,0.25,0.4,0.55,0.7
-wounds          = 0.01,0.2,0.4,0.6,0.8
-jammed          = 0.5,0.6,0.7,0.8,0.9
-starvation        = 0.5,0.6,0.7,0.8,0.9
-fatigue         = 0.3,0.6,0.7,0.8,0.9
+radiation = 0.1,0.25,0.4,0.55,0.7
+wounds = 0.01,0.2,0.4,0.6,0.8
+jammed = 0.5,0.6,0.7,0.8,0.9
+starvation = 0.5,0.6,0.7,0.8,0.9
+fatigue = 0.3,0.6,0.7,0.8,0.9
 
 [tutorial_conditions_thresholds]
-max_power       = 0.75
-power         = 0.1
-bleeding        = 0.4
-satiety         = 0.5
-radiation       = 0.1
-weapon_jammed     = 0.9
-psy_health        = 0.5
+max_power  = 0.75
+power = 0.1
+bleeding = 0.4
+satiety = 0.5
+radiation = 0.1
+weapon_jammed = 0.9
+psy_health = 0.5
 
 [squad_manager]
-schedule_min      =   1
-schedule_max      = 999
+schedule_min = 1
+schedule_max = 999
 
 [agent_manager]
-schedule_min      = 100
-schedule_max      = 1000
+schedule_min = 100
+schedule_max = 1000
 
 [custom_script_object]
-GroupControlSection   = spawn_group
-discovery_dependency  =
-$spawn          = "scripts\custom_object"
-cform                   = skeleton
-class         = NW_ATTCH
-visual                  = dynamics\devices\dev_fmradio\dev_fmradio.ogf
-cost          = 0
-inv_name        = "custom_script_object"
-inv_name_short      = "custom_script_object"
-inv_weight        = .5
-inv_grid_width      = 2
-inv_grid_height     = 1
-inv_grid_x        = 16
-inv_grid_y        = 12
-attach_angle_offset   = 0, 0, 0
-attach_position_offset  = 0.08, 0.04, 0.03
-attach_bone_name    = bip01_r_hand
+GroupControlSection = spawn_group
+discovery_dependency =
+$spawn = "scripts\custom_object"
+cform = skeleton
+class = NW_ATTCH
+visual = dynamics\devices\dev_fmradio\dev_fmradio.ogf
+cost = 0
+inv_name = "custom_script_object"
+inv_name_short = "custom_script_object"
+inv_weight = .5
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 16
+inv_grid_y = 12
+attach_angle_offset = 0, 0, 0
+attach_position_offset = 0.08, 0.04, 0.03
+attach_bone_name = bip01_r_hand
 
 [ph_skeleton_object]
-class         = P_SKELET
-remove_time       = 120
+class = P_SKELET
+remove_time = 120
 
 [script]
 current_server_entity_version = 8
 
 [space_restrictor]
-GroupControlSection   = spawn_group_restrictor
-$spawn          = "ai\space_restrictor"
-;$prefetch        = 64
-class         = SPC_RS_S
-script_binding          = bind_restrictor.bind
+GroupControlSection = spawn_group_restrictor
+$spawn = "ai\space_restrictor"
+class = SPC_RS_S
+script_binding = bind_restrictor.bind
 
-shape_transp_color    = 0, 255, 0, 24
-shape_edge_color    = 32, 32, 32, 255
+shape_transp_color = 0, 255, 0, 24
+shape_edge_color = 32, 32, 32, 255
 
 [anomal_zone]:space_restrictor
 GroupControlSection	= spawn_group_zone
-$spawn 			= "ai\anomal_zone"
-$def_sphere					= 2
-$prefetch 		= 16
-script_binding      = bind_anomaly_zone.bind
+$spawn = "ai\anomal_zone"
+$def_sphere = 2
+$prefetch = 16
+script_binding = bind_anomaly_zone.bind
 
-shape_transp_color    = 240, 217, 182, 58
-shape_edge_color    = 32, 32, 32, 255
+shape_transp_color = 240, 217, 182, 58
+shape_edge_color = 32, 32, 32, 255
 
 [collision_damage]
 bonce_damage_factor_for_objects = 1.
 
 [pkm_visual_memory]
-min_view_distance       = 1 ;0.4        ; коэффициент, которvй множитсљ на eye_range, в зависимости от угла
-max_view_distance       = 1 ;0.8        ; коэффициент, которvй множитсљ на eye_range, в зависимости от угла
-visibility_threshold    = 50 ;150.0       ; значение, при достижении суммой которого объект считаетсљ видимvм
-always_visible_distance   = 1 ;0.1
-time_quant          = 0.00001
-decrease_value        = 0.1       ; значение, на которое уменьшаетсљ вес, если объект попал в фрустум, но отсЈксљ по каким-то причинам
-velocity_factor         = 0.5
-luminocity_factor     = 0.5       ; фактор освеениљ (только длљ LктЈра)
-transparency_threshold    = 0.4       ;
-view_fov_deg        = 90
-view_aspect         = 1
-view_far_plane        = 100
+min_view_distance			= 1 ;коэффициент, который множитсљ на eye_range, в зависимости от угла
+max_view_distance			= 1 ;коэффициент, который множитсљ на eye_range, в зависимости от угла
+visibility_threshold		= 50 ;значение, при достижении суммой которого объект считается видимvм
+always_visible_distance		= 1
+time_quant					= 0.00001
+decrease_value				= 0.1 ;значение, на которое уменьшается вес, если объект попал в фрустум, но отсекся по каким-то причинам
+velocity_factor				= 0.5
+luminocity_factor			= 0.5 ;фактор освещения (только для эктора)
+transparency_threshold		= 0.4
+view_fov_deg				= 90
+view_aspect					= 1
+view_far_plane				= 100
 
 [details]
 swing_normal_amp1 = .1
 swing_normal_amp2 = .05
 swing_normal_rot1 = 30.0
 swing_normal_rot2 = 1.0
-swing_normal_speed  = 2.0
-; fast
-swing_fast_amp1   = 0.35;0.25
-swing_fast_amp2   = .20;0.15
-swing_fast_rot1   = 5
-swing_fast_rot2   = .5;0.75
-swing_fast_speed  = 0.5;1
+swing_normal_speed = 2.0
 
-[ph_capture_visuals]
+swing_fast_amp1 = 0.35
+swing_fast_amp2 = .20
+swing_fast_rot1 = 5
+swing_fast_rot2 = .5
+swing_fast_speed = 0.5
 
-;Tписок объектов которvе можно таскать.
+[ph_capture_visuals];Cписок объектов которые можно таскать.
 
-;NPC
-actors\stalker_bandit\stalker_bandit_1
-actors\stalker_bandit\stalker_bandit_2
-actors\stalker_bandit\stalker_bandit_3
-actors\stalker_bandit\stalker_bandit_3_face_1
-actors\stalker_bandit\stalker_bandit_3_face_2
-actors\stalker_bandit\stalker_bandit_3_mask
-actors\stalker_bandit\stalker_bandit_4
-actors\stalker_dolg\stalker_dolg_1
-actors\stalker_dolg\stalker_dolg_2
-actors\stalker_dolg\stalker_dolg_2_face_1
-actors\stalker_dolg\stalker_dolg_2_face_2
-actors\stalker_dolg\stalker_dolg_2_mask
-actors\stalker_dolg\stalker_dolg_3
-actors\stalker_dolg\stalker_dolg_4
-actors\stalker_freedom\stalker_freedom_1
-actors\stalker_freedom\stalker_freedom_2
-actors\stalker_freedom\stalker_freedom_2_face_1
-actors\stalker_freedom\stalker_freedom_2_face_2
-actors\stalker_freedom\stalker_freedom_2_mask
-actors\stalker_freedom\stalker_freedom_3
-actors\stalker_freedom\stalker_freedom_4
-actors\stalker_hero\stalker_hero_1
-actors\stalker_hero\stalker_hero_stc_strelok
-actors\stalker_lesnik\stalker_lesnik_1
-actors\stalker_merc\stalker_merc_2
-actors\stalker_merc\stalker_merc_4
-actors\stalker_monolith\stalker_monolith_1
-actors\stalker_monolith\stalker_monolith_2
-actors\stalker_monolith\stalker_monolith_3
-actors\stalker_monolith\stalker_monolith_4
-actors\stalker_nebo\stalker_nebo_1
-actors\stalker_nebo\stalker_nebo_2
-actors\stalker_nebo\stalker_nebo_2_face_1
-actors\stalker_nebo\stalker_nebo_2_face_2
-actors\stalker_nebo\stalker_nebo_2_face_3
-actors\stalker_nebo\stalker_nebo_2_mask
-actors\stalker_nebo\stalker_nebo_3
-actors\stalker_neutral\stalker_neutral_1
-actors\stalker_neutral\stalker_neutral_2
-actors\stalker_neutral\stalker_neutral_2_face_1
-actors\stalker_neutral\stalker_neutral_2_face_2
-actors\stalker_neutral\stalker_neutral_2_mask
-actors\stalker_neutral\stalker_neutral_3
-actors\stalker_neutral\stalker_neutral_4
-actors\stalker_soldier\stalker_soldier_1
-actors\stalker_soldier\stalker_soldier_2
-actors\stalker_soldier\stalker_soldier_2_face_1
-actors\stalker_soldier\stalker_soldier_3
-actors\stalker_soldier\stalker_soldier_4
-actors\stalker_trader\stalker_trader_1
-actors\stalker_ucheniy\stalker_ucheniy_1
-actors\stalker_zombied\stalker_zombied_1
-actors\stalker_zombied\stalker_zombied_2
-actors\stalker_zombied\stalker_zombied_3
-actors\stalker_zombied\stalker_zombied_4
+dynamics\balon\balon_01
+dynamics\balon\balon_02
+dynamics\balon\balon_02a
+dynamics\balon\bidon
+dynamics\balon\bochka_close_1
+dynamics\balon\bochka_close_2
+dynamics\balon\bochka_close_3
+dynamics\balon\bochka_close_4
+dynamics\balon\bochka_fuel
+dynamics\balon\bochka_open_1
+dynamics\balon\bochka_open_2
+dynamics\balon\bochka_open_3
+dynamics\balon\bochka_open_4
+dynamics\balon\bomb_01
+dynamics\balon\kanistra
+dynamics\box\box_1a
+dynamics\box\box_1b
+dynamics\box\box_1c
+dynamics\box\box_metall_01
+dynamics\box\box_pak_01
+dynamics\box\box_paper
+dynamics\box\box_wood_01
+dynamics\box\box_wood_02
+dynamics\box\expl_dinamit
+dynamics\box\part\box_metall_01_part_1
+dynamics\box\part\box_metall_01_part_2
+dynamics\box\part\box_wood_01_part_1
+dynamics\box\part\box_wood_01_part_2
+dynamics\box\part\box_wood_01_part_3
+dynamics\box\part\box_wood_01_part_4
+dynamics\box\part\box_wood_01_part_5
+dynamics\box\part\box_wood_01_part_6
+dynamics\box\part\box_wood_01_part_7
+dynamics\el_tehnika\disel_generator
+dynamics\el_tehnika\komp_blok
+dynamics\el_tehnika\komp_klava
+dynamics\el_tehnika\komp_monitor
+dynamics\el_tehnika\komp_monitor_screen_1
+dynamics\el_tehnika\krisagenerator
+dynamics\el_tehnika\lab_primary_switcher
+dynamics\el_tehnika\notebook
+dynamics\el_tehnika\priemnik_gorizont
+dynamics\el_tehnika\rupor
+dynamics\el_tehnika\table_lamp_01
+dynamics\el_tehnika\transiver
+dynamics\el_tehnika\tv_1
+dynamics\el_tehnika\ventilator_01
+dynamics\el_tehnika\ventilator_02
+dynamics\el_tehnika\ventilator_03
+dynamics\el_tehnika\ventilator_04
+dynamics\el_tehnika\ventilator_05
+dynamics\firestation\fire_vedro
+dynamics\firestation\ognetushitel
+dynamics\kitchen_room\bottle_3l
+dynamics\kitchen_room\curtains
+dynamics\kitchen_room\freezer
+dynamics\kitchen_room\kitchen_bludo
+dynamics\kitchen_room\kitchen_kastrula
+dynamics\kitchen_room\kitchen_kastrula_up
+dynamics\kitchen_room\kitchen_krujka
+dynamics\kitchen_room\kitchen_lojka
+dynamics\kitchen_room\kitchen_miska
+dynamics\kitchen_room\kitchen_tarelka1
+dynamics\kitchen_room\kitchen_tarelka2
+dynamics\kitchen_room\teapot_1
+dynamics\kitchen_room\part\bottle_3l_part_0
+dynamics\kitchen_room\part\bottle_3l_part_1
+dynamics\kitchen_room\part\bottle_3l_part_2
+dynamics\kitchen_room\part\bottle_3l_part_3
+dynamics\kitchen_room\part\bottle_3l_part_4
+dynamics\kitchen_room\part\bottle_3l_part_5
+dynamics\kitchen_room\part\bottle_3l_part_6
+dynamics\kitchen_room\part\bottle_3l_part_7
+dynamics\workshop_room\banka_kraski_1
+dynamics\workshop_room\kanistra_02
+dynamics\workshop_room\lopata
+dynamics\workshop_room\tiski
+dynamics\workshop_room\vedro_01
+dynamics\workshop_room\ventil_01
 
-;Monsters
-;monsters\controller\controller_1
-;monsters\controller\controller_2
-;monsters\controller\controller_3
-;monsters\controller\controller_4
-;monsters\controller\controller_dead
-;monsters\crow\crow
+monsters\burer\burer
+monsters\burer\burer_1
+monsters\cat\cat
+monsters\chimera\chimera
+monsters\chimera\chimera_strong
+monsters\controller\controller_1
+monsters\controller\controller_2
+monsters\controller\controller_3
+monsters\controller\controller_4
+monsters\controller\controller_dead
+monsters\crow\crow
 monsters\dog\dog
 monsters\dog\dog_bulterier
 monsters\dog\dog_bulterier_dead
@@ -726,27 +636,451 @@ monsters\dog\dog_red
 monsters\dog\dog_red_dead
 monsters\dog\dog_white
 monsters\dog\dog_white_dead
-;monsters\flesh\flesh
-;monsters\flesh\flesh_dead
-;monsters\flesh\flesh_strong
+monsters\flesh\flesh
+monsters\flesh\flesh_dead
+monsters\flesh\flesh_normal
+monsters\flesh\flesh_strong
+monsters\izlom\izlom
 monsters\krovosos\krovosos
 monsters\krovosos\krovosos_dead
+monsters\krovosos\krovosos_green
 monsters\krovosos\krovosos_strong
 monsters\krovosos\krovosos_strong_xray
 monsters\krovosos\krovosos_xray
-;monsters\mutant_boar\mutant_boar
-;monsters\mutant_boar\mutant_boar_dead
-;monsters\mutant_boar\mutant_boar_strong
-;monsters\poltergeist\poltergeist
-;monsters\poltergeist\poltergeist_dead
-;monsters\poltergeist\poltergeist_strong
+monsters\mutant_boar\mutant_boar
+monsters\mutant_boar\mutant_boar_dead
+monsters\mutant_boar\mutant_boar_normal
+monsters\mutant_boar\mutant_boar_strong
+monsters\poltergeist\poltergeist
+monsters\poltergeist\poltergeist_dead
+monsters\poltergeist\poltergeist_strong
 monsters\pseudodog\pseudodog
 monsters\pseudodog\pseudodog_dead
 monsters\pseudodog\pseudodog_grey
 monsters\pseudodog\pseudodog_grey_dead
-;monsters\rat\rat_1
-;monsters\snork\snork
-;monsters\snork\snork_dead
-;monsters\tushkano\tushkano
-;monsters\tushkano\tushkano_dead
+monsters\psevdogigant\psevdogigant
+monsters\psevdogigant\psevdogigant_dead
+monsters\psevdogigant\psevdogigant_strong
+monsters\rat\rat_1
+monsters\rat\rat_2
+monsters\rat\rat_3
+monsters\rat\rat_4
+monsters\rat\rat_dead
+monsters\snork\snork
+monsters\snork\snork_dead
+monsters\tushkano\tushkano
+monsters\tushkano\tushkano_dead
+monsters\zombie\zombie_1
+monsters\zombie\zombie_2
+monsters\zombie\zombie_3
+monsters\zombie\zombie_electro
+monsters\zombie\zombie_kamikaze
+monsters\zombie\zombie_plague
+monsters\zombie\zombie_rotten_1
+monsters\zombie\zombie_rotten_2
 
+actors\stalker_bandit\stalker_bandit_1
+actors\stalker_bandit\stalker_bandit_1_1
+actors\stalker_bandit\stalker_bandit_1_2
+actors\stalker_bandit\stalker_bandit_1_3
+actors\stalker_bandit\stalker_bandit_1_4
+actors\stalker_bandit\stalker_bandit_1_5
+actors\stalker_bandit\stalker_bandit_2
+actors\stalker_bandit\stalker_bandit_2_1
+actors\stalker_bandit\stalker_bandit_2_2
+actors\stalker_bandit\stalker_bandit_2_3
+actors\stalker_bandit\stalker_bandit_2_4
+actors\stalker_bandit\stalker_bandit_3
+actors\stalker_bandit\stalker_bandit_3_1
+actors\stalker_bandit\stalker_bandit_3_2
+actors\stalker_bandit\stalker_bandit_3_3
+actors\stalker_bandit\stalker_bandit_3_4
+actors\stalker_bandit\stalker_bandit_3_5
+actors\stalker_bandit\stalker_bandit_3_6
+actors\stalker_bandit\stalker_bandit_3_7
+actors\stalker_bandit\stalker_bandit_3_face_1
+actors\stalker_bandit\stalker_bandit_3_face_2
+actors\stalker_bandit\stalker_bandit_3_mask
+actors\stalker_bandit\stalker_bandit_4
+actors\stalker_bandit\stalker_bandit_4_1
+actors\stalker_bandit\stalker_bandit_4_2
+actors\stalker_bandit\stalker_bandit_4_3
+actors\stalker_bandit\stalker_bandit_4_4
+actors\stalker_bandit\stalker_bandit_4_5
+actors\stalker_bandit\stalker_bandit_4_6
+actors\stalker_bandit\stalker_bandit_4_7
+actors\stalker_bandit\stalker_bandit_borov
+actors\stalker_bandit\stalker_bandit_borzoy
+actors\stalker_bandit\stalker_bandit_gangster1
+actors\stalker_bandit\stalker_bandit_gangster2
+actors\stalker_bandit\stalker_bandit_john
+actors\stalker_bandit\stalker_bandit_lucky
+actors\stalker_bandit\stalker_bandit_pontius_pilate
+actors\stalker_bandit\stalker_bandit_prozrachniy
+actors\stalker_bandit\stalker_bandit_saveliy
+actors\stalker_bandit\stalker_bandit_senya
+actors\stalker_bandit\stalker_bandit_zyb
+actors\stalker_digger\stalker_digger_1_1
+actors\stalker_digger\stalker_digger_1_2
+actors\stalker_digger\stalker_digger_1_3
+actors\stalker_digger\stalker_digger_1_4
+actors\stalker_digger\stalker_digger_1_5
+actors\stalker_digger\stalker_digger_1_6
+actors\stalker_digger\stalker_digger_avoska
+actors\stalker_digger\stalker_digger_garin
+actors\stalker_digger\stalker_digger_mantsev
+actors\stalker_digger\stalker_digger_shelga
+actors\stalker_digger\stalker_digger_smuggler
+actors\stalker_digger\stalker_digger_svejak
+actors\stalker_digger\stalker_digger_vasyan
+actors\stalker_dolg\stalker_dolg_1
+actors\stalker_dolg\stalker_dolg_1_1
+actors\stalker_dolg\stalker_dolg_2
+actors\stalker_dolg\stalker_dolg_2_1
+actors\stalker_dolg\stalker_dolg_2_2
+actors\stalker_dolg\stalker_dolg_2_3
+actors\stalker_dolg\stalker_dolg_2_4
+actors\stalker_dolg\stalker_dolg_2_5
+actors\stalker_dolg\stalker_dolg_2_6
+actors\stalker_dolg\stalker_dolg_2_7
+actors\stalker_dolg\stalker_dolg_2_8
+actors\stalker_dolg\stalker_dolg_2_face_1
+actors\stalker_dolg\stalker_dolg_2_face_2
+actors\stalker_dolg\stalker_dolg_2_mask
+actors\stalker_dolg\stalker_dolg_3
+actors\stalker_dolg\stalker_dolg_3_1
+actors\stalker_dolg\stalker_dolg_3_2
+actors\stalker_dolg\stalker_dolg_3_3
+actors\stalker_dolg\stalker_dolg_3_4
+actors\stalker_dolg\stalker_dolg_3_5
+actors\stalker_dolg\stalker_dolg_3_6
+actors\stalker_dolg\stalker_dolg_4
+actors\stalker_dolg\stalker_dolg_5
+actors\stalker_dolg\stalker_dolg_5_1
+actors\stalker_dolg\stalker_dolg_feckl
+actors\stalker_dolg\stalker_dolg_fox_bandikyt
+actors\stalker_dolg\stalker_dolg_galin
+actors\stalker_dolg\stalker_dolg_gromov
+actors\stalker_dolg\stalker_dolg_inquisitor
+actors\stalker_dolg\stalker_dolg_milutin
+actors\stalker_dolg\stalker_dolg_mityai
+actors\stalker_dolg\stalker_dolg_nalyvayko
+actors\stalker_dolg\stalker_dolg_semen_semenovich
+actors\stalker_dolg\stalker_dolg_serega
+actors\stalker_dolg\stalker_dolg_sir
+actors\stalker_dolg\stalker_dolg_zvyagintsev
+actors\stalker_ecolog\ecolog_green
+actors\stalker_ecolog\ecolog_red
+actors\stalker_ecolog\stalker_ecolog_tookarev
+actors\stalker_ecolog\stalker_ecolog_vasiliev
+actors\stalker_freedom\stalker_freedom_1
+actors\stalker_freedom\stalker_freedom_1_1
+actors\stalker_freedom\stalker_freedom_1_2
+actors\stalker_freedom\stalker_freedom_1_3
+actors\stalker_freedom\stalker_freedom_1_4
+actors\stalker_freedom\stalker_freedom_1_5
+actors\stalker_freedom\stalker_freedom_1_6
+actors\stalker_freedom\stalker_freedom_1_7
+actors\stalker_freedom\stalker_freedom_1_8
+actors\stalker_freedom\stalker_freedom_2
+actors\stalker_freedom\stalker_freedom_2_1
+actors\stalker_freedom\stalker_freedom_2_2
+actors\stalker_freedom\stalker_freedom_2_3
+actors\stalker_freedom\stalker_freedom_2_4
+actors\stalker_freedom\stalker_freedom_2_5
+actors\stalker_freedom\stalker_freedom_2_6
+actors\stalker_freedom\stalker_freedom_2_7
+actors\stalker_freedom\stalker_freedom_2_8
+actors\stalker_freedom\stalker_freedom_2_face_1
+actors\stalker_freedom\stalker_freedom_2_face_2
+actors\stalker_freedom\stalker_freedom_2_mask
+actors\stalker_freedom\stalker_freedom_3
+actors\stalker_freedom\stalker_freedom_3_1
+actors\stalker_freedom\stalker_freedom_3_2
+actors\stalker_freedom\stalker_freedom_3_3
+actors\stalker_freedom\stalker_freedom_3_4
+actors\stalker_freedom\stalker_freedom_3_5
+actors\stalker_freedom\stalker_freedom_3_6
+actors\stalker_freedom\stalker_freedom_3_7
+actors\stalker_freedom\stalker_freedom_4
+actors\stalker_freedom\stalker_freedom_5
+actors\stalker_freedom\stalker_freedom_5_1
+actors\stalker_freedom\stalker_freedom_6
+actors\stalker_freedom\stalker_freedom_6_1
+actors\stalker_freedom\stalker_freedom_ashot
+actors\stalker_freedom\stalker_freedom_kapets
+actors\stalker_freedom\stalker_freedom_kostiuk
+actors\stalker_freedom\stalker_freedom_manowar
+actors\stalker_freedom\stalker_freedom_raven
+actors\stalker_freedom\stalker_freedom_shchukin
+actors\stalker_freedom\stalker_freedom_sullen
+actors\stalker_freedom\stalker_freedom_yar
+actors\stalker_hero\brown_plash
+actors\stalker_hero\stalker_hero_1
+actors\stalker_hero\stalker_hero_stc_strelok
+actors\stalker_hero\stalker_hero_bandit
+actors\stalker_hero\stalker_hero_bandit_black
+actors\stalker_hero\stalker_hero_bandit_brown
+actors\stalker_hero\stalker_hero_bandit_novice
+actors\stalker_hero\stalker_hero_brown_cloak
+actors\stalker_hero\stalker_hero_cs_light_1a
+actors\stalker_hero\stalker_hero_cs_light_1b
+actors\stalker_hero\stalker_hero_cs_novice
+actors\stalker_hero\stalker_hero_digger
+actors\stalker_hero\stalker_hero_dolg
+actors\stalker_hero\stalker_hero_freedom
+actors\stalker_hero\stalker_hero_freedom_novice
+actors\stalker_hero\stalker_hero_killer
+actors\stalker_hero\stalker_hero_killer_dark
+actors\stalker_hero\stalker_hero_killer_light2
+actors\stalker_hero\stalker_hero_monolit_light
+actors\stalker_hero\stalker_hero_monolith
+actors\stalker_hero\stalker_hero_monolith_novice
+actors\stalker_hero\stalker_hero_neutral
+actors\stalker_hero\stalker_hero_neutral_light
+actors\stalker_hero\stalker_hero_neutral_novice
+actors\stalker_hero\stalker_hero_neutral_novice_green
+actors\stalker_hero\stalker_hero_neutral_novice_white
+actors\stalker_hero\stalker_hero_soldier_brown
+actors\stalker_hero\stalker_hero_soldier_green
+actors\stalker_hero\stalker_hero_soldier_grey
+actors\stalker_lesnik\stalker_lesnik_1
+actors\stalker_merc\stalker_merc_1
+actors\stalker_merc\stalker_merc_1_1
+actors\stalker_merc\stalker_merc_1_face_1
+actors\stalker_merc\stalker_merc_2
+actors\stalker_merc\stalker_merc_2_1
+actors\stalker_merc\stalker_merc_2_2
+actors\stalker_merc\stalker_merc_2_3
+actors\stalker_merc\stalker_merc_2_4
+actors\stalker_merc\stalker_merc_2_5
+actors\stalker_merc\stalker_merc_2_6
+actors\stalker_merc\stalker_merc_2_7
+actors\stalker_merc\stalker_merc_3
+actors\stalker_merc\stalker_merc_3_1
+actors\stalker_merc\stalker_merc_4
+actors\stalker_merc\stalker_merc_5_1
+actors\stalker_merc\stalker_merc_5_2
+actors\stalker_merc\stalker_merc_5_3
+actors\stalker_merc\stalker_merc_5_4
+actors\stalker_merc\stalker_merc_5_5
+actors\stalker_merc\stalker_merc_5_6
+actors\stalker_merc\stalker_merc_5_7
+actors\stalker_merc\stalker_merc_5_8
+actors\stalker_merc\stalker_merc_colt
+actors\stalker_monolith\stalker_monolith_1
+actors\stalker_monolith\stalker_monolith_1_1
+actors\stalker_monolith\stalker_monolith_2
+actors\stalker_monolith\stalker_monolith_2_1
+actors\stalker_monolith\stalker_monolith_2_2
+actors\stalker_monolith\stalker_monolith_2_3
+actors\stalker_monolith\stalker_monolith_2_4
+actors\stalker_monolith\stalker_monolith_2_5
+actors\stalker_monolith\stalker_monolith_2_6
+actors\stalker_monolith\stalker_monolith_2_7
+actors\stalker_monolith\stalker_monolith_2_8
+actors\stalker_monolith\stalker_monolith_2_9
+actors\stalker_monolith\stalker_monolith_2_10
+actors\stalker_monolith\stalker_monolith_2_11
+actors\stalker_monolith\stalker_monolith_3
+actors\stalker_monolith\stalker_monolith_3_1
+actors\stalker_monolith\stalker_monolith_4
+actors\stalker_nebo\stalker_nebo_1
+actors\stalker_nebo\stalker_nebo_1_1
+actors\stalker_nebo\stalker_nebo_1_2
+actors\stalker_nebo\stalker_nebo_1_3
+actors\stalker_nebo\stalker_nebo_1_4
+actors\stalker_nebo\stalker_nebo_1_5
+actors\stalker_nebo\stalker_nebo_2
+actors\stalker_nebo\stalker_nebo_2_1
+actors\stalker_nebo\stalker_nebo_2_2
+actors\stalker_nebo\stalker_nebo_2_3
+actors\stalker_nebo\stalker_nebo_2_face_1
+actors\stalker_nebo\stalker_nebo_2_face_1_1
+actors\stalker_nebo\stalker_nebo_2_face_2
+actors\stalker_nebo\stalker_nebo_2_face_2_1
+actors\stalker_nebo\stalker_nebo_2_face_3
+actors\stalker_nebo\stalker_nebo_2_face_4
+actors\stalker_nebo\stalker_nebo_2_face_5
+actors\stalker_nebo\stalker_nebo_2_mask
+actors\stalker_nebo\stalker_nebo_3
+actors\stalker_nebo\stalker_nebo_3_1
+actors\stalker_nebo\stalker_nebo_3_2
+actors\stalker_nebo\stalker_nebo_3_3
+actors\stalker_nebo\stalker_nebo_3_4
+actors\stalker_nebo\stalker_nebo_3_5
+actors\stalker_nebo\stalker_nebo_3_6
+actors\stalker_nebo\stalker_nebo_4
+actors\stalker_nebo\stalker_nebo_5
+actors\stalker_nebo\stalker_nebo_5_1
+actors\stalker_nebo\stalker_nebo_5_2
+actors\stalker_nebo\stalker_nebo_5_3
+actors\stalker_nebo\stalker_nebo_5_4
+actors\stalker_nebo\stalker_nebo_6_1
+actors\stalker_nebo\stalker_nebo_6_2
+actors\stalker_nebo\stalker_nebo_6_3
+actors\stalker_nebo\stalker_nebo_6_4
+actors\stalker_nebo\stalker_nebo_6_5
+actors\stalker_nebo\stalker_nebo_7_1
+actors\stalker_nebo\stalker_nebo_7_2
+actors\stalker_nebo\stalker_nebo_7_3
+actors\stalker_nebo\stalker_nebo_7_4
+actors\stalker_nebo\stalker_nebo_7_5
+actors\stalker_nebo\stalker_nebo_7_6
+actors\stalker_nebo\stalker_nebo_7_7
+actors\stalker_nebo\stalker_nebo_7_8
+actors\stalker_nebo\stalker_nebo_suslov
+actors\stalker_nebo\stalker_nebo_tropnik
+actors\stalker_nebo\stalker_nebo_vagrant
+actors\stalker_nebo\stalker_nebo_vetrov
+actors\stalker_neutral\stalker_neutral_1
+actors\stalker_neutral\stalker_neutral_1_1
+actors\stalker_neutral\stalker_neutral_1_2
+actors\stalker_neutral\stalker_neutral_1_3
+actors\stalker_neutral\stalker_neutral_1_4
+actors\stalker_neutral\stalker_neutral_1_5
+actors\stalker_neutral\stalker_neutral_1_6
+actors\stalker_neutral\stalker_neutral_1_7
+actors\stalker_neutral\stalker_neutral_1_8
+actors\stalker_neutral\stalker_neutral_1_9
+actors\stalker_neutral\stalker_neutral_1_10
+actors\stalker_neutral\stalker_neutral_1_11
+actors\stalker_neutral\stalker_neutral_1_12
+actors\stalker_neutral\stalker_neutral_2
+actors\stalker_neutral\stalker_neutral_2_1
+actors\stalker_neutral\stalker_neutral_2_2
+actors\stalker_neutral\stalker_neutral_2_3
+actors\stalker_neutral\stalker_neutral_2_4
+actors\stalker_neutral\stalker_neutral_2_5
+actors\stalker_neutral\stalker_neutral_2_6
+actors\stalker_neutral\stalker_neutral_2_7
+actors\stalker_neutral\stalker_neutral_2_8
+actors\stalker_neutral\stalker_neutral_2_9
+actors\stalker_neutral\stalker_neutral_2_10
+actors\stalker_neutral\stalker_neutral_2_11
+actors\stalker_neutral\stalker_neutral_2_12
+actors\stalker_neutral\stalker_neutral_2_13
+actors\stalker_neutral\stalker_neutral_2_14
+actors\stalker_neutral\stalker_neutral_2_face_1
+actors\stalker_neutral\stalker_neutral_2_face_2
+actors\stalker_neutral\stalker_neutral_2_mask
+actors\stalker_neutral\stalker_neutral_3
+actors\stalker_neutral\stalker_neutral_3_1
+actors\stalker_neutral\stalker_neutral_4
+actors\stalker_neutral\stalker_neutral_5
+actors\stalker_neutral\stalker_neutral_5_1
+actors\stalker_neutral\stalker_neutral_aydar
+actors\stalker_neutral\stalker_neutral_catbird
+actors\stalker_neutral\stalker_neutral_dog
+actors\stalker_neutral\stalker_neutral_fang
+actors\stalker_neutral\stalker_neutral_goblin
+actors\stalker_neutral\stalker_neutral_hermit
+actors\stalker_neutral\stalker_neutral_levsha
+actors\stalker_neutral\stalker_neutral_nimble
+actors\stalker_neutral\stalker_neutral_orest
+actors\stalker_neutral\stalker_neutral_otter
+actors\stalker_neutral\stalker_neutral_shilov
+actors\stalker_neutral\stalker_neutral_strelok
+actors\stalker_neutral\stalker_neutral_vagrant
+actors\stalker_neutral\stalker_neutral_van
+actors\stalker_neutral\stalker_neutral_wolf
+actors\stalker_soldier\stalker_soldier_1
+actors\stalker_soldier\stalker_soldier_1_1
+actors\stalker_soldier\stalker_soldier_1_2
+actors\stalker_soldier\stalker_soldier_1_3
+actors\stalker_soldier\stalker_soldier_1_4
+actors\stalker_soldier\stalker_soldier_1_5
+actors\stalker_soldier\stalker_soldier_1_6
+actors\stalker_soldier\stalker_soldier_1_7
+actors\stalker_soldier\stalker_soldier_1_8
+actors\stalker_soldier\stalker_soldier_1_9
+actors\stalker_soldier\stalker_soldier_1_10
+actors\stalker_soldier\stalker_soldier_1_11
+actors\stalker_soldier\stalker_soldier_1_12
+actors\stalker_soldier\stalker_soldier_2
+actors\stalker_soldier\stalker_soldier_2_1
+actors\stalker_soldier\stalker_soldier_2_2
+actors\stalker_soldier\stalker_soldier_2_3
+actors\stalker_soldier\stalker_soldier_2_face_1
+actors\stalker_soldier\stalker_soldier_3
+actors\stalker_soldier\stalker_soldier_4
+actors\stalker_soldier\stalker_soldier_4_1
+actors\stalker_soldier\stalker_soldier_4_2
+actors\stalker_soldier\stalker_soldier_4_3
+actors\stalker_soldier\stalker_soldier_4_4
+actors\stalker_soldier\stalker_soldier_5_1
+actors\stalker_soldier\stalker_soldier_5_2
+actors\stalker_soldier\stalker_soldier_5_3
+actors\stalker_soldier\stalker_soldier_5_4
+actors\stalker_soldier\stalker_soldier_5_5
+actors\stalker_soldier\stalker_soldier_5_6
+actors\stalker_soldier\stalker_soldier_5_7
+actors\stalker_soldier\stalker_soldier_5_8
+actors\stalker_soldier\stalker_soldier_chuguykin
+actors\stalker_soldier\stalker_soldier_gaikin
+actors\stalker_soldier\stalker_soldier_khaletsky
+actors\stalker_soldier\stalker_soldier_ovechko
+actors\stalker_soldier\stalker_soldier_pupin
+actors\stalker_soldier\stalker_soldier_repkin
+actors\stalker_soldier\stalker_soldier_sokolov
+actors\stalker_trader\stalker_trader_1
+actors\stalker_ucheniy\stalker_ucheniy_1
+actors\stalker_zombied\stalker_zombied_1
+actors\stalker_zombied\stalker_zombied_1_1
+actors\stalker_zombied\stalker_zombied_1_2
+actors\stalker_zombied\stalker_zombied_1_3
+actors\stalker_zombied\stalker_zombied_1_4
+actors\stalker_zombied\stalker_zombied_1_5
+actors\stalker_zombied\stalker_zombied_1_6
+actors\stalker_zombied\stalker_zombied_1_7
+actors\stalker_zombied\stalker_zombied_1_8
+actors\stalker_zombied\stalker_zombied_1_9
+actors\stalker_zombied\stalker_zombied_1_10
+actors\stalker_zombied\stalker_zombied_1_11
+actors\stalker_zombied\stalker_zombied_1_12
+actors\stalker_zombied\stalker_zombied_2
+actors\stalker_zombied\stalker_zombied_2_1
+actors\stalker_zombied\stalker_zombied_2_2
+actors\stalker_zombied\stalker_zombied_2_3
+actors\stalker_zombied\stalker_zombied_2_4
+actors\stalker_zombied\stalker_zombied_2_5
+actors\stalker_zombied\stalker_zombied_2_6
+actors\stalker_zombied\stalker_zombied_2_7
+actors\stalker_zombied\stalker_zombied_2_8
+actors\stalker_zombied\stalker_zombied_2_9
+actors\stalker_zombied\stalker_zombied_2_10
+actors\stalker_zombied\stalker_zombied_2_11
+actors\stalker_zombied\stalker_zombied_2_12
+actors\stalker_zombied\stalker_zombied_2_13
+actors\stalker_zombied\stalker_zombied_2_14
+actors\stalker_zombied\stalker_zombied_3
+actors\stalker_zombied\stalker_zombied_3_1
+actors\stalker_zombied\stalker_zombied_3_2
+actors\stalker_zombied\stalker_zombied_3_3
+actors\stalker_zombied\stalker_zombied_3_4
+actors\stalker_zombied\stalker_zombied_3_5
+actors\stalker_zombied\stalker_zombied_3_6
+actors\stalker_zombied\stalker_zombied_3_7
+actors\stalker_zombied\stalker_zombied_3_8
+actors\stalker_zombied\stalker_zombied_3_9
+actors\stalker_zombied\stalker_zombied_3_10
+actors\stalker_zombied\stalker_zombied_3_11
+actors\stalker_zombied\stalker_zombied_3_12
+actors\stalker_zombied\stalker_zombied_4
+actors\stalker_zombied\stalker_zombied_4_1
+actors\stalker_zombied\stalker_zombied_4_2
+actors\stalker_zombied\stalker_zombied_4_3
+actors\stalker_zombied\stalker_zombied_4_4
+actors\stalker_zombied\stalker_zombied_4_5
+actors\stalker_zombied\stalker_zombied_4_6
+actors\stalker_zombied\stalker_zombied_4_7
+actors\stalker_zombied\stalker_zombied_4_8
+actors\stalker_zombied\stalker_zombied_fresh_0
+actors\stalker_zombied\stalker_zombied_fresh_1
+actors\stalker_zombied\stalker_zombied_fresh_2
+actors\stalker_zombied\stalker_zombied_fresh_3
+
+;--/#+# [se_stor] элемент спец.хранилища (аля-pstor)
+[custom_storage]
+class = CUST_ST
+;--/ -----------------------------------------------

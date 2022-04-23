@@ -1,0 +1,190 @@
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------
+------------------- Вывод динамических индикаторов опасности на HUD -------------------
+-------------------------- Last edit (by monk): 09.05.2017 ----------------------------
+
+-- Вывод индикаторов опасности
+function show_indicators()
+
+	local hud = get_hud()
+	local px, py
+
+	px, py = 25, 240
+
+	-- Кровопотеря
+	local bld2 = hud:GetCustomStatic("indik2_bld")
+	if db.actor:alive() then
+		if db.actor:get_bleeding() > 0 and db.actor:get_bleeding() <= 0.4 then
+			if bld2 == nil then
+				hud:AddCustomStatic("indik2_bld")
+				bld2 = hud:GetCustomStatic("indik2_bld")
+				bld2:wnd():SetWndPos(vector2():set(px, py))
+				bld2:wnd():SetColor(2000000000)
+			else
+				bld2:wnd():SetColor(2000000000)
+			end
+		elseif db.actor:get_bleeding() > 0.4 and db.actor:get_bleeding() <= 0.8 then
+			if bld2 == nil then
+				hud:AddCustomStatic("indik2_bld")
+				bld2 = hud:GetCustomStatic("indik2_bld")
+				bld2:wnd():SetWndPos(vector2():set(px, py))
+				bld2:wnd():SetColor(2600000000)
+			else
+				bld2:wnd():SetColor(2600000000)
+			end
+		elseif db.actor:get_bleeding() > 0.8 then
+			if bld2 == nil then
+				hud:AddCustomStatic("indik2_bld")
+				bld2 = hud:GetCustomStatic("indik2_bld")
+				bld2:wnd():SetWndPos(vector2():set(px, py))
+				bld2:wnd():SetColor(3300000000)
+			else
+				bld2:wnd():SetColor(3300000000)
+			end
+		else
+			if bld2 ~= nil then
+				hud:RemoveCustomStatic("indik2_bld")
+			end
+		end
+	else
+		if bld2 ~= nil then
+			hud:RemoveCustomStatic("indik2_bld")
+		end
+	end
+
+
+	px, py = 25, 310
+
+	-- Радиация
+	local rad2 = hud:GetCustomStatic("indik2_rad")
+	if db.actor:alive() then
+		if db.actor.radiation > 0.1 and db.actor.radiation <= 0.4 then
+			if rad2 == nil then
+				hud:AddCustomStatic("indik2_rad")
+				rad2 = hud:GetCustomStatic("indik2_rad")
+				rad2:wnd():SetWndPos(vector2():set(px, py))
+				rad2:wnd():SetColor(2000000000)
+			else
+				rad2:wnd():SetColor(2000000000)
+			end
+		elseif db.actor.radiation > 0.4 and db.actor.radiation <= 0.8 then
+			if rad2 == nil then
+				hud:AddCustomStatic("indik2_rad")
+				rad2 = hud:GetCustomStatic("indik2_rad")
+				rad2:wnd():SetWndPos(vector2():set(px, py))
+				rad2:wnd():SetColor(2600000000)
+			else
+				rad2:wnd():SetColor(2600000000)
+			end
+		elseif db.actor.radiation > 0.8 then
+			if rad2 == nil then
+				hud:AddCustomStatic("indik2_rad")
+				rad2 = hud:GetCustomStatic("indik2_rad")
+				rad2:wnd():SetWndPos(vector2():set(px, py))
+				rad2:wnd():SetColor(3300000000)
+			else
+				rad2:wnd():SetColor(3300000000)
+			end
+		else
+			if rad2 ~= nil then
+				hud:RemoveCustomStatic("indik2_rad")
+			end
+		end
+	else
+		if rad2 ~= nil then
+			hud:RemoveCustomStatic("indik2_rad")
+		end
+	end
+
+
+	px, py = 25, 390
+
+	-- Пси
+	local psy2 = hud:GetCustomStatic("indik2_psy")
+	if db.actor:alive() then
+		if db.actor.psy_health < 0.9 and db.actor.psy_health >= 0.6 then
+			if psy2 == nil then
+				hud:AddCustomStatic("indik2_psy")
+				psy2 = hud:GetCustomStatic("indik2_psy")
+				psy2:wnd():SetWndPos(vector2():set(px, py))
+				psy2:wnd():SetColor(2000000000)
+			else
+				psy2:wnd():SetColor(2000000000)
+			end
+		elseif db.actor.psy_health < 0.6 and db.actor.psy_health >= 0.3 then
+			if psy2 == nil then
+				hud:AddCustomStatic("indik2_psy")
+				psy2 = hud:GetCustomStatic("indik2_psy")
+				psy2:wnd():SetWndPos(vector2():set(px, py))
+				psy2:wnd():SetColor(2600000000)
+			else
+				psy2:wnd():SetColor(2600000000)
+			end
+		elseif db.actor.psy_health < 0.3 and db.actor.psy_health >= 0 then
+			if psy2 == nil then
+				hud:AddCustomStatic("indik2_psy")
+				psy2 = hud:GetCustomStatic("indik2_psy")
+				psy2:wnd():SetWndPos(vector2():set(px, py))
+				psy2:wnd():SetColor(3300000000)
+			else
+				psy2:wnd():SetColor(3300000000)
+			end
+		else
+			if psy2 ~= nil then
+				hud:RemoveCustomStatic("indik2_psy")
+			end
+		end
+	else
+		if psy2 ~= nil then
+			hud:RemoveCustomStatic("indik2_psy")
+		end
+	end
+
+
+	px, py = 25, 470
+
+	-- Оружие
+	local wpn2 = hud:GetCustomStatic("indik2_wpn")
+	if db.actor:alive() and isWeapon(db.actor:active_item()) then
+		if db.actor:active_item():condition() < 0.5 and db.actor:active_item():condition() >= 0.3 then
+			if wpn2 == nil then
+				hud:AddCustomStatic("indik2_wpn")
+				wpn2 = hud:GetCustomStatic("indik2_wpn")
+				wpn2:wnd():SetWndPos(vector2():set(px, py))
+				wpn2:wnd():SetColor(2000000000)
+			else
+				wpn2:wnd():SetColor(2000000000)
+			end
+		elseif db.actor:active_item():condition() < 0.3 and db.actor:active_item():condition() >= 0.15 then
+			if wpn2 == nil then
+				hud:AddCustomStatic("indik2_wpn")
+				wpn2 = hud:GetCustomStatic("indik2_wpn")
+				wpn2:wnd():SetWndPos(vector2():set(px, py))
+				wpn2:wnd():SetColor(2600000000)
+			else
+				wpn2:wnd():SetColor(2600000000)
+			end
+		elseif db.actor:active_item():condition() < 0.15 and db.actor:active_item():condition() >= 0 then
+			if wpn2 == nil then
+				hud:AddCustomStatic("indik2_wpn")
+				wpn2 = hud:GetCustomStatic("indik2_wpn")
+				wpn2:wnd():SetWndPos(vector2():set(px, py))
+				wpn2:wnd():SetColor(3300000000)
+			else
+				wpn2:wnd():SetColor(3300000000)
+			end
+		else
+			if wpn2 ~= nil then
+				hud:RemoveCustomStatic("indik2_wpn")
+			end
+		end
+	else
+		if wpn2 ~= nil then
+			hud:RemoveCustomStatic("indik2_wpn")
+		end
+	end
+
+end
+
+
+------------------- Вывод динамических индикаторов опасности на HUD -------------------
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------

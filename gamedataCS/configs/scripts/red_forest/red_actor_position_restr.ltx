@@ -2,8 +2,8 @@
 active = sr_idle
 
 [sr_idle]
-on_actor_inside = {+red_bridge_scene_begin} sr_idle@2 %+red_bridge_actor_in_position%
-on_info = {+red_bridge_actor_come +red_bridge_scene_begin} sr_idle@wait
+on_actor_inside = {+mil_actor_go_to_limansk +mil_sound_thanks} sr_idle@2 %+red_bridge_actor_in_position%
+on_info = {+red_bridge_actor_come +mil_actor_go_to_limansk +mil_sound_thanks} sr_idle@wait
 on_info2 = {+red_bridge_actor_fail} sr_idle@nil
 
 [sr_idle@wait]

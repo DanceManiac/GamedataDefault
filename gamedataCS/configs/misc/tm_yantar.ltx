@@ -12,10 +12,20 @@ yan_proriv_k_ystanovke
 
 yan_actor_go_to_red_forest
 
+yan_take_reward
+
 yan_recover_item_1
 yan_recover_item_2
+yan_recover_item_3
 
-[yan_main_quest_line]
+yan_bring_item_1
+yan_bring_item_2
+yan_bring_item_3
+yan_bring_item_4
+yan_bring_item_5
+yan_bring_item_6
+
+[yan_main_quest_line]   ;Держать позицию
 prior = 1
 type = storyline
 task_type = storyline
@@ -24,7 +34,7 @@ name = yan_main_quest_line_name
 text = yan_main_quest_line_text
 condlist_0 = {+yan_hold_position_cut6} complete
 
-[yan_repair_defend]
+[yan_repair_defend]   ;Следовать за сталкером на крышу ангара
 prior = 3
 type = storyline
 task_type = storyline
@@ -36,7 +46,7 @@ condlist_0 = {+yan_ready_actor_position_cut6} complete
 condlist_1 = {+yan_stop_spawn_cut6} complete
 on_complete = %+yan_hold_position_cut6%
 
-[yan_actor_destroy_wave1] 
+[yan_actor_destroy_wave1]   ;Не подпускать зомби к сталкерам на крыше
 prior = 3
 type = storyline
 task_type = storyline
@@ -47,9 +57,10 @@ text = yan_actor_destroy_wave1_text
 on_complete = %+yan_ready_wave2_cut6 +yan_hold_position_cut6%
 condlist_0 = {+yan_task1_end_cut6} complete
 condlist_1 = {+yan_stop_spawn_cut6} complete
+condlist_2 = {+yan_levsha_dead} fail
 
-[yan_actor_destroy_wave2]
-prior = 3 
+[yan_actor_destroy_wave2]   ;Не подпускать зомби к сталкерам в ангаре
+prior = 3
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -60,7 +71,7 @@ condlist_0 = {+yan_task2_end_cut6} complete
 condlist_1 = {+yan_stop_spawn_cut6} complete
 on_complete = %+yan_ready_wave3_cut6 +yan_hold_position_cut6%
 
-[yan_actor_go_to_red_forest] 
+[yan_actor_go_to_red_forest]   ;Идти в Рыжий лес
 prior = 4
 type = storyline
 task_type = storyline
@@ -68,9 +79,9 @@ icon = ui_mt_image_attack_tower
 target_story_ids = 804
 name = yan_actor_go_to_red_forest_name
 text = yan_actor_go_to_red_forest_text
-condlist_0 = {+yan_end_quest_line} complete  
+condlist_0 = {+yan_end_quest_line} complete
 
-[yan_actor_go_base_science]
+[yan_actor_go_base_science]   ;Поговорить с Сахаровым
 prior = 1
 type = storyline
 task_type = storyline
@@ -79,7 +90,7 @@ name = yan_actor_go_base_science_name
 text = yan_actor_go_base_science_text
 condlist_0 = {+yan_questions_scientists} complete
 
-[yan_quest_doc]
+[yan_quest_doc]   ;Найти документы
 prior = 1
 type = storyline
 task_type = storyline
@@ -88,7 +99,7 @@ name = yan_quest_doc_name
 text = yan_quest_doc_text
 condlist_0 = {+yan_otnesti_doc_saharavy} complete
 
-[yan_otnesti_doc_saharavy]
+[yan_otnesti_doc_saharavy]   ;Отнести документы Сахарову
 prior = 1
 type = storyline
 task_type = storyline
@@ -97,7 +108,7 @@ name = yan_otnesti_doc_saharavy_name
 text = yan_otnesti_doc_saharavy_text
 condlist_0 = {+yan_quest_levsha} complete
 
-[yan_quest_levsha]
+[yan_quest_levsha]   ;Встретится с отрядом Левши
 prior = 1
 type = storyline
 task_type = storyline
@@ -106,7 +117,7 @@ name = yan_quest_levsha_name
 text = yan_quest_levsha_text
 condlist_0 = {+yan_proriv_k_ystanovke} complete
 
-[yan_proriv_k_ystanovke]
+[yan_proriv_k_ystanovke]   ;Прорваться на территорию комплекса
 prior = 1
 type = storyline
 task_type = storyline
@@ -115,18 +126,34 @@ name = yan_proriv_k_ystanovke_name
 text = yan_proriv_k_ystanovke_text
 condlist_0 = {+yan_actor_start_to_go} complete
 
-[yan_actor_go_base_defence]
+[yan_actor_go_base_defence]   ;Прийти на помощь базе «Экологов»
 type = defend_smart
 task_type = additional
 name = sim_defend_smart
 text = sim_defend_smart_text
-faction = stalker
+faction = ecolog
 prior = 8
-target_cond = true
+target_cond = {=target_smart_name(yan_smart_terrain_6_4)} true, false
 wait_time = 0
 play_regard = nil
-;reward_money = 1000
+community_relation_delta_complete =+200
+reward_money = 1000
+reward_item = medkit_scientic:antirad
 
+[yan_take_reward] ;Получить награду у Сахарова
+type = storyline
+task_type = additional
+icon = ui_mt_image_attack_factory
+name = yan_take_reward_name
+text = yan_take_reward_text
+target_story_ids = 814
+condlist_0 = {+yan_take_reward_complete} complete
+condlist_1 = {+yan_stalker_sakharov_dead} reversed
+immediate_reward = true
+reward_money = 10000
+prior = 1
+auto_faction = true
+community_relation_delta_complete = 400
 
 ;Recover Items
 
@@ -142,9 +169,11 @@ faction = stalker
 target_cond = {=actor_on_level(yantar) -yan_recover_item_1_done} true, false
 on_init = %+yan_recover_item_1_done%
 requested_items = yan_quest_scarlet_flower
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete =+50
 reward_money = 5000
 auto_faction = true
+immediate_reward = true
 
 [yan_recover_item_2]   ;Вернуть гранату-сувенир
 type = recover_item
@@ -158,6 +187,118 @@ faction = stalker
 target_cond = {=actor_on_level(yantar) -yan_recover_item_2_done} true, false
 on_init = %+yan_recover_item_2_done%
 requested_items = yan_quest_granade
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete =+50
 reward_money = 1500
 auto_faction = true
+immediate_reward = true
+
+[yan_recover_item_3]   ;Вернуть снотворные патроны
+type = recover_item
+task_type = additional
+name = yan_recover_item_3_name
+text = yan_recover_item_3_text
+target_npc_or_box_name = yan_recover_item_3_corpse
+distanse = 100
+prior = 2
+faction = ecolog
+target_cond = {=actor_on_level(yantar) -yan_recover_item_3_done} true, false
+on_init = %+yan_recover_item_3_done%
+requested_items = yan_quest_ammo_sleep
+community_relation_delta_fail=-50
+community_relation_delta_complete =+50
+reward_money = 1500
+auto_faction = true
+immediate_reward = true
+
+;Bring Items
+
+[yan_bring_item_1]
+auto_name = false
+type = bring_item
+task_type = additional
+name = yan_bring_item_1_name
+text = yan_bring_item_1_text
+target_cond = {~20 =actor_on_level(yantar)} true
+prior = 2
+faction = stalker
+requested_items = medkit_scientic, medkit_scientic
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
+reward_money = 1000
+immediate_reward = true
+
+[yan_bring_item_2]
+auto_name = false
+type = bring_item
+task_type = additional
+name = yan_bring_item_2_name
+text = yan_bring_item_2_text
+target_cond = {~20 =actor_on_level(yantar)} true
+prior = 2
+faction = stalker
+requested_items = detector_advanced
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
+reward_money = {~50} 750, {~50}, 1200, 1000
+immediate_reward = true
+
+[yan_bring_item_3]
+auto_name = false
+type = bring_item
+task_type = additional
+name = yan_bring_item_3_name
+text = yan_bring_item_3_text
+target_cond = {~20 =actor_on_level(yantar)} true
+prior = 2
+faction = stalker
+requested_items = vodka, vodka, vodka, vodka, vodka
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
+reward_money = 500
+immediate_reward = true
+
+[yan_bring_item_4]
+auto_name = false
+type = bring_item
+task_type = additional
+name = yan_bring_item_4_name
+text = yan_bring_item_4_text
+target_cond = {~20 =actor_on_level(yantar)} true
+prior = 2
+faction = ecolog
+requested_items = wpn_saiga, ammo_12x70_buck, ammo_12x70_buck
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
+reward_money = {~50} 1000, {~50}, 2000, 1500
+immediate_reward = true
+
+[yan_bring_item_5]
+auto_name = false
+type = bring_item
+task_type = additional
+name = yan_bring_item_5_name
+text = yan_bring_item_5_text
+target_cond = {~20 =actor_on_level(yantar)} true
+prior = 2
+faction = ecolog
+requested_items = wpn_spas12, ammo_12x70_buck, ammo_12x70_buck
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
+reward_money = {~50} 1000, {~50}, 2000, 1500
+immediate_reward = true
+
+[yan_bring_item_6]
+auto_name = false
+type = bring_item
+task_type = additional
+name = yan_bring_item_6_name
+text = yan_bring_item_6_text
+target_cond = {~20 =actor_on_level(yantar)} true
+prior = 2
+faction = ecolog
+requested_items = wpn_wincheaster1300, ammo_12x70_buck, ammo_12x70_buck
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
+reward_money = {~50} 1000, {~50}, 2000, 1500
+immediate_reward = true

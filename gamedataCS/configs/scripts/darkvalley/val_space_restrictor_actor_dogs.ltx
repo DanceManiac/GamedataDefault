@@ -2,7 +2,7 @@
 active = sr_idle
 
 [sr_idle]
-on_actor_inside = sr_idle@wait 
+on_actor_inside = {+val_play_sound_gunfire_1_start} sr_idle@wait 
 
 [sr_idle@wait]
 on_game_timer = 150 | nil %+val_reply_to_sos_complete%

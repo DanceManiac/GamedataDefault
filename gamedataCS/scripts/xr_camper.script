@@ -336,7 +336,7 @@ function action_patrol:process_danger()
 	if best_danger:dependent_object() ~= nil and bd_type ~= danger_object.grenade then
 		best_danger_object = best_danger:dependent_object()
 	end
-	if best_danger_object ~= nil and not xr_combat_ignore.is_enemy(self.object, best_danger_object, db.storage[self.object:id()].combat_ignore, true) then
+	if best_danger_object ~= nil and xr_combat_ignore.is_ignored(self.object,best_danger_object) then
 	   return false
     end
     
@@ -354,7 +354,12 @@ function action_patrol:process_danger()
 			return false
 		end
 	end
-	
+
+	-- Отсеиваем мёртвых чуваков
+	if danger_obj and not danger_obj:alive() then
+		return false
+	end
+
 	-- Отсеиваем по расстоянию
 --	if not self:on_place() then
 		if xr_danger.check_danger_distance(self.object, best_danger) == false then

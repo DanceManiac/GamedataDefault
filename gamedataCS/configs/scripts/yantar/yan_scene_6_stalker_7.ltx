@@ -1,6 +1,7 @@
 [logic@stalker7]
 active = walker@snork_appear
-suitable = {-yan_stop_spawn_cut6} true
+suitable = {=check_npc_name(yan_scene_6_stalker_7) -yan_stop_spawn_cut6} true
+prior = 95
 post_combat_time = 0,0
 
 [walker@snork_appear]
@@ -39,6 +40,7 @@ team = prepare_to_zabor
 def_state_moving = assault
 on_info = {+yan_scene_6_ready_to_zabor} remark@prepare_to_zabor_wait
 danger = danger_ignore
+invulnerable = true
 
 [remark@prepare_to_zabor_wait]
 anim = wait_na
@@ -48,6 +50,7 @@ def_state_moving = assault
 combat_ignore_cond = true
 on_timer = 5000 | {-yan_zabor_1_already_jumping} camper@to_zabor %+yan_zabor_1_already_jumping%
 danger = danger_ignore
+invulnerable = true
 
 [camper@to_zabor]
 path_walk = zabor_walk
@@ -57,6 +60,7 @@ meet = no_meet
 combat_ignore_cond = true
 on_signal = ready_to_jump | remark@zabor %-yan_zabor_1_already_jumping%
 danger = danger_ignore
+invulnerable = true
 
 [remark@zabor]
 anim = yan_zabor_0
@@ -73,8 +77,6 @@ combat_ignore_cond = {=fighting_dist_ge(15)}
 wounded = wounded
 invulnerable = true
 radius = 0
-;danger = danger_condition@2
-combat_ignore_cond = always
 meet = no_meet
 on_game_timer = 80 | camper@fire1_cut5
 
@@ -106,6 +108,7 @@ def_state_moving = assault
 radius = 0
 meet = no_meet
 on_info = {+yan_destroy_zombi27_cut5} camper@fire4_cut5
+invulnerable = true
 
 [camper@fire4_cut5]
 invulnerable = true
@@ -135,6 +138,7 @@ combat_ignore_cond = true
 target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_7_walk,0
 combat_ignore_keep_when_attacked = true
 anim = wait_na
+meet = no_meet
 
 [camper@to_zabor_2]
 path_walk = zabor_3_walk
@@ -175,9 +179,10 @@ def_state_moving = assault
 radius = 0
 danger = danger_condition
 combat_ignore_cond = always
-on_game_timer = 130 | %+yan_not_go_to_roof% camper@go1_1
+on_game_timer = 130 | camper@go1_1 %+yan_not_go_to_roof%
 def_state_campering = hide_na 
 meet = no_meet
+invulnerable = true
 
 [camper@go1_1]
 path_walk = yan_vikl_7_walk
@@ -189,6 +194,7 @@ on_game_timer = 250 | camper@go1
 on_info = {+yan_hero_in_zone} camper@go1
 def_state_campering = hide_na 
 meet = no_meet
+invulnerable = true
 
 [camper@go1]
 path_walk = yan_vikl_7a_walk
@@ -198,8 +204,8 @@ combat_ignore_cond = always
 danger = danger_condition
 radius = 0
 on_game_timer = 250 | camper@go2
-combat_ignore_cond = always
 meet = no_meet
+invulnerable = true
 
 [camper@go2]
 out_restr = yan_space_restrictor_cut6_for_group1_a
@@ -209,7 +215,7 @@ def_state_moving = assault
 radius = 5
 combat_ignore_cond = {!enemy_in_zone(yan_roof_cut6_restr) !enemy_in_zone(yan_space_restrictor_cut6_for_group1)}
 meet = no_meet
-on_info = {+yan_naprnik_roof_5}  %=play_sound(yan_naprnik_roof_5:stalker)% camper@go2_1
+on_info = {+yan_naprnik_roof_5} camper@go2_1 %=play_sound(yan_naprnik_roof_4:stalker:yan_smart_terrain_3_4)%
 
 [camper@go2_1]
 out_restr = yan_space_restrictor_cut6_for_group1_a
@@ -219,8 +225,8 @@ def_state_moving = assault
 radius = 5
 combat_ignore_cond = {!enemy_in_zone(yan_roof_cut6_restr) !enemy_in_zone(yan_space_restrictor_cut6_for_group1)}
 meet = no_meet
-on_info = {+yan_naprnik_roof5}  %=play_sound(yan_naprnik_roof5:stalker)% camper@go2_2
-on_info2 = {+yan_wave_naval_roof1}  camper@angar
+on_info = {+yan_naprnik_roof_5} camper@go2_2 %=play_sound(yan_naprnik_roof_5:stalker:yan_smart_terrain_3_4)%
+on_info2 = {+yan_wave_naval_roof1} camper@angar
 
 [camper@go2_2]
 out_restr = yan_space_restrictor_cut6_for_group1_a
@@ -230,8 +236,8 @@ def_state_moving = assault
 radius = 5
 combat_ignore_cond = {!enemy_in_zone(yan_roof_cut6_restr) !enemy_in_zone(yan_space_restrictor_cut6_for_group1)}
 meet = no_meet
-on_info = {+yan_naprnik_roof1}  %=play_sound(yan_naprnik_roof1:stalker)% camper@go2_3
-on_info2 = {+yan_wave_naval_roof1}  camper@angar
+on_info = {+yan_naprnik_roof_1} camper@go2_3 %=play_sound(yan_naprnik_roof_1:stalker:yan_smart_terrain_3_4)%
+on_info2 = {+yan_wave_naval_roof1} camper@angar
 
 [camper@go2_3]
 out_restr = yan_space_restrictor_cut6_for_group1_a
@@ -250,7 +256,7 @@ path_walk = yan_vikl_7a_a_walk
 path_look = yan_vikl_7a_a_look
 def_state_moving = assault
 radius = 5
-combat_ignore_cond = {!enemy_in_zone(yan_space_restrictor_cut6_for_group1) !enemy_in_zone(yan_roof_cut6_restr)}
+combat_ignore_cond = {!enemy_in_zone(yan_roof_cut6_restr) !enemy_in_zone(yan_space_restrictor_cut6_for_group1)}
 meet = no_meet
 
 

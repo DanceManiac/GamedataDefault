@@ -4,18 +4,18 @@ active = ph_door@locked
 [ph_door@locked]
 locked = true
 closed = true
-snd_open_start = trader_door_open_start
-snd_close_start = trader_door_close_start
-snd_close_stop = trader_door_close_stop
+snd_open_start = metal_small_open
+snd_close_start = metal_small_close_start
+snd_close_stop = metal_small_close_stop
 tip_open = tip_gate_locked
-on_info = {+red_strelok_task_end} ph_door@open %=hit_obj_chemical(514:link:5000:300)%
+on_info = {+red_artefact_hunters_go} ph_door@open %=hit_obj_chemical(514:link:5000:300)%, {+red_bounty_hunters_free} ph_door@open %=hit_obj_chemical(514:link:5000:300)%
 
 [ph_door@close]
 locked = false
 closed = true
-snd_open_start = trader_door_open_start
-snd_close_start = trader_door_close_start
-snd_close_stop = trader_door_close_stop
+snd_open_start = metal_small_open
+snd_close_start = metal_small_close_start
+snd_close_stop = metal_small_close_stop
 on_use = ph_door@open
 hit_on_bone = 1|ph_door@free|2|ph_door@free
 tip_open = tip_gate_open
@@ -23,11 +23,9 @@ tip_open = tip_gate_open
 [ph_door@open]
 locked = false
 closed = false
-snd_open_start = trader_door_open_start
-snd_close_start = trader_door_close_start
-snd_close_stop = trader_door_close_stop
-;on_use = ph_door@close
-;hit_on_bone = 1|ph_door@free|2|ph_door@free
+snd_open_start = metal_small_open
+snd_close_start = metal_small_close_start
+snd_close_stop = metal_small_close_stop
 tip_close = 
 
 [ph_door@free]

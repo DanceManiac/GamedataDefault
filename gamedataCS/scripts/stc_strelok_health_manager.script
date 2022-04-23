@@ -1,3 +1,4 @@
+local initialized = false
 local strelok_hp = nil
 local strelok_progress = nil
 local strelok_particles = particles_object("anomaly2\\plasma_generator_death")
@@ -13,57 +14,76 @@ local head_bones = {[11] = true,
 
 function set_cs_strelok_progress_health(strelok, amount)
 	printf("PL:cs_strelok_health[3] amount:[%s]", tostring(amount))
-	local amount = amount or 0
+	if not initialized then
+		return
+	end
+
 	local hud = get_hud()
 	local custom_static = hud:GetCustomStatic("cs_strelok_health")
-    local xml = CScriptXmlInit()
-    xml:ParseFile("strelok_progress.xml")
-	if custom_static then
+	if custom_static and not ogsm_options.hide_lifebars then
+		local xml = CScriptXmlInit()
+		xml:ParseFile("strelok_progress.xml")
 		printf("PL:cs_strelok_health[4]")
 		hud:AddCustomStatic("cs_strelok_health", true)
-        local st = hud:GetCustomStatic("cs_strelok_health")
-        local w = st:wnd()
-        strelok_hp = strelok_hp - amount
-		if strelok_hp < 15 then
-			db.actor:give_info_portion("stc_strelok_is_near_dead")
+		local st = hud:GetCustomStatic("cs_strelok_health")
+		local w = st:wnd()
+	end
+
+	local amount = amount or 0
+	strelok_hp = strelok_hp - amount
+	if strelok_hp < 15 then
+		db.actor:give_info_portion("stc_strelok_is_near_dead")
+	end
+	printf("CS_CALLBACK: obj health : ["..strelok_hp.."] ")
+	if strelok_hp > 0 then
+		printf("PL:cs_strelok_health[5]")
+		if custom_static and not ogsm_options.hide_lifebars then
+			strelok_progress:Show(true)
+			strelok_progress:SetProgressPos(strelok_hp)
 		end
-        printf("CS_CALLBACK: obj health : ["..strelok_hp.."] ")
-        if strelok_hp > 0 then
-			printf("PL:cs_strelok_health[5]")
-            strelok_progress:Show(true)
-            strelok_progress:SetProgressPos(strelok_hp)
-		--	xr_effects.stc_strelok_particle()
-        elseif not has_alife_info("stc_strelok_dead") then
-			printf("PL:cs_strelok_health[6]")
-			--strelok:kill(db.actor)
-			xr_effects.stc_boom()
-			strelok:stop_particles("monsters\\polter_idle","bip01_head")
-            strelok_progress:Show(false)
-            --hud:RemoveCustomStatic("cs_strelok_health")
-			db.actor:give_info_portion("stc_strelok_dead")
-            --xr_effects.add_custom_static(db.actor, strelok, {"cs_yantar_td", "SMOTRIM ROLIK!!!!"})
-            strelok_progress = nil
-        end
+		--xr_effects.stc_strelok_particle()
+	elseif not has_alife_info("stc_strelok_dead") then
+		printf("PL:cs_strelok_health[6]")
+		--strelok:kill(db.actor)
+		xr_effects.stc_boom()
+		strelok:stop_particles("monsters\\polter_idle","bip01_head")
+		if custom_static and not ogsm_options.hide_lifebars then
+			strelok_progress:Show(false)
+		end
+		--hud:RemoveCustomStatic("cs_strelok_health")
+		db.actor:give_info_portion("stc_strelok_dead")
+		--xr_effects.add_custom_static(db.actor, strelok, {"cs_yantar_td", "SMOTRIM ROLIK!!!!"})
+		strelok_progress = nil
 	end
 end
 
 function cs_strelok_health(strelok)
+	printf("PL:cs_strelok_health[1]")
+	if initialized then
+		return
+	end
+
+	initialized = true
 	local hud = get_hud()
 	local custom_static = hud:GetCustomStatic("cs_strelok_health")
-	printf("PL:cs_strelok_health[1]")
-	if custom_static == nil then
-		printf("PL:cs_strelok_health[2]")
-		hud:AddCustomStatic("cs_strelok_health", true)
-        local xml = CScriptXmlInit()
-        xml:ParseFile("strelok_progress.xml")
-        local st = hud:GetCustomStatic("cs_strelok_health")
-        local w = st:wnd()
-        strelok_progress = xml:InitProgressBar ("strelok_health", w )
-		if strelok_hp == nil then
-        	strelok_hp = strelok.psy_health*100
-		end
-        set_cs_strelok_progress_health(strelok)
+	if custom_static ~= nil then
+		return
 	end
+
+	printf("PL:cs_strelok_health[2]")
+	if not ogsm_options.hide_lifebars then
+		hud:AddCustomStatic("cs_strelok_health", true)
+		local xml = CScriptXmlInit()
+		xml:ParseFile("strelok_progress.xml")
+		local st = hud:GetCustomStatic("cs_strelok_health")
+		local w = st:wnd()
+		strelok_progress = xml:InitProgressBar ("strelok_health", w )
+	end
+
+	if strelok_hp == nil then
+		strelok_hp = strelok.psy_health*100
+	end
+	set_cs_strelok_progress_health(strelok)
 end
 
 function remove_health_bar()
@@ -71,9 +91,10 @@ function remove_health_bar()
 	local custom_static = hud:GetCustomStatic("cs_strelok_health")
 	if custom_static ~= nil then
 		hud:RemoveCustomStatic("cs_strelok_health")
-		strelok_progress = nil
-		strelok_hp = nil
 	end
+	strelok_progress = nil
+	strelok_hp = nil
+	initialized = false
 end
 local zone_infos_table = {["stc_strelok_loophole_check_1"] = "stc_strelok_can_run_1",
 	["stc_strelok_loophole_check_2"] = "stc_strelok_can_run_2",
@@ -82,42 +103,43 @@ local zone_infos_table = {["stc_strelok_loophole_check_1"] = "stc_strelok_can_ru
 	["stc_strelok_loophole_check_7"] = "stc_strelok_can_run_7"
 						}
 local game_difficulty_multiplier = {
-									["0"] = 1,
-									["1"] = 0.8,
-									["2"] = 0.6,
-									["3"] = 0.5
+									["0"] = 0.48,
+									["1"] = 0.46,
+									["2"] = 0.44,
+									["3"] = 0.42
 
 }
-						
+
 function hit_callback(obj, who, amount )
 	printf("pl:hit_callback: last_time_hitted [%s] time_global [%s]", tostring(strelok_last_hit_time), tostring(time_global()))
+
 	if has_alife_info("stc_strelok_dead") then
 		return
 	end
-		
-	if who:id() == db.actor:id() and db.actor:active_item():section() == "wpn_gauss_aes" and (strelok_last_hit_time == nil or (strelok_last_hit_time <= time_global() - 5000))  then -- and head_bones[bone_index] == true then
-		
-		local multiplier = game_difficulty_multiplier[tostring(level.get_game_difficulty())]
-		
-		local fake_hit = 15*multiplier
-		
-		for k,v in pairs(zone_infos_table) do
-			local zone = db.zone_by_name[k]
-			if zone:inside(obj:position()) then
-				db.actor:give_info_portion(v)
-				fake_hit = 5*multiplier
+
+	if who:id() == db.actor:id() and db.actor:active_item():section() == "wpn_gauss_aes" then
+		if (strelok_last_hit_time == nil or (strelok_last_hit_time <= time_global() - 2000)) then
+			local multiplier = game_difficulty_multiplier[tostring(level.get_game_difficulty())]
+			local fake_hit = 15*multiplier
+			for k,v in pairs(zone_infos_table) do
+				local zone = db.zone_by_name[k]
+				if zone:inside(obj:position()) then
+					db.actor:give_info_portion(v)
+					fake_hit = 5*multiplier
+				end
 			end
+			set_cs_strelok_progress_health(obj, fake_hit)
+			xr_effects.restore_health(nil, obj)
+			db.actor:give_info_portion("stc_strelok_hit_1")
+			strelok_last_hit_time = time_global()
+			local position = obj:bone_position("bip01_head")
+			strelok_particles:play_at_pos(position)
+		elseif strelok_last_hit_time > time_global() then
+			strelok_last_hit_time = time_global()
 		end
-		set_cs_strelok_progress_health(obj, fake_hit)
-		xr_effects.restore_health(nil, obj)
-		--xr_effects.stc_boom()
-		db.actor:give_info_portion("stc_strelok_hit_1")
-		strelok_last_hit_time = time_global()
---		run_string db.actor:start_particles("monsters\\polter_idle","bip01_head")
---		run_string db.actor:stop_particles("monsters\\polter_idle","bip01_head")
-		
-		local position = obj:bone_position("bip01_head")
-		strelok_particles:play_at_pos(position) --vector():set(obj:position().x, obj:position().y + 1, obj:position().z))
+		if not initialized then
+			initialized = true
+		end
 	end
 end
 
@@ -132,7 +154,7 @@ function save(packet)
 		packet:w_stringZ("nil")
 	else
 		packet:w_stringZ(tostring(strelok_last_hit_time))
-	end	
+	end
 	set_save_marker(packet, "save", true, "strelok_health")
 end
 
@@ -152,11 +174,5 @@ function load(packet)
 	else
 		strelok_last_hit_time = tonumber(r_strelok_last_hit_time)
 	end
-	set_save_marker(packet, "load", true, "strelok_health")		
+	set_save_marker(packet, "load", true, "strelok_health")
 end
-
-
-
-
-
-

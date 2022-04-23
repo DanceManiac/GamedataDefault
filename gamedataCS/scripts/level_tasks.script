@@ -119,6 +119,7 @@ function add_lchanger_location()
 	local sim = alife()
 	if sim then
 ------------------------------ MARSH -------------------------------------------
+
 		local obj = sim:story_object(311)
 		set_lchanger_mapspot(obj, "level_changer_up_right", "st_lchanger_to_escape")
 
@@ -128,6 +129,7 @@ function add_lchanger_location()
 		obj = sim:story_object(313)
 		set_lchanger_mapspot(obj, "level_changer_up", "st_lchanger_to_agroprom")
 ------------------------------ ESCAPE ------------------------------------------
+
 		obj = sim:story_object(445)
 		set_lchanger_mapspot(obj, "level_changer_left", "st_lchanger_to_marsh")
 
@@ -142,7 +144,9 @@ function add_lchanger_location()
 
 		obj = sim:story_object(447)
 		set_lchanger_mapspot(obj, "level_changer_up_right", "st_lchanger_to_darkvalley")
+
 ------------------------------ GARBAGE -----------------------------------------
+
 		obj = sim:story_object(713)
 		set_lchanger_mapspot(obj, "level_changer_down", "st_lchanger_to_escape")
 
@@ -166,7 +170,9 @@ function add_lchanger_location()
 
 		obj = sim:story_object(705)
 		set_lchanger_mapspot(obj, "level_changer_up", "st_lchanger_to_military")
+
 ------------------------------ DARKVALLEY --------------------------------------
+
 		obj = sim:story_object(1127)
 		set_lchanger_mapspot(obj, "level_changer_left", "st_lchanger_to_garbage")
 
@@ -175,7 +181,9 @@ function add_lchanger_location()
 
 		obj = sim:story_object(1126)
 		set_lchanger_mapspot(obj, "level_changer_down_left", "st_lchanger_to_escape")
+
 ------------------------------ AGROPROM ----------------------------------------
+
 		obj = sim:story_object(1028)
 		set_lchanger_mapspot(obj, "level_changer_up_right", "st_lchanger_to_garbage")
 
@@ -190,17 +198,20 @@ function add_lchanger_location()
 
 		obj = sim:story_object(1031)
 		set_lchanger_mapspot(obj, "level_changer_up", "st_lchanger_to_yantar")
---[[
-		obj = sim:story_object(1025)
+
+--[[	obj = sim:story_object(1025)
 		set_lchanger_mapspot(obj, "level_changer_down", "st_lchanger_to_agroprom_und")
 
 		obj = sim:story_object(1026)
-		set_lchanger_mapspot(obj, "level_changer_down", "st_lchanger_to_agroprom_und")
-]]
+		set_lchanger_mapspot(obj, "level_changer_down", "st_lchanger_to_agroprom_und")]]
+
 ------------------------------ AGROPROM UND ------------------------------------
+
 		obj = sim:story_object(1371)
 		set_lchanger_mapspot(obj, "level_changer_up", "st_lchanger_to_agroprom")
+
 ------------------------------ YANTAR ------------------------------------------
+
 		obj = sim:story_object(811)
 		set_lchanger_mapspot(obj, "level_changer_down", "st_lchanger_to_agroprom")
 
@@ -209,7 +220,9 @@ function add_lchanger_location()
 
 		obj = sim:story_object(813)
 		set_lchanger_mapspot(obj, "level_changer_up", "st_lchanger_to_red_forest")
+
 ------------------------------ RED FOREST --------------------------------------
+
 		obj = sim:story_object(526)
 		set_lchanger_mapspot(obj, "level_changer_down", "st_lchanger_to_garbage")
 
@@ -221,18 +234,30 @@ function add_lchanger_location()
 
 		obj = sim:story_object(529)
 		set_lchanger_mapspot(obj, "level_changer_down", "st_lchanger_to_yantar")
+
 ------------------------------ MILITARY ----------------------------------------
+
 		obj = sim:story_object(1266)
 		set_lchanger_mapspot(obj, "level_changer_left_up", "st_lchanger_to_red_forest")
 
 		obj = sim:story_object(1265)
 		set_lchanger_mapspot(obj, "level_changer_down", "st_lchanger_to_garbage")
+
 ------------------------------ LIMANSK -----------------------------------------
+
 		obj = sim:story_object(620)
 		set_lchanger_mapspot(obj, "level_changer_up", "st_lchanger_to_hospital")
+
 ------------------------------ HOSPITAL ----------------------------------------
-		obj = sim:story_object(234)
+
+--[[	obj = sim:story_object(234)
+		set_lchanger_mapspot(obj, "level_changer_right_down", "st_lchanger_to_junder")]]
+		
+------------------------------ JUPITER UNDERGROUND -----------------------------
+
+		obj = sim:story_object(1500)
 		set_lchanger_mapspot(obj, "level_changer_up", "st_lchanger_to_aes")
+
 	end
 end
 
@@ -260,14 +285,14 @@ function del_lchanger_mapspot(sid)
 		local spot = ""
 		if sid == 313 or sid == 443 or sid == 444 or sid == 704 or sid == 705
 		or sid == 1030 or sid == 1031 or sid == 1371 or sid == 813 or sid == 528
-		or sid == 620 or sid == 234 then
+		or sid == 620 then
 			spot = "level_changer_up"
 		elseif sid == 311 or sid == 447 or sid == 1028 or sid == 1029 then
 			spot = "level_changer_up_right"
 		elseif sid == 312 or sid == 726 or sid == 716 then
 			spot = "level_changer_right"
---		elseif sid == then
---			spot = "level_changer_right_down"
+		elseif sid == 234 then
+			spot = "level_changer_right_down"
 		elseif sid == 713 or sid == 714 or sid == 1032 --or sid == 1025 or sid == 1026
 		or sid == 811 or sid == 812 or sid == 526 or sid == 529 or sid == 1265 then
 			spot = "level_changer_down"

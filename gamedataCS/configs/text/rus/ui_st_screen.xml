@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <string_table>
 	<string id="cant_walk">
-		<text>Вы слишком истощены, чтобы двигаться</text>
+		<text>Вы слишком устали, чтобы двигаться</text>
 	</string>
 	<string id="cant_walk_weight">
 		<text>Вы слишком перегружены, чтобы двигаться</text>
@@ -48,8 +48,23 @@
 	<string id="gun_jammed">
 		<text>Оружие заклинило. Нужно перезарядить.</text>
 	</string>
+	<string id="inventory_rucksack_use">
+		<text>Осмотреть рюкзак ($$ACTION_USE$$)</text>
+	</string>
+	<string id="inventory_bush_use">
+		<text>Осмотреть куст ($$ACTION_USE$$)</text>
+	</string>
+	<string id="inventory_hole_use">
+		<text>Осмотреть нору ($$ACTION_USE$$)</text>
+	</string>
+	<string id="inventory_refrigerator_use">
+		<text>Осмотреть холодильник ($$ACTION_USE$$)</text>
+	</string>
+	<string id="inventory_box_locked">
+		<text>Ящик заперт</text>
+	</string>
 	<string id="inventory_box_use">
-		<text>Обыскать ящик ($$ACTION_USE$$)</text>
+		<text>Осмотреть ящик ($$ACTION_USE$$)</text>
 	</string>
 	<string id="inventory_item_use">
 		<text>Поднять предмет ($$ACTION_USE$$)</text>
@@ -73,7 +88,7 @@
 		<text>Найдена информация:</text>
 	</string>
 	<string id="st_game_over">
-		<text>Игра окончена.</text>
+		<text>Игра окончена</text>
 	</string>
 	<string id="st_game_over_press_jump">
 		<text>Нажмите ($$ACTION_JUMP$$) для выхода в главное меню</text>
@@ -88,19 +103,25 @@
 		<text>Отключение защиты</text>
 	</string>
 	<string id="st_psy_danger">
-		<text>Критический уровень пси-излучения. Немедленно покиньте опасную зону.</text>
+		<text>Критический уровень пси-излучения! Немедленно покиньте опасную зону!</text>
 	</string>
 	<string id="st_radiation_danger">
-		<text>Опасный уровень радиации. Для прохода необходима защита.</text>
+		<text>Опасный уровень радиации! Немедленно примите необходимые меры!</text>
 	</string>
 	<string id="st_search_treasure">
 		<text>Обыскать тайник ($$ACTION_USE$$)</text>
+	</string>
+	<string id="radio_on">
+		<text>Включить радио ($$ACTION_USE$$)</text>
+	</string>
+	<string id="radio_off">
+		<text>Выключить радио ($$ACTION_USE$$)</text>
 	</string>
 	<string id="st_tip">
 		<text>Сообщение</text>
 	</string>
 	<string id="tip_car_locked">
-		<text>Заблокировано</text>
+		<text>Люк заело</text>
 	</string>
 	<string id="tip_car_use">
 		<text>Открыть дверь ($$ACTION_USE$$)</text>
@@ -123,6 +144,9 @@
 	<string id="tip_door_locked">
 		<text>Дверь заперта</text>
 	</string>
+	<string id="tip_box_locked">
+		<text>Ящик заперт</text>
+	</string>
 	<string id="tip_door_open">
 		<text>Нажмите ($$ACTION_USE$$), чтобы открыть дверь</text>
 	</string>
@@ -139,7 +163,7 @@
 		<text>Решётка заблокирована</text>
 	</string>
 	<string id="tips_agroprom_undeground">
-		<text>Вход в нору без разрешения не допускается</text>
+		<text>Вход в нору без разрешения не допускается!</text>
 	</string>
 	<string id="tips_kran_press">
 		<text>Повернуть кран ($$ACTION_USE$$)</text>
@@ -154,7 +178,10 @@
 		<text>Тайник Cтрелка ($$ACTION_USE$$)</text>
 	</string>
 	<string id="mar_disabled_level_changer">
-		<text>Нельзя отправляться через топи без проводника.</text>
+		<text>Нельзя отправляться через топи без проводника!</text>
+	</string>
+	<string id="agr_disabled_level_changer">
+		<text>Блин, я же забыл к Крылову зайти. Надо вернуться.</text>
 	</string>
 	<string id="shooting_fire">
 		<text>Огонь!</text>
@@ -188,6 +215,9 @@
 	</string>
 	<string id="tips_tranformer_off">
 		<text>Отключить генератор ($$ACTION_USE$$)</text>
+	</string>
+	<string id="tips_tranformer_locked">
+		<text>Заблокировано</text>
 	</string>
 	<string id="ui_st_mp_experience_grow">
 		<text> -</text>

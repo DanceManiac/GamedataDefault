@@ -1,0 +1,201 @@
+;--------------------------------------
+; Модуль knife
+; Rulix aka Bak
+;--------------------------------------
+
+[main]
+weapon_to_spawn = wpn_knife			; секция ножа для выдачи
+spawn_chance = 0.6				; шанс на выдачу новенькому сталкеру ножа
+forbidden_factions = zombied,ecolog,trader	; группировки, для которых схема будет отключена
+
+[forbidden_npcs]	; имена НПС, для которых схема будет отключена (name,section,profile_name)
+
+mar_csky_commander
+mar_csky_trader
+mar_csky_tech
+mar_csky_barman
+mar_csky_scientist
+mar_intro_guide
+mar_csky_tactic
+mar_tutorial_man
+
+esc_leader_stalkerbase
+esc_trader_stalkerbase
+esc_tech_stalkerbase
+esc_zak_stalkerbase
+esc_wolf_brother
+
+gar_bandit_leader
+gar_bandit_trader
+gar_bandit_fixer
+gar_bandit_barman
+gar_bandit_minigame
+gar_bandit_senya
+gar_digger_quester
+gar_digger_fixer
+gar_digger_messenger_man
+gar_digger_traitor
+gar_bandit_digger_traitor
+gar_digger_night_trader
+gar_digger_24h_trader
+gar_bandit_ambush_1
+gar_bandit_ambush_2
+
+val_freedom_leader
+val_freedom_trader
+val_freedom_fixer
+val_freedom_barmen
+val_freedom_comendant
+val_freedom_attack_commander
+
+agr_duty_base_commander
+agr_duty_base_trader
+agr_duty_base_mechanic
+agr_barman
+agr_weaponmaster
+agr_stalker_base_leader
+agr_stalker_base_trader
+agr_stalker_base_mechanic
+agr_prisoner_1
+agr_prisoner_2
+agr_secret_trader
+agr_dolg_blockpost_commander
+
+yan_stalker_sakharov
+yan_tech_ecologbase
+yan_stalker_levsha
+
+red_forester_tech
+red_pursuit_strelok
+red_csky_commander
+red_allyes_recon_squad_1
+red_allyes_recon_squad_2
+red_bridge_renegade
+
+mil_hog
+mil_kostiuk
+mil_freedom_speaker
+mil_questman
+
+lim_stalker_0003
+lim_enemy_sniper_stalker
+lim_csky_storm_troops
+lim_csky_storm_troops2
+lim_csky_bridge_squad
+lim_bridge_minigunner
+lim_allyes_recon_squad
+
+kat_cs_commander
+kat_cs_grenadier
+kat_enemy_sniper_strong
+
+stc_stalker_strelok
+
+;---------------------------------------
+; список классов, на которых разрешено применение
+; тип существа = минимально требуемая величина courage
+
+[attack_courage]
+actor		= 45
+stalker		= 40
+bloodsucker	= 60
+boar		= 40
+burer		= 65
+;cat		= 40
+;chimera	= 90
+controller	= 80
+;dog		= 40
+flesh		= 35
+;fracture	= 50
+giant		= 75
+;poltergeist	= 65
+pseudodog	= 55
+psy_dog		= 40
+;psy_dog_phantom = 40
+snork		= 60
+;tushkano	= 30
+zombie		= 55
+
+;---------------------------------------
+[mutant_defend] ;классы мутантов, для которых доступна схема mutant_defend
+bloodsucker
+boar
+;cat
+;chimera
+;dog
+flesh
+;fracture
+;giant
+pseudodog
+;psy_dog
+;psy_dog_phantom
+snork;
+;tushkano
+;zombie
+
+;---------------------------------------
+; настройки для разных рангов НПС
+; добавка урона при ударе
+
+[novice]
+addhit_actor = 0
+addhit_stalker = 0
+addhit_mutant = 0.1
+
+[experienced]
+addhit_actor = 0
+addhit_stalker = 0
+addhit_mutant = 0.2
+
+[veteran]
+addhit_actor = 0.2
+addhit_stalker = 0.1
+addhit_mutant = 0.4
+
+[master]
+addhit_actor = 0.5
+addhit_stalker = 0.5
+addhit_mutant = 1
+
+;---------------------------------------
+; настройки для разных группировок
+
+[stalker]
+courage = 0.95		; чтобы идти в атаку с ножом, нужна смелость
+mutant_hunt = true	; можно ли охотиться на монстров
+
+[stalker_enemy]:stalker
+
+[bandit]
+courage = 0.85
+mutant_hunt = false
+
+[bandit_enemy]:bandit
+
+[csky]:stalker
+
+[renegade]:bandit
+
+[freedom]
+courage = 1.3
+mutant_hunt = true
+
+[dolg]
+courage = 1
+mutant_hunt = true
+
+[killer]
+courage = 0.75
+mutant_hunt = true
+
+[army]
+courage = 0.75
+mutant_hunt = false
+
+[monolith]
+courage = 1.5
+mutant_hunt = false
+
+
+; управление из логики:
+; can_use_knife = false в секции схемы или в секции логики

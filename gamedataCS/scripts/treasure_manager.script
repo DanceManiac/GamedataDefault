@@ -5,8 +5,6 @@ rank_table["veteran"] = 600
 rank_table["master"] = 900
 local treasure_by_target = {}
 
-
-
 class "CTreasure"
 function CTreasure:__init(ini, section)
 	self.section		= section
@@ -22,8 +20,13 @@ function CTreasure:__init(ini, section)
 	end
 	self.rank			= utils.cfg_get_string(ini, section, "rank", nil, false, "", "novice")
 	self.treasure_cost	= utils.cfg_get_number(ini, section, "treasure_cost", nil, false, 0)	-- 24.04.08
-	self.say_item_name	= utils.cfg_get_bool(ini, section, "say_item_name", nil, false, true)	-- 24.04.08
-	local community		= parse_names(utils.cfg_get_string(ini, section, "community", nil, false, "", "stalker, bandit, dolg, freedom, csky, renegade"))
+	say_item_name	= math.random(0,2)
+	if say_item_name == 1 or say_item_name == 2 then
+		self.say_item_name = true
+	else
+		self.say_item_name = false
+	end
+	local community		= parse_names(utils.cfg_get_string(ini, section, "community", nil, false, "", "stalker, bandit, dolg, freedom, csky, renegade, stalker_enemy, bandit_enemy, army"))
 	self.on_empty		= xr_logic.parse_condlist(db.actor, section, "on_empty", utils.cfg_get_string(ini, section, "on_empty", nil, false, "", "false"))
 	self.community = {}
 	for k,v in pairs(community) do
@@ -36,22 +39,27 @@ function CTreasure:__init(ini, section)
 	self.condlist		= xr_logic.parse_condlist(db.actor, section, "condlist", utils.cfg_get_string(ini, section, "condlist", nil, false, "", "false"))
 end
 
-function CTreasure:give_treasure()
+function CTreasure:give_treasure(mode)
 	local obj = alife():object(self.target)
 	if obj ~= nil then
 		if(self.name==game.translate_string(self.name)) then
-			abort("Treasure name [%s] is not set in xml file", self.name)
+			self.name = "Получены координаты тайника."
+			--abort("Treasure name [%s] is not set in xml file", self.name)
 		end
 		if(self.description==game.translate_string(self.description)) then
-			abort("Treasure description [%s] is not set in xml file", self.description)
+			self.description = "Получены координаты тайника."
+			--abort("Treasure description [%s] is not set in xml file", self.description)
 		end
 
-		news_manager.send_treasure(self.name)
+		news_manager.send_treasure(self.name, self.description)
 
 		--' Пометить на карте
 		local text = "%c[255,238,155,23]"..game.translate_string(self.name).."\\n".."%c[default]"..game.translate_string(self.description)
-
-		level.map_add_object_spot_ser(obj.id, "treasure", text)
+		if mode and mode == "trup" then
+			level.map_add_object_spot_ser(obj.id, "treasure", text)
+		else
+			level.map_add_object_spot_ser(obj.id, "spec_treasure", text)
+		end
 		--' Сгенерить вещи
 		if self.items then
 	        for kk,vv in pairs(self.items) do
@@ -102,35 +110,27 @@ function CTreasure:reset_treasure()
 end
 
 function use_box(box, actor)
+	ogsm.dbglog(string.format("box %s used by %s",tostring(box:name()),tostring(actor:name())))
 end
 
 function use(npc)
 	printf("treasure_manager: npc[%s] is used by actor", npc:name())
+	if ogsm_options.loot_empty_npc == true then
+		if xr_logic.pstor_retrieve(npc, "money_looted", false) == true then return end -- если труп уже обыскивали (например, сторонний НПС), ничего не выдаём (Kirgudu)
+	end
 	local available_treasures = {}
 	local selected_treasure = nil
 	for k,v in pairs(treasures) do
---[[
-		printf("found treasure %s", tostring(v.section))
-		-- Проверить доступность по кондлисту.
-		printf("    condlist %s", tostring(xr_logic.pick_section_from_condlist(db.actor, npc, v.condlist)))
-		-- Проверить доступность по рангу.
-		printf("    rank %s", tostring(v:check_rank_and_community(npc)))
-		-- Проверить не выдан ли он уже.
-		printf("    active %s", tostring(v.active))
-		-- Проверить не выдан ли другой тайник на этот же таргет.
-		printf("    used %s", tostring(v:check_for_used_target()))
-		printf("    cost=%d", v.treasure_cost)
-]]
 		if xr_logic.pick_section_from_condlist(db.actor, npc, v.condlist) == "true" and
 			v:check_rank_and_community(npc) == true and v.active ~= true and v:check_for_used_target() == true and (v.treasure_cost==0) then	-- 24.04.08
 			table.insert(available_treasures, v)
 		end
 	end
-	if #available_treasures == 0 or math.random(100) > 20 then
+	if #available_treasures == 0 or math.random(100) > 10 then
 		return
 	end
 	selected_treasure = available_treasures[math.random(1, #available_treasures)]
-	selected_treasure:give_treasure()
+	selected_treasure:give_treasure("trup")
 end
 
 function treasure_empty(box, box_story_id)
@@ -145,12 +145,20 @@ function treasure_empty(box, box_story_id)
 		if v.active then
 	        xr_logic.pick_section_from_condlist(db.actor, box, v.on_empty)
 	        v:reset_treasure()
+			if ogsm.dbgset then
+				db.actor:give_game_news(game.translate_string("st_stash_emptied"), game.translate_string(level.name())..": "..game.translate_string(v.name), "ui_iconsTotal_found_thing", 0, 3000)
+				xr_sound.set_sound_play(db.actor:id(), "pda_news")
+			end
 		end
 	end
 	if level.map_has_object_spot(box:id(), "treasure") ~= 0 then
 		level.map_remove_object_spot(box:id(), "treasure")
 	end
-    xr_statistic.inc_founded_secrets_counter()
+	if level.map_has_object_spot(box:id(), "spec_treasure") ~= 0 then
+		level.map_remove_object_spot(box:id(), "spec_treasure")
+	end
+	xr_statistic.inc_founded_secrets_counter()
+	ogsm.dbglog("Emptied box with name "..box:name().." and ID "..box:id()..".")
 end
 
 function take_item_from_box(box, box_story_id, item)
@@ -227,14 +235,6 @@ local dt = nil
 function select_dialog_treasures(npc)
 	local available_treasures = {}
 	for k,v in pairs(treasures) do
---[[
-		printf("found treasure %s", tostring(v.section))
-		printf("    condlist %s", tostring(xr_logic.pick_section_from_condlist(db.actor, npc, v.condlist)))
-		printf("    rank %s", tostring(v:check_rank_and_community(npc)))
-		printf("    active %s", tostring(v.active))
-		printf("    used %s", tostring(v:check_for_used_target()))
-		printf("    cost=%d", v.treasure_cost)
-]]
 		if xr_logic.pick_section_from_condlist(db.actor, npc, v.condlist)=="true" and
 			(v:check_rank_and_community(npc)) and not(v.active) and (v:check_for_used_target()) and (v.treasure_cost>0) then
 			table.insert(available_treasures, v)

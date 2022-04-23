@@ -1,0 +1,120 @@
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------
+--------------------------- Вывод шкалы пси-здоровья на HUD ---------------------------
+-------------------------- Last edit (by Charsi): 22.05.2018 --------------------------
+
+local posx = 759
+local posy = 644
+local posy_no_outfit = 665
+local width = 163
+local height = 28
+local p_dx = 35
+local p_dy = 12
+local p_width = 113
+local p_height = 13
+
+local w_posx = 803
+local w_posy = 644
+local w_posy_no_outfit = 667
+local w_width = 136
+local w_height = 28
+local w_p_dx = 29
+local w_p_dy = 11
+local w_p_width = 94
+local w_p_height = 13
+
+local new_width = 0
+local n_width = 0
+local saved_aspect = 0
+local saved_width = -1
+
+-- Вывод шкалы пси-здоровья
+function show_psybar()
+	if db.actor:alive() and not ogsm_clock.actor_lios() then -- Актор жив и не смотрит в прицел
+		shkala()
+	else
+		if get_hud():GetCustomStatic("hud_psy_back") then get_hud():RemoveCustomStatic("hud_psy_back") end
+		if get_hud():GetCustomStatic("hud_psy_level") then get_hud():RemoveCustomStatic("hud_psy_level") end
+	end
+end
+
+function shkala()
+	local wnd
+	local custom_static_psy_back = get_hud():GetCustomStatic("hud_psy_back")
+	local custom_static_psy = get_hud():GetCustomStatic("hud_psy_level")
+	if device().aspect_ratio ~= saved_aspect then
+		local asp = device().aspect_ratio
+		if math.abs(asp - saved_aspect) > 0.01 then
+			saved_aspect = device().aspect_ratio
+			if custom_static_psy_back then get_hud():RemoveCustomStatic("hud_psy_back") end
+			if custom_static_psy then get_hud():RemoveCustomStatic("hud_psy_level") end
+			custom_static_psy_back = nil
+			custom_static_psy = nil
+		end
+	end
+	if custom_static_psy_back == nil or custom_static_psy == nil then
+		if saved_aspect >= 0.75 then
+			if custom_static_psy_back == nil then
+				get_hud():AddCustomStatic("hud_psy_back", true)
+				custom_static_psy_back = get_hud():GetCustomStatic("hud_psy_back")
+				wnd = custom_static_psy_back:wnd()
+				if (db.actor:item_in_slot(6) ~= nil) then
+					wnd:SetWndPos(vector2():set(posx, posy))
+				else
+					wnd:SetWndPos(vector2():set(posx, posy_no_outfit))
+				end
+				wnd:SetHeight(height)
+				wnd:SetWidth(width)
+			end
+			if custom_static_psy == nil then
+				get_hud():AddCustomStatic("hud_psy_level", true)
+				custom_static_psy = get_hud():GetCustomStatic("hud_psy_level")
+				wnd = custom_static_psy:wnd()
+				if (db.actor:item_in_slot(6) ~= nil) then
+					wnd:SetWndPos(vector2():set(posx+p_dx, posy+p_dy))
+				else
+					wnd:SetWndPos(vector2():set(posx+p_dx, posy_no_outfit+p_dy))
+				end
+				wnd:SetHeight(p_height)
+				wnd:SetWidth(p_width)
+			end
+			n_width = p_width
+		else
+			if custom_static_psy_back == nil then
+				get_hud():AddCustomStatic("hud_psy_back", true)
+				custom_static_psy_back = get_hud():GetCustomStatic("hud_psy_back")
+				wnd = custom_static_psy_back:wnd()
+				if (db.actor:item_in_slot(6) ~= nil) then
+					wnd:SetWndPos(vector2():set(w_posx, w_posy))
+				else
+					wnd:SetWndPos(vector2():set(w_posx, w_posy_no_outfit))
+				end
+				wnd:SetHeight(w_height)
+				wnd:SetWidth(w_width)
+			end
+			if custom_static_psy == nil then
+				get_hud():AddCustomStatic("hud_psy_level", true)
+				custom_static_psy = get_hud():GetCustomStatic("hud_psy_level")
+				wnd = custom_static_psy:wnd()
+				if (db.actor:item_in_slot(6) ~= nil) then
+					wnd:SetWndPos(vector2():set(w_posx+w_p_dx, w_posy+w_p_dy))
+				else
+					wnd:SetWndPos(vector2():set(w_posx+w_p_dx, w_posy_no_outfit+w_p_dy))
+				end
+				wnd:SetHeight(w_p_height)
+				wnd:SetWidth(w_p_width)
+			end
+			n_width = w_p_width
+		end		
+	end
+
+	new_width = db.actor.psy_health * n_width
+
+	if saved_width ~= new_width then
+		if new_width < 0.1 then new_width = 0.1 end
+		custom_static_psy:wnd():SetWidth(new_width)
+	end
+end
+
+
+--------------------------- Вывод шкалы пси-здоровья на HUD ---------------------------
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------

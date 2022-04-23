@@ -5,6 +5,9 @@ active = sr_idle
 on_info = {+esc_habar_mill_spawn} sr_idle@1 %=spawn_object(esc_trader_habar:esc_trader_habar_1_spawn:0)%
 
 [sr_idle@1]
-on_info = {=actor_has_item(esc_trader_habar)} sr_idle@wait %+esc_actor_inside_habar%
+on_info = {=actor_has_item(esc_trader_habar)} sr_idle@habar_request %+esc_actor_inside_habar%
+
+[sr_idle@habar_request]
+on_timer = 5000 | sr_idle@wait %=play_sound(esc_trader_habar_request:stalker:escape_trader_name)%
 
 [sr_idle@wait]

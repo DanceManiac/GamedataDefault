@@ -143,7 +143,7 @@ function act_state_mgr_to_idle:execute()
 		self.st:set_state("idle", nil, nil, nil, {animation = true})
 		return
 	end
-	if self.object:best_danger() then
+	if self.object:best_danger() and db.storage[self.object:id()].danger_flag then
 		self.st:set_state("idle", nil, nil, nil, {animation = true})
 		return
 	end
@@ -155,6 +155,10 @@ function act_state_mgr_to_idle:finalize()
 	
 	self.st.current_object = -1
 	
+	if self.block_sound then
+		rx_sound.block_alarm_sound(self.object)
+		self.block_sound = nil
+	end
 	action_base.finalize(self)
 end
 
@@ -177,6 +181,10 @@ function eva_state_mgr_end:evaluate()
 	end
 
 	if not self.mgr:initialized() then
+		return false
+	end
+	
+	if self.st.locked then
 		return false
 	end
 	
@@ -247,12 +255,11 @@ function act_state_mgr_end:execute()
 	self:weapon_update()
 end
 function act_state_mgr_end:weapon_update()
-	local t = state_lib.states[self.st.target_state].weapon
-	local w = isWeapon(self.object:best_weapon())
-
-	if not w then
+	local wpn = rx_utils.get_weapon(self.object)	-- self.object:best_weapon()
+	if not wpn then
 		return
 	end
+	local t = state_lib.states[self.st.target_state].weapon
 	if t == "fire" or t == "sniper_fire" then
 --		printf("[%s] shooting", self.object:name())
 		local sniper_aim = 3000
@@ -270,16 +277,16 @@ function act_state_mgr_end:weapon_update()
 				if t == "sniper_fire" then
 					sniper_aim = self.object:position():distance_to(look_object:position())*aim_ratio
 					if sniper_aim <= min_ratio then
-						self.object:set_item(object.fire1, self.object:best_weapon(), 1, min_ratio)
+						self.object:set_item(object.fire1, wpn, 1, min_ratio)
 						return
 					end					
-					self.object:set_item(object.fire1, self.object:best_weapon(), 1, sniper_aim)
+					self.object:set_item(object.fire1, wpn, 1, sniper_aim)
 				else
-					self.object:set_item(object.fire1, self.object:best_weapon(), state_mgr_weapon.get_queue_params(self.object, look_object, state_lib.states[self.st.target_state]))
+					self.object:set_item(object.fire1, wpn, state_mgr_weapon.get_queue_params(self.object, look_object, state_lib.states[self.st.target_state]))
 				end
 				return
 			else
-				self.object:set_item(object.idle, self.object:best_weapon())
+				self.object:set_item(object.idle, wpn)
 				return
 			end
 		end
@@ -288,17 +295,17 @@ function act_state_mgr_end:weapon_update()
 			self.st.look_object == nil
 		then
 			if t == "sniper_fire" then
-				self.object:set_item(object.fire1, self.object:best_weapon(), 1, sniper_aim)
+				self.object:set_item(object.fire1, wpn, 1, sniper_aim)
 			else
-				self.object:set_item(object.fire1, self.object:best_weapon(), state_mgr_weapon.get_queue_params(self.object, nil, state_lib.states[self.st.target_state]))
+				self.object:set_item(object.fire1, wpn, state_mgr_weapon.get_queue_params(self.object, nil, state_lib.states[self.st.target_state]))
 			end
 			return
 		end
-		self.object:set_item(object.fire1, self.object:best_weapon(), state_mgr_weapon.get_queue_params(self.object, nil, state_lib.states[self.st.target_state]))
+		self.object:set_item(object.fire1, wpn, state_mgr_weapon.get_queue_params(self.object, nil, state_lib.states[self.st.target_state]))
 		return
 	elseif t == "unstrapped" then
 		--printf("[%s] not shooting", self.object:name())
-		self.object:set_item(state_mgr_weapon.get_idle_state(self.st.target_state), self.object:best_weapon())
+		self.object:set_item(state_mgr_weapon.get_idle_state(self.st.target_state), wpn)
 	end	
 end
 function act_state_mgr_end:finalize()
@@ -350,7 +357,8 @@ function state_manager:set_state(state_name, callback, timeout, target, emerg, s
 	printf("Set State called: for %s State: %s", self.npc:name(), state_name)
 	
 	if state_lib.states[state_name] == nil then
-		abort("ERROR: ILLEGAL SET STATE CALLED!!! %s fo %s", tostring(state_name), self.npc:name())
+		error_log( string.format( "ERROR: ILLEGAL SET STATE CALLED!!! %s fo %s", tostring(state_name), self.npc:name() ) ) -- by rgggclp
+		return -- by rgggclp
 	end
 	if target then
 		if target.look_position then
@@ -502,8 +510,9 @@ end
 
 
 function set_state(npc, state_name, callback, timeout, target, emerg, synsound, extrakeys)
-	if db.storage[npc:id()].state_mgr then
-		db.storage[npc:id()].state_mgr:set_state(state_name, callback, timeout, target, emerg, synsound, extrakeys)
+	local stmgr = db.storage[npc:id()].state_mgr
+	if stmgr and not stmgr.locked then
+		stmgr:set_state(state_name, callback, timeout, target, emerg, synsound, extrakeys)
 	end
 end
 function get_state(npc)
@@ -570,11 +579,42 @@ function bind_manager(object)
   	action = manager:action(stalker_ids.action_danger_planner)
   	action:add_precondition(world_property(properties["state_mgr_idle_combat"],true))
 
-	action = manager:action(stalker_ids.action_gather_items)
-	action:add_precondition(world_property(properties["state_mgr_idle_alife"],true))
+	if not xr_corpse_detection then
+		action = manager:action(stalker_ids.action_gather_items)
+		action:add_precondition(world_property(properties["state_mgr_idle_alife"],true))
+	end
 
 	return state_manager
 end
 
+
+function lock(npc,enable)
+	local stmgr = db.storage[npc:id()].state_mgr
+	if stmgr then
+		stmgr:set_state("idle", nil, nil, nil, {animation = true})
+--		stmgr.animation:set_state(nil,true)--
+--		stmgr.animation:set_control()
+--		stmgr.animation.states.anim_marker = nil
+--		stmgr.animstate.states.anim_marker = nil
+		stmgr.locked = enable
+		if enable then
+			stmgr.combat = true
+		end
+	end
+end
+
+function is_idle(npc)
+	local stmgr = db.storage[npc:id()].state_mgr
+	local t = stmgr and stmgr.target_state == "idle"
+		and not stmgr.planner:evaluator(stmgr.properties["locked"]):evaluate()
+--		and not stmgr.planner:evaluator(stmgr.properties["animstate_locked"]):evaluate()
+--		and not stmgr.planner:evaluator(stmgr.properties["animation_locked"]):evaluate()
+
+		and stmgr.planner:evaluator(stmgr.properties["movement"]):evaluate()
+		and stmgr.planner:evaluator(stmgr.properties["animstate"]):evaluate()
+		and stmgr.planner:evaluator(stmgr.properties["animation"]):evaluate()
+--		and stmgr.planner:evaluator(stmgr.properties["smartcover"]):evaluate()
+	return t == true
+end
 
 

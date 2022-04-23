@@ -5,7 +5,7 @@
      <info_portion id="agr_duty_first_join"></info_portion>
      <info_portion id="agr_duty_megafon_start"></info_portion>
      <info_portion id="agr_duty_megafon_hit"></info_portion>
-     <info_portion id="agr_take_reward_complete"></info_portion>
+     <info_portion id="agr_take_reward_complete"><article>private_19_note</article></info_portion>
      <info_portion id="agr_racya_dialog_1_end"></info_portion>
      <info_portion id="agr_racya_dialog_2_end"></info_portion>
      <info_portion id="agr_racya_dialog_1"></info_portion>
@@ -63,7 +63,9 @@
      <info_portion id="agr_shooting_door_enter"></info_portion>
      <info_portion id="agr_shooting_door_exit"></info_portion>
      <info_portion id="fire_hole_sound"></info_portion>
+
      <info_portion id="agr_duty_storyline_complete"></info_portion>
+
      <info_portion id="agr_additional_quest_1_info_complete"></info_portion>
      <info_portion id="agr_additional_quest_3_info_complete"></info_portion>
      <info_portion id="agr_holeman_dialog"></info_portion>
@@ -123,4 +125,7 @@
      <info_portion id="agr_recover_item_2_done"></info_portion>
      <info_portion id="agr_recover_item_3_done"></info_portion>
      <info_portion id="agr_recover_item_4_done"></info_portion>
+
+     <info_portion id="agr_duty_trader_mug"></info_portion>
+     <info_portion id="agr_actor_duty_leader_talk_end"><article>private_16_note</article></info_portion>
 </game_information_portions>

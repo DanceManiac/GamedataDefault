@@ -3,7 +3,7 @@
 
 [logic@csky_work1]
 active = camper@wait_work1
-suitable = {=is_gulag_attacking_target(lim_smart_terrain_3) =check_npc_name(lim_csky_commander) -lim_smart_3_captured} true
+suitable = {=is_gulag_attacking_target(lim_smart_terrain_3) =check_npc_name(lim_csky_commander_2) -lim_smart_3_captured} true
 ;suitable = {=check_npc_name(lim_csky_commander) -lim_smart_3_captured} true
 prior = 200
 post_combat_time = 0,0
@@ -35,8 +35,8 @@ def_state_moving2 = rush
 def_state_moving3 = rush
 on_signal = action | remark@actor_see_work1 
 on_info = {+lim_ambush2} walker@retreat_work1 %=request_current_squad_stage(prepare)%
-on_info2 = %=play_sound(lim_cs_storm_troop_leader_to_actor1)% 
-on_actor_dist_le = 5 | remark@talk2_work1 %=play_sound(lim_cs_storm_troop_leader_to_actor2)%
+on_info2 = %=play_sound(lim_cs_storm_troop_leader_to_actor1:csky:st_ui_pda_legend_squad)% 
+on_actor_dist_le = 5 | remark@talk2_work1 %=play_sound(lim_cs_storm_troop_leader_to_actor2:csky:st_ui_pda_legend_squad)%
 
 [remark@actor_see_work1]
 invulnerable = true
@@ -45,7 +45,7 @@ target = actor
 meet = no_meet
 anim = hello_wpn
 on_info = {+lim_ambush2} walker@retreat_work1 %+lim_csky_go_to_smart_3%
-on_actor_dist_le = 5 | remark@talk2_work1 %=play_sound(lim_cs_storm_troop_leader_to_actor2)%
+on_actor_dist_le = 5 | remark@talk2_work1 %=play_sound(lim_cs_storm_troop_leader_to_actor2:csky:st_ui_pda_legend_squad)%
 
 [remark@talk_work1]
 invulnerable = true
@@ -109,7 +109,7 @@ path_look = csky_attack_2_walk
 on_info = {+lim_bandit_house_attackers} walker@wait_work2
 
 [walker@wait_work2]
-meet = no_meet
+meet = meet
 invulnerable = true
 combat_ignore_cond = true ;{!enemy_in_zone(lim_smart_terrain_3_defence)}
 path_walk = spec_wait_2_walk
@@ -166,7 +166,7 @@ path_look = csky_attack_3_walk
 on_info = {+lim_bandit_house_attackers} walker@wait_work3
 
 [walker@wait_work3]
-meet = no_meet
+meet = meet
 invulnerable = true
 combat_ignore_cond = true ;{!enemy_in_zone(lim_smart_terrain_3_defence)}
 out_restr = lim_smart_terrain_2_defence
@@ -224,7 +224,7 @@ path_look = csky_attack_4_walk
 on_info = {+lim_bandit_house_attackers} walker@wait_work4
 
 [walker@wait_work4]
-meet = no_meet
+meet = meet
 invulnerable = true
 combat_ignore_cond = true ;{!enemy_in_zone(lim_smart_terrain_3_defence)}
 out_restr = lim_smart_terrain_2_defence
@@ -283,7 +283,7 @@ path_look = csky_attack_5_walk
 on_info = {+lim_bandit_house_attackers} walker@wait_work5
 
 [walker@wait_work5]
-meet = no_meet
+meet = meet
 invulnerable = true
 combat_ignore_cond = true ;{!enemy_in_zone(lim_smart_terrain_3_defence)}
 out_restr = lim_smart_terrain_2_defence

@@ -1,0 +1,4366 @@
+;;;;;;;;;;;;;;;;; Copyright 2007-2019 Kirgudu, DEXXX, WARWER ;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Записная книжка ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;; Список категорий (закладок в КПК)
+
+[groups]
+private
+stories
+documents
+monsters
+trophies
+anomalies
+artefacts
+locations
+factions
+weapon
+ammunition
+outfit
+helping
+equipment
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;; Настройки категорий (закладок в КПК)
+
+[private] ; Личные заметки
+array_name = private_array
+news_caption = "Личная заметка:"
+descr_prefix = enc_notepad_
+autosave = true
+sort_by_time = true
+default = true
+
+[stories] ; Истории
+array_name = stories_array
+news_caption = "Легенда Зоны:"
+descr_prefix = enc_notepad_
+
+[documents] ; Документы
+array_name = docs_array
+news_caption = "Секретный документ:"
+descr_prefix = enc_notepad_
+autosave = true
+inventory_items = true
+
+[monsters] ; Монстры
+array_name = monsters_array
+news_caption = "Заметка о мутанте:"
+descr_prefix = enc_mutant_
+sort_by_order = true
+
+[trophies] ; Трофеи
+array_name = trophies_array
+news_caption = "Заметка о трофее:"
+descr_prefix = mutant_
+sort_by_order = true
+
+[anomalies] ; Аномалии
+array_name = anomalies_array
+news_caption = "Заметка об аномалии:"
+descr_prefix = enc_anomaly_
+sort_by_order = true
+
+[artefacts] ; Артефакты
+array_name = artefacts_array
+news_caption = "Заметка об артефакте:"
+descr_prefix = st_af_
+sort_by_order = true
+
+[locations] ; Локации
+array_name = locations_array
+news_caption = "Заметка о локации:"
+descr_prefix = enc_location_
+sort_by_order = true
+
+[factions] ; Группировки
+array_name = factions_array
+news_caption = "Заметка о группировке:"
+descr_prefix = enc_faction_
+
+[weapon] ; Оружие
+array_name = weapon_array
+news_caption = "Заметка об оружии:"
+news_text_prefix = st_
+name_prefix = st_
+descr_prefix = st_
+descr_suffix = _pda_descr
+sort_by_order = true
+inventory_items = true
+
+[ammunition] ; Боеприпасы
+array_name = ammunition_array
+news_caption = "Заметка об амуниции:"
+news_text_prefix = st_
+name_prefix = st_
+descr_prefix = st_
+descr_suffix = _descr
+sort_by_order = true
+inventory_items = true
+
+[outfit] ; Броня
+array_name = outfit_array
+news_caption = "Заметка о броне:"
+news_text_suffix = _name
+name_suffix = _name
+descr_suffix = _description
+sort_by_order = true
+inventory_items = true
+
+[helping] ; Помощь
+array_name = helping_array
+news_caption = "Помощь:"
+sort_by_order = true
+inventory_items = true
+
+[equipment] ; Снаряжение
+array_name = equipment_array
+news_caption = "Заметка о снаряжении:"
+sort_by_order = true
+inventory_items = true
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;; Списки историй по категориям
+
+[private_array] ; Личные заметки
+private_1
+private_2
+private_3
+private_4
+private_5
+private_6
+private_7
+private_8
+private_9
+private_10
+private_11
+private_12
+private_13
+private_14
+private_15
+private_16
+private_17
+private_18
+private_19
+private_20
+private_21
+private_22
+private_23
+private_24
+private_25
+private_26
+private_27
+private_28
+private_29
+private_30
+
+[monsters_array] ; Монстры
+crow
+rat
+tushkano
+blind
+flesh
+boar
+zombie
+zombieg
+zombierusty
+zombieplague
+zombieelectro
+fracture
+snork
+cat
+pseudodog
+psydog
+poltergeist
+poltergeist_flame
+burer
+psyburer
+bloodsucker
+bloodsucker_marsh
+chimera
+electrochimera
+controller
+pseudogiant
+phantom
+
+[trophies_array] ; Трофеи
+mutant_dog_tail
+mutant_dog_strong_tail
+mutant_flesh_eye
+mutant_boar_leg
+mutant_zombie_hand
+mutant_izlom_hand
+mutant_snork_leg
+mutant_cat_tail
+mutant_psevdodog_tail
+mutant_poltergeist_hand
+mutant_burer_hand
+mutant_krovosos_jaw
+mutant_marsh_krovosos_jaw
+mutant_chimera_nail
+mutant_controller_hand
+mutant_pseudogigant_nail
+mutant_tushkano_face
+
+[anomalies_array] ; Аномалии
+tramplin
+voronka
+karusel
+zharka
+razlom
+electra
+pukh
+studen
+tuman
+simbiont
+teleport
+psyzone
+radioactive
+duhovka
+kometa
+vivoroten
+vibros
+peklo
+space_bubble
+
+[artefacts_array] ; Артефакты
+af_medusa
+af_vyvert
+af_cristall_flower
+af_night_star
+af_gravi
+af_gold_fish
+af_mica
+af_slug
+af_ball
+af_thorn
+af_real_cristall
+af_fireball
+af_dummy_glassbeads
+af_eye
+af_real_fire
+af_blood
+af_mincer_meat
+af_baloon
+af_soul
+af_fuzz_kolobok
+af_glass
+af_electra_sparkler
+af_electra_flash
+af_electra_moonlight
+af_dummy_battery
+af_dummy_dummy
+af_ice
+af_compass
+af_dummy_pellicle
+mar_quest_af_cristall_flower_1
+agr_quest_af_dummy_battery_1
+agr_quest_af_fuzz_kolobok_1
+yan_quest_scarlet_flower
+mil_quest_af_mincer_meat_1
+mil_quest_af_fire_1
+
+[locations_array] ; Локации
+marsh
+escape
+garbage
+darkvalley
+agroprom
+agroprom_underground
+yantar
+red_forest
+military
+limansk
+hospital
+jupiter_underground
+stancia_2
+
+[factions_array] ; Группировки
+ecolog
+csky
+renegade
+stalker
+bandit
+dolg
+freedom
+army
+killer
+monolith
+zombied
+trader
+
+[stories_array] ; Истории
+story_1
+story_2
+story_3
+story_4
+story_5
+story_6
+story_7
+story_8
+story_9
+story_10
+story_11
+story_12
+story_13
+story_14
+story_15
+story_16
+story_17
+story_18
+story_19
+story_20
+story_21
+story_22
+
+[docs_array] ; Документы
+doc_01
+doc_02
+doc_03
+doc_04
+doc_05
+doc_06
+doc_07
+doc_08
+doc_09
+doc_10
+doc_11
+doc_12
+doc_13
+doc_14
+doc_15
+
+[weapon_array] ; Оружие
+wpn_real_pm
+wpn_pmm
+wpn_bm16_full
+wpn_abakan
+wpn_ak74
+wpn_saiga
+wpn_ak74_priklad
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_akm
+wpn_rpk
+wpn_ak74u
+wpn_beretta
+wpn_bm16
+wpn_colt1911
+wpn_aps
+wpn_desert_eagle
+grenade_f1
+wpn_fn2000
+wpn_fort
+wpn_real_g36
+wpn_g36c
+wpn_real_gauss
+wpn_gauss_aes
+grenade_gd-05
+wpn_groza
+wpn_hpsa
+wpn_tt33
+wpn_glock17
+wpn_l85
+wpn_lr300
+wpn_mp5
+wpn_ump45
+wpn_p90
+wpn_real_pb
+wpn_pb_short
+wpn_pkm
+wpn_rg-6
+grenade_rgd5
+wpn_rpg7
+wpn_sig220
+wpn_sig550
+wpn_sigsg550sniper
+wpn_sig552
+wpn_spas12
+wpn_svd
+wpn_svu
+wpn_toz34
+wpn_toz34_obrez
+wpn_usp
+wpn_val
+wpn_vihr
+wpn_9a91
+wpn_vintorez
+wpn_walther
+wpn_fn57
+wpn_wincheaster1300
+wpn_gsh18
+explosive_mobiltank
+explosive_dinamit
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+[ammunition_array] ; Боеприпасы
+ammo_9x18_fmj
+ammo_9x18_pmm
+ammo_9x18_pbp
+ammo_9x19_fmj
+ammo_9x19_pbp
+ammo_11.43x23_fmj
+ammo_11.43x23_hydro
+ammo_5.45x39_fmj
+ammo_5.45x39_ap
+ammo_5.56x45_ss190
+ammo_5.56x45_ap
+ammo_9x39_pab9
+ammo_9x39_sp5
+ammo_9x39_ap
+ammo_7.62x54_7h1
+ammo_7.62x54_7h14
+ammo_7.62x54_ap
+ammo_pkm_100
+ammo_12x70_buck
+ammo_12x76_zhekan
+ammo_12x76_dart
+ammo_og-7b
+ammo_real_gauss
+ammo_gauss_aes
+ammo_7.62x39_fmj
+ammo_7.62x39_ap
+ammo_7.62x25_fmj
+ammo_7.62x25_ap
+ammo_10.9x32.5
+ammo_5.7x28_fmj
+ammo_5.7x28_ap
+ammo_vog-25
+ammo_vog-25p
+ammo_m209
+yan_quest_ammo_sleep
+mil_quest_ammo_7.62x54_7h14
+
+[outfit_array] ; Броня
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_extra2_outfit
+dolg_heavy_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_heavy_extra_outfit
+svoboda_scientific_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_extra_outfit
+military_outfit_black
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+shram_outfit
+mar_quest_novice_outfit_1
+gar_quest_novice_outfit
+
+[helping_array] ; Помощь
+medkit
+medkit_army
+medkit_scientic
+yadulin
+bandage
+antirad
+vodka
+energy_drink
+nuts
+olives
+bread
+kolbasa
+cheese
+conserva
+vegetables
+sardines
+flash_scientific_ac_sect
+flash_scientific_eg_sect
+flash_scientific_aceg_sect
+flash_exoskeleton_f2_sect
+flash_exoskeleton_h2_sect
+flash_exoskeleton_f2h2_sect
+flash_exoskeleton_ac2_sect
+flash_exoskeleton_bd2_sect
+flash_shotguns_ac_sect
+flash_shotguns_bd_sect
+flash_sniperrifles_ab_sect
+flash_sniperrifles_cd_sect
+flash_sniperrifles_abcd_sect
+flash_silentrifles_ab_sect
+flash_silentrifles_cd_sect
+flash_groza_ac_sect
+flash_groza_eg_sect
+flash_groza_aceg_sect
+flash_fn2000_ac_sect
+flash_fn2000_bd_sect
+flash_fn2000_2ac_sect
+flash_fn2000_2bd_sect
+flash_pkm_ab_sect
+flash_pkm_cd_sect
+flash_pkm_abcd_sect
+esc_quest_magic_vodka
+esc_quest_spec_medkit
+gar_quest_vodka_2
+
+[equipment_array] ; Снаряжение
+guitar_a
+harmonica_a
+device_pda
+dev_flash_1
+device_torch
+matras
+notepad
+inv_ruck
+detector_simple
+detector_advanced
+detector_elite
+hand_radio
+bolt
+wpn_binoc
+wpn_knife
+wpn_addon_scope
+wpn_addon_scope_pgo
+wpn_addon_scope_susat
+wpn_addon_scope_acog
+wpn_addon_scope_gauss
+wpn_addon_silencer
+wpn_addon_silencer_pb
+wpn_addon_silencer_svu
+wpn_addon_grenade_launcher
+wpn_addon_grenade_launcher_m203
+esc_trader_habar
+device_pda_digger
+device_pda_freedom
+device_pda_comendant
+device_pda_fang
+device_pda_strelok
+red_forest_pda_map
+device_pda_military
+device_pda_old
+device_pda_garbage_traitor
+device_pda_bloodsucker
+esc_device_pda_driver
+esc_mechanic_flash_card
+agr_map_animals
+agr_pda_for_secret_trader
+ammo_package
+products_package
+ashot_ammo_package
+item_electro_charge
+gar_digger_dead_pda
+gar_digger_messenger_pda
+val_bandit_spy_quest_pda
+yan_stalker_dead_pda
+mar_quest_scout_pda
+esc_quest_luky_detector
+val_quest_scope_x8
+val_quest_flash_movies
+val_quest_guitar_serg
+agr_quest_duty_secret_pda
+agr_quest_duty_case
+agr_mechanic_pda
+yan_quest_granade
+red_forest_pda_map_2
+red_quest_prototipe_device
+mil_device_pda_lost_squard
+quest_item_cup
+quest_item_lighter
+quest_item_poolball
+quest_item_handclock
+pda_for_quests
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;; Настройки историй
+
+;;;;;;;;;; Личные заметки (private_array)
+
+[private_1]
+info = mar_intro_start
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+article_time = 2010,12,14,19,45,0,0
+
+[private_2]
+info = mar_intro_start
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+article_time = 2010,12,27,8,15,0,0
+
+[private_3]
+info = mar_intro_start
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+article_time = 2011,01,26,14,20,0,0
+
+[private_4]
+info = mar_intro_start
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+article_time = 2011,9,3,22,50,0,0
+
+[private_5]
+info = mar_intro_scene_2_cameff_end
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_6]
+info = mar_tutorial_returned_got_on_feet
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_7]
+info = mar_story_empower_csky_done
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_8]
+info = esc_reach_trader_complete
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_9]
+info = esc_leader_talked2
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_10]
+info = esc_bring_habar_complete
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_11]
+info = gar_story_got_info_from_digger
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_12]
+info = val_go_to_trader_complete
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_13]
+info = val_take_pda_done
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_14]
+info = val_deliver_pda_complete
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_15]
+info = gar_story_got_fang_pda
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_16]
+info = agr_actor_inside_5
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_17]
+info = agru_controller_death
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_18]
+info = agru_find_secret_task_complete
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_19]
+info = agr_take_reward_complete
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_20]
+info = yan_quest_doc
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_21]
+info = yan_go_to_red_forest_cut6
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_22]
+info = red_pursuit_task_end
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_23]
+info = red_actor_find_teleport
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_24]
+info = red_actor_find_forester
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_25]
+info = mil_merc_talked
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_26]
+info = red_forester_take_compas
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_27]
+info = mil_actor_go_to_limansk
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_28]
+info = red_bridge_csky_go_limansk
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_29]
+info = hospital_general_task_complete
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+[private_30]
+info = mar_free_gauss_return_init
+article_picture = ui\ui_iconstotal
+article_picture_coords = 1024,1024,694,216,165,108
+
+
+;;;;;;;;;; Монстры (monsters_array)
+
+[crow]
+info = crow_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,495,540,165,108
+order = 1
+
+[rat]
+info = rat_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,660,540,165,108
+order = 2
+
+[tushkano]
+info = tushkano_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,0,216,165,108
+order = 3
+
+[blind]
+info = blind_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,165,0,165,108
+order = 4
+
+[flesh]
+info = flesh_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,825,0,165,108
+order = 5
+
+[boar]
+info = boar_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,165,108,165,108
+order = 6
+
+[zombie]
+info = zombie_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,0,432,165,108
+order = 7
+
+[zombieg]
+info = zombieg_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,495,432,165,108
+order = 8
+
+[zombierusty]
+info = zombierusty_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,660,432,165,108
+order = 9
+
+[zombieplague]
+info = zombieplague_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,835,432,165,108
+order = 10
+
+[zombieelectro]
+info = zombieelectro_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,0,540,165,108
+order = 11
+
+[fracture]
+info = fracture_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,495,324,165,108
+order = 12
+
+[snork]
+info = snork_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,495,108,165,108
+order = 13
+
+[cat]
+info = cat_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,660,324,165,108
+order = 14
+
+[pseudodog]
+info = pseudodog_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,495,0,165,108
+order = 15
+
+[psydog]
+info = psydog_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,660,0,165,108
+order = 16
+
+[poltergeist]
+info = poltergeist_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,0,324,165,108
+order = 17
+
+[poltergeist_flame]
+info = poltergeist_flame_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,0,756,165,108
+order = 18
+
+[burer]
+info = burer_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,165,324,165,108
+order = 19
+
+[psyburer]
+info = psyburer_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,330,540,165,108
+order = 20
+
+[bloodsucker]
+info = bloodsucker_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,660,108,165,108
+order = 21
+
+[bloodsucker_marsh]
+info = bloodsucker_marsh_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,660,648,165,108
+order = 22
+
+[chimera]
+info = chimera_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,330,324,165,108
+order = 23
+
+[electrochimera]
+info = electrochimera_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,165,540,165,108
+order = 24
+
+[controller]
+info = controller_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,165,216,165,108
+order = 25
+
+[pseudogiant]
+info = pseudogiant_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,825,216,165,108
+order = 26
+
+[phantom]
+info = phantom_dead
+article_picture = ui\ui_npc_monster
+article_picture_coords = 1024,1024,330,756,165,108
+order = 27
+
+
+;;;;;;;;;; Трофеи (trophies_array)
+
+[mutant_dog_tail]
+info = mutant_dog_tail_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,21,1,1,50,50
+news_text = mutant_dog_tail
+article_name = mutant_dog_tail
+article_descr = mutant_dog_tail_description
+inventory_item = true
+order = 1
+
+[mutant_dog_strong_tail]
+info = mutant_dog_strong_tail_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,21,1,1,50,50
+news_text = mutant_dog_strong_tail
+article_name = mutant_dog_strong_tail
+article_descr = mutant_dog_strong_tail_description
+inventory_item = true
+order = 2
+
+[mutant_flesh_eye]
+info = mutant_flesh_eye_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,21,1,1,50,50
+news_text = mutant_flesh_eye
+article_name = mutant_flesh_eye
+article_descr = mutant_flesh_eye_description
+inventory_item = true
+order = 3
+
+[mutant_boar_leg]
+info = mutant_boar_leg_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,21,1,1,50,50
+news_text = mutant_boar_leg
+article_name = mutant_boar_leg
+article_descr = mutant_boar_leg_description
+inventory_item = true
+order = 4
+
+[mutant_zombie_hand]
+info = mutant_zombie_hand_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,21,1,1,50,50
+news_text = mutant_zombie_hand
+article_name = mutant_zombie_hand
+article_descr = mutant_zombie_hand_description
+inventory_item = true
+order = 5
+
+[mutant_izlom_hand]
+info = mutant_izlom_hand_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,21,1,1,50,50
+news_text = mutant_izlom_hand
+article_name = mutant_izlom_hand
+article_descr = mutant_izlom_hand_description
+inventory_item = true
+order = 6
+
+[mutant_snork_leg]
+info = mutant_snork_leg_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,6,21,1,1,50,50
+news_text = mutant_snork_leg
+article_name = mutant_snork_leg
+article_descr = mutant_snork_leg_description
+inventory_item = true
+order = 7
+
+[mutant_cat_tail]
+info = mutant_cat_tail_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,7,21,1,1,50,50
+news_text = mutant_cat_tail
+article_name = mutant_cat_tail
+article_descr = mutant_cat_tail_description
+inventory_item = true
+order = 8
+
+[mutant_psevdodog_tail]
+info = mutant_psevdodog_tail_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,8,21,1,1,50,50
+news_text = mutant_psevdodog_tail
+article_name = mutant_psevdodog_tail
+article_descr = mutant_psevdodog_tail_description
+inventory_item = true
+order = 9
+
+[mutant_poltergeist_hand]
+info = mutant_poltergeist_hand_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,9,21,1,1,50,50
+news_text = mutant_poltergeist_hand
+article_name = mutant_poltergeist_hand
+article_descr = mutant_poltergeist_hand_description
+inventory_item = true
+order = 10
+
+[mutant_burer_hand]
+info = mutant_burer_hand_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,22,1,1,50,50
+news_text = mutant_burer_hand
+article_name = mutant_burer_hand
+article_descr = mutant_burer_hand_description
+inventory_item = true
+order = 11
+
+[mutant_krovosos_jaw]
+info = mutant_krovosos_jaw_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,22,1,1,50,50
+news_text = mutant_krovosos_jaw
+article_name = mutant_krovosos_jaw
+article_descr = mutant_krovosos_jaw_description
+inventory_item = true
+order = 12
+
+[mutant_marsh_krovosos_jaw]
+info = mutant_marsh_krovosos_jaw_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,22,1,1,50,50
+news_text = mutant_marsh_krovosos_jaw
+article_name = mutant_marsh_krovosos_jaw
+article_descr = mutant_marsh_krovosos_jaw_description
+inventory_item = true
+order = 13
+
+[mutant_chimera_nail]
+info = mutant_chimera_nail_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,22,1,1,50,50
+news_text = mutant_chimera_nail
+article_name = mutant_chimera_nail
+article_descr = mutant_chimera_nail_description
+inventory_item = true
+order = 14
+
+[mutant_controller_hand]
+info = mutant_controller_hand_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,22,1,1,50,50
+news_text = mutant_controller_hand
+article_name = mutant_controller_hand
+article_descr = mutant_controller_hand_description
+inventory_item = true
+order = 15
+
+[mutant_pseudogigant_nail]
+info = mutant_pseudogigant_nail_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,22,1,1,50,50
+news_text = mutant_pseudogigant_nail
+article_name = mutant_pseudogigant_nail
+article_descr = mutant_pseudogigant_nail_description
+inventory_item = true
+order = 16
+
+[mutant_tushkano_face]
+info = mutant_tushkano_face_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,6,22,1,1,50,50
+news_text = mutant_tushkano_face
+article_name = mutant_tushkano_face
+article_descr = mutant_tushkano_face_description
+inventory_item = true
+order = 17
+
+;;;;;;;;;; Аномалии (anomalies_array)
+
+[tramplin]
+info = tramplin_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,216,165,108
+order = 1
+
+[voronka]
+info = voronka_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,660,216,165,108
+order = 2
+
+[karusel]
+info = karusel_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,330,0,165,108
+order = 3
+
+[zharka]
+info = zharka_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,825,216,165,108
+order = 4
+
+[razlom]
+info = razlom_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,330,108,165,108
+order = 5
+
+[electra]
+info = electra_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,0,165,108
+order = 6
+
+[pukh]
+info = pukh_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,108,165,108
+order = 7
+
+[studen]
+info = studen_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,660,108,165,108
+order = 8
+
+[tuman]
+info = tuman_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,216,165,108
+order = 9
+
+[simbiont]
+info = simbiont_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,495,108,165,108
+order = 10
+
+[teleport]
+info = teleport_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,825,108,165,108
+order = 11
+
+[psyzone]
+info = psyzone_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,825,0,165,108
+order = 12
+
+[radioactive]
+info = radioactive_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,108,165,108
+order = 13
+
+[duhovka]
+info = duhovka_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,0,165,108
+order = 14
+
+[kometa]
+info = kometa_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,495,0,165,108
+order = 15
+
+[vivoroten]
+info = vivoroten_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,495,216,165,108
+order = 16
+
+[vibros]
+info = vibros_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,330,216,165,108
+order = 17
+
+[peklo]
+info = peklo_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,660,0,165,108
+order = 18
+
+[space_bubble]
+info = space_bubble_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+order = 19
+
+
+;;;;;;;;;; Артефакты (artefacts_array)
+;;; Артефакты для гравитационной аномалии
+
+[af_medusa]
+info = af_medusa_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,14,1,1,50,50
+news_text = st_af_medusa_name
+article_name = st_af_medusa_name
+article_descr = st_af_medusa_descr
+inventory_item = true
+order = 1
+
+[af_vyvert]
+info = af_vyvert_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,14,1,1,50,50
+news_text = st_af_vyvert_name
+article_name = st_af_vyvert_name
+article_descr = st_af_vyvert_descr
+inventory_item = true
+order = 2
+
+[af_cristall_flower]
+info = af_cristall_flower_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,14,1,1,50,50
+news_text = st_af_cristall_flower_name
+article_name = st_af_cristall_flower_name
+article_descr = st_af_cristall_flower_descr
+inventory_item = true
+order = 3
+
+[af_night_star]
+info = af_night_star_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,14,1,1,50,50
+news_text = st_af_night_star_name
+article_name = st_af_night_star_name
+article_descr = st_af_night_star_descr
+inventory_item = true
+order = 4
+
+[af_gravi]
+info = af_gravi_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,14,1,1,50,50
+news_text = st_af_gravi_name
+article_name = st_af_gravi_name
+article_descr = st_af_gravi_descr
+inventory_item = true
+order = 5
+
+[af_gold_fish]
+info = af_gold_fish_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,14,1,1,50,50
+news_text = st_af_gold_fish_name
+article_name = st_af_gold_fish_name
+article_descr = st_af_gold_fish_descr
+inventory_item = true
+order = 6
+
+[af_mica]
+info = af_mica_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,6,14,1,1,50,50
+news_text = st_af_mica_name
+article_name = st_af_mica_name
+article_descr = st_af_mica_descr
+inventory_item = true
+order = 7
+
+[af_slug]
+info = af_slug_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,7,14,1,1,50,50
+news_text = st_af_slug_name
+article_name = st_af_slug_name
+article_descr = st_af_slug_descr
+inventory_item = true
+order = 8
+
+[af_ball]
+info = af_ball_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,8,14,1,1,50,50
+news_text = st_af_ball_name
+article_name = st_af_ball_name
+article_descr = st_af_ball_descr
+inventory_item = true
+order = 9
+
+;;; Артефакты для термальной аномалии
+
+[af_thorn]
+info = af_thorn_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,15,1,1,50,50
+news_text = st_af_thorn_name
+article_name = st_af_thorn_name
+article_descr = st_af_thorn_descr
+inventory_item = true
+order = 10
+
+[af_real_cristall]
+section = af_cristall
+info = af_cristall_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,15,1,1,50,50
+news_text = st_af_cristall_name
+article_name = st_af_cristall_name
+article_descr = st_af_cristall_descr
+inventory_item = true
+order = 11
+
+[af_fireball]
+info = af_fireball_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,15,1,1,50,50
+news_text = st_af_fireball_name
+article_name = st_af_fireball_name
+article_descr = st_af_fireball_descr
+inventory_item = true
+order = 12
+
+[af_dummy_glassbeads]
+info = af_dummy_glassbeads_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,15,1,1,50,50
+news_text = st_af_dummy_glassbeads_name
+article_name = st_af_dummy_glassbeads_name
+article_descr = st_af_dummy_glassbeads_descr
+inventory_item = true
+order = 13
+
+[af_eye]
+info = af_eye_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,15,1,1,50,50
+news_text = st_af_eye_name
+article_name = st_af_eye_name
+article_descr = st_af_eye_descr
+inventory_item = true
+order = 14
+
+[af_real_fire]
+section = af_fire
+info = af_fire_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,15,1,1,50,50
+news_text = st_af_fire_name
+article_name = st_af_fire_name
+article_descr = st_af_fire_descr
+inventory_item = true
+order = 15
+
+;;; Артефакты для химической аномалии
+
+[af_blood]
+info = af_blood_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,16,1,1,50,50
+news_text = st_af_blood_name
+article_name = st_af_blood_name
+article_descr = st_af_blood_descr
+inventory_item = true
+order = 16
+
+[af_mincer_meat]
+info = af_mincer_meat_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,16,1,1,50,50
+news_text = st_af_mincer_meat_name
+article_name = st_af_mincer_meat_name
+article_descr = st_af_mincer_meat_descr
+inventory_item = true
+order = 17
+
+[af_baloon]
+info = af_baloon_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,16,1,1,50,50
+news_text = st_af_baloon_name
+article_name = st_af_baloon_name
+article_descr = st_af_baloon_descr
+inventory_item = true
+order = 18
+
+[af_soul]
+info = af_soul_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,16,1,1,50,50
+news_text = st_af_soul_name
+article_name = st_af_soul_name
+article_descr = st_af_soul_descr
+inventory_item = true
+order = 19
+
+[af_fuzz_kolobok]
+info = af_fuzz_kolobok_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,16,1,1,50,50
+news_text = st_af_fuzz_kolobok_name
+article_name = st_af_fuzz_kolobok_name
+article_descr = st_af_fuzz_kolobok_descr
+inventory_item = true
+order = 20
+
+[af_glass]
+info = af_glass_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,16,1,1,50,50
+news_text = st_af_glass_name
+article_name = st_af_glass_name
+article_descr = st_af_glass_descr
+inventory_item = true
+order = 21
+
+;;; Артефакты для электрической аномалии
+
+[af_electra_sparkler]
+info = af_electra_sparkler_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,17,1,1,50,50
+news_text = st_af_electra_sparkler_name
+article_name = st_af_electra_sparkler_name
+article_descr = st_af_electra_sparkler_descr
+inventory_item = true
+order = 22
+
+[af_electra_flash]
+info = af_electra_flash_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,17,1,1,50,50
+news_text = st_af_electra_flash_name
+article_name = st_af_electra_flash_name
+article_descr = st_af_electra_flash_descr
+inventory_item = true
+order = 23
+
+[af_electra_moonlight]
+info = af_electra_moonlight_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,17,1,1,50,50
+news_text = st_af_electra_moonlight_name
+article_name = st_af_electra_moonlight_name
+article_descr = st_af_electra_moonlight_descr
+inventory_item = true
+order = 24
+
+[af_dummy_battery]
+info = af_dummy_battery_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,17,1,1,50,50
+news_text = st_af_dummy_battery_name
+article_name = st_af_dummy_battery_name
+article_descr = st_af_dummy_battery_descr
+inventory_item = true
+order = 25
+
+[af_dummy_dummy]
+info = af_dummy_dummy_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,17,1,1,50,50
+news_text = st_af_dummy_dummy_name
+article_name = st_af_dummy_dummy_name
+article_descr = st_af_dummy_dummy_descr
+inventory_item = true
+order = 26
+
+[af_ice]
+info = af_ice_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,17,1,1,50,50
+news_text = st_af_ice_name
+article_name = st_af_ice_name
+article_descr = st_af_ice_descr
+inventory_item = true
+order = 27
+
+;;; Артефакты специальные
+
+[af_compass]
+info = af_compass_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,18,1,1,50,50
+news_text = st_compass
+article_name = st_compass
+article_descr = st_compass_descr
+inventory_item = true
+order = 28
+
+[af_dummy_pellicle]
+info = af_dummy_pellicle_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,9,14,1,1,50,50
+news_text = st_af_dummy_pellicle_name
+article_name = st_af_dummy_pellicle_name
+article_descr = st_af_dummy_pellicle_descr
+inventory_item = true
+order = 29
+
+;;; Артефакты квестовые
+
+[mar_quest_af_cristall_flower_1]
+info = mar_quest_af_cristall_flower_1_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,14,1,1,50,50
+news_text = st_af_cristall_flower_name
+article_name = st_af_cristall_flower_name
+article_descr = st_af_cristall_flower_descr
+inventory_item = true
+order = 30
+
+[agr_quest_af_dummy_battery_1]
+info = agr_quest_af_dummy_battery_1_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,17,1,1,50,50
+news_text = st_af_dummy_battery_name
+article_name = st_af_dummy_battery_name
+article_descr = st_af_dummy_battery_descr
+inventory_item = true
+order = 31
+
+[agr_quest_af_fuzz_kolobok_1]
+info = agr_quest_af_fuzz_kolobok_1_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,16,1,1,50,50
+news_text = st_af_fuzz_kolobok_name
+article_name = st_af_fuzz_kolobok_name
+article_descr = st_af_fuzz_kolobok_descr
+inventory_item = true
+order = 32
+
+[yan_quest_scarlet_flower]
+info = yan_quest_scarlet_flower_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,8,26,1,1,50,50
+news_text = st_yan_quest_scarlet_flower
+article_name = st_yan_quest_scarlet_flower
+article_descr = st_yan_quest_scarlet_flower_descr
+inventory_item = true
+order = 33
+
+[mil_quest_af_mincer_meat_1]
+info = af_mincer_meat_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,16,1,1,50,50
+news_text = st_af_mincer_meat_name
+article_name = st_af_mincer_meat_name
+article_descr = st_af_mincer_meat_descr
+inventory_item = true
+order = 34
+
+[mil_quest_af_fire_1]
+info = mil_quest_af_fire_1_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,15,1,1,50,50
+news_text = st_af_fire_name
+article_name = st_af_fire_name
+article_descr = st_af_fire_descr
+inventory_item = true
+order = 35
+
+;;;;;;;;;; Локации (locations_array)
+
+[marsh]
+info = marsh_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,330,864,165,108
+order = 1
+
+[escape]
+info = escape_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,495,756,165,108
+order = 2
+
+[garbage]
+info = garbage_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,660,756,165,108
+order = 3
+
+[darkvalley]
+info = darkvalley_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,330,756,165,108
+order = 4
+
+[agroprom]
+info = agroprom_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,756,165,108
+order = 5
+
+[agroprom_underground]
+info = agroprom_underground_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,756,165,108
+order = 6
+
+[yantar]
+info = yantar_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,972,165,108
+order = 7
+
+[red_forest]
+info = red_forest_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,660,864,165,108
+order = 8
+
+[military]
+info = military_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,495,864,165,108
+order = 9
+
+[limansk]
+info = limansk_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,864,165,108
+order = 10
+
+[hospital]
+info = hospital_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,825,756,165,108
+order = 11
+
+[jupiter_underground]
+info = jupiter_underground_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,864,165,108
+order = 12
+
+[stancia_2]
+info = stancia_2_visited
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,825,864,165,108
+order = 13
+
+
+;;;;;;;;;; Группировки (factions_array)
+
+[ecolog]
+info = ecolog_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,660,432,165,108
+
+[csky]
+info = csky_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,330,432,165,108
+
+[renegade]
+info = renegade_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,330,540,165,108
+
+[stalker]
+info = stalker_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,495,540,165,108
+
+[bandit]
+info = bandit_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,432,165,108
+
+[dolg]
+info = dolg_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,495,432,165,108
+
+[freedom]
+info = freedom_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,825,432,165,108
+
+[army]
+info = army_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,432,165,108
+
+[killer]
+info = killer_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,540,165,108
+
+[monolith]
+info = monolith_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,540,165,108
+
+[zombied]
+info = zombied_info
+news_text = zombied_faction
+article_name = zombied_faction
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,660,540,165,108
+
+[trader]
+info = trader_info
+news_text = trader_faction
+article_name = trader_faction
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,825,540,165,108
+
+;;;;;;;;;; Истории (stories_array)
+
+[story_1]
+info = dm_ogsm_story_1_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_2]
+info = dm_ogsm_story_2_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_3]
+info = dm_ogsm_story_3_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_4]
+info = dm_ogsm_story_4_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_5]
+info = dm_ogsm_story_5_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_6]
+info = dm_ogsm_story_6_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_7]
+info = dm_ogsm_story_7_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_8]
+info = dm_ogsm_story_8_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_9]
+info = dm_ogsm_story_9_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_10]
+info = dm_ogsm_story_10_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_11]
+info = dm_ogsm_story_11_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_12]
+info = dm_ogsm_story_12_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_13]
+info = dm_ogsm_story_13_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_14]
+info = dm_ogsm_story_14_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_15]
+info = dm_ogsm_story_15_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_16]
+info = dm_ogsm_story_16_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_17]
+info = dm_ogsm_story_17_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_18]
+info = dm_ogsm_story_18_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_19]
+info = dm_ogsm_story_19_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_20]
+info = dm_ogsm_story_20_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_21]
+info = dm_ogsm_story_21_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+[story_22]
+info = dm_ogsm_story_22_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,165,1188,165,108
+
+;;;;;;;;;; Документы (docs_array)
+
+[doc_01]
+info = doc_01_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_02]
+info = doc_02_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_03]
+info = doc_03_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_04]
+info = doc_04_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_05]
+info = doc_05_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_06]
+info = doc_06_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_07]
+info = doc_07_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_08]
+info = doc_08_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_09]
+info = doc_09_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_10]
+info = doc_10_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_11]
+info = doc_11_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_12]
+info = doc_12_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_13]
+info = doc_13_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_14]
+info = doc_14_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+[doc_15]
+info = doc_15_info
+article_picture = ui\ui_icon_pda
+article_picture_coords = 1024,2048,0,1188,165,108
+
+
+;;;;;;;;;; Оружие (weapon_array)
+
+[wpn_abakan]
+info = mar_intro_start
+;info = wpn_abakan_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,15,5,2,50,50
+order = 1
+
+[wpn_ak74]
+info = mar_intro_start
+;info = wpn_ak74_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,34,13,5,2,50,50
+order = 2
+
+[wpn_saiga]
+;info = mar_intro_start
+info = wpn_saiga_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,13,5,2,50,50
+order = 3
+
+[wpn_ak74_priklad]
+info = mar_intro_start
+;info = wpn_ak74_priklad_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,29,13,5,2,50,50
+order = 4
+
+[wpn_ak101]
+info = wpn_ak101_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,36,5,2,50,50
+order = 5
+
+[wpn_ak104]
+info = wpn_ak104_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,35,34,5,2,50,50
+order = 6
+
+[wpn_ak108]
+info = wpn_ak108_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,29,36,5,2,50,50
+order = 7
+
+[wpn_akm]
+section = wpn_akm
+info = wpn_akm_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,34,5,2,50,50
+order = 8
+
+[wpn_rpk]
+info = wpn_rpk_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,29,34,6,2,50,50
+order = 9
+
+[wpn_ak74u]
+info = mar_intro_start
+;info = wpn_ak74u_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,15,4,2,50,50
+order = 10
+
+[wpn_beretta]
+info = mar_intro_start
+;info = wpn_beretta_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,26,10,2,1,50,50
+order = 11
+
+[wpn_bm16]
+info = mar_intro_start
+;info = wpn_bm16_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,11,3,1,50,50
+order = 12
+
+[wpn_bm16_full]
+info = wpn_bm16_full_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,27,11,6,1,50,50
+order = 13
+
+[wpn_colt1911]
+info = mar_intro_start
+;info = wpn_colt1911_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,30,10,2,1,50,50
+order = 14
+
+[wpn_aps]
+info = wpn_aps_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,33,2,1,50,50
+order = 15
+
+[wpn_desert_eagle]
+info = wpn_desert_eagle_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,30,33,2,1,50,50
+news_text = st_wpn_eagle
+article_name = st_wpn_eagle
+article_descr = st_wpn_eagle_pda_descr
+order = 16
+
+[wpn_fn2000]
+info = wpn_fn2000_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,33,38,4,2,50,50
+order = 17
+
+[wpn_fort]
+info = mar_intro_start
+;info = wpn_fort_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,9,2,1,50,50
+order = 18
+
+[wpn_real_g36]
+section = wpn_g36
+info = wpn_g36_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,33,23,5,2,50,50
+order = 19
+
+[wpn_g36c]
+info = wpn_g36c_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,25,4,2,50,50
+order = 20
+
+[wpn_real_gauss]
+section = wpn_gauss
+info = wpn_gauss_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,34,36,6,2,50,50
+order = 21
+
+[wpn_gauss_aes]
+info = wpn_gauss_aes_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,34,36,6,2,50,50
+order = 22
+
+[grenade_gd-05]
+section = grenade_gd
+info = grenade_gd-05_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,35,1,1,50,50
+news_text = st_grenade_smoke
+;article_caption = st_grenade_smoke  ; Это чтобы справа от картинки в КПК был заголовок (тест)
+article_name = st_grenade_smoke
+article_descr = st_grenade_smoke_descr
+order = 23
+
+[wpn_groza]
+;info = mar_intro_start
+info = wpn_groza_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,33,15,4,2,50,50
+order = 24
+
+[wpn_hpsa]
+info = mar_intro_start
+;info = wpn_hpsa_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,10,2,1,50,50
+order = 25
+
+[wpn_tt33]
+info = wpn_tt33_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,33,2,1,50,50
+order = 26
+
+[wpn_glock17]
+info = wpn_glock17_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,36,33,2,1,50,50
+order = 27
+
+[wpn_l85]
+info = mar_intro_start
+;info = wpn_l85_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,27,21,5,2,50,50
+order = 28
+
+[wpn_lr300]
+info = mar_intro_start
+;info = wpn_lr300_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,32,21,5,2,50,50
+order = 29
+
+[wpn_mp5]
+info = mar_intro_start
+;info = wpn_mp5_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,21,3,2,50,50
+order = 30
+
+[wpn_ump45]
+info = wpn_ump45_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,38,3,2,50,50
+order = 31
+
+[wpn_p90]
+info = wpn_p90_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,37,38,3,2,50,50
+order = 32
+
+[wpn_real_pb]
+section = wpn_pb
+info = wpn_pb_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,26,9,2,1,50,50
+order = 33
+
+[wpn_pb_short]
+info = wpn_pb_short_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,30,9,2,1,50,50
+order = 34
+
+[wpn_pkm]
+info = wpn_pkm_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,29,7,2,50,50
+news_text = st_wpn_rp
+article_name = st_wpn_rp
+article_descr = st_wpn_rp_pda_descr
+order = 35
+
+[wpn_real_pm]
+section = wpn_pm
+info = mar_intro_start
+;info = wpn_pm_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,9,2,1,50,50
+order = 36
+
+[wpn_pmm]
+info = wpn_pmm_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,34,33,2,1,50,50
+order = 37
+
+[wpn_rg-6]
+section = wpn_rg
+info = wpn_rg-6_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,27,4,2,50,50
+news_text = st_wpn_rg6
+article_name = st_wpn_rg6
+article_descr = st_wpn_rg6_pda_descr
+order = 38
+
+[wpn_rpg7]
+info = wpn_rpg7_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,27,4,2,50,50
+order = 39
+
+[wpn_sig220]
+;info = mar_intro_start
+info = wpn_sig220_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,32,10,2,1,50,50
+order = 40
+
+[wpn_sig550]
+info = wpn_sig550_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,23,5,2,50,50
+order = 41
+
+[wpn_sigsg550sniper]
+info = wpn_sigsg550sniper_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,27,38,6,2,50,50
+order = 42
+
+[wpn_sig552]
+info = wpn_sig552_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,29,23,4,2,50,50
+order = 43
+
+[wpn_spas12]
+info = wpn_spas12_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,12,5,1,50,50
+order = 44
+
+[wpn_svd]
+info = mar_intro_start
+;info = wpn_svd_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,29,19,6,2,50,50
+order = 45
+
+[wpn_svu]
+info = mar_intro_start
+;info = wpn_svu_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,19,5,2,50,50
+order = 46
+
+[wpn_toz34]
+info = mar_intro_start
+;info = wpn_toz34_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,33,11,6,1,50,50
+order = 47
+
+[wpn_toz34_obrez]
+info = mar_intro_start
+;info = wpn_toz34_obrez_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,33,12,3,1,50,50
+order = 48
+
+[wpn_usp]
+;info = mar_intro_start
+info = wpn_usp_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,34,10,2,1,50,50
+order = 49
+
+[wpn_val]
+info = mar_intro_start
+;info = wpn_val_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,17,5,2,50,50
+order = 50
+
+[wpn_vihr]
+;info = mar_intro_start
+info = wpn_vihr_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,17,4,2,50,50
+order = 51
+
+[wpn_9a91]
+info = wpn_9a91_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,33,17,4,2,50,50
+order = 52
+
+[wpn_vintorez]
+info = mar_intro_start
+;info = wpn_vintorez_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,35,19,5,2,50,50
+order = 53
+
+[wpn_walther]
+info = mar_intro_start
+;info = wpn_walther_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,10,2,1,50,50
+order = 54
+
+[wpn_fn57]
+info = wpn_fn57_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,32,33,2,1,50,50
+order = 55
+
+[wpn_wincheaster1300]
+;info = mar_intro_start
+info = wpn_wincheaster1300_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,12,4,1,50,50
+order = 56
+
+[wpn_gsh18]
+info = wpn_gsh18_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,26,33,2,1,50,50
+order = 57
+
+[grenade_rgd5]
+;info = mar_intro_start
+info = grenade_rgd5_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,34,1,1,50,50
+order = 58
+
+[grenade_f1]
+;info = mar_intro_start
+info = grenade_f1_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,14,34,1,1,50,50
+order = 59
+
+[explosive_mobiltank]
+info = explosive_mobiltank_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,34,2,2,50,50
+news_text = kanistra_name
+article_name = kanistra_name
+article_descr = kanistra_descr
+order = 60
+
+[explosive_dinamit]
+info = explosive_dinamit_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,34,2,2,50,50
+news_text = explosive_dynamite_name
+article_name = explosive_dynamite_name
+article_descr = explosive_dynamite_descr
+order = 61
+
+[mar_quest_wpn_pm_1]
+info = mar_quest_wpn_pm_1_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,9,2,1,50,50
+news_text = st_mar_quest_wpn_pm_1
+article_name = st_mar_quest_wpn_pm_1
+article_descr = st_mar_quest_wpn_pm_1_descr
+order = 62
+
+[mar_quest_wpn_ak74u_1]
+info = mar_quest_wpn_ak74u_1_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,15,4,2,50,50
+news_text = st_wpn_ak74u
+article_name = st_wpn_ak74u
+article_descr = st_wpn_ak74u_pda_descr
+order = 63
+
+[esc_quest_akm47]
+info = esc_quest_akm47_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,34,5,2,50,50
+news_text = st_esc_quest_akm47
+article_name = st_esc_quest_akm47
+article_descr = st_esc_quest_akm47_descr
+order = 64
+
+[gar_quest_wpn_wincheaster1300]
+info = gar_quest_wpn_wincheaster1300_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,12,4,1,50,50
+news_text = st_gar_quest_wpn_wincheaster1300
+article_name = st_gar_quest_wpn_wincheaster1300
+article_descr = st_gar_quest_wpn_wincheaster1300_descr
+order = 65
+
+[gar_quest_wpn_desert_eagle]
+info = gar_quest_wpn_desert_eagle_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,30,33,2,1,50,50
+news_text = st_gar_quest_wpn_desert_eagle
+article_name = st_gar_quest_wpn_desert_eagle
+article_descr = st_gar_quest_wpn_desert_eagle_descr
+order = 66
+
+[gar_quest_wpn_pm]
+info = gar_quest_wpn_pm_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,9,2,1,50,50
+news_text = st_gar_quest_wpn_pm
+article_name = st_gar_quest_wpn_pm
+article_descr = st_gar_quest_wpn_pm_descr
+order = 67
+
+[agr_quest_wpn_spas12]
+info = agr_quest_wpn_spas12_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,13,5,2,50,50
+news_text = st_agr_quest_wpn_spas12
+article_name = st_agr_quest_wpn_spas12
+article_descr = st_agr_quest_wpn_spas12_descr
+order = 68
+
+[agr_quest_duty_abakan]
+info = agr_quest_duty_abakan_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,15,5,2,50,50
+news_text = st_agr_quest_duty_abakan
+article_name = st_agr_quest_duty_abakan
+article_descr = st_agr_quest_duty_abakan_descr
+order = 69
+
+[red_quest_tank_minigun]
+info = red_quest_tank_minigun_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,29,7,2,50,50
+news_text = st_red_quest_tank_minigun
+article_name = st_red_quest_tank_minigun
+article_descr = st_red_quest_tank_minigun_descr
+order = 70
+
+;;;;;;;;;; Боеприпасы (ammunition_array)
+
+[ammo_9x18_fmj]
+;info = ammo_9x18_fmj_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,1,1,1,50,50
+news_text = ammo-9x18-fmj
+article_name = ammo-9x18-fmj_s
+article_descr = ammo-9x18-fmj_descr
+order = 1
+
+[ammo_9x18_pmm]
+;info = ammo_9x18_pmm_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,25,1,1,1,50,50
+news_text = ammo-9x18-pmm
+article_name = ammo-9x18-pmm_s
+article_descr = ammo-9x18-pmm_descr
+order = 2
+
+[ammo_9x18_pbp]
+info = ammo_9x18_pbp_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,26,1,1,1,50,50
+news_text = ammo-9x18-pbp
+article_name = ammo-9x18-pbp_s
+article_descr = ammo-9x18-pbp_descr
+order = 3
+
+[ammo_9x19_fmj]
+;info = ammo_9x19_fmj_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,27,1,1,1,50,50
+news_text = ammo-9x19-fmj
+article_name = ammo-9x19-fmj_s
+article_descr = ammo-9x19-fmj_descr
+order = 4
+
+[ammo_9x19_pbp]
+;info = ammo_9x19_pbp_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,1,1,1,50,50
+news_text = ammo-9x19-pbp
+article_name = ammo-9x19-pbp_s
+article_descr = ammo-9x19-pbp_descr
+order = 5
+
+[ammo_11.43x23_fmj]
+;info = ammo_11.43x23_fmj_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,29,1,1,1,50,50
+news_text = ammo-11.43x23-fmj
+article_name = ammo-11.43x23-fmj_s
+article_descr = ammo-11.43x23-fmj_descr
+order = 6
+
+[ammo_11.43x23_hydro]
+;info = ammo_11.43x23_hydro_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,30,1,1,1,50,50
+news_text = ammo-11.43x23-hydro
+article_name = ammo-11.43x23-hydro_s
+article_descr = ammo-11.43x23-hydro_descr
+order = 7
+
+[ammo_5.45x39_fmj]
+;info = ammo_5.45x39_fmj_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,31,1,2,1,50,50
+news_text = ammo-5.45x39-fmj
+article_name = ammo-5.45x39-fmj_s
+article_descr = ammo-5.45x39-fmj_descr
+order = 8
+
+[ammo_5.45x39_ap]
+;info = ammo_5.45x39_ap_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,33,1,2,1,50,50
+news_text = ammo-5.45x39-ap
+article_name = ammo-5.45x39-ap_s
+article_descr = ammo-5.45x39-ap_descr
+order = 9
+
+[ammo_5.56x45_ss190]
+;info = ammo_5.56x45_ss190_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,35,1,2,1,50,50
+news_text = ammo-5.56x45-ss190
+article_name = ammo-5.56x45-ss190_s
+article_descr = ammo-5.56x45-ss190_descr
+order = 10
+
+[ammo_5.56x45_ap]
+;info = ammo_5.56x45_ap_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,37,1,2,1,50,50
+news_text = ammo-5.56x45-ap
+article_name = ammo-5.56x45-ap_s
+article_descr = ammo-5.56x45-ap_descr
+order = 11
+
+[ammo_9x39_pab9]
+;info = ammo_9x39_pab9_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,2,2,1,50,50
+news_text = ammo-9x39-pab9
+article_name = ammo-9x39-pab9_s
+article_descr = ammo-9x39-pab9_descr
+order = 12
+
+[ammo_9x39_sp5]
+;info = ammo_9x39_sp5_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,26,2,2,1,50,50
+news_text = ammo-9x39-sp5
+article_name = ammo-9x39-sp5_s
+article_descr = ammo-9x39-sp5_descr
+order = 13
+
+[ammo_9x39_ap]
+;info = ammo_9x39_ap_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,2,2,1,50,50
+news_text = ammo-9x39-ap
+article_name = ammo-9x39-ap_s
+article_descr = ammo-9x39-ap_descr
+order = 14
+
+[ammo_7.62x54_7h1]
+;info = ammo_7.62x54_7h1_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,30,2,2,1,50,50
+news_text = ammo-7.62x54-7h1
+article_name = ammo-7.62x54-7h1_s
+article_descr = ammo-7.62x54-7h1_descr
+order = 15
+
+[ammo_7.62x54_7h14]
+;info = ammo_7.62x54_7h14_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,32,2,2,1,50,50
+news_text = ammo-7.62x54-7h14
+article_name = ammo-7.62x54-7h14_s
+article_descr = ammo-7.62x54-7h14_descr
+order = 16
+
+[ammo_7.62x54_ap]
+;info = ammo_7.62x54_ap_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,34,2,2,1,50,50
+news_text = ammo-7.62x54-ap
+article_name = ammo-7.62x54-ap_s
+article_descr = ammo-7.62x54-ap_descr
+order = 17
+
+[ammo_pkm_100]
+info = ammo_pkm_100_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,30,3,2,1,50,50
+news_text = ammo-pkm_100
+article_name = ammo-pkm_100_s
+article_descr = ammo-pkm_100_descr
+order = 18
+
+[ammo_12x70_buck]
+;info = ammo_12x70_buck_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,3,2,1,50,50
+news_text = ammo-12x70-buck
+article_name = ammo-12x70-buck_s
+article_descr = ammo-12x70-buck_descr
+order = 19
+
+[ammo_12x76_zhekan]
+;info = ammo_12x76_zhekan_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,26,3,2,1,50,50
+news_text = ammo-12x76-zhekan
+article_name = ammo-12x76-zhekan_s
+article_descr = ammo-12x76-zhekan_descr
+order = 20
+
+[ammo_12x76_dart]
+;info = ammo_12x76_dart_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,3,2,1,50,50
+news_text = ammo-12x76-dart
+article_name = ammo-12x76-dart_s
+article_descr = ammo-12x76-dart_descr
+order = 21
+
+[ammo_og-7b]
+info = ammo_og-7b_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,14,38,4,1,50,50
+news_text = ammo-og-7b
+article_name = ammo-og-7b_s
+article_descr = ammo-og-7b_descr
+order = 22
+
+[ammo_real_gauss]
+section = ammo_gauss
+info = ammo_gauss_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,32,3,1,1,50,50
+news_text = ammo-gauss
+article_name = ammo-gauss_s
+article_descr = ammo-gauss_descr
+order = 23
+
+[ammo_gauss_aes]
+info = ammo_gauss_aes_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,32,3,1,1,50,50
+news_text = ammo-gauss-aes
+article_name = ammo-gauss-aes_s
+article_descr = ammo-gauss-aes_descr
+order = 24
+
+[ammo_7.62x39_fmj]
+info = ammo_7.62x39_fmj_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,29,6,2,1,50,50
+news_text = ammo-7.62x39-fmj
+article_name = ammo-7.62x39-fmj_s
+article_descr = ammo-7.62x39-fmj_descr
+order = 25
+
+[ammo_7.62x39_ap]
+info = ammo_7.62x39_ap_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,31,6,2,1,50,50
+news_text = ammo-7.62x39-ap
+article_name = ammo-7.62x39-ap_s
+article_descr = ammo-7.62x39-ap_descr
+order = 26
+
+[ammo_7.62x25_fmj]
+info = ammo_7.62x25_fmj_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,24,6,1,1,50,50
+news_text = ammo-7.62x25-fmj
+article_name = ammo-7.62x25-fmj_s
+article_descr = ammo-7.62x25-fmj_descr
+order = 27
+
+[ammo_7.62x25_ap]
+info = ammo_7.62x25_ap_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,25,6,1,1,50,50
+news_text = ammo-7.62x25-ap
+article_name = ammo-7.62x25-ap_s
+article_descr = ammo-7.62x25-ap_descr
+order = 28
+
+[ammo_10.9x32.5]
+info = ammo_10.9x32.5_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,28,6,1,1,50,50
+news_text = ammo-10.9x32.5
+article_name = ammo-10.9x32.5_s
+article_descr = ammo-10.9x32.5_descr
+order = 29
+
+[ammo_5.7x28_fmj]
+info = ammo_5.7x28_fmj_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,26,6,1,1,50,50
+news_text = ammo-5.7x28-fmj
+article_name = ammo-5.7x28-fmj_s
+article_descr = ammo-5.7x28-fmj_descr
+order = 30
+
+[ammo_5.7x28_ap]
+info = ammo_5.7x28_ap_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,27,6,1,1,50,50
+news_text = ammo-5.7x28-ap
+article_name = ammo-5.7x28-ap_s
+article_descr = ammo-5.7x28-ap_descr
+order = 31
+
+[ammo_vog-25]
+info = ammo_vog-25_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,38,1,1,50,50
+news_text = ammo-vog-25
+article_name = ammo-vog-25_s
+article_descr = ammo-vog-25_descr
+order = 32
+
+[ammo_vog-25p]
+info = ammo_vog-25p_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,12,38,1,1,50,50
+news_text = ammo-vog-25p
+article_name = ammo-vog-25p_s
+article_descr = ammo-vog-25p_descr
+order = 33
+
+[ammo_m209]
+info = ammo_m209_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,38,1,1,50,50
+news_text = ammo-m209
+article_name = ammo-m209_s
+article_descr = ammo-m209_descr
+order = 34
+
+[yan_quest_ammo_sleep]
+info = yan_quest_ammo_sleep_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,25,2,1,50,50
+news_text = st_yan_quest_ammo_sleep
+article_name = st_yan_quest_ammo_sleep
+article_descr = st_yan_quest_ammo_sleep_descr
+order = 35
+
+[mil_quest_ammo_7.62x54_7h14]
+info = mil_quest_ammo_7.62x54_7h14_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,32,2,2,1,50,50
+news_text = ammo-7.62x54-7h14_s
+article_name = ammo-7.62x54-7h14_s
+article_descr = ammo-7.62x54-7h14_descr
+order = 36
+
+;;;;;;;;;; Броня (outfit_array)
+
+[cs_novice_outfit]
+info = cs_novice_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,1,2,2,50,50
+news_text = csky_novice_outfit_name
+article_name = csky_novice_outfit_name
+article_descr = csky_novice_outfit_description
+order = 1
+
+[cs_light_outfit]
+info = cs_light_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,1,2,3,50,50
+news_text = csky_light_outfit_name
+article_name = csky_light_outfit_name
+article_descr = csky_light_outfit_description
+order = 2
+
+[cs_light_extra_outfit]
+info = cs_light_extra_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,1,2,3,50,50
+news_text = csky_light_extra_outfit_name
+article_name = csky_light_extra_outfit_name
+article_descr = csky_light_extra_outfit_description
+order = 3
+
+[cs_standart_outfit]
+info = cs_standart_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,1,2,3,50,50
+news_text = csky_standart_outfit_name
+article_name = csky_standart_outfit_name
+article_descr = csky_standart_outfit_description
+order = 4
+
+[cs_heavy_outfit]
+info = cs_heavy_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,19,1,2,3,50,50
+news_text = csky_heavy_outfit_name
+article_name = csky_heavy_outfit_name
+article_descr = csky_heavy_outfit_description
+order = 5
+
+[cs_heavy_extra_outfit]
+info = cs_heavy_extra_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,21,1,2,3,50,50
+news_text = csky_heavy_extra_outfit_name
+article_name = csky_heavy_extra_outfit_name
+article_descr = csky_heavy_extra_outfit_description
+order = 6
+
+[novice_outfit]
+info = mar_intro_start
+;info = novice_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,4,2,2,50,50
+news_text = novice_outfit_name
+article_name = novice_outfit_name
+article_descr = novice_outfit_description
+order = 7
+
+[novice_outfit_white]
+info = mar_intro_start
+;info = novice_outfit_white_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,4,2,2,50,50
+news_text = kurtka_outfit_name
+article_name = kurtka_outfit_name
+article_descr = kurtka_outfit_description
+order = 8
+
+[stalker_light_outfit]
+info = mar_intro_start
+;info = stalker_light_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,4,2,3,50,50
+news_text = stalker_light_outfit_name
+article_name = stalker_light_outfit_name
+article_descr = stalker_light_outfit_description
+order = 9
+
+[stalker_outfit]
+info = mar_intro_start
+;info = stalker_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,4,2,3,50,50
+news_text = stalker_outfit_name
+article_name = stalker_outfit_name
+article_descr = stalker_outfit_description
+order = 10
+
+[scientific_outfit]
+info = mar_intro_start
+;info = scientific_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,4,2,3,50,50
+news_text = scientific_outfit_name
+article_name = scientific_outfit_name
+article_descr = scientific_outfit_description
+order = 11
+
+[stalker_heavy_outfit]
+info = stalker_heavy_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,19,4,2,3,50,50
+news_text = stalker_heavy_outfit_name
+article_name = stalker_heavy_outfit_name
+article_descr = stalker_heavy_outfit_description
+order = 12
+
+[exo_outfit]
+info = exo_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,21,4,2,3,50,50
+news_text = exo_outfit_name
+article_name = exo_outfit_name
+article_descr = exo_outfit_description
+order = 13
+
+[bandit_outfit]
+info = mar_intro_start
+;info = bandit_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,7,2,2,50,50
+news_text = bandit_outfit_name
+article_name = bandit_outfit_name
+article_descr = bandit_outfit_description
+order = 14
+
+[bandit_veteran_outfit]
+info = mar_intro_start
+;info = bandit_veteran_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,7,2,2,50,50
+news_text = bandit_veteran_outfit_name
+article_name = bandit_veteran_outfit_name
+article_descr = bandit_veteran_outfit_description
+order = 15
+
+[bandit_master_outfit]
+info = bandit_master_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,7,2,2,50,50
+news_text = bandit_master_outfit_name
+article_name = bandit_master_outfit_name
+article_descr = bandit_master_outfit_description
+order = 16
+
+[bandit_heavy_outfit]
+info = bandit_heavy_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,7,2,2,50,50
+news_text = bandit_heavy_outfit_name
+article_name = bandit_heavy_outfit_name
+article_descr = bandit_heavy_outfit_description
+order = 17
+
+[dolg_outfit]
+info = mar_intro_start
+;info = dolg_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,9,2,3,50,50
+news_text = dolg_outfit_name
+article_name = dolg_outfit_name
+article_descr = dolg_outfit_description
+order = 18
+
+[dolg_scientific_outfit]
+info = dolg_scientific_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,9,2,3,50,50
+news_text = dolg_scientific_outfit_name
+article_name = dolg_scientific_outfit_name
+article_descr = dolg_scientific_outfit_description
+order = 19
+
+[dolg_heavy_extra_outfit]
+info = dolg_heavy_extra_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,9,2,3,50,50
+news_text = dolg_skat_light_outfit_name
+article_name = dolg_skat_light_outfit_name
+article_descr = dolg_skat_light_outfit_description
+order = 20
+
+[dolg_heavy_extra2_outfit]
+info = dolg_heavy_extra2_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,19,9,2,3,50,50
+news_text = dolg_heavy_extra2_outfit_name
+article_name = dolg_heavy_extra2_outfit_name
+article_descr = dolg_heavy_extra2_outfit_description
+order = 21
+
+[dolg_heavy_outfit]
+info = dolg_heavy_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,9,2,3,50,50
+news_text = dolg_skat_outfit_name
+article_name = dolg_skat_outfit_name
+article_descr = dolg_skat_outfit_description
+order = 22
+
+[dolg_exo_outfit]
+info = dolg_exo_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,21,9,2,3,50,50
+news_text = dolg_black_exoskeleton_name
+article_name = dolg_black_exoskeleton_name
+article_descr = dolg_black_exoskeleton_description
+order = 23
+
+[svoboda_light_outfit]
+info = mar_intro_start
+;info = svoboda_light_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,12,2,3,50,50
+news_text = svoboda_light_outfit_name
+article_name = svoboda_light_outfit_name_s
+article_descr = svoboda_light_outfit_description
+order = 24
+
+[svoboda_light2_outfit]
+info = mar_intro_start
+;info = svoboda_light2_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,12,2,3,50,50
+news_text = svoboda_light2_outfit_name
+article_name = svoboda_light2_outfit_name_s
+article_descr = svoboda_light2_outfit_description
+order = 25
+
+[svoboda_heavy_outfit]
+info = svoboda_heavy_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,12,2,3,50,50
+news_text = svoboda_heavy_outfit_name
+article_name = svoboda_heavy_outfit_name
+article_descr = svoboda_heavy_outfit_description
+order = 26
+
+[svoboda_heavy_extra_outfit]
+info = svoboda_heavy_extra_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,19,12,2,3,50,50
+news_text = svoboda_heavy_extra_outfit_name
+article_name = svoboda_heavy_extra_outfit_name
+article_descr = svoboda_heavy_extra_outfit_description
+order = 27
+
+[svoboda_scientific_outfit]
+info = svoboda_scientific_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,12,2,3,50,50
+news_text = svoboda_scientific_outfit_name
+article_name = svoboda_scientific_outfit_name
+article_descr = svoboda_scientific_outfit_description
+order = 28
+
+[svoboda_exo_outfit]
+info = svoboda_exo_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,21,12,2,3,50,50
+news_text = exo_freedom_outfit_name
+article_name = exo_freedom_outfit_name
+article_descr = exo_freedom_outfit_description
+order = 29
+
+[killer_outfit]
+info = mar_intro_start
+;info = killer_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,15,2,2,50,50
+news_text = killer_outfit_name
+article_name = killer_outfit_name
+article_descr = killer_outfit_description
+order = 30
+
+[killer_outfit_dark]
+info = mar_intro_start
+;info = killer_outfit_dark_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,15,2,2,50,50
+news_text = killer_outfit_dark_name
+article_name = killer_outfit_dark_name_s
+article_descr = killer_outfit_dark_description
+order = 31
+
+[killer_light2_outfit]
+info = mar_intro_start
+;info = killer_light2_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,15,2,3,50,50
+news_text = killer_light2_outfit_name
+article_name = killer_light2_outfit_name_s
+article_descr = killer_light2_outfit_description
+order = 32
+
+[killer_scientific_outfit]
+info = mar_intro_start
+;info = killer_scientific_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,15,2,3,50,50
+news_text = killer_scientific_outfit_name
+article_name = killer_scientific_outfit_name_s
+article_descr = killer_scientific_outfit_description
+order = 33
+
+[killer_heavy_outfit]
+info = mar_intro_start
+;info = killer_heavy_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,19,15,2,3,50,50
+news_text = killer_heavy_outfit_name
+article_name = killer_heavy_outfit_name_s
+article_descr = killer_heavy_outfit_description
+order = 34
+
+[killer_exo_outfit]
+info = mar_intro_start
+;info = killer_exo_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,21,15,2,3,50,50
+news_text = killer_blue_exoskeleton_name
+article_name = killer_blue_exoskeleton_name
+article_descr = killer_blue_exoskeleton_description
+order = 35
+
+[monolith_light_outfit]
+info = monolith_light_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,18,2,3,50,50
+news_text = monolit_light_outfit_name
+article_name = monolit_light_outfit_name
+article_descr = monolit_light_outfit_description
+order = 36
+
+[monolith_outfit]
+info = monolith_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,18,2,3,50,50
+news_text = monolit_outfit_name
+article_name = monolit_outfit_name
+article_descr = monolit_outfit_description
+order = 37
+
+[monolith_scientific_outfit]
+info = monolith_scientific_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,18,2,3,50,50
+news_text = monolit_scientific_outfit_name
+article_name = monolit_scientific_outfit_name
+article_descr = monolit_scientific_outfit_description
+order = 38
+
+[monolith_heavy_outfit]
+info = monolith_heavy_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,19,18,2,3,50,50
+news_text = monolit_heavy_outfit_name
+article_name = monolit_heavy_outfit_name
+article_descr = monolit_heavy_outfit_description
+order = 39
+
+[monolith_exo_outfit]
+info = monolith_exo_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,21,18,2,3,50,50
+news_text = monolit_exoskeleton_name
+article_name = monolit_exoskeleton_name
+article_descr = monolit_exoskeleton_description
+order = 40
+
+[soldier_outfit_green]
+info = mar_intro_start
+;info = soldier_outfit_green_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,21,2,2,50,50
+news_text = outfit_soldier_name
+article_name = outfit_soldier_name_s
+article_descr = outfit_soldier_description
+order = 41
+
+[soldier_outfit_grey]
+info = mar_intro_start
+;info = soldier_outfit_grey_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,21,2,2,50,50
+news_text = outfit1_soldier_name
+article_name = outfit1_soldier_name
+article_descr = outfit1_soldier_description
+order = 42
+
+[soldier_outfit_brown]
+info = soldier_outfit_brown_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,21,2,2,50,50
+news_text = outfit2_soldier_name
+article_name = outfit2_soldier_name_s
+article_descr = outfit2_soldier_description
+order = 43
+
+[specops_outfit]
+info = specops_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,21,2,3,50,50
+news_text = specops_outfit_name
+article_name = specops_outfit_name
+article_descr = specops_outfit_description
+order = 44
+
+[military_outfit]
+info = military_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,19,21,2,3,50,50
+news_text = military_skat_light_name
+article_name = military_skat_light_name
+article_descr = military_skat_light_description
+order = 45
+
+[military_outfit_black]
+info = military_outfit_black_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,24,2,3,50,50
+news_text = military_skat_light_black_name
+article_name = military_skat_light_black_name
+article_descr = military_skat_light_black_description
+order = 46
+
+[military_extra_outfit]
+info = military_extra_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,21,21,2,3,50,50
+news_text = military_skat_name
+article_name = military_skat_name
+article_descr = military_skat_description
+order = 47
+
+[military_extra_outfit_black]
+info = military_extra_outfit_black_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,24,2,3,50,50
+news_text = military_skat_black_name
+article_name = military_skat_black_name
+article_descr = military_skat_black_description
+order = 48
+
+[red_ecolog_outfit]
+info = mar_intro_start
+;info = red_ecolog_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,24,2,3,50,50
+news_text = red_ecolog_outfit_name
+article_name = red_ecolog_outfit_name
+article_descr = red_ecolog_outfit_description
+order = 49
+
+[green_ecolog_outfit]
+info = mar_intro_start
+;info = green_ecolog_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,24,2,3,50,50
+news_text = green_ecolog_outfit_name
+article_name = green_ecolog_outfit_name
+article_descr = green_ecolog_outfit_description
+order = 50
+
+[digger_novice_outfit]
+info = mar_intro_start
+;info = digger_novice_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,27,2,2,50,50
+news_text = digger_outfit_name
+article_name = digger_outfit_name
+article_descr = digger_outfit_description
+order = 51
+
+[shram_outfit]
+;info = mar_intro_start
+info = shram_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,27,2,2,50,50
+news_text = shram_outfit_name
+article_name = shram_outfit_name
+article_descr = shram_outfit_description
+order = 52
+
+[mar_quest_novice_outfit_1]
+;info = mar_intro_start
+info = mar_quest_novice_outfit_1_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,1,2,2,50,50
+news_text = st_mar_quest_novice_outfit_1
+article_name = st_mar_quest_novice_outfit_1
+article_descr = st_mar_quest_novice_outfit_1_descr
+order = 53
+
+[gar_quest_novice_outfit]
+;info = mar_intro_start
+info = gar_quest_novice_outfit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,13,27,2,2,50,50
+news_text = st_gar_quest_novice_outfit
+article_name = st_gar_quest_novice_outfit
+article_descr = st_gar_quest_novice_outfit_descr
+order = 54
+
+;;;;;;;;;; Медикаменты (helping_array)
+
+[medkit]
+;info = medkit_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,2,1,1,50,50
+news_text = st_medkit
+article_name = st_medkit
+article_descr = st_medkit_descr
+order = 1
+
+[medkit_army]
+;info = medkit_army_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,2,1,1,50,50
+news_text = st_medkit_army
+article_name = st_medkit_army
+article_descr = st_medkit_army_descr
+order = 2
+
+[medkit_scientic]
+;info = medkit_scientic_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,2,1,1,50,50
+news_text = st_medkit_science
+article_name = st_medkit_science
+article_descr = st_medkit_science_descr
+order = 3
+
+[yadulin]
+info = yadulin_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,6,2,1,1,50,50
+news_text = st_yadulin
+article_name = st_yadulin
+article_descr = st_yadulin_descr
+order = 4
+
+[bandage]
+;info = bandage_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,7,2,1,1,50,50
+news_text = st_bandage
+article_name = st_bandage
+article_descr = st_bandage_descr
+order = 5
+
+[antirad]
+;info = antirad_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,8,2,1,1,50,50
+news_text = st_antirad
+article_name = st_antirad_s
+article_descr = st_antirad_descr
+order = 6
+
+[vodka]
+;info = vodka_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,1,1,1,50,50
+news_text = st_vodka
+article_name = st_vodka
+article_descr = st_vodka_descr
+order = 7
+
+[energy_drink]
+;info = energy_drink_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,1,1,1,50,50
+news_text = st_energy_drink
+article_name = st_energy_drink
+article_descr = st_energy_drink_descr
+order = 8
+
+[nuts]
+;info = nuts_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,1,1,1,50,50
+news_text = st_nuts
+article_name = st_nuts
+article_descr = st_nuts_descr
+order = 9
+
+[olives]
+;info = olives_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,6,1,1,1,50,50
+news_text = st_olives
+article_name = st_olives
+article_descr = st_olives_descr
+order = 10
+
+[bread]
+;info = bread_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,1,1,1,50,50
+news_text = st_bread
+article_name = st_bread
+article_descr = st_bread_descr
+order = 11
+
+[kolbasa]
+;info = kolbasa_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,1,1,1,50,50
+news_text = st_kolbasa
+article_name = st_kolbasa
+article_descr = st_kolbasa_descr
+order = 12
+
+[cheese]
+;info = cheese_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,9,1,1,1,50,50
+news_text = st_cheese
+article_name = st_cheese
+article_descr = st_cheese_descr
+order = 13
+
+[conserva]
+;info = conserva_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,1,1,1,50,50
+news_text = st_conserva
+article_name = st_conserva
+article_descr = st_conserva_descr
+order = 14
+
+[vegetables]
+;info = vegetables_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,7,1,1,1,50,50
+news_text = st_vegetables
+article_name = st_vegetables
+article_descr = st_vegetables_descr
+order = 15
+
+[sardines]
+;info = sardines_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,8,1,1,1,50,50
+news_text = st_sardines
+article_name = st_sardines
+article_descr = st_sardines_descr
+order = 16
+
+[flash_scientific_ac_sect]
+info = flash_scientific_ac_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,6,1,1,50,50
+news_text = st_flash_outfits_pda_name
+article_name = st_flash_outfits_pda_name
+article_descr = st_flash_scientific_ac_sect
+order = 17
+
+[flash_scientific_eg_sect]
+info = flash_scientific_eg_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,6,1,1,50,50
+news_text = st_flash_outfits_pda_name
+article_name = st_flash_outfits_pda_name
+article_descr = st_flash_scientific_eg_sect
+order = 18
+
+[flash_scientific_aceg_sect]
+info = flash_scientific_aceg_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,6,1,1,50,50
+news_text = st_flash_outfits_pda_name
+article_name = st_flash_outfits_pda_name
+article_descr = st_flash_scientific_aceg_sect
+order = 19
+
+[flash_exoskeleton_f2_sect]
+info = flash_exoskeleton_f2_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,6,1,1,50,50
+news_text = st_flash_outfits_pda_name
+article_name = st_flash_outfits_pda_name
+article_descr = st_flash_exoskeleton_f2_sect
+order = 20
+
+[flash_exoskeleton_h2_sect]
+info = flash_exoskeleton_h2_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,6,1,1,50,50
+news_text = st_flash_outfits_pda_name
+article_name = st_flash_outfits_pda_name
+article_descr = st_flash_exoskeleton_h2_sect
+order = 21
+
+[flash_exoskeleton_f2h2_sect]
+info = flash_exoskeleton_f2h2_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,6,1,1,50,50
+news_text = st_flash_outfits_pda_name
+article_name = st_flash_outfits_pda_name
+article_descr = st_flash_exoskeleton_f2h2_sect
+order = 22
+
+[flash_exoskeleton_ac2_sect]
+info = flash_exoskeleton_ac2_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,6,1,1,50,50
+news_text = st_flash_outfits_pda_name
+article_name = st_flash_outfits_pda_name
+article_descr = st_flash_exoskeleton_ac2_sect
+order = 23
+
+[flash_exoskeleton_bd2_sect]
+info = flash_exoskeleton_bd2_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,6,1,1,50,50
+news_text = st_flash_outfits_pda_name
+article_name = st_flash_outfits_pda_name
+article_descr = st_flash_exoskeleton_bd2_sect
+order = 24
+
+[flash_shotguns_ac_sect]
+info = flash_shotguns_ac_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_shotguns_ac_sect
+order = 25
+
+[flash_shotguns_bd_sect]
+info = flash_shotguns_bd_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_shotguns_bd_sect
+order = 26
+
+[flash_sniperrifles_ab_sect]
+info = flash_sniperrifles_ab_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_sniperrifles_ab_sect
+order = 27
+
+[flash_sniperrifles_cd_sect]
+info = flash_sniperrifles_cd_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_sniperrifles_cd_sect
+order = 28
+
+[flash_sniperrifles_abcd_sect]
+info = flash_sniperrifles_abcd_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_sniperrifles_abcd_sect
+order = 29
+
+[flash_silentrifles_ab_sect]
+info = flash_silentrifles_ab_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_silentrifles_ab_sect
+order = 30
+
+[flash_silentrifles_cd_sect]
+info = flash_silentrifles_cd_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_silentrifles_cd_sect
+order = 31
+
+[flash_groza_ac_sect]
+info = flash_groza_ac_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_groza_ac_sect
+order = 32
+
+[flash_groza_eg_sect]
+info = flash_groza_eg_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_groza_eg_sect
+order = 33
+
+[flash_groza_aceg_sect]
+info = flash_groza_aceg_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_groza_aceg_sect
+order = 34
+
+[flash_fn2000_ac_sect]
+info = flash_fn2000_ac_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_fn2000_ac_sect
+order = 35
+
+[flash_fn2000_bd_sect]
+info = flash_fn2000_bd_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_fn2000_bd_sect
+order = 36
+
+[flash_fn2000_2ac_sect]
+info = flash_fn2000_2ac_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_fn2000_2ac_sect
+order = 37
+
+[flash_fn2000_2bd_sect]
+info = flash_fn2000_2bd_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_fn2000_2bd_sect
+order = 38
+
+[flash_pkm_ab_sect]
+info = flash_pkm_ab_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_pkm_ab_sect
+order = 39
+
+[flash_pkm_cd_sect]
+info = flash_pkm_cd_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_pkm_cd_sect
+order = 40
+
+[flash_pkm_abcd_sect]
+info = flash_pkm_abcd_sect_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_flash_weapons_pda_name
+article_name = st_flash_weapons_pda_name
+article_descr = st_flash_pkm_abcd_sect
+order = 41
+
+[esc_quest_magic_vodka]
+info = esc_quest_magic_vodka_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,1,1,1,50,50
+news_text = st_esc_quest_magic_vodka
+article_name = st_esc_quest_magic_vodka
+article_descr = st_esc_quest_magic_vodka_descr
+order = 42
+
+[esc_quest_spec_medkit]
+info = esc_quest_spec_medkit_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,9,25,1,1,50,50
+news_text = st_esc_quest_spec_medkit
+article_name = st_esc_quest_spec_medkit
+article_descr = st_esc_quest_spec_medkit_descr
+order = 43
+
+[gar_quest_vodka_2]
+info = gar_quest_vodka_2_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,1,1,1,50,50
+news_text = st_gar_quest_vodka_2
+article_name = st_gar_quest_vodka_2
+article_descr = st_gar_quest_vodka_2_descr
+order = 44
+
+;;;;;;;;;; Снаряжение (equipment_array)
+
+[guitar_a]
+;info = guitar_a_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,6,6,2,2,50,50
+news_text = st_guitar_name
+article_name = st_guitar_name
+article_descr = st_guitar_descr
+order = 1
+
+[harmonica_a]
+;info = harmonica_a_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,8,6,1,1,50,50
+news_text = st_harmonica_name
+article_name = st_harmonica_name
+article_descr = st_harmonica_descr
+order = 2
+
+[device_pda]
+info = device_pda_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_pda_name
+article_name = st_pda_name
+article_descr = st_pda_descr
+order = 3
+
+[dev_flash_1]
+;info = dev_flash_1_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,2,1,50,50
+news_text = st_flash_name
+article_name = st_flash_name
+article_descr = st_flash_descr
+order = 4
+
+[device_torch]
+info = device_torch_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,31,2,1,50,50
+news_text = st_device_torch
+article_name = st_device_torch
+article_descr = st_device_torch_descr
+order = 5
+
+[matras]
+info = matras_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,6,2,2,50,50
+news_text = st_matras
+article_name = st_matras
+article_descr = st_matras_descr
+order = 6
+
+[notepad]
+info = notepad_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,6,1,1,50,50
+news_text = st_notepad
+article_name = st_notepad
+article_descr = st_notepad_descr
+order = 7
+
+[inv_ruck]
+info = inv_ruck_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,10,2,2,50,50
+news_text = st_rucksack
+article_name = st_rucksack
+article_descr = st_rucksack_descr
+order = 8
+
+[detector_simple]
+;info = detector_simple_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,10,1,1,50,50
+news_text = st_detector1
+article_name = st_detector1
+article_descr = st_detector1_descr
+order = 9
+
+[detector_advanced]
+;info = detector_advanced_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,10,1,1,50,50
+news_text = st_detector2
+article_name = st_detector2
+article_descr = st_detector2_descr
+order = 10
+
+[detector_elite]
+;info = detector_elite_info
+info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,10,1,1,50,50
+news_text = st_detector3
+article_name = st_detector3
+article_descr = st_detector3_descr
+order = 11
+
+[hand_radio]
+info = hand_radio_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,10,1,1,50,50
+news_text = st_hand_radio
+article_name = st_hand_radio_name_s
+article_descr = st_hand_radio_descr
+order = 12
+
+[bolt]
+info = bolt_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,8,31,1,1,50,50
+news_text = st_bolt
+article_name = st_bolt
+article_descr = st_bolt_descr
+order = 13
+
+[wpn_binoc]
+info = wpn_binoc_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,31,2,1,50,50
+news_text = st_binocular
+article_name = st_binocular
+article_descr = st_binocular_descr
+order = 14
+
+[wpn_knife]
+info = wpn_knife_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,31,2,1,50,50
+news_text = st_knife
+article_name = st_knife
+article_descr = st_knife_descr
+order = 15
+
+[wpn_addon_scope]
+info = wpn_addon_scope_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,12,31,2,1,50,50
+news_text = st_addon_scope
+article_name = st_addon_scope
+article_descr = st_addon_scope_descr
+order = 16
+
+[wpn_addon_scope_pgo]
+info = wpn_addon_scope_pgo_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,21,31,1,1,50,50
+news_text = st_addon_scope_pgo
+article_name = st_addon_scope_pgo
+article_descr = st_addon_scope_pgo_descr
+order = 17
+
+[wpn_addon_scope_susat]
+info = wpn_addon_scope_susat_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,14,31,1,1,50,50
+news_text = st_addon_scope_susat
+article_name = st_addon_scope_susat
+article_descr = st_addon_scope_susat_descr
+order = 18
+
+[wpn_addon_scope_acog]
+info = wpn_addon_scope_acog_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,19,31,1,1,50,50
+news_text = st_addon_scope_acog
+article_name = st_addon_scope_acog
+article_descr = st_addon_scope_acog_descr
+order = 19
+
+[wpn_addon_scope_gauss]
+info = wpn_addon_scope_gauss_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,32,1,1,50,50
+news_text = st_addon_scope_gauss
+article_name = st_addon_scope_gauss
+article_descr = st_addon_scope_gauss_descr
+order = 20
+
+[wpn_addon_silencer]
+info = wpn_addon_silencer_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,11,31,1,1,50,50
+news_text = st_addon_silencer
+article_name = st_addon_silencer
+article_descr = st_addon_silencer_descr
+order = 21
+
+[wpn_addon_silencer_pb]
+info = wpn_addon_silencer_pb_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,20,31,1,1,50,50
+news_text = st_addon_silencer_pb
+article_name = st_addon_silencer_pb
+article_descr = st_addon_silencer_pb_descr
+order = 22
+
+[wpn_addon_silencer_svu]
+info = wpn_addon_silencer_svu_info
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,22,31,1,1,50,50
+news_text = st_addon_silencer_svu
+article_name = st_addon_silencer_svu
+article_descr = st_addon_silencer_svu_descr
+order = 23
+
+[wpn_addon_grenade_launcher]
+info = wpn_addon_grenade_launcher_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,15,31,2,1,50,50
+news_text = st_grenade_launcher
+article_name = st_grenade_launcher
+article_descr = st_grenade_launcher_descr
+order = 24
+
+[wpn_addon_grenade_launcher_m203]
+info = wpn_addon_grenade_launcher_m203_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,17,31,2,1,50,50
+news_text = st_grenade_launcher_m203
+article_name = st_grenade_launcher_m203
+article_descr = st_grenade_launcher_m203_descr
+order = 25
+
+[esc_trader_habar]
+info = esc_trader_habar_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,26,2,2,50,50
+news_text = st_esc_trader_habar_name
+article_name = st_esc_trader_habar_name
+article_descr = st_esc_trader_habar_descr
+order = 26
+
+[device_pda_digger]
+info = device_pda_digger_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,7,25,2,1,50,50
+news_text = st_device_pda_digger_name
+article_name = st_device_pda_digger_name
+article_descr = st_device_pda_digger_descr
+order = 27
+
+[device_pda_freedom]
+info = device_pda_freedom_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_device_pda_freedom
+article_name = st_device_pda_freedom
+article_descr = st_device_pda_freedom_descr
+order = 28
+
+[device_pda_comendant]
+info = device_pda_comendant_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_device_pda_comendant_name
+article_name = st_device_pda_comendant_name
+article_descr = st_device_pda_comendant_descr
+order = 29
+
+[device_pda_fang]
+info = device_pda_fang_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_device_pda_fang
+article_name = st_device_pda_fang
+article_descr = st_device_pda_fang_descr
+order = 30
+
+[device_pda_strelok]
+info = device_pda_strelok_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_device_pda_strelok
+article_name = st_device_pda_strelok
+article_descr = st_device_pda_strelok_descr
+order = 31
+
+[red_forest_pda_map]
+info = red_forest_pda_map_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_red_forest_pda_map
+article_name = st_red_forest_pda_map
+article_descr = st_red_forest_pda_map_descr
+order = 32
+
+[device_pda_military]
+info = device_pda_military_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_device_pda_military
+article_name = st_device_pda_military
+article_descr = st_device_pda_military_descr
+order = 33
+
+[device_pda_old]
+info = device_pda_old_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_device_pda_old
+article_name = st_device_pda_old
+article_descr = st_device_pda_old_descr
+order = 34
+
+[device_pda_garbage_traitor]
+info = device_pda_garbage_traitor_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_device_pda_garbage_traitor
+article_name = st_device_pda_garbage_traitor
+article_descr = st_device_pda_garbage_traitor_descr
+order = 35
+
+[device_pda_bloodsucker]
+info = device_pda_bloodsucker_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_device_pda_bloodsucker_name
+article_name = st_device_pda_bloodsucker_name
+article_descr = st_device_pda_bloodsucker_descr
+order = 36
+
+[esc_device_pda_driver]
+info = esc_device_pda_driver_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_esc_device_pda_driver
+article_name = st_esc_device_pda_driver
+article_descr = st_esc_device_pda_driver_descr
+order = 37
+
+[esc_mechanic_flash_card]
+info = esc_mechanic_flash_card_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,6,1,1,50,50
+news_text = st_esc_mechanic_flash_card
+article_name = st_esc_mechanic_flash_card
+article_descr = st_esc_mechanic_flash_card_descr
+order = 38
+
+[agr_map_animals]
+info = agr_map_animals_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_agr_map_animals
+article_name = st_agr_map_animals
+article_descr = st_agr_map_animals_descr
+order = 39
+
+[agr_pda_for_secret_trader]
+info = agr_pda_for_secret_trader_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_agr_pda_for_secret_trader
+article_name = st_agr_pda_for_secret_trader
+article_descr = st_agr_pda_for_secret_trader_descr
+order = 40
+
+[ammo_package]
+info = ammo_package_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,10,2,2,50,50
+news_text = st_ammo_package_name
+article_name = st_ammo_package_name
+article_descr = st_ammo_package_descr
+order = 41
+
+[products_package]
+info = products_package_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,10,2,2,50,50
+news_text = st_products_package_name
+article_name = st_products_package_name
+article_descr = st_products_package_descr
+order = 42
+
+[ashot_ammo_package]
+info = ashot_ammo_package_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,10,2,2,50,50
+news_text = st_ammo_package_name
+article_name = st_ammo_package_name
+article_descr = st_ammo_package_descr
+order = 43
+
+[item_electro_charge]
+info = item_electro_charge_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,9,26,1,1,50,50
+news_text = st_item_electro_charge
+article_name = st_item_electro_charge
+article_descr = st_item_electro_charge_descr
+order = 44
+
+[gar_digger_dead_pda]
+info = gar_digger_dead_pda_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_gar_digger_dead_pda
+article_name = st_gar_digger_dead_pda
+article_descr = st_gar_digger_dead_pda_descr
+order = 45
+
+[gar_digger_messenger_pda]
+info = gar_digger_messenger_pda_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_gar_digger_messenger_pda
+article_name = st_gar_digger_messenger_pda
+article_descr = st_gar_digger_messenger_pda_descr
+order = 46
+
+[val_bandit_spy_quest_pda]
+info = val_bandit_spy_quest_pda_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_val_bandit_spy_quest_pda
+article_name = st_val_bandit_spy_quest_pda
+article_descr = st_val_bandit_spy_quest_pda_descr
+order = 47
+
+[yan_stalker_dead_pda]
+info = yan_stalker_dead_pda_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_yan_stalker_dead_pda
+article_name = st_yan_stalker_dead_pda
+article_descr = st_yan_stalker_dead_pda_descr
+order = 48
+
+[mar_quest_scout_pda]
+info = mar_quest_scout_pda_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_mar_quest_scout_pda_name
+article_name = st_mar_quest_scout_pda_name
+article_descr = st_mar_quest_scout_pda_desc
+order = 49
+
+[esc_quest_luky_detector]
+info = esc_quest_luky_detector_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,1,25,1,1,50,50
+news_text = st_esc_quest_luky_detector
+article_name = st_esc_quest_luky_detector
+article_descr = st_esc_quest_luky_detector_descr
+order = 50
+
+[val_quest_scope_x8]
+info = val_quest_scope_x8_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,12,31,2,1,50,50
+news_text = st_val_quest_scope_x8
+article_name = st_val_quest_scope_x8
+article_descr = st_val_quest_scope_x8_descr
+order = 51
+
+[val_quest_flash_movies]
+info = val_quest_flash_movies_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,6,1,1,50,50
+news_text = st_val_quest_flash_movies
+article_name = st_val_quest_flash_movies
+article_descr = st_val_quest_flash_movies_descr
+order = 52
+
+[val_quest_guitar_serg]
+info = val_quest_guitar_serg_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,6,6,2,2,50,50
+news_text = st_val_quest_guitar_serg
+article_name = st_val_quest_guitar_serg
+article_descr = st_val_quest_guitar_serg_descr
+order = 53
+
+[agr_quest_duty_secret_pda]
+info = agr_quest_duty_secret_pda_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_agr_quest_duty_secret_pda
+article_name = st_agr_quest_duty_secret_pda
+article_descr = st_agr_quest_duty_secret_pda_descr
+order = 54
+
+[agr_quest_duty_case]
+info = agr_quest_duty_case_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,2,26,2,2,50,50
+news_text = st_agr_quest_duty_case
+article_name = st_agr_quest_duty_case
+article_descr = st_agr_quest_duty_case_descr
+order = 55
+
+[agr_mechanic_pda]
+info = agr_mechanic_pda_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_agr_mechanic_pda
+article_name = st_agr_mechanic_pda
+article_descr = st_agr_mechanic_pda_descr
+order = 56
+
+[yan_quest_granade]
+info = yan_quest_granade_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,26,1,1,50,50
+news_text = st_yan_quest_granade
+article_name = st_yan_quest_granade
+article_descr = st_yan_quest_granade_descr
+order = 57
+
+[red_forest_pda_map_2]
+info = red_forest_pda_map_2_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_red_forest_pda_map_2
+article_name = st_red_forest_pda_map_2
+article_descr = st_red_forest_pda_map_2_descr
+order = 58
+
+[red_quest_prototipe_device]
+info = red_quest_prototipe_device_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,4,25,1,1,50,50
+news_text = st_red_quest_prototipe_device
+article_name = st_red_quest_prototipe_device
+article_descr = st_red_quest_prototipe_device_descr
+order = 59
+
+[mil_device_pda_lost_squard]
+info = mil_device_pda_lost_squard_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_mil_device_pda_lost_squard
+article_name = st_mil_device_pda_lost_squard
+article_descr = st_mil_device_pda_lost_squard_descr
+order = 60
+
+[quest_item_cup]
+info = quest_item_cup_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,0,25,1,1,50,50
+news_text = st_quest_item_cup
+article_name = st_quest_item_cup
+article_descr = st_quest_item_cup_descr
+order = 61
+
+[quest_item_lighter]
+info = quest_item_lighter_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,7,26,1,1,50,50
+news_text = st_quest_item_lighter
+article_name = st_quest_item_lighter
+article_descr = st_quest_item_lighter_descr
+order = 62
+
+[quest_item_poolball]
+info = quest_item_poolball_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,5,26,1,1,50,50
+news_text = st_quest_item_poolball
+article_name = st_quest_item_poolball
+article_descr = st_quest_item_poolball_descr
+order = 63
+
+[quest_item_handclock]
+info = quest_item_handclock_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,6,26,1,1,50,50
+news_text = st_quest_item_handclock
+article_name = st_quest_item_handclock
+article_descr = st_quest_item_handclock_descr
+order = 64
+
+[pda_for_quests]
+info = pda_for_quests_info
+;info = mar_intro_start
+article_picture = ui\ui_icon_equipment
+article_picture_coords = 2048,2048,3,6,1,1,50,50
+news_text = st_pda_for_quests_name
+article_name = st_pda_for_quests_name
+article_descr = st_pda_for_quests_descr
+order = 65
+
+;;;;;;;;;;;;;;;;; Copyright 2007-2019 Kirgudu, DEXXX, WARWER ;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Записная книжка ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

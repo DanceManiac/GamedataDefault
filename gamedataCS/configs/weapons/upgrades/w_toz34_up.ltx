@@ -1,46 +1,50 @@
+; Модификация ствола. Насадка, увеличивающая длину ствола и, как следствие, начальную скорость пули.
 [up_sect_a_toz34]
-cost		      		= 120
+cost		      		= 250
 value					= +50
+fire_dispersion_base	= -0.5
+bullet_speed			= 200
 value2					= st_no_buck
-fire_dispersion_base	= -0.3
 ammo_class		 		= ammo_12x76_zhekan, ammo_12x76_dart
-bullet_speed			= 50
 
+; Модификация ствола. Замена стандартного ствола на облегчённый.
 [up_sect_b_toz34]
-cost		      		= 120
-value					= -15
-inv_weight				= -0.3
-control_inertion_factor = -0.3 ;1.5
+cost		      		= 250
+value					= -0.32  ;-10
+inv_weight				= -0.32
 
+; Накладка на приклад. Обычная резиновая накладка. Позволяет точно подогнать длину приклада под рост стрелка и частично компенсировать отдачу.
 [up_sect_c_toz34]
-cost		      		= 120
-value					= -30
-
-cam_dispersion          = -1.5		;5.0
-cam_dispersion_inc      = -1.5		;5.0
-cam_step_angle_horz     = -0.3		;1.0
-
-zoom_cam_dispersion         = -1	;3.0
-zoom_cam_dispersion_inc     = -1	;3.0
-zoom_cam_step_angle_horz    = -0.3	;1.0
-
-[up_sect_d_toz34]
-cost		      		= 120
+cost		      		= 250
 value					= -20
+control_inertion_factor	= -0.32
+cam_dispersion          = -0.84
+cam_dispersion_inc      = -0.84
+cam_step_angle_horz     = -0.84
+zoom_cam_dispersion         = -0.68
+zoom_cam_dispersion_inc     = -0.68
+zoom_cam_step_angle_horz    = -0.68
 
-cam_dispersion          = -1 	;5.0
-cam_dispersion_inc      = -1	;5.0
-cam_step_angle_horz     = -0.2 	;1.0
+; Накладки на рукоять. Высококачественные резиновые накладки увеличивают удобство в обращении с оружием.
+[up_sect_d_toz34]
+cost		      		= 250
+value					= -10
+control_inertion_factor	= -0.16
+cam_dispersion          = -0.63
+cam_dispersion_inc      = -0.63
+cam_step_angle_horz     = -0.63
+zoom_cam_dispersion         = -0.51
+zoom_cam_dispersion_inc     = -0.51
+zoom_cam_step_angle_horz    = -0.51
 
-zoom_cam_dispersion         = -1	;3.0
-zoom_cam_dispersion_inc     = -1	;3.0
-zoom_cam_step_angle_horz    = -0.2	;1.0
-
+; Замена бойка. Повышает надёжность оружия и минимизирует количество осечек.
 [up_sect_e_toz34]
-cost		      		= 120
+cost		      		= 250
 value					= +10
-misfire_probability 	= -0.09 ;0.1
-condition_shot_dec 		= -0.09 ;0.01
+misfire_probability 	= -0.0003
+condition_shot_dec 		= -0.0002
+
+
 
 [up_a_toz34]
 scheme_index            = 0, 0
@@ -55,7 +59,6 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = on_weapon_upgrade_something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
@@ -63,7 +66,7 @@ name                    = st_upg_barrel_rifled
 description             = st_upg_barrel_rifled_descr
 icon                    = ui_wp_upgrade_51
 
-;;...
+
 [up_b_toz34]
 scheme_index            = 0, 1
 known                   = 1
@@ -77,13 +80,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_barrel_weight
 description             = st_upg_barrel_weight_descr
 icon                    = ui_wp_upgrade_60
+
 
 [up_c_toz34]
 scheme_index            = 0, 2
@@ -98,13 +101,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_butt_recoil
 description             = st_upg_butt_recoil_descr
 icon                    = ui_wp_upgrade_58
+
 
 [up_d_toz34]
 scheme_index            = 0, 3
@@ -126,6 +129,7 @@ name                    = st_upg_handle_accur
 description             = st_upg_handle_accur_descr
 icon                    = ui_wp_upgrade_59
 
+
 [up_e_toz34]
 scheme_index            = 0, 4
 known                   = 1
@@ -145,6 +149,7 @@ prereq_params           = money(1000), item(habar)
 name                    = st_upg_head_misfire
 description             = st_upg_head_misfire_descr
 icon                    = ui_wp_upgrade_53
+
 
 
 [up_gr_ab_toz34]

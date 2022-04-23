@@ -6,36 +6,29 @@ on_death = death
 [walker@1]
 path_walk = leader_1_walk
 path_look = leader_1_look
-meet = meet@1
-on_info = {+mil_actor_bridge} walker@2
+meet = no_meet
+on_info = {=dist_to_actor_le(20)} walker@2 %=play_sound(mil_enter_first:freedom:mil_freedom_blockpost_name) +mil_enter_first_info =disable_level_changer(1266:tips_wait_conversation_finish)%
 on_info2 = {+mil_merc_talked} walker@3
 
 [walker@2]
 path_walk = leader_1_walk
 path_look = leader_1_look
-meet = meet@2
-on_info = {+mil_merc_talked} walker@3
+meet = no_meet
+on_signal = sound_end | walker@3 %=enable_level_changer(1266)%
+on_info = {+freeplay} walker@3
 
 [walker@3]
 path_walk = leader_1_walk
 path_look = leader_1_look
-meet = no_meet
+meet = meet
 
 [death]
 on_info = %+mil_freedom_speaker_death%
 
-[meet@1]
-meet_state = 15| ward@mil_enter_first
-meet_state_wpn = 15| ward@mil_enter_first
-victim = 15| actor
-victim_wpn = 15| actor
-use	= true
-use_wpn	= true
-
-[meet@2]
-meet_state = 10| wait@nil
-meet_state_wpn = 10| wait@nil
-victim = 10| actor
-victim_wpn = 10| actor
+[meet]
+meet_state = 5| wait@nil
+meet_state_wpn = 5| wait@nil
+victim = 5| actor
+victim_wpn = 5| actor
 use	= true
 use_wpn	= true

@@ -5,7 +5,7 @@ agru_go_out_task
 agru_find_secret_task
 agru_go_out_end_task
 
-[agru_leader_dolg_task]
+[agru_leader_dolg_task] ;Затопить подземелья
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -16,7 +16,7 @@ condlist_0 = {+agru_leader_dolg_task_complete} complete
 community_relation_delta_fail=-400
 community_relation_delta_complete=+400
 
-[agru_destroy_monsters_task]
+[agru_destroy_monsters_task] ;Уничтожить мутантов
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -26,7 +26,7 @@ target_story_ids = 1304
 condlist_0 = {+agru_controller_death} complete
 prior = 10
 
-[agru_go_out_task]
+[agru_go_out_task] ;Покинуть зону затопления
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -35,16 +35,16 @@ text = agru_go_out_task_text
 target_story_ids = 1301
 condlist_0 = {+agru_go_out_task_complete} complete
 
-[agru_find_secret_task]
+[agru_find_secret_task] ;Найти тайник группы сталкеров
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
 name = agru_find_secret_task_name
 text = agru_find_secret_task_text
-target_story_ids = 1302
+target_story_ids = 1372
 condlist_0 = {+agru_find_secret_task_complete} complete
 
-[agru_go_out_end_task]
+[agru_go_out_end_task] ;Выйти из подземелья
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower

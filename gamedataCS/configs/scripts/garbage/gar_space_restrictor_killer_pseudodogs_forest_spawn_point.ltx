@@ -2,7 +2,7 @@
 active = sr_idle@start
 
 [sr_idle@start]
-on_info = {+gar_quest_killer_pseudodogs_started} sr_idle@check
+on_info = {+gar_quest_killer_pseudodogs_started} sr_idle@check %=clear_smart_terrain(gar_smart_terrain_5_6)%
 
 [sr_idle@check]
 on_info = {+gar_quest_killer_pseudodogs_done} sr_idle@end_section, {=dist_to_actor_ge(100)} %+gar_quest_killer_pseudodogs_forest_spawn_point%, %-gar_quest_killer_pseudodogs_forest_spawn_point%

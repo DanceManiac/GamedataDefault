@@ -88,6 +88,7 @@
         <cell x="20" y="290" />
         <cell x="20" y="335" />
         <cell x="20" y="385" />
+        <cell x="20" y="430" />
      </column>
 
       <column>
@@ -97,7 +98,7 @@
         <cell x="120" y="240" />
         <cell x="120" y="290" />
         <cell x="120" y="335" />
-        <cell x="120" y="385" />
+        <cell x="120" y="430" />
       </column>
 
       <column>
@@ -186,6 +187,7 @@
         <cell x="20" y="290" />
         <cell x="20" y="335" />
         <cell x="20" y="385" />
+        <cell x="20" y="430" />
      </column>
 
       <column>
@@ -238,7 +240,6 @@
     </template>
     
    <template name="upgrade_scheme_u17b">
-	<!-- ����� ������� �� 17� ??? -->
       <column>
         <cell x="20" y="5"   />
         <cell x="20" y="50"  />
@@ -805,17 +806,17 @@
     <template name="upgrade_scheme_u8a">
 
       <column>
-        <cell x="20" y="5"   />
-        <cell x="20" y="50"  />
-        <cell x="20" y="100" />
-        <cell x="20" y="145" />
-        <cell x="20" y="195" />
-        <cell x="20" y="240" />
-        <cell x="20" y="290" />
+        <cell x="17" y="5"   />
+        <cell x="17" y="55"  />
+        <cell x="17" y="105" />
+        <cell x="17" y="155" />
+        <cell x="17" y="205" />
+        <cell x="17" y="255" />
+        <cell x="17" y="305" />
       </column>
 
       <column>
-        <cell x="120" y="290" />
+        <cell x="100" y="305" />
       </column>
 
     </template>	
@@ -905,6 +906,119 @@
         <cell x="20" y="130" />
       </column>
 
+    </template>
+
+<!-- OGSM CS -->
+
+    <template name="upgrade_scheme_u5_ogsm">
+	  <column>
+		<cell x="20" y="30"/>
+		<cell x="20" y="75"/>
+		<cell x="20" y="130"/>
+		<cell x="20" y="175"/>
+	  </column>
+	</template>
+
+    <template name="upgrade_scheme_u7a_ogsm">
+      <column>
+        <cell x="20" y="5"/>
+        <cell x="20" y="50"/>
+        <cell x="20" y="100"/>
+        <cell x="20" y="145"/>
+      </column>
+      <column>
+        <cell x="120" y="25"/>
+        <cell x="120" y="122"/>
+      </column>
+    </template>
+
+    <template name="upgrade_scheme_u8_ogsm">
+      <column>
+        <cell x="20" y="5"/>
+        <cell x="20" y="50"/>
+        <cell x="20" y="100"/>
+        <cell x="20" y="145"/>
+      </column>
+      <column>
+        <cell x="120" y="50"/>
+        <cell x="120" y="100"/>
+      </column>
+      <column>
+        <cell x="220" y="75"/>
+      </column>
+    </template>
+
+    <template name="upgrade_scheme_u10a_ogsm">
+	  <column>
+		<cell x="20" y="5"/>
+		<cell x="20" y="50"/>
+		<cell x="20" y="100"/>
+		<cell x="20" y="145"/>
+		<cell x="20" y="195"/>
+		<cell x="20" y="240"/>
+	  </column>
+	  <column>
+		<cell x="120" y="50"/>
+		<cell x="120" y="100"/>
+	  </column>
+	</template>
+
+    <template name="upgrade_scheme_u10b_ogsm">
+	  <column>
+		<cell x="20" y="5"/>
+		<cell x="20" y="50"/>
+		<cell x="20" y="100"/>
+		<cell x="20" y="145"/>
+		<cell x="20" y="195"/>
+		<cell x="20" y="240"/>
+		<cell x="20" y="295"/>
+	  </column>
+	  <column>
+		<cell x="120" y="50"/>
+		<cell x="120" y="100"/>
+	  </column>
+	</template>
+
+    <template name="upgrade_scheme_u11a_ogsm">
+	  <column>
+        <cell x="20" y="50"/>
+        <cell x="20" y="100"/>
+        <cell x="20" y="145"/>
+        <cell x="20" y="195"/>
+        <cell x="20" y="240"/>
+        <cell x="20" y="290"/>
+      </column>
+      <column>
+        <cell x="120" y="100" />
+        <cell x="120" y="145"/>
+      </column>
+      <column>
+        <cell x="220" y="100"/>
+        <cell x="220" y="145"/>
+      </column>
+	</template>
+
+   <template name="upgrade_scheme_u16a_ogsm">
+      <column>
+        <cell x="20" y="5"/>
+        <cell x="20" y="50"/>
+        <cell x="20" y="100"/>
+        <cell x="20" y="145"/>
+        <cell x="20" y="195"/>
+        <cell x="20" y="240"/>
+        <cell x="20" y="290"/>
+        <cell x="20" y="335"/>
+      </column>
+      <column>
+        <cell x="120" y="50"/>
+        <cell x="120" y="100"/>
+        <cell x="120" y="240"/>
+        <cell x="120" y="290"/>
+      </column>
+      <column>
+        <cell x="220" y="145"/>
+        <cell x="220" y="195"/>
+      </column>
     </template>
 
   </templates>

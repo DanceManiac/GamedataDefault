@@ -1,129 +1,191 @@
 <?xml version='1.0' encoding="windows-1251"?>
 
 <xml>
-  <specific_character id="mil_kostiuk" team_default = "1">
-    <name>mil_kostiuk_name</name>
-    <icon>ui_npc_u_freedom_4</icon>
+
+<!-- 
+Хог				Наёмники, квестовый персонаж
+Костюк				Свобода, квестовый персонаж
+Ворон				Свобода, квестовый персонаж
+Угрюмый				Свобода, незадействованный квестовый персонаж
+-->
+
+<specific_character id="mil_hog" team_default = "1"> <!-- Хог -->
+    <name>mil_hog_name</name>
+    <icon>icon_stalker_merc_4</icon>
     <map_icon x="1" y="0"></map_icon>
-    <bio>Опытный командир Свободы.</bio>
-
-    <class>mil_kostiuk</class>
-    <community>freedom</community> 
-    <terrain_sect>stalker_terrain</terrain_sect>
-    <snd_config>characters_voice\human_03\freedom\</snd_config>
-
-    <rank>600</rank>
+    <bio></bio>
+    <class>mil_hog</class>
+    <community>killer</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <rank>875</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_freedom\stalker_freedom_4</visual>
+	<money min="2000" max="8000" infinitive="0"/>
+    <visual>actors\stalker_merc\stalker_merc_4</visual>
     <supplies>
-
-      [spawn] \n
-      wpn_desert_eagle \n
-      ammo_11.43x23_hydro = 1 \n
-      device_torch \n
-      wpn_val \n
-      ammo_9x39_ap = 10 \n
-#include "gameplay\character_items.xml"
+	[spawn] \n
+        device_torch \n
+	hand_radio \n
+	wpn_vintorez \n
+	ammo_9x39_sp5 = 1 \n
+	wpn_usp = 1, silencer \n
+	ammo_11.43x23_fmj = 1 \n
+#include "gameplay\character_items_3.xml"
 #include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
+#include "gameplay\character_drugs_medkits_scientic.xml"
     </supplies>
 #include "gameplay\character_criticals_4.xml"
-    <start_dialog>hello_dialog</start_dialog>
-#include "gameplay\character_dialogs.xml"
-  </specific_character>
+	<start_dialog>hello_mil_killer</start_dialog>
+	<actor_dialog>mil_killer_about_what_is_you_doing</actor_dialog>
+	<actor_dialog>mil_killer_about_around</actor_dialog>
+	<actor_dialog>mil_killer_about_last_time</actor_dialog>
+	<actor_dialog>treasure_dialog</actor_dialog>
+</specific_character>
 
-  <specific_character id="mil_freedom_speaker" team_default = "1">
-    <name>mil_freedom_blockpost_name</name>
-    <icon>ui_npc_u_freedom_1</icon>
+<specific_character id="mil_kostiuk" team_default = "1"> <!-- Костюк -->
+    <name>mil_kostiuk_name</name>
+    <icon>icon_stalker_kostiuk</icon>
     <map_icon x="1" y="0"></map_icon>
-    <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+    <bio></bio>
+    <class>mil_kostiuk</class>
+    <community>freedom</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_02\freedom\</snd_config>
+    <rank>875</rank>
+    <reputation>0</reputation>
+	<money min="1000" max="5000" infinitive="0"/>
+    <visual>actors\stalker_freedom\stalker_freedom_kostiuk</visual>
+    <supplies>
+	[spawn] \n
+        device_torch \n
+	wpn_vintorez \n
+	ammo_9x39_sp5 = 1 \n
+	wpn_usp \n
+	ammo_11.43x23_fmj = 1 \n
+	grenade_f1 = 2 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_medkits_army.xml"
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+	<start_dialog>mil_kostiuk_hello_dialog</start_dialog>
+#include "gameplay\character_dialogs.xml"
+</specific_character>
 
+<specific_character id="mil_freedom_speaker" team_default = "1"> <!-- Ворон -->
+    <name>mil_freedom_blockpost_name</name>
+    <icon>icon_stalker_raven</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
     <class>mil_freedom_speaker</class>
     <community>freedom</community> <terrain_sect>stalker_terrain</terrain_sect>
-    <snd_config>characters_voice\human_03\freedom\</snd_config>
-
-    <rank>450</rank>
+    <snd_config>characters_voice\human_02\freedom\</snd_config>
+    <rank>625</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_freedom\stalker_freedom_1</visual>
+	<money min="1000" max="4000" infinitive="0"/>
+    <visual>actors\stalker_freedom\stalker_freedom_raven</visual>
     <supplies>
-      [spawn] \n
-      wpn_pm \n
-      ammo_9x18_pmm = 1 \n
-      device_torch \n
-      wpn_lr300 \n
-      ammo_5.56x45_ap = 10 \n
-#include "gameplay\character_items.xml"
+	[spawn] \n
+        device_torch \n
+	wpn_sig550_ogsm_burst_1 = 1, scope, launcher \n
+	ammo_5.56x45_ss190 = 1 \n
+	ammo_m209 = 1 \n
+	wpn_sig220 \n
+	ammo_11.43x23_fmj = 1 \n
+	grenade_rgd5 = 2 \n
+#include "gameplay\character_items_3.xml"
 #include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
+#include "gameplay\character_drugs_medkits_army.xml"
     </supplies>
 #include "gameplay\character_criticals_4.xml"
     <start_dialog>hello_mil_freedom</start_dialog>
     <actor_dialog>treasure_dialog</actor_dialog>
 #include "gameplay\character_dialogs.xml"
-  </specific_character>
+</specific_character>
 
-<specific_character id="mil_hog" team_default = "1">
-    <name>mil_hog_name</name>
-    <icon>ui_npc_u_merc_4</icon>
+<specific_character id="mil_questman" team_default = "1"> <!-- Угрюмый -->
+    <name>mil_questman_name</name>
+    <icon>icon_stalker_sullen</icon>
     <map_icon x="1" y="0"></map_icon>
-    <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
-
-    <class>mil_hog</class>
-    <community>killer</community> <terrain_sect>stalker_terrain</terrain_sect>
-    <snd_config>characters_voice\human_01\stalker\</snd_config>
-
-    <rank>300</rank>
-    <reputation>0</reputation>
-
-  <visual>actors\stalker_merc\stalker_merc_4</visual>
-    <supplies>
-      [spawn] \n
-      wpn_desert_eagle \n
-      ammo_11.43x23_hydro = 1 \n
-      device_torch \n
-      wpn_sig550 \n
-      ammo_5.56x45_ap = 10 \n
-      hand_radio \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
-    </supplies>
-#include "gameplay\character_criticals_4.xml"
-  <start_dialog>hello_mil_killer</start_dialog>
-  <actor_dialog>mil_killer_about_what_is_you_doing</actor_dialog>
-  <actor_dialog>mil_killer_about_around</actor_dialog>
-  <actor_dialog>mil_killer_about_last_time</actor_dialog>
-  <actor_dialog>treasure_dialog</actor_dialog>
-  </specific_character>
-
-<specific_character id="mil_questman" team_default = "1">
-    <name>GENERATE_NAME_stalker</name>
-    <icon>ui_npc_u_freedom_2</icon>
-    <map_icon x="1" y="0"></map_icon>
-    <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
-
+    <bio></bio>
     <class>mil_questman</class>
     <community>freedom</community> <terrain_sect>stalker_terrain</terrain_sect>
-    <snd_config>characters_voice\human_03\freedom\</snd_config>
-
-    <rank>450</rank>
-    <reputation>800</reputation>
-
-    <visual>actors\stalker_freedom\stalker_freedom_2</visual>
+    <snd_config>characters_voice\human_01\freedom\</snd_config>
+    <rank>625</rank>
+    <reputation>0</reputation>
+	<money min="1000" max="4000" infinitive="0"/>
+    <visual>actors\stalker_freedom\stalker_freedom_sullen</visual>
     <supplies>
-      [spawn] \n
-      wpn_pm \n
-      ammo_9x18_pmm = 1 \n
-      device_torch \n
-      wpn_sig550 \n
-      ammo_5.56x45_ap = 10 \n
-#include "gameplay\character_items.xml"
+	[spawn] \n
+        device_torch \n
+	wpn_g36_ogsm_burst_1 = 1, launcher \n
+	ammo_5.56x45_ss190 = 1 \n
+	ammo_m209 = 1 \n
+	wpn_usp \n
+	ammo_11.43x23_fmj = 1 \n
+	grenade_rgd5 = 2 \n
+#include "gameplay\character_items_3.xml"
 #include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
+#include "gameplay\character_drugs_medkits_army.xml"
     </supplies>
+    <mechanic_mode>1</mechanic_mode>
+    <start_dialog>mil_questman_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
 #include "gameplay\character_criticals_4.xml"
 </specific_character>
+
+<specific_character id="mil_soldier_sniper_0_default_0" team_default = "1"> <!-- Военный снайпер -->
+    <name>GENERATE_NAME_captain</name>
+    <icon>icon_stalker_soldier_4_1</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>mil_soldier_sniper_0</class>
+    <community>army</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\military\</snd_config>
+    <rank>875</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_soldier\stalker_soldier_4_1</visual>
+    <supplies>
+	[spawn] \n
+        device_torch \n
+	wpn_binoc \n
+	hand_radio \n
+	wpn_svd \n
+	ammo_7.62x54_7h1 = 1 \n
+	wpn_fort \n
+	ammo_9x18_fmj = 1 \n
+	grenade_f1 = 3 \n
+#include "gameplay\character_food_army.xml"
+#include "gameplay\character_drugs_medkits_army.xml"
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_soldier_sniper_0_default_1" team_default = "1"> <!-- Военный снайпер -->
+    <name>GENERATE_NAME_captain</name>
+    <icon>icon_stalker_soldier_4_2</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>mil_soldier_sniper_0</class>
+    <community>army</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <snd_config>characters_voice\human_03\military\</snd_config>
+    <rank>875</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_soldier\stalker_soldier_4_2</visual>
+    <supplies>
+	[spawn] \n
+        device_torch \n
+	wpn_binoc \n
+	hand_radio \n
+	wpn_svd \n
+	ammo_7.62x54_7h1 = 1 \n
+	wpn_fort \n
+	ammo_9x18_fmj = 1 \n
+	grenade_f1 = 3 \n
+#include "gameplay\character_food_army.xml"
+#include "gameplay\character_drugs_medkits_army.xml"
+    </supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
 </xml>

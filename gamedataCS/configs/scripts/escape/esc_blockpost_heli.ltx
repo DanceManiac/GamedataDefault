@@ -1,0 +1,30 @@
+[logic]
+active = heli_move@idle
+
+[heli_move@idle]
+path_move = heli_blockpost_idle_move
+max_velocity = 10
+engine_sound = false
+on_info = {!squad_exist(esc_smart_terrain_3_16_military_2_squad_0)} heli_move@fly, {+esc_btr_killed} heli_move@fly
+
+[heli_move@fly]
+path_move = heli_blockpost_fly
+max_velocity = 100
+engine_sound = true
+enemy = actor
+use_rocket = true
+use_mgun = true
+on_timer = 120000 | heli_move@retreat
+
+[heli_move@retreat]
+path_move = heli_blockpost_idle_move
+max_velocity = 100
+engine_sound = true
+use_rocket = false
+use_mgun = true
+on_timer = 120000 | heli_move@stop
+
+[heli_move@stop]
+path_move = heli_blockpost_idle_move
+max_velocity = 10
+engine_sound = false

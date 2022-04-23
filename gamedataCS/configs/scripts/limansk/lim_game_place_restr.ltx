@@ -1,0 +1,10 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_actor_inside = {-lim_cs_stalker_request_help_sound_complete} sr_idle@check %=play_sound(lim_cs_stalker_request_help:csky_1:lim_smart_terrain_5)%
+
+[sr_idle@check]
+on_signal = sound_end | sr_idle@nil %+lim_cs_stalker_request_help_sound_complete%
+
+[sr_idle@nil]

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="und_task_general_name">
+		<text>Найти выход на станцию</text>
+	</string>
+	<string id="und_task_general_text">
+		<text>Путь к станции лежит через катакомбы. Необходимо найти выход из катакомб на станцию.</text>
+	</string>
+</string_table>

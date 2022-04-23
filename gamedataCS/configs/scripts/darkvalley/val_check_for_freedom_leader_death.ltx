@@ -2,6 +2,6 @@
 active = sr_idle
 
 [sr_idle]
-on_actor_inside = {+val_freedom_leader_ded} sr_idle@2 %+val_brake_btr%
+on_actor_inside = {+val_freedom_leader_ded} sr_idle@2 %=set_faction_community_to_actor(freedom:enemy)%
 
 [sr_idle@2]

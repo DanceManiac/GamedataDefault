@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<cheat>
+	<background x="0" y="0" width="400" height="360" stretch="1">
+		<texture>ui_menu_options_dlg</texture>
+	</background>
+
+        <list_frame x="40" y="60" width="338" height="272">
+		<texture>ui_tablist_textbox</texture>
+        </list_frame>
+
+	<caption x="200" y="30" width="50" height="35">
+		<text font="graffiti22" align="l">sleep_title</text>
+	</caption>
+
+	<btn_1 x="150" y="80" width="117" height="29">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+		<text>sleep_one_hour</text>
+	</btn_1>
+
+	<btn_2 x="150" y="130" width="117" height="29">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+		<text>sleep_three_hours</text>
+	</btn_2>
+
+	<btn_3 x="150" y="180" width="117" height="29">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+		<text>sleep_five_hours</text>
+	</btn_3>
+
+	<btn_4 x="150" y="230" width="117" height="29">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+		<text>sleep_until_morning</text>
+	</btn_4>
+
+        <btn_quit x="150" y="280" width="117" height="29">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+	        <text>ui_inv_exit</text>
+        </btn_quit>
+</cheat>

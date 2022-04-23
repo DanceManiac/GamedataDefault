@@ -11,6 +11,6 @@ on_actor_inside = sr_idle@cs_attack_1 %+lim_canal_scene_begin +lim_go_to_canal_c
 on_info = {+lim_military_minigun_out =squad_exist(lim_csky_bridge_squad)} sr_idle@cs_attack_2
 
 [sr_idle@cs_attack_2]
-on_game_timer = 50 | sr_idle@nil %=play_sound(lim_cs_storm_troop2_leader_order3) =update_squad(lim_csky_bridge_squad)%
+on_game_timer = 50 | sr_idle@nil %=update_squad(lim_csky_bridge_squad)%
 
 [sr_idle@nil]  

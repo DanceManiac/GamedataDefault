@@ -1,7 +1,8 @@
-;----------------------------comander-------------------
+;----------------------------------------------------------------------------- Commander
+
 [logic@work1]
 active = smartcover@freelead
-suitable = {=check_npc_name(val_freedom_attack_commander) =is_gulag_attacking_target(val_smart_terrain_1_2)}
+suitable = {-val_destroy_killer_base_done =check_npc_name(val_freedom_attack_commander)}
 prior = 200
 
 [smartcover@freelead]
@@ -13,50 +14,68 @@ combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 meet = no_meet
 invulnerable = true
-on_info2 = {+val_freedom_attack_brake} walker@dielead
 on_info = {+val_freedom_attack_2} smartcover@freelead_1 %=request_current_squad_stage(prepare)%
+;on_info2 = {+val_killer_roof_sniper_3_dead +val_killer_roof_sniper_4_dead +val_killer_roof_sniper_5_dead} walker@lead_run %+val_freedom_attack_combat%
 
 [smartcover@freelead_1]
 cover_name = val_2_1_free1_smartcover
 target_path = val_2_1_free1_smartcover_target
 meet = no_meet
 combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 invulnerable = true
-on_info = {+val_freedom_attack_brake} walker@dielead
-on_signal = sound_end | {+val_killer_roof_sniper_3_dead +val_killer_roof_sniper_4_dead +val_killer_roof_sniper_5_dead} walker@lead_run %+val_freedom_attack_3%
-on_actor_dist_le_nvis = 13 | %+val_freedom_attack_combat =play_sound(val_zavod_task)%
+on_actor_dist_le_nvis = 13 | %=play_sound(val_zavod_task:freedom:val_freedom_attack_commander_name)%
+on_signal = sound_end | {+val_killer_roof_sniper_3_dead +val_killer_roof_sniper_4_dead +val_killer_roof_sniper_5_dead} walker@lead_run %+val_freedom_attack_combat%
 
 [walker@lead_run]
 path_walk = freedom_lead_run_walk
+path_look = freedom_lead_run_look
 meet = no_meet
+def_state_standing = hide
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
-on_signal = lead_run_done | %=play_sound(val_zavod_task_actor)%
-on_signal2 = sound_end | walker@lead_fight
-on_info = {+val_freedom_attack_brake} walker@dielead
+on_signal = lead_run_done | walker@lead_run2 %=play_sound(val_zavod_task_actor:freedom:val_freedom_attack_commander_name)%
 invulnerable = true
 
-[walker@lead_fight]
+[walker@lead_run2]
 path_walk = freedom_lead_run_walk
-out_restr = val_smart_2_1_bufer_zone_2
+path_look = freedom_lead_run_look
 meet = no_meet
-
-
-[walker@dielead]
-path_walk = val_freedom_die_walk
-path_walk = val_freedom_die_look
-meet = no_meet
+def_state_standing = hide
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
 combat_ignore_cond = true
-;----------------------------walker1-------------------
+combat_ignore_keep_when_attacked = true
+on_signal = sound_end | smartcover@freelead_2
+invulnerable = true
+
+[smartcover@freelead_2]
+cover_name = val_2_1_com_smartcover
+;target_path = val_2_1_free1_smartcover_target_1
+;target_path = val_2_1_free1_smartcover_target_2
+cover_state = fire_target
+meet = no_meet
+on_info = {=fighting_dist_le(10)} walker@lead_fight
+invulnerable = true
+use_in_combat = false
+
+[walker@lead_fight]
+path_walk = freedom_lead_run_walk
+path_look = freedom_lead_run_look
+out_restr = val_smart_2_1_bufer_zone_2
+meet = no_meet
+combat_ignore_cond = {=fighting_dist_ge(50)}
+invulnerable = true
+
+;----------------------------------------------------------------------------- Walker 2
+
 [logic@work2]
 active = smartcover@free2
-suitable = {=check_npc_name(val_freedom_attack_1) =is_gulag_attacking_target(val_smart_terrain_1_2)}
+suitable = {-val_destroy_killer_base_done =check_npc_name(val_freedom_attack_1)}
 prior = 200
 
 [smartcover@free2]
@@ -66,17 +85,15 @@ target_path = val_2_1_free2_smartcover_target
 cover_state = fire_target
 meet = no_meet
 combat_ignore_cond = true
-on_info = {+val_freedom_attack_2}  smartcover@free2_1
-on_info2 = {+val_freedom_attack_brake}  walker@die2
+on_info = {+val_freedom_attack_2} smartcover@free2_1
 invulnerable = true
+use_in_combat = true
 
 [smartcover@free2_1]
 cover_name = val_2_1_free2_smartcover
 target_path = val_2_1_free2_smartcover_target
-;cover_state = fire_target
 meet = no_meet
-on_info = {+val_freedom_attack_combat}  walker@free2_combat
-on_info2 = {+val_freedom_attack_brake}  walker@die2
+on_info = {+val_freedom_attack_combat} walker@start_work2
 invulnerable = true
 use_in_combat = true
 
@@ -87,50 +104,43 @@ meet = no_meet
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
-on_info = {+val_freedom_attack_brake} walker@die2
-on_info2 = {+val_killer_roof_sniper_3_dead +val_killer_roof_sniper_4_dead +val_killer_roof_sniper_5_dead} walker@start_work2
+on_info = walker@start_work2
 out_restr = val_smart_2_1_bufer_zone
 invulnerable = true
 
 [walker@start_work2]
+path_look = freedom_attack_walker_2_look
 path_walk = freedom_attack_walker_2_walk
 meet = no_meet
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
 on_signal = val_free2_done | smartcover@free2_2
-on_info = {+val_freedom_attack_brake}  walker@die2
 invulnerable = true
-
+out_restr = val_smart_2_1_bufer_zone_2
 
 [smartcover@free2_2]
 cover_name = val_2_1_free2_1_smartcover
-cover_state = default_behaviour
+;target_path = val_2_1_free2_1_smartcover_target
+cover_state = fire_no_lookout_target
 meet = no_meet
-on_info = {=fighting_dist_le(15)} remark@work2
-on_info2 = {+val_freedom_attack_brake}  walker@die2
+on_info = {=fighting_dist_le(5)} remark@work2
 invulnerable = true
-use_in_combat = true
+use_in_combat = false
 
 [remark@work2]
+anim = hide
 out_restr = val_smart_2_1_bufer_zone_2
-on_info = {=fighting_dist_ge(20)} smartcover@free2_2
+on_info = {=fighting_dist_ge(25)} smartcover@free2_2
 meet = no_meet
+combat_ignore_cond = {=fighting_dist_ge(25)}
+invulnerable = true
 
-[walker@die2]
-val_smart_2_1_bufer_zone_2
-path_walk = val_freedom_die_walk
-path_walk = val_freedom_die_look
-meet = no_meet
-def_state_moving1 = assault
-def_state_moving2 = assault
-def_state_moving3 = assault
-combat_ignore_cond = true
+;----------------------------------------------------------------------------- Walker 3
 
-;----------------------------walker2-------------------
 [logic@work3]
 active = smartcover@free3
-suitable = {=check_npc_name(val_freedom_attack_2) =is_gulag_attacking_target(val_smart_terrain_1_2)} ; =is_gulag_attacking_target(val_smart_terrain_1_1_killer)}
+suitable = {-val_destroy_killer_base_done =check_npc_name(val_freedom_attack_2)}
 prior = 200
 
 [smartcover@free3]
@@ -140,8 +150,7 @@ target_path = val_2_1_free3_smartcover_target
 cover_state = fire_target
 combat_ignore_cond = true
 meet = no_meet
-on_info = {+val_freedom_attack_2}  smartcover@free3_1
-on_info2 = {+val_freedom_attack_brake}  walker@die3
+on_info = {+val_freedom_attack_2} smartcover@free3_1
 invulnerable = true
 use_in_combat = true
 
@@ -149,8 +158,7 @@ use_in_combat = true
 cover_name = val_2_1_free3_smartcover
 target_path = val_2_1_free3_smartcover_target
 meet = no_meet
-on_info = {+val_freedom_attack_combat}  walker@free3_combat
-on_info2 = {+val_freedom_attack_brake}  walker@free3_combat
+on_info = {+val_freedom_attack_combat} walker@start_work3
 invulnerable = true
 use_in_combat = true
 
@@ -161,8 +169,7 @@ meet = no_meet
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
-on_info = {+val_freedom_attack_brake} walker@die3
-on_info2 = {+val_killer_roof_sniper_3_dead +val_killer_roof_sniper_4_dead +val_killer_roof_sniper_5_dead} walker@start_work3
+on_info = walker@start_work3
 out_restr = val_smart_2_1_bufer_zone
 invulnerable = true
 
@@ -173,39 +180,32 @@ meet = no_meet
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
-on_info = {+val_freedom_attack_brake}  walker@die3
 out_restr = val_smart_2_1_bufer_zone_2
+on_signal = val_free3_done | smartcover@free3_2
 invulnerable = true
-
 
 [smartcover@free3_2]
 cover_name = val_2_1_free3_1_smartcover
-cover_state = default_behaviour
+;target_path = val_2_1_free3_1_smartcover_target
+cover_state = fire_target
 meet = no_meet
-on_info = {=fighting_dist_le(15)} remark@work3
-on_info2 = {+val_freedom_attack_brake} walker@die3
+on_info = {=fighting_dist_le(5)} remark@work3
 invulnerable = true
-use_in_combat = true
+use_in_combat = false
 
 [remark@work3]
+anim = hide
 out_restr = val_smart_2_1_bufer_zone_2
-on_info = {=fighting_dist_ge(20)} smartcover@free3_2
+on_info = {=fighting_dist_ge(35)} smartcover@free3_2
 meet = no_meet
+combat_ignore_cond = {=fighting_dist_ge(35)}
+invulnerable = true
 
-[walker@die3]
-val_smart_2_1_bufer_zone_2
-path_walk = val_freedom_die_walk
-path_walk = val_freedom_die_look
-meet = no_meet
-def_state_moving1 = assault
-def_state_moving2 = assault
-def_state_moving3 = assault
-combat_ignore_cond = true
+;----------------------------------------------------------------------------- Walker 4
 
-;----------------------------walker3-------------------
 [logic@work4]
 active = smartcover@free4
-suitable = {=check_npc_name(val_freedom_attack_3) =is_gulag_attacking_target(val_smart_terrain_1_2)}
+suitable = {-val_destroy_killer_base_done =check_npc_name(val_freedom_attack_3)}
 prior = 200
 
 [smartcover@free4]
@@ -216,17 +216,14 @@ cover_state = fire_target
 combat_ignore_cond = true
 meet = no_meet
 on_info = {+val_freedom_attack_2} smartcover@free4_1
-on_info2 = {+val_freedom_attack_brake} walker@die4
 invulnerable = true
 use_in_combat = true
 
 [smartcover@free4_1]
 cover_name = val_2_1_free4_smartcover
 target_path = val_2_1_free4_smartcover_target
-;cover_state = fire_target
 meet = no_meet
-on_info = {+val_freedom_attack_combat} walker@free4_combat
-on_info2 = {+val_freedom_attack_brake} walker@die4
+on_info = {+val_freedom_attack_combat} walker@start_work4
 invulnerable = true
 use_in_combat = true
 
@@ -237,51 +234,43 @@ meet = no_meet
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
-on_info = {+val_freedom_attack_brake} walker@die4
-on_info2 = {+val_killer_roof_sniper_3_dead +val_killer_roof_sniper_4_dead +val_killer_roof_sniper_5_dead} walker@start_work4
+on_info = walker@start_work4
 out_restr = val_smart_2_1_bufer_zone
 invulnerable = true
 
 [walker@start_work4]
 path_walk = freedom_attack_walker_4_walk
-path_walk = freedom_attack_walker_4_look
+path_look = freedom_attack_walker_4_look
 meet = no_meet
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
-on_info = {+val_freedom_attack_brake} walker@die4
 out_restr = val_smart_2_1_bufer_zone_2
+on_signal = val_free4_done | smartcover@free4_2
 invulnerable = true
 
 [smartcover@free4_2]
 cover_name = val_2_1_free4_1_smartcover
-cover_state = default_behaviour
+;target_path = val_2_1_free4_1_smartcover_target
+cover_state = fire_target
 meet = no_meet
-on_info = {=fighting_dist_le(15)} remark@work4
-on_info2 = {+val_freedom_attack_brake} walker@die4
+on_info = {=fighting_dist_le(5)} remark@work4
 invulnerable = true
-use_in_combat = true
+use_in_combat = false
 
 [remark@work4]
+anim = hide
 out_restr = val_smart_2_1_bufer_zone_2
-on_info = {=fighting_dist_ge(20)} smartcover@free4_2
+on_info = {=fighting_dist_ge(25)} smartcover@free4_2
 meet = no_meet
 invulnerable = true
+combat_ignore_cond = {=fighting_dist_ge(25)}
 
-[walker@die4]
-val_smart_2_1_bufer_zone_2
-path_walk = val_freedom_die_walk
-path_walk = val_freedom_die_look
-meet = no_meet
-def_state_moving1 = assault
-def_state_moving2 = assault
-def_state_moving3 = assault
-combat_ignore_cond = true
+;----------------------------------------------------------------------------- Walker 5
 
-;----------------------------walker4-------------------
 [logic@work5]
 active = smartcover@free5
-suitable = {=check_npc_name(val_freedom_attack_4) =is_gulag_attacking_target(val_smart_terrain_1_2)}
+suitable = {-val_destroy_killer_base_done =check_npc_name(val_freedom_attack_4)}
 prior = 200
 
 [smartcover@free5]
@@ -292,7 +281,6 @@ cover_state = fire_target
 meet = no_meet
 combat_ignore_cond = true
 on_info = {+val_freedom_attack_2} smartcover@free5_1
-on_info2 = {+val_freedom_attack_brake} walker@die5
 invulnerable = true
 use_in_combat = true
 
@@ -300,8 +288,7 @@ use_in_combat = true
 cover_name = val_2_1_free5_smartcover
 target_path = val_2_1_free5_smartcover_target
 meet = no_meet
-on_info = {+val_freedom_attack_combat} walker@free5_combat
-on_info2 = {+val_freedom_attack_brake} walker@die5
+on_info = {+val_freedom_attack_combat} walker@start_work5
 invulnerable = true
 use_in_combat = true
 
@@ -312,42 +299,34 @@ meet = no_meet
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
-on_info = {+val_freedom_attack_brake} walker@die5
-on_info2 = {+val_killer_roof_sniper_3_dead +val_killer_roof_sniper_4_dead +val_killer_roof_sniper_5_dead} walker@start_work5
+on_info = walker@start_work5
 out_restr = val_smart_2_1_bufer_zone
 invulnerable = true
 
 [walker@start_work5]
 path_walk = freedom_attack_walker_5_walk
-path_walk = freedom_attack_walker_5_walk
+path_look = freedom_attack_walker_5_walk
 meet = no_meet
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
-on_info = {+val_freedom_attack_brake} walker@die5
 out_restr = val_smart_2_1_bufer_zone_2
+on_signal = val_free5_done | smartcover@free5_2
 invulnerable = true
 
 [smartcover@free5_2]
 cover_name = val_2_1_free5_1_smartcover
-cover_state = default_behaviour
+;target_path = val_2_1_free5_1_smartcover_target
+cover_state = fire_target
 meet = no_meet
-on_info = {=fighting_dist_le(15)} remark@work5
-on_info2 = {+val_freedom_attack_brake} walker@die5
+on_info = {=fighting_dist_le(10)} remark@work5
 invulnerable = true
-use_in_combat = true
+use_in_combat = false
 
 [remark@work5]
+anim = hide
 out_restr = val_smart_2_1_bufer_zone_2
-on_info = {=fighting_dist_ge(20)} smartcover@free5_2
+on_info = {=fighting_dist_ge(25)} smartcover@free5_2
 meet = no_meet
-
-[walker@die5]
-val_smart_2_1_bufer_zone_2
-path_walk = val_freedom_die_walk
-path_walk = val_freedom_die_look
-meet = no_meet
-def_state_moving1 = assault
-def_state_moving2 = assault
-def_state_moving3 = assault
-combat_ignore_cond = true
+combat_ignore_cond = {=fighting_dist_ge(25)}
+invulnerable = true

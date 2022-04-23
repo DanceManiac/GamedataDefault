@@ -19,6 +19,11 @@ agr_treasure_12
 agr_treasure_13
 agr_treasure_14
 agr_treasure_15
+agr_treasure_16
+agr_treasure_17
+agr_treasure_18
+agr_treasure_19
+agr_treasure_20
 agr_quest_treasure_1
 agr_quest_treasure_2
 agr_quest_treasure_3
@@ -30,53 +35,48 @@ agr_quest_treasure_8
 agr_quest_treasure_9
 agr_quest_treasure_10
 
-[agr_duty_trader_secret_1]
+[agr_duty_trader_secret_1] ;Пень на отшибе
 target = agr_duty_trader_secret_1
 name = agr_duty_trader_secret_1_name
 description = agr_duty_trader_secret_1_descr
 items = medkit_army, 1, antirad, 2
-community = duty
-condlist = {-agr_duty_trader_secret_1 +agr_duty_trader_secret_1_give} true
+condlist = {=check_npc_name(agr_duty_trader)} true, false
 treasure_cost = 800
 say_item_name = false
 
-[agr_duty_bar_secret_1]
+[agr_duty_bar_secret_1] ;Ящик на крыше вольера
 target = agr_duty_bar_secret_1
 name = agr_duty_bar_secret_1_name
 description = agr_duty_bar_secret_1_descr
 items = ammo_vog-25, 4
-community = duty
-condlist = {-agr_duty_bar_secret_1 +agr_duty_bar_secret_1_give} true
+condlist = {=check_npc_name(agr_bar_stalker_1)} true, false
 treasure_cost = 300
 say_item_name = false
 
-[agr_duty_bar_secret_2]
+[agr_duty_bar_secret_2] ;Ящик на верхотуре
 target = agr_duty_bar_secret_2
 name = agr_duty_bar_secret_2_name
 description = agr_duty_bar_secret_2_descr
 items = medkit_army, 1, ammo_m209, 2
-community = duty
-condlist = {-agr_duty_bar_secret_2 +agr_duty_bar_secret_2_give} true
+condlist = {=check_npc_name(agr_bar_stalker_2)} true, false
 treasure_cost = 900
 say_item_name = false
 
-[agr_duty_bar_secret_3]
+[agr_duty_bar_secret_3] ;Ящик на крыше цеха
 target = agr_duty_bar_secret_3
 name = agr_duty_bar_secret_3_name
 description = agr_duty_bar_secret_3_descr
 items = ammo_m209, 4
-community = duty
-condlist = {-agr_duty_bar_secret_3 +agr_duty_bar_secret_3_give} true
+condlist = {=check_npc_name(agr_bar_stalker_3)} true, false
 treasure_cost = 400
 say_item_name = false
 
-[agr_duty_bar_secret_4]
+[agr_duty_bar_secret_4] ;Пень среди аномалий
 target = agr_duty_bar_secret_4
 name = agr_duty_bar_secret_4_name
 description = agr_duty_bar_secret_4_descr
 items = medkit, 2, medkit_army, 1, antirad, 1
-community = duty
-condlist = {-agr_duty_bar_secret_4 +agr_duty_bar_secret_4_give} true
+condlist = {=check_npc_name(agr_bar_stalker_4)} true, false
 treasure_cost = 1200
 say_item_name = false
 
@@ -84,197 +84,252 @@ say_item_name = false
 target = agr_treasure_1
 name = st_agr_cross_1
 description = st_agr_cross_1_descr
-items = wpn_beretta, 1, ammo_9x19_pbp, 50
+items = mutant_dog_tail, 3, mutant_psevdodog_tail, 2, mutant_snork_leg, 2, mutant_krovosos_jaw, 1
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_2] ;Электрощит в цеху
 target = agr_treasure_2
 name = st_agr_electric_box_02
 description = st_agr_electric_box_02_descr
-items = wpn_hpsa, 1, ammo_9x19_pbp, 50, medkit_scientic, 2, ammo_vog-25, 4
+items = af_mincer_meat, 1, af_cristall, 2
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_3] ;Трактор
 target = agr_treasure_3
 name = st_agr_instrument_case_01
 description = st_agr_instrument_case_01_descr
-items = medkit, 2, antirad, 1
+items = vodka, 2, harmonica_a, 1
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_4] ;Машина в гараже
 target = agr_treasure_4
 name = st_agr_instrument_case_01_0000
 description = st_agr_instrument_case_01_0000_descr
-items = medkit_army, 1, antirad, 2
+items = wpn_bm16_full, 2, wpn_toz34, 3, wpn_fort, 1, wpn_pm, 4
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_5] ;Кейс под вагоном
 target = agr_treasure_5
 name = st_agr_instrument_case_01_0001
 description = st_agr_instrument_case_01_0001_descr
-items = antirad, 3
+items = af_fuzz_kolobok, 1
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_6] ;Автобус у остановки
 target = agr_treasure_6
 name = st_agr_instrument_case_01_0002
 description = st_agr_instrument_case_01_0002_descr
-items = ammo_vog-25, 4
+items = ammo_12x76_dart, 70, ammo_9x39_ap, 300, grenade_f1, 4
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_7] ;Труба в завале
 target = agr_treasure_7
 name = st_agr_pipe_02
 description = st_agr_pipe_02_descr
-items = medkit_army, 1, ammo_m209, 2
+items = wpn_rpg7, 1, ammo_og-7b, 2
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_8] ;Ничейный рюкзак
 target = agr_treasure_8
 name = st_agr_rucksack_01
 description = st_agr_rucksack_01_descr
-items = ammo_og-7b, 1
+items = military_extra_outfit, 1
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_9] ;База сталкеров
 target = agr_treasure_9
 name = st_agr_rucksack_01_0000
 description = st_agr_rucksack_01_0000_descr
-items = ammo_pkm_100, 200
+items = af_vyvert, 1, af_dummy_glassbeads, 2
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
-[agr_treasure_10] ;Труба возле болот
+[agr_treasure_10] ;Труба возле болота
 target = agr_treasure_10
 name = st_agr_rucksack_02
 description = st_agr_rucksack_02_descr
-items = ammo_m209, 4
+items = medkit_scientic, 5, bandage, 8
+community = stalker
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
-[agr_treasure_11] ;Потеряный рюкзак
+[agr_treasure_11] ;Потерянный рюкзак
 target = agr_treasure_11
 name = st_agr_rucksack_02_0000
 description = st_agr_rucksack_02_0000_descr
-items = medkit, 2, medkit_army, 1
+items = ammo_9x39_ap, 400, ammo_11.43x23_hydro, 150
+community = dolg
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_12] ;Рюкзак монтажника
 target = agr_treasure_12
 name = st_agr_rucksack_02_0001
 description = st_agr_rucksack_02_0001_descr
-items = medkit, 1, vodka, 1
+items = wpn_saiga, 1, ammo_12x76_dart, 50
+community = dolg
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_13] ;Сейф в кустах
 target = agr_treasure_13
 name = st_agr_seif_01
 description = st_agr_seif_01_descr
-items = wpn_wincheaster1300, 1, ammo_12x70_buck, 20, energy_drink, 1
+items = wpn_addon_scope, 1, wpn_addon_scope_acog, 2, wpn_addon_silencer, 5, wpn_addon_grenade_launcher, 4, wpn_addon_grenade_launcher_m203, 1
+community = dolg
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
 [agr_treasure_14] ;Бревно на отшибе
 target = agr_treasure_14
 name = st_agr_trees_log_01
 description = st_agr_trees_log_01_descr
-items = wpn_abakan, 1, ammo_5.45x39_ap, 60
+items = medkit_army, 4, bandage, 7, antirad, 2
+community = dolg
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
-[agr_treasure_15] ;Пасхальные яйца
+[agr_treasure_15] ;Местечко на отшибе
 target = agr_treasure_15
 name = st_agr_trees_log_01_0000
 description = st_agr_trees_log_01_0000_descr
-items = wpn_lr300, 1, ammo_5.56x45_ap, 60
+items = sardines, 1, vodka, 2, guitar_a, 1
+community = dolg
 condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
+[agr_treasure_16] ;Рюкзак хирурга
+target = agr_treasure_16
+name = st_agr_rucksack_03
+description = st_agr_rucksack_03_descr
+items = medkit_army, 5, antirad, 5, bandage, 5
+community = bandit, bandit_enemy
+condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
-;Quest treasure
+[agr_treasure_17] ;Снаряга взрывотехника
+target = agr_treasure_17
+name = st_agr_rucksack_04
+description = st_agr_rucksack_04_descr
+items = grenade_f1, 2, ammo_vog-25, 5, ammo_og-7b, 1
+community = bandit, bandit_enemy
+condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
 
-[agr_quest_treasure_1] ;Набор настощего долговца
+[agr_treasure_18] ;Рюкзак в иллюминаторе
+target = agr_treasure_18
+name = st_agr_rucksack_05
+description = st_agr_rucksack_05_descr
+items = ammo_5.45x39_ap, 90, ammo_9x18_pmm, 60, grenade_f1, 5
+community = bandit, bandit_enemy
+condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
+
+[agr_treasure_19] ;Сумка на опоре
+target = agr_treasure_19
+name = st_agr_rucksack_06
+description = st_agr_rucksack_06_descr
+items = af_fireball, 1, af_dummy_glassbeads, 1
+community = bandit, bandit_enemy
+condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
+
+[agr_treasure_20] ;У трёх цистерн
+target = agr_treasure_20
+name = st_agr_cross_2
+description = st_agr_cross_2_descr
+items = ammo_vog-25, 5, wpn_addon_grenade_launcher, 1, ammo_7.62x54_7h1, 30
+community = bandit, bandit_enemy
+condlist = {=actor_on_level(garbage:agroprom:agroprom_underground)} true, false
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;Quest treasure
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[agr_quest_treasure_1] ;Под забором у колючей проволоки
 target = agr_q1_n
 name = st_agr_q1_n
 description = st_agr_q1_n_descr
-items = medkit_army, 2
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_duty_base_commander) +agru_go_out_end_task_complete} true, false
-treasure_cost = 700
+items = ammo_7.62x54_ap, 300
+condlist = {=check_npc_name(agr_duty_commander) +agr_take_reward_complete} true, false
+treasure_cost = 1200
 say_item_name = false
 
-[agr_quest_treasure_2] ;Набор апгрейженных патронов для дробовика
+[agr_quest_treasure_2] ;Под выворотнем
 target = agr_q2_n
 name = st_agr_q2_n
 description = st_agr_q2_n_descr
-items = ammo_12x76_dart, 10, grenade_f1, 1, antirad, 1
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_duty_trader)} true, false
-treasure_cost = 500
+items = wpn_usp, 1, ammo_11.43x23_fmj, 100
+condlist = {=check_npc_name(agr_duty_weaponmaster)} true, false
+treasure_cost = 2600
 say_item_name = false
 
-[agr_quest_treasure_3] ;Лечебный набор
+[agr_quest_treasure_3] ;Труп в очаге радиации
 target = agr_q3_t_a
 name = st_agr_q3_t_a
 description = st_agr_q3_t_a_descr
-items = flesh_up_ab_pkm, 1
-;condlist = {=actor_on_level(agroprom) =check_npc_name(agr_duty_mechanic)} true, false
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_duty_trader)} true, false
-treasure_cost = 5000
-say_item_name = true
+items = ammo_12x76_dart, 80
+condlist = {=check_npc_name(agr_duty_weaponmaster)} true, false
+treasure_cost = 2400
+say_item_name = false
 
-[agr_quest_treasure_4] ;Антирадиционный набор
+[agr_quest_treasure_4] ;Баллоны на могиле
 target = agr_q4_n
 name = st_agr_q4_n
 description = st_agr_q4_n_descr
-items = flesh_up_cd_pkm, 1, medkit_scientic, 1
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_duty_weaponmaster)} true, false
-treasure_cost = 4000
+items = medkit_army, 4, medkit_scientic, 3, bandage, 6, yadulin, 3
+condlist = {=check_npc_name(agr_duty_trader)} true, false
+treasure_cost = 3600
 say_item_name = false
 
-[agr_quest_treasure_5] ;Набор апгрейженных патронов для пистолета
+[agr_quest_treasure_5] ;Угол ограды
 target = agr_q5_n
 name = st_agr_q5_n
 description = st_agr_q5_n_descr
-items = ammo_11.43x23_hydro, 50, grenade_f1, 1
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_duty_base_commander)} true, false
-treasure_cost = 500
+items = detector_advanced, 1
+condlist = {=check_npc_name(agr_duty_trader)} true, false
+treasure_cost = 1400
 say_item_name = false
 
-[agr_quest_treasure_6] ;Набор иных апгрейженных патронов для пистолета
+[agr_quest_treasure_6] ;Распределительный щит
 target = agr_q6_n
 name = st_agr_q6_n
 description = st_agr_q6_n_descr
-items = ammo_vog-25, 2, grenade_f1, 1
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_duty_barman)} true, false
-treasure_cost = 400
-say_item_name = true
+items = ammo_vog-25p, 7
+condlist = {=check_npc_name(agr_stalker_secret_trader)} true, false
+treasure_cost = 1600
+say_item_name = false
 
-[agr_quest_treasure_7] ;Набор апгрейженных патронов для автомата
+[agr_quest_treasure_7] ;Колода возле дерева
 target = agr_q7_n
 name = st_agr_q7_n
 description = st_agr_q7_n_descr
-items = flesh_up_ac_spas12, 1, ammo_12x76_dart, 20
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_duty_commander)} true, false
-treasure_cost = 900
-say_item_name = true
+items = vodka, 2
+condlist = {=check_npc_name(agr_duty_barman)} true, false
+treasure_cost = 2200
+say_item_name = false
 
-[agr_quest_treasure_8] ;Набор гранат
+[agr_quest_treasure_8] ;Труп в микроавтобусе
 target = agr_q8_t_a
 name = st_agr_q8_t_a
 description = st_agr_q8_t_a_descr
-items = wpn_colt1911, 1, ammo_11.43x23_hydro, 16
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_stalker_base_leader)} true, false
-treasure_cost = 1500
+items = military_outfit, 1
+condlist = {=check_npc_name(agr_stalker_base_leader)} true, false
+treasure_cost = 2400
 say_item_name = false
 
-[agr_quest_treasure_9] ;Обман
+[agr_quest_treasure_9] ;Сейф под оползнем
 target = agr_q9_n
 name = st_agr_q9_n
 description = st_agr_q9_n_descr
-items = ammo_vog-25, 3, grenade_f1, 2
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_stalker_base_trader)} true, false
-treasure_cost = 900
-say_item_name = true
+items = explosive_dinamit, 3
+condlist = {=check_npc_name(agr_stalker_base_trader)} true, false
+treasure_cost = 1800
+say_item_name = false
 
-[agr_quest_treasure_10] ;Набор разных патронов для автомата
+[agr_quest_treasure_10] ;Хабар курьера
 target = agr_q10_t_l
 name = st_agr_q10_t_l
 description = st_agr_q10_t_l_descr
-items = ammo_5.56x45_ss190, 120, ammo_5.56x45_ap, 120, grenade_f1, 1
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_stalker_base_mechanic)} true, false
-treasure_cost = 1500
+items = wpn_bm16, 1, ammo_12x70_buck, 1
+condlist = {=check_npc_name(agr_stalker_base_mechanic)} true, false
+treasure_cost = 3200
 say_item_name = false

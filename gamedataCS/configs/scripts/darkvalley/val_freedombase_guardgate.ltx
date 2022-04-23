@@ -1,0 +1,58 @@
+[logic]
+active = walker
+suitable = {=check_npc_name(val_freedombase_guardgate)}
+on_death = death
+
+[walker]
+path_walk = val_freedombase_guardgate_walk
+path_look = val_freedombase_guardgate_look
+on_info = {=dist_to_actor_le(10)} remark
+on_info2 = {+val_guard_talk} walker@talkguard_2
+on_info3 = {+start_surge_info} walker@surge_hide
+meet = meet@guardgate
+
+[remark]
+anim = threat
+target = actor
+on_game_timer = 3 | remark@1 %=play_sound(val_freedombase_guardgate_voise)%
+meet = no_meet
+
+[remark@1]
+anim = threat
+target = actor
+on_signal = sound_end | walker@talkguard
+meet = no_meet
+
+[walker@talkguard]
+path_walk = val_freedombase_guardgate_walk
+path_look = val_freedombase_guardgate_look
+on_info = {+val_guard_talk} walker@talkguard_2
+on_info2 = {+start_surge_info} walker@surge_hide
+meet = meet@guardgate
+
+[walker@talkguard_2]
+path_walk = val_freedombase_guardgate_walk
+path_look = val_freedombase_guardgate_look
+on_info = {+start_surge_info} walker@surge_hide
+meet = meet
+
+[walker@surge_hide]
+path_walk = val_smart_terrain_7_4_surge_hide_1
+on_info = {+surge_finished_info} walker
+meet = no_meet
+
+[meet@guardgate]
+meet_state = 5 | guard@nil
+meet_state_wpn = 5 | threat@meet_weapon_wait
+victim = 5 | actor
+victim_wpn = 5 | actor
+meet_dialog = val_guard_dialog
+
+[meet]
+meet_state = 5 | guard@nil
+meet_state_wpn = 5 | threat@meet_weapon_wait
+victim = 5 | actor
+victim_wpn = 5 | actor
+
+[death]
+on_info = %+val_freedombase_guardgate_dead%

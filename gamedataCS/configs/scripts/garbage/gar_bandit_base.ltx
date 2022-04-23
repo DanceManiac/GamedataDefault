@@ -1,6 +1,9 @@
+; DC300516: Made it so a squad leader cannot be a crowkiller minigame commentator.
+;           This should prevent situations where the commentator's buddies end up having to wait for him forever and stalling the faction war.
+
 [logic@commentator_1]
 active = walker@main_commentator_1
-suitable = {-gar_bandit_base_minigame_dead !is_smart_in_combat(gar_smart_terrain_3_5) =npc_community(bandit)}
+suitable = {-gar_bandit_base_minigame_dead !is_smart_in_combat(gar_smart_terrain_3_5) !npc_is_squad_leader =npc_community(bandit)}	; DC300516
 prior = 110
 
 [walker@main_commentator_1]
@@ -8,23 +11,30 @@ path_walk = bandit_commentator_1_walk
 path_look = bandit_commentator_1_look
 def_state_standing = sit_knee
 meet = meet
-on_info = {=check_crowkiller_state(started)} %=play_sound(gar_bandit_minigame_comment_prepare)%
+on_info = {=check_crowkiller_state(started)} %=play_sound(gar_bandit_minigame_comment_prepare:bandit:gar_smart_terrain_3_5)%
 on_signal = sound_end | walker@finished_commentator_1 %+gar_bandit_base_commentator_response%
+on_info2 = {+start_surge_info} kamp@surge_hide_1
 
 [walker@finished_commentator_1]
 path_walk = bandit_commentator_1_walk
 path_look = bandit_commentator_1_look
 def_state_standing = sit_knee
 meet = meet
-on_info  = {=check_crowkiller_state(finished) =crowkiller_winned +gar_bandit_base_minigame_talked_at_end} walker@main_commentator_1 %=play_sound(gar_bandit_minigame_comment_win) -gar_bandit_base_minigame_talked_at_end%
-on_info2 = {=check_crowkiller_state(finished) !crowkiller_winned +gar_bandit_base_minigame_talked_at_end} walker@main_commentator_1 %=play_sound(gar_bandit_minigame_comment_lose) -gar_bandit_base_minigame_talked_at_end%
+on_info  = {=check_crowkiller_state(finished) =crowkiller_winned +gar_bandit_base_minigame_talked_at_end} walker@main_commentator_1 %=play_sound(gar_bandit_minigame_comment_win:bandit:gar_smart_terrain_3_5) -gar_bandit_base_minigame_talked_at_end%
+on_info2 = {=check_crowkiller_state(finished) !crowkiller_winned +gar_bandit_base_minigame_talked_at_end} walker@main_commentator_1 %=play_sound(gar_bandit_minigame_comment_lose:bandit:gar_smart_terrain_3_5) -gar_bandit_base_minigame_talked_at_end%
 on_info3 = {=check_crowkiller_state(breaked)} walker@main_commentator_1
+
+[kamp@surge_hide_1]
+center_point = kamp_1
+path_walk = kamp_1_task
+on_info = {-start_surge_info} walker@main_commentator_1
+meet = no_meet
 
 ;------------------------------------------
 
 [logic@commentator_2]
 active = walker@main_commentator_2
-suitable = {-gar_bandit_base_minigame_dead !is_smart_in_combat(gar_smart_terrain_3_5) =npc_community(bandit)}
+suitable = {-gar_bandit_base_minigame_dead !is_smart_in_combat(gar_smart_terrain_3_5) !npc_is_squad_leader =npc_community(bandit)}	; DC300516
 prior = 110
 
 [walker@main_commentator_2]
@@ -32,15 +42,22 @@ path_walk = bandit_commentator_2_walk
 path_look = bandit_commentator_2_look
 def_state_standing = sit_ass
 meet = meet
-on_info = {+gar_bandit_base_commentator_response =check_crowkiller_state(started)} %=play_sound(gar_bandit_minigame_comment_prepare_response) -gar_bandit_base_commentator_response%
+on_info = {+gar_bandit_base_commentator_response =check_crowkiller_state(started)} %=play_sound(gar_bandit_minigame_comment_prepare_response:bandit:gar_smart_terrain_3_5) -gar_bandit_base_commentator_response%
 on_signal = sound_end | walker@shooting_commentator_2
+on_info2 = {+start_surge_info} kamp@surge_hide_2
 
 [walker@shooting_commentator_2]
 path_walk = bandit_commentator_2_walk
 path_look = bandit_commentator_2_look
 def_state_standing = sit_ass
 meet = meet
-on_timer = 5000 | {=check_crowkiller_state(running)} %=play_sound(gar_bandit_minigame_comment_shooting)%, {=check_crowkiller_state(finished)} walker@main_commentator_2, {=check_crowkiller_state(breaked)} walker@main_commentator_2
+on_timer = 5000 | {=check_crowkiller_state(running)} %=play_sound(gar_bandit_minigame_comment_shooting:bandit:gar_smart_terrain_3_5)%, {=check_crowkiller_state(finished)} walker@main_commentator_2, {=check_crowkiller_state(breaked)} walker@main_commentator_2
+
+[kamp@surge_hide_2]
+center_point = kamp_1
+path_walk = kamp_1_task
+on_info = {-start_surge_info} walker@main_commentator_2
+meet = no_meet
 
 ;------------------------------------------
 

@@ -58,6 +58,30 @@ function is_factions_enemies(faction, faction_to)
 	end
 end
 
+function is_faction_enemy_to_actor(faction)
+	if faction ~= nil then
+		return relation_registry.community_goodwill(faction, db.actor:id()) <= ENEMIES
+	else
+		return false
+	end
+end
+
+function is_npc_enemy_to_actor(npc)
+	if db.actor and npc then
+		return npc:relation(db.actor) == game_object.enemy
+	else
+		return false
+	end
+end
+
+function is_npc_or_faction_enemy_to_actor(npc)
+	if db.actor and npc then
+		return relation_registry.community_goodwill(npc:character_community(), db.actor:id()) <= ENEMIES or npc:relation(db.actor) == game_object.enemy
+	else
+		return false
+	end
+end
+
 function get_npcs_relation(npc1, npc2)
 	return npc1 and npc2 and npc1:relation(npc2)
 end
@@ -97,7 +121,7 @@ function set_squad_goodwill(squad_id, new_goodwill)
 	local board = sim_board.get_sim_board()
     local goodwill = 0
     if(new_goodwill=="enemy") then
-        goodwill = -1000
+        goodwill = -3000
     elseif(new_goodwill=="friend") then
         goodwill = 1000
     end
@@ -114,7 +138,7 @@ function set_squad_goodwill(squad_id, new_goodwill)
 	    end
 	    board.squads[squad_id].relationship = new_goodwill
 	else
-		abort("There is no squad [%s] in sim_board", squad_id)
+		--abort("There is no squad [%s] in sim_board", squad_id)
 	end
 end
 

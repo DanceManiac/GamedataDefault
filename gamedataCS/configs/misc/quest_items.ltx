@@ -1,102 +1,342 @@
-[device_pda_fang]:device_pda
-$spawn 				= "quest_items\pda_fang"
-$prefetch 			= 16
-description			= st_device_pda_fang_descr
-inv_name			= st_device_pda_fang
-inv_name_short		= st_device_pda_fang
-can_trade			= false
-quest_item      	= true
+;--------------------------------------------------------------------------------
+;-------------------- STORYLINE
+;--------------------------------------------------------------------------------
 
 [esc_trader_habar]:device_pda
-$spawn 				= "quest_items\esc_trader_habar"
-$prefetch 			= 16
-visual				= dynamics\devices\dev_instrument_1\dev_instrument_1.ogf
-
-inv_name			= st_esc_trader_habar_name
-inv_name_short		= st_esc_trader_habar_name
-description			= st_esc_trader_habar_desc
-inv_weight			= 0.5
-
-inv_grid_width		= 2
-inv_grid_height		= 2
-inv_grid_x			= 10
-inv_grid_y			= 25
-cost				= 2000
-can_trade			= false
-quest_item      	= true
-
-[device_pda_military]:device_pda
-$spawn 				= "quest_items\device_pda_military"
-$prefetch 			= 16
-description			= st_device_pda_military_descr
-inv_name			= st_device_pda_military
-inv_name_short			= st_device_pda_military
-can_trade			= true
-quest_item      		= true
-cost				= 1000
-
-[device_pda_old]:device_pda
-$spawn 				= "quest_items\pda_old"
-$prefetch 			= 16
-description			= device_pda_old_descr
-inv_name			= device_pda_old
-inv_name_short		= device_pda_old
-can_trade			= false
-quest_item      	= true
-
-[device_pda_garbage_traitor]:device_pda
-$spawn 				= "quest_items\pda_garbage_traitor"
-$prefetch 			= 16
-description			= device_pda_garbage_traitor_descr
-inv_name			= device_pda_garbage_traitor
-inv_name_short		= device_pda_garbage_traitor
-can_trade			= false
-quest_item      	= true
-
-[device_pda_comendant]:device_pda
-$spawn 				= "quest_items\pda_comendant"
-$prefetch 			= 16
-description			= st_device_pda_comendant_desc
-inv_name			= st_device_pda_comendant_name
-inv_name_short		= st_device_pda_comendant_name
-can_trade			= false
-quest_item      	= true
-
-[device_pda_freedom]:device_pda
-$spawn 				= "quest_items\pda_freedom"
-$prefetch 			= 16
-description			= st_device_pda_freedom_desc
-inv_name			= st_device_pda_freedom
-inv_name_short		= st_device_pda_freedom
-can_trade			= false
-quest_item      	= true
-
-[device_pda_bloodsucker]:device_pda
-$spawn 				= "quest_items\pda_bloodsucker"
-$prefetch 			= 16
-description			= st_device_pda_bloodsucker_desc
-inv_name			= st_device_pda_bloodsucker_name
-inv_name_short		= st_device_pda_bloodsucker_name
-can_trade			= false
-quest_item      	= true
+$spawn 								= "quest_items\esc_trader_habar"
+$prefetch 							= 16
+visual								= equipments\quest_item_safe_container.ogf
+description							= st_esc_trader_habar_descr
+inv_name							= st_esc_trader_habar_name
+inv_name_short						= st_esc_trader_habar_short
+inv_weight							= 3.2
+inv_grid_width						= 2
+inv_grid_height						= 2
+inv_grid_x							= 0
+inv_grid_y							= 26
+cost								= 2000
+can_trade							= false
+quest_item      					= true
 
 [device_pda_digger]:device_pda
-$spawn 				= "quest_items\pda_digger"
-$prefetch 			= 16
-description			= device_pda_digger_descr
-inv_name			= device_pda_digger_name
-inv_name_short		= device_pda_digger_name
-can_trade			= false
-quest_item      	= true
+$spawn 								= "quest_items\pda_digger"
+$prefetch 							= 16
+visual				                        = dynamics\equipments\documents_1.ogf
+inv_weight			                        = 0.2
+description							= st_device_pda_digger_descr
+inv_name							= st_device_pda_digger_name
+inv_name_short						= st_pda_name
+inv_grid_width						= 2
+inv_grid_height						= 1
+inv_grid_x						= 7
+inv_grid_y						= 25
+cost 				                        = 4000
+can_trade						= false
+quest_item      					= true
+
+[device_pda_freedom]:device_pda
+$spawn 								= "quest_items\pda_freedom"
+$prefetch 							= 16
+description							= st_device_pda_freedom_descr
+inv_name							= st_device_pda_freedom
+inv_name_short						= st_pda_name
+cost								= 1000
+can_trade							= false
+quest_item      					= true
+
+[device_pda_comendant]:device_pda
+$spawn 								= "quest_items\pda_comendant"
+$prefetch 							= 16
+description							= st_device_pda_comendant_descr
+inv_name							= st_device_pda_comendant_name
+inv_name_short						= st_pda_name
+cost								= 1000
+can_trade							= false
+quest_item      					= true
+
+[device_pda_fang]:device_pda
+$spawn 								= "quest_items\pda_fang"
+$prefetch 							= 16
+description							= st_device_pda_fang_descr
+inv_name							= st_device_pda_fang
+inv_name_short						= st_pda_name
+cost								= 1000
+can_trade							= false
+quest_item      					= true
+
+[device_pda_strelok]:device_pda
+$spawn 								= "quest_items\pda_strelok"
+$prefetch 							= 16
+description							= st_device_pda_strelok_descr
+inv_name							= st_device_pda_strelok
+inv_name_short						= st_pda_name
+cost								= 1000
+can_trade							= false
+quest_item      					= true
 
 [red_forest_pda_map]:device_pda
-$spawn 				= "quest_items\red_forest_pda_map"
-visual				= dynamics\devices\dev_pda\dev_pda.ogf
-description			= st_red_forest_pda_map_descr
-inv_name			= st_red_forest_pda_map
-inv_name_short		= st_red_forest_pda_map
-;can_trade			= false
-cost 				= 2000
+$spawn 								= "quest_items\red_forest_pda_map"
+visual								= dynamics\devices\dev_pda\dev_pda.ogf
+description							= st_red_forest_pda_map_descr
+inv_name							= st_red_forest_pda_map
+inv_name_short						= st_pda_name
+cost								= 1000
+can_trade							= false
+quest_item      					= true
+
+;--------------------------------------------------------------------------------
+;-------------------- ADDITIONAL QUESTS
+;--------------------------------------------------------------------------------
+
+[device_pda_military]:device_pda
+$spawn 								= "quest_items\device_pda_military"
+$prefetch 							= 16
+description							= st_device_pda_military_descr
+inv_name							= st_device_pda_military
+inv_name_short						= st_pda_name
+can_trade							= false
+quest_item      					= true
+cost					= 1000
+
+[device_pda_old]:device_pda
+$spawn 								= "quest_items\pda_old"
+$prefetch 							= 16
+description							= st_device_pda_old_descr
+inv_name							= st_device_pda_old
+inv_name_short						= st_pda_name
+can_trade							= false
+quest_item      					= true
+cost					= 1000
+
+[device_pda_garbage_traitor]:device_pda
+$spawn 								= "quest_items\pda_garbage_traitor"
+$prefetch 							= 16
+description							= st_device_pda_garbage_traitor_descr
+inv_name							= st_device_pda_garbage_traitor
+inv_name_short						= st_pda_name
+can_trade							= false
+quest_item      					= true
+cost					= 1000
+
+[device_pda_bloodsucker]:dev_flash_1
+$spawn 								= "quest_items\pda_bloodsucker"
+$prefetch 							= 16
+description							= st_device_pda_bloodsucker_descr
+inv_name							= st_device_pda_bloodsucker_name
+inv_name_short						= st_pda_name
+can_trade							= false
+quest_item      					= true
+cost					= 2000
+
+[esc_device_pda_driver]:device_pda
+$spawn 								= "quest_items\esc_device_pda_driver"
+visual								= dynamics\devices\dev_pda\dev_pda.ogf
+description							= st_esc_device_pda_driver_descr
+inv_name							= st_esc_device_pda_driver
+inv_name_short						= st_pda_name
+can_trade							= false
+quest_item      					= true
+cost					= 1000
+
+[esc_mechanic_flash_card]:dev_flash_1
+$spawn 								= "quest_items\esc_mechanic_flash_card"
+description 							= st_esc_mechanic_flash_card_descr
+inv_name 							= st_esc_mechanic_flash_card
+inv_name_short 						= st_esc_mechanic_flash_card
+can_trade							= false
+quest_item      					= true
+cost					= 2000
+
+[agr_map_animals]:device_pda
+$spawn 								= "quest_items\agr_map_animals"
+visual								= dynamics\devices\dev_pda\dev_pda.ogf
+description							= st_agr_map_animals_descr
+inv_name							= st_agr_map_animals
+inv_name_short						= st_pda_name
+can_trade							= false
+quest_item      					= true
+cost					= 1000
+
+[agr_pda_for_secret_trader]:device_pda
+$spawn 								= "quest_items\agr_mechanic_pda_for_secret_trader"
+visual								= dynamics\devices\dev_pda\dev_pda.ogf
+description							= st_agr_pda_for_secret_trader_descr
+inv_name							= st_agr_pda_for_secret_trader
+inv_name_short						= st_pda_name
+can_trade							= false
+quest_item      					= true
+cost					= 1000
+
+;--------------------------------------------------------------------------------
+;-------------------- OGSM CS
+;--------------------------------------------------------------------------------
+
+[document]:device_pda
+$spawn = "documents\document"
+visual = dynamics\equipments\documents_2.ogf
+inv_name = Document
+inv_name_short = Document
+description = doc_descr_general
+inv_weight = 0.05
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 2
+inv_grid_y = 25
+cost = 3000
+
+[doc_01]:document
+$spawn = "documents\doc_01"
+inv_name = doc_01
+inv_name_short = doc_01
+
+[doc_02]:document
+$spawn = "documents\doc_02"
+inv_name = doc_02
+inv_name_short = doc_02
+
+[doc_03]:document
+$spawn = "documents\doc_03"
+inv_name = doc_03
+inv_name_short = doc_03
+
+[doc_04]:document
+$spawn = "documents\doc_04"
+inv_name = doc_04
+inv_name_short = doc_04
+
+[doc_05]:document
+$spawn = "documents\doc_05"
+inv_name = doc_05
+inv_name_short = doc_05
+
+[doc_06]:document
+$spawn = "documents\doc_06"
+inv_name = doc_06
+inv_name_short = doc_06
+
+[doc_07]:document
+$spawn = "documents\doc_07"
+inv_name = doc_07
+inv_name_short = doc_07
+
+[doc_08]:document
+$spawn = "documents\doc_08"
+inv_name = doc_08
+inv_name_short = doc_08
+
+[doc_09]:document
+$spawn = "documents\doc_09"
+inv_name = doc_09
+inv_name_short = doc_09
+
+[doc_10]:document
+$spawn = "documents\doc_10"
+inv_name = doc_10
+inv_name_short = doc_10
+
+[doc_11]:document
+$spawn = "documents\doc_11"
+inv_name = doc_11
+inv_name_short = doc_11
+
+[doc_12]:document
+$spawn = "documents\doc_12"
+inv_name = doc_12
+inv_name_short = doc_12
+
+[doc_13]:document
+$spawn = "documents\doc_13"
+inv_name = doc_13
+inv_name_short = doc_13
+
+[doc_14]:document
+$spawn = "documents\doc_14"
+inv_name = doc_14
+inv_name_short = doc_14
+
+[doc_15]:document
+$spawn = "documents\doc_15"
+inv_name = doc_15
+inv_name_short = doc_15
+
+
+
+[ammo_package]:device_pda
+$spawn 								= "quest_items\ammo_package"
+$prefetch 							= 16
+visual								= equipments\item_rukzak.ogf
+description							= st_ammo_package_descr
+inv_name							= st_ammo_package_name
+inv_name_short							= st_ammo_package_short
+inv_weight							= 20.0
+inv_grid_width							= 2
+inv_grid_height							= 2
+inv_grid_x							= 0
+inv_grid_y							= 10
+cost								= 2000
+can_trade							= false
+quest_item      						= false
+
+
+[products_package]:ammo_package
+$spawn 								= "quest_items\products_package"
+description							= st_products_package_descr
+inv_name							= st_products_package_name
+inv_name_short							= st_products_package_short
+
+;--------------------------------------------------------------------------------
+;-------------------- OGSM 1.8 CS CE (OGSM 1.8 CS CE Fixes)
+;--------------------------------------------------------------------------------
+
+[ashot_ammo_package]:ammo_package
+
+[item_electro_charge]:device_pda
+$spawn 								= "quest_items\item_electro_charge"
+visual								= equipments\quest_item_electro_charge.ogf
+description							= st_item_electro_charge_descr
+inv_name							= st_item_electro_charge
+inv_name_short						= st_item_electro_charge
+inv_grid_x         					= 9
+inv_grid_y        	 				= 26
+cost								= 1000
+can_trade							= false
+quest_item      					= true
+
+[gar_digger_dead_pda]:device_pda
+$spawn 								= "quest_items\gar_digger_dead_pda"
+description							= st_gar_digger_dead_pda_descr
+inv_name							= st_gar_digger_dead_pda
+inv_name_short						= st_pda_name
+cost								= 1000
+can_trade							= true
+quest_item      					= false
+
+[gar_digger_messenger_pda]:device_pda
+$spawn 								= "quest_items\gar_digger_messenger_pda"
+description							= st_gar_digger_messenger_pda_descr
+inv_name							= st_gar_digger_messenger_pda
+inv_name_short						= st_pda_name
+cost								= 1000
+can_trade							= true
+quest_item      					= false
+
+[val_bandit_spy_quest_pda]:device_pda
+$spawn 								= "quest_items\val_bandit_spy_quest_pda"
+description							= st_val_bandit_spy_quest_pda_descr
+inv_name							= st_val_bandit_spy_quest_pda
+inv_name_short						= st_pda_name
+cost								= 1000
+can_trade							= false
+quest_item      					= true
+
+[yan_stalker_dead_pda]:device_pda
+$spawn 								= "quest_items\yan_stalker_dead_pda"
+description							= st_yan_stalker_dead_pda_descr
+inv_name							= st_yan_stalker_dead_pda
+inv_name_short						= st_pda_name
+cost								= 1000
+can_trade							= true
+quest_item      					= false
 
 ;*************************************************************************
 ;**			Предметы для квестов "Вернуть предмет"
@@ -106,15 +346,24 @@ cost 				= 2000
 ;*************************************************************************
 
 [mar_quest_wpn_pm_1]:wpn_pm
-$spawn = "quest_items\mar_quest_wpn_pm_1"		; option for Level Editor
+$spawn = "quest_items\mar_quest_wpn_pm_1"
+inv_name			= st_mar_quest_wpn_pm_1
+inv_name_short		= st_mar_quest_wpn_pm_1
+description			= st_mar_quest_wpn_pm_1_descr
+upgrades                	= up_gr_ab_pm, up_gr_cd_pm, up_gr_e_pm, up_gr_f_pm
+installed_upgrades      	= up_b_pm, up_d_pm, up_bd_pm
+upgrade_scheme          	= upgrade_scheme_u10a_ogsm
 can_trade			= false
 
 [mar_quest_wpn_ak74u_1]:wpn_ak74u
-$spawn               = "quest_items\mar_quest_wpn_ak74u_1"   ; name and section in level editor
+$spawn               = "quest_items\mar_quest_wpn_ak74u_1"
+inv_name			= st_wpn_ak74u
+inv_name_short		= st_wpn_ak74u
+description			= st_wpn_ak74u_pda_descr
 can_trade			= false
 
 [mar_quest_af_cristall_flower_1]:af_cristall_flower
-$spawn               = "quest_items\mar_quest_af_cristall_flower_1"   ; name and section in level editor
+$spawn               = "quest_items\mar_quest_af_cristall_flower_1"
 can_trade			= false
 
 [mar_quest_scout_pda]:device_pda
@@ -125,26 +374,14 @@ inv_name			= st_mar_quest_scout_pda_name
 inv_name_short		= st_mar_quest_scout_pda_name
 can_trade			= false
 
-[mar_quest_novice_outfit_1]:novice_outfit
-$spawn               = "quest_items\mar_quest_novice_outfit_1"   ; name and section in level editor
+[mar_quest_novice_outfit_1]:cs_novice_outfit
+$spawn               = "quest_items\mar_quest_novice_outfit_1"
+inv_name			= st_mar_quest_novice_outfit_1
+inv_name_short		= st_mar_quest_novice_outfit_1
+description			= st_mar_quest_novice_outfit_1_descr
+chemical_burn_protection 		= 0.06
+chemical_burn_immunity			= 0.06
 can_trade			= false
-
-;*************************************************************************
-;**					Military
-;*************************************************************************
-
-[mil_quest_af_fuzz_kolobok]:af_fuzz_kolobok
-$spawn               = "quest_items\mil_quest_af_fuzz_kolobok"
-can_trade			= false
-
-[mil_device_pda_lost_squard]:device_pda
-$spawn 				= "quest_items\mil_device_pda_lost_squard"
-visual				= dynamics\devices\dev_pda\dev_pda.ogf
-description			= st_mil_device_pda_lost_squard_descr
-inv_name			= st_mil_device_pda_lost_squard
-inv_name_short		= st_mil_device_pda_lost_squard
-can_trade			= false
-
 
 ;*************************************************************************
 ;**					Escape
@@ -153,98 +390,55 @@ can_trade			= false
 [esc_quest_magic_vodka]:device_pda
 $spawn 				= "quest_items\esc_quest_magic_vodka"
 visual				= dynamics\devices\dev_vodka\dev_vodka.ogf
-
 inv_grid_width		= 1
-inv_grid_height		= 2
-inv_grid_x			= 5
-inv_grid_y			= 2
-cost				= 200
+inv_grid_height		= 1
+inv_grid_x			= 0
+inv_grid_y			= 1
+cost				= 150
 can_trade			= false
-
-inv_weight			= 0.2
-
+inv_weight			= 0.5
 description			= st_esc_quest_magic_vodka_descr
 inv_name			= st_esc_quest_magic_vodka
 inv_name_short		= st_esc_quest_magic_vodka
 
-
-[esc_quest_akm47]:wpn_ak74
-$spawn 				= "quest_items\esc_quest_akm_47"        ; name and section in level editor
+[esc_quest_akm47]:wpn_akm
+$spawn 				= "quest_items\esc_quest_akm_47"
 description			= st_esc_quest_akm47_descr
-inv_name          	= st_esc_quest_akm47                    ; name in inventory
+inv_name          	= st_esc_quest_akm47
 inv_name_short    	= st_esc_quest_akm47
-
-ammo_class			= ammo_7.62x54_7h1, ammo_pkm_100
-
-upgrades            = 
-installed_upgrades  =
-upgrade_scheme      = 
-fire_dispersion_base = 0.5
+fire_dispersion_base = 1.0
 hit_power            = 0.8, 0.8, 0.8, 0.8
+cost					= 1200
 can_trade			= false
 
 [esc_quest_luky_detector]:detector_simple
 $spawn 				= "quest_items\esc_quest_luky_detector"
+visual				= equipments\quest_item_luky_detector.ogf
 description		= st_esc_quest_luky_detector_descr
 inv_name		= st_esc_quest_luky_detector
 inv_name_short	= st_esc_quest_luky_detector
+inv_grid_width			= 1
+inv_grid_height			= 1
+inv_grid_x				= 1
+inv_grid_y				= 25
+cost					= 550
 can_trade			= false
+hud				= esc_quest_luky_detector_hud
+[esc_quest_luky_detector_hud]:detector_simple_hud
+item_visual                 = dynamics\devices\dev_detector_4\dev_detector_4_hud
 
 [esc_quest_spec_medkit]:device_pda
 $spawn 				= "quest_items\esc_quest_spec_medkit"
-visual				= dynamics\devices\dev_aptechka\dev_aptechka_high.ogf
+visual				= equipments\quest_item_spec_medkit.ogf
 description			= st_esc_quest_spec_medkit_descr
 inv_name			= st_esc_quest_spec_medkit
 inv_name_short		= st_esc_quest_spec_medkit
-inv_weight			= 0.1
-
-inv_grid_width		= 2
+inv_weight			= 0.3
+inv_grid_width		= 1
 inv_grid_height		= 1
-inv_grid_x			= 16
-inv_grid_y			= 20
-cost				= 1000
-can_trade			= false
-
-[esc_device_pda_driver]:device_pda
-$spawn 				= "quest_items\esc_device_pda_driver"
-visual				= dynamics\devices\dev_pda\dev_pda.ogf
-description			= st_esc_device_pda_driver_descr
-inv_name			= st_esc_device_pda_driver
-inv_name_short		= st_esc_device_pda_driver
-can_trade			= false
-
-;****** old items *** not in use ********
-
-[esc_mechanic_flash_card_1]:device_pda
-$spawn 				= "quest_items\esc_mechanic_flash_card_1"
-visual				= dynamics\devices\dev_pda\dev_pda.ogf
-description			= st_upg_porsh_recoil_descr
-inv_name			= st_esc_mechanic_flash_card_1
-inv_name_short		= st_esc_mechanic_flash_card_1
-can_trade			= false
-
-[esc_mechanic_flash_card_2]:device_pda
-$spawn 				= "quest_items\esc_mechanic_flash_card_2"
-visual				= dynamics\devices\dev_pda\dev_pda.ogf
-description			= st_upg_auto_rpm2_descr
-inv_name			= st_esc_mechanic_flash_card_2
-inv_name_short			= st_esc_mechanic_flash_card_2
-can_trade			= false
-
-[esc_mechanic_flash_card_3]:device_pda
-$spawn 				= "quest_items\esc_mechanic_flash_card_3"
-visual				= dynamics\devices\dev_pda\dev_pda.ogf
-description			= st_upg_charger_big_descr
-inv_name			= st_esc_mechanic_flash_card_3
-inv_name_short			= st_esc_mechanic_flash_card_3
-can_trade			= false
-
-[esc_mechanic_flash_card_4]:device_pda
-$spawn 				= "quest_items\esc_mechanic_flash_card_4"
-visual				= dynamics\devices\dev_pda\dev_pda.ogf
-description			= st_upg_charger_big_descr
-inv_name			= st_esc_mechanic_flash_card_4
-inv_name_short		= st_esc_mechanic_flash_card_4
+inv_grid_x			= 9
+inv_grid_y			= 25
+cost				= 2500
 can_trade			= false
 
 ;*************************************************************************
@@ -253,36 +447,32 @@ can_trade			= false
 
 [gar_quest_wpn_wincheaster1300]:wpn_wincheaster1300
 $spawn 				= "quest_items\gar_quest_wpn_wincheaster1300"
-
 description			= st_gar_quest_wpn_wincheaster1300_descr
 inv_name			= st_gar_quest_wpn_wincheaster1300
 inv_name_short		= st_gar_quest_wpn_wincheaster1300
 can_trade			= false
+cost					= 500
 
 [gar_quest_wpn_desert_eagle]:wpn_desert_eagle
 $spawn 				= "quest_items\gar_quest_wpn_desert_eagle"
-
 description			= st_gar_quest_wpn_desert_eagle_descr
 inv_name			= st_gar_quest_wpn_desert_eagle
 inv_name_short		= st_gar_quest_wpn_desert_eagle
-
-upgrades                = up_gr_ab_desert_eagle, up_gr_cd_desert_eagle, up_gr_e_desert_eagle, up_gr_f_desert_eagle, up_gr_g_desert_eagle
-installed_upgrades      = up_b_desert_eagle, up_d_desert_eagle, up_e_desert_eagle, up_f_desert_eagle, up_g_desert_eagle, up_bd_desert_eagle
-upgrade_scheme          = upgrade_scheme_u9
+upgrades                = up_gr_ab_desert_eagle, up_gr_cd_desert_eagle, up_gr_e_desert_eagle, up_gr_f_desert_eagle
+installed_upgrades      = up_a_desert_eagle, up_c_desert_eagle, up_e_desert_eagle
+upgrade_scheme          = upgrade_scheme_u10a_ogsm
 can_trade			= false
+cost					= 1500
 
 [gar_quest_vodka_2]:device_pda
 $spawn 				= "quest_items\gar_quest_vodka_2"
 visual				= dynamics\devices\dev_vodka\dev_vodka.ogf
-
 inv_grid_width		= 1
-inv_grid_height		= 2
-inv_grid_x			= 5
-inv_grid_y			= 2
-cost				= 20
-
-inv_weight			= 0.2
-
+inv_grid_height		= 1
+inv_grid_x			= 0
+inv_grid_y			= 1
+cost				= 200
+inv_weight			= 0.5
 description			= st_gar_quest_vodka_2_descr
 inv_name			= st_gar_quest_vodka_2
 inv_name_short		= st_gar_quest_vodka_2
@@ -290,15 +480,21 @@ can_trade			= false
 
 [gar_quest_novice_outfit]:novice_outfit
 $spawn 				= "quest_items\gar_quest_novice_outfit"
+visual          		= dynamics\outfit\stalker_novice_outfit_green
+actor_visual			= actors\stalker_hero\stalker_hero_neutral_novice_green.ogf
+player_hud_section		= actor_hud_neutral_outfit_green
 inv_name			= st_gar_quest_novice_outfit
 inv_name_short		= st_gar_quest_novice_outfit
 description			= st_gar_quest_novice_outfit_descr
+inv_grid_width		= 2
+inv_grid_height		= 2
+inv_grid_x			= 13
+inv_grid_y			= 27
 can_trade			= false
-
+cost					= 750
 immunities_sect			= sect_gar_quest_novice_outfit_immunities
-
 [sect_gar_quest_novice_outfit_immunities]
-burn_immunity				= 0.0			;коэффициенты иммунитета самого костюма
+burn_immunity				= 0.0
 strike_immunity				= 0.0
 shock_immunity				= 0.0
 wound_immunity				= 0.001
@@ -314,6 +510,7 @@ inv_name			= st_gar_quest_wpn_pm
 inv_name_short		= st_gar_quest_wpn_pm
 description			= st_gar_quest_wpn_pm_descr
 can_trade			= false
+cost					= 750
 
 ;*************************************************************************
 ;**					Dark valley
@@ -324,10 +521,8 @@ $spawn 				= "quest_items\val_quest_scope_x8"
 description		= st_val_quest_scope_x8_descr
 inv_name		= st_val_quest_scope_x8
 inv_name_short	= st_val_quest_scope_x8
-
-cost			= 3000
-
-scope_zoom_factor	= 10		;ПСО-1 2X
+cost			= 2000
+scope_zoom_factor	= 10
 can_trade			= false
 
 [val_quest_flash_movies]:dev_flash_2
@@ -336,24 +531,28 @@ inv_name			= st_val_quest_flash_movies
 inv_name_short		= st_val_quest_flash_movies
 description			= st_val_quest_flash_movies_descr
 can_trade			= false
+cost					= 1500
 
-[val_quest_guitar_serg]:guitar_a
+[val_quest_guitar_serg]:guitar_b
 $spawn 				= "quest_items\val_quest_guitar_serg"
 inv_name				= st_val_quest_guitar_serg
 inv_name_short			= st_val_quest_guitar_serg
 description				= st_val_quest_guitar_serg_descr
 can_trade			= false
+cost					= 500
 
 ;*************************************************************************
 ;**					Agroprom
 ;*************************************************************************
 
-[agr_quest_wpn_spas12]:wpn_spas12
+[agr_quest_wpn_spas12]:wpn_saiga
 $spawn 				= "quest_items\agr_quest_wpn_spas12"
-inv_name				= st_agr_quest_wpn_spas12
+inv_name			= st_agr_quest_wpn_spas12
 inv_name_short			= st_agr_quest_wpn_spas12
-description				= st_agr_quest_wpn_spas12_descr
+description			= st_agr_quest_wpn_spas12_descr
+condition_shot_dec = 0.00006
 can_trade			= false
+cost					= 1000
 
 [agr_quest_duty_secret_pda]:device_pda
 $spawn 				= "quest_items\agr_quest_duty_secret_pda"
@@ -361,6 +560,7 @@ description			= st_agr_quest_duty_secret_pda_descr
 inv_name			= st_agr_quest_duty_secret_pda
 inv_name_short		= st_agr_quest_duty_secret_pda
 can_trade			= false
+cost					= 1000
 
 [agr_quest_duty_case]:device_pda
 $spawn 				= "quest_items\agr_quest_duty_case"
@@ -368,15 +568,13 @@ $prefetch 			= 16
 description			= st_agr_quest_duty_case_descr
 inv_name			= st_agr_quest_duty_case
 inv_name_short		= st_agr_quest_duty_case
-
-cost 				= 2000
-
-visual				= dynamics\devices\dev_instrument_1\dev_instrument_1.ogf
-
+inv_weight			= 7.5
+cost 				= 1000
+visual				= equipments\quest_item_duty_container.ogf
 inv_grid_width		= 2
 inv_grid_height		= 2
-inv_grid_x			= 10
-inv_grid_y			= 25
+inv_grid_x			= 2
+inv_grid_y			= 26
 can_trade			= false
 
 [agr_quest_duty_abakan]:wpn_abakan
@@ -385,24 +583,8 @@ description			= st_agr_quest_duty_abakan_descr
 inv_name			= st_agr_quest_duty_abakan
 inv_name_short		= st_agr_quest_duty_abakan
 can_trade			= false
+cost					= 1000
 
-[agr_pda_for_secret_trader]:device_pda
-$spawn 				= "quest_items\agr_mechanic_pda_for_secret_trader"
-visual				= dynamics\devices\dev_pda\dev_pda.ogf
-description			= st_agr_pda_for_secret_trader_descr
-inv_name			= st_agr_pda_for_secret_trader
-inv_name_short		= st_agr_pda_for_secret_trader
-can_trade			= false
-
-[agr_map_animals]:device_pda
-$spawn 				= "quest_items\agr_map_animalsr"
-visual				= dynamics\devices\dev_pda\dev_pda.ogf
-description			= st_agr_map_animals_descr
-inv_name			= st_agr_map_animals
-inv_name_short		= st_agr_map_animals
-can_trade			= false
-
-;****** old device *** not in use ********
 [agr_mechanic_pda]:device_pda
 $spawn 				= "quest_items\agr_mechanic_pda"
 visual				= dynamics\devices\dev_pda\dev_pda.ogf
@@ -410,6 +592,17 @@ description			= st_agr_mechanic_pda_descr
 inv_name			= st_agr_mechanic_pda
 inv_name_short		= st_agr_mechanic_pda
 can_trade			= false
+cost					= 2500
+
+[agr_quest_af_dummy_battery_1]:af_dummy_battery
+$spawn 				= "quest_items\agr_quest_af_dummy_battery_1"
+can_trade			= false
+cost					= 2000
+
+[agr_quest_af_fuzz_kolobok_1]:af_fuzz_kolobok
+$spawn 				= "quest_items\agr_quest_af_fuzz_kolobok_1"
+can_trade			= false
+cost					= 2000
 
 ;*************************************************************************
 ;**					Yantar
@@ -420,26 +613,33 @@ $spawn 				= "quest_items\yan_quest_ammo_sleep"
 description			= st_yan_quest_ammo_sleep_descr
 inv_name			= st_yan_quest_ammo_sleep
 inv_name_short		= st_yan_quest_ammo_sleep
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 5
+inv_grid_y			= 25
+quest_item      		= true
 can_trade			= false
+cost					= 1500
 
 [yan_quest_scarlet_flower]:af_electra_flash
 $spawn 				= "quest_items\yan_quest_scarlet_flower"
+visual				= equipments\quest_item_scarlet_flower.ogf
 description			= st_yan_quest_scarlet_flower_descr
 inv_name			= st_yan_quest_scarlet_flower
 inv_name_short		= st_yan_quest_scarlet_flower
-
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 8
+inv_grid_y			= 26
 af_rank				= 0
 trail_light_color   = 0.9,0.4,0.2
-
 radiation_restore_speed		= 0.0
-
 hit_absorbation_sect = af_scarlet_flower_absorbation
 particles			 =
-cost = 5000
+cost					= 5000
 can_trade			= false
-
 [af_scarlet_flower_absorbation]
-burn_immunity 			= 0				;коэффициенты иммунитета
+burn_immunity 			= 0
 strike_immunity 		= 0
 shock_immunity 			= 0
 wound_immunity 			= 0
@@ -451,16 +651,17 @@ fire_wound_immunity  	= 0
 
 [yan_quest_granade]:device_pda
 $spawn 				= "quest_items\yan_quest_granade"
-visual				= dynamics\weapons\wpn_grenades\wpn_rgd5.ogf
+visual				= equipments\quest_item_grenade.ogf
 description			= st_yan_quest_granade_descr
 inv_name			= st_yan_quest_granade
 inv_name_short		= st_yan_quest_granade
-
 inv_grid_width			= 1
 inv_grid_height			= 1
-inv_grid_x				= 10
-inv_grid_y				= 9
+inv_grid_x				= 4
+inv_grid_y				= 26
 can_trade			= false
+cost					= 1500
+inv_weight				= 0.25
 
 ;*************************************************************************
 ;**					Red forest
@@ -473,16 +674,17 @@ description			= st_red_forest_pda_map_2_descr
 inv_name			= st_red_forest_pda_map_2
 inv_name_short		= st_red_forest_pda_map_2
 can_trade			= false
-cost 				= 2000
+cost 				= 1500
 
 [red_quest_tank_minigun]:wpn_pkm
 $spawn 				= "quest_items\red_quest_tank_minigun"
 description			= st_red_quest_tank_minigun_descr
 inv_name			= st_red_quest_tank_minigun
 inv_name_short		= st_red_quest_tank_minigun
-
-cost                    = 70000
-ammo_mag_size           = 2000
+inv_weight              	= 10.5
+cost                    = 7500
+ammo_mag_size           = 200
+can_trade			= false
 
 [red_quest_prototipe_device]:device_pda
 $spawn 				= "quest_items\red_quest_prototipe_device"
@@ -490,10 +692,90 @@ visual				= dynamics\devices\dev_datchik_1\dev_datchik_1.ogf
 description			= st_red_quest_prototipe_device_descr
 inv_name			= st_red_quest_prototipe_device
 inv_name_short		= st_red_quest_prototipe_device
-
 can_trade			= false
-
 inv_grid_width			= 1
 inv_grid_height			= 1
-inv_grid_x				= 11
-inv_grid_y				= 3
+inv_grid_x				= 4
+inv_grid_y				= 25
+cost					= 3500
+
+;*************************************************************************
+;**					Military
+;*************************************************************************
+
+[mil_quest_af_mincer_meat_1]:af_mincer_meat
+$spawn 				= "quest_items\mil_quest_af_mincer_meat_1"
+can_trade			= false
+cost					= 4000
+
+[mil_quest_af_fire_1]:af_fire
+$spawn 				= "quest_items\mil_quest_af_fire_1"
+can_trade			= false
+cost					= 20000
+
+[mil_device_pda_lost_squard]:device_pda
+$spawn 				= "quest_items\mil_device_pda_lost_squard"
+visual				= dynamics\devices\dev_pda\dev_pda.ogf
+description			= st_mil_device_pda_lost_squard_descr
+inv_name			= st_mil_device_pda_lost_squard
+inv_name_short		= st_mil_device_pda_lost_squard
+can_trade			= false
+cost					= 2000
+
+[mil_quest_ammo_7.62x54_7h14]:ammo_7.62x54_7h14
+$spawn 				= "quest_items\mil_quest_ammo_7.62x54_7h14"
+quest_item      		= true
+can_trade			= false
+cost					= 1500
+
+;--------------------------------------------------------------------------------
+;-------------------- From OGSM CS 1.6.1
+;--------------------------------------------------------------------------------
+
+[quest_item_cup]:device_pda
+$spawn 				= "quest_items\quest_item_cup"
+visual				= equipments\quest_item_cup.ogf
+description			= st_quest_item_cup_descr
+inv_name			= st_quest_item_cup
+inv_name_short		= st_quest_item_cup
+inv_grid_x         		= 0
+inv_grid_y        	 	= 25
+can_trade			= true
+quest_item      		= false
+cost					= 2000
+
+[quest_item_lighter]:device_pda
+$spawn 				= "quest_items\quest_item_lighter"
+visual				= equipments\quest_item_lighter.ogf
+description			= st_quest_item_lighter_descr
+inv_name			= st_quest_item_lighter
+inv_name_short		= st_quest_item_lighter
+inv_grid_x         		= 7
+inv_grid_y        	 	= 26
+can_trade			= true
+quest_item      		= false
+cost					= 3000
+
+[quest_item_poolball]:device_pda
+$spawn 				= "quest_items\quest_item_poolball"
+visual				= equipments\quest_item_poolball.ogf
+description			= st_quest_item_poolball_descr
+inv_name			= st_quest_item_poolball
+inv_name_short		= st_quest_item_poolball
+inv_grid_x         		= 5
+inv_grid_y        	 	= 26
+can_trade			= true
+quest_item      		= false
+cost					= 1000
+
+[quest_item_handclock]:device_pda
+$spawn 				= "quest_items\quest_item_handclock"
+visual				= equipments\quest_item_handclock.ogf
+description			= st_quest_item_handclock_descr
+inv_name			= st_quest_item_handclock
+inv_name_short		= st_quest_item_handclock
+inv_grid_x         		= 6
+inv_grid_y        	 	= 26
+can_trade			= true
+quest_item      		= false
+cost					= 4000

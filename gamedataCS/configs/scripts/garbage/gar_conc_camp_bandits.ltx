@@ -9,10 +9,9 @@ use_wpn = true
 
 [logic@overseer_1]
 active = walker@overseer_1
-suitable = {=npc_community(bandit) -gar_conc_camp_searcher_1_dead -gar_quest_liberate_conc_camp_done}
+suitable = {=npc_community(bandit) -gar_conc_camp_searcher_1_dead -gar_quest_liberate_conc_camp_done !npc_is_squad_leader}
 prior = 130
 on_combat = combat
-meet = meet
 
 [walker@overseer_1]
 path_walk = unique_overseer_1_walk
@@ -24,6 +23,7 @@ def_state_moving3 = patrol
 def_state_standing = guard
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = meet
 
 [remark@overseer_1_calm]
 target = 719
@@ -31,6 +31,7 @@ anim = guard
 on_timer = 30000 | remark@overseer_1_threat %+gar_conc_camp_arbaiten_1%
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 [remark@overseer_1_threat]
 target = 719 
@@ -38,15 +39,15 @@ anim = threat
 on_timer = 20000 | remark@overseer_1_calm %-gar_conc_camp_arbaiten_1%
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 ----------------------------------
 
 [logic@overseer_2]
 active = walker@overseer_2
-suitable = {=npc_community(bandit) -gar_conc_camp_searcher_2_dead -gar_quest_liberate_conc_camp_done}
+suitable = {=npc_community(bandit) -gar_conc_camp_searcher_2_dead -gar_quest_liberate_conc_camp_done !npc_is_squad_leader}
 prior = 128
 on_combat = combat
-meet = meet
 
 [walker@overseer_2]
 path_walk = unique_overseer_2_walk
@@ -58,6 +59,7 @@ def_state_moving3 = patrol
 def_state_standing = guard
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = meet
 
 [remark@overseer_2_calm]
 target = 720 
@@ -65,6 +67,7 @@ anim = guard
 on_timer = 33000 | remark@overseer_2_threat %+gar_conc_camp_arbaiten_2%
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 [remark@overseer_2_threat]
 target = 720 
@@ -72,15 +75,15 @@ anim = threat
 on_timer = 21000 | remark@overseer_2_calm %-gar_conc_camp_arbaiten_2%
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 ----------------------------------
 
 [logic@overseer_3]
 active = walker@overseer_3
-suitable = {=npc_community(bandit) -gar_conc_camp_searcher_3_dead -gar_quest_liberate_conc_camp_done}
+suitable = {=npc_community(bandit) -gar_conc_camp_searcher_3_dead -gar_quest_liberate_conc_camp_done !npc_is_squad_leader}
 prior = 129
 on_combat = combat
-meet = meet
 
 [walker@overseer_3]
 path_walk = unique_overseer_3_walk
@@ -92,6 +95,7 @@ def_state_moving3 = patrol
 def_state_standing = guard
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = meet
 
 [remark@overseer_3_calm]
 target = 721 
@@ -99,6 +103,7 @@ anim = guard
 on_timer = 27000 | remark@overseer_3_threat %+gar_conc_camp_arbaiten_3%
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 [remark@overseer_3_threat]
 target = 721 
@@ -106,15 +111,15 @@ anim = threat
 on_timer = 18000 | remark@overseer_3_calm %-gar_conc_camp_arbaiten_3%
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 ----------------------------------
 
 [logic@jailer_1]
 active = walker@jailer_1
-suitable = {=npc_community(bandit) -gar_conc_camp_two_prisoners_dead -gar_quest_liberate_conc_camp_done}
+suitable = {=npc_community(bandit) -gar_conc_camp_two_prisoners_dead -gar_quest_liberate_conc_camp_done !npc_is_squad_leader}
 prior = 127
 on_combat = combat
-meet = meet
 
 [walker@jailer_1]
 path_walk = unique_jailer_1_walk
@@ -123,18 +128,31 @@ def_state_moving1 = patrol
 def_state_moving2 = patrol
 def_state_moving3 = patrol
 def_state_standing = guard
+combat_ignore_cond = {!is_enemy_actor}
+in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+on_info = {+gar_quest_liberate_conc_camp_told} walker@jailer_1_1
+on_info2 = {=get_task_by_smart(gar_smart_terrain_3_7)} walker@jailer_1_1
+meet = meet
+
+[walker@jailer_1_1]
+path_walk = unique_jailer_1_walk
+path_look = unique_jailer_1_look
+def_state_moving1 = patrol
+def_state_moving2 = patrol
+def_state_moving3 = patrol
+def_state_standing = guard
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 ----------------------------------
 
 [logic@watcher_1]
 active = walker@main_watcher_1
-suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
+suitable = {=check_npc_name(gar_conc_camp_bandit_1) -gar_quest_liberate_conc_camp_done}
 prior = 131
 on_combat = combat
 job_online = true
-meet = meet
 
 [walker@main_watcher_1]
 path_walk = unique_watcher_1_walk
@@ -142,10 +160,13 @@ path_look = unique_watcher_1_look
 def_state_moving1 = patrol
 def_state_moving2 = patrol
 def_state_moving3 = patrol
-def_state_standing = talk_default
-combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
+def_state_standing = guard
+combat_ignore_cond = {!is_enemy_actor}
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
-on_info = {!actor_in_bandit !is_smart_in_combat(gar_smart_terrain_3_7) =dist_to_actor_le(30)} walker@cooldown_watcher_1 %=play_sound(gar_bandit_conc_camp_blockpost:bandit:st_name_gar_smart_terrain_3_7)%, {!actor_in_bandit !is_smart_in_combat(gar_smart_terrain_3_7) =actor_in_zone(gar_smart_terrain_3_7_attack)} walker@cooldown_watcher_1 %=play_sound(gar_bandit_conc_camp_go_away:bandit:st_name_gar_smart_terrain_3_7)%
+on_info = {!get_task_by_smart(gar_smart_terrain_3_7) !actor_in_bandit !is_smart_in_combat(gar_smart_terrain_3_7) =dist_to_actor_le(30) !gulag_enemy_actor(gar_smart_terrain_3_7) !is_faction_friend_to_actor(bandit)} walker@cooldown_watcher_1 %=play_sound(gar_bandit_conc_camp_blockpost:bandit:gar_conc_camp_bandit_1_name)%, {!get_task_by_smart(gar_smart_terrain_3_7) !actor_in_bandit !is_smart_in_combat(gar_smart_terrain_3_7) =actor_in_zone(gar_smart_terrain_3_7_attack) !gulag_enemy_actor(gar_smart_terrain_3_7) !is_faction_friend_to_actor(bandit)} walker@cooldown_watcher_1 %=play_sound(gar_bandit_conc_camp_go_away:bandit:gar_conc_camp_bandit_1_name)%
+on_info2 = {+gar_quest_liberate_conc_camp_told} walker@cooldown_watcher_1_1
+on_info3 = {=get_task_by_smart(gar_smart_terrain_3_7)} walker@cooldown_watcher_1_1 
+meet = meet
 
 [walker@cooldown_watcher_1]
 path_walk = unique_watcher_1_walk
@@ -153,10 +174,23 @@ path_look = unique_watcher_1_look
 def_state_moving1 = patrol
 def_state_moving2 = patrol
 def_state_moving3 = patrol
-def_state_standing = talk_default
+def_state_standing = guard
+combat_ignore_cond = {!is_enemy_actor}
+in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+on_timer = 60000 | {!actor_in_zone(gar_smart_terrain_3_7_attack) !dist_to_actor_le(30)} walker@main_watcher_1
+meet = meet
+
+[walker@cooldown_watcher_1_1]
+path_walk = unique_watcher_1_walk
+path_look = unique_watcher_1_look
+def_state_moving1 = patrol
+def_state_moving2 = patrol
+def_state_moving3 = patrol
+def_state_standing = guard
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
 on_timer = 60000 | {!actor_in_zone(gar_smart_terrain_3_7_attack) !dist_to_actor_le(30)} walker@main_watcher_1
+meet = no_meet
 
 ----------------------------------
 
@@ -165,51 +199,56 @@ active = kamp@main
 suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
 prior = 122
 on_combat = combat
-meet = meet
 
 [logic@kamp_2]
 active = kamp@main
 suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
 prior = 121
 on_combat = combat
-meet = meet
 
 [logic@kamp_3]
 active = kamp@main
 suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
 prior = 120
 on_combat = combat
-meet = meet
 
 [logic@kamp_4]
 active = kamp@main
 suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
 prior = 119
 on_combat = combat
-meet = meet
 
 [logic@kamp_5]
 active = kamp@main
 suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
 prior = 118
 on_combat = combat
-meet = meet
 
 [kamp@main]
 center_point = kamp_1
 path_walk = kamp_1_task
 def_state_moving = patrol
+combat_ignore_cond = {!is_enemy_actor}
+in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+on_info = {+gar_quest_liberate_conc_camp_told} kamp@main_1
+on_info2 = {=get_task_by_smart(gar_smart_terrain_3_7)} kamp@main_1
+meet = meet
+
+[kamp@main_1]
+center_point = kamp_1
+path_walk = kamp_1_task
+def_state_moving = patrol
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 ----------------------------------
 
 [logic@guard_1]
 active = walker@guard_1
-suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
+suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done !npc_is_squad_leader}
 prior = 126
 on_combat = combat
-meet = meet
 
 [walker@guard_1]
 path_walk = guard_1_walk
@@ -218,17 +257,30 @@ def_state_moving1 = patrol
 def_state_moving2 = patrol
 def_state_moving3 = patrol
 def_state_standing = guard
+combat_ignore_cond = {!is_enemy_actor}
+in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+on_info = {+gar_quest_liberate_conc_camp_told} walker@guard_1_1
+on_info2 = {=get_task_by_smart(gar_smart_terrain_3_7)} walker@guard_1_1
+meet = meet
+
+[walker@guard_1_1]
+path_walk = guard_1_walk
+path_look = guard_1_look
+def_state_moving1 = patrol
+def_state_moving2 = patrol
+def_state_moving3 = patrol
+def_state_standing = guard
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 ----------------------------------
 
 [logic@guard_2]
 active = walker@guard_2
-suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
+suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done !npc_is_squad_leader}
 prior = 125
 on_combat = combat
-meet = meet
 
 [walker@guard_2]
 path_walk = guard_2_walk
@@ -237,17 +289,30 @@ def_state_moving1 = patrol
 def_state_moving2 = patrol
 def_state_moving3 = patrol
 def_state_standing = guard
+combat_ignore_cond = {!is_enemy_actor}
+in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+on_info = {+gar_quest_liberate_conc_camp_told} walker@guard_2_2
+on_info2 = {=get_task_by_smart(gar_smart_terrain_3_7)} walker@guard_2_2
+meet = meet
+
+[walker@guard_2_2]
+path_walk = guard_2_walk
+path_look = guard_2_look
+def_state_moving1 = patrol
+def_state_moving2 = patrol
+def_state_moving3 = patrol
+def_state_standing = guard
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 ----------------------------------
 
 [logic@guard_3]
 active = walker@guard_3
-suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
+suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done !npc_is_squad_leader}
 prior = 124
 on_combat = combat
-meet = meet
 
 [walker@guard_3]
 path_walk = guard_3_walk
@@ -256,17 +321,30 @@ def_state_moving1 = patrol
 def_state_moving2 = patrol
 def_state_moving3 = patrol
 def_state_standing = guard
+combat_ignore_cond = {!is_enemy_actor}
+in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+on_info = {+gar_quest_liberate_conc_camp_told} walker@guard_3_3
+on_info2 = {=get_task_by_smart(gar_smart_terrain_3_7)} walker@guard_3_3
+meet = meet
+
+[walker@guard_3_3]
+path_walk = guard_3_walk
+path_look = guard_3_look
+def_state_moving1 = patrol
+def_state_moving2 = patrol
+def_state_moving3 = patrol
+def_state_standing = guard
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet
 
 ----------------------------------
 
 [logic@guard_4]
 active = walker@guard_4
-suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done}
+suitable = {=npc_community(bandit) -gar_quest_liberate_conc_camp_done !npc_is_squad_leader}
 prior = 123
 on_combat = combat
-meet = meet
 
 [walker@guard_4]
 path_walk = guard_4_walk
@@ -275,5 +353,19 @@ def_state_moving1 = patrol
 def_state_moving2 = patrol
 def_state_moving3 = patrol
 def_state_standing = guard
+combat_ignore_cond = {!is_enemy_actor}
+in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+on_info = {+gar_quest_liberate_conc_camp_told} walker@guard_4_4
+on_info2 = {=get_task_by_smart(gar_smart_terrain_3_7)} walker@guard_4_4
+meet = meet
+
+[walker@guard_4_4]
+path_walk = guard_4_walk
+path_look = guard_4_look
+def_state_moving1 = patrol
+def_state_moving2 = patrol
+def_state_moving3 = patrol
+def_state_standing = guard
 combat_ignore_cond = {=check_fighting(719:720:721:722:723)} true
 in_restr = gar_zone_field_radioactive_conc_camp_1, gar_zone_field_radioactive_conc_camp_2, gar_zone_field_radioactive_conc_camp_3, gar_zone_field_radioactive_conc_camp_4, gar_zone_field_radioactive_conc_camp_5
+meet = no_meet

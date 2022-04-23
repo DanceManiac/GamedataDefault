@@ -1,0 +1,42 @@
+----------------------- Фиксы для OGSM CS ----------------------
+
+----------------------- Copyright IG-2007 ----------------------
+
+----------
+-- альтернативный способ сохранения генератора id для task_manager-а
+-- не сохраняем списки идентификаторов
+----------
+function tm_save_id_generator(tm, packet)
+	local generator = tm.id_generator
+	packet:w_u16(generator.m_count)
+	packet:w_u16(generator.m_last_id)
+	packet:w_u16(0)				--m_free
+	packet:w_u16(0)				--m_given
+	packet:w_u16(8)				--set_save_marker(...)
+end
+
+----------
+-- альтернативный способ загрузки генератора id для task_manager-а
+-- (восстановление списка выданных идентификаторов не обязательно)
+----------
+function tm_load_id_generator(tm, packet)
+	local generator = tm.id_generator
+	generator:load(packet)
+end
+
+----------
+-- альтернативное отключение растяжки (аномалии) в подвале с ПДА Клыка
+----------
+function destroy_object(sobj)
+	if sobj:name() == "gar_zone_mine_field_no_damage" then
+		local obj = level.object_by_id(sobj.id)
+		if obj then
+			obj:disable_anomaly()
+		else
+			alife():release(sobj, true)
+		end
+	else
+		ogsm.dbglog("fixme_release_"..sobj:name())
+		alife():release(sobj, true)
+	end
+end

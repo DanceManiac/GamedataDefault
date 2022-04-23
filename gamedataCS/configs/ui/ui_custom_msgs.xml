@@ -88,11 +88,15 @@
                 <text font="graffiti32"  r="240" g="217" b="182" a="255" align="c">gun_jammed</text>
         </gun_jammed>
 
+        <can_use_weapon_now x="200" y="70" width="600" height="50" ttl="3">
+                <text font="graffiti32"  r="240" g="217" b="182" a="255" align="c">can_use_weapon_now</text>
+        </can_use_weapon_now>
+
         <cant_walk x="200" y="650" width="600" height="30" ttl="3">
                 <text font="graffiti22"  r="240" g="217" b="182" a="255" align="c">cant_walk</text>
         </cant_walk>
 
-        <cant_walk_weight x="20" y="650" width="600" height="30" ttl="3">
+        <cant_walk_weight x="200" y="650" width="600" height="30" ttl="3">
                 <text font="graffiti22"  r="240" g="217" b="182" a="255" align="c">cant_walk_weight</text>
         </cant_walk_weight>
 
@@ -177,4 +181,69 @@
 	<text_on_screen_center x="212" y="300" width="600" height="68" complex_mode="1" light_anim="ui_slow_blinking_alpha">
 		<text font="graffiti32"  r="240" g="217" b="182" a="255" align="c"/>
 	</text_on_screen_center>
+
+
+
+	<hud_timer_text2 x="68" y="735" width="5" height="30" light_anim="ui_slow_blinking_alpha" la_cyclic="1" la_texture="0" la_text="1" la_alpha="1">
+		<text x="0" y="0" font="letterica16" r="240" g="217" b="182" a="255" align="c"/>
+	</hud_timer_text2>
+
+	<hud_time_tex x="3" y="721" width="108" height="47">
+		<texture>ui_watch_back</texture>
+		<text x="50" y="15" font="letterica16" color="ui_7"/>
+	</hud_time_tex>
+
+	<cs_debug  x="200" y="10" width="600" height="100" complex_mode="1">
+		<text font="graffiti22"  r="240" g="217" b="182" a="255" align="l"/>
+	</cs_debug>
+
+	<ff_hud_bleed  x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>ui\ui_hud_fx_bleed</texture>
+	</ff_hud_bleed>
+
+	<hud_psy_back x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
+		<texture>ui_hud_psy_back</texture>
+	</hud_psy_back>
+	<hud_psy_level x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
+		<texture>ui_hud_psy_progress</texture>
+	</hud_psy_level>
+
+
+	<indik1_bld width="64" height="64" light_anim="la_hud1" la_cyclic="1" la_texture="1" la_text="0" la_alpha="0">
+		<texture>ui_hud_icon_drop</texture>
+	</indik1_bld>
+	<indik1_rad width="64" height="64" light_anim="la_hud1" la_cyclic="1" la_texture="1" la_text="0" la_alpha="0">
+		<texture>ui_hud_icon_radiation</texture>
+	</indik1_rad>
+	<indik1_psy width="64" height="64" light_anim="la_hud1" la_cyclic="1" la_texture="1" la_text="0" la_alpha="0">
+		<texture>ui_hud_icon_psycho</texture>
+	</indik1_psy>
+	<indik1_wpn width="64" height="64" light_anim="la_hud1" la_cyclic="1" la_texture="1" la_text="0" la_alpha="0">
+		<texture>ui_hud_icon_weapon</texture>
+	</indik1_wpn>
+
+	<indik2_bld width="64" height="64" stretch="1" complex_mode="1">
+		<texture>ui_hud_icon_drop</texture>
+	</indik2_bld>
+	<indik2_rad width="64" height="64" stretch="1" complex_mode="1">
+		<texture>ui_hud_icon_radiation</texture>
+	</indik2_rad>
+	<indik2_psy width="64" height="64" stretch="1" complex_mode="1">
+		<texture>ui_hud_icon_psycho</texture>
+	</indik2_psy>
+	<indik2_wpn width="64" height="64" stretch="1" complex_mode="1">
+		<texture>ui_hud_icon_weapon</texture>
+	</indik2_wpn>
+
+	<indik2_slp width="64" height="64" stretch="1" complex_mode="1">
+		<texture>ui_hud_icon_sleep</texture>
+	</indik2_slp>
+	<indik2_hun width="64" height="64" stretch="1" complex_mode="1">
+		<texture>ui_hud_icon_eat</texture>
+	</indik2_hun>
+
+	<hud_bolt x="820" y="720" width="38" height="38" stretch="1">
+		<texture x="400" y="1550" width="50" height="50">ui\ui_icon_equipment</texture>
+	</hud_bolt>
+
 </header>

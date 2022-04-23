@@ -1,0 +1,194 @@
+--[[-----------------------------------------------------------------------------------------------
+ File       : ogsm_anomaly.script
+ Description: Определение попадания в аномалию.
+ Copyright  : 2015 © OGSM CS 1.8 CE CF
+ Author     : Kirgudu (использованы материалы HARDWAR mod и OGSM CS 1.8 CE)
+ Last edit  : 24.11.2015
+--]]-----------------------------------------------------------------------------------------------
+
+-- настройка
+local iCheckPeriod = 2000 --/ период проверки захода в аномалию (в миллисекундах реального времени)
+-- рабочие переменные
+local bInit = false --/ флаг инициализации модуля при первом апдейте после загрузки
+local iMaxRadius = 0 --/ максимальное расстояние до центра аномалии, при котором осуществляется проверка (рассчитывается автоматически)
+local iCheckTime = time_global() --/ время следующей проверки захода в аномалию
+local tGameObjIds = {} --/ массив id аномалий в игре
+local tLevelObjCoords = {} --/ массив имён и координат аномалий на уровне
+-- настройки инфопорций и аномалий
+local tInfos = {
+	["razlom_info"]      = {dist =  15, sect = {"mar_zone_field_thermal_weak", "val_zone_field_thermal_average"}},
+	["peklo_info"]       = {dist =  10, sect = {"mil_zone_field_thermal_strong"}},
+	["tuman_info"]       = {dist =  10, sect = {"field_acidic", "mine_acidic"}},
+	["simbiont_info"]    = {dist =  10, sect = {"red_zone_field_psychic_average"}},
+	["psyzone_info"]     = {dist =  10, sect = {"field_psychic"}},
+	["radioactive_info"] = {dist =  10, sect = {"field_radioactive", "zone_radioactive"}},
+	["tramplin_info"]    = {dist = 2.5, sect = {"mine_gravitational_weak"}},
+	["voronka_info"]     = {dist = 2.5, sect = {"mine_gravitational_average"}},
+	["karusel_info"]     = {dist = 2.5, sect = {"mine_gravitational_strong"}},
+	["zharka_info"]      = {dist = 2.5, sect = {"mine_thermal", "zone_zharka_static"}},
+	["electra_info"]     = {dist = 2.5, sect = {"mine_electric", "zone_witches_galantine"}},
+	["studen_info"]      = {dist = 2.5, sect = {"zone_buzz"}},
+	["pukh_info"]        = {dist = 2.5, sect = {"burning_fuzz"}},
+	["teleport_info"]    = {dist = 2.5, sect = {"teleport"}},
+	["kometa_info"]      = {dist = 2.5, sect = {"val_fireball_zone"}},
+	["duhovka_info"]     = {dist =  10, pos  = vector():set(-173.398,  2.032, -149.106), lvl = "yantar"},
+	["vivoroten_info"]   = {dist =  10, pos  = vector():set(-200.272, -0.130,  -27.540), lvl = "agroprom"}
+}
+
+-- Получаем список всех аномалий
+function on_load()
+	local level_name = level.name()
+	for k,v in pairs(tInfos) do
+		if has_alife_info(k) then
+			-- Если какая-то инфопорция уже выдана, удаляем элемент из списка проверки.
+			tInfos[k] = nil
+			-- printf("OGSM:: ogsm_anomaly (on load): info exists: info=[%s]%s", k, "") --/#~#
+		else
+			-- уточняем максимальный радиус проверки
+			if iMaxRadius < v.dist then iMaxRadius = v.dist end
+			-- добавляем в таблицу координат аномалии с известным местонахождением
+			-- если свойство lvl указано и не пустое - только в пределах локации с данным именем
+			if v.pos and (type(v.lvl) ~= "string" or v.lvl == "" or v.lvl == level_name) then
+				table.insert(tLevelObjCoords, {name = k, pos = v.pos})
+				-- printf("OGSM:: ogsm_anomaly (on load): add anom to list: info=[%s], pos=[%s:%s:%s]%s", k, v.pos.x, v.pos.y, v.pos.z, "") --/#~#
+			end
+		end
+	end
+
+	-- Если список пуст, проверки на близость к аномалиям не производим.
+	if not next(tInfos) then return end
+
+	-- Получаем список всех аномалий в игре.
+	local name, obj = "", nil
+	local sim = alife()
+	for i = 1, 65534 do
+		obj = sim:object(i)
+		if obj then
+			name = obj:name()
+			if string.find(name, "zone_field_")
+			or string.find(name, "zone_mine_")
+			or string.find(name, "zone_burning_fuzz")
+			or string.find(name, "zone_radioactive")
+			or string.find(name, "zone_buzz")
+			or string.find(name, "zone_zharka_static")
+			or string.find(name, "fireball_zone")
+			or string.find(name, "zone_witches_galantine")
+			or name == "esc_teleport_1"
+			or name == "esc_teleport_2"
+			or name == "esc_teleport_3"
+			or name == "red_teleport_restr_1" then
+				table.insert(tGameObjIds, i)
+				-- printf("OGSM:: ogsm_anomaly (on load): add anom to list: sobj_id=[%s], name=[%s], clsid=[%s]%s", obj.id, name, get_clsid(obj), "") --/#~#
+			end
+		end
+	end
+end
+
+-- Определяем координаты аномалий и запускаем периодическую проверку
+function on_first_update()
+	local obj = nil
+	for _,v in pairs(tGameObjIds) do
+		obj = level.object_by_id(v) -- Получаем клиентский объект аномалии на уровне (если есть)
+		if obj then
+			local obj_name, f = obj:name(), false
+			-- в список координат помещаем только те объекты, для которых есть фрагмент названия в списке невыданных инфопорций или прямые координаты
+			-- printf("OGSM:: ogsm_anomaly (start_check): name = [%s]%s", obj_name, "")
+			for _,v1 in pairs(tInfos) do
+				if v1.sect then
+					for _,v2 in pairs(v1.sect) do
+						if string.find(obj_name, v2) then
+							table.insert(tLevelObjCoords, {name = obj_name, pos = obj:position()})
+							f = true
+							-- local pos = obj:position()
+							-- printf("OGSM:: ogsm_anomaly (start_check): name = [%s], pos=[%s:%s:%s], added = [sect]%s", obj_name, pos.x, pos.y, pos.z, "")
+							break
+						end
+					end
+					if f then break end
+				end
+			end
+		end
+	end
+
+	--/ если на уровне нет аномалий, соответствующих невыданным инфопорциям, время следующей проверки обнуляем
+	if not next(tLevelObjCoords) then iCheckTime = nil end
+end
+
+-- Определяем близость актора к аномалии
+function on_update()
+	if not bInit then
+		on_first_update()
+		bInit = true
+		return
+	end
+	if iCheckTime == nil then return end
+	local iCurrentTime = time_global()
+	if iCurrentTime < iCheckTime or not db.actor:alive() then return end
+	iCheckTime = iCurrentTime + iCheckPeriod
+
+	local n, d, f, sect = "", 0, false, {}
+
+	local pos = db.actor:position()
+	for k1,v1 in pairs(tLevelObjCoords) do --/ итерируемся по списку координат аномалий
+		d = pos:distance_to(v1.pos)
+		-- printf("OGSM:: ogsm_anomaly (update): check coord, name = [%s], dist=[%s], max_dist=[%s]%s", v1.name, d, iMaxRadius, "")
+		if d < iMaxRadius then --/ если расстояние до центра аномалии меньше максимального
+			n = v1.name
+			for k2,v2 in pairs(tInfos) do --/ итерируемся по списку с невыданными инфопорциями
+				-- printf("OGSM:: ogsm_anomaly (update): check coord with table, info = [%s], dist=[%s]%s", k2, v2.dist, "")
+				if d < v2.dist then --/ если расстояние до центра аномалии меньше заданного для этой аномалии
+					if v2.pos then --/ есть прямые координаты центра
+						if v1.pos:distance_to(v2.pos) < 0.01 then --/ координаты в таблице совпали с координатами аномалии
+							-- printf("OGSM:: ogsm_anomaly (update): anomaly entered, name = [%s], info = [%s]%s", n, k2, "")
+							db.actor:give_info_portion(k2) --/ выдаём инфопорцию
+							tLevelObjCoords[k1] = nil --/ удаляем ненужную больше координату
+							f = true
+						end
+					elseif v2.sect then
+						for _,v3 in pairs(v2.sect) do --/ итерируемся по списку фрагментов названий секции аномалии
+							if string.find(n, v3) then --/ если фрагмент найден в списке объектов - зашли в аномалию
+								-- printf("OGSM:: ogsm_anomaly (update): anomaly entered, name = [%s], info = [%s]%s", n, k2, "")
+								sect = table.clone(v2.sect) --/ запоминаем список фрагментов имён аномалий
+								db.actor:give_info_portion(k2) --/ выдаём инфопорцию и прерываем цикл проверки секций
+								f = true
+								break
+							end
+						end
+					end
+				end
+				if f then --/ если зашли в аномалию
+					tInfos[k2] = nil --/ удаляем ненужную больше инфопорцию
+					if not next(tInfos) then --/ если все инфопорции выданы, полностью прерываем процесс проверки
+						iCheckTime = nil
+						return
+					end
+					break --/ прерываем цикл проверки невыданных инфопорций
+				end
+			end
+			if f then break end --/ зашли в аномалию, прерываем цикл проверки координат
+		end
+	end
+	if f then
+		-- удаляем ненужные больше координаты по списку фрагментов имён (если есть)
+		if next(sect) then
+			for k1,v1 in pairs(tLevelObjCoords) do --/ итерируемся по списку координат аномалий
+				for _,v2 in pairs(sect) do --/ итерируемся по списку фрагментов имён аномалий
+					if string.find(v1.name, v2) then tLevelObjCoords[k1] = nil end --/ удаляем ненужную больше координату
+				end
+			end
+		end
+		if not next(tLevelObjCoords) then --/ если координат, соответствующих невыданным инфопорциям, не осталось, прерываем процесс проверки
+			iCheckTime = nil
+			return
+		end
+		-- обновляем максимальный радиус проверки входа в аномалию
+		iMaxRadius = 0
+		for _,v in pairs(tInfos) do
+			if iMaxRadius < v.dist then iMaxRadius = v.dist end
+		end
+	end
+end
+
+
+---------------------- Определение попадания в аномалию ----------------------
+--------------------------- Copyright 2015 Kirgudu ---------------------------

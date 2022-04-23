@@ -12,7 +12,8 @@ function script_functor_jump()
 	end
 	return false
 	]]--
-	return true
+--	return true
+	return math.random() < 0.4
 end
 
 function script_functor_true()

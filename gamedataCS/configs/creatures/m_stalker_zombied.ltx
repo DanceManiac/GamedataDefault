@@ -7,7 +7,7 @@ time_quant					= 0.01
 decrease_value				= 0.1				; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
 velocity_factor		     	= 0.5
 luminocity_factor			= 0.5 				; фактор освещения (только для Актёра)
-transparency_threshold	 	= 0.4
+transparency_threshold	 	= 0.4				; видимость через камыши и кустарники
 
 [stalker_zombied_vision_danger]
 min_view_distance 			= 0.7				; коэффициент, который множится на eye_range, в зависимости от угла
@@ -18,7 +18,7 @@ time_quant					= 0.005
 decrease_value				= 0.01				; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
 velocity_factor		     	= 0.5
 luminocity_factor			= 0.5					; фактор освещения (только для Актёра)
-transparency_threshold	 	= 0.4
+transparency_threshold	 	= 0.4				; видимость через камыши и кустарники
 
 [stalker_zombied_condition]
 satiety_v					= 0.00001				;скорость уменьшения сытости со временем
@@ -31,7 +31,7 @@ morale_v					= 0.0001				;скорость восстановления морали
 health_hit_part				= 1.0					;процент хита, уходящий на отнимание здоровья
 power_hit_part				= 0.0					;процент хита, уходящий на отнимание силы
 psy_health_v				= 0.1					;скорость восстановления psy-здоровья
-health_restore_v			= 0.001					;скорость восстановления здоровья
+health_restore_v			= 0.007					;скорость восстановления здоровья
 
 sleep_health				= 1.0					;коэффициенты скоростей изменения параметров во время сна
 sleep_power					= 1.0
@@ -45,7 +45,7 @@ limping_threshold			= 0.5
 
 ;открытые раны
 bleeding_v					= 0						;потеря крови при номинальной ране в секунду
-wound_incarnation_v			= 0.0					;крутизна кривой заживления (какой процент раны останется после заживления в игровую секунду)
+wound_incarnation_v			= 0.002					;крутизна кривой заживления (какой процент раны останется после заживления в игровую секунду)
 min_wound_size				= 0.01
 
 [stalker_zombied_immunities]:stalker_immunities
@@ -57,7 +57,7 @@ wound_immunity				= 0.0
 radiation_immunity 			= 0.0
 chemical_burn_immunity 		= 0.0
 explosion_immunity 			= 0.0
-fire_wound_immunity  		= 0.5 
+fire_wound_immunity  		= 0.4 
 wound_2_immunity  			= 0.0
 
 [stalker_zombied_movement_speeds]
@@ -140,21 +140,21 @@ sound_walking_in_danger			= ;states\breath\stalker\breath_2
 movement_speeds					= stalker_zombied_movement_speeds;
 
 ;---FIRE DISPERSIONS--------------------------------------------------
-disp_walk_stand					= 16
-disp_walk_crouch				= 16	
-disp_run_stand					= 16
-disp_run_crouch					= 16
-disp_stand_stand				= 10; 16
-disp_stand_crouch				= 5; 16
-disp_stand_stand_zoom			= 1
-disp_stand_crouch_zoom			= 1
+disp_walk_stand				= 50
+disp_walk_crouch			= 50	
+disp_run_stand				= 50
+disp_run_crouch				= 50
+disp_stand_stand			= 50
+disp_stand_crouch			= 50
+disp_stand_stand_zoom			= 50
+disp_stand_crouch_zoom			= 50
 
 ;----------- MONSTR SPECIES ----------------------------
 species							= zombie
 
 ;---CRITICAL WOUND------------------------------------------------------------------
 critical_wound_threshold		= 1.1
-critical_wound_decrease_quant	= 0.
+critical_wound_decrease_quant	= 0.5
 body_parts_section_id			= critical_wound_body_parts_section
 
 [stalker_fresh_zombied]:stalker_zombied
@@ -166,5 +166,5 @@ movement_speeds					= stalker_movement_speeds
 
 ;---CRITICAL WOUND------------------------------------------------------------------
 critical_wound_threshold		= 1.1
-critical_wound_decrease_quant	= 0.
+critical_wound_decrease_quant	= 0.5
 body_parts_section_id			= critical_wound_body_parts_section

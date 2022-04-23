@@ -1,535 +1,2583 @@
-;************************************************
-;************** Marsh CS mechanic ***************
-;************************************************
+;--------------------------------------------------------------------------------
+;-------------------- MARSH
+;--------------------------------------------------------------------------------
 
 [mar_csky_tech]
+
+wpn_bm16_full
 wpn_bm16
 wpn_toz34
-wpn_pm
-wpn_pm_up
-wpn_pm_9x19
-wpn_pb
-wpn_fort
-wpn_fort_up
-wpn_hpsa
+wpn_toz34_obrez
 wpn_wincheaster1300
 wpn_spas12
-wpn_mp5
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
 wpn_ak74u
+wpn_ak74_priklad
 wpn_ak74
-wpn_ak74_up
-wpn_ak74_up2
 wpn_abakan
-wpn_abakan_up2
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
 wpn_l85
 wpn_lr300
 wpn_sig550
-wpn_sig550_up2
-wpn_fn2000
+wpn_sig552
 wpn_g36
-wpn_g36_up2
-wpn_groza
+wpn_g36c
+wpn_fn2000
 wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
 
-novice_outfit
-bandit_outfit
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
 cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
 cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
 stalker_outfit
-stalker_outfit_up_stalk
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
 
 [mar_csky_tech_upgr]
-up_sect_ac_ak74u = false
-up_sect_ac_mp5 = {+info_up_ac_mp5}
-up_sect_bd_mp5 = {+info_up_bd_mp5}
-up_sect_a_novice_outfit = {+info_up_a_novice_outfit}
-up_sect_a_bandit_outfit = {+info_up_a_novice_outfit}
-up_sect_a_cs_light_outfit = {+info_up_a_novice_outfit}
-up_sect_a_cs_heavy_outfit = {+info_up_a_novice_outfit}
-up_sect_a_stalker_outfit = {+info_up_a_novice_outfit}
 
-up_sect_ac_wincheaster1300 = false 
+up_sect_a_green_ecolog_outfit = false
+up_sect_b_green_ecolog_outfit = false
+up_sect_c_green_ecolog_outfit = false
+up_sect_d_green_ecolog_outfit = false
+up_sect_e_green_ecolog_outfit = false
+up_sect_f_green_ecolog_outfit = false
+up_sect_a_red_ecolog_outfit = false
+up_sect_b_red_ecolog_outfit = false
+up_sect_c_red_ecolog_outfit = false
+up_sect_d_red_ecolog_outfit = false
+up_sect_e_red_ecolog_outfit = false
+up_sect_f_red_ecolog_outfit = false
+
+up_sect_ac_scientific_outfit = {+marsh_flash_scientific_ac_sect}
+up_sect_ac_dolg_scientific_outfit = {+marsh_flash_scientific_ac_sect}
+up_sect_ac_svoboda_scientific_outfit = {+marsh_flash_scientific_ac_sect}
+up_sect_ac_killer_scientific_outfit = {+marsh_flash_scientific_ac_sect}
+up_sect_ac_monolith_scientific_outfit = {+marsh_flash_scientific_ac_sect}
+up_sect_eg_scientific_outfit = {+marsh_flash_scientific_eg_sect}
+up_sect_eg_dolg_scientific_outfit = {+marsh_flash_scientific_eg_sect}
+up_sect_eg_svoboda_scientific_outfit = {+marsh_flash_scientific_eg_sect}
+up_sect_eg_killer_scientific_outfit = {+marsh_flash_scientific_eg_sect}
+up_sect_eg_monolith_scientific_outfit = {+marsh_flash_scientific_eg_sect}
+up_sect_aceg_scientific_outfit = {+marsh_flash_scientific_aceg_sect}
+up_sect_aceg_dolg_scientific_outfit = {+marsh_flash_scientific_aceg_sect}
+up_sect_aceg_svoboda_scientific_outfit = {+marsh_flash_scientific_aceg_sect}
+up_sect_aceg_killer_scientific_outfit = {+marsh_flash_scientific_aceg_sect}
+up_sect_aceg_monolith_scientific_outfit = {+marsh_flash_scientific_aceg_sect}
+
+up_sect_f2_exo_outfit = {+marsh_flash_exoskeleton_f2_sect}
+up_sect_f2_dolg_exo_outfit = {+marsh_flash_exoskeleton_f2_sect}
+up_sect_f2_svoboda_exo_outfit = {+marsh_flash_exoskeleton_f2_sect}
+up_sect_f2_killer_exo_outfit = {+marsh_flash_exoskeleton_f2_sect}
+up_sect_f2_monolith_exo_outfit = {+marsh_flash_exoskeleton_f2_sect}
+up_sect_h2_exo_outfit = {+marsh_flash_exoskeleton_h2_sect}
+up_sect_h2_dolg_exo_outfit = {+marsh_flash_exoskeleton_h2_sect}
+up_sect_h2_svoboda_exo_outfit = {+marsh_flash_exoskeleton_h2_sect}
+up_sect_h2_killer_exo_outfit = {+marsh_flash_exoskeleton_h2_sect}
+up_sect_h2_monolith_exo_outfit = {+marsh_flash_exoskeleton_h2_sect}
+up_sect_f2h2_exo_outfit = {+marsh_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_dolg_exo_outfit = {+marsh_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_svoboda_exo_outfit = {+marsh_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_killer_exo_outfit = {+marsh_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_monolith_exo_outfit = {+marsh_flash_exoskeleton_f2h2_sect}
+up_sect_ac2_exo_outfit = {+marsh_flash_exoskeleton_ac2_sect}
+up_sect_ac2_dolg_exo_outfit = {+marsh_flash_exoskeleton_ac2_sect}
+up_sect_ac2_svoboda_exo_outfit = {+marsh_flash_exoskeleton_ac2_sect}
+up_sect_ac2_killer_exo_outfit = {+marsh_flash_exoskeleton_ac2_sect}
+up_sect_ac2_monolith_exo_outfit = {+marsh_flash_exoskeleton_ac2_sect}
+up_sect_bd2_exo_outfit = {+marsh_flash_exoskeleton_bd2_sect}
+up_sect_bd2_dolg_exo_outfit = {+marsh_flash_exoskeleton_bd2_sect}
+up_sect_bd2_svoboda_exo_outfit = {+marsh_flash_exoskeleton_bd2_sect}
+up_sect_bd2_killer_exo_outfit = {+marsh_flash_exoskeleton_bd2_sect}
+up_sect_bd2_monolith_exo_outfit = {+marsh_flash_exoskeleton_bd2_sect}
+
+up_sect_ac_wincheaster1300 = {+marsh_flash_shotguns_ac_sect}
+up_sect_ac_spas12 = {+marsh_flash_shotguns_ac_sect}
+up_sect_bd_wincheaster1300 = {+marsh_flash_shotguns_bd_sect}
+up_sect_bd_spas12 = {+marsh_flash_shotguns_bd_sect}
+
+up_sect_ab_svu = {+marsh_flash_sniperrifles_ab_sect}
+up_sect_ab_svd = {+marsh_flash_sniperrifles_ab_sect}
+up_sect_cd_svu = {+marsh_flash_sniperrifles_cd_sect}
+up_sect_cd_svd = {+marsh_flash_sniperrifles_cd_sect}
+up_sect_abcd_svu = {+marsh_flash_sniperrifles_abcd_sect}
+up_sect_abcd_svd = {+marsh_flash_sniperrifles_abcd_sect}
+
+up_sect_ab_val = {+marsh_flash_silentrifles_ab_sect}
+up_sect_ab_vintorez = {+marsh_flash_silentrifles_ab_sect}
+up_sect_cd_val = {+marsh_flash_silentrifles_cd_sect}
+up_sect_cd_vintorez = {+marsh_flash_silentrifles_cd_sect}
+
+up_sect_ac_groza = {+marsh_flash_groza_ac_sect}
+up_sect_eg_groza = {+marsh_flash_groza_eg_sect}
+up_sect_aceg_groza = {+marsh_flash_groza_aceg_sect}
+
+up_sect_ac_fn2000 = {+marsh_flash_fn2000_ac_sect}
+up_sect_bd_fn2000 = {+marsh_flash_fn2000_bd_sect}
+up_sect_2ac_fn2000 = {+marsh_flash_fn2000_2ac_sect}
+up_sect_2bd_fn2000 = {+marsh_flash_fn2000_2bd_sect}
+
+up_sect_ab_pkm = {+marsh_flash_pkm_ab_sect}
+up_sect_cd_pkm = {+marsh_flash_pkm_cd_sect}
+up_sect_abcd_pkm = {+marsh_flash_pkm_abcd_sect}
+up_sect_g_ak74u = {+mar_story_go_to_escape_done}
+
+;--------------------------------------------------------------------------------
+;-------------------- ESCAPE
+;--------------------------------------------------------------------------------
+
+[esc_tech_stalkerbase]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+[esc_tech_stalkerbase_upgr]
+
+up_sect_a_green_ecolog_outfit = false
+up_sect_b_green_ecolog_outfit = false
+up_sect_c_green_ecolog_outfit = false
+up_sect_d_green_ecolog_outfit = false
+up_sect_e_green_ecolog_outfit = false
+up_sect_f_green_ecolog_outfit = false
+up_sect_a_red_ecolog_outfit = false
+up_sect_b_red_ecolog_outfit = false
+up_sect_c_red_ecolog_outfit = false
+up_sect_d_red_ecolog_outfit = false
+up_sect_e_red_ecolog_outfit = false
+up_sect_f_red_ecolog_outfit = false
+
+up_sect_ac_scientific_outfit = {+escape_flash_scientific_ac_sect}
+up_sect_ac_dolg_scientific_outfit = {+escape_flash_scientific_ac_sect}
+up_sect_ac_svoboda_scientific_outfit = {+escape_flash_scientific_ac_sect}
+up_sect_ac_killer_scientific_outfit = {+escape_flash_scientific_ac_sect}
+up_sect_ac_monolith_scientific_outfit = {+escape_flash_scientific_ac_sect}
+up_sect_eg_scientific_outfit = {+escape_flash_scientific_eg_sect}
+up_sect_eg_dolg_scientific_outfit = {+escape_flash_scientific_eg_sect}
+up_sect_eg_svoboda_scientific_outfit = {+escape_flash_scientific_eg_sect}
+up_sect_eg_killer_scientific_outfit = {+escape_flash_scientific_eg_sect}
+up_sect_eg_monolith_scientific_outfit = {+escape_flash_scientific_eg_sect}
+up_sect_aceg_scientific_outfit = {+escape_flash_scientific_aceg_sect}
+up_sect_aceg_dolg_scientific_outfit = {+escape_flash_scientific_aceg_sect}
+up_sect_aceg_svoboda_scientific_outfit = {+escape_flash_scientific_aceg_sect}
+up_sect_aceg_killer_scientific_outfit = {+escape_flash_scientific_aceg_sect}
+up_sect_aceg_monolith_scientific_outfit = {+escape_flash_scientific_aceg_sect}
+
+up_sect_f2_exo_outfit = {+escape_flash_exoskeleton_f2_sect}
+up_sect_f2_dolg_exo_outfit = {+escape_flash_exoskeleton_f2_sect}
+up_sect_f2_svoboda_exo_outfit = {+escape_flash_exoskeleton_f2_sect}
+up_sect_f2_killer_exo_outfit = {+escape_flash_exoskeleton_f2_sect}
+up_sect_f2_monolith_exo_outfit = {+escape_flash_exoskeleton_f2_sect}
+up_sect_h2_exo_outfit = {+escape_flash_exoskeleton_h2_sect}
+up_sect_h2_dolg_exo_outfit = {+escape_flash_exoskeleton_h2_sect}
+up_sect_h2_svoboda_exo_outfit = {+escape_flash_exoskeleton_h2_sect}
+up_sect_h2_killer_exo_outfit = {+escape_flash_exoskeleton_h2_sect}
+up_sect_h2_monolith_exo_outfit = {+escape_flash_exoskeleton_h2_sect}
+up_sect_f2h2_exo_outfit = {+escape_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_dolg_exo_outfit = {+escape_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_svoboda_exo_outfit = {+escape_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_killer_exo_outfit = {+escape_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_monolith_exo_outfit = {+escape_flash_exoskeleton_f2h2_sect}
+up_sect_ac2_exo_outfit = {+escape_flash_exoskeleton_ac2_sect}
+up_sect_ac2_dolg_exo_outfit = {+escape_flash_exoskeleton_ac2_sect}
+up_sect_ac2_svoboda_exo_outfit = {+escape_flash_exoskeleton_ac2_sect}
+up_sect_ac2_killer_exo_outfit = {+escape_flash_exoskeleton_ac2_sect}
+up_sect_ac2_monolith_exo_outfit = {+escape_flash_exoskeleton_ac2_sect}
+up_sect_bd2_exo_outfit = {+escape_flash_exoskeleton_bd2_sect}
+up_sect_bd2_dolg_exo_outfit = {+escape_flash_exoskeleton_bd2_sect}
+up_sect_bd2_svoboda_exo_outfit = {+escape_flash_exoskeleton_bd2_sect}
+up_sect_bd2_killer_exo_outfit = {+escape_flash_exoskeleton_bd2_sect}
+up_sect_bd2_monolith_exo_outfit = {+escape_flash_exoskeleton_bd2_sect}
+
+up_sect_ac_wincheaster1300 = {+escape_flash_shotguns_ac_sect}
+up_sect_ac_spas12 = {+escape_flash_shotguns_ac_sect}
+up_sect_bd_wincheaster1300 = {+escape_flash_shotguns_bd_sect}
+up_sect_bd_spas12 = {+escape_flash_shotguns_bd_sect}
+
+up_sect_ab_svu = {+escape_flash_sniperrifles_ab_sect}
+up_sect_ab_svd = {+escape_flash_sniperrifles_ab_sect}
+up_sect_cd_svu = {+escape_flash_sniperrifles_cd_sect}
+up_sect_cd_svd = {+escape_flash_sniperrifles_cd_sect}
+up_sect_abcd_svu = {+escape_flash_sniperrifles_abcd_sect}
+up_sect_abcd_svd = {+escape_flash_sniperrifles_abcd_sect}
+
+up_sect_ab_val = {+escape_flash_silentrifles_ab_sect}
+up_sect_ab_vintorez = {+escape_flash_silentrifles_ab_sect}
+up_sect_cd_val = {+escape_flash_silentrifles_cd_sect}
+up_sect_cd_vintorez = {+escape_flash_silentrifles_cd_sect}
+
+up_sect_ac_groza = {+escape_flash_groza_ac_sect}
+up_sect_eg_groza = {+escape_flash_groza_eg_sect}
+up_sect_aceg_groza = {+escape_flash_groza_aceg_sect}
+
+up_sect_ac_fn2000 = {+escape_flash_fn2000_ac_sect}
+up_sect_bd_fn2000 = {+escape_flash_fn2000_bd_sect}
+up_sect_2ac_fn2000 = {+escape_flash_fn2000_2ac_sect}
+up_sect_2bd_fn2000 = {+escape_flash_fn2000_2bd_sect}
+
+up_sect_ab_pkm = {+escape_flash_pkm_ab_sect}
+up_sect_cd_pkm = {+escape_flash_pkm_cd_sect}
+up_sect_abcd_pkm = {+escape_flash_pkm_abcd_sect}
+
+;--------------------------------------------------------------------------------
+;-------------------- GARBAGE
+;--------------------------------------------------------------------------------
+
+[gar_bandit_fixer]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+[gar_bandit_fixer_upgr]
+
+up_sect_a_green_ecolog_outfit = false
+up_sect_b_green_ecolog_outfit = false
+up_sect_c_green_ecolog_outfit = false
+up_sect_d_green_ecolog_outfit = false
+up_sect_e_green_ecolog_outfit = false
+up_sect_f_green_ecolog_outfit = false
+up_sect_a_red_ecolog_outfit = false
+up_sect_b_red_ecolog_outfit = false
+up_sect_c_red_ecolog_outfit = false
+up_sect_d_red_ecolog_outfit = false
+up_sect_e_red_ecolog_outfit = false
+up_sect_f_red_ecolog_outfit = false
+
+up_sect_ac_scientific_outfit = {+garbage_flash_scientific_ac_sect}
+up_sect_ac_dolg_scientific_outfit = {+garbage_flash_scientific_ac_sect}
+up_sect_ac_svoboda_scientific_outfit = {+garbage_flash_scientific_ac_sect}
+up_sect_ac_killer_scientific_outfit = {+garbage_flash_scientific_ac_sect}
+up_sect_ac_monolith_scientific_outfit = {+garbage_flash_scientific_ac_sect}
+up_sect_eg_scientific_outfit = {+garbage_flash_scientific_eg_sect}
+up_sect_eg_dolg_scientific_outfit = {+garbage_flash_scientific_eg_sect}
+up_sect_eg_svoboda_scientific_outfit = {+garbage_flash_scientific_eg_sect}
+up_sect_eg_killer_scientific_outfit = {+garbage_flash_scientific_eg_sect}
+up_sect_eg_monolith_scientific_outfit = {+garbage_flash_scientific_eg_sect}
+up_sect_aceg_scientific_outfit = {+garbage_flash_scientific_aceg_sect}
+up_sect_aceg_dolg_scientific_outfit = {+garbage_flash_scientific_aceg_sect}
+up_sect_aceg_svoboda_scientific_outfit = {+garbage_flash_scientific_aceg_sect}
+up_sect_aceg_killer_scientific_outfit = {+garbage_flash_scientific_aceg_sect}
+up_sect_aceg_monolith_scientific_outfit = {+garbage_flash_scientific_aceg_sect}
+
+up_sect_f2_exo_outfit = {+garbage_flash_exoskeleton_f2_sect}
+up_sect_f2_dolg_exo_outfit = {+garbage_flash_exoskeleton_f2_sect}
+up_sect_f2_svoboda_exo_outfit = {+garbage_flash_exoskeleton_f2_sect}
+up_sect_f2_killer_exo_outfit = {+garbage_flash_exoskeleton_f2_sect}
+up_sect_f2_monolith_exo_outfit = {+garbage_flash_exoskeleton_f2_sect}
+up_sect_h2_exo_outfit = {+garbage_flash_exoskeleton_h2_sect}
+up_sect_h2_dolg_exo_outfit = {+garbage_flash_exoskeleton_h2_sect}
+up_sect_h2_svoboda_exo_outfit = {+garbage_flash_exoskeleton_h2_sect}
+up_sect_h2_killer_exo_outfit = {+garbage_flash_exoskeleton_h2_sect}
+up_sect_h2_monolith_exo_outfit = {+garbage_flash_exoskeleton_h2_sect}
+up_sect_f2h2_exo_outfit = {+garbage_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_dolg_exo_outfit = {+garbage_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_svoboda_exo_outfit = {+garbage_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_killer_exo_outfit = {+garbage_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_monolith_exo_outfit = {+garbage_flash_exoskeleton_f2h2_sect}
+up_sect_ac2_exo_outfit = {+garbage_flash_exoskeleton_ac2_sect}
+up_sect_ac2_dolg_exo_outfit = {+garbage_flash_exoskeleton_ac2_sect}
+up_sect_ac2_svoboda_exo_outfit = {+garbage_flash_exoskeleton_ac2_sect}
+up_sect_ac2_killer_exo_outfit = {+garbage_flash_exoskeleton_ac2_sect}
+up_sect_ac2_monolith_exo_outfit = {+garbage_flash_exoskeleton_ac2_sect}
+up_sect_bd2_exo_outfit = {+garbage_flash_exoskeleton_bd2_sect}
+up_sect_bd2_dolg_exo_outfit = {+garbage_flash_exoskeleton_bd2_sect}
+up_sect_bd2_svoboda_exo_outfit = {+garbage_flash_exoskeleton_bd2_sect}
+up_sect_bd2_killer_exo_outfit = {+garbage_flash_exoskeleton_bd2_sect}
+up_sect_bd2_monolith_exo_outfit = {+garbage_flash_exoskeleton_bd2_sect}
+
+up_sect_ac_wincheaster1300 = {+garbage_flash_shotguns_ac_sect}
+up_sect_ac_spas12 = {+garbage_flash_shotguns_ac_sect}
+up_sect_bd_wincheaster1300 = {+garbage_flash_shotguns_bd_sect}
+up_sect_bd_spas12 = {+garbage_flash_shotguns_bd_sect}
+
+up_sect_ab_svu = {+garbage_flash_sniperrifles_ab_sect}
+up_sect_ab_svd = {+garbage_flash_sniperrifles_ab_sect}
+up_sect_cd_svu = {+garbage_flash_sniperrifles_cd_sect}
+up_sect_cd_svd = {+garbage_flash_sniperrifles_cd_sect}
+up_sect_abcd_svu = {+garbage_flash_sniperrifles_abcd_sect}
+up_sect_abcd_svd = {+garbage_flash_sniperrifles_abcd_sect}
+
+up_sect_ab_val = {+garbage_flash_silentrifles_ab_sect}
+up_sect_ab_vintorez = {+garbage_flash_silentrifles_ab_sect}
+up_sect_cd_val = {+garbage_flash_silentrifles_cd_sect}
+up_sect_cd_vintorez = {+garbage_flash_silentrifles_cd_sect}
+
+up_sect_ac_groza = {+garbage_flash_groza_ac_sect}
+up_sect_eg_groza = {+garbage_flash_groza_eg_sect}
+up_sect_aceg_groza = {+garbage_flash_groza_aceg_sect}
+
+up_sect_ac_fn2000 = {+garbage_flash_fn2000_ac_sect}
+up_sect_bd_fn2000 = {+garbage_flash_fn2000_bd_sect}
+up_sect_2ac_fn2000 = {+garbage_flash_fn2000_2ac_sect}
+up_sect_2bd_fn2000 = {+garbage_flash_fn2000_2bd_sect}
+
+up_sect_ab_pkm = {+garbage_flash_pkm_ab_sect}
+up_sect_cd_pkm = {+garbage_flash_pkm_cd_sect}
+up_sect_abcd_pkm = {+garbage_flash_pkm_abcd_sect}
+
+;--------------------------------------------------------------------------------
+
+[gar_digger_fixer]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+he_upgrade_nothing
+
+[gar_digger_fixer_upgr]
+
+;--------------------------------------------------------------------------------
+;-------------------- DARK VALLEY
+;--------------------------------------------------------------------------------
+
+[val_freedom_fixer]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+[val_freedom_fixer_upgr]
+
+up_sect_a_green_ecolog_outfit = false
+up_sect_b_green_ecolog_outfit = false
+up_sect_c_green_ecolog_outfit = false
+up_sect_d_green_ecolog_outfit = false
+up_sect_e_green_ecolog_outfit = false
+up_sect_f_green_ecolog_outfit = false
+up_sect_a_red_ecolog_outfit = false
+up_sect_b_red_ecolog_outfit = false
+up_sect_c_red_ecolog_outfit = false
+up_sect_d_red_ecolog_outfit = false
+up_sect_e_red_ecolog_outfit = false
+up_sect_f_red_ecolog_outfit = false
+
+up_sect_ac_scientific_outfit = {+darkvalley_flash_scientific_ac_sect}
+up_sect_ac_dolg_scientific_outfit = {+darkvalley_flash_scientific_ac_sect}
+up_sect_ac_svoboda_scientific_outfit = {+darkvalley_flash_scientific_ac_sect}
+up_sect_ac_killer_scientific_outfit = {+darkvalley_flash_scientific_ac_sect}
+up_sect_ac_monolith_scientific_outfit = {+darkvalley_flash_scientific_ac_sect}
+up_sect_eg_scientific_outfit = {+darkvalley_flash_scientific_eg_sect}
+up_sect_eg_dolg_scientific_outfit = {+darkvalley_flash_scientific_eg_sect}
+up_sect_eg_svoboda_scientific_outfit = {+darkvalley_flash_scientific_eg_sect}
+up_sect_eg_killer_scientific_outfit = {+darkvalley_flash_scientific_eg_sect}
+up_sect_eg_monolith_scientific_outfit = {+darkvalley_flash_scientific_eg_sect}
+up_sect_aceg_scientific_outfit = {+darkvalley_flash_scientific_aceg_sect}
+up_sect_aceg_dolg_scientific_outfit = {+darkvalley_flash_scientific_aceg_sect}
+up_sect_aceg_svoboda_scientific_outfit = {+darkvalley_flash_scientific_aceg_sect}
+up_sect_aceg_killer_scientific_outfit = {+darkvalley_flash_scientific_aceg_sect}
+up_sect_aceg_monolith_scientific_outfit = {+darkvalley_flash_scientific_aceg_sect}
+
+up_sect_f2_exo_outfit = {+darkvalley_flash_exoskeleton_f2_sect}
+up_sect_f2_dolg_exo_outfit = {+darkvalley_flash_exoskeleton_f2_sect}
+up_sect_f2_svoboda_exo_outfit = {+darkvalley_flash_exoskeleton_f2_sect}
+up_sect_f2_killer_exo_outfit = {+darkvalley_flash_exoskeleton_f2_sect}
+up_sect_f2_monolith_exo_outfit = {+darkvalley_flash_exoskeleton_f2_sect}
+up_sect_h2_exo_outfit = {+darkvalley_flash_exoskeleton_h2_sect}
+up_sect_h2_dolg_exo_outfit = {+darkvalley_flash_exoskeleton_h2_sect}
+up_sect_h2_svoboda_exo_outfit = {+darkvalley_flash_exoskeleton_h2_sect}
+up_sect_h2_killer_exo_outfit = {+darkvalley_flash_exoskeleton_h2_sect}
+up_sect_h2_monolith_exo_outfit = {+darkvalley_flash_exoskeleton_h2_sect}
+up_sect_f2h2_exo_outfit = {+darkvalley_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_dolg_exo_outfit = {+darkvalley_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_svoboda_exo_outfit = {+darkvalley_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_killer_exo_outfit = {+darkvalley_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_monolith_exo_outfit = {+darkvalley_flash_exoskeleton_f2h2_sect}
+up_sect_ac2_exo_outfit = {+darkvalley_flash_exoskeleton_ac2_sect}
+up_sect_ac2_dolg_exo_outfit = {+darkvalley_flash_exoskeleton_ac2_sect}
+up_sect_ac2_svoboda_exo_outfit = {+darkvalley_flash_exoskeleton_ac2_sect}
+up_sect_ac2_killer_exo_outfit = {+darkvalley_flash_exoskeleton_ac2_sect}
+up_sect_ac2_monolith_exo_outfit = {+darkvalley_flash_exoskeleton_ac2_sect}
+up_sect_bd2_exo_outfit = {+darkvalley_flash_exoskeleton_bd2_sect}
+up_sect_bd2_dolg_exo_outfit = {+darkvalley_flash_exoskeleton_bd2_sect}
+up_sect_bd2_svoboda_exo_outfit = {+darkvalley_flash_exoskeleton_bd2_sect}
+up_sect_bd2_killer_exo_outfit = {+darkvalley_flash_exoskeleton_bd2_sect}
+up_sect_bd2_monolith_exo_outfit = {+darkvalley_flash_exoskeleton_bd2_sect}
+
+up_sect_ac_wincheaster1300 = {+darkvalley_flash_shotguns_ac_sect}
+up_sect_ac_spas12 = {+darkvalley_flash_shotguns_ac_sect}
+up_sect_bd_wincheaster1300 = {+darkvalley_flash_shotguns_bd_sect}
+up_sect_bd_spas12 = {+darkvalley_flash_shotguns_bd_sect}
+
+up_sect_ab_svu = {+darkvalley_flash_sniperrifles_ab_sect}
+up_sect_ab_svd = {+darkvalley_flash_sniperrifles_ab_sect}
+up_sect_cd_svu = {+darkvalley_flash_sniperrifles_cd_sect}
+up_sect_cd_svd = {+darkvalley_flash_sniperrifles_cd_sect}
+up_sect_abcd_svu = {+darkvalley_flash_sniperrifles_abcd_sect}
+up_sect_abcd_svd = {+darkvalley_flash_sniperrifles_abcd_sect}
+
+up_sect_ab_val = {+darkvalley_flash_silentrifles_ab_sect}
+up_sect_ab_vintorez = {+darkvalley_flash_silentrifles_ab_sect}
+up_sect_cd_val = {+darkvalley_flash_silentrifles_cd_sect}
+up_sect_cd_vintorez = {+darkvalley_flash_silentrifles_cd_sect}
+
+up_sect_ac_groza = {+darkvalley_flash_groza_ac_sect}
+up_sect_eg_groza = {+darkvalley_flash_groza_eg_sect}
+up_sect_aceg_groza = {+darkvalley_flash_groza_aceg_sect}
+
+up_sect_ac_fn2000 = {+darkvalley_flash_fn2000_ac_sect}
+up_sect_bd_fn2000 = {+darkvalley_flash_fn2000_bd_sect}
+up_sect_2ac_fn2000 = {+darkvalley_flash_fn2000_2ac_sect}
+up_sect_2bd_fn2000 = {+darkvalley_flash_fn2000_2bd_sect}
+
+up_sect_ab_pkm = {+darkvalley_flash_pkm_ab_sect}
+up_sect_cd_pkm = {+darkvalley_flash_pkm_cd_sect}
+up_sect_abcd_pkm = {+darkvalley_flash_pkm_abcd_sect}
+
+;--------------------------------------------------------------------------------
+;-------------------- AGROPROM
+;--------------------------------------------------------------------------------
+
+[agr_duty_base_mechanic]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+[agr_duty_base_mechanic_upgr]
+
+up_sect_a_green_ecolog_outfit = false
+up_sect_b_green_ecolog_outfit = false
+up_sect_c_green_ecolog_outfit = false
+up_sect_d_green_ecolog_outfit = false
+up_sect_e_green_ecolog_outfit = false
+up_sect_f_green_ecolog_outfit = false
+up_sect_a_red_ecolog_outfit = false
+up_sect_b_red_ecolog_outfit = false
+up_sect_c_red_ecolog_outfit = false
+up_sect_d_red_ecolog_outfit = false
+up_sect_e_red_ecolog_outfit = false
+up_sect_f_red_ecolog_outfit = false
+
+up_sect_ac_scientific_outfit = {+agroprom_flash_scientific_ac_sect}
+up_sect_ac_dolg_scientific_outfit = {+agroprom_flash_scientific_ac_sect}
+up_sect_ac_svoboda_scientific_outfit = {+agroprom_flash_scientific_ac_sect}
+up_sect_ac_killer_scientific_outfit = {+agroprom_flash_scientific_ac_sect}
+up_sect_ac_monolith_scientific_outfit = {+agroprom_flash_scientific_ac_sect}
+up_sect_eg_scientific_outfit = {+agroprom_flash_scientific_eg_sect}
+up_sect_eg_dolg_scientific_outfit = {+agroprom_flash_scientific_eg_sect}
+up_sect_eg_svoboda_scientific_outfit = {+agroprom_flash_scientific_eg_sect}
+up_sect_eg_killer_scientific_outfit = {+agroprom_flash_scientific_eg_sect}
+up_sect_eg_monolith_scientific_outfit = {+agroprom_flash_scientific_eg_sect}
+up_sect_aceg_scientific_outfit = {+agroprom_flash_scientific_aceg_sect}
+up_sect_aceg_dolg_scientific_outfit = {+agroprom_flash_scientific_aceg_sect}
+up_sect_aceg_svoboda_scientific_outfit = {+agroprom_flash_scientific_aceg_sect}
+up_sect_aceg_killer_scientific_outfit = {+agroprom_flash_scientific_aceg_sect}
+up_sect_aceg_monolith_scientific_outfit = {+agroprom_flash_scientific_aceg_sect}
+
+up_sect_f2_exo_outfit = {+agroprom_flash_exoskeleton_f2_sect}
+up_sect_f2_dolg_exo_outfit = {+agroprom_flash_exoskeleton_f2_sect}
+up_sect_f2_svoboda_exo_outfit = {+agroprom_flash_exoskeleton_f2_sect}
+up_sect_f2_killer_exo_outfit = {+agroprom_flash_exoskeleton_f2_sect}
+up_sect_f2_monolith_exo_outfit = {+agroprom_flash_exoskeleton_f2_sect}
+up_sect_h2_exo_outfit = {+agroprom_flash_exoskeleton_h2_sect}
+up_sect_h2_dolg_exo_outfit = {+agroprom_flash_exoskeleton_h2_sect}
+up_sect_h2_svoboda_exo_outfit = {+agroprom_flash_exoskeleton_h2_sect}
+up_sect_h2_killer_exo_outfit = {+agroprom_flash_exoskeleton_h2_sect}
+up_sect_h2_monolith_exo_outfit = {+agroprom_flash_exoskeleton_h2_sect}
+up_sect_f2h2_exo_outfit = {+agroprom_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_dolg_exo_outfit = {+agroprom_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_svoboda_exo_outfit = {+agroprom_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_killer_exo_outfit = {+agroprom_flash_exoskeleton_f2h2_sect}
+up_sect_f2h2_monolith_exo_outfit = {+agroprom_flash_exoskeleton_f2h2_sect}
+up_sect_ac2_exo_outfit = {+agroprom_flash_exoskeleton_ac2_sect}
+up_sect_ac2_dolg_exo_outfit = {+agroprom_flash_exoskeleton_ac2_sect}
+up_sect_ac2_svoboda_exo_outfit = {+agroprom_flash_exoskeleton_ac2_sect}
+up_sect_ac2_killer_exo_outfit = {+agroprom_flash_exoskeleton_ac2_sect}
+up_sect_ac2_monolith_exo_outfit = {+agroprom_flash_exoskeleton_ac2_sect}
+up_sect_bd2_exo_outfit = {+agroprom_flash_exoskeleton_bd2_sect}
+up_sect_bd2_dolg_exo_outfit = {+agroprom_flash_exoskeleton_bd2_sect}
+up_sect_bd2_svoboda_exo_outfit = {+agroprom_flash_exoskeleton_bd2_sect}
+up_sect_bd2_killer_exo_outfit = {+agroprom_flash_exoskeleton_bd2_sect}
+up_sect_bd2_monolith_exo_outfit = {+agroprom_flash_exoskeleton_bd2_sect}
+
+up_sect_ac_wincheaster1300 = {+agroprom_flash_shotguns_ac_sect}
+up_sect_ac_spas12 = {+agroprom_flash_shotguns_ac_sect}
+up_sect_bd_wincheaster1300 = {+agroprom_flash_shotguns_bd_sect}
+up_sect_bd_spas12 = {+agroprom_flash_shotguns_bd_sect}
+
+up_sect_ab_svu = {+agroprom_flash_sniperrifles_ab_sect}
+up_sect_ab_svd = {+agroprom_flash_sniperrifles_ab_sect}
+up_sect_cd_svu = {+agroprom_flash_sniperrifles_cd_sect}
+up_sect_cd_svd = {+agroprom_flash_sniperrifles_cd_sect}
+up_sect_abcd_svu = {+agroprom_flash_sniperrifles_abcd_sect}
+up_sect_abcd_svd = {+agroprom_flash_sniperrifles_abcd_sect}
+
+up_sect_ab_val = {+agroprom_flash_silentrifles_ab_sect}
+up_sect_ab_vintorez = {+agroprom_flash_silentrifles_ab_sect}
+up_sect_cd_val = {+agroprom_flash_silentrifles_cd_sect}
+up_sect_cd_vintorez = {+agroprom_flash_silentrifles_cd_sect}
+
+up_sect_ac_groza = {+agroprom_flash_groza_ac_sect}
+up_sect_eg_groza = {+agroprom_flash_groza_eg_sect}
+up_sect_aceg_groza = {+agroprom_flash_groza_aceg_sect}
+
+up_sect_ac_fn2000 = {+agroprom_flash_fn2000_ac_sect}
+up_sect_bd_fn2000 = {+agroprom_flash_fn2000_bd_sect}
+up_sect_2ac_fn2000 = {+agroprom_flash_fn2000_2ac_sect}
+up_sect_2bd_fn2000 = {+agroprom_flash_fn2000_2bd_sect}
+
+up_sect_ab_pkm = {+agroprom_flash_pkm_ab_sect}
+up_sect_cd_pkm = {+agroprom_flash_pkm_cd_sect}
+up_sect_abcd_pkm = {+agroprom_flash_pkm_abcd_sect}
+
+;--------------------------------------------------------------------------------
+
+[agr_stalker_base_mechanic]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+he_upgrade_nothing
+
+[agr_stalker_base_mechanic_upgr]
+
+;--------------------------------------------------------------------------------
+;-------------------- RED FOREST
+;--------------------------------------------------------------------------------
+
+[red_forester]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+he_upgrade_nothing
+
+[red_forester_upgr]
+
+;--------------------------------------------------------------------------------
+;-------------------- LIMANSK
+;--------------------------------------------------------------------------------
+
+[lim_cs_commander]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+he_upgrade_nothing
+
+[lim_cs_commander_upgr]
+
+;--------------------------------------------------------------------------------
+;-------------------- HOSPITAL
+;--------------------------------------------------------------------------------
+
+[kat_cs_commander]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+he_upgrade_nothing
+
+[kat_cs_commander_upgr]
+
+;--------------------------------------------------------------------------------
+;-------------------- OGSM 1.8 CS CE Fixes
+;--------------------------------------------------------------------------------
+;-------------------- YANTAR
+;--------------------------------------------------------------------------------
+
+[yan_tech_ecologbase]
+
+wpn_bm16_full
+wpn_bm16
+wpn_toz34
+wpn_toz34_obrez
+wpn_wincheaster1300
+wpn_spas12
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
+wpn_ak74u
+wpn_ak74_priklad
+wpn_ak74
+wpn_abakan
+wpn_9a91
+wpn_groza
+wpn_val
+wpn_vihr
+wpn_vintorez
+wpn_svd
+wpn_svu
+wpn_mp5
+wpn_l85
+wpn_lr300
+wpn_sig550
+wpn_sig552
+wpn_g36
+wpn_g36c
+wpn_fn2000
+wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
+
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
+novice_outfit
+novice_outfit_white
+stalker_light_outfit
+stalker_outfit
+scientific_outfit
+stalker_heavy_outfit
+exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
+svoboda_light_outfit
+svoboda_light2_outfit
+svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
+svoboda_exo_outfit
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
+
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
+
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
+
+[yan_tech_ecologbase_upgr]
+
+up_sect_ac_scientific_outfit = false
+up_sect_ac_dolg_scientific_outfit = false
+up_sect_ac_svoboda_scientific_outfit = false
+up_sect_ac_killer_scientific_outfit = false
+up_sect_ac_monolith_scientific_outfit = false
+up_sect_eg_scientific_outfit = false
+up_sect_eg_dolg_scientific_outfit = false
+up_sect_eg_svoboda_scientific_outfit = false
+up_sect_eg_killer_scientific_outfit = false
+up_sect_eg_monolith_scientific_outfit = false
+up_sect_aceg_scientific_outfit = false
+up_sect_aceg_dolg_scientific_outfit = false
+up_sect_aceg_svoboda_scientific_outfit = false
+up_sect_aceg_killer_scientific_outfit = false
+up_sect_aceg_monolith_scientific_outfit = false
+
+up_sect_f2_exo_outfit = false
+up_sect_f2_dolg_exo_outfit = false
+up_sect_f2_svoboda_exo_outfit = false
+up_sect_f2_killer_exo_outfit = false
+up_sect_f2_monolith_exo_outfit = false
+up_sect_h2_exo_outfit = false
+up_sect_h2_dolg_exo_outfit = false
+up_sect_h2_svoboda_exo_outfit = false
+up_sect_h2_killer_exo_outfit = false
+up_sect_h2_monolith_exo_outfit = false
+up_sect_f2h2_exo_outfit = false
+up_sect_f2h2_dolg_exo_outfit = false
+up_sect_f2h2_svoboda_exo_outfit = false
+up_sect_f2h2_killer_exo_outfit = false
+up_sect_f2h2_monolith_exo_outfit = false
+up_sect_ac2_exo_outfit = false
+up_sect_ac2_dolg_exo_outfit = false
+up_sect_ac2_svoboda_exo_outfit = false
+up_sect_ac2_killer_exo_outfit = false
+up_sect_ac2_monolith_exo_outfit = false
+up_sect_bd2_exo_outfit = false
+up_sect_bd2_dolg_exo_outfit = false
+up_sect_bd2_svoboda_exo_outfit = false
+up_sect_bd2_killer_exo_outfit = false
+up_sect_bd2_monolith_exo_outfit = false
+
+up_sect_ac_wincheaster1300 = false
+up_sect_ac_spas12 = false
 up_sect_bd_wincheaster1300 = false
 up_sect_bd_spas12 = false
-up_sect_ac_spas12 = false
+
+up_sect_ab_svu = false
+up_sect_ab_svd = false
+up_sect_cd_svu = false
+up_sect_cd_svd = false
+up_sect_abcd_svu = false
+up_sect_abcd_svd = false
+
+up_sect_ab_val = false
+up_sect_ab_vintorez = false
+up_sect_cd_val = false
+up_sect_cd_vintorez = false
+
+up_sect_ac_groza = false
+up_sect_eg_groza = false
+up_sect_aceg_groza = false
+
+up_sect_ac_fn2000 = false
+up_sect_bd_fn2000 = false
+up_sect_2ac_fn2000 = false
+up_sect_2bd_fn2000 = false
+
 up_sect_ab_pkm = false
 up_sect_cd_pkm = false
 up_sect_abcd_pkm = false
 
-up_sect_fh_scientific_outfit = false
-up_sect_aceg_scientific_outfit = false
-up_sect_bdfh_scientific_outfit = false
-;************************************************
-;************** Escape stalker mechanic *********
-;************************************************
+;--------------------------------------------------------------------------------
+;-------------------- MILITARY
+;--------------------------------------------------------------------------------
 
+[mil_questman]
 
-[esc_tech_stalkerbase]
-wpn_pm
-wpn_pm_up
-wpn_pm_9x19
-wpn_pb
-wpn_fort
-wpn_fort_up
-wpn_hpsa
+wpn_bm16_full
 wpn_bm16
 wpn_toz34
-wpn_wincheaster1300
-wpn_mp5
-wpn_ak74u
-wpn_ak74
-wpn_ak74_up
-wpn_ak74_up2
-wpn_l85
-
-novice_outfit
-bandit_outfit
-stalker_outfit
-stalker_outfit_up_stalk
-
-[esc_tech_stalkerbase_upgr]
-up_sect_ac_mp5 = false
-up_sect_bd_mp5 = false
-
-up_sect_ac_wincheaster1300 = {+info_up_ac_wincheaster1300} 
-up_sect_bd_wincheaster1300 = {+info_up_bd_wincheaster1300}
-up_sect_bd_spas12 = {+info_up_ac_wincheaster1300}
-up_sect_ac_spas12 = {+info_up_bd_wincheaster1300}
-up_sect_ac_ak74u = {+info_up_ac_ak74u}
-
-up_sect_aceg_ak74 = false
-up_sect_aceg_abakan = false
-up_sect_aceg_l85 = false
-up_sect_aceg_lr300 = false
-up_sect_aceg_sig550 = false
-up_sect_bdfh_ak74 = false
-up_sect_bdfh_abakan = false
-up_sect_bdfh_l85 = false
-up_sect_bdfh_lr300 = false
-up_sect_bdfh_sig550 = false
-;************************************************
-;************** Garbage bandit mechanic *********
-;************************************************
-
-[gar_bandit_fixer]
-wpn_pm
-wpn_pm_up
-wpn_pm_9x19
-wpn_pb
-wpn_fort
-wpn_fort_up
-wpn_hpsa
-wpn_colt1911
-wpn_colt1911_up2
-wpn_desert_eagle
-wpn_bm16
-wpn_toz34
+wpn_toz34_obrez
 wpn_wincheaster1300
 wpn_spas12
-wpn_mp5
+wpn_saiga
+wpn_pm
+wpn_pb
+wpn_pb_short
+wpn_fort
+wpn_hpsa
+wpn_beretta
+wpn_walther
+wpn_colt1911
+wpn_sig220
+wpn_usp
 wpn_ak74u
+wpn_ak74_priklad
 wpn_ak74
-wpn_ak74_up
-wpn_ak74_up2
 wpn_abakan
-wpn_abakan_up2
-wpn_l85
-wpn_lr300
-wpn_lr300_up2
-wpn_sig550
-wpn_sig550_up2
-wpn_g36
-wpn_g36_up2
+wpn_9a91
 wpn_groza
-wpn_vintorez
 wpn_val
-
-novice_outfit
-bandit_outfit
-stalker_outfit
-stalker_outfit_up_stalk
-specops_outfit
-scientific_outfit
-military_outfit
-exo_outfit
-
-[gar_bandit_fixer_upgr]
-up_sect_ac_wincheaster1300 = false 
-up_sect_bd_wincheaster1300 = false
-up_sect_ac_spas12 = false
-up_sect_bd_spas12 = false
-up_sect_ac_desert_eagle = false
-up_sect_bd_desert_eagle = false
-up_sect_aceg_abakan = false
-up_sect_bdfh_abakan = false
-
-up_sect_fh_scientific_outfit = {+info_up_fh_scientific_outfit}
-up_sect_aceg_scientific_outfit = {+info_up_bdfh_scientific_outfit}
-up_sect_bdfh_scientific_outfit = {+info_up_aceg_scientific_outfit}
-
-[gar_digger_fixer]
-wpn_pm
-wpn_pm_up
-wpn_pm_9x19
-wpn_pb
-wpn_fort
-wpn_fort_up
-wpn_hpsa
-wpn_beretta
-wpn_walther
-wpn_walther_up2
-wpn_colt1911
-wpn_colt1911_up2
-wpn_usp
-wpn_sig220
-wpn_desert_eagle
-wpn_bm16
-wpn_toz34
-wpn_wincheaster1300
-wpn_spas12
-wpn_mp5
-wpn_ak74u
-wpn_ak74
-wpn_ak74_up
-wpn_ak74_up2
-wpn_abakan
-wpn_abakan_up2
-wpn_l85
-wpn_lr300
-wpn_lr300_up2
-wpn_sig550
-wpn_sig550_up2
-
-novice_outfit
-bandit_outfit
-stalker_outfit
-stalker_outfit_up_stalk
-specops_outfit
-
-[gar_digger_fixer_upgr]
-up_sect_ac_mp5 = false
-up_sect_bd_mp5 = false
-up_sect_ac_wincheaster1300 = false 
-up_sect_bd_wincheaster1300 = false
-up_sect_ac_spas12 = false
-up_sect_bd_spas12 = false
-up_sect_ac_ak74u = false
-up_sect_bd_ak74u = false
-up_sect_ac_desert_eagle = false
-up_sect_bd_desert_eagle = false
-up_sect_fh_scientific_outfit = false
-up_sect_aceg_scientific_outfit = false
-up_sect_bdfh_scientific_outfit = false
-up_sect_ac_ak74 = false
-up_sect_eg_ak74 = false
-up_sect_aceg_ak74 = false
-up_sect_ac_abakan = false
-up_sect_eg_abakan = false
-up_sect_aceg_abakan = false
-up_sect_ac_l85 = false
-up_sect_eg_l85 = false
-up_sect_aceg_l85 = false
-up_sect_ac_lr300 = false
-up_sect_eg_lr300 = false
-up_sect_aceg_lr300 = false
-up_sect_ac_sig550 = false
-up_sect_eg_sig550 = false
-up_sect_aceg_sig550 = false
-up_sect_bd_ak74 = false
-up_sect_fh_ak74 = false
-up_sect_bdfh_ak74 = false
-up_sect_bd_abakan = false
-up_sect_fh_abakan = false
-up_sect_bdfh_abakan = false
-up_sect_bd_l85 = false
-up_sect_fh_l85 = false
-up_sect_bdfh_l85 = false
-up_sect_bd_lr300 = false
-up_sect_fh_lr300 = false
-up_sect_bdfh_lr300 = false
-up_sect_bd_sig550 = false
-up_sect_fh_sig550 = false
-up_sect_bdfh_sig550 = false
-
-;************************************************
-;************** Valley freedom mechanic *********
-;************************************************
-
-[val_freedom_fixer]
-wpn_pm
-wpn_pm_up
-wpn_pm_9x19
-wpn_pb
-wpn_fort
-wpn_fort_up
-wpn_hpsa
-wpn_beretta
-wpn_walther
-wpn_walther_up2
-wpn_colt1911
-wpn_colt1911_up2
-wpn_usp
-wpn_sig220
-wpn_bm16
-wpn_toz34
-wpn_wincheaster1300
-wpn_spas12
-wpn_mp5
-wpn_ak74u
-wpn_ak74
-wpn_ak74_up
-wpn_ak74_up2
-wpn_abakan
-wpn_l85
-wpn_lr300
-wpn_lr300_up2
-wpn_sig550
-wpn_sig550_up2
-wpn_g36
-wpn_g36_up2
-wpn_val
+wpn_vihr
 wpn_vintorez
 wpn_svd
 wpn_svu
-
-stalker_outfit
-stalker_outfit_up_stalk
-scientific_outfit
-specops_outfit
-military_outfit
-svoboda_light_outfit
-svoboda_heavy_outfit
-svoboda_exo_outfit
-exo_outfit
-
-[val_freedom_fixer_upgr]
-up_sect_ac_wincheaster1300 = false 
-up_sect_bd_wincheaster1300 = false
-up_sect_ac_spas12 = false
-up_sect_bd_spas12 = false
-up_sect_fh_scientific_outfit = false
-up_sect_aceg_scientific_outfit = false
-up_sect_bdfh_scientific_outfit = false
-up_sect_aceg_ak74 = false
-up_sect_aceg_abakan = false
-up_sect_aceg_l85 = false
-up_sect_aceg_lr300 = false
-up_sect_aceg_sig550 = false
-up_sect_aceg_g36 = false
-
-up_sect_ab_svu = {+info_up_ab_svu}
-up_sect_cd_svu = {+info_up_cd_svu}
-up_sect_abcd_svu = {+info_up_abcd_svu}
-
-up_sect_ab_svd = {+info_up_ab_svu}
-up_sect_cd_svd = {+info_up_cd_svu}
-up_sect_abcd_svd = {+info_up_abcd_svu}
-
-;************************************************
-;************** Agroprom duty mechanic **********
-;************************************************
-
-[agr_duty_base_mechanic]
-wpn_pm
-wpn_pm_up
-wpn_pm_9x19
-wpn_pb
-wpn_fort
-wpn_fort_up
-wpn_hpsa
-wpn_beretta
-wpn_walther
-wpn_walther_up2
-wpn_colt1911
-wpn_colt1911_up2
-wpn_usp
-wpn_sig220
-wpn_desert_eagle
-wpn_bm16
-wpn_toz34
-wpn_wincheaster1300
-wpn_spas12
-wpn_ak74u
-wpn_ak74
-wpn_ak74_up
-wpn_ak74_up2
-wpn_abakan
-wpn_abakan_up2
-wpn_l85
-wpn_lr300
-wpn_lr300_up2
-wpn_sig550
-wpn_sig550_up2
-wpn_groza
-wpn_val
-wpn_vintorez
-wpn_pkm
-
-stalker_outfit
-stalker_outfit_up_stalk
-specops_outfit
-scientific_outfit
-military_outfit
-dolg_outfit
-dolg_heavy_outfit
-exo_outfit
-
-[agr_duty_base_mechanic_upgr]
-up_sect_ac_ak74u = false
-up_sect_aceg_scientific_outfit = false
-up_sect_bdfh_scientific_outfit = false
-up_sect_bdfh_ak74 = false
-up_sect_bdfh_abakan = false
-up_sect_bdfh_l85 = false
-up_sect_bdfh_lr300 = false
-up_sect_bdfh_sig550 = false
-
-up_sect_ab_pkm = {+info_up_ab_pkm}
-up_sect_cd_pkm = {+info_up_ab_pkm}
-up_sect_abcd_pkm = {+info_up_ab_pkm}
-
-;************************************************
-;************** Agroprom stalker mechanic *******
-;************************************************
-
-
-[agr_stalker_base_mechanic]
-wpn_pm
-wpn_pm_up
-wpn_pm_9x19
-wpn_pb
-wpn_fort
-wpn_fort_up 
-wpn_hpsa
-wpn_beretta
-wpn_walther
-wpn_walther_up2
-wpn_colt1911
-wpn_colt1911_up2
-wpn_usp
-wpn_sig220
-wpn_desert_eagle
-wpn_bm16
-wpn_toz34
-wpn_wincheaster1300
-wpn_spas12
-wpn_ak74u
 wpn_mp5
-wpn_ak74
 wpn_l85
 wpn_lr300
-wpn_lr300_up2
 wpn_sig550
-wpn_sig550_up2
-
-stalker_outfit
-specops_outfit
-
-[agr_stalker_base_mechanic_upgr]
-up_sect_ac_mp5 = false
-up_sect_bd_mp5 = false
-up_sect_ac_wincheaster1300 = false 
-up_sect_bd_wincheaster1300 = false
-up_sect_ac_ak74u = false
-up_sect_aceg_scientific_outfit = false
-up_sect_bdfh_scientific_outfit = false
-up_sect_ac_ak74 = false
-up_sect_eg_ak74 = false
-up_sect_aceg_ak74 = false
-up_sect_ac_l85 = false
-up_sect_eg_l85 = false
-up_sect_aceg_l85 = false
-up_sect_ac_lr300 = false
-up_sect_eg_lr300 = false
-up_sect_aceg_lr300 = false
-up_sect_ac_sig550 = false
-up_sect_eg_sig550 = false
-up_sect_aceg_sig550 = false
-up_sect_bd_ak74 = false
-up_sect_fh_ak74 = false
-up_sect_bdfh_ak74 = false
-up_sect_bd_l85 = false
-up_sect_fh_l85 = false
-up_sect_bdfh_l85 = false
-up_sect_bd_lr300 = false
-up_sect_fh_lr300 = false
-up_sect_bdfh_lr300 = false
-up_sect_bd_sig550 = false
-up_sect_fh_sig550 = false
-up_sect_bdfh_sig550 = false
-
-up_sect_ac_desert_eagle = {+info_up_ac_desert_eagle}
-up_sect_bd_desert_eagle = {+info_up_bd_desert_eagle}
-up_sect_ac_spas12 = {+info_up_ac_spas12}
-
-;************************************************
-;************** Red forest forester *************
-;************************************************
-
-[red_forester]
-he_upgrade_nothing
-wpn_pm
-wpn_pm_up
-wpn_pm_9x19		
-wpn_pb		
-wpn_fort
-wpn_fort_up	
-wpn_hpsa
-wpn_beretta
-wpn_walther
-wpn_walther_up2
-wpn_colt1911
-wpn_colt1911_up2
-wpn_usp
-wpn_sig220
-wpn_desert_eagle
-wpn_bm16	
-wpn_toz34
-wpn_winche
-wpn_spas12
-wpn_ak74u
-wpn_mp5		
-wpn_ak74
-wpn_ak74_up
-wpn_ak74_up2	
-wpn_abakan
-wpn_abakan_up2
-wpn_l85		
-wpn_lr300
-wpn_lr300_up2
-wpn_sig550
-wpn_sig550_up2
-wpn_g36		
+wpn_sig552
+wpn_g36
+wpn_g36c
 wpn_fn2000
-wpn_groza
-wpn_val		
-wpn_vintorez
-wpn_svu		
-wpn_svd		
 wpn_pkm
+wpn_rg-6
+wpn_rpg7
+wpn_gauss
 
+wpn_aps
+wpn_gsh18
+wpn_tt33
+wpn_fn57
+wpn_desert_eagle
+wpn_akm
+wpn_rpk
+wpn_ak101
+wpn_ak104
+wpn_ak108
+wpn_ump45
+wpn_sigsg550sniper
+wpn_p90
+wpn_pmm
+wpn_glock17
+
+cs_novice_outfit
+cs_light_outfit
+cs_light_extra_outfit
+cs_standart_outfit
+cs_heavy_outfit
+cs_heavy_extra_outfit
 novice_outfit
-bandit_outfit
-specops_outfit
-military_outfit
+novice_outfit_white
+stalker_light_outfit
 stalker_outfit
 scientific_outfit
+stalker_heavy_outfit
 exo_outfit
+bandit_outfit
+bandit_veteran_outfit
+bandit_master_outfit
+bandit_heavy_outfit
+dolg_outfit
+dolg_scientific_outfit
+dolg_heavy_extra_outfit
+dolg_heavy_outfit
+dolg_heavy_extra2_outfit
+dolg_exo_outfit
 svoboda_light_outfit
+svoboda_light2_outfit
 svoboda_heavy_outfit
+svoboda_scientific_outfit
+svoboda_heavy_extra_outfit
 svoboda_exo_outfit
-cs_light_outfit
-cs_heavy_outfit
-dolg_outfit	
-dolg_heavy_outfit	
+killer_outfit
+killer_outfit_dark
+killer_light2_outfit
+killer_scientific_outfit
+killer_heavy_outfit
+killer_exo_outfit
+monolith_light_outfit
+monolith_outfit
+monolith_scientific_outfit
+monolith_heavy_outfit
+monolith_exo_outfit
+monolith_exo_outfit_pripyat
+soldier_outfit_green
+soldier_outfit_grey
+soldier_outfit_brown
+specops_outfit
+military_outfit
+military_outfit_black
+military_extra_outfit
+military_extra_outfit_black
+red_ecolog_outfit
+green_ecolog_outfit
+digger_novice_outfit
 
-[red_forester_upgr]
+mar_quest_wpn_pm_1
+mar_quest_wpn_ak74u_1
+mar_quest_novice_outfit_1
+esc_quest_akm47
+gar_quest_wpn_wincheaster1300
+gar_quest_wpn_desert_eagle
+gar_quest_novice_outfit
+gar_quest_wpn_pm
+agr_quest_wpn_spas12
+agr_quest_duty_abakan
+red_quest_tank_minigun
 
-;************************************************
-;************** Limansk cs com ******************
-;************************************************
+wpn_wincheaster1300_ogsm_accuracy_1
+wpn_wincheaster1300_ogsm_burst_1
+wpn_spas12_ogsm_accuracy_1
+wpn_spas12_ogsm_burst_1
+wpn_saiga_ogsm_accuracy_1
+wpn_saiga_ogsm_burst_1
+wpn_ak74u_ogsm_accuracy_1
+wpn_ak74u_ogsm_burst_1
+wpn_ak74_priklad_ogsm_accuracy_1
+wpn_ak74_priklad_ogsm_burst_1
+wpn_ak74_ogsm_accuracy_1
+wpn_ak74_ogsm_burst_1
+wpn_abakan_ogsm_accuracy_1
+wpn_abakan_ogsm_burst_1
+wpn_9a91_ogsm_accuracy_1
+wpn_9a91_ogsm_burst_1
+wpn_groza_ogsm_tier_1
+wpn_groza_ogsm_tier_2
+wpn_val_ogsm_tier_1
+wpn_val_ogsm_tier_2
+wpn_vihr_ogsm_accuracy_1
+wpn_vihr_ogsm_burst_1
+wpn_vintorez_ogsm_tier_1
+wpn_vintorez_ogsm_tier_2
+wpn_svd_ogsm_tier_1
+wpn_svd_ogsm_tier_2
+wpn_svu_ogsm_tier_1
+wpn_svu_ogsm_tier_2
+wpn_mp5_ogsm_accuracy_1
+wpn_mp5_ogsm_burst_1
+wpn_l85_ogsm_accuracy_1
+wpn_l85_ogsm_burst_1
+wpn_lr300_ogsm_accuracy_1
+wpn_lr300_ogsm_burst_1
+wpn_sig550_ogsm_accuracy_1
+wpn_sig550_ogsm_burst_1
+wpn_sig552_ogsm_accuracy_1
+wpn_sig552_ogsm_burst_1
+wpn_g36_ogsm_accuracy_1
+wpn_g36_ogsm_burst_1
+wpn_g36c_ogsm_accuracy_1
+wpn_g36c_ogsm_burst_1
 
-[kat_cs_commander]
 he_upgrade_nothing
 
-[kat_cs_commander_upgr]
+[mil_questman_upgr]

@@ -3,6 +3,9 @@
 <game_information_portions>
 	<info_portion id="mar_autosave"></info_portion>
 
+    <info_portion id="mar_csky_doctor_about_people_done"></info_portion>
+    <info_portion id="mar_csky_doctor_about_me_done"></info_portion>
+    <info_portion id="mar_csky_doctor_about_zone_done"></info_portion>
     <info_portion id="mar_tower_defended"></info_portion>
     <info_portion id="mar_tower_captured"></info_portion>
     <info_portion id="mar_boar_killed"></info_portion>
@@ -36,7 +39,7 @@
     <info_portion id="mar_intro_scene_2_woke"></info_portion>
     <info_portion id="mar_intro_scene_2_talk"></info_portion>
     <info_portion id="mar_intro_scene_2_end"></info_portion>
-    <info_portion id="mar_intro_scene_2_cameff_end"></info_portion>
+    <info_portion id="mar_intro_scene_2_cameff_end"><article>private_5_note</article></info_portion>
     
     <info_portion id="mar_intro_talk_with_barman_done"></info_portion>
     <info_portion id="mar_intro_talk_with_barman_radio_timer"></info_portion>
@@ -78,7 +81,7 @@
     
     <info_portion id="mar_tutorial_returned_got_on_feet"></info_portion>
     
-    <info_portion id="mar_intro_talk_with_commander_2_started"></info_portion>
+    <info_portion id="mar_intro_talk_with_commander_2_started"><article>private_6_note</article></info_portion>
     <info_portion id="mar_intro_talk_with_commander_2_done"></info_portion>
     <info_portion id="mar_intro_talk_with_commander_2_choose"></info_portion>
     <info_portion id="mar_intro_talk_with_commander_2_decide"></info_portion>
@@ -91,10 +94,10 @@
     
     <info_portion id="mar_story_go_to_marsh_done"></info_portion>
     
-    <info_portion id="mar_story_empower_csky_done"></info_portion>
+    <info_portion id="mar_story_empower_csky_done"><article>private_7_note</article></info_portion>
     <info_portion id="mar_story_empower_csky_reward"></info_portion>
 
-	<info_portion id="mar_story_capture_bandit_base_reward"></info_portion>
+    <info_portion id="mar_story_capture_bandit_base_reward"></info_portion>
     
     <info_portion id="mar_story_guide_to_escape_talked"></info_portion>
     

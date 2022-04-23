@@ -10,10 +10,13 @@
             </phrase>
             <phrase id="1">
                 <text>agr_duty_trader_about_original_weapons_1</text>
+                <give_info>agr_duty_trader_mug</give_info>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_tir_dialog_hello">
+        <precondition>dialogs_agroprom.is_day</precondition>
+        <dont_has_info>start_surge_info</dont_has_info>
         <phrase_list>
             <phrase id="3">
                 <text />
@@ -251,6 +254,7 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_barman_around">
+        <dont_has_info>agr_duty_barman_around_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -259,11 +263,13 @@
             <phrase id="0">
                 <text>agr_duty_barman_around_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_barman_around_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_barman_jelanie">
+        <dont_has_info>agr_duty_barman_jelanie_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -272,11 +278,13 @@
             <phrase id="0">
                 <text>agr_duty_barman_jelanie_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_barman_jelanie_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_barman_you">
+        <dont_has_info>agr_duty_barman_you_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="155">
@@ -300,11 +308,13 @@
             <phrase id="0">
                 <text>agr_duty_barman_you_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_barman_you_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_barman_zone">
+        <dont_has_info>agr_duty_barman_zone_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -313,11 +323,13 @@
             <phrase id="0">
                 <text>agr_duty_barman_zone_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_barman_zone_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_holeman_dialog">
+        <precondition>dialogs.precond_inv</precondition>
         <has_info>agr_holeman_dialog</has_info>
         <dont_has_info>agr_actor_inside_10</dont_has_info>
         <dont_has_info>agr_holeman_dialog_complete</dont_has_info>
@@ -350,6 +362,7 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_mechanic_about_many_word">
+        <dont_has_info>agr_duty_mechanic_about_many_word_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -358,11 +371,13 @@
             <phrase id="0">
                 <text>agr_duty_mechanic_about_many_word_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_mechanic_about_many_word_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_mechanic_about_upgrade">
+        <dont_has_info>agr_duty_mechanic_about_upgrade_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="122">
@@ -377,11 +392,13 @@
             <phrase id="0">
                 <text>agr_duty_mechanic_about_upgrade_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_mechanic_about_upgrade_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_mechanic_like_parametrs">
+        <dont_has_info>agr_duty_mechanic_like_parametrs_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -390,24 +407,29 @@
             <phrase id="0">
                 <text>agr_duty_mechanic_like_parametrs_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_mechanic_like_parametrs_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_trader_about_fight">
+        <dont_has_info>agr_duty_trader_about_fight_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
                 <text>agr_duty_trader_about_fight_1</text>
+                <give_info>agr_duty_trader_mug</give_info>
             </phrase>
             <phrase id="0">
                 <text>agr_duty_trader_about_fight_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_trader_about_fight_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_weaponmaster_about_military">
+        <dont_has_info>agr_duty_weaponmaster_about_military_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -416,11 +438,13 @@
             <phrase id="0">
                 <text>agr_duty_weaponmaster_about_military_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_weaponmaster_about_military_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_weaponmaster_about_story">
+        <dont_has_info>agr_duty_weaponmaster_about_story_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -429,11 +453,13 @@
             <phrase id="0">
                 <text>agr_duty_weaponmaster_about_story_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_weaponmaster_about_story_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_weaponmaster_about_you_in_zone">
+        <dont_has_info>agr_duty_weaponmaster_about_you_in_zone_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="12">
@@ -463,11 +489,13 @@
             <phrase id="0">
                 <text>agr_duty_weaponmaster_about_you_in_zone_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_weaponmaster_about_you_in_zone_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_zooman_about_animals">
+        <dont_has_info>agr_duty_zooman_about_animals_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -476,11 +504,13 @@
             <phrase id="0">
                 <text>agr_duty_zooman_about_animals_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_zooman_about_animals_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_zooman_about_zoo">
+        <dont_has_info>agr_duty_zooman_about_zoo_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="111">
@@ -501,12 +531,15 @@
             <phrase id="0">
                 <text>agr_duty_zooman_about_zoo_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_zooman_about_zoo_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_zooman_quest">
+        <precondition>dialogs.precond_inv</precondition>
         <dont_has_info>agru_teleport_complete</dont_has_info>
+        <dont_has_info>agr_pda_map_animals_quest_story</dont_has_info>
         <phrase_list>
             <phrase id="11">
                 <text>agr_duty_zooman_quest_11</text>
@@ -514,7 +547,15 @@
             </phrase>
             <phrase id="2">
                 <text>agr_duty_zooman_quest_2</text>
+		<next>222</next>
+	    </phrase>
+	    <phrase id="222">
+		<text>agr_duty_zooman_quest_222</text>
                 <give_info>agr_pda_map_animals_quest_1</give_info>
+		<next>4</next>
+	    </phrase>
+	    <phrase id="4">
+		<text>agr_duty_zooman_quest_4</text>
             </phrase>
             <phrase id="22">
                 <text>agr_duty_zooman_quest_22</text>
@@ -562,6 +603,7 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_leader_about_dolg">
+        <dont_has_info>agr_leader_about_dolg_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="11">
@@ -586,11 +628,13 @@
             <phrase id="0">
                 <text>agr_leader_about_dolg_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_leader_about_dolg_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_leader_about_zone">
+        <dont_has_info>agr_leader_about_zone_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="111">
@@ -615,6 +659,7 @@
             <phrase id="0">
                 <text>agr_leader_about_zone_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_leader_about_zone_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
@@ -640,6 +685,7 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_about_agroprom">
+        <dont_has_info>agr_stalker_about_agroprom_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -648,6 +694,7 @@
             <phrase id="0">
                 <text>agr_stalker_about_agroprom_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_about_agroprom_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
@@ -701,6 +748,8 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_commander_1_about_situation">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>agr_stalker_commander_1_about_situation_info</dont_has_info>
         <phrase_list>
             <phrase id="4">
                 <text>agr_stalker_commander_1_about_situation_4</text>
@@ -724,6 +773,7 @@
             </phrase>
             <phrase id="10">
                 <text>agr_stalker_commander_1_about_situation_10</text>
+                <give_info>agr_stalker_commander_1_about_situation_info</give_info>
             </phrase>
             <phrase id="6">
                 <text>agr_stalker_commander_1_about_situation_6</text>
@@ -797,6 +847,8 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_commander_2_about_situation">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>agr_stalker_commander_2_about_situation_info</dont_has_info>
         <phrase_list>
             <phrase id="1">
                 <text />
@@ -812,6 +864,7 @@
             </phrase>
             <phrase id="6">
                 <text>agr_stalker_commander_2_about_situation_6</text>
+                <give_info>agr_stalker_commander_2_about_situation_info</give_info>
             </phrase>
             <phrase id="2">
                 <text>agr_stalker_commander_2_about_situation_2</text>
@@ -828,6 +881,7 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_commander_3">
+        <precondition>dialogs.precond_inv</precondition>
         <has_info>agr_smart_terrain_6_4_simulation_task_complete</has_info>
         <dont_has_info>agr_smart_terrain_4_2_simulation_task_complete</dont_has_info>
         <dont_has_info>agr_smart_terrain_4_2_simulation_task</dont_has_info>
@@ -875,9 +929,12 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_guard_dialog">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>agr_stalker_guard_dialog_info</dont_has_info>
         <phrase_list>
             <phrase id="4">
                 <text>agr_stalker_guard_dialog_4</text>
+                <give_info>agr_stalker_guard_dialog_info</give_info>
             </phrase>
             <phrase id="3">
                 <text>agr_stalker_guard_dialog_3</text>
@@ -898,6 +955,7 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_leader_about_contact">
+        <dont_has_info>agr_stalker_leader_about_contact_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -906,11 +964,13 @@
             <phrase id="0">
                 <text>agr_stalker_leader_about_contact_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_leader_about_contact_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_leader_about_join">
+        <dont_has_info>agr_stalker_leader_about_join_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -919,11 +979,13 @@
             <phrase id="0">
                 <text>agr_stalker_leader_about_join_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_leader_about_join_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_leader_about_you">
+        <dont_has_info>agr_stalker_leader_about_you_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="122">
@@ -950,11 +1012,13 @@
             <phrase id="0">
                 <text>agr_stalker_leader_about_you_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_leader_about_you_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_leader_about_zone">
+        <dont_has_info>agr_stalker_leader_about_zone_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -963,11 +1027,13 @@
             <phrase id="0">
                 <text>agr_stalker_leader_about_zone_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_leader_about_zone_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_mechanic_about_gun_and_armor_upgrades">
+        <dont_has_info>agr_stalker_mechanic_about_gun_and_armor_upgrades_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -976,11 +1042,13 @@
             <phrase id="0">
                 <text>agr_stalker_mechanic_about_gun_and_armor_upgrades_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_mechanic_about_gun_and_armor_upgrades_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_mechanic_what_is_you_doing">
+        <dont_has_info>agr_stalker_mechanic_what_is_you_doing_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="133">
@@ -1001,11 +1069,13 @@
             <phrase id="0">
                 <text>agr_stalker_mechanic_what_is_you_doing_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_mechanic_what_is_you_doing_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_scientist_quest_complete">
+        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="333">
                 <text>agr_stalker_scientist_quest_complete_333</text>
@@ -1043,6 +1113,7 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_secret_trader_about_zone">
+        <dont_has_info>agr_stalker_secret_trader_about_zone_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -1051,11 +1122,14 @@
             <phrase id="0">
                 <text>agr_stalker_secret_trader_about_zone_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_secret_trader_about_zone_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_secret_trader_quest">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>agr_secret_trader_pda_story</dont_has_info>
         <phrase_list>
             <phrase id="11">
                 <text>agr_stalker_secret_trader_quest_11</text>
@@ -1115,6 +1189,7 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_secret_trader_what_is_you_doing">
+        <dont_has_info>agr_stalker_secret_trader_what_is_you_doing_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -1123,11 +1198,13 @@
             <phrase id="0">
                 <text>agr_stalker_secret_trader_what_is_you_doing_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_secret_trader_what_is_you_doing_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_secret_trader_who_are_you">
+        <dont_has_info>agr_stalker_secret_trader_who_are_you_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="122">
@@ -1148,11 +1225,13 @@
             <phrase id="0">
                 <text>agr_stalker_secret_trader_who_are_you_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_secret_trader_who_are_you_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_trader_about_dolg">
+        <dont_has_info>agr_stalker_trader_about_dolg_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -1161,24 +1240,40 @@
             <phrase id="0">
                 <text>agr_stalker_trader_about_dolg_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_trader_about_dolg_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_trader_about_prisoner">
-        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>freeplay</dont_has_info>
+        <dont_has_info>agr_stalker_trader_about_prisoner_info</dont_has_info>
         <phrase_list>
+            <phrase id="4">
+                <text>agr_stalker_trader_about_prisoner_4</text>
+                <give_info>agr_stalker_trader_about_prisoner_info</give_info>
+            </phrase>
+            <phrase id="3">
+                <text>agr_stalker_trader_about_prisoner_3</text>
+                <next>4</next>
+            </phrase>
             <phrase id="1">
-                <text>agr_stalker_trader_about_prisoner_1</text>
+                <text />
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>agr_stalker_trader_about_prisoner_2</text>
+                <next>3</next>
             </phrase>
             <phrase id="0">
-                <text>agr_stalker_trader_about_prisoner_0</text>
-                <action>dialog_manager.action_disable_phrase</action>
+                <text />
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_trader_about_select">
+        <dont_has_info>agr_stalker_trader_about_select_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="133">
@@ -1205,11 +1300,13 @@
             <phrase id="0">
                 <text>agr_stalker_trader_about_select_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_trader_about_select_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_stalker_trader_about_trader">
+        <dont_has_info>agr_stalker_trader_about_trader_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -1218,11 +1315,13 @@
             <phrase id="0">
                 <text>agr_stalker_trader_about_trader_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_stalker_trader_about_trader_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_trader_about_freetime">
+        <dont_has_info>agr_duty_trader_about_freetime_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="133">
@@ -1233,10 +1332,12 @@
             </phrase>
             <phrase id="1">
                 <text>agr_duty_trader_about_freetime_1</text>
+                <give_info>agr_duty_trader_mug</give_info>
             </phrase>
             <phrase id="0">
                 <text>agr_duty_trader_about_freetime_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_trader_about_freetime_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
@@ -1327,37 +1428,41 @@
         </phrase_list>
     </dialog>
     <dialog id="agr_dialog_go_to_leader">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>on_leader</dont_has_info>
         <phrase_list>
             <phrase id="01">
-                <text></text>
+                <text>agr_dialog_go_to_leader_01</text>
                 <next>011</next>
                 <next>012</next>
             </phrase>
             <phrase id="011">
-                <text></text>
+                <text>agr_dialog_go_to_leader_011</text>
                 <has_info>agr_duty_open</has_info>
                 <next>0111</next>
             </phrase>
             <phrase id="0111">
-                <text></text>
+                <text>agr_dialog_go_to_leader_0111</text>
                 <give_info>on_leader</give_info>
             </phrase>
             <phrase id="012">
-                <text></text>
+                <text>agr_dialog_go_to_leader_012</text>
                 <dont_has_info>agr_duty_open</dont_has_info>
                 <next>0122</next>
             </phrase>
             <phrase id="0122">
-                <text></text>
+                <text>agr_dialog_go_to_leader_0122</text>
             </phrase>
             <phrase id="0">
-                <text></text>
+                <text>agr_dialog_go_to_leader_0</text>
                 <next>01</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_duty_weaponmaster_about_bad_trader">
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <dont_has_info>agr_duty_weaponmaster_about_bad_trader_info</dont_has_info>
+        <has_info>agr_duty_trader_mug</has_info>
         <phrase_list>
             <phrase id="1">
                 <text>agr_duty_weaponmaster_about_bad_trader_1</text>
@@ -1365,11 +1470,13 @@
             <phrase id="0">
                 <text>agr_duty_weaponmaster_about_bad_trader_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>agr_duty_weaponmaster_about_bad_trader_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="agr_leader_hello_dialog">
+        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="1222">
                 <text>agr_leader_hello_dialog_1222</text>
@@ -1393,10 +1500,10 @@
             <phrase id="11111111111">
                 <text>agr_leader_hello_dialog_11111111111</text>
                 <action>dialogs.break_dialog</action>
-                <give_info>agr_actor_inside_4</give_info>
                 <give_info>agr_actor_inside_1</give_info>
                 <give_info>agr_actor_inside_2</give_info>
                 <give_info>agr_actor_inside_3</give_info>
+                <give_info>agr_actor_inside_4</give_info>
             </phrase>
             <phrase id="111111">
                 <text>agr_leader_hello_dialog_111111</text>
@@ -1421,7 +1528,7 @@
                 <has_info>agr_take_reward_complete</has_info>
             </phrase>
             <phrase id="1">
-                <text></text>
+                <text />
                 <next>12</next>
                 <next>11</next>
                 <next>13</next>
@@ -1460,7 +1567,7 @@
                 <give_info>agr_take_reward_complete</give_info>
             </phrase>
             <phrase id="0">
-                <text></text>
+                <text />
                 <next>1</next>
             </phrase>
             <phrase id="144">

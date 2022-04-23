@@ -1,0 +1,3 @@
+function mil_take_reward(first_speaker, second_speaker)
+	xr_effects.give_inited_task(nil, nil, {"storyline", "mil_take_reward", "freedom"})
+end

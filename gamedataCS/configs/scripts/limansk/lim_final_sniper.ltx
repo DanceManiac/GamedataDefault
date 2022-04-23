@@ -16,9 +16,9 @@ combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 def_state_campering = hide_na
 path_walk = lim_final_sniper_attack_walk
-path_look = lim_final_sniper_attack_walk
+path_look = lim_final_sniper_attack_look
 on_info = {+lim_final_sniper_fire} remark@first_fire
-on_info2 = {=actor_in_zone(lim_final_transformer)} camper@walk2
+on_info2 = {=actor_in_zone(lim_final_transformer) +lim_electro_fence_sniper_kill} camper@walk2
 
 [remark@first_fire]
 invulnerable = true
@@ -28,10 +28,10 @@ combat_ignore_cond = true
 target = actor
 anim = threat_sniper_fire
 on_game_timer = 20 | remark@fire_actor %+lim_final_sniper_fire2%
-on_info = {=actor_in_zone(lim_final_transformer)} camper@walk2
+on_info = {=actor_in_zone(lim_final_transformer) +lim_electro_fence_sniper_kill} camper@walk2
 
 [camper@fire]
-;invulnerable = true
+invulnerable = true
 out_restr = lim_final_sniper_restr
 combat_ignore_cond = {!is_enemy_actor}
 path_walk = lim_final_sniper_attack_walk
@@ -42,32 +42,32 @@ radius = 0
 def_state_campering = threat_na
 def_state_campering_fire = threat_sniper_fire
 ;on_timer = 1000 | {!see_actor} remark@search
-on_info = {=actor_in_zone(lim_final_transformer)} camper@walk2
+on_info = {=actor_in_zone(lim_final_transformer) +lim_electro_fence_sniper_kill} camper@walk2
 ;on_info2 = {+lim_final_sniper_fire_actor} remark@search
 wounded = wounded@work1
 ;sniper = true
 
 [remark@fire_actor]
-;invulnerable = true
+invulnerable = true
 out_restr = lim_final_sniper_restr
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 anim = threat_sniper_fire
 target = actor
 on_game_timer = 50 | {!see_actor} remark@hide
-on_info = {=actor_in_zone(lim_final_transformer)} camper@walk2
+on_info = {=actor_in_zone(lim_final_transformer) +lim_electro_fence_sniper_kill} camper@walk2
 
 [remark@hide]
-;invulnerable = true
+invulnerable = true
 out_restr = lim_final_sniper_restr
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 anim = hide_na
 on_game_timer = 20 | remark@fire_actor
-on_info = {=actor_in_zone(lim_final_transformer)} camper@walk2
+on_info = {=actor_in_zone(lim_final_transformer) +lim_electro_fence_sniper_kill} camper@walk2
 
 [camper@walk]
-;invulnerable = true
+invulnerable = true
 out_restr = lim_final_sniper_restr
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
@@ -78,6 +78,7 @@ def_state_moving = sneak_run
 wounded = wounded@work1
 
 [camper@walk2]
+invulnerable = true
 out_restr = lim_final_sniper_restr
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true

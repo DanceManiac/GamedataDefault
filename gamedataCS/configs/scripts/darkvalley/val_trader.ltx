@@ -8,8 +8,12 @@ cover_name = val_trader_smart_cover
 loophole_name = lead_sit_sleep_write
 cover_state = idle_target
 on_timer = 14000 | smartcover@fire
-combat_ignore_cond = true
+combat_ignore_cond = {!is_enemy_actor}
 meet = meet
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-freedom_trader_meet_info !is_faction_enemy_to_actor(freedom)} %=play_sound(val_freedom_trader_meet) +freedom_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+freedom_trader_meet_info !is_faction_enemy_to_actor(freedom)} %=play_sound(val_freedom_trader_meet_bye) -freedom_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 def_state_moving = walk
 out_restr = val_gunnery_zone
 
@@ -18,8 +22,12 @@ cover_name = val_trader_smart_cover
 loophole_name = lead_sit_sleep_write
 cover_state = lookout_target
 on_timer = 14000 | smartcover@idle
-combat_ignore_cond = true
+combat_ignore_cond = {!is_enemy_actor}
 meet = meet
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-freedom_trader_meet_info !is_faction_enemy_to_actor(freedom)} %=play_sound(val_freedom_trader_meet) +freedom_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+freedom_trader_meet_info !is_faction_enemy_to_actor(freedom)} %=play_sound(val_freedom_trader_meet_bye) -freedom_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 def_state_moving = walk
 out_restr = val_gunnery_zone
 
@@ -30,6 +38,8 @@ use_wpn = true
 victim = 0 | actor
 victim_wpn = 0 | actor
 use	= true
-sound_start = val_freedom_trader_meet
-sound_stop 	= val_freedom_trader_meet_bye
-quest_npc = true
+;-- Edited: Jurok --ON-------------------------------------------------------
+;sound_start = val_freedom_trader_meet
+;sound_stop = val_freedom_trader_meet_bye
+;-- Edited: Jurok --OFF------------------------------------------------------
+;quest_npc = true

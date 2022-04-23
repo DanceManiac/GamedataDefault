@@ -1,21 +1,25 @@
-;Duty
-
-[agru_smart_terrain_1_duty_squad]
-faction = dolg
-npc = sim_default_duty_1, sim_default_duty_1, sim_default_duty_2, sim_default_duty_2, sim_default_duty_2
-target_smart = agru_smart_terrain_1
-
-[agru_smart_terrain_2_duty_squad]
-faction = dolg
-npc = sim_default_duty_1, sim_default_duty_1, sim_default_duty_2, sim_default_duty_2
-target_smart = agru_smart_terrain_1
-
-;Bandits
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;; Bandits
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [agru_smart_terrain_1_bandit_squad]
-faction = bandit
-npc = sim_default_bandit_3, sim_default_bandit_3, sim_default_bandit_2, sim_default_bandit_2, sim_default_bandit_2
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
 target_smart = agru_smart_terrain_1
-sympathy = 0.1
 relationship = enemy
 
+[agru_smart_terrain_1_bandit_squad_2]
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
+target_smart = agru_smart_terrain_1
+relationship = enemy
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;; Mutants
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[agru_monsters_squad]
+faction = monster
+npc = m_poltergeist_strong_tele, m_poltergeist_strong_tele, m_poltergeist_normal_tele, m_poltergeist_normal_tele, bloodsucker_strong
+target_smart = agru_smart_terrain_1
+on_death = %+agru_monsters_squad_dead%

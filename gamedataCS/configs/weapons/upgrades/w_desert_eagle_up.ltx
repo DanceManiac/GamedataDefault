@@ -1,70 +1,63 @@
+; Модификация затвора. Технологическая доработка затвора позволяет увеличить темп стрельбы.
 [up_sect_a_desert_eagle]
 cost		      		= 750
 value					= +25
-rpm						= 50
+rpm						= 70
 
+; Модификация затвора. Точная подгонка затвора уменьшает разброс пуль при стрельбе.
 [up_sect_b_desert_eagle]
 cost		      		= 750
 value					= -20
+cam_dispersion          = -0.32
+cam_dispersion_inc		= -0.32
+cam_step_angle_horz		= -0.32
 
-cam_dispersion          = -0.1		;0.5
-cam_dispersion_inc		= -0.1		;0.5
-cam_step_angle_horz		= -0.2		;1.0
-
+; Модификация ствола. Замена стандартного ствола на облегчённый.
 [up_sect_c_desert_eagle]
 cost		      		= 750
-value					= -20
-inv_weight				= -0.1
-fire_dispersion_base	= -0.1 ;0.5
+value					= -0.342  ;-20
+inv_weight				= -0.342
 
+; Замена ствола. Ствол из прочной стали не подвергается деформации даже при интенсивной стрельбе, в результате чего точность боя оружия повышается.
 [up_sect_d_desert_eagle]
 cost		      		= 750
-value					= +20
-bullet_speed		 	= 50
-hit_power           	= 0.6, 0.6, 0.6, 0.6
+value					= +15
+bullet_speed		 	= 51
 
+; Мягкий спуск. Плавный спусковой механизм позволяет повысить точность боя.
 [up_sect_e_desert_eagle]
 cost		      		= 750
 value					= +20
-fire_dispersion_base	= -0.1 ;0.5
+fire_dispersion_base	= -0.23
 
+; Анатомическая рукоять. Сделанная под заказ индивидуальная эргономическая рукоять, учитывающая анатомические особенности руки стрелка.
 [up_sect_f_desert_eagle]
 cost		      		= 750
-value					= +20
-fire_dispersion_base	= -0.1 ;0.5
+value					= +10
+fire_dispersion_base	= -0.115
+cam_dispersion          = -0.16
+cam_dispersion_inc		= -0.16
+cam_step_angle_horz		= -0.16
 
-cam_dispersion          = -0.1		;0.5
-cam_dispersion_inc		= -0.1		;0.5
-cam_step_angle_horz		= -0.2		;1.0
-
-[up_sect_g_desert_eagle]
-cost		      		= 750
-value					= +4
-ammo_mag_size		 	= 4
-
+; Модификация ствола. Установка дульного тормоза существенно уменьшает отдачу.
 [up_sect_ac_desert_eagle]
 cost		      		= 1125
-value					= -50
-;value2					= st_upgr_silencer_disable
+value					= -30
+cam_dispersion          = -0.8
+cam_dispersion_inc		= -0.8
+cam_step_angle_horz		= -0.8
 
-cam_dispersion          = -0.25		;0.5
-cam_dispersion_inc		= -0.25		;0.5
-cam_step_angle_horz		= -0.5		;1.0
-
-;silencer_status			= 0
-
+; Модификация ствола. Насадка, увеличивающая длину ствола и, как следствие, начальную скорость пули.
 [up_sect_bd_desert_eagle]
 cost		      		= 1125
 value					= +30
-;value2					= st_upgr_silencer_disable
-bullet_speed		 	= 100
-hit_power           	= 0.65, 0.65, 0.65, 0.65
-;silencer_status			= 0
+bullet_speed		 	= 102
+
+
 
 [up_a_desert_eagle]
 scheme_index            = 0, 0
 known                   = 1
-;;invented                = 1                							; 0
 effects                 = up_gr_ac_desert_eagle
 section                 = up_sect_a_desert_eagle
 property                = prop_rpm
@@ -75,7 +68,6 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = on_weapon_upgrade_something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
@@ -83,7 +75,7 @@ name                    = st_upg_zatvor_rpm
 description             = st_upg_zatvor_rpm_descr
 icon                    = ui_wp_upgrade_01
 
-;;...
+
 [up_b_desert_eagle]
 scheme_index            = 0, 1
 known                   = 1
@@ -97,13 +89,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_zatvor_recoil
 description             = st_upg_zatvor_recoil_descr
 icon                    = ui_wp_upgrade_02
+
 
 [up_c_desert_eagle]
 scheme_index            = 0, 2
@@ -125,6 +117,7 @@ name                    = st_upg_barrel_weight
 description             = st_upg_barrel_weight_descr
 icon                    = ui_wp_upgrade_03
 
+
 [up_d_desert_eagle]
 scheme_index            = 0, 3
 known                   = 1
@@ -138,13 +131,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_hard_barrel_curved
 description             = st_upg_hard_barrel_curved_descr
 icon                    = ui_wp_upgrade_04
+
 
 [up_e_desert_eagle]
 scheme_index            = 0, 4
@@ -166,6 +159,7 @@ name                    = st_upg_trigger_accur
 description             = st_upg_trigger_accur_descr
 icon                    = ui_wp_upgrade_05
 
+
 [up_f_desert_eagle]
 scheme_index            = 0, 5
 known                   = 1
@@ -179,33 +173,12 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_handle_accur2
 description             = st_upg_handle_accur2_descr
 icon                    = ui_wp_upgrade_09
-
-[up_g_desert_eagle]
-scheme_index            = 0, 6
-known                   = 1
-effects                 = 
-section                 = up_sect_g_desert_eagle
-property                = prop_ammo_size
-
-precondition_functor    = inventory_upgrades.precondition_functor_a
-precondition_parameter  = a & b
-
-effect_functor          = inventory_upgrades.effect_functor_a
-effect_parameter        = something_here
-
-prereq_functor          = inventory_upgrades.prereq_functor_a
-prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
-prereq_params           = money(1000), item(habar)
-name                    = st_upg_charger_big
-description             = st_upg_charger_big_descr
-icon                    = ui_wp_upgrade_06
 
 
 [up_ac_desert_eagle]
@@ -215,20 +188,19 @@ effects                 =
 section                 = up_sect_ac_desert_eagle
 property                = prop_recoil
 
-
 precondition_functor    = inventory_upgrades.precondition_functor_a
 precondition_parameter  = a & b
 
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_barrel_recoil
 description             = st_upg_barrel_recoil_descr
 icon                    = ui_wp_upgrade_07
+
 
 [up_bd_desert_eagle]
 scheme_index            = 1, 1
@@ -243,7 +215,6 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
@@ -263,10 +234,6 @@ elements                = up_e_desert_eagle
 
 [up_gr_f_desert_eagle]
 elements                = up_f_desert_eagle
-
-[up_gr_g_desert_eagle]
-elements                = up_g_desert_eagle
-
 
 [up_gr_ac_desert_eagle]
 elements                = up_ac_desert_eagle

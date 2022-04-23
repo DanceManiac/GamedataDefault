@@ -1,6 +1,8 @@
 local weather_manager = nil
 --18.02.2008 - added dynamic weather
 
+update_immediate = false
+
 class "WeatherManager"
 function WeatherManager:__init()
 	self.update_time = 0
@@ -34,7 +36,8 @@ function WeatherManager:reset()
 	else
 		self.weather_list = xr_logic.parse_condlist(db.actor, level.name(), "weather", weather)
 	end		
-	self:select_weather(true)
+	self:select_weather(false)
+	
 	self.last_hour=level.get_time_hours()
 end
 
@@ -48,7 +51,11 @@ function WeatherManager:update()
 				st.next_state=get_next_state(st.graph,st.current_state)
 		    end
 		    -- Устанавливаем погоду на текущем уровне
-		    self:select_weather(false)
+			if update_immediate == true then		    
+				self:select_weather(true)
+			else
+				self:select_weather(false)
+			end
 		end
 	end
 end
@@ -75,7 +82,7 @@ function WeatherManager:select_weather(now)
 	    --weather_section_name="dw_"..st.current_state.."_"..st.next_state.."_"..level.get_time_hours()
 	    weather_section_name="default_"..st.current_state
 	end
-	level.set_weather(weather_section_name,now);
+	level.set_weather(weather_section_name,now)
 	printf("WEATHER: '%s' now '%s'", weather_section_name, tostring(now))
 	-- if xrs_news then
 		-- xrs_news.news_call(1,1,nil,nil,weather_section_name,nil)
@@ -178,26 +185,27 @@ end
 function WeatherManager:load(F)
 	set_save_marker(F, "load", false, "WeatherManager")
 	printf("WEATHER LOAD")
-	--self.update_level  = F:r_stringZ();
-	local state_string = F:r_stringZ();
+	--self.update_level  = F:r_stringZ()
+	local state_string = F:r_stringZ()
 	printf("str = "..state_string)
 	if state_string == "" then
 		printf("str = empty string")
 	end
 	self:set_state_as_string(state_string)
-	self.update_time = F:r_u32();
+	self.update_time = F:r_u32()
 	set_save_marker(F, "load", true, "WeatherManager")
 end
 
 function WeatherManager:save(F)
 	set_save_marker(F, "save", false, "WeatherManager")
 	printf("WEATHER SAVE")
-	--F:w_stringZ(self.update_level);
+	--F:w_stringZ(self.update_level)
 	printf("str = "..tostring(self:get_state_as_string()))
 	if self:get_state_as_string() == "" then
 		printf("str = empty string")
 	end
 	F:w_stringZ(self:get_state_as_string())
+	local state_string = self:get_state_as_string()
 	F:w_u32(self.update_time)
 	set_save_marker(F, "save", true, "WeatherManager")
 end

@@ -2,4 +2,12 @@
 active = sr_idle
 
 [sr_idle]
-on_info = {+val_killer_on_position_pric} nil %=create_squad(val_smart_terrain_3_0_freedom:val_smart_terrain_3_0)%
+on_info = {+val_kill_debill} sr_idle@1 %=clear_smart_terrain(val_smart_terrain_3_0)%
+
+[sr_idle@1]
+on_info = {+val_killer_on_position_pric} sr_idle@spawn %=play_sound(val_freedom_attack_help:freedom_2:val_smart_terrain_4_0)%
+
+[sr_idle@spawn]
+on_signal = sound_end | sr_idle@end %=create_squad(val_smart_terrain_3_0_freedom:val_smart_terrain_3_0)%
+
+[sr_idle@end]

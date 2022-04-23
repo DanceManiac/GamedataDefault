@@ -1,8 +1,14 @@
 [logic@mil_questman]
 active = walker@mil_questman
-suitable = {=check_npc_name(mil_questman)} true
+suitable = {=check_npc_name(mil_questman) -mil_questman_death} true
+level_spot = mechanic
+on_death = death
 prior = 42
 
 [walker@mil_questman]
 path_walk = questman_1_walk
 path_look = questman_1_look
+on_info = {+mil_actor_with_freedom_squad} %=destroy_object%
+
+[death]
+on_info = %+mil_questman_death%

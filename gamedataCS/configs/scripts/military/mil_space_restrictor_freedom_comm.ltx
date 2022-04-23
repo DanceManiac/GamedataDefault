@@ -1,0 +1,8 @@
+[logic]
+active = sr_idle@1
+
+[sr_idle@1]
+on_info = {+mil_merc_talked_f1_f2_wt1} sr_idle@stop
+
+[sr_idle@stop]
+on_actor_inside = %+mil_actor_with_freedom_squad% nil

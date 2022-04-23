@@ -5,5 +5,5 @@ active = sr_idle
 on_info = {+val_come_to_deadblockpost_sound} sr_idle@2 %=create_squad(val_dogs_lair_guard_1_1:val_smart_terrain_6_5)%
 
 [sr_idle@2]
-on_info = %=play_sound(val_freedom_dead_squad)%  
+on_info = {-val_blockpost_ns_dead} %=play_sound(val_freedom_dead_squad:val_freedom_blockpost_guard_leader_north_name:val_smart_terrain_5_7)%  
 on_game_timer = 150 | nil

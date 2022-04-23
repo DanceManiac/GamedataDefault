@@ -1,45 +1,43 @@
 ;----логика заданий: куда пойти, рестрикторы и всё такое
 [logic] 
-active = sr_idle@yan_actor_go_base_science ;agru_go_out_end_task_complete
+active = sr_idle@yan_actor_go_base_science 
 
 [sr_idle@yan_actor_go_base_science]
-on_info = {+yan_ready_actor_cut2} sr_idle@yan_quest_doc ;%=give_inited_task(storyline:yan_actor_go_base_science:stalker)%
+on_info = {+agru_go_out_end_task_complete =actor_on_level(yantar)} %=clear_smart_terrain(yan_smart_terrain_4_4) =clear_smart_terrain(yan_smart_terrain_5_5) +yan_visited_level =disable_level_changer(813)%
+on_info2 = {+yan_ready_actor_cut2} sr_idle@yan_quest_doc
 
 [sr_idle@yan_quest_doc]
-on_info = {+yan_quest_doc} sr_idle@yan_otnesti_doc_saharavy  %=give_inited_task(storyline:yan_quest_doc:stalker)%
+on_info = {+yan_quest_doc} sr_idle@yan_otnesti_doc_saharavy %=give_inited_task(storyline:yan_quest_doc:ecolog)%
 
 [sr_idle@yan_otnesti_doc_saharavy]
-on_info = {+yan_otnesti_doc_saharavy} sr_idle@yan_quest_levsha %=give_inited_task(storyline:yan_otnesti_doc_saharavy:stalker) -yan_vzyal_quest_doc%
+on_info = {+yan_otnesti_doc_saharavy} sr_idle@yan_quest_levsha %=give_inited_task(storyline:yan_otnesti_doc_saharavy:ecolog) -yan_vzyal_quest_doc%
 
 [sr_idle@yan_quest_levsha]
-on_info = {+yan_quest_levsha} sr_idle@yan_ystanovka %=give_inited_task(storyline:yan_quest_levsha:stalker)%
+on_info = {+yan_quest_levsha} sr_idle@yan_ystanovka %=give_inited_task(storyline:yan_quest_levsha:ecolog)%
 
 [sr_idle@yan_ystanovka]
-on_info = {+yan_proriv_k_ystanovke} sr_idle@yan_actor_start_to_go %=give_inited_task(storyline:yan_proriv_k_ystanovke:stalker)%
-
-;-------выдача задания "основная сюжетная линия"{+yan_main_quest_line} sr_idle@yan_actor_start_to_go
-[sr_idle@yan_main_quest_line]
-on_info = {+yan_ready_vikl_cut6} sr_idle@yan_actor_start_to_go %-yan_ready_vikl_cut6 =give_inited_task(storyline:yan_main_quest_line:stalker)%
-on_info2 = {+yan_stop_spawn_cut6} sr_idle@yan_actor_go_to_red_forest
+on_info = {+yan_proriv_k_ystanovke} sr_idle@yan_actor_start_to_go %=give_inited_task(storyline:yan_proriv_k_ystanovke:ecolog)%
 
 ;-------выдача задания "отразить первую волну"
 [sr_idle@yan_actor_start_to_go]
-on_info = {+yan_actor_start_to_go} sr_idle@yan_actor_destroy_wave1 %=give_inited_task(storyline:yan_repair_defend:stalker)%
-on_info2 = {+yan_stop_spawn_cut6} sr_idle@yan_actor_go_to_red_forest
+on_info = {+yan_actor_start_to_go} sr_idle@yan_actor_destroy_wave1 %=give_inited_task(storyline:yan_repair_defend:ecolog)%
+on_info2 = {+yan_stop_spawn_cut6} sr_idle@yan_actor_go_to_red_forest %=give_inited_task(storyline:yan_take_reward:ecolog)%
 
 ;------выдача задания "отрази первую волну"(отметка на минимапе)
 [sr_idle@yan_actor_destroy_wave1]
-on_info = {+yan_hold_position_cut6} sr_idle@yan_actor_destroy_wave2 %=give_inited_task(storyline:yan_actor_destroy_wave1:stalker)%
-on_info2 = {+yan_stop_spawn_cut6} sr_idle@yan_actor_go_to_red_forest
+on_info = {+yan_hold_position_cut6} sr_idle@yan_actor_destroy_wave2 %=give_inited_task(storyline:yan_actor_destroy_wave1:ecolog)%
+on_info2 = {+yan_stop_spawn_cut6} sr_idle@yan_actor_go_to_red_forest %=give_inited_task(storyline:yan_take_reward:ecolog)%
 
 ;------выдача задания "отрази вторую волну"(отметка на минимапе)
 [sr_idle@yan_actor_destroy_wave2]
-on_info = {+yan_wave_zombie2_cut6} sr_idle@yan_actor_destroy_wave1 %-yan_hold_position_cut6 =give_inited_task(storyline:yan_actor_destroy_wave2:stalker)%
-on_info2 = {+yan_stop_spawn_cut6} sr_idle@yan_actor_go_to_red_forest
-;on_info3 = {+yan_hold_position_cut6} %=give_inited_task(storyline:yan_main_quest_line:stalker)%
+on_info = {+yan_wave_zombie2_cut6} sr_idle@yan_actor_destroy_wave1 %-yan_hold_position_cut6 =give_inited_task(storyline:yan_actor_destroy_wave2:ecolog)%
+on_info2 = {+yan_stop_spawn_cut6} sr_idle@yan_actor_go_to_red_forest %=give_inited_task(storyline:yan_take_reward:ecolog)%
 
 ;------выдача задания "идти в красный лес"
 [sr_idle@yan_actor_go_to_red_forest]
-on_info = {+yan_go_to_red_forest_cut6} sr_idle@stop %=give_inited_task(storyline:yan_actor_go_to_red_forest:stalker)%
+on_info = {+yan_go_to_red_forest_cut6} sr_idle@pre_stop %=give_inited_task(storyline:yan_actor_go_to_red_forest:csky) =enable_level_changer(813)%
+
+[sr_idle@pre_stop]
+on_info = {+red_pursuit_csky_talk2} sr_idle@stop %=clear_smart_terrain(yan_smart_terrain_for_squad_levsha) =clear_smart_terrain(yan_smart_terrain_4_2)%
 
 [sr_idle@stop]

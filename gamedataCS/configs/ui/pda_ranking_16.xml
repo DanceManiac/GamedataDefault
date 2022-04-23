@@ -51,7 +51,7 @@
 	</center_background>
 
 	<center_caption x="46" y="315" width="542" height="16" stretch="1">
-		<text align="l" font="letterica16" color="ui_3">#root15/FD-655#68/</text>
+		<text align="l" font="letterica16" color="ui_3"></text>
 	</center_caption>
 
 	<actor_ch_info x="42" y="92" width="238" height="205">
@@ -84,7 +84,7 @@
 		<text align="l" font="letterica18" color="ui_3">ui_inv_money</text>
 	</money_caption>
 	<money_value x="125" y="265" width="167" height="18" stretch="1">
-		<text align="l" font="letterica18" color="ui_2">0 RU</text>	
+		<text align="l" font="letterica18" color="ui_2">0 руб.</text>	
 	</money_value>
 
 	<fraction_static x="46" y="343" width="125" height="16" stretch="1">
@@ -218,6 +218,10 @@
 		</stat>
 		<stat x="458" y="257" width="42" height="16">
 			<text align="l" font="letterica16" color="ui_3">pda_stat_9</text>
+		</stat>
+
+		<stat x="458" y="140" width="42" height="16">
+			<text align="l" font="letterica16" color="ui_3">pda_stat_10</text>
 		</stat>
 	
 	</stat_info>

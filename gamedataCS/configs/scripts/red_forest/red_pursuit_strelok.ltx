@@ -10,7 +10,6 @@ path_look = red_pursuit_strelok_1_walk
 def_state_moving1 = sprint
 def_state_moving2 = sprint
 def_state_moving3 = sprint
-;on_info = {=dist_to_actor_le(50) +red_pursuit_scene_begin} walker@go_tonnel
 on_info = {+red_pursuit_boars_attack} walker@go_tonnel2
 meet = no_meet
 
@@ -90,3 +89,4 @@ def_state_moving1 = sprint
 def_state_moving2 = sprint
 def_state_moving3 = sprint
 on_signal = action | {+red_pursuit_explode} %+red_pursuit_strelok_offline =destroy_object%
+meet = no_meet

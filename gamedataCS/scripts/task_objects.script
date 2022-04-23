@@ -82,6 +82,7 @@ function CGeneralTask:__init(task_ini, id, type)
 	self.on_init = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_init", nil, false, "", ""))
 	self.on_complete = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_complete", nil, false, "", ""))
 	self.on_reversed = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_reversed", nil, false, "", ""))
+	self.on_fail = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_fail", nil, false, "", ""))
 
 	self.reward_money = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "reward_money", nil, false, "", ""))
 	self.reward_item = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "reward_item", nil, false, "", ""))
@@ -112,6 +113,8 @@ function CGeneralTask:give_task(community)
 		str = "ui_st_name_freedom"
 	elseif str == "stalker" then
 		str = "ui_st_name_stalker"
+	elseif str == "ecolog" then
+		str = "ui_st_name_ecolog"
 	end
 	self.community_name = str
 	local t = CGameTask()
@@ -179,7 +182,7 @@ function CGeneralTask:give_task(community)
 			if(self.task_type==task_types.storyline) then
 				self.spot = "primary_task_location"
 			else
-				self.spot = "secondary_task_location"
+				self.spot = "secondary_task_location_complex_"..type
 			end
 		else
 			if(self.task_type==task_types.storyline) then
@@ -359,6 +362,7 @@ function CGeneralTask:deactivate_task(task)
 
 	self.check_time = nil
 	if self.last_check_task == "fail" then
+		xr_logic.pick_section_from_condlist(db.actor, db.actor, self.on_fail)
 		news_manager.send_task(db.actor, "fail", task)
 	elseif self.last_check_task == "reversed" then
 		xr_logic.pick_section_from_condlist(db.actor, db.actor, self.on_reversed)
@@ -420,6 +424,8 @@ function CGeneralTask:load(reader)
 			str = "ui_st_name_freedom"
 		elseif str == "stalker" then
 			str = "ui_st_name_stalker"
+		elseif str == "ecolog" then
+			str = "ui_st_name_ecolog"
 		end
 	self.community_name = str
 
@@ -460,7 +466,7 @@ function CEliminateSmartTask:init_task(smart, faction)
 	self.id	= self.id .. "_" .. smart.id
 	self.community = faction
 	--self.name = smart:name()
-
+	--self.spot = "secondary_task_location_complex_eliminate_smart"
 	self.prior = self.base_prior --'+ smart.sim_prior[faction]
 end
 --' ѕолучить этот же квест, но инициализированный
@@ -580,7 +586,7 @@ function CCaptureSmartTask:init_task(smart, faction)
 	self.id	= self.id .. "_" .. smart.id
 	self.community = faction
 	--self.name = smart:name()
-
+	--self.spot = "secondary_task_location_complex_capture_smart"
 	self.prior = self.base_prior --'+ smart.sim_prior[faction]
 end
 --' ѕолучить этот же квест, но инициализированный
@@ -715,7 +721,13 @@ end
 function CCaptureSmartTask:give_task(community)
 	--' ”казать скваду что у него есть выданное задание
 	if self.src_obj ~= nil then
-		sim_board.get_sim_board().squads[self.src_obj]:give_squad_task(self.target)
+		-- Kirgudu
+		--sim_board.get_sim_board().squads[self.src_obj]:give_squad_task(self.target)
+		local squad = sim_board.get_sim_board().squads[self.src_obj]
+		if squad ~= nil then
+			squad:give_squad_task(self.target)
+		end
+		-- Kirgudu
 	end
 
 	task_objects.CGeneralTask.give_task(self, community)
@@ -858,7 +870,7 @@ function CDefendSmartTask:init_task(smart, faction)
 	self.community = faction
 	--self.name = smart:name()
 	--self.id	= self.id .. "_" .. smart.id
-
+	self.spot = "secondary_task_location_complex_defend_smart"
 	self.prior = self.base_prior --'+ smart.sim_prior[faction]
 end
 --' ѕолучить этот же квест, но инициализированный
@@ -1045,7 +1057,7 @@ function CDefendSmartTaskDelay:init_task(smart, faction)
 	self.community = faction
 	--self.name = smart:name()
 	--self.id	= self.id .. "_" .. smart.id
-
+	self.spot = "secondary_task_location_complex_defend_smart"
 	self.prior = self.base_prior --'+ smart.sim_prior[faction]
 end
 --' ѕолучить этот же квест, но инициализированный
@@ -1214,41 +1226,47 @@ function CGetRewardTask:get_inited_task(npc, faction,entity_id)
 end
 --' ѕроверка текущего выполнени€ квеста
 function CGetRewardTask:check_task(tm)
+
+	local global_time = time_global()
 	if self.check_time ~= nil and
 		 self.last_check_task ~= nil and
-		 time_global() - self.check_time <= 50
+		 global_time - self.check_time <= 50
 	then
 		--' ¬озвращаем результат прошлой проверки (дл€ оптимизации)
 		return
 	end
+	self.check_time = global_time
 
-	self.check_time = time_global()
+	local act, rewards = db.actor, tm.rewards[self.community]
+	if self.target then
+		local obj = alife():object(self.target)
+		if not obj or not obj:alive() then
+			self.last_check_task = "reversed"
+			rewards = nil
+			return
+		end
 
-	if tm.rewards[self.community] == nil then
-		self.last_check_task = "complete"
+		local sobj = db.storage[self.target]
+		obj = sobj and sobj.object
+		if act and obj and obj:general_goodwill(act) <= -1000 then
+			self.last_check_task = "reversed"
+			rewards = nil
+			return
+		end
 	end
 
-	if #tm.rewards[self.community] == 0 then
-		self.last_check_task = "complete"
-	end
-
-	local obj = alife():object(self.target)
-	if obj and not obj:alive() then
-		self.last_check_task = "fail"
-		tm.rewards[self.community] = nil
-		return
-	end
-
- 	for k,v in pairs(self.condlist) do
-		local cond = xr_logic.pick_section_from_condlist(db.actor, db.actor, v)
+	local cond = nil
+ 	for _,v in pairs(self.condlist) do
+		cond = xr_logic.pick_section_from_condlist(act, act, v)
 		if cond ~= nil then
 			self.last_check_task = cond
 			return
 		end
 	end
 
-
-	return
+	if rewards == nil or #rewards == 0 then
+		self.last_check_task = "complete"
+	end
 end
 
 --' ќписание наград
@@ -1269,7 +1287,7 @@ function CGetRewardTask:change_description()
 		end
 	end
 	if amount_money ~= 0 then
-		s = s.."\\n>"..tostring(amount_money).." RU"
+		s = s.."\\n>"..tostring(amount_money).." "..game.translate_string("rubles")
 	end
 	for k,v in pairs(ancillary_item_table) do
 		local ltx = system_ini()
@@ -1460,7 +1478,7 @@ function CBringItemTask:init_task(commander_id)
 	if(self.items_array==nil) then
 		local quest_ini = ini_file("misc\\bring_item_task.ltx")
 		local communities = {"bandit","csky","dolg","ecolog","freedom","killer","army","stalker","trader"}
-		local level_name = level.name()
+		local level_name = db.sMapNow -- Kirgudu
 		if(level_name==nil) then
 			return
 		elseif not(quest_ini:section_exist(level_name)) then
@@ -1516,6 +1534,7 @@ function CBringItemTask:init_task(commander_id)
 --	db.actor:iterate_inventory(get_inventory_item_count, self) -- iterate on give task
 --	db.actor:iterate_inventory(set_task_text_for_bring_item, self)
 	self:set_task_text_for_bring_item()
+	self.spot = "secondary_task_location_complex_find_upgrade"
 end
 -- Generating new items list for quest
 function CBringItemTask:generate_requested_items(community)
@@ -1544,7 +1563,8 @@ end
 -- Iterate through inventory to get requested items count
 function get_inventory_item_count(task, item)
 	for k,v in pairs(task.requested_items) do
-		if(k==item:section()) then
+		-- if(k==item:section()) then
+		if(string.find(item:section(), "^"..k)) then  -- Kirgudu
 			for i = 1, #v do
 				if not(v[i]) then
 					v[i] = true
@@ -1679,7 +1699,8 @@ function CBringItemTask:transfer_items_looking_for(npc)
 		for i = 1, 4 do
 			local item_in_slot = db.actor:item_in_slot(i)
 			for k,v in pairs(self.requested_items) do
-				if(item_in_slot~=nil) and (item_in_slot:section()==k) then
+				-- if(item_in_slot~=nil) and (item_in_slot:section()==k) then
+				if(item_in_slot~=nil) and (string.find(item_in_slot:section(), "^"..k)) then  -- Kirgudu
 					for ii = 1, #v do
 						if(v[ii]) then
 							db.actor:transfer_item(item_in_slot, self.npc)
@@ -1693,7 +1714,8 @@ function CBringItemTask:transfer_items_looking_for(npc)
 end
 function transfer_quest_items(task, item)
 	for k,v in pairs(task.requested_items) do
-		if(item:section()==k) then
+		-- if(item:section()==k) then
+		if(string.find(item:section(), "^"..k)) then  -- Kirgudu
 			for i = 1, #v do
 				if(v[i]) then
 					for ii = 1, 4 do
@@ -1968,13 +1990,15 @@ function CRecoverItemTask:check_task(tm)
 		if self.target ~= commander_id then
 --			self.commander_id = commander_id
 			self.target = commander_id
-			self.t:change_map_location(self.spot, self.target)
+			self.t:change_map_location("secondary_task_location_complex_take_reward", self.target)
+			xr_sound.set_sound_play(db.actor:id(), "pda_task")
 		end
 	elseif(self.state=="have_item") and not(self:has_requested_item()) then
 		self.state = "started"
 		self.target	= self.target_obj_id
 --		self.commander_id = nil
-		self.t:change_map_location(self.spot, self.target)
+		self.t:change_map_location("secondary_task_location_complex_recover_item", self.target)
+		xr_sound.set_sound_play(db.actor:id(), "pda_task")
 	elseif(self.state=="finished") then
 		self.last_check_task = "complete"
 	end
@@ -2031,10 +2055,10 @@ function CRecoverItemTask:deactivate_task(task)
 	task_manager.get_task_manager():unregister_faction_task(self.community, self)
 	local board_squads = sim_board.get_sim_board().squads
 	for k,v in pairs(board_squads) do
-		if v.random_tasks[3] then
+		if v.random_tasks[3] and tostring(v.random_tasks[3]) == tostring(task:get_id()) then
 			printf("task with id "..v.random_tasks[3].." deactivated")
+			v.random_tasks[3] = nil
 		end
-		v.random_tasks[3] = nil
 	end
 end
 
@@ -2140,20 +2164,55 @@ function CHideFromSurgeTask:init_task(nearest_hide_zone_id)
 		end
 	end
 end
+
+local update_surge_wthr = false --#SM+#--
+
 -- Is quest complete?
 function CHideFromSurgeTask:check_task(tm)
 	if(self.check_time~=nil) and (time_global()-self.check_time<=250) then
 		return
 	end
+-- Kirgudu
+	-- is surge really started
+	if xr_surge_hide.surge_activated == false then return end
+-- Kirgudu
+
+	function blowout_hit_with_pp_and_cam_effectors(blowout_hit, cam_effector_id, pp_effector_id)
+		xr_sound.set_sound_play(db.actor:id(), blowout_hit)
+		level.add_cam_effector("camera_effects\\shell_shock.anm", cam_effector_id, false, "")
+		level.add_pp_effector("snd_shock.ppe", pp_effector_id, false)
+		level.set_pp_effector_factor(pp_effector_id, 0, 1.5)
+	end
+	function end_surge(last_check_task)
+		self.last_check_task = last_check_task
+		update_surge_wthr = false --#SM+#--
+		level.set_weather("dynamic_default", false) --#SM+#--
+		xr_surge_hide.surge_finished = true
+		xr_surge_hide.start_surge = false
+		xr_surge_hide.phase = 0
+		xr_surge_hide.surge_activated = false
+-- Kirgudu
+-- старт таймера часовой отсрочки дл€ непересечени€ следующего выброса с предыдущим
+-- таймер следующего выброса (bl1) запускаетс€ из таймера отсрочки
+		if ogsm_options.surge_type == 2 and not ogsm.is_g_timer_exists("bl2") then
+			ogsm.g_start_timer("bl2",0, 1, 0)
+		end
+		db.actor:give_info_portion("surge_finished_info")
+		db.actor:disable_info_portion("start_surge_info")
+		if has_alife_info("mar_intro_talk_with_commander_2_done") then
+			news_manager.send_tip(db.actor, game.translate_string("surge_finished"), nil, nil, 5000)
+		end
+	end
+
 	self.check_time = time_global()
 	local diff_sec = math.ceil(game.get_game_time():diffSec(self.inited_time)/level.get_time_factor())
 	local tbl = self.hide_tbl
-		local nearest_cover_dist = 0
-		if game_graph():vertex(tbl[1].m_game_vertex_id):level_id()~=alife():level_id() then
-			nearest_cover_dist = 10000
-		else
-			nearest_cover_dist = tbl[1].position:distance_to(db.actor:position())
-		end
+	local nearest_cover_dist = 0
+	if game_graph():vertex(tbl[1].m_game_vertex_id):level_id()~=alife():level_id() then
+		nearest_cover_dist = 10000
+	else
+		nearest_cover_dist = tbl[1].position:distance_to(db.actor:position())
+	end
 	local target = tbl[1].id
 	for i = 2, #tbl do
 		local dist = 0
@@ -2167,29 +2226,35 @@ function CHideFromSurgeTask:check_task(tm)
 			target = tbl[i].id
 		end
 	end
-
-	function blowout_hit_with_pp_and_cam_effectors(blowout_hit, cam_effector_id, pp_effector_id)
-		xr_sound.set_sound_play(db.actor:id(), blowout_hit)
-		level.add_cam_effector("camera_effects\\shell_shock.anm", cam_effector_id, false, "")
-		level.add_pp_effector("snd_shock.ppe", pp_effector_id, false)
-		level.set_pp_effector_factor(pp_effector_id, 0, 1.5)
-	end
-	function end_surge(last_check_task)
-		self.last_check_task = last_check_task
-		xr_surge_hide.surge_finished = true
-		xr_surge_hide.start_surge = false
-		xr_surge_hide.phase = 0
-		xr_surge_hide.surge_activated = false
-	end
+-- Kirgudu
 
 	if(self.t==nil) then
 		self.t = db.actor and db.actor:get_task(tostring(self.entity_id), false) -- "true" used to search only for not finished tasks
 		return
 	end
+
+-- Kirgudu
+	-- check for underground location
+	if string.find(db.sMapNow, "underground") then
+		-- остановка выброса (успешное завершение задани€), если произошЄл спуск под землю
+		level.remove_pp_effector(200208)
+		level.remove_cam_effector(200209)
+		xr_sound.stop_sound_looped(db.actor:id())
+		end_surge("complete")
+		return
+	end
+-- Kirgudu
+
 	if(target~=self.target) then
 		self.target = target
 		self.t:change_map_location(self.spot, self.target)
 	end
+
+	if not update_surge_wthr then
+		level.set_weather("default_thunder", false) --#SM+#--
+		update_surge_wthr = true
+	end
+
 	local surge_time = self.wait_time/10-40
 	if(diff_sec>=surge_time) then
 		local _delta = self.check_time-self.effector_started_time
@@ -2205,7 +2270,7 @@ function CHideFromSurgeTask:check_task(tm)
 			level.add_cam_effector("camera_effects\\earthquake.anm", 200209, true, "")
 			xr_sound.play_sound_looped(db.actor:id(), "surge_earthquake_sound")
 		elseif not(self.disable_ui) and (_delta>=15000) then
-			level.set_weather("[default]", false)
+			-- level.set_weather("[default]", false) --#SM+#--
 			xr_surge_hide.weather_surge = true
 			xr_surge_hide.start_surge = false
 			local sr = db.storage[self.target]
@@ -2219,7 +2284,7 @@ function CHideFromSurgeTask:check_task(tm)
 			self.kill_em_all = true
 			local sr = db.storage[self.target]
 			if not(sr and sr.object:inside(db.actor:position())) then
-				if level.name()=="marsh" or level.name()=="marsh_nvidia" then
+				if string.find(db.sMapNow, "^marsh") and not has_alife_info("mar_tutorial_returned_got_on_feet") then -- Kirgudu
 					level.remove_pp_effector(200208)
 					level.remove_cam_effector(200209)
 					xr_sound.stop_sound_looped(db.actor:id())
@@ -2236,11 +2301,11 @@ function CHideFromSurgeTask:check_task(tm)
 			end_surge("complete")
 		elseif(_delta>=32500) then
 			level.remove_cam_effector(200209)
-			level.add_cam_effector("camera_effects\\earthquake.anm", 200209, false, "")
+			-- level.add_cam_effector("camera_effects\\earthquake.anm", 200209, false, "") -- “р€сечуха уже после выброса (monk)
 			level.set_pp_effector_factor(200208, 0.001, 0.8)
 		end
 	elseif(diff_sec==7) and (surge_time>13) then
-        blowout_hit_with_pp_and_cam_effectors("blowout_wave_1", 20080502, 20080402)
+		blowout_hit_with_pp_and_cam_effectors("blowout_wave_1", 20080502, 20080402)
 	elseif(diff_sec==13) and (surge_time>19) then
 		blowout_hit_with_pp_and_cam_effectors("blowout_wave_2", 20080503, 20080403)
 	elseif(diff_sec==19) and (surge_time>31) then
@@ -2265,19 +2330,6 @@ function CHideFromSurgeTask:check_task(tm)
 	elseif(diff_sec==77) then
 		blowout_hit_with_pp_and_cam_effectors("blowout_wave_3", 20080510, 20080410)
 	end
-	function blowout_hit_with_pp_and_cam_effectors(blowout_hit, cam_effector_id, pp_effector_id)
-		xr_sound.set_sound_play(db.actor:id(), blowout_hit)
-		level.add_cam_effector("camera_effects\\shell_shock.anm", cam_effector_id, false, "")
-		level.add_pp_effector("snd_shock.ppe", pp_effector_id, false)
-		level.set_pp_effector_factor(pp_effector_id, 0, 1.5)
-	end
-	function end_surge(last_check_task)
-		self.last_check_task = last_check_task
-		xr_surge_hide.surge_finished = true
-		xr_surge_hide.start_surge = false
-		xr_surge_hide.phase = 0
-		xr_surge_hide.surge_activated = false
-	end
 	if (self.blowout_rumble_level < 1) and  (xr_surge_hide.phase > 1) and (xr_surge_hide.phase < 4 or xr_surge_hide.phase == 5) then
 		self.blowout_rumble_level = self.blowout_rumble_level + 0.015
 		xr_sound.set_volume_sound_looped(db.actor:id(), "blowout_rumble", self.blowout_rumble_level)
@@ -2295,7 +2347,7 @@ function CHideFromSurgeTask:check_task(tm)
 		end
 	end
 end
--- Kill all npc who haven't been hidden
+-- Give player hide from surge task
 function CHideFromSurgeTask:give_task(community)
 	xr_sound.play_sound_looped(db.actor:id(), "blowout_rumble")
 	xr_sound.set_volume_sound_looped(db.actor:id(), "blowout_rumble", self.blowout_rumble_level)

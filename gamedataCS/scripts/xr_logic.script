@@ -230,12 +230,13 @@ end
 function disable_generic_schemes(npc, stype)
 	if stype == modules.stype_stalker then
 		xr_combat.disable_scheme(npc, "combat")
+		if rx_ai then rx_ai.disable_schemes(npc) end
 		xr_use.disable_scheme(npc, "use")
 		xr_hit.disable_scheme(npc, "hit")
 		xr_meet.disable_scheme(npc, "actor_dialogs")
-		--'xr_heli_hunter.disable_scheme(npc, "heli_hunter")
 		xr_combat_ignore.disable_scheme(npc, "combat_ignore")
 		stalker_generic.disable_invulnerability(npc)
+		if ogsm_hideout then ogsm_hideout.disable_scheme(npc, "ogsm_hideout") end
 	elseif stype == modules.stype_mobile then
 		mob_combat.disable_scheme(npc, "mob_combat")
 		xr_combat_ignore.disable_scheme(npc, "combat_ignore")
@@ -297,6 +298,8 @@ end
 
 		xr_combat_ignore.set_combat_ignore_checker(npc, ini, "combat_ignore")
 
+		if ogsm_hideout then ogsm_hideout.enable_scheme(npc, ini, "ogsm_hideout", "ogsm_hideout") end
+		if rx_ai then rx_ai.enable_schemes(ini,npc,section) end
 	elseif stype == modules.stype_mobile then
 		local combat_section = utils.cfg_get_string(ini, section, "on_combat", npc, false, "")
 		if combat_section then
@@ -445,6 +448,8 @@ function reset_generic_schemes_on_scheme_switch(npc, scheme, section)
 		stalker_generic.reset_invulnerability(npc, st.ini, section)
 		stalker_generic.reset_group(npc, st.ini, section)
 		stalker_generic.take_items_enabled(npc, scheme, st, section)
+		stalker_generic.can_throw_grenades(npc, scheme, st, section)
+		if rx_ai then rx_ai.reset_schemes(npc, scheme, st, section) end
 		restrictor_manager.get_restrictor_manager(npc):reset_restrictions(st, section)
 
 	elseif st.stype == modules.stype_mobile then
@@ -680,6 +685,10 @@ function switch_to_section(npc, ini, section)
 	if section == "" or section == nil then
 		return false
 	end
+	
+	if npc == nil then --clp
+		return false --clp
+	end --clp
 
 	--printf("section = [%s]", tostring(section))
 	local npc_id = npc:id()
@@ -1133,7 +1142,7 @@ function cfg_get_overrides(ini, section, npc)
 	local st = db.storage[npc:id()]
 	if ini:line_exist(st.section_logic, "post_combat_time") then
 		l.min_post_combat_time,l.max_post_combat_time = utils.r_2nums( ini, st.section_logic, "post_combat_time", 10, 15 )
-	else
+	elseif ini:line_exist(section, "post_combat_time") then
 		l.min_post_combat_time,l.max_post_combat_time = utils.r_2nums( ini, section, "post_combat_time", 10, 15 )
 	end
 
@@ -1235,6 +1244,13 @@ function pstor_is_registered_type(tv)
 	return true
 end
 
+function pstor_delete(obj, varname)
+	local npc_id = obj:id()
+	if type(db.storage[npc_id].pstor) == 'table' and db.storage[npc_id].pstor[varname] ~= nil then
+		db.storage[npc_id].pstor[varname] = nil
+	end
+end
+
 function pstor_store(obj, varname, val)
 	local npc_id = obj:id()
 
@@ -1248,12 +1264,50 @@ function pstor_store(obj, varname, val)
 	db.storage[npc_id].pstor[varname] = val
 end
 
+function pstor_store_w_table(obj, varname, val)
+	local npc_id = obj:id()
+
+	if db.storage[npc_id].pstor == nil then
+		db.storage[npc_id].pstor = {}
+	end
+	local tv = type(val)
+	--/ добавлена поддержка сохранения простых таблиц
+	if tv == 'table' then
+		val = table.compress(val) --/ пакуем таблицу в строку
+		tv = type(val)
+	end
+	if not pstor_is_registered_type(tv) then
+		abort("xr_logic: pstor_store: not registered type '%s' encountered", tv)
+	end
+	db.storage[npc_id].pstor[varname] = val
+end
+
 function pstor_retrieve(obj, varname, defval)
 	local npc_id = obj:id()
 
 	if db.storage[npc_id].pstor ~= nil then
 		local val = db.storage[npc_id].pstor[varname]
 		if val ~= nil then
+			return val
+		end
+	end
+	if defval ~= nil then
+		return defval
+	end
+	--abort("xr_logic: pstor_retrieve: variable '%s' does not exist", varname)
+	return nil
+end
+
+function pstor_retrieve_w_table(obj, varname, defval)
+	local npc_id = obj:id()
+
+	if db.storage[npc_id].pstor ~= nil then
+		local val = db.storage[npc_id].pstor[varname]
+		if val ~= nil then
+			--/ добавлена поддержка чтения простых таблиц
+			if defval and type(defval) == 'table' and type(val) == 'string' then
+				return table.decompress(val) --/>
+			end
 			return val
 		end
 	end
@@ -1316,7 +1370,7 @@ function pstor_load_all(obj, reader)
 		elseif tn == pstor_boolean then
 			pstor[varname] = reader:r_bool()
 		else
-			abort("xr_logic: pstor_load_all: not registered type N %d encountered", tn)
+			abort("xr_logic: pstor_load_all: not registered type in %s encountered: %s", obj:name(), varname)
 		end
 		--printf("_bp: pstor_load_all: loaded [%s]='%s'", varname, utils.to_str(pstor[varname]))
 	end

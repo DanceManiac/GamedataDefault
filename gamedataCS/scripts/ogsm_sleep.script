@@ -1,0 +1,258 @@
+--------------------- Copyright 2007-2010 xStream, Ab@dDon, DEXXX ---------------------
+-------------------------------------- ћодуль сна -------------------------------------
+------------------------- Last edit (by Kirgudu): 18.06.2019 --------------------------
+
+-- служебные переменные
+local nrg, med, cnt, hp, sleep_start
+local sleep_active = false
+-- таблица запрещЄнных дл€ сна периодов (происходит важное непрерываемое событие)
+local active_jobs = {
+	{ info_start = "mar_intro_talk_with_trader_radio_timer", info_end = "mar_tutorial_return_to_base_reversed" },  --/ нападение на форпост на Ѕолотах
+	{ info_start = "yan_proriv_k_ystanovke",   info_end = "yan_go_to_red_forest_cut6" },  --/ ремонт вентил€ции
+	{ info_start = "red_bridge_actor_come",    info_end = "red_bridge_csky_go_limansk" },  --/ атака моста
+	{ info_start = "stc_first_teleport_actor", info_end = "freeplay" },  --/ атака „јЁ—
+}
+
+-- ‘ункции, относ€щиес€ ко сну
+function reduce_need_sleep(time)
+	local tmp = ogsm.load_variable("slp",0)
+	tmp=tmp-time*120
+	if tmp<0 then tmp=0 end
+	ogsm.del_variable("nrg")
+	ogsm.del_variable("smn")
+	ogsm.save_variable("slp",tmp)
+	test_sleep_pp()
+end
+
+function test_for_need_sleep()
+	if is_sleep_active() == false then
+		ogsm.save_variable("slp",ogsm.load_variable("slp",0)+1)
+		test_sleep_pp()
+	end
+	ogsm.g_start_timer("slp",0,0,6)
+end
+
+function test_sleep_pp()
+	local tmp=ogsm.load_variable("slp",0)
+	if tmp>360 then
+		-- автоматический сон при очень сильной усталости
+		main(5+ogsm.load_variable("nrg",0))
+	end
+	if tmp>320 then
+		level.add_pp_effector("sleepy.ppe", 999, true)
+		level.set_pp_effector_factor(999, 5.0)
+		local news_caption = game.translate_string("st_tip")..". "..game.translate_string("st_actor_name")..":"
+		local news_text = "%c[255,255,0,0]"..game.translate_string("actor_need_sleep")
+		db.actor:give_game_news(news_caption, news_text, "ui_npc_u_actor", 0, 10000)
+		xr_sound.set_sound_play(db.actor:id(), "pda_sos")
+	end
+	if tmp<=300 then
+		level.remove_pp_effector(999)
+	end
+end
+
+function use_energy_drink(name, oid)
+	if oid and oid.id and alife():object(oid.id) == nil then
+		local n=ogsm.load_variable("nrg",0)
+		if n<3 then
+			local snd = sound_object([[food\inv_softdrink]])
+			snd:play_no_feedback(db.actor,sound_object.s2d, 0, vector():set(0, 0, 0), 1.0)
+			ogsm.save_variable("nrg",n+1)
+			ogsm.save_variable("slp",ogsm.load_variable("slp",0)-30+n*10)
+			test_sleep_pp()
+		-- else
+			-- ogsm.spawn_item_in_inv(oid.section)
+		end
+		ogsm.g_start_timer("men",0,1,0)
+		ogsm.save_variable("smn",1)
+	end
+end
+
+function end_energy_drink_effect()
+	ogsm.del_variable("smn")
+end
+
+function test_for_job_active()
+	for _,v in ipairs(active_jobs) do
+		if has_alife_info(v.info_start) and not has_alife_info(v.info_end) then return true end
+	end
+	return false
+end
+
+function test_for_enemy()
+	local actor_pos = db.actor:position()
+	for a=1,65535 do
+		local obj = level.object_by_id(a)
+		if obj then
+			if ((IsStalker(obj) and ogsm.get_npc_relation(obj,db.actor) == "enemy") or IsMonster(obj))
+				and obj:position():distance_to(actor_pos) < 40
+				and obj:alive() then --/ проверка на то, что враг жив -- Kirgudu
+				-- and obj:see(db.actor) then --/ убрал сон во врем€ бо€ -- Kirgudu
+					return true --/ враг р€дом
+			end
+		end
+	end
+	return false
+end
+
+function use_matras(name, oid)
+	ogsm.spawn_item_in_inv("matras") -- сразу спавним спальник обратно
+	if actor_menu.get_menu_mode() == 4 then return end -- не используем спальник при открытом €щике/трупе
+
+	local news_text = nil
+
+	if xr_surge_hide.start_surge then --/ началс€ выброс
+		news_text = "%c[255,255,0,0]"..game.translate_string("sleep_refuse_surge")
+	elseif db.actor:get_bleeding() > 0 then --/ кровотечение  -- Kirgudu
+		news_text = "%c[255,255,0,0]"..game.translate_string("sleep_refuse_bleeding")
+	elseif db.actor.radiation > 0 then --/ радиаци€  -- Kirgudu
+		news_text = "%c[255,255,0,0]"..game.translate_string("sleep_refuse_radiation")
+	elseif ogsm.load_variable("smn", 0) == 1 then --/ действует стимул€тор
+		news_text = "%c[255,255,0,0]"..game.translate_string("sleep_refuse_energy")
+	elseif ogsm.load_variable("eat", 0) > 100 then --/ голод  -- Kirgudu
+		news_text = "%c[255,255,0,0]"..game.translate_string("sleep_refuse_satiety")
+	--elseif ogsm.load_variable("slp", 0) < 50 then --/ выспалс€  -- power-cat
+		--news_text = "%c[0,0,255,25]"..game.translate_string("sleep_refuse_dream")
+	elseif test_for_job_active() then --/ происходит важное событие  -- Kirgudu
+		news_text = "%c[255,255,0,0]"..game.translate_string("sleep_refuse_work")
+	elseif test_for_enemy() then -- в последнюю очередь проверка на врага (длинный цикл) -- Kirgudu
+		news_text = "%c[255,255,0,0]"..game.translate_string("sleep_refuse_danger")
+	end
+
+	if news_text ~= nil then -- сработал один из запретов, выводим сообщение и выходим из меню
+		local news_caption = game.translate_string("st_tip")..". "..game.translate_string("st_actor_name")..":"
+		db.actor:give_game_news(news_caption, news_text, "ui_npc_u_actor", 0, 10000)
+		xr_sound.set_sound_play(db.actor:id(), "pda_tips")
+		return
+	end
+
+	-- выбираем стиль меню сна между «ѕ и оригинальным ќ√—ћ
+	local spwn = ogsm_options.show_cop_sleep_menu and hwm_ui_sleep.sleep_menu() or ui_cheat.cheat(get_hud())
+	level.start_stop_menu(spwn,true)
+end
+
+function sleep_one_hour()
+	main(1)
+end
+
+function sleep_three_hours()
+	main(3)
+end
+
+function sleep_nine_hours()
+	main(5)
+end
+
+function sleep_until_mourning()
+	local current_hour = level.get_time_hours()
+	if current_hour < 5 then
+		main(5 - current_hour)
+	elseif current_hour > 5 then
+		main(29 - current_hour)
+	else
+		main(24)
+	end
+end
+
+function sleep_unlim()
+	local sleep_time = (1 - db.actor.health)*6
+	main(sleep_time)
+end
+
+function main(hours)
+	if hours <= 0 then return end
+	sleep_active = true
+	sleep_start = game.get_game_time()
+	db.actor:hide_weapon()
+	hp_corrector(hours)
+	starter(hours)
+end
+
+function starter(hours)
+	local factor = hours * 1300
+	game.start_tutorial("time_scaling")
+	level_weathers.update_immediate=true
+	level.set_time_factor(factor)
+end
+
+function dreamer()
+	local factor = system_ini():r_float("alife", "time_factor")
+	level.set_time_factor(factor)
+	if is_sleep_active() then
+		local dream = dream.sleep_video_name_callback()
+		if dream ~= "" then game.start_tutorial(dream)
+		else game.start_tutorial("without_dream") end
+	end
+end
+
+-- Kirgudu
+function stopper_time_shift()
+	-- в случае, если у нас не сон, а обморок после выброса или ограблени€
+	-- сны не смотрим, погоду мен€ем
+	local factor = system_ini():r_float("alife", "time_factor")
+	level.set_time_factor(factor)
+	level_weathers.update_immediate = false
+	level_weathers.get_weather_manager():select_weather(true)
+end
+-- Kirgudu
+
+function stopper()
+	local factor = system_ini():r_float("alife", "time_factor")
+	level.set_time_factor(factor)
+	level_weathers.update_immediate=false
+	if db.actor:alive() then
+		-- усталость уменьшаем здесь, а не при старте сна (может прерватьс€ при выбросе), учитыва€ реальное кол-во часов
+		local hours = Get_Past_GameHours(sleep_start)
+		reduce_need_sleep(hours)
+		level.add_cam_effector("camera_effects\\prison_1.anm", 25, false, "")
+		level.add_pp_effector("sleepy.ppe", 2007, false)
+		level.add_pp_effector("wakeup.ppe", 2008, false)
+		db.actor:restore_weapon()
+		xr_sound.set_sound_play(db.actor:id(), "wakeup")
+		level.add_cam_effector("camera_effects\\hit_back_left.anm", 26, false, "")
+	end
+	level.enable_input()
+	sleep_active = false
+end
+
+function hp_corrector(fr)
+	db.actor.health = fr/6
+end
+
+function is_sleep_active()
+	return sleep_active
+end
+
+-- »нициализаци€ модул€ (не перемещать из конца скрипта)
+local FuncByName = {
+	["slp"] = test_for_need_sleep,
+	["nrg"] = use_energy_drink,
+	["mtr"] = use_matras,
+	["men"] = end_energy_drink_effect
+}
+local UsableItems = {
+	{"energy_drink", "nrg"},
+	{"matras", "mtr"}
+}
+local sModule = script_name()
+local bInit = false --/ флаг инициализации модул€
+function init()
+	if bInit then return end --/>
+	printf(sModule..":init:>") --/#~#
+	if FuncByName then
+		if not _G["ogsm_timers"] then _G["ogsm_timers"] = {} end
+		local t = _G["ogsm_timers"]
+		for name,func in pairs(FuncByName) do t[name] = func end
+		FuncByName = nil
+	end
+	if UsableItems then
+		if not _G["ogsm_usable_items"] then _G["ogsm_usable_items"] = {} end
+		local t = _G["ogsm_usable_items"]
+		for index,item in ipairs(UsableItems) do table.insert(t, item) end
+		UsableItems = nil
+	end
+	bInit = true
+end
+
+-------------------------------------- ћодуль сна -------------------------------------
+--------------------- Copyright 2007-2010 xStream, Ab@dDon, DEXXX ---------------------

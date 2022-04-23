@@ -1,0 +1,90 @@
+---------------------- Сюжетный саундтрек для OGSM 2.4 ------------------------
+------------------------- Copyright 2007-2018 DEXXX ---------------------------
+----------------- Adapted for OGSM CS CF 2019 monk, Kirgudu -------------------
+
+local snd_obj
+local array = {
+
+	-- Болота
+	mar_intro_scene_2_cameff_end = "soundtrack\\mar_intro_start",
+	mar_tutorial_returned_got_on_feet = "soundtrack\\mar_intro_start",
+	mar_story_empower_csky_done = "soundtrack\\mar_intro_start",
+
+	-- Кордон
+	esc_reach_trader_complete = "soundtrack\\esc_reach_trader_complete",
+	esc_leader_talked2 = "soundtrack\\esc_reach_trader_complete",
+	esc_bring_habar_complete = "soundtrack\\esc_reach_trader_complete",
+
+	-- Свалка
+	gar_story_got_info_from_digger = "soundtrack\\gar_story_got_info_from_digger",
+	gar_story_got_fang_pda = "soundtrack\\gar_story_got_info_from_digger",
+
+	-- Тёмная долина
+	val_go_to_trader_complete = "soundtrack\\val_go_to_trader_complete",
+	val_take_pda_done = "soundtrack\\val_go_to_trader_complete",
+	val_deliver_pda_complete = "soundtrack\\val_go_to_trader_complete",
+
+	-- Агропром
+	agr_actor_inside_5 = "soundtrack\\agr_actor_inside_5",
+	agr_take_reward_complete = "soundtrack\\agr_actor_inside_5",
+
+	-- Подземелье Агропрома
+	agru_controller_death = "soundtrack\\agru_controller_death",
+	agru_find_secret_task_complete = "soundtrack\\agru_controller_death",
+
+	-- Янтарь
+	yan_quest_doc = "soundtrack\\yan_quest_doc",
+	yan_go_to_red_forest_cut6 = "soundtrack\\yan_quest_doc",
+
+	-- Рыжий лес
+	red_pursuit_task_end = "soundtrack\\red_pursuit_task_end",
+	red_actor_find_teleport = "soundtrack\\red_pursuit_task_end",
+	red_actor_find_forester = "soundtrack\\red_pursuit_task_end",
+	red_forester_take_compas = "soundtrack\\red_pursuit_task_end",
+	red_bridge_csky_go_limansk = "soundtrack\\red_pursuit_task_end",
+
+	-- Армейские склады
+	mil_merc_talked = "soundtrack\\mil_merc_talked",
+	mil_actor_go_to_limansk = "soundtrack\\mil_merc_talked",
+
+	-- Лиманск
+	lim_visited_level = "music\\lim_visited_level",
+
+	-- Госпиталь
+	lim_go_to_hospital = "music\\lim_go_to_hospital",
+
+	-- Подземелья Припяти
+	hospital_general_task_complete = "soundtrack\\hospital_general_task_complete",
+
+	-- Финальный бой
+	mar_free_gauss_return_init = "soundtrack\\mar_free_gauss_return_init",
+
+	-- Фриплей, остановка саундтрека
+	freeplay = "stop"
+
+}
+
+function s_stop()
+	if snd_obj and snd_obj:playing() == true then snd_obj:stop() end
+end
+
+function s_play(path)
+	s_stop()
+	snd_obj = xr_sound.get_safe_sound_object(path)
+	if snd_obj then snd_obj:play_at_pos(db.actor, vector():set(0, 0, 0), 0, sound_object.s2d) end
+end
+
+function proceed_info(info_id)
+	--ogsm.dbglog(info_id)
+	local sound_path = array[info_id]
+	if sound_path == "stop" then
+		s_stop()
+	elseif sound_path ~= nil then
+		s_play(sound_path)
+	end
+end
+
+
+---------------------- Сюжетный саундтрек для OGSM 2.4 ------------------------
+------------------------- Copyright 2007-2018 DEXXX ---------------------------
+----------------- Adapted for OGSM CS CF 2019 monk, Kirgudu -------------------

@@ -1,33 +1,6 @@
-[m_tushkano_attack_params]
-;---------------------------------------------------------------------------------------------------------------------------------------------
-;	anim			| time[0..1] | hit_power | impulse | impulse_dir (x,y,z)  |	Field of hit_test  (left,right, bottom, top ) |	Test Dist
-;---------------------------------------------------------------------------------------------------------------------------------------------
-stand_attack_0 =	  	0.25,		0.10,		    20,        0.0, 1.0, 0.0,		 -1.2, 1.2, -1.6, 1.6,							  1.0
-stand_attack_1 =	  	0.25,		0.10,		    30,        0.0, 1.0, 0.0,		 -1.2, 1.2, -1.6, 1.6,							  1.0
-stand_attack_2 =	  	0.25,		0.10,		    35,        0.0, 1.0, 0.0,		 -1.2, 1.2, -1.6, 1.6,							  1.0
-
-[m_tushkano_step_params]
-;---------------------------------------------------------------------------
-;	anim			| Cycles | time1 | power1 | time2 | power2 |
-;---------------------------------------------------------------------------
-stand_walk_fwd_0 	=	1,	   0.2,     0.5,     0.7,    1,   
-stand_run_0	 		=	1,	   0.25,     1,	    0.25,    1,    
-
 ;===========================================================================
-; IMMUNITIES
+; TUSHKANO
 ;===========================================================================
-[tushkano_immunities]
-burn_immunity			= 1			;коэффициенты иммунитета 
-strike_immunity			= 1
-shock_immunity			= 1
-wound_immunity			= 0.5
-radiation_immunity		= 0.0
-telepatic_immunity		= 1.0
-chemical_burn_immunity	= 1
-explosion_immunity		= 1
-fire_wound_immunity		= 3
-
-
 [m_tushkano_e]:monster_base
 GroupControlSection	= spawn_group
 SpaceRestrictionSection = space_restrictor,zone_mosquito_bald
@@ -36,7 +9,7 @@ $npc			     = on						; option for Level Editor
 $prefetch 			 = 16
 Scheduled		     = on						; option for ALife Simulator
 Human		     	 = off						; option for ALife Simulator
-Health			     = 400						; option for ALife Simulator
+Health			     = 100						; option for ALife Simulator
 MinSpeed		     = 1.0						; option for ALife Simulator
 MaxSpeed		     = 5.0						; option for ALife Simulator
 going_speed          = 3;4.5                      ; option for ALife Simulator
@@ -53,7 +26,7 @@ smart_terrain_choose_interval	= 00:15:00
 ef_creature_type	 = 2							; option for evaluation functions
 ef_weapon_type		 = 2
 ef_detector_type	 = 1
-panic_threshold		= 0.1
+panic_threshold		= 0.0
 
 cform                = skeleton					; collision class
 class                = SM_TUSHK ;AI_TUSH					; AI class
@@ -98,7 +71,9 @@ hit_power			 = 20.0;
 ImpulseMin			 = 20.0
 ImpulseMax			 = 35.0 
 
+;---------------------------------------------------------------------
 ; speed factors			linear | angular_real | angular_path | min |  max
+;---------------------------------------------------------------------
 Velocity_Stand			= 0,		3.5,			3.5,		1,		1
 Velocity_WalkFwdNormal	= 1.0,		7.5,			7.5,		0.02,	1.8	
 Velocity_RunFwdNormal	= 5.0,		3.5,			3.5,		0.3,	1	
@@ -121,12 +96,12 @@ as_step					= 0.25
 
 feel_enemy_who_just_hit_max_distance = 20  ;дистанция на которой монстр почувствует стрельнувшего игрока даже спиной
 
-DayTime_Begin		= 0			; эрўрыр фэ  фы  ьюэёЄЁр
-DayTime_End			= 21		; ъюэхЎ фэ  фы  ьюэёЄЁр
-Min_Satiety			= 0.4		; ьшэ. эюЁьр ёvЄюёЄш (ьхэ№°х - єцх уюыюфэvщ)
-Max_Satiety			= 1.0		; ьръё. эюЁьр ёvЄюёЄш (сюы№°х - юўхэ№ ёvЄvщ)
+DayTime_Begin		= 0			; начало дня для монстра
+DayTime_End			= 21		; конец дня для монстра
+Min_Satiety			= 0.4		; мин. норма сытости (меньше - уже голодный)
+Max_Satiety			= 1.0		; макс. норма сытости (больше - очень сытый)
 
-distance_to_corpse	= 1.2		; фшёЄ. фю ЄЁєяр, яЁш ъюЄюЁющ юэ яхЁхїюфшЄ т ёюёЄю эшх хфv
+distance_to_corpse	= 1.2		; дист. до трупа, при которой он переходит в состояние еды
 
 
 min_view_distance   		= 0.8				; коэффициент, который множится на eye_range, в зависимости от угла
@@ -137,14 +112,14 @@ time_quant					= 0.001
 decrease_value				= 0.01				; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
 velocity_factor		     	= 0.5
 luminocity_factor			= 0.5 				; фактор освещения (только для Актёра)
-transparency_threshold		= 0.25
+transparency_threshold		= 0.25				; видимость через камыши и кустарники
 
 
 terrain				 = tushkan_terrain
 
 hit_type = wound
 
-;entity condition
+
 
 ; entity condition
 satiety_v 		= 0.00001				;0.01			;скорость уменьшения сытости со временем
@@ -165,17 +140,17 @@ bleeding_v					= 0.04					;потеря крови при номинальной ране в секунду
 wound_incarnation_v			= 0.05				;крутизна кривой заживления (какой процент раны останется после заживления в игровую секунду)
 min_wound_size				= 0.01
 
-sleep_health = 1.0		;1.5				;ъю¤ЇЇшЎшхэЄv ёъюЁюёЄхщ шчьхэхэш  ярЁрьхЄЁют тю тЁхь  ёэр
+sleep_health = 1.0		;1.5				;коэффициенты скоростей изменения параметров во время сна
 sleep_power = 1.0		;1.5
 sleep_satiety = 1.0		;0.8
 sleep_radiation = 1.0	;1.1
 sleep_psy_health = 1.0
 
-eat_freq			=	5.0		; ўрёЄюЄр єъєёют т ёхъ
-eat_slice			=	0.01	; єтхышўхэшх ёvЄюёЄш яЁш 1 єъєёх
-eat_slice_weight	=	10.0	; єьхэ№°хэшх хфv є ЄЁєяр
+eat_freq			=	5.0		; частота укусов в сек
+eat_slice			=	0.01	; увеличение сытости при 1 укусе
+eat_slice_weight	=	10.0	; уменьшение еды у трупа
 
-satiety_threshold	= 0.5							; below this value monster fill hunger
+satiety_threshold	= 0.5							; ниже этого значения монстр считается голодным
 
 
 ; Morale
@@ -186,7 +161,7 @@ Morale_Despondent_Speed			= 0.1
 Morale_Stable_Speed				= 0.05
 Morale_Despondent_Threashold	= 0.5
 
-
+; Sounds
 sound_idle				= monsters\tushkano\tushkano_idle_
 sound_eat				= monsters\tushkano\tushkano_eat_
 sound_aggressive		= monsters\tushkano\tushkano_aggressive_
@@ -194,10 +169,10 @@ sound_attack_hit		= monsters\tushkano\tushkano_attack_
 sound_take_damage		= monsters\tushkano\tushkano_pain_
 sound_die				= monsters\tushkano\tushkano_death_
 sound_threaten			= monsters\tushkano\tushkano_threaten_
-sound_landing			= monsters\tushkano\tushkano_pain_ ;monsters\tushkano\tush_idle_
-sound_steal				= monsters\beeps_ ;monsters\tushkano\tush_idle_
+sound_landing			= monsters\tushkano\tushkano_pain_
+sound_steal				= monsters\tushkano\tushkano_idle_
 sound_panic				= monsters\tushkano\tushkano_panic_
-sound_growling			= monsters\beeps_ ;monsters\tushkano\tush_idle_
+sound_growling			= monsters\tushkano\tushkano_aggressive_
 sound_die_in_anomaly	= monsters\tushkano\tushkano_anomaly_
 
 killer_clsids			= Z_MINCER,Z_GALANT,ZS_BFUZZ,ZS_MBALD,ZS_GALAN,ZS_MINCE
@@ -234,6 +209,35 @@ spec_rank				= normal
 community				= tushkano
 
 
+[m_tushkano_attack_params]
+;---------------------------------------------------------------------------------------------------------------------------------------------
+;	anim			| time[0..1] | hit_power | impulse | impulse_dir (x,y,z)  |	Field of hit_test  (left,right, bottom, top ) |	Test Dist
+;---------------------------------------------------------------------------------------------------------------------------------------------
+stand_attack_0 =	  	0.25,		0.32,		    20,        0.0, 1.0, 0.0,		 -1.2, 1.2, -1.6, 1.6,							  1.0
+stand_attack_1 =	  	0.25,		0.32,		    30,        0.0, 1.0, 0.0,		 -1.2, 1.2, -1.6, 1.6,							  1.0
+stand_attack_2 =	  	0.25,		0.32,		    35,        0.0, 1.0, 0.0,		 -1.2, 1.2, -1.6, 1.6,							  1.0
+
+[m_tushkano_step_params]
+;---------------------------------------------------------------------------
+;	anim			| Cycles | time1 | power1 | time2 | power2 |
+;---------------------------------------------------------------------------
+stand_walk_fwd_0 	=	1,	   0.2,     0.5,     0.7,    1,   
+stand_run_0	 		=	1,	   0.25,     1,	    0.25,    1,    
+
+;===========================================================================
+; IMMUNITIES
+;===========================================================================
+[tushkano_immunities]
+burn_immunity			= 1			;коэффициенты иммунитета 
+strike_immunity			= 1
+shock_immunity			= 1
+wound_immunity			= 0.5
+radiation_immunity		= 0.0
+telepatic_immunity		= 1.0
+chemical_burn_immunity	= 1
+explosion_immunity		= 1
+fire_wound_immunity		= 1
+
 [m_tushkano_damage]
 ;bone_name		 = <hit_scale>,-1,<wound_scale>
 ;<hit_scale>	- коэфф. изменения хита (уменьшения здоровья) 
@@ -256,7 +260,6 @@ bip01_head 			= 2.0, -1, 0.5, 10
 ;---------------------------
 [m_tushkano_normal]:m_tushkano_e
 $spawn				= "monsters\tushkanos\tushkano_normal_old"
-;---------------------------
 rank = 401
 spec_rank			= normal
 community			= tushkano

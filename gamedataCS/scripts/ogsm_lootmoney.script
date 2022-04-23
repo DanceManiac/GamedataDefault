@@ -1,0 +1,60 @@
+--[[ ----------------------------------------------------------------------------------------------
+ File              : ogsm_lootmoney.script
+ Description       : Лут денег с мёртвых НПС
+ Copyright         : OGSM CS 1.8 CE Fixes
+ Author            : babuin 119
+ Adaptation to OGSM: WARWER, Kirgudu
+ Last edit         : 22.01.19 (by Kirgudu)
+--]] ----------------------------------------------------------------------------------------------
+
+
+local community_description = {
+	["bandit"] = " бандит ",
+	["bandit_enemy"] = " бандит ",
+	["csky"] = " чистонебовец ",
+	["dolg"] = " долговец ",
+	["ecolog"] = " учёный ",
+	["freedom"] = " свободовец ",
+	["killer"] = " наёмник ",
+	["army"] = " военный ",
+	["monolith"] = " монолитовец ",
+	["stalker"] = " нейтрал ",
+	["stalker_enemy"] = " нейтрал ",
+	["zombied"] = " зомбированный ",
+	["renegade"] = " ренегат "
+}
+
+function lootmoney(npc)
+	if not npc then return end
+
+	local community = npc:character_community()
+	if community == "monolith" or community == "zombied" then return end
+
+	local money, looted = npc:money(), xr_logic.pstor_retrieve(npc, "money_looted", false)
+	if looted or not money or money <= 0 then return end
+
+	local deadmoney, npc_rank = money, ranks.get_obj_rank_name(npc)
+	if npc_rank ~= nil then
+		if npc_rank == "novice" and deadmoney >= 100 then deadmoney = math.random(5, 100)
+		elseif npc_rank == "experienced" and deadmoney >= 200 then deadmoney = math.random(15, 200)
+		elseif npc_rank == "veteran" and deadmoney >= 270 then deadmoney = math.random(20, 270)
+		elseif npc_rank == "master" and deadmoney >= 330 then deadmoney = math.random(25, 330)
+		end
+	end
+
+	xr_logic.pstor_store(npc, "money_looted", true)
+
+	local news_caption = game.translate_string("st_deadbody")..(community_description[community] or "")..npc:character_name()
+	local news_text = game.translate_string("found_money")..": ".."%c[0,0,255,25]"..game.translate_string(deadmoney).." ".."%c[default]"..game.translate_string("rubles")
+	db.actor:give_game_news(news_caption, news_text, "ui_iconsTotal_found_money", 0, 10000)
+	-- xr_sound.set_sound_play(db.actor:id(), "pda_tips")
+
+	db.actor:give_money(deadmoney)
+	game_stats.money_quest_update(deadmoney)
+	npc:give_money(-money)
+	game_stats.money_quest_update(-money)
+end
+
+
+---------------------------- Лут денег с мёртвых НПС ----------------------------
+--------------------------- Copyright 2009 babuin 119 ---------------------------

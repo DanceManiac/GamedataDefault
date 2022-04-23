@@ -65,23 +65,23 @@ function notify_on_use(victim, who)
 		-- Мы не согласны говорить
 		if victim:best_enemy() ~= nil then
 			if victim:relation(db.actor) ~= game_object.enemy then
-				-- Во время боя
-				--xr_sound.set_sound_play(victim:id(), "use_no_fight")
+			-- Во время боя
+			xr_sound.set_sound_play(victim:id(), "use_no_fight")
 			end
 		elseif xr_wounded.is_wounded(victim) then
 			-- Юзание раненого
 		elseif xr_sleeper.is_npc_asleep(victim) then
 			-- Юзание спящего
-			--xr_sound.set_sound_play(victim:id(), "use_no_sleep")
+			xr_sound.set_sound_play(victim:id(), "use_no_sleep")
 		elseif xr_meet.cannot_talk_by_weapon(victim) then
 			-- Необходимо спрятать оружие
-			--xr_sound.set_sound_play(victim:id(), "use_no_weapon")
+			xr_sound.set_sound_play(victim:id(), "use_no_weapon")
 			xr_abuse.add_abuse(victim, 1)
 		elseif db.storage[victim:id()].active_scheme == "kamp" then
 			-- Юзание чувака в лагере
 		else
 			-- Дефолт
-			--xr_sound.set_sound_play(victim:id(), "use_no_default")
+			xr_sound.set_sound_play(victim:id(), "use_no_default")
 			xr_abuse.add_abuse(victim, 1)
 		end
 	end

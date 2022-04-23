@@ -33,6 +33,10 @@ load_scheme("xr_combat_ignore",                 "combat_ignore",stype_stalker)
 load_scheme("xr_patrol",                        "patrol",       stype_stalker)
 load_scheme("xr_smartcover",                    "smartcover",   stype_stalker)
 load_scheme("xr_surge_hide",                    "surge_hide",   stype_stalker)
+if ogsm_hideout then
+	load_scheme("ogsm_hideout",    "ogsm_hideout",      stype_stalker)
+end
+if rx_ai then rx_ai.load_schemes() end
 ----------------------------------------------------------------------
 -- Загрузка модулей монстров:
 ----------------------------------------------------------------------
@@ -42,6 +46,7 @@ load_scheme("mob_combat",   "mob_combat",   stype_mobile)
 load_scheme("mob_death",    "mob_death",    stype_mobile)
 load_scheme("mob_jump",     "mob_jump",     stype_mobile)
 load_scheme("mob_home",     "mob_home",     stype_mobile)
+load_scheme("mob_fake_death", "mob_fake_death", stype_mobile)
 ----------------------------------------------------------------------
 -- Загрузка модулей Торговца
 ----------------------------------------------------------------------
@@ -51,12 +56,13 @@ load_scheme("mob_trade",    "mob_trade",    stype_mobile)
 -- Загрузка модулей физических объектов:
 ----------------------------------------------------------------------
 load_scheme("ph_door",        "ph_door",     stype_item)
---'load_scheme("ph_gate",        "ph_gate",     stype_item)
+load_scheme("ph_gate",        "ph_gate",     stype_item)
 load_scheme("ph_idle",        "ph_idle",     stype_item)
 load_scheme("ph_hit",         "ph_hit",      stype_item)
 load_scheme("ph_on_hit",      "ph_on_hit",   stype_item)
 --'load_scheme("ph_impulse",     "ph_impulse",  stype_item)
 --'load_scheme("ph_camera",      "ph_camera",   stype_item)
+load_scheme("ph_car",         "ph_car",      stype_item)
 load_scheme("ph_button",      "ph_button",   stype_item)
 load_scheme("ph_code",        "ph_code",     stype_item)
 load_scheme("ph_sound",       "ph_sound",    stype_item)

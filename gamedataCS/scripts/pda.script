@@ -68,6 +68,54 @@ function fill_faction_state(state)
         state.target_desc = ""
         state.location = game.translate_string("st_location_renegade")
 
+    elseif(state.faction_id=="ecolog") then
+        state.name = game.translate_string("ui_st_name_ecolog")
+        state.icon = "ecolog_wide"
+        state.icon_big = ""
+        state.target = ""
+        state.target_desc = ""
+        state.location = game.translate_string("st_location_ecolog")
+
+    elseif(state.faction_id=="killer") then
+        state.name = game.translate_string("ui_st_name_killer")
+        state.icon = "killer_wide"
+        state.icon_big = ""
+        state.target = ""
+        state.target_desc = ""
+        state.location = game.translate_string("st_location_killer")
+
+    elseif(state.faction_id=="merc") then
+        state.name = game.translate_string("ui_st_name_killer")
+        state.icon = "killer_wide"
+        state.icon_big = ""
+        state.target = ""
+        state.target_desc = ""
+        state.location = game.translate_string("st_location_killer")
+
+    elseif(state.faction_id=="army") then
+        state.name = game.translate_string("ui_st_name_army")
+        state.icon = "army_wide"
+        state.icon_big = ""
+        state.target = ""
+        state.target_desc = ""
+        state.location = game.translate_string("st_location_army")
+
+    elseif(state.faction_id=="monolith") then
+        state.name = game.translate_string("ui_st_name_monolith")
+        state.icon = "monolith_wide"
+        state.icon_big = ""
+        state.target = ""
+        state.target_desc = ""
+        state.location = game.translate_string("st_location_monolith")
+
+    elseif(state.faction_id=="zombied") then
+        state.name = game.translate_string("zombied")
+        state.icon = "zombied_wide"
+        state.icon_big = ""
+        state.target = ""
+        state.target_desc = ""
+        state.location = ""
+
     elseif(state.faction_id=="csky") then
         state.name = game.translate_string("ui_st_name_csky")
         state.icon = "csky_wide"
@@ -236,7 +284,7 @@ function get_max_resource()
 	return max_resource
 end
 
-local checking_power = {"stalker", "bandit", "freedom", "dolg", "csky", "renegade"}
+local checking_power = {"stalker", "bandit", "freedom", "dolg", "csky", "renegade", "ecolog", "killer", "army", "monolith"}
 function get_max_power()
 	local max_power = 0
 	local board_players = sim_board.get_sim_board().players
@@ -365,9 +413,9 @@ function get_stat(index) -- index= int        return string
 	elseif(index==1) then
 		return tostring(xr_statistic.actor_statistic.founded_secrets)
 	elseif(index==2) then
-		return tostring(xr_statistic.actor_statistic.recieved_money).." RU"
+		return tostring(xr_statistic.actor_statistic.recieved_money).." "..game.translate_string("rubles")
 	elseif(index==3) then
-		return tostring(xr_statistic.actor_statistic.spent_money).." RU"
+		return tostring(xr_statistic.actor_statistic.spent_money).." "..game.translate_string("rubles")
 	elseif(index==4) then
 		return tostring(xr_statistic.actor_statistic.recieved_quests)
 	elseif(index==5) then
@@ -378,5 +426,7 @@ function get_stat(index) -- index= int        return string
 		return tostring(xr_statistic.actor_statistic.killed_stalkers)
 	elseif(index==8) then
 		return tostring(xr_statistic.actor_statistic.killed_monsters)
+	elseif(index==9) then
+		return tostring(xr_statistic.actor_statistic.founded_arts)
 	end
 end

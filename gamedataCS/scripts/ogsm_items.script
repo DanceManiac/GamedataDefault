@@ -1,0 +1,231 @@
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------
+----------------------------- Функции работы с предметами -----------------------------
+------------------------- Last edit (by Kirgudu): 04.09.2018 --------------------------
+
+-- Использование аптечек
+function use_medkit(name, oid)
+	if oid and oid.id and alife():object(oid.id) == nil then
+		ogsm_mutants.hl = db.actor.health
+		local snd = sound_object([[food\inv_medkit]])
+		snd:play_no_feedback(db.actor,sound_object.s2d, 0, vector():set(0, 0, 0), 1.0)
+	end
+end
+
+
+-- Использование бинта
+function use_bandage(name, oid)
+	if oid and oid.id and alife():object(oid.id) == nil then
+		local snd = sound_object([[food\inv_bandage]])
+		snd:play_no_feedback(db.actor,sound_object.s2d, 0, vector():set(0, 0, 0), 1.0)
+	end
+end
+
+
+-- Использование антирада
+function use_antirad(name, oid)
+	if oid and oid.id and alife():object(oid.id) == nil then
+		local snd = sound_object([[food\inv_pills]])
+		snd:play_no_feedback(db.actor,sound_object.s2d, 0, vector():set(0, 0, 0), 1.0)
+	end
+end
+
+
+-- Использование йадулина
+function use_yad(name, oid)
+	local start_time
+	local cur_time
+	local end_time
+
+	if oid and oid.id and alife():object(oid.id) == nil then
+		local snd = sound_object([[food\inv_yad]])
+		snd:play_no_feedback(db.actor,sound_object.s2d, 0, vector():set(0, 0, 0), 1.0)
+		start_time = level.get_time_days()*60*24+level.get_time_hours()*60+level.get_time_minutes()
+		cur_time = ogsm.load_variable("hlth", 0)
+		if cur_time ~= 0 then
+			if (cur_time - start_time) > 0 and (cur_time - start_time) < 15 then
+				end_time = cur_time + 5
+			else
+				end_time = cur_time
+			end
+		else
+			end_time = start_time + 5
+		end
+		ogsm.save_variable("hlth", end_time)
+	end
+end
+
+
+-- Проверка действия йадулина, даем health-boost
+local heart_sound = sound_object([[heart\3]])
+function check_hlth()
+	if db.actor.health < 1.01 then
+		local time = level.get_time_days()*60*24+level.get_time_hours()*60+level.get_time_minutes()
+		local end_time = ogsm.load_variable("hlth", 0)
+		if time < end_time then
+			db.actor.health = 0.003
+			-- ogsm.dbglog(db.actor.health)
+			if ogsm.load_variable("hrt", 0) == 0 then
+				if not heart_sound:playing() then 
+					heart_sound:play_at_pos(db.actor, db.actor:position(), 1, sound_object.looped)
+				end
+				ogsm.save_variable("hrt", 1)
+			else
+				if heart_sound:playing() then heart_sound:set_position(db.actor:position()) end
+			end
+		elseif ogsm.load_variable("hrt", 0) == 1 then
+			db.actor.power = -0.8
+			db.actor.psy_health = -0.2
+			level.add_cam_effector("camera_effects\\fusker.anm", 999, false, "")
+			xr_sound.set_sound_play(db.actor:id(), "pain")
+			if heart_sound:playing() then heart_sound:stop() end
+			ogsm.del_variable("hrt")
+			ogsm.del_variable("hlth")
+		end
+	end
+end
+
+-- Использование водки
+function use_vodka(name, oid)
+	local start_time
+	local cur_time
+	local end_time
+
+	if oid and oid.id and alife():object(oid.id) == nil then
+		local snd = sound_object([[food\inv_vodka]])
+		snd:play_no_feedback(db.actor,sound_object.s2d, 0, vector():set(0, 0, 0), 1.0)
+		start_time = level.get_time_days()*60*24+level.get_time_hours()*60+level.get_time_minutes()
+		cur_time = ogsm.load_variable("drnk", 0)
+		if cur_time ~= 0 then
+			if (cur_time - start_time) > 0 and (cur_time - start_time) < 15 then
+				end_time = cur_time + 5
+			else
+				end_time = cur_time
+			end
+		else
+			end_time = start_time + 5
+		end
+		ogsm.save_variable("drnk", end_time)
+	end
+end
+
+-- Проверка, пьян ли актор, если да, то даем защиту от пси
+function check_drunk()
+	if db.actor.psy_health < 0.99 then
+		local time = level.get_time_days()*60*24+level.get_time_hours()*60+level.get_time_minutes()
+		local end_time = ogsm.load_variable("drnk", 0)
+		if time < end_time then
+			db.actor.psy_health = 0.0015
+		elseif ogsm.load_variable("drnk", 0) ~= 0 then
+			ogsm.del_variable("drnk")
+		end
+	end
+end
+
+-- Текущий звук губной гармошки, гитары и рации
+local snd_exclusive = nil
+
+-- Использование губной гармошки
+function use_harmonica(name, oid)
+	local i, length
+
+	if oid and oid.id and alife():object(oid.id) == nil then
+		if snd_exclusive and snd_exclusive:playing() then
+			ogsm.spawn_item_in_inv("harmonica_a")
+			return
+		end
+		i = math.random(1,8)
+		snd_exclusive = sound_object("items\\harmonica\\harmonica_"..i)
+		length = snd_exclusive:length()
+		snd_exclusive:play(db.actor, 0, sound_object.s2d)
+		ogsm.start_timer("spw", length/1000, "harmonica_a")
+	end
+end
+
+-- Использование гитары
+function use_guitar(name, oid)
+	local i, length
+
+	if oid and oid.id and alife():object(oid.id) == nil then
+		if snd_exclusive and snd_exclusive:playing() then
+			ogsm.spawn_item_in_inv("guitar_a")
+			return
+		end
+		i = math.random(1,11)
+		snd_exclusive = sound_object("items\\guitar\\guitar_"..i)
+		length = snd_exclusive:length()
+		snd_exclusive:play(db.actor, 0, sound_object.s2d)
+		ogsm.start_timer("spw", length/1000, "guitar_a")
+	end
+end
+
+-- Использование радиостанции
+function use_radio(name, oid)
+	local i, length
+
+	if oid and oid.id and alife():object(oid.id) == nil then
+		if snd_exclusive and snd_exclusive:playing() then
+			ogsm.spawn_item_in_inv("hand_radio")
+			return
+		end
+		if string.find(level.name(), "_underground") then
+			snd_exclusive = sound_object([[items\radio\radio_noise_2]])
+			length = snd_exclusive:length()
+		else
+			if math.random()<0.45 then
+				i = math.random(1,12)
+				snd_exclusive = sound_object("items\\radio\\radio_voice_"..i)
+				length = snd_exclusive:length()
+			else
+				i = math.random(1,2)
+				snd_exclusive = sound_object("items\\radio\\radio_noise_"..i)
+				length = snd_exclusive:length()
+			end
+		end
+		snd_exclusive:play(db.actor, 0, sound_object.s2d)
+		ogsm.start_timer("spw", length/1000, "hand_radio")
+	end
+end
+
+-- Инициализация модуля (не перемещать из конца скрипта)
+local FuncByName = {
+	["mdk"] = use_medkit,
+	["bnd"] = use_bandage,
+	["ant"] = use_antirad,
+	["yad"] = use_yad,
+	["vdk"] = use_vodka,
+	["hrm"] = use_harmonica,
+	["rad"] = use_radio,
+	["gtr"] = use_guitar
+}
+local UsableItems = {
+	{"yadulin", "yad"},
+	{"vodka", "vdk"},
+	{"harmonica_a", "hrm"},
+	{"hand_radio", "rad"},
+	{"guitar_a", "gtr"},
+	{"medkit", "mdk"},
+	{"bandage", "bnd"},
+	{"antirad", "ant"}
+}
+local sModule = script_name()
+local bInit = false --/ флаг инициализации модуля
+function init()
+	if bInit then return end --/>
+	printf(sModule..":init:>") --/#~#
+	if FuncByName then
+		if not _G["ogsm_timers"] then _G["ogsm_timers"] = {} end
+		local t = _G["ogsm_timers"]
+		for name,func in pairs(FuncByName) do t[name] = func end
+		FuncByName = nil
+	end
+	if UsableItems then
+		if not _G["ogsm_usable_items"] then _G["ogsm_usable_items"] = {} end
+		local t = _G["ogsm_usable_items"]
+		for index,item in ipairs(UsableItems) do table.insert(t, item) end
+		UsableItems = nil
+	end
+	bInit = true
+end
+
+----------------------- Функции работы с предметами для OGSM CS -----------------------
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------

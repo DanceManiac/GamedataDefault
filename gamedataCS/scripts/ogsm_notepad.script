@@ -1,0 +1,766 @@
+--[[ ----------------------------------------------------------------------------------------------
+ File       : ogsm_notepad.script
+ Description: Менеджер расширенного экспериментального КПК Шрама
+ Copyright  : 2020 © OGSM CS 1.8 CE CF
+ Author     : Kirgudu (использованы материалы HARDWAR mod 3.3 и OGSM CS 1.8 CE)
+ Last edit  : 04.05.2020
+--]] ----------------------------------------------------------------------------------------------
+
+---------------------------------------
+-- Общие переменные модуля
+---------------------------------------
+
+local bInit = false --/ флаг инициализации модуля
+local sModule = script_name() --/ строковое имя файла-модуля
+local oNotepadManager = nil --/ инициализированный экземпляр класса менеджера
+local tArticles = {} --/ динамический массив статей
+local tGroups = {} --/ динамический массив групп статей
+local tInfoByItemSection = {} --/ предметы, при получении которых в инвентаре следует выдать статью
+local sStartTabName --/ идентификатор раздела по умолчанию
+local sStoreKeyPrefix = "notepad_article_" --/ префикс идентификаторов записей со статьями в универсальном хранилище
+
+----------------------------------------
+-- Инициализация
+----------------------------------------
+
+-- Инициализация модуля
+function init()
+	if bInit then return end --/>
+	printf(sModule..":init:>") --/#~#
+	BuildTables()
+	bInit = true
+end
+
+----------------------------------------
+-- Коллбэки событий
+----------------------------------------
+
+function OnFirstRun()
+	Spawn_ItemInInv("notepad")
+end
+
+-- Колбэк на получение инфо
+function OnArticle(sGroupName, sArticleName)
+	if device().precache_frame > 1 then return end
+	if not (sGroupName and sArticleName) then return end
+
+	local tArticle = GetArticleItem(sGroupName, sArticleName)
+	local tGroup = GetGroupInfo(sGroupName)
+	if not tArticle or not tGroup then return end
+
+	tArticle.post_time = game.get_game_time()
+
+	if tArticle.post_text then
+		-- выдача текста дополнительного смс сообщения (при его наличии) на игровой интерфейс
+		news_manager.send_tip(db.actor, game.translate_string(tArticle.post_text), nil, nil, 10000)
+	end
+
+	if tArticle.post_sound then
+		-- выдача дополнительного звукового сигнала (при его наличии)
+		local snd = sound_object(tArticle.post_sound)
+		snd:play_no_feedback(db.actor, sound_object.s2d, 0, vector():set(0, 0, 0), 2.0)
+	end
+
+	-- выдача автоматического сообщения о получении статьи и соответствующего звукового сигнала
+	local news_caption = tArticle.news_caption or tGroup.news_caption or ""
+	local news_text = tArticle.news_text or ((tGroup.news_text_prefix or "")..sArticleName..(tGroup.news_text_suffix or ""))
+	db.actor:give_game_news(news_caption, game.translate_string(news_text), "ui_iconsTotal_PDA", 0, 15000, 1)
+
+	local pda_news = sound_object([[device\pda\pda_tip]])
+	pda_news:play_no_feedback(db.actor, sound_object.s2d, 0, vector():set(0, 0, 0), 2.0)
+
+	-- автосэйв (при наличии соответствующей глобальной настройки и настройки для группы статей)
+	if (ogsm_options.autosave == 1 or ogsm_options.autosave == 3) and tGroup.autosave then ogsm.start_autosave(sArticleName) end
+end
+
+-- Коллбэк на взятие предмета (событие "item_take")
+function OnItemTake(section)
+	-- учитываем модификаты
+	for _,v in ipairs(tInfoByItemSection) do
+		-- if string.find(section, "^af_") then ogsm.dbglog("Notepad_OnItemTake:> section=["..tostring(section).."], iterate_sect=["..tostring(v.sect).."]") end
+		if string.find(section, v.sect) then
+			-- if string.find(section, "^af_") then ogsm.dbglog("Notepad_OnItemTake:> found_sect=["..tostring(v.sect).."], info=["..tostring(v.info).."]") end
+			if not has_alife_info(v.info) then gi(v.info) end
+			return
+		end
+	end
+end
+
+
+----------------------------------------
+-- Вспомогательные функции
+----------------------------------------
+
+function GetNotepad(owner)
+	if oNotepadManager == nil then
+		oNotepadManager = notepad(owner)
+	elseif owner ~= null then
+		oNotepadManager:OnTabChange()
+	end
+	return oNotepadManager
+end
+
+-- Получение или создание индекса статьи в универсальном хранилище по внутреннему индексу в менеджере менеджера
+function GetStoreKey(key)
+	return sStoreKeyPrefix..(key or '')
+end
+
+-- Получение простого массива чисел из строки с разделителем
+function GetNumberArrayFixed(source, array_size)
+	local n, t = 0, {}
+	for w in string.gmatch(source, "[^%,]+") do
+		n = n + 1
+		if array_size and (array_size < n) then break end
+		t[n] = tonumber(w)
+	end
+	for n = 1, array_size do
+		t[n] = t[n] or 0
+	end
+	return t
+end
+
+function GetGroupInfo(group)
+	return tGroups[group]
+end
+
+function GetArticleItem(group, name)
+	local tArticlesArray = GetArticlesArray(group)
+	return tArticlesArray and tArticlesArray[name] or nil
+end
+
+function GetArticlesArray(group)
+	return tArticles[group]
+end
+
+function BuildTables()
+	printf("Notepad:: init%s", "") --/#~#
+
+	local ltx = ini_file("misc\\notepad.ltx")
+
+	tArticles = {}
+	tGroups = {}
+
+	local n = ltx:line_count("groups")
+	for i = 0, n-1 do
+		local result, key = ltx:r_line("groups", i, "", "")
+		local group = LoadGroupInfo(ltx, key)
+
+		tGroups[key] = group
+		tArticles[key] = LoadArticles(ltx, group)
+
+		printf("Notepad:: group full init complete: group_name=[%s], articles_count=[%s]%s", key, table.size(tArticles[key]), "") --/#~#
+
+		if sStartTabName == "" and group.default then sStartTabName = key end
+	end
+end
+
+function LoadGroupInfo(ltx, key)
+	printf("Notepad:: group init start: name=[%s]%s", key, "") --/#~#
+
+	local tGroupInfo = {}
+
+	tGroupInfo.array_name = Get_Cfg_String(ltx, key, "array_name")
+	if not tGroupInfo.array_name then
+		printf("Notepad:: group init failed (array_name section doesn't exists): name=[%s]%s", key, "") --/#~#
+		return {} --/>
+	end
+	tGroupInfo.group = key
+
+	tGroupInfo.news_caption = Get_Cfg_String_Wq(ltx, key, "news_caption")
+	tGroupInfo.news_text_prefix = Get_Cfg_String(ltx, key, "news_text_prefix")
+	tGroupInfo.news_text_suffix = Get_Cfg_String(ltx, key, "news_text_suffix")
+	tGroupInfo.name_prefix = Get_Cfg_String(ltx, key, "name_prefix")
+	tGroupInfo.name_suffix = Get_Cfg_String(ltx, key, "name_suffix")
+	tGroupInfo.caption_prefix = Get_Cfg_String(ltx, key, "caption_prefix")
+	tGroupInfo.caption_suffix = Get_Cfg_String(ltx, key, "caption_suffix")
+	tGroupInfo.descr_prefix = Get_Cfg_String(ltx, key, "descr_prefix")
+	tGroupInfo.descr_suffix = Get_Cfg_String(ltx, key, "descr_suffix")
+	tGroupInfo.picture_prefix = Get_Cfg_String(ltx, key, "picture_prefix")
+	tGroupInfo.autosave = Get_Cfg_Bool(ltx, key, "autosave", "<<Nil>>")
+	tGroupInfo.default = Get_Cfg_Bool(ltx, key, "default", "<<Nil>>")
+	tGroupInfo.sort_by_time = Get_Cfg_Bool(ltx, key, "sort_by_time", "<<Nil>>")
+	tGroupInfo.sort_by_order = Get_Cfg_Bool(ltx, key, "sort_by_order", "<<Nil>>")
+	tGroupInfo.inventory_items = Get_Cfg_Bool(ltx, key, "inventory_items", "<<Nil>>")
+	tGroupInfo.encrypted = Get_Cfg_Bool(ltx, key, "encrypted", "<<Nil>>")
+	tGroupInfo.encrypt_toggle_info = Get_Cfg_String(ltx, key, "encrypt_toggle_info")
+
+	printf("Notepad:: group init complete: name=[%s]%s", key, "") --/#~#
+	return tGroupInfo --/>
+end
+
+function LoadArticles(ltx, tGroupInfo)
+	local tGroupArticles = {}
+
+	local sArticlesArraySection = tGroupInfo.array_name
+	if not sArticlesArraySection then return tGroupArticles end --/>
+
+	printf("Notepad:: articles init start: array_name=[%s]%s", sArticlesArraySection, "") --/#~#
+
+	local num = ltx:line_count(sArticlesArraySection)
+	printf("Notepad:: articles init: articles_count=[%s]%s", num, "") --/#~#
+	if num <= 0 then
+		printf("Notepad:: articles init complete: array_name=[%s]%s", sArticlesArraySection, "") --/#~#
+		return tGroupArticles --/>
+	end
+
+	for i = 0, num - 1 do
+		local result, key = ltx:r_line(sArticlesArraySection, i, "", "")
+		-- printf("Notepad:: articles init: read article name=[%s]%s", key, "") --/#~#
+
+		local tArticle = {}
+
+		if ltx:line_exist(key, "section") then
+			tArticle.name = ltx:r_string(key, "section")
+			-- printf("Notepad:: articles init: read real article name=[%s]%s", tArticle.name, "") --/#~#
+		else
+			tArticle.name = key
+		end
+
+		tArticle.group = tGroupInfo.group
+		tArticle.array_name = sArticlesArraySection
+
+		if ltx:line_exist(key, "info") then
+			tArticle.info = ltx:r_string(key, "info")
+		else
+			tArticle.info = key.."_info"
+		end
+		tArticle.article_name = Get_Cfg_String(ltx, key, "article_name")
+		tArticle.article_caption = Get_Cfg_String(ltx, key, "article_caption")
+		tArticle.article_picture = Get_Cfg_String(ltx, key, "article_picture")
+		tArticle.article_descr = Get_Cfg_String(ltx, key, "article_descr")
+		tArticle.news_text = Get_Cfg_String(ltx, key, "news_text")
+		tArticle.post_text = Get_Cfg_String(ltx, key, "post_text")
+		tArticle.post_sound = Get_Cfg_String(ltx, key, "post_sound")
+		tArticle.inventory_item = Get_Cfg_Bool(ltx, key, "inventory_item", "<<Nil>>")
+		if tGroupInfo.inventory_items or tArticle.inventory_item then table.insert(tInfoByItemSection, { sect = "^"..tArticle.name, info = tArticle.info }) end	-- учитываем модификаты
+		tArticle.order = Get_Cfg_Num32(ltx, key, "order", 1)
+		if ltx:line_exist(key, "article_time") then
+			tArticle.post_time = TableToCTime(GetNumberArrayFixed(ltx:r_string(key, "article_time"), 7))
+		else
+			tArticle.post_time = game.CTime()
+		end
+		if ltx:line_exist(key, "article_picture_coords") then
+			tArticle.picture_coords = GetNumberArrayFixed(ltx:r_string(key, "article_picture_coords"), 8)
+		end
+
+		tGroupArticles[tArticle.name] = deepcopy(tArticle)
+	end
+
+	printf("Notepad:: articles init complete: array_name=[%s]%s", sArticlesArraySection, "") --/#~#
+	return tGroupArticles --/>
+end
+
+function load()
+	local tSav = GetVar("Notepad", {})
+	if next(tSav) then DelVar("Notepad") else return end --/>
+	local iArticlesCount = tSav.count or 0
+	local sStoreKey, tCnt = '', {articles = 0}
+	printf("OnLoad: Notepad: articles_in_store=[%s]%s", iArticlesCount, "") --/#~#
+	if iArticlesCount <= 0 then return end --/>
+
+	for i = 1, iArticlesCount do
+		sStoreKey = GetStoreKey(tostring(i))
+		tSav = GetVar(sStoreKey, {})
+		if next(tSav) then
+			-- printf("OnLoad: Notepad: load article storage_name=[%s], group=[%s], name=[%s]%s", sStoreKey, tSav.group, tSav.name, "") --/#~#
+			local tGroup = GetGroupInfo(tSav.group)
+			local tArticle = GetArticleItem(tSav.group, tSav.name) or {}
+			-- printf("OnLoad: Notepad: load article group_size=[%s], article_size=[%s]%s", table.size(tGroup), table.size(tArticle), "") --/#~#
+			tCnt.articles = tCnt.articles + 1
+			if tSav.post_time then tArticle.post_time = TableToCTime(tSav.post_time) end
+
+			tArticles[tSav.group][tSav.name] = deepcopy(tArticle)
+			DelVar(sStoreKey)
+		-- else
+			-- printf("OnLoad: Notepad: empty article: storage_name=[%s], group name=[%s], article name=[%s]%s", sStoreKey, tostring(tSav.group), tostring(tSav.name), "<Warning!>") --/#~#
+			-- printf("OnLoad: Notepad: empty article name=[%s]%s", sStoreKey, "<Warning!>") --/#~#
+		end
+	end
+
+	printf("OnLoad: Notepad: articles_loaded=[%s/%s]%s", tCnt.articles, iArticlesCount, "") --/#~#
+end
+
+function save()
+	local tSav, tCnt = {}, {articles = 0}
+	for sGroupName, tGroup in pairs(tGroups) do
+		if next(tArticles[sGroupName]) then
+			for _, tArticle in pairs(tArticles[sGroupName]) do
+				tSav = {}
+				tCnt.articles = tCnt.articles + 1
+				tSav.name = tArticle.name
+				tSav.group = tArticle.group
+				tSav.post_time = CTimeToTable(tArticle.post_time)
+				local sStoreKey = GetStoreKey(tostring(tCnt.articles))
+				-- printf("OnSave: Notepad: save article storage_name=[%s], group=[%s], name=[%s]%s", sStoreKey, tSav.group, tSav.name, "") --/#~#
+				SetVar(sStoreKey, tSav)
+			end
+		end
+	end
+
+	tSav = {count = tCnt.articles}
+	SetVar("Notepad", tSav)
+	printf("OnSave: Notepad: articles_saved=[%s]%s", tCnt.articles, "") --/#~#
+end
+
+
+----------------------------------------
+-- Основной класс экспериментального КПК
+----------------------------------------
+
+class "notepad" (CUIScriptWnd)
+
+function notepad:__init(owner, action) super()
+	self.action = action
+	self.owner = owner
+	get_hud():HideActorMenu()
+	printf("Notepad:: init controls%s", "") --/#~#
+	self:InitControls()
+	self:InitCallBacks()
+	-- self:ClearPicture()
+	self.tab:SetActiveTab(sStartTabName)
+	self:OnTabChange()
+end
+
+function notepad:__finalize() end
+
+function notepad:InitControls()
+	self:SetWndRect(Frect():set(30, 20, 1024, 768))
+
+	local xml = CScriptXmlInit()
+	xml:ParseFile("ui_notes_wnd.xml")
+
+	self.background = xml:InitStatic("background", self)
+
+	local ctrl = CUIWindow()
+
+	xml:InitWindow("list_item:main", 0, ctrl)
+	self.list_item_main_sz = vector2():set(ctrl:GetWidth(), ctrl:GetHeight())
+
+	xml:InitWindow("list_item:fn", 0, ctrl)
+	self.list_item_fn_sz = vector2():set(ctrl:GetWidth(), ctrl:GetHeight())
+
+	xml:InitWindow("list_item:fa", 0, ctrl)
+	self.list_item_fa_sz = vector2():set(ctrl:GetWidth(), ctrl:GetHeight())
+
+	xml:InitWindow("caption_item", 0, ctrl)
+	self.capt_item_main_sz = vector2():set(ctrl:GetWidth(), ctrl:GetHeight())
+
+	xml:InitWindow("caption_item:content_text", 0, ctrl)
+	self.capt_item_fn_sz = vector2():set(ctrl:GetWidth(), ctrl:GetHeight())
+
+	xml:InitWindow("description_item", 0, ctrl)
+	self.desc_item_main_sz = vector2():set(ctrl:GetWidth(), ctrl:GetHeight())
+
+	xml:InitWindow("description_item:content_text", 0, ctrl)
+	self.desc_item_fn_sz = vector2():set(ctrl:GetWidth(), ctrl:GetHeight())
+
+	-- кнопка выключения
+	self.off_button = xml:Init3tButton("off_button", self)
+	self:Register(self.off_button, "off_button")
+
+	-- фон закладок
+	xml:InitFrameLine("mbbackground_frame_line2", self)
+	self.back_frame = xml:InitFrameLine("mbbackground_frame_line", self)
+
+	-- закладки
+	self.tab = xml:InitTab("tab", self)
+	self:Register(self.tab, "tab")
+
+	-- часы/дата
+	self.time_frame = xml:InitFrameLine("timer_frame_line", self)
+	self.timer = xml:InitStatic("timer_frame_line:title", self.time_frame)
+	self.time_frame2 = xml:InitFrameLine("timer_frame_line2", self)
+	self.timer2 = xml:InitStatic("timer_frame_line2:title", self.time_frame2)
+
+	-- информационные области
+	xml:InitFrame("list_frame", self)
+	xml:InitFrame("descr_frame", self)
+
+	-- список статей
+	self.list_box = xml:InitList("list", self)
+	self.list_box:EnableScrollBar(true)
+	self:Register(self.list_box, "list")
+
+	-- "ничего не выбрано"
+	self.picture_nothing = xml:InitStatic("picture_nothing", self)
+
+	-- картинка статьи
+	self.picture_frame = xml:InitFrame("picture_frame", self)
+	self.picture_image = CUIStatic()
+	self.picture_image:ClipperOn()
+	self.picture_base = xml:InitStatic("picture_base", self)
+	self.picture_base:AttachChild(self.picture_image)
+
+	-- заголовок статьи
+	self.caption_list = xml:InitList("caption_list", self)
+	self.caption_list:EnableScrollBar(true)
+	self:Register(self.caption_list, "caption_list")
+
+	-- текст статьи
+	self.description_list = xml:InitList("description_list", self)
+	self.description_list:EnableScrollBar(true)
+	self:Register(self.description_list, "description_list")
+end
+
+function notepad:InitCallBacks()
+	self:AddCallback("off_button", ui_events.BUTTON_CLICKED, self.OnQuit, self)
+	self:AddCallback("tab", ui_events.TAB_CHANGED, self.OnTabChange, self)
+	self:AddCallback("list", ui_events.LIST_ITEM_CLICKED, self.OnListItemClicked, self)
+end
+
+function notepad:Update()
+	CUIScriptWnd.Update(self)
+	local dateTime = game.get_game_time()
+	self.timer:SetText(Get_StringOnTimeOrDate("m", dateTime))
+	local t = CTimeToTable(dateTime)
+	self.timer2:SetText(string.format('%02d.%02d.%04d',t[3], t[2], t[1]))
+end
+
+function notepad:OnKeyboard(dik, keyboard_action)
+	CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		if dik == DIK_keys.DIK_ESCAPE then
+			self:OnQuit()
+		end
+	end
+	return true
+end
+
+function notepad:OnQuit()
+	self:GetHolder():start_stop_menu(self, true)
+end
+
+function notepad:OnTabChange()
+	self:ClearFields(true)
+	self:ClearPicture()
+
+	local sGroupName = self.tab:GetActiveId()
+	local tGroup, tArticlesArray = GetGroupInfo(sGroupName), GetArticlesArray(sGroupName)
+	printf("Notepad: OnTabChange: group_size=[%s], articles_array_size=[%s]%s", table.size(tGroup), table.size(tArticlesArray), "") --/#~#
+	if not tGroup or not tArticlesArray then
+		-- printf("Notepad: OnTabChange: empty group or list") --/#~#
+		self:AddItemToList(game.translate_string("ui_ntpd_empty_list"), "null")
+		return
+ 	end
+
+	if (tGroup.encrypted and not has_alife_info(tGroup.encrypt_toggle_info)) or
+		 (not tGroup.encrypted and has_alife_info(tGroup.encrypt_toggle_info))
+	then
+		-- printf("Notepad: OnTabChange: encrypted group") --/#~#
+		self:AddItemToList(game.translate_string("ui_ntpd_no_access"), "null")
+		return
+	end
+
+	local output, msg = {}, ""
+	if tGroup.sort_by_time then
+		output, msg = sort_table_by_value(tArticlesArray, nil, "post_time")
+	elseif tGroup.sort_by_order then
+		output, msg = sort_table_by_value(tArticlesArray, nil, "order")
+	else
+		output, msg = sort_table_by_value(tArticlesArray, nil, "name")
+	end
+
+	local function AddArticleToList(tList, tGroup, tArticle, tCnt)
+		-- printf("Notepad: OnTabChange: add_item_to_list: ArticleName=[%s]%s", tArticle.name, "") --/#~#
+		if not has_alife_info(tArticle.info) then
+			-- printf("Notepad: OnTabChange: add_item_to_list: ArticleName=[%s], CheckInfo=false, Info=[%s]%s", tArticle.name, tArticle.info, "") --/#~#
+			tCnt.hide = tCnt.hide + 1
+			return false
+		end
+		local name = game.translate_string(tArticle.article_name or ((tGroup.name_prefix or "")..tArticle.name..(tGroup.name_suffix or "")))
+		table.insert(tList, {name = name, id = tArticle.name})
+
+		tCnt.show = tCnt.show + 1
+		return true
+	end
+
+	local function AddArticlesToList(tGroup, tArticlesOutput, tSubgroup, bAddUpperLine, sUpperLineText)
+		sUpperLineText = sUpperLineText or ""
+		local tCnt = {all=0,show=0,hide=0} --/ массив счетчиков статей в текущем разделе/подразделе
+		local tArticlesToShow = {} --/ массив подготовленных для показа статей
+		--/ добавляем статьи в список с учётом необходимости показа
+		for _,tArticle in pairs(tArticlesOutput) do
+			if (tSubgroup and tArticle.subgroup and (tSubgroup.name == tArticle.subgroup)) or (not tSubgroup and not tArticle.subgroup) then
+				tCnt.all = tCnt.all + 1
+				AddArticleToList(tArticlesToShow, tGroup, tArticle, tCnt)
+			end
+		end
+
+		if tCnt.show > 0 then
+			--/ сначала публикуем при необходимости разделительную линию и заголовок подраздела
+			if bAddUpperLine then self:AddItemToList(sUpperLineText, "null") end
+			if tSubgroup then
+				if tSubgroup.list_caption then self:AddItemToList(tSubgroup.list_caption, "null") end
+				self:AddItemToList("", "null")
+			end
+			--/ публикуем статьи из полностью подготовленного и отсортированного списка
+			for _,tArticle in pairs(tArticlesToShow) do self:AddItemToList(tArticle.name, tArticle.id) end
+		end
+		return tCnt.show --/> возвращаем количество показанных статей
+	end
+
+	local iListSize = 0
+
+	if not output then
+		printff("Notepad:: articles sorting error [%s]", msg)
+	else
+		-- printf("Notepad: OnTabChange: output_size=[%s]%s", table.size(output), "") --/#~#
+		if tGroup.subgroups and next(tGroup.subgroups) then
+			for i = 1, table.size(tGroup.subgroups) do
+				-- добавляем в список статьи по подгруппам (если есть)
+				iListSize = iListSize + AddArticlesToList(tGroup, output, tGroup.subgroups[i], i > 1)
+			end
+		end
+		-- добавляем в список все оставшиеся, не распределённые по подгруппам статьи
+		iListSize = iListSize + AddArticlesToList(tGroup, output, nil, iListSize > 0, "______________")
+	end
+
+	if iListSize == 0 then
+		self:AddItemToList(game.translate_string("ui_ntpd_empty_list"), "null")
+	end
+end
+
+function notepad:OnListItemClicked()
+	if self.list_box:GetSize() == 0 then return end
+
+	local oListItem = self.list_box:GetItem(self.list_box:GetSelectedItem())
+	if oListItem == nil then return end
+
+	local sListItemText, sArticleName = oListItem.fn:GetText(), oListItem.fa:GetText()
+	if sArticleName == "null" then
+		self.list_box:ShowSelectedItem(false)
+		return
+	end
+
+	local sGroupName = self.tab:GetActiveId()
+	local tGroup = GetGroupInfo(sGroupName)
+
+	self:ClearFields(false)
+
+	if not tGroup then
+		self:ClearPicture()
+	else
+		local tArticle = GetArticleItem(sGroupName, sArticleName)
+
+		if tGroup.sort_by_time then
+			self:FillCaption(Get_StringOnTimeOrDate("m", tArticle.post_time)..", "..Get_StringOnTimeOrDate("D", tArticle.post_time))
+		end
+
+		if tArticle.article_caption then
+			self:FillCaption(game.translate_string(tArticle.article_caption))
+		elseif tGroup.caption_prefix or tGroup.caption_suffix then
+			self:FillCaption(game.translate_string((tGroup.caption_prefix or "")..sArticleName..(tGroup.caption_suffix or "")))
+		end
+
+		if tArticle.article_descr then
+			self:FillDescription(game.translate_string(tArticle.article_descr))
+		else
+			self:FillDescription(game.translate_string((tGroup.descr_prefix or "")..sArticleName..(tGroup.descr_suffix or "")))
+		end
+
+		local article_picture_path = nil
+		if tArticle.article_picture then
+			article_picture_path = tArticle.article_picture
+		elseif tGroup.group_picture then
+			article_picture_path = tGroup.group_picture
+		elseif tGroup.picture_prefix then
+			article_picture_path = tGroup.picture_prefix..sArticleName
+		end
+
+		local tPictureParams = {}
+		if article_picture_path then
+			local article_picture_coords = nil
+			if tArticle.picture_coords then
+				article_picture_coords = tArticle.picture_coords
+			elseif tGroup.group_picture_coords then
+				article_picture_coords = tGroup.group_picture_coords
+			end
+			if article_picture_coords then
+				local t = article_picture_coords
+				if t[7] == 0 then t[7] = 1 end
+				if t[8] == 0 then t[8] = 1 end
+
+				local coeff = device().aspect_ratio*4/3
+
+				local w, fw, h = math.floor(t[5]*t[7]*coeff), 0, t[6]*t[8]
+				if w > 140 then fw = w + 10 else fw = 150 end
+
+				tPictureParams = {
+					clear = false,
+					frameShow = true,
+					frameWidth = fw,
+					baseShow = true,
+					baseRect = Frect():set(347 + math.floor((fw - w)/2), 107 + math.floor((150 - h)/2), w, h),
+					baseWidth = w,
+					baseHeight = h,
+					imageShow = true,
+					imageStretch = true,
+					imageRect = Frect():set(0, 0, math.floor(t[1]*coeff), t[2]),
+					imageOffsetX = math.floor(-t[3]*t[7]*coeff),
+					imageOffsetY = -t[4]*t[8],
+					imageTexturePath = article_picture_path
+				}
+			else
+				tPictureParams = {
+					clear = false,
+					frameShow = false,
+					frameWidth = 150,
+					baseShow = true,
+					baseRect = Frect():set(347, 107, 250, 150),
+					baseWidth = 250,
+					baseHeight = 150,
+					imageShow = true,
+					imageStretch = false,
+					imageRect = Frect():set(0, 0, 250, 150),
+					imageOffsetX = 0,
+					imageOffsetY = 0,
+					imageTexturePath = article_picture_path
+				}
+			end
+		else
+			tPictureParams = {
+				clear = false,
+				frameShow = true,
+				frameWidth = 150,
+				baseShow = true,
+				baseRect = Frect():set(347, 107, 150, 150),
+				baseWidth = 150,
+				baseHeight = 150,
+				imageShow = true,
+				imageStretch = false,
+				imageRect = Frect():set(5, 5, 145, 145),
+				imageOffsetX = 0,
+				imageOffsetY = 0,
+				imageTexturePath = "ui\\ui_noise"
+			}
+		end
+
+		self:SetPicture(tPictureParams)
+	end
+
+	self.list_box:ShowSelectedItem(true)
+end
+
+function notepad:SetPicture(tP)
+	-- пусто
+	self.picture_nothing:Show(tP.clear)
+	if tP.clear == true then
+		self.picture_frame:Show(false)
+		self.picture_base:Show(false)
+		self.picture_image:Show(false)
+		if self.map then self.map.bk:Show(false) end
+		return
+	end
+
+	-- рамка вокруг картинки
+	self.picture_frame:Show(tP.frameShow)
+	if tP.frameShow == true then
+		self.picture_frame:SetWidth(tP.frameWidth)
+	end
+
+	-- подложка картинки (служит для обрезания лишнего)
+	self.picture_base:Show(tP.baseShow)
+	if tP.baseShow == true then
+		self.picture_base:SetWndRect(tP.baseRect)
+		self.picture_base:SetWidth(tP.baseWidth)
+		self.picture_base:SetHeight(tP.baseHeight)
+	end
+
+	-- картинка
+	self.picture_image:Show(tP.imageShow)
+	if tP.imageShow == true then
+		self.picture_image:SetStretchTexture(tP.imageStretch)
+		self.picture_image:SetWndRect(tP.imageRect)
+		self.picture_image:SetTextureOffset(tP.imageOffsetX, tP.imageOffsetY)
+		self.picture_image:InitTexture(tP.imageTexturePath)
+	end
+end
+
+function notepad:ClearPicture()
+	self:SetPicture({clear = true})
+end
+
+function notepad:ClearFields(clear_list_box)
+	if clear_list_box then
+		self.list_box:RemoveAll()
+		self.list_box:ScrollToBegin()
+		self.list_box:ShowSelectedItem(false)
+	end
+	self.caption_list:RemoveAll()
+	self.caption_list:ScrollToBegin()
+	self.caption_list:ShowSelectedItem(false)
+	self.description_list:RemoveAll()
+	self.description_list:ScrollToBegin()
+	self.description_list:ShowSelectedItem(false)
+end
+
+function notepad:AddItemToList(item_name, item_alias)
+	local itm = load_item()
+	itm:SetWndSize(self.list_item_main_sz)
+	itm.fn:SetWndPos(vector2():set(0,0))
+	itm.fn:SetWndSize(self.list_item_fn_sz)
+	itm.fa:SetWndPos(vector2():set(self.list_item_fn_sz.x - 40, 1200))
+	itm.fa:SetWndSize(self.list_item_fa_sz)
+	itm.fn:SetText(item_name)
+	itm.fa:SetText(item_alias)
+	self.list_box:AddItem(itm)
+end
+
+function notepad:FillCaption(text)
+	local arr = text:wrap_full("\\n", 35)
+	for k,v in pairs(arr) do
+		local itm = load_item2()
+		itm:SetWndSize(self.capt_item_main_sz)
+		itm.fn:SetWndPos(vector2():set(0, 0))
+		itm.fn:SetWndSize(self.capt_item_fn_sz)
+		itm.fn:SetText(v)
+		self.caption_list:AddItem(itm)
+	end
+end
+
+function notepad:FillDescription(text)
+	local arr = text:wrap_full("\\n", 60)
+	for k,v in pairs(arr) do
+		local itm = load_item2()
+		itm:SetWndSize(self.desc_item_main_sz)
+		itm.fn:SetWndPos(vector2():set(0, 0))
+		itm.fn:SetWndSize(self.desc_item_fn_sz)
+		itm.fn:SetText(v)
+		self.description_list:AddItem(itm)
+	end
+end
+
+-------------------------------------------------------
+--/ класс элемента списка статей
+class "load_item" (CUIListItemEx)
+
+function load_item:__init() super()
+	local c = {ca = 255, cr = 216, cg = 186, cb = 140}
+	self.fn = CUIStatic()
+	self.fn:SetAutoDelete(true)
+	self.fn:SetFont(GetFontLetterica18Russian())
+	self.fn:SetTextColor(c.ca,c.cr,c.cg,c.cb)
+	self.fn:SetElipsis(2,2)
+	self:AttachChild(self.fn)
+	self.fa	= CUIStatic()
+	self.fa:SetAutoDelete(true)
+	self.fa:SetFont(GetFontLetterica16Russian())
+	self.fa:SetTextColor(c.ca,c.cr,c.cg,c.cb)
+	self:AttachChild(self.fa)
+end
+
+
+-------------------------------------------------------
+class "load_item2" (CUIListItemEx)
+
+function load_item2:__init() super()
+	local c = {ca = 255, cr = 216, cg = 186, cb = 140}
+	self.fn	= CUIStatic()
+	self.fn:SetFont(GetFontLetterica16Russian())
+	self.fn:SetTextColor(c.ca,c.cr,c.cg,c.cb)
+	self:AttachChild(self.fn)
+end
+
+
+----------------------------------- Записная книжка ----------------------------------
+------------------------- Copyright 2007-2012 Kirgudu, DEXXX -------------------------

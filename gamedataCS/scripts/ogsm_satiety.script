@@ -1,0 +1,98 @@
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------
+----------------------------------- Эмулятор голода -----------------------------------
+------------------------- Last edit (by Kirgudu): 04.09.2018 --------------------------
+
+local snd = sound_object([[ambient\underground\rnd_giant]])
+
+-- Таблица сытости продуктов
+local food_satiety = {
+	["brd"] = {cnt = 3,  snd = "food\\inv_food"}, -- хлеб
+	["klb"] = {cnt = 6,  snd = "food\\inv_food"}, -- колбаса
+	["kns"] = {cnt = 12, snd = "food\\inv_food3"}, -- тушенка
+	["nts"] = {cnt = 3,  snd = "food\\inv_food3"}, -- орехи
+	["olv"] = {cnt = 12, snd = "food\\inv_food3"}, -- оливки
+	["chs"] = {cnt = 6,  snd = "food\\inv_food2"}, -- сыр
+	["srd"] = {cnt = 12, snd = "food\\inv_food3"}, -- сардины
+	["vgt"] = {cnt = 12, snd = "food\\inv_food3"} -- овощи
+}
+
+-- Проверяем нужно ли поесть. Вызывается каждые 6 игровых минут
+function test_for_need_eat()
+	local hunger = ogsm.load_variable("eat", 0) + 1
+	if hunger <= 200 then ogsm.save_variable("eat", hunger) end
+	ogsm.g_start_timer("eat",0,0,6)
+	eat_reduce_health(hunger)
+end
+
+-- Употребление еды
+function eat_item(name, oid)
+	local item = food_satiety[name]
+	if not item or not oid or not oid.id or alife():object(oid.id) ~= nil then return end
+	local snd = sound_object(item.snd)
+	snd:play_no_feedback(db.actor,sound_object.s2d, 0, vector():set(0, 0, 0), 1.0)
+	local hunger = ogsm.load_variable("eat", 0) - 10 * item.cnt
+	if hunger < 0 then hunger = 0 end
+	ogsm.save_variable("eat", hunger)
+	eat_reduce_health(hunger)
+end
+
+-- Уменьшение здоровья при критическом голоде
+function eat_reduce_health(hunger)
+	if hunger > 150 then
+		if db.actor.health > 0.15 then
+			db.actor.health = - 0.15
+		end
+		if not snd:playing() then
+			snd:play_at_pos(db.actor, vector():set(0,0,0), 0, sound_object.s2d)
+			local news_caption = game.translate_string("st_tip")..". "..game.translate_string("st_actor_name")..":"
+			local news_text = "%c[255,255,0,0]"..game.translate_string("actor_need_eat")
+			db.actor:give_game_news(news_caption, news_text, "ui_npc_u_actor", 0, 10000)
+			xr_sound.set_sound_play(db.actor:id(), "pda_sos")
+		end
+	end
+end
+
+-- Инициализация модуля (не перемещать из конца скрипта)
+local FuncByName = {
+	["eat"] = test_for_need_eat,
+	["brd"] = eat_item,
+	["klb"] = eat_item,
+	["kns"] = eat_item,
+	["nts"] = eat_item,
+	["olv"] = eat_item,
+	["chs"] = eat_item,
+	["srd"] = eat_item,
+	["vgt"] = eat_item
+}
+local UsableItems = {
+	{"bread", "brd"},
+	{"kolbasa", "klb"},
+	{"conserva", "kns"},
+	{"nuts", "nts"},
+	{"olives", "olv"},
+	{"cheese", "chs"},
+	{"sardines", "srd"},
+	{"vegetables", "vgt"}
+}
+local sModule = script_name()
+local bInit = false --/ флаг инициализации модуля
+function init()
+	if bInit then return end --/>
+	printf(sModule..":init:>") --/#~#
+	if FuncByName then
+		if not _G["ogsm_timers"] then _G["ogsm_timers"] = {} end
+		local t = _G["ogsm_timers"]
+		for name,func in pairs(FuncByName) do t[name] = func end
+		FuncByName = nil
+	end
+	if UsableItems then
+		if not _G["ogsm_usable_items"] then _G["ogsm_usable_items"] = {} end
+		local t = _G["ogsm_usable_items"]
+		for index,item in ipairs(UsableItems) do table.insert(t, item) end
+		UsableItems = nil
+	end
+	bInit = true
+end
+
+----------------------------------- Эмулятор голода -----------------------------------
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------

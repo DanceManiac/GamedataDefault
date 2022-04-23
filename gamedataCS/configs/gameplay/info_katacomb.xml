@@ -106,7 +106,7 @@
   <info_portion id="hospital_z3_enemy_last_wave"/>
   
   <info_portion id="hospital_general_task"/>
-  <info_portion id="hospital_general_task_complete"/>
+  <info_portion id="hospital_general_task_complete"><article>private_29_note</article></info_portion>
 
   <info_portion id="hosp_task_sniper_back_rush_1_complete"/>
   <info_portion id="hosp_task_sniper_back_rush_2_complete"/>

@@ -48,7 +48,7 @@ function disable_ui(actor, npc)
 	end
 --	get_console():execute("hud_crosshair 0")
 --	get_console():execute("hud_weapon 0")
-    level.show_weapon(false)
+	level.show_weapon(false)
 	level.disable_input()
 	level.hide_indicators_safe()
 	local hud = get_hud()
@@ -238,7 +238,7 @@ send_tip(news_id:sender:sender_id)
 		* - not necessary
 --]]
 function send_tip(actor, npc, p)
-		news_manager.send_tip(actor, p[1], nil, p[2], nil, p[3])
+	news_manager.send_tip(actor, p[1], nil, p[2], nil, p[3])
 end
 
 --[[
@@ -429,14 +429,14 @@ function hit_npc_from_actor(actor, npc, p)
 	h.type = hit.wound
 
 	if p and p[1] then
-			sid = tonumber(p[1])
+		sid = tonumber(p[1])
+		if sid then
+			sid = level_object_by_sid(sid)
 			if sid then
-					sid = level_object_by_sid(sid)
-					if sid then
-							h.direction = actor:position():sub(sid:position())
-					end
+				h.direction = actor:position():sub(sid:position())
 			end
-			if not sid then
+		end
+		if not sid then
 			h.direction = actor:position():sub(npc:position())
 		end
 	else
@@ -458,6 +458,16 @@ function hit_actor(actor, npc, p)
 	h.power = (p and p[1] and tonumber(p[1])) or 0.001
 	h.impulse = 0.001
 	actor:hit(h)
+end
+
+function hit_psy_actor(actor, npc, p)
+	local psy_hit 		= hit()
+	psy_hit.power 		= 0.4
+	psy_hit.direction 	= vector():set(0,0,0)
+	psy_hit.impulse 	= 0
+	psy_hit.draftsman 	= db.actor
+	psy_hit.type 		= hit.telepatic
+	db.actor:hit 		(psy_hit)
 end
 
 function restore_health(actor, npc)
@@ -548,25 +558,48 @@ end
 
 
 ------------------------------------------------------------------------------------------------------------------------
--- постпроцесс и влияние удара в морду
+-- постпроцесс и влияние удара в морду (доработки от lvg_brest, Kirgudu, monk)
+
+local blow_to_the_actor = {
+	game.translate_string("blow_to_the_actor_1"),
+	game.translate_string("blow_to_the_actor_2"),
+	game.translate_string("blow_to_the_actor_3")
+}
+
 function actor_punch(npc)
 	if db.actor:position():distance_to_sqr(npc:position()) > 4 then
 		return
 	end
 
-	set_inactivate_input_time(30)
-	level.add_cam_effector("camera_effects\\fusker.anm", 999, false, "")
-
 	local active_slot = db.actor:active_slot()
-	if active_slot ~= 1 and
-		 active_slot ~= 2
-	then
+	if (active_slot ~= 0 and active_slot ~= 1 and active_slot ~= 2 and active_slot ~= 3) then
 		return
 	end
 
 	local active_item = db.actor:active_item()
-	if active_item then
+	if (active_item and active_slot ~= 0) then
 		db.actor:drop_item(active_item)
+	end
+
+	set_inactivate_input_time(30)
+	xr_sound.set_sound_play(db.actor:id(), "punch")
+
+	local h = hit()
+	h.draftsman = db.actor
+	h.type = hit.wound
+	h.direction = vector():set(0, 0, 0)
+	h:bone("pelvis")
+	h.power = 0.25
+	h.impulse = 0
+	db.actor:hit(h)
+
+	if not has_alife_info("agr_stalker_captive_1_dead") and not has_alife_info("agr_stalker_captive_2_dead") then
+		level.add_cam_effector("camera_effects\\fusker.anm", 999, false, "")
+		local message = blow_to_the_actor[math.random(#blow_to_the_actor)]
+		local news_caption = game.translate_string("st_tip")..". "..npc:character_name()..":"
+		db.actor:give_game_news(news_caption, message, npc:character_icon(), 5000, 5000, 1)
+		local snd = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+		if snd then snd:play_no_feedback(db.actor, sound_object.s2d, 5, vector(), 2.0) end
 	end
 end
 
@@ -781,7 +814,6 @@ function on_tutor_gameover_quickload()
 	c:execute("load_last_save")
 end
 
-
 -- для смены работы
 function get_stalker_for_new_job(actor, npc, p)
 	xr_gulag.find_stalker_for_job(npc,p[1])
@@ -811,7 +843,9 @@ end
 --'-----------------------------------------------------------------------------------
 function spawn_object(actor, obj, p)
 		--' p[1] - секция кого спаунить
-		--' p[2] - имя патрульного пути где спа унить.
+		--' p[2] - имя патрульного пути где спаунить.
+		--' p[3] - индекс точки патрульного пути.
+		--' p[4] - отклонение.
 		local spawn_sect = p[1]
 		if spawn_sect == nil then
 				abort("Wrong spawn section for 'spawn_object' function %s. For object %s", tostring(spawn_sect), obj:name())
@@ -839,6 +873,49 @@ function spawn_object(actor, obj, p)
 								ptr:game_vertex_id(0))
 	if IsStalker( nil, se_obj:clsid()) then
 			se_obj:o_torso().yaw      = yaw * math.pi / 180
+	end
+end
+
+function spawn_object_with_story_id(actor, obj, p)
+	--' p[1] - секция кого спаунить
+	--' p[2] - story_id будущего объекта.
+	--' p[3] - имя патрульного пути где спаунить.
+	--' p[4] - индекс точки патрульного пути.
+	--' p[5] - отклонение.
+	local spawn_sect, story_id = p[1], p[2]
+	if spawn_sect == nil or story_id == nil then
+		abort("Wrong spawn section or story_id for 'spawn_object' function %s. For object %s", tostring(spawn_sect), obj:name())
+	end
+
+	local path_name = p[3]
+	if path_name == nil then
+		abort("Wrong path_name for 'spawn_object' function %s. For object %s", tostring(path_name), obj:name())
+	end
+
+	if not level.patrol_path_exists(path_name) then
+		abort("Path %s doesnt exist. Function 'spawn_object' for object %s ", tostring(path_name), obj:name())
+	end
+
+	local ptr = patrol(path_name)
+
+	local index = p[4] or 0
+
+	local yaw = p[5] or 0
+
+	--' printf("Spawning %s at %s, %s", tostring(p[1]), tostring(p[2]), tostring(p[3]))
+	local se_obj = alife():create(spawn_sect, ptr:point(index), ptr:level_vertex_id(0), ptr:game_vertex_id(0))
+
+	if se_obj then
+		local pk = get_netpk(se_obj, 1)
+		if pk:isOk() then
+			local data = pk:get()
+			data.story_id = story_id
+			pk:set(data)
+		end
+	end
+
+	if IsStalker( nil, se_obj:clsid()) then
+		se_obj:o_torso().yaw = yaw * math.pi / 180
 	end
 end
 
@@ -889,41 +966,41 @@ function spawn_npc_in_zone(actor, obj, p)
 end
 
 function destroy_object(actor, obj, p)
-
 	local sobj
-	if p == nil then
 
+	if p == nil then
 		sobj = alife():object(obj:id())
 	else
 		if p[1] == nil then
 			abort("Wrong parameters in destroy_object function")
 		end
-			local sid = tonumber(p[1])
-		if sid then
 
+		local sid = tonumber(p[1])
+		if sid then
 			sobj = alife():story_object(sid)
 			if sobj == nil then
-				abort("Item with story_id %s doesnt exist", tostring(sid))
+				-- Kirgudu
+				--abort("Item with story_id %s doesnt exist", tostring(sid))
+				ogsm.dbglog("object with story_id "..tostring(sid).." already released")
+				return
+				-- Kirgudu
 			end
-			else
-
+		else
 			local target_position, target_id, target_init = xr_remark.initialize_gulag_target(obj, p[1]..","..p[2])
 			sobj = alife():object(target_id)
-			end
+		end
 	end
 
 	if sobj == nil then
-
 		return
 	end
 
 	if sobj.squad_id == nil then
 		printf("releasing object ["..sobj:name().."]")
-			alife():release(sobj, true)
-		else
-
-			sim_board.get_sim_board().squads[sobj.squad_id]:remove_npc(sobj.id)
-		end
+		fixme.destroy_object(sobj)
+	else
+		sim_board.get_sim_board().squads[sobj.squad_id]:remove_npc(sobj.id)
+	end
 end
 
 function give_actor(actor, npc, p)
@@ -933,6 +1010,7 @@ function give_actor(actor, npc, p)
 				db.actor:level_vertex_id(),
 				db.actor:game_vertex_id(),
 				db.actor:id())
+		news_manager.relocate_item(db.actor, "in", v)
 	end
 end
 
@@ -990,6 +1068,11 @@ function play_sound(actor, obj, p)
 	elseif p[3]~=nil then
 		point = p[3]
 		end
+	if obj and IsStalker(obj) then
+		if not obj:alive() then
+			abort("Stalker [%s][%s] is dead, but you wants to say something for you: [%s]!", tostring(obj:id()), tostring(obj:name()), p[1])
+		end
+	end
 		xr_sound.set_sound_play(obj:id(), theme, faction, point)
 end
 
@@ -1087,7 +1170,7 @@ function create_squad(actor, obj, p)
 		squad = board:create_squad(player.player_name, sim_squad_scripted.sim_squad_scripted, smart, squad_id)
 	end
 
-	board:enter_smart(squad, smart.id)
+	board:enter_smart(squad, smart.id, false, true)
 
 	for k,v in pairs(squad.squad_npc) do
 		local obj = alife():object(k)
@@ -1419,7 +1502,8 @@ function dof_change ()
 end
 
 local function release_object_item(release_item)
-	 alife():release(alife():object(release_item:id()), true)
+	ogsm.dbglog("xr_effects_release_"..alife():object(release_item:id()):name())
+	alife():release(alife():object(release_item:id()), true)
 end
 
 local arena_items =
@@ -1669,6 +1753,14 @@ function relocate_actor_inventory_to_box(actor, npc, p)
 	end
 	inv_box_1 = level_object_by_sid (p[1])
 	actor:inventory_for_each(transfer_object_item)
+
+-- Kirgudu
+-- исправление ошибки с неисчезновением детектора при ограблении в подвале
+	local item_in_slot = db.actor:item_in_slot(8)
+	if (item_in_slot ~= nil) then
+		db.actor:transfer_item(item_in_slot, inv_box_1)
+	end
+-- Kirgudu
 end
 
 
@@ -1837,7 +1929,14 @@ function reset_faction_goodwill(actor, obj, p)
 		local board = sim_board.get_sim_board()
 		local faction = board.players[p[1]]
 		if faction then
-			db.actor:set_community_goodwill(p[1], 0)
+			-- Kirgudu
+			-- В случае выхода из состава группировки Чистое Небо при переходе на Кордон группировка остаётся дружественной Шраму.
+			if tostring(p[1]) == "csky" then
+				db.actor:set_community_goodwill(p[1], 1000)
+			else
+				db.actor:set_community_goodwill(p[1], 0)
+			end
+			-- Kirgudu
 		end
 	end
 end
@@ -1865,4 +1964,318 @@ end
 
 function autosave_game()
 	get_console():execute("save "..user_name().."_autosave")
+end
+
+function actor_stop_sleeping()
+	ogsm_sleep.stopper()
+end
+
+function aes_spawn(actor, npc, p)
+	if not has_alife_info("hospital_general_task_complete") then
+		db.actor:give_info_portion("hospital_general_task_complete")
+	end
+	local obj1 = ogsm_packet.spawn_stalker("stalker_petrenko", vector():set(74.899993896484,-0.0030105113983154,387.79998779297),33676,1572, "dead")
+	local obj2 = alife():create("wpn_gauss_aes",vector():set(76.000000001,-0.0030105113983154,387.79998779297),33676,1572)
+	if obj2 then
+		level.map_add_object_spot_ser(obj2.id, "secondary_task_location", "st_gauss_hint")
+	end
+end
+
+function disable_gauss_spot(actor, npc, p)
+	for i=1, 65535 do
+		local obj = level.object_by_id(i)
+		if obj and obj:section() == "wpn_gauss_aes" then
+			level.map_remove_object_spot(obj:id(), "secondary_task_location")
+			local snd = sound_object("characters_voice\\scenario\\stancia\\stc_first_scene_objective_talk_2")
+			snd:play_no_feedback(db.actor, sound_object.s2d, 0, vector():set(0,0,0), 1.0)
+			if not ogsm_options.hide_subs then
+				local news_caption = game.translate_string("st_tip").." "..game.translate_string("ui_st_name_csky")..". "..game.translate_string("aes_csky_commander_name")..":"
+				local news_text = game.translate_string("characters_voice_scenario_stancia_stc_first_scene_objective_talk_2")
+				db.actor:give_game_news(news_caption, news_text, "icon_stalker_lebedev_stancia_2", 0, 10000)
+				xr_sound.set_sound_play(db.actor:id(), "pda_tips")
+			end
+			return
+		end
+	end
+end
+
+function freeplay()
+	ogsm_freeplay.armagezdec()
+end
+
+function kill_novice(actor, npc, p)
+	if p and p[1] then
+		npc = level_object_by_sid(tonumber(p[1]))
+	end
+	if npc ~= nil and not has_alife_info("esc_wolf_novice_3") and npc:alive() then
+		db.actor:give_info_portion("esc_stalker_novice_fail")
+		npc:kill(npc)
+	end
+end
+
+function kill_brother(actor, npc, p)
+	if p and p[1] then
+		npc = level_object_by_sid(tonumber(p[1]))
+	end
+	if npc ~= nil and not has_alife_info("esc_wolf_brother_3") and npc:alive() then
+		db.actor:give_info_portion("esc_wolf_brother_fail")
+		npc:kill(npc)
+	end
+end
+
+function damage_actor_outfit(actor, npc)
+	local actor = db.actor
+	obj = actor:object("shram_outfit")
+	if obj ~= nil then
+		obj:set_condition(0.11)
+	end
+end
+
+-- Kirgudu
+-- функция для добавления предмета в инвентарь с помощью скрипта там, где это не получается сделать через конфиг или all.spawn
+-- вызывать в сюжетных скриптах
+function create_item_in_inv(actor, npc, p)
+	if p == nil or p[1] == nil then
+--		ogsm.dbglog("Не заданы параметры функции.")
+		return
+	end
+
+--	ogsm.dbglog("НПС: name=["..tostring(npc:name()).."]"..p[2])
+	local obj = alife():object(p[2])
+	if obj == nil and npc:name() ~= nil and string.find(npc:name(), p[2]) ~= nil then
+--		ogsm.dbglog("Не найден фиксированный персонаж, пробуем использовать автоматического npc. "..p[2])
+		obj = npc
+	end
+	if obj == nil then
+--		ogsm.dbglog("Не найден персонаж, используем героя. "..p[2])
+		obj = db.actor
+	end
+
+	local position = obj.position
+	local m_level = obj.m_level_vertex_id
+	local m_game = obj.m_game_vertex_id
+	local id = obj.id
+
+	if not position or not m_level or not m_game or not id then
+--		ogsm.dbglog("Координаты не найдены, используем для их нахождения функции.")
+		-- может вызвать сбой, проверять сразу.
+		position = obj:position()
+		m_level = obj:level_vertex_id()
+		m_game = obj:game_vertex_id()
+		id = obj:id()
+	end
+
+	if position and m_level and m_game and id then
+		alife():create(p[1], position, m_level, m_game, id)
+--		ogsm.dbglog("Предмет добавлен в инвентарь персонажа [name = "..tostring(obj:name())..", id = "..tostring(id).."]")
+	else
+--		ogsm.dbglog("Не найдены параметры объекта, предмет не добавляем.")
+	end
+end
+-- Kirgudu
+
+function send_offline(actor, npc)
+	switch_offline(npc)
+end
+
+function set_npc_wounded(actor, npc)
+	npc.health = -0.9
+	local obj = alife():object(npc:id())
+	if obj then
+		ogsm.dbglog("set_npc_health: setting health for npc_id=["..tostring(npc:id()).."]")
+		local params = ogsm_packet.read_stalker_params(obj)
+		params.health = 0.1
+		params.updhealth = 0.1
+		ogsm_packet.write_stalker_params(params, obj)
+	else
+		ogsm.dbglog("set_npc_health: npc not found")
+	end
+end
+
+-- Пример использования в логике:
+-- %=logic_log(smartcover_idle_work1__on_game_timer)%
+function logic_log(actor, npc, p)
+	local str = p and p[1] or p
+	if type(str) ~= 'string' then
+		ogsm.dbglog("logic_log: не заданы параметры функции.")
+		return
+	end
+	ogsm.dbglog('logic_log: '..str)
+end
+
+function spawn_compass()
+        local spawn_id = alife():spawn_id(spawn_story_ids.af_compass)
+        alife():create(spawn_id)
+end
+
+function spawn_pda_fang()
+        local spawn_id = alife():spawn_id(spawn_story_ids.device_pda_fang)
+        alife():create(spawn_id)
+end
+
+function spawn_pda_strelok()
+        local spawn_id = alife():spawn_id(spawn_story_ids.device_pda_strelok)
+        alife():create(spawn_id)
+end
+
+function spawn_kat_grenade()
+        local spawn_id = alife():spawn_id(spawn_story_ids.kat_hosp_door_explosive_charge)
+        alife():create(spawn_id)
+end
+
+function spawn_mil_physic_object_0082()
+        local spawn_id = alife():spawn_id(spawn_story_ids.mil_physic_object_0082)
+        alife():create(spawn_id)
+end
+
+function spawn_mil_physic_object_0083()
+        local spawn_id = alife():spawn_id(spawn_story_ids.mil_physic_object_0083)
+        alife():create(spawn_id)
+end
+
+function spawn_garbadge()
+	if has_alife_info("gar_story_searched_digger_body") then
+		local obj1 = alife():create("gar_dog_normal_messenger_dead_1",vector():set(266.757751464844,-7.74093008041382,7.00330400466919),351509,276):on_death()
+		local obj2 = alife():create("gar_dog_normal_messenger_dead_2",vector():set(268.129913330078,-7.84202718734741,-1.39566195011139),351938,276):on_death()
+		local obj3 = alife():create("gar_dog_normal_messenger_dead_3",vector():set(266.836914062501,-7.25060796737671,8.32013797760001),351511,276):on_death()
+		local obj4 = alife():create("gar_dog_normal_messenger_dead_4",vector():set(279.736237814453,-6.69342122839355,7.14025007894897),354744,276):on_death()
+	end
+end
+
+function comendant_trup_hit(actor,npc)
+	local ps = npc:get_physics_shell()
+	if ps then ps:apply_force(0,1,0) end
+end
+
+function comendant_trup_use(actor,npc)
+	alife():create("device_pda_comendant",npc:position(),npc:level_vertex_id(),npc:game_vertex_id())
+end
+
+function red_actor_bridge_message()
+	local news_caption = game.translate_string("st_tip")..". "..game.translate_string("st_actor_name")..":"
+	local news_text = "%c[255,255,0,0]"..game.translate_string("red_actor_say_bridge_sms")
+	db.actor:give_game_news(news_caption, news_text, "ui_npc_u_actor", 0, 10000)
+	xr_sound.set_sound_play(db.actor:id(), "pda_tips")
+end
+
+function scar_red_bridge_deserter()
+	if has_alife_info("red_bridge_actor_fail") then
+		local news_caption = game.translate_string("st_tip").." "..game.translate_string("ui_st_name_csky")..". "..game.translate_string("red_csky_commander_name")..":"
+		local news_text = game.translate_string("red_csky_leader_message_scar")
+		db.actor:give_game_news(news_caption, news_text, "icon_stalker_lebedev_red_forest", 0, 10000)
+		xr_sound.set_sound_play(db.actor:id(), "pda_tips")
+	end
+end
+
+local detectors = { "detector_simple", "detector_advanced", "detector_elite" }
+
+function get_best_detector(npc)
+	for k,v in pairs(detectors) do
+		local obj = npc:object(v)
+		if obj ~= nil then
+			obj:enable_attachable_item(true)
+			return
+		end
+	end
+end
+
+function hide_best_detector(npc)
+	for k,v in pairs(detectors) do
+		local obj = npc:object(v)
+		if obj ~= nil then
+			obj:enable_attachable_item(false)
+			return
+		end
+	end
+end
+
+function puzo_squad_spawn_timer_start(actor, npc, p)
+	ogsm.g_start_timer("pss", 1, 0, 0)
+end
+
+function disable_info_kill()
+	if has_alife_info("agr_stalker_captive_1_dead") then
+		db.actor:disable_info_portion("agr_stalker_captive_1_dead")
+	end
+	if has_alife_info("agr_stalker_captive_2_dead") then
+		db.actor:disable_info_portion("agr_stalker_captive_2_dead")
+	end
+end
+
+function disable_info_weather()
+	if has_alife_info("mar_snd_bad_weather") then
+		db.actor:disable_info_portion("mar_snd_bad_weather")
+	end
+	if has_alife_info("mar_snd_good_weather") then
+		db.actor:disable_info_portion("mar_snd_good_weather")
+	end
+end
+
+function set_red_forest_trader(actor, npc, p)
+	if npc then
+		npc:give_money(1000000-npc:money())
+		xr_logic.pstor_store(npc, "rft", true)
+	end
+end
+
+--  makdm
+function actor_look(actor, npc, p)
+	local point = patrol(p[1])
+	actor:actor_look_at_point(point:point(0))
+end
+
+local cleaning_exclude = {
+	["gar_wpn_pm"] = true,
+	["gar_ammo_9x18_fmj"] = true,
+	["gar_ammo_9x18_fmj_0000"] = true,
+	["gar_ammo_9x18_fmj_0001"] = true,
+	["gar_medkit"] = true,
+	["gar_medkit_0000"] = true,
+	["gar_bandage"] = true,
+	["gar_bread_0002"] = true,
+	["gar_kolbasa_0000"] = true
+}
+function cleaning_location(actor, npc, p)
+	local al, gg = alife(), game_graph()
+	local level_name = tostring(p[1])
+	for i = 1,65534 do
+		local s_obj = al:object(i)
+		if s_obj and s_obj.parent_id == 65535 and not cleaning_exclude[s_obj:name()] then
+			local level = al:level_name(gg:vertex(s_obj.m_game_vertex_id):level_id())
+			if level == level_name then
+				if isArtefact(s_obj) or IsOutfit(s_obj) or isWeapon(s_obj) or IsDetector(s_obj) or IsAmmo(s_obj) or IsFood(s_obj) or IsMedical(s_obj) then
+					al:release(s_obj,true)
+				end
+			end
+		end
+	end
+end
+
+function transfer_all_to_box(actor, npc, p)
+	if p == nil then
+		abort("Wrong parameters in function 'transfer_item_to_box'!!!")
+	end
+	local in_box = level_object_by_sid(p[1])
+	if in_box == nil then
+		abort("transfer_item_to_box. Box - object does not exist")
+	end
+	for i = 1,65535 do
+		local obj = alife():object(i)
+		if obj and obj.parent_id == actor:id() then
+		local cl_obj = level.object_by_id(obj.id)
+		local section = cl_obj:section()
+			if section then
+				actor:transfer_item(cl_obj, in_box)
+			end
+		end
+	end
+end
+
+function clear_inventory(actor,npc)
+	db.actor:inventory_for_each(function(item)
+		local section = item:section()
+		if section and section ~= "wpn_binoc" or section ~= "device_torch" or section ~= "wpn_bolt" or section ~= "device_pda" then
+			alife():release(alife():object(item:id()), true)
+		end
+	end)
 end

@@ -1,9 +1,34 @@
 [logic]
 active = walker
+on_death = death
 level_spot = quest_npc
 
 [walker]
 path_walk = agr_stalker_leader_walk
 path_look = agr_stalker_leader_look
-out_restr = agr_stalker_leader_restr
-combat_ignore_cond = true
+;out_restr = agr_stalker_leader_restr  ;-- Не разблокировать! Будет вылет из-за отсутствия путей! (monk)
+combat_ignore_cond = {!is_enemy_actor}
+on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} walker@enemy
+on_actor_dist_le_nvis = 2 | {-agr_stalker_leader_meet_info =see_actor !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_leader_meet) +agr_stalker_leader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+agr_stalker_leader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_leader_meet_bye) -agr_stalker_leader_meet_info%
+meet = meet
+
+[walker@enemy]
+path_walk = agr_stalker_leader_walk
+path_look = agr_stalker_leader_look
+combat_ignore_cond = {!is_enemy_actor}
+on_info = {!is_smart_in_combat(agr_smart_terrain_4_4)} walker
+meet = no_meet
+
+[meet]
+meet_state            = 2| guard@nil
+meet_state_wpn = 2|guard@nil
+victim                = 2| actor
+victim_wpn = 2|actor
+use                   = {!actor_enemy} true, false
+use_wpn = {!actor_enemy} true, false
+abuse                 = false
+trade_enable = false
+
+[death]
+on_info = %+agr_stalker_leader_dead =set_faction_community_to_actor(stalker:enemy)%

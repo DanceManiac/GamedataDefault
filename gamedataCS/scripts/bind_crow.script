@@ -23,7 +23,8 @@ function crow_binder:update(delta)
     object_binder.update(self, delta)
     if not(self.object:alive()) and (self.body_timer<=time_global()-120000) and (self.body_timer~=0) then
 -- if crow is killed and body lays down for two minutes - release it
-		printf("releasing object ["..self.object:name().."]")
+	printf("releasing object ["..self.object:name().."]")
+	ogsm.dbglog("bind_crow_release_"..self.object:name())
         alife():release(alife():object(self.object:name()), true)
     end
 end
@@ -64,6 +65,11 @@ function crow_binder:death_callback(victim, who)
             break
         end
     end
+
+if has_alife_info("start_surge_info") and xr_conditions.actor_alive() then
+	if not has_alife_info("crow_dead") then db.actor:give_info_portion("crow_dead") end
+end
+
 -- increase crow killer counter if minigame is running
     minigames_manager.get_minigames_manager():increase_killed_crow_counter()
 end

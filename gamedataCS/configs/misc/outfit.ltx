@@ -1,1191 +1,4431 @@
-;#include "outfit_upgrades\outfit_delayed_action_fuse.ltx"
-;#include "outfit_upgrades\outfit_upgrades_properties.ltx"
-;#include "outfit_upgrades\outfit_upgrades.ltx"
-
-#include "outfit_upgrades\o_novice_outfit_up.ltx"
-#include "outfit_upgrades\o_bandit_outfit_up.ltx"
-#include "outfit_upgrades\o_stalker_outfit_up.ltx"
 #include "outfit_upgrades\o_cs_light_outfit_up.ltx"
-#include "outfit_upgrades\o_svoboda_light_outfit_up.ltx"
-#include "outfit_upgrades\o_scientific_outfit_up.ltx"
+#include "outfit_upgrades\o_cs_light_extra_outfit_up.ltx"
 #include "outfit_upgrades\o_cs_heavy_outfit_up.ltx"
-#include "outfit_upgrades\o_dolg_outfit_up.ltx"
-#include "outfit_upgrades\o_svoboda_heavy_outfit_up.ltx"
-#include "outfit_upgrades\o_specops_outfit_up.ltx"
+#include "outfit_upgrades\o_cs_heavy_extra_outfit_up.ltx"
+#include "outfit_upgrades\o_cs_standart_outfit_up.ltx"
+#include "outfit_upgrades\o_novice_outfit_up.ltx"
+#include "outfit_upgrades\o_stalker_outfit_up.ltx"
+#include "outfit_upgrades\o_stalker_heavy_outfit_up.ltx"
+#include "outfit_upgrades\o_scientific_outfit_up.ltx"
 #include "outfit_upgrades\o_exo_outfit_up.ltx"
-#include "outfit_upgrades\o_dolg_heavy_outfit_up.ltx"
+#include "outfit_upgrades\o_bandit_outfit_up.ltx"
+#include "outfit_upgrades\o_bandit_master_outfit_up.ltx"
+#include "outfit_upgrades\o_svoboda_light_outfit_up.ltx"
+#include "outfit_upgrades\o_svoboda_light2_outfit_up.ltx"
+#include "outfit_upgrades\o_svoboda_heavy_outfit_up.ltx"
+#include "outfit_upgrades\o_svoboda_scientific_outfit_up.ltx"
+#include "outfit_upgrades\o_svoboda_heavy_extra_outfit_up.ltx"
 #include "outfit_upgrades\o_svoboda_exo_outfit_up.ltx"
+#include "outfit_upgrades\o_dolg_outfit_up.ltx"
+#include "outfit_upgrades\o_dolg_scientific_outfit_up.ltx"
+#include "outfit_upgrades\o_dolg_heavy_outfit_up.ltx"
+#include "outfit_upgrades\o_dolg_heavy_extra_outfit_up.ltx"
+#include "outfit_upgrades\o_dolg_heavy_extra2_outfit_up.ltx"
+#include "outfit_upgrades\o_dolg_exo_outfit_up.ltx"
+#include "outfit_upgrades\o_killer_outfit_up.ltx"
+#include "outfit_upgrades\o_killer_outfit_dark_up.ltx"
+#include "outfit_upgrades\o_killer_light2_outfit_up.ltx"
+#include "outfit_upgrades\o_killer_scientific_outfit_up.ltx"
+#include "outfit_upgrades\o_killer_heavy_outfit_up.ltx"
+#include "outfit_upgrades\o_killer_exo_outfit_up.ltx"
+#include "outfit_upgrades\o_monolith_outfit_up.ltx"
+#include "outfit_upgrades\o_monolith_scientific_outfit_up.ltx"
+#include "outfit_upgrades\o_monolith_heavy_outfit_up.ltx"
+#include "outfit_upgrades\o_monolith_exo_outfit_up.ltx"
+#include "outfit_upgrades\o_specops_outfit_up.ltx"
 #include "outfit_upgrades\o_military_outfit_up.ltx"
+#include "outfit_upgrades\o_military_outfit_black_up.ltx"
+#include "outfit_upgrades\o_military_extra_outfit_up.ltx"
+#include "outfit_upgrades\o_military_extra_outfit_black_up.ltx"
+#include "outfit_upgrades\o_green_ecolog_outfit_up.ltx"
+#include "outfit_upgrades\o_red_ecolog_outfit_up.ltx"
 
 [outfit_base]
-; delete full_scale_icon	next update- obsolete, use  full_icon_name instead !!!
+additional_inventory_weight = 0
+additional_inventory_weight2 = 0
+full_icon_name = npc_icon_without_outfit
+nightvision_sect =
 
-additional_inventory_weight		= 0		; +max_walk_weight
-additional_inventory_weight2	= 0		;	+40 kg
-full_icon_name					= npc_icon_without_outfit
-nightvision_sect				= 
-
-default_to_ruck     = false
-sprint_allowed      = true
+default_to_ruck = false
+sprint_allowed = true
 control_inertion_factor = 1
-player_hud_section	= actor_hud_01
+actor_visual = actors\stalker_hero\stalker_hero_1.ogf
+player_hud_section = actor_hud_01
 
 [without_outfit]:outfit_base
-;·‡ÁÓ‚˚È ÍÓÒÚ˛Ï ÒÚ‡ÎÍÂ‡ - ÍÓÒÚ˛Ï ÌÓ‚Ë˜Í‡. Œ·˚˜Ì‡ˇ Ó‰ÂÊ‰‡ ÚÛËÒÚ‡ - ¯ÚÓÏÓ‚Í‡+Ò‡ÔÓ„Ë
-full_scale_icon		= 6,6
+full_scale_icon = 6,6
 
+;====================================================================================
+;==============================  ”–“ ¿ ◊Õ
+;====================================================================================
 
-;---------------------------------------------------------------------------------------------
-;		 Œ—“ﬁÃ ÕŒ¬»◊ ¿
-;---------------------------------------------------------------------------------------------
-[novice_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\novice_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\novice_outfit
-actor_visual	= actors\stalker_hero\stalker_hero_1.ogf
-player_hud_section	= actor_hud_01
+[cs_novice_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\cs_novice_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
 
-ef_equipment_type	= 3
+full_scale_icon					= 0,11
+full_icon_name					= npc_icon_novice_outfit
 
-inv_name			= novice_outfit_name
-inv_name_short		= novice_outfit_name
-description			= novice_outfit_description
-inv_weight			= 3.0
+visual							= dynamics\outfit\cs_novice_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_cs_novice.ogf
+player_hud_section				= actor_hud_cs_novice
 
-;inv_grid_width		= 2
-;inv_grid_height	= 2
-;inv_grid_x			= 12
-;inv_grid_y			= 0
+inv_name						= csky_novice_outfit_name
+inv_name_short					= csky_novice_outfit_name
+description						= csky_novice_outfit_description
 
+inv_weight						= 3.0
 
-inv_grid_width		= 2
-inv_grid_height 	= 2
-inv_grid_x			= 0
-inv_grid_y			= 18
+inv_grid_width     				= 2
+inv_grid_height   	 			= 2
+inv_grid_x        	 			= 11
+inv_grid_y         				= 1
 
-full_icon_name		= npc_icon_novice_outfit
+slot							= 6
 
+cost							= 1750
 
-cost				= 500
-slot				= 6
-full_scale_icon		= 0,11		;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
+immunities_sect					= sect_cs_novice_outfit_immunities
 
-immunities_sect			= sect_novice_outfit_immunities
-
-; NO RESISTANCE
 burn_protection 				= 0.005
 shock_protection 				= 0.005
 radiation_protection 			= 0.005
 chemical_burn_protection 		= 0.005
-telepatic_protection 			= 0.0
+telepatic_protection 			= 0.000
+
 strike_protection 				= 0.15
 explosion_protection 			= 0.15
 wound_protection				= 0.15
-fire_wound_protection  			= 0.1
-physic_strike_wound_immunity 	= 0.1
 
-bones_koeff_protection  = actor_armor_suit
-hit_fraction_actor		= 0.5
-artefact_count          = 0
+fire_wound_protection  			= 0.5
+physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor				= 0.5
+control_inertion_factor			= 1.0
+power_loss 						= 1.0
 
-upgrades                = up_gr_ab_novice_outfit, up_gr_cd_novice_outfit, up_gr_ef_novice_outfit, up_gr_g_novice_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u8a
+bones_koeff_protection			= actor_armor_suit
 
-[sect_novice_outfit_immunities]
-burn_immunity				= 0.05			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.0
-wound_immunity				= 0.05
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.05
-explosion_immunity			= 0.05
-fire_wound_immunity			= 0.02
+artefact_count					= 0
 
-;---------------------------------------------------------------------------------------------
-;		 Œ—“ﬁÃ ¡¿Õƒ»“¿
-;---------------------------------------------------------------------------------------------
-[bandit_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\bandit_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\bandit_outfit
-actor_visual	= actors\stalker_bandit\stalker_bandit_1.ogf
-player_hud_section	= actor_hud_05
+nightvision_sect				=
 
-ef_equipment_type	= 3
+sprint_allowed					= true
 
-inv_name			= bandit_outfit_name
-inv_name_short		= bandit_outfit_name
-description			= bandit_outfit_description
-inv_weight			= 3.0
-inv_grid_width		= 2
-inv_grid_height		= 2
-inv_grid_x			= 12
-inv_grid_y			= 0
-full_icon_name		= npc_icon_bandit_outfit
+additional_inventory_weight		= 0
+additional_inventory_weight2	= 0
 
-cost				= 500
-slot				= 6
-full_scale_icon		= 0,6			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
+upgrades						= up_gr_ab_novice_outfit, up_gr_cd_novice_outfit, up_gr_ef_novice_outfit, up_gr_g_novice_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u8a
 
-immunities_sect		= sect_bandit_outfit_immunities
+[sect_cs_novice_outfit_immunities]
+burn_immunity					= 0.05
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.05
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.02
 
-; NO RESISTANCE
-burn_protection 				= 0.005
-shock_protection 				= 0.005
-radiation_protection 			= 0.005
-chemical_burn_protection 		= 0.005
-telepatic_protection 			= 0.0
-strike_protection 				= 0.15
-explosion_protection 			= 0.15
-wound_protection				= 0.15
-fire_wound_protection  			= 0.1
-physic_strike_wound_immunity 	= 0.1
+;====================================================================================
+;============================== À≈√ »…  Œ—“ﬁÃ ◊Õ-1‡
+;====================================================================================
 
-bones_koeff_protection = actor_armor_suit
-hit_fraction_actor		= 0.3
-artefact_count          = 0
-
-upgrades                = up_gr_ab_bandit_outfit, up_gr_cd_bandit_outfit, up_gr_ef_bandit_outfit, up_gr_g_bandit_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u7
-
-[sect_bandit_outfit_immunities]
-burn_immunity				= 0.05			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.0
-wound_immunity				= 0.05
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.05
-explosion_immunity			= 0.05
-fire_wound_immunity			= 0.02
-
-;---------------------------------------------------------------------------------------------
-;		À≈√ »…  Œ—“ﬁÃ ◊Õ
-;---------------------------------------------------------------------------------------------
 [cs_light_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\cs_light_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\cs_light_outfit
-actor_visual	= actors\stalker_nebo\stalker_nebo_1
-player_hud_section	= actor_hud_04
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\cs_light_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
 
-ef_equipment_type	= 3
+full_scale_icon					= 10,11
+full_icon_name					= npc_icon_svoboda_light_outfit
 
-inv_name			= csky_light_outfit_name
-inv_name_short		= csky_light_outfit_name
-description			= csky_light_outfit_description
-inv_weight			= 4.0
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 9
-inv_grid_y			= 27
-full_icon_name		= npc_icon_svoboda_light_outfit
+visual							= dynamics\outfit\cs_light_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_cs_light_1a.ogf
+player_hud_section				= actor_hud_04
 
-cost				= 5000
-slot				= 6
-full_scale_icon		= 10,11			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
+inv_name						= csky_light_outfit_name
+inv_name_short					= csky_light_outfit_name
+description						= csky_light_outfit_description
 
-immunities_sect			= sect_cs_light_outfit_immunities
+inv_weight						= 4.0
 
-; LOW RESISTANCE
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 13
+inv_grid_y         				= 1
+
+slot							= 6
+
+cost							= 8000
+
+immunities_sect					= sect_cs_light_outfit_immunities
+
 burn_protection 				= 0.013
 shock_protection 				= 0.013
 radiation_protection 			= 0.013
 chemical_burn_protection 		= 0.013
-telepatic_protection 			= 0.0
+telepatic_protection 			= 0.000
+
 strike_protection 				= 0.25
 explosion_protection 			= 0.25
 wound_protection				= 0.25
+
 fire_wound_protection  			= 0.0
 physic_strike_wound_immunity 	= 0.15
+hit_fraction_actor				= 0.3
+control_inertion_factor			= 1.2
 
-bones_koeff_protection  = actor_light_armor
-hit_fraction_actor		= 0.3
-artefact_count          = 1
-control_inertion_factor	= 1.2
+bones_koeff_protection  		= actor_light_armor
 
-upgrades                = up_gr_ab_cs_light_outfit, up_gr_cd_cs_light_outfit, up_gr_ef_cs_light_outfit, up_gr_gh_cs_light_outfit, up_gr_i_cs_light_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u14b
+artefact_count          		= 1
+
+upgrades                		= up_gr_ab_cs_light_outfit, up_gr_cd_cs_light_outfit, up_gr_ef_cs_light_outfit, up_gr_gh_cs_light_outfit, up_gr_i_cs_light_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u14b
 
 [sect_cs_light_outfit_immunities]
-burn_immunity				= 0.04			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.0
-wound_immunity				= 0.04
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.04
-explosion_immunity			= 0.04
-fire_wound_immunity			= 0.02
+burn_immunity					= 0.04
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.02
 
 [sect_cs_light_outfit_immunities_1]
-burn_immunity				= 0.02			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.0
-wound_immunity				= 0.02
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.02
-explosion_immunity			= 0.02
-fire_wound_immunity			= 0.015
+burn_immunity					= 0.02
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.015
 
-;---------------------------------------------------------------------------------------------
-;		 Œ—“ﬁÃ Õ≈…“–¿À‹ÕŒ√Œ —“¿À ≈–¿
-;---------------------------------------------------------------------------------------------
-[stalker_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\stalker_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\stalker_outfit
-actor_visual	= actors\stalker_neutral\stalker_neutral_2.ogf
-player_hud_section	= actor_hud_01
+;====================================================================================
+;============================== À≈√ »…  Œ—“ﬁÃ ◊Õ-1·
+;====================================================================================
 
-ef_equipment_type	= 3
+[cs_light_extra_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\cs_light_extra_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
 
-inv_name			= stalker_outfit_name
-inv_name_short		= stalker_outfit_name
-description			= stalker_outfit_description
-inv_weight			= 5.0
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 6
-inv_grid_y			= 15
-full_icon_name		= npc_icon_stalker_outfit
+full_scale_icon					= 10,11
+full_icon_name					= npc_icon_svoboda_light_outfit
 
-cost				= 6250
-slot				= 6
-full_scale_icon		= 14,11			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
-nightvision_sect	= ;effector_nightvision_bad
+visual          				= dynamics\outfit\cs_light_extra_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_cs_light_1b.ogf
+player_hud_section				= actor_hud_04
 
-additional_inventory_weight		= 0		; +max_walk_weight
-additional_inventory_weight2	= 0		;	+40 kg
-artefact_count                  = 2
+inv_name						= csky_light_extra_outfit_name
+inv_name_short					= csky_light_extra_outfit_name
+description						= csky_light_extra_outfit_description
 
-default_to_ruck     = false
-immunities_sect		= sect_stalker_outfit_immunities
+inv_weight						= 3.4
 
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 15
+inv_grid_y        	 			= 1
 
-; LOW RESISTANCE
+slot							= 6
+
+cost							= 15000
+
+immunities_sect					= sect_cs_light_extra_outfit_immunities
+
 burn_protection 				= 0.015
 shock_protection 				= 0.015
 radiation_protection 			= 0.015
 chemical_burn_protection 		= 0.015
-telepatic_protection 			= 0.0
-strike_protection 				= 0.25
-explosion_protection 			= 0.25
-wound_protection				= 0.25
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.2
+explosion_protection 			= 0.2
+wound_protection				= 0.2
+
 fire_wound_protection  			= 0.0
 physic_strike_wound_immunity 	= 0.15
+hit_fraction_actor				= 0.3
+control_inertion_factor			= 1.2
 
-power_loss = 1.0
-bones_koeff_protection = actor_light_armor
-hit_fraction_actor = 0.3
-control_inertion_factor = 1.2
+bones_koeff_protection			= actor_light_armor
 
-upgrades                = up_gr_ab_stalker_outfit, up_gr_cd_stalker_outfit, up_gr_ef_stalker_outfit, up_gr_gh_stalker_outfit, up_gr_i_stalker_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u15a
+artefact_count					= 3
 
-[sect_stalker_outfit_immunities]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.0
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.015
+upgrades						= up_gr_ab_cs_light_extra_outfit, up_gr_cd_cs_light_extra_outfit, up_gr_ef_cs_light_extra_outfit, up_gr_gh_cs_light_extra_outfit, up_gr_i_cs_light_extra_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u14b
 
-[sect_stalker_outfit_immunities_1]
-burn_immunity				= 0.015			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.0
-wound_immunity				= 0.015
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.015
-explosion_immunity			= 0.015
-fire_wound_immunity			= 0.010
+[sect_cs_light_extra_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.02
 
-;---------------------------------------------------------------------------------------------
-;		À≈√ »…  Œ—“ﬁÃ —¬Œ¡Œƒ€
-;---------------------------------------------------------------------------------------------
-[svoboda_light_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\svoboda_light_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\svoboda_light_outfit
-actor_visual	= actors\stalker_freedom\stalker_freedom_1.ogf
-player_hud_section	= actor_hud_03
+[sect_cs_light_extra_outfit_immunities_1]
+burn_immunity					= 0.02
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.015
 
-ef_equipment_type	= 3
+;====================================================================================
+;============================== —“¿Õƒ¿–“Õ€…  Œ—“ﬁÃ ◊Õ-2
+;====================================================================================
 
-inv_name			= svoboda_light_outfit_name
-inv_name_short		= svoboda_light_outfit_name
-description			= svoboda_light_outfit_description
-inv_weight			= 3.0
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 12
-inv_grid_y			= 13
-full_icon_name		= npc_icon_svoboda_light_outfit
+[cs_standart_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\cs_standart_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
 
-cost				= 7500
-slot				= 6
-full_scale_icon		= 10,11			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_svoboda_heavy_outfit
 
-immunities_sect			= sect_svoboda_light_outfit_immunities
+visual          				= dynamics\outfit\cs_heavy_outfit
+actor_visual					= actors\stalker_nebo\stalker_nebo_3.ogf
+player_hud_section				= actor_hud_cs_standart
 
-; LOW RESISTANCE
-radiation_protection 			= 0.011
-chemical_burn_protection 		= 0.011
-burn_protection 				= 0.011
-shock_protection 				= 0.011
-telepatic_protection 			= 0.0
-strike_protection 				= 0.25
-explosion_protection 			= 0.25
-wound_protection				= 0.25
-fire_wound_protection  			= 0.2
-physic_strike_wound_immunity 	= 0.2
+inv_name						= csky_standart_outfit_name
+inv_name_short					= csky_standart_outfit_name
+description						= csky_standart_outfit_description
 
-bones_koeff_protection = actor_light_armor
-hit_fraction_actor		= 0.3
-artefact_count          = 2
-control_inertion_factor = 1.2
+inv_weight						= 4.8
 
-upgrades                = up_gr_ab_svoboda_light_outfit, up_gr_cd_svoboda_light_outfit, up_gr_ef_svoboda_light_outfit, up_gr_gh_svoboda_light_outfit, up_gr_i_svoboda_light_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u13a
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 17
+inv_grid_y         				= 1
 
-[sect_svoboda_light_outfit_immunities]
-burn_immunity				= 0.05			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.0
-wound_immunity				= 0.05
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.05
-explosion_immunity			= 0.05
-fire_wound_immunity			= 0.015
+slot							= 6
 
-[sect_svoboda_light_outfit_immunities_1]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.0
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.01
+cost							= 25000
 
-;---------------------------------------------------------------------------------------------
-;		Œ¡€◊Õ€…  Œ—“ﬁÃ ƒŒÀ√¿
-;---------------------------------------------------------------------------------------------
-[dolg_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\dolg_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\dolg_outfit
-actor_visual	= actors\stalker_dolg\stalker_dolg_2.ogf
-player_hud_section	= actor_hud_02
+immunities_sect					= sect_cs_standart_outfit_immunities
 
-ef_equipment_type	= 3
+burn_protection 				= 0.02
+shock_protection 				= 0.02
+radiation_protection 			= 0.02
+chemical_burn_protection 		= 0.02
+telepatic_protection 			= 0.02
 
-inv_name			= dolg_outfit_name
-inv_name_short		= dolg_outfit_name
-description			= dolg_outfit_description
-inv_weight			= 7.0
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 12
-inv_grid_y			= 16
-full_icon_name		= npc_icon_dolg_outfit
-
-cost				= 8125
-slot				= 6
-full_scale_icon		= 8,11			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
-;nightvision_sect	= effector_nightvision_bad
-
-immunities_sect		= sect_dolg_outfit_immunities
-
-; LOW RESISTANCE
-burn_protection 				= 0.009
-shock_protection 				= 0.009
-radiation_protection 			= 0.009
-chemical_burn_protection 		= 0.009
-telepatic_protection 			= 0.0
 strike_protection 				= 0.3
 explosion_protection 			= 0.3
 wound_protection				= 0.3
-fire_wound_protection  			= 0.25
-physic_strike_wound_immunity 	= 0.25
 
-bones_koeff_protection = actor_light_armor
-hit_fraction_actor		= 0.3
-artefact_count          = 0
-control_inertion_factor = 1.2
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.6
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
 
-upgrades                = up_gr_ab_dolg_outfit, up_gr_cd_dolg_outfit, up_gr_ef_dolg_outfit, up_gr_gh_dolg_outfit, up_gr_i_dolg_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u14b
+bones_koeff_protection			= actor_light_armor_2
 
-[sect_dolg_outfit_immunities]
-burn_immunity				= 0.04			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.04
-shock_immunity				= 0.0
-wound_immunity				= 0.04
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.04
-explosion_immunity			= 0.04
-fire_wound_immunity			= 0.01
+artefact_count					= 1
 
-[sect_dolg_outfit_immunities_1]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.03
-shock_immunity				= 0.0
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.008
+upgrades						= up_gr_ab_cs_standart_outfit, up_gr_cd_cs_standart_outfit, up_gr_ef_cs_standart_outfit, up_gr_gh_cs_standart_outfit, up_gr_i_cs_standart_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u15a
 
-[sect_dolg_outfit_immunities_2]
-burn_immunity				= 0.02			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.02
-shock_immunity				= 0.0
-wound_immunity				= 0.02
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.02
-explosion_immunity			= 0.02
-fire_wound_immunity			= 0.005
+[sect_cs_standart_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.02
 
-;---------------------------------------------------------------------------------------------
-;		Õ¿”◊Õ€…  Œ—“ﬁÃ
-;---------------------------------------------------------------------------------------------
-[scientific_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\scientific_outfit"
-$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\scientific_outfit
-actor_visual	= actors\stalker_mp\mp_team_blue_armor_sci.ogf ;hero\stalker_scien.ogf
-player_hud_section	= actor_hud_06
+;====================================================================================
+;============================== “ﬂ∆≈À€…  Œ—“ﬁÃ ◊Õ-3‡
+;====================================================================================
 
-ef_equipment_type	= 2
-
-inv_name			= scientific_outfit_name
-inv_name_short		= scientific_outfit_name
-description			= scientific_outfit_description
-inv_weight			= 9
-slot				= 6
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 16
-inv_grid_y			= 13
-full_icon_name		= npc_icon_scientific_outfit
-nightvision_sect	= effector_nightvision_bad
-
-cost				= 18750
-full_scale_icon		= 12,11			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
-
-immunities_sect			= sect_scientific_outfit_immunities
-bones_koeff_protection 	= actor_light_armor_1
-hit_fraction_actor		= 0.25
-artefact_count          = 2
-control_inertion_factor = 1.5
-
-; MEDIUM RESISTANCE
-burn_protection 			= 0.061
-shock_protection 			= 0.061
-radiation_protection 		= 0.061
-chemical_burn_protection 	= 0.061
-telepatic_protection 		= 0.061
-strike_protection 			= 0.3
-explosion_protection 		= 0.3
-wound_protection			= 0.3
-fire_wound_protection  		= 0.0
-physic_strike_wound_immunity = 0.25
-
-upgrades                = up_gr_ab_scientific_outfit, up_gr_cd_scientific_outfit, up_gr_ef_scientific_outfit, up_gr_gh_scientific_outfit, up_gr_i_scientific_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u17a
-
-[sect_scientific_outfit_immunities]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.03
-shock_immunity				= 0.03
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.01
-
-[sect_scientific_outfit_immunities_1]
-burn_immunity				= 0.02			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.02
-shock_immunity				= 0.02
-wound_immunity				= 0.02
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.02
-explosion_immunity			= 0.02
-fire_wound_immunity			= 0.008
-
-[sect_scientific_outfit_immunities_2]
-burn_immunity				= 0.01			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.01
-shock_immunity				= 0.01
-wound_immunity				= 0.01
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.01
-explosion_immunity			= 0.01
-fire_wound_immunity			= 0.005
-
-;---------------------------------------------------------------------------------------------
-;		“ﬂ∆≈À€…  Œ—“ﬁÃ ◊Õ
-;---------------------------------------------------------------------------------------------
 [cs_heavy_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\cs_heavy_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\cs_heavy_outfit
-actor_visual	= actors\stalker_nebo\stalker_nebo_2.ogf
-player_hud_section	= actor_hud_04
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\cs_heavy_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
 
-ef_equipment_type	= 3
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_svoboda_heavy_outfit
 
-inv_name			= csky_heavy_outfit_name
-inv_name_short		= csky_heavy_outfit_name
-description			= csky_heavy_outfit_description
-inv_weight			= 7.0
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 11
-inv_grid_y			= 27
-full_icon_name		= npc_icon_svoboda_heavy_outfit
-;nightvision_sect	= effector_nightvision_bad
+visual         					= dynamics\outfit\cs_heavy_remake_outfit
+actor_visual					= actors\stalker_nebo\stalker_nebo_2.ogf
+player_hud_section				= actor_hud_cs_heavy_3a
 
-cost				= 15000
-slot				= 6
-full_scale_icon		= 2,6			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
+inv_name						= csky_heavy_outfit_name
+inv_name_short					= csky_heavy_outfit_name
+description						= csky_heavy_outfit_description
 
-immunities_sect			= sect_cs_heavy_outfit_immunities
+inv_weight						= 7.0
 
-; MEDIUM RESISTANCE
+inv_grid_width     				= 2
+inv_grid_height   	 			= 3
+inv_grid_x         				= 19
+inv_grid_y         				= 1
+
+slot							= 6
+
+cost							= 40000
+
+immunities_sect					= sect_cs_heavy_outfit_immunities
+
 burn_protection 				= 0.030
 shock_protection 				= 0.030
 radiation_protection 			= 0.030
 chemical_burn_protection 		= 0.030
 telepatic_protection 			= 0.030
+
 strike_protection 				= 0.35
 explosion_protection 			= 0.35
 wound_protection				= 0.35
+
 fire_wound_protection  			= 0.3
 physic_strike_wound_immunity 	= 0.3
+hit_fraction_actor				= 0.2
+control_inertion_factor			= 1.5
 
-bones_koeff_protection 	= actor_medium_armor
-hit_fraction_actor		= 0.2
-artefact_count          = 1
-control_inertion_factor	= 1.5
+bones_koeff_protection 			= actor_medium_armor
 
-upgrades                = up_gr_ab_cs_heavy_outfit, up_gr_cd_cs_heavy_outfit, up_gr_ef_cs_heavy_outfit, up_gr_gh_cs_heavy_outfit, up_gr_i_cs_heavy_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u16a
+artefact_count          		= 1
+
+upgrades                		= up_gr_ab_cs_heavy_outfit, up_gr_cd_cs_heavy_outfit, up_gr_ef_cs_heavy_outfit, up_gr_gh_cs_heavy_outfit, up_gr_i_cs_heavy_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u16a
 
 [sect_cs_heavy_outfit_immunities]
-burn_immunity				= 0.04			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.04
-shock_immunity				= 0.0
-wound_immunity				= 0.04
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.04
-explosion_immunity			= 0.04
-fire_wound_immunity			= 0.01
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.0
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.01
 
 [sect_cs_heavy_outfit_immunities_1]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.03
-shock_immunity				= 0.0
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.008
-
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.008
 
 [sect_cs_heavy_outfit_immunities_2]
-burn_immunity				= 0.02			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.02
-shock_immunity				= 0.0
-wound_immunity				= 0.02
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.02
-explosion_immunity			= 0.02
-fire_wound_immunity			= 0.005
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.0
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.005
 
-;---------------------------------------------------------------------------------------------
-;		“ﬂ∆≈À€…  Œ—“ﬁÃ —¬Œ¡Œƒ€
-;---------------------------------------------------------------------------------------------
-[svoboda_heavy_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\svoboda_heavy_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\svoboda_heavy_outfit
-actor_visual	= actors\stalker_freedom\stalker_freedom_3.ogf
-player_hud_section	= actor_hud_03
+;====================================================================================
+;============================== “ﬂ∆≈À€…  Œ—“ﬁÃ ◊Õ-3·
+;====================================================================================
 
-ef_equipment_type	= 3
+[cs_heavy_extra_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\cs_heavy_extra_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
 
-inv_name			= svoboda_heavy_outfit_name
-inv_name_short		= svoboda_heavy_outfit_name
-description			= svoboda_heavy_outfit_description
-inv_weight			= 7.0
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 8
-inv_grid_y			= 15
-full_icon_name		= npc_icon_svoboda_heavy_outfit
-;nightvision_sect	= effector_nightvision_bad
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_svoboda_heavy_outfit
 
-cost				= 15000
-slot				= 6
-full_scale_icon		= 2,6			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
+visual          				= dynamics\outfit\cs_heavy_extra_outfit
+actor_visual					= actors\stalker_nebo\stalker_nebo_4.ogf
+player_hud_section				= actor_hud_cs_heavy_3b
 
-immunities_sect			= sect_svoboda_heavy_outfit_immunities
+inv_name						= csky_heavy_extra_outfit_name
+inv_name_short					= csky_heavy_extra_outfit_name
+description						= csky_heavy_extra_outfit_description
 
-; MEDIUM RESISTANCE
-burn_protection 			= 0.024
-shock_protection 			= 0.024
-chemical_burn_protection 	= 0.024
-radiation_protection 		= 0.024
-telepatic_protection 		= 0.024
-strike_protection 			= 0.35
-explosion_protection 		= 0.35
-wound_protection			= 0.35
-fire_wound_protection  		= 0.35
-physic_strike_wound_immunity 	= 0.35
+inv_weight						= 8.4
 
-bones_koeff_protection = actor_medium_armor
-hit_fraction_actor		= 0.25
-artefact_count          = 2
-control_inertion_factor = 1.5
+inv_grid_width    	 			= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 21
+inv_grid_y         				= 1
 
-upgrades                = up_gr_ab_svoboda_heavy_outfit, up_gr_cd_svoboda_heavy_outfit, up_gr_ef_svoboda_heavy_outfit, up_gr_gh_svoboda_heavy_outfit, up_gr_i_svoboda_heavy_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u15
+slot							= 6
 
-[sect_svoboda_heavy_outfit_immunities]
-burn_immunity				= 0.05			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.05
-shock_immunity				= 0.0
-wound_immunity				= 0.05
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.05
-explosion_immunity			= 0.05
-fire_wound_immunity			= 0.01
+cost							= 50000
 
-[sect_svoboda_heavy_outfit_immunities_1]
-burn_immunity				= 0.04			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.04
-wound_immunity				= 0.04
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.04
-explosion_immunity			= 0.04
-fire_wound_immunity			= 0.008
+immunities_sect					= sect_cs_heavy_extra_outfit_immunities
 
-[sect_svoboda_heavy_outfit_immunities_2]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.03
-shock_immunity				= 0.0
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.005
+burn_protection 				= 0.033
+shock_protection 				= 0.033
+radiation_protection 			= 0.033
+chemical_burn_protection 		= 0.033
+telepatic_protection 			= 0.033
 
-;---------------------------------------------------------------------------------------------
-;		 Œ—“ﬁÃ ¬Œ≈ÕÕŒ√Œ —œ≈÷Õ¿«¿
-;---------------------------------------------------------------------------------------------
-[specops_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\specops_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\specops_outfit
-actor_visual	= actors\stalker_soldier\stalker_soldier_3.ogf
-player_hud_section	= actor_hud_07
-
-ef_equipment_type	= 3
-
-inv_name			= specops_outfit_name
-inv_name_short		= specops_outfit_name
-description			= specops_outfit_description
-inv_weight			= 7.0
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 10
-inv_grid_y			= 13
-full_icon_name		= npc_icon_specops_outfit
-;nightvision_sect	= effector_nightvision_bad
-
-cost				= 12500
-slot				= 6
-full_scale_icon		= 4,6			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
-
-immunities_sect			= sect_specops_outfit_immunities
-
-; LOW RESISTANCE
-burn_protection 			= 0.020
-shock_protection 			= 0.020
-radiation_protection 		= 0.020
-chemical_burn_protection 	= 0.020
-telepatic_protection 		= 0.0
-strike_protection 			= 0.3
-explosion_protection 		= 0.3
-wound_protection			= 0.3
-fire_wound_protection  		= 0.0
-physic_strike_wound_immunity 	= 0.35
-
-bones_koeff_protection = actor_medium_armor
-hit_fraction_actor		= 0.2
-artefact_count          = 0
-control_inertion_factor = 1.5
-
-upgrades                = up_gr_ab_specops_outfit, up_gr_cd_specops_outfit, up_gr_ef_specops_outfit, up_gr_gh_specops_outfit, up_gr_i_specops_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u16a
-
-[sect_specops_outfit_immunities]
-burn_immunity				= 0.04			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.04
-wound_immunity				= 0.04
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.04
-explosion_immunity			= 0.04
-fire_wound_immunity			= 0.01
-
-[sect_specops_outfit_immunities_1]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.03
-shock_immunity				= 0.0
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.008
-
-[sect_specops_outfit_immunities_2]
-burn_immunity				= 0.02			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.02
-wound_immunity				= 0.02
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.02
-explosion_immunity			= 0.02
-fire_wound_immunity			= 0.005
-
-;---------------------------------------------------------------------------------------------
-;		 Œ—“ﬁÃ Ã»À»“¿–»
-;---------------------------------------------------------------------------------------------
-[military_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\military_outfit"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\military_outfit
-actor_visual	= actors\stalker_soldier\stalker_soldier_4.ogf
-player_hud_section	= actor_hud_06
-
-ef_equipment_type	= 4
-
-inv_name			= military_outfit_name
-inv_name_short		= military_outfit_name
-description			= military_outfit_description
-inv_weight			= 12.0
-slot				= 6
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 18
-inv_grid_y			= 17
-full_icon_name		= npc_icon_military_outfit
-nightvision_sect	= effector_nightvision_bad
-
-cost				= 25000
-full_scale_icon		= 10,6		;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
-
-immunities_sect			= sect_military_outfit_immunities
-
-; MEDIUM RESISTANCE
-burn_protection 				= 0.047
-shock_protection 				= 0.047
-radiation_protection 			= 0.047
-chemical_burn_protection 		= 0.047
-telepatic_protection 			= 0.047
-strike_protection 				= 0.35
-explosion_protection 			= 0.35
-wound_protection				= 0.35
-fire_wound_protection  			= 0.45
-physic_strike_wound_immunity 	= 0.45
-
-bones_koeff_protection	= actor_heavy_armor
-hit_fraction_actor		= 0.2
-artefact_count          = 0
-control_inertion_factor = 1.8
-
-upgrades                = up_gr_ab_military_outfit, up_gr_cd_military_outfit, up_gr_ef_military_outfit, up_gr_gh_military_outfit, up_gr_i_military_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u16a
-
-[sect_military_outfit_immunities]
-burn_immunity				= 0.04			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.04
-shock_immunity				= 0.04
-wound_immunity				= 0.04
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.04
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.01
-
-[sect_military_outfit_immunities_1]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.03
-shock_immunity				= 0.03
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.02
-fire_wound_immunity			= 0.008
-
-[sect_military_outfit_immunities_2]
-burn_immunity				= 0.02			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.02
-shock_immunity				= 0.02
-wound_immunity				= 0.02
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.02
-explosion_immunity			= 0.01
-fire_wound_immunity			= 0.005
-
-;---------------------------------------------------------------------------------------------
-;		“ﬂ∆≈À€…  Œ—“ﬁÃ ƒŒÀ√¿
-;---------------------------------------------------------------------------------------------
-[dolg_heavy_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\dolg_heavy_outfit"
-$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\dolg_heavy_outfit
-actor_visual	= actors\stalker_dolg\stalker_dolg_3.ogf
-player_hud_section	= actor_hud_02
-
-ef_equipment_type	= 4
-
-inv_name			= dolg_heavy_outfit_name
-inv_name_short		= dolg_heavy_outfit_name
-description			= dolg_heavy_outfit_description
-inv_weight			= 12.0
-slot				= 6
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 16
-inv_grid_y			= 16
-full_icon_name		= npc_icon_dolg_heavy_outfit
-nightvision_sect	= effector_nightvision_bad
-
-cost				= 20000
-full_scale_icon		= 8,6		;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
-
-immunities_sect			= sect_dolg_heavy_outfit_immunities
-
-; MEDIUM RESISTANCE
-burn_protection 				= 0.042
-shock_protection 				= 0.042
-radiation_protection 			= 0.042
-chemical_burn_protection 		= 0.042
-telepatic_protection 			= 0.042
 strike_protection 				= 0.4
 explosion_protection 			= 0.4
 wound_protection				= 0.4
+
+fire_wound_protection  			= 0.3
+physic_strike_wound_immunity 	= 0.3
+hit_fraction_actor				= 0.2
+control_inertion_factor			= 1.5
+
+bones_koeff_protection			= actor_medium_armor
+
+artefact_count					= 2
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades						= up_gr_ab_cs_heavy_extra_outfit, up_gr_cd_cs_heavy_extra_outfit, up_gr_ef_cs_heavy_extra_outfit, up_gr_gh_cs_heavy_extra_outfit, up_gr_i_cs_heavy_extra_outfit
+installed_upgrades      		=
+upgrade_scheme					= upgrade_scheme_u16a
+
+[sect_cs_heavy_extra_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.0
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.01
+
+[sect_cs_heavy_extra_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.008
+
+[sect_cs_heavy_extra_outfit_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.0
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== Õ≈…“–¿À€ -  Œ∆¿Õ¿ﬂ  ”–“ ¿ (¡≈∆≈¬¿ﬂ)
+;====================================================================================
+
+[novice_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\novice_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 0,11
+full_icon_name					= npc_icon_novice_outfit
+
+visual          				= dynamics\outfit\novice_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_neutral_novice.ogf
+player_hud_section				= actor_hud_01
+
+inv_name						= novice_outfit_name
+inv_name_short					= novice_outfit_name
+description						= novice_outfit_description
+
+inv_weight						= 3.0
+
+inv_grid_width    	 			= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 11
+inv_grid_y         				= 4
+
+slot							= 6
+
+cost							= 1250
+
+immunities_sect					= sect_novice_outfit_immunities
+
+burn_protection 				= 0.005
+shock_protection 				= 0.005
+radiation_protection 			= 0.005
+chemical_burn_protection 		= 0.005
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.15
+explosion_protection 			= 0.15
+wound_protection				= 0.15
+
 fire_wound_protection  			= 0.5
 physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor				= 0.5
+control_inertion_factor			= 1.0
+power_loss 						= 1.0
 
-bones_koeff_protection = actor_heavy_armor
-hit_fraction_actor		= 0.2
-artefact_count          = 0
-control_inertion_factor = 1.8
+bones_koeff_protection  		= actor_armor_suit
 
-upgrades                = up_gr_ab_dolg_heavy_outfit, up_gr_cd_dolg_heavy_outfit, up_gr_ef_dolg_heavy_outfit, up_gr_gh_dolg_heavy_outfit, up_gr_i_dolg_heavy_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u16a
+artefact_count          		= 0
 
-[sect_dolg_heavy_outfit_immunities]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.03
-shock_immunity				= 0.0
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.01
+nightvision_sect				=
 
-[sect_dolg_heavy_outfit_immunities_1]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.03
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.008
+sprint_allowed					= true
 
-[sect_dolg_heavy_outfit_immunities_2]
-burn_immunity				= 0.03			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.0
-shock_immunity				= 0.03
-wound_immunity				= 0.03
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.03
-explosion_immunity			= 0.03
-fire_wound_immunity			= 0.005
+additional_inventory_weight		= 0
+additional_inventory_weight2	= 0
 
-;---------------------------------------------------------------------------------------------
-;		› «Œ— ≈À≈“ Õ≈…“–¿À‹ÕŒ√Œ —“¿À ≈–¿
-;---------------------------------------------------------------------------------------------
+upgrades                		= up_gr_ab_novice_outfit, up_gr_cd_novice_outfit, up_gr_ef_novice_outfit, up_gr_g_novice_outfit
+installed_upgrades     	 		=
+upgrade_scheme         		 	= upgrade_scheme_u8a
+
+[sect_novice_outfit_immunities]
+burn_immunity					= 0.05
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.05
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.02
+
+;====================================================================================
+;============================== Õ≈…“–¿À€ -  ”–“ ¿ (¡≈À¿ﬂ)
+;====================================================================================
+
+[novice_outfit_white]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\novice_outfit_white"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 0,11
+full_icon_name					= npc_icon_novice_outfit
+
+visual							= dynamics\outfit\stalker_novice_outfit_white
+actor_visual					= actors\stalker_hero\stalker_hero_neutral_novice_white.ogf
+player_hud_section				= actor_hud_neutral_outfit_white
+
+inv_name						= kurtka_outfit_name
+inv_name_short					= kurtka_outfit_name
+description						= kurtka_outfit_description
+
+inv_weight						= 3.0
+
+inv_grid_width    	 			= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 13
+inv_grid_y         				= 4
+
+slot							= 6
+
+cost							= 1250
+
+immunities_sect					= sect_novice_outfit_white_immunities
+
+burn_protection 				= 0.005
+shock_protection 				= 0.005
+radiation_protection 			= 0.005
+chemical_burn_protection 		= 0.005
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.15
+explosion_protection 			= 0.15
+wound_protection				= 0.15
+
+fire_wound_protection  			= 0.5
+physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor				= 0.5
+control_inertion_factor			= 1.0
+power_loss 						= 1.0
+
+bones_koeff_protection			= actor_armor_suit
+
+artefact_count					= 0
+
+nightvision_sect				=
+
+sprint_allowed					= true
+
+additional_inventory_weight		= 0
+additional_inventory_weight2	= 0
+
+upgrades						= up_gr_ab_novice_outfit, up_gr_cd_novice_outfit, up_gr_ef_novice_outfit, up_gr_g_novice_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u8a
+
+[sect_novice_outfit_white_immunities]
+burn_immunity					= 0.05
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.05
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.02
+
+;====================================================================================
+;============================== Õ≈…“–¿À€ - —“¿Õƒ¿–“Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[stalker_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\stalker_outfit"
+class							= E_STLK
+cform          					= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 14,11
+full_icon_name					= npc_icon_stalker_outfit
+
+visual							= dynamics\outfit\stalker_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_neutral.ogf
+player_hud_section				= actor_hud_05
+
+inv_name						= stalker_outfit_name
+inv_name_short					= stalker_outfit_name
+description						= stalker_outfit_description
+
+inv_weight						= 5.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 15
+inv_grid_y         				= 4
+
+slot							= 6
+
+cost							= 15000
+
+immunities_sect					= sect_stalker_outfit_immunities
+
+burn_protection 				= 0.015
+shock_protection 				= 0.015
+radiation_protection 			= 0.015
+chemical_burn_protection 		= 0.015
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.25
+explosion_protection 			= 0.25
+wound_protection				= 0.25
+
+fire_wound_protection  			= 0.0
+physic_strike_wound_immunity 	= 0.15
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor
+
+artefact_count         	 		= 2
+
+upgrades               	 		= up_gr_ab_stalker_outfit, up_gr_cd_stalker_outfit, up_gr_ef_stalker_outfit, up_gr_gh_stalker_outfit, up_gr_i_stalker_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u15a
+
+[sect_stalker_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.015
+
+[sect_stalker_outfit_immunities_1]
+burn_immunity					= 0.015
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.015
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.010
+
+;====================================================================================
+;============================== Õ≈…“–¿À€ - —“¿Õƒ¿–“Õ€… ”À”◊ÿ≈ÕÕ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[stalker_light_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\stalker_light_outfit"
+class							= E_STLK
+cform          					= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 14,11
+full_icon_name					= npc_icon_stalker_outfit
+
+visual							= dynamics\outfit\stalker_light_outfit
+actor_visual					= actors\stalker_neutral\stalker_neutral_2_8.ogf
+player_hud_section				= actor_hud_05
+
+inv_name						= stalker_light_outfit_name
+inv_name_short					= stalker_light_outfit_name
+description						= stalker_light_outfit_description
+
+inv_weight						= 6.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 15
+inv_grid_y         				= 4
+
+slot							= 6
+
+cost							= 19000
+
+immunities_sect					= sect_stalker_light_outfit_immunities
+
+burn_protection 				= 0.015
+shock_protection 				= 0.015
+radiation_protection 			= 0.025
+chemical_burn_protection 		= 0.025
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.25
+explosion_protection 			= 0.25
+wound_protection				= 0.25
+
+fire_wound_protection  			= 0.0
+physic_strike_wound_immunity 	= 0.15
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor
+
+artefact_count         	 		= 2
+
+upgrades               	 		= up_gr_ab_stalker_outfit, up_gr_cd_stalker_outfit, up_gr_ef_stalker_outfit, up_gr_gh_stalker_outfit, up_gr_i_stalker_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u15a
+
+[sect_stalker_light_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.015
+
+[sect_stalker_light_outfit_immunities_1]
+burn_immunity					= 0.015
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.015
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.010
+
+;====================================================================================
+;============================== Õ≈…“–¿À€ - Õ¿”◊Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[scientific_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\scientific_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 2
+
+full_scale_icon					= 12,11
+full_icon_name					= npc_icon_scientific_outfit
+
+visual							= dynamics\outfit\stalker_scientific_outfit
+actor_visual					= actors\stalker_neutral\stalker_neutral_5.ogf
+player_hud_section				= actor_hud_scientific
+
+inv_name						= scientific_outfit_name
+inv_name_short					= scientific_outfit_name
+description						= scientific_outfit_description
+
+inv_weight						= 9
+
+inv_grid_width    	 			= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 17
+inv_grid_y         				= 4
+
+slot							= 6
+
+cost							= 35000
+
+immunities_sect					= sect_scientific_outfit_immunities
+
+burn_protection 				= 0.061
+shock_protection 				= 0.061
+radiation_protection 			= 0.061
+chemical_burn_protection 		= 0.061
+telepatic_protection 			= 0.05
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.0
+physic_strike_wound_immunity  	= 0.25
+hit_fraction_actor				= 0.25
+control_inertion_factor 		= 1.5
+
+bones_koeff_protection 			= actor_light_armor_1
+
+artefact_count          		= 2
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades                		= up_gr_ab_scientific_outfit, up_gr_cd_scientific_outfit, up_gr_ef_scientific_outfit, up_gr_gh_scientific_outfit, up_gr_i_scientific_outfit
+installed_upgrades      		=
+upgrade_scheme         	 		= upgrade_scheme_u17a
+
+[sect_scientific_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.03
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_scientific_outfit_immunities_1]
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.02
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_scientific_outfit_immunities_2]
+burn_immunity					= 0.01
+strike_immunity					= 0.01
+shock_immunity					= 0.01
+wound_immunity					= 0.01
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.01
+explosion_immunity				= 0.01
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== Õ≈…“–¿À€ - “ﬂ∆≈À€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[stalker_heavy_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\stalker_heavy_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_stalker_heavy_outfit
+
+visual							= dynamics\outfit\stalker_heavy_outfit
+actor_visual					= actors\stalker_neutral\stalker_neutral_3.ogf
+player_hud_section				= actor_hud_neutral_heavy
+
+inv_name						= stalker_heavy_outfit_name
+inv_name_short					= stalker_heavy_outfit_name
+description						= stalker_heavy_outfit_description
+
+inv_weight						= 14.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 19
+inv_grid_y         				= 4
+
+slot							= 6
+
+cost							= 50000
+
+immunities_sect					= sect_stalker_heavy_outfit_immunities
+
+burn_protection 				= 0.03
+shock_protection 				= 0.03
+chemical_burn_protection		= 0.03
+radiation_protection 			= 0.03
+telepatic_protection 			= 0.03
+
+strike_protection				= 0.35
+explosion_protection 			= 0.35
+wound_protection				= 0.35
+
+fire_wound_protection  			= 0.35
+physic_strike_wound_immunity 	= 0.35
+hit_fraction_actor				= 0.25
+control_inertion_factor			= 1.8
+
+bones_koeff_protection			= actor_medium_armor_1
+
+artefact_count					= 2
+
+upgrades						= up_gr_ab_stalker_heavy_outfit, up_gr_cd_stalker_heavy_outfit, up_gr_ef_stalker_heavy_outfit, up_gr_gh_stalker_heavy_outfit, up_gr_i_stalker_heavy_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u15
+
+[sect_stalker_heavy_outfit_immunities]
+burn_immunity					= 0.05
+strike_immunity					= 0.05
+shock_immunity					= 0.0
+wound_immunity					= 0.05
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.01
+
+[sect_stalker_heavy_outfit_immunities_1]
+burn_immunity					= 0.04
+strike_immunity					= 0.0
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.008
+
+[sect_stalker_heavy_outfit_immunities_2]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== Õ≈…“–¿À€ - › «Œ— ≈À≈“
+;====================================================================================
+
 [exo_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\exo_outfit"
-$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\exo_outfit
-actor_visual	= actors\stalker_neutral\stalker_neutral_4.ogf
-player_hud_section	= actor_hud_exo
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\exo_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 5
 
-ef_equipment_type	= 5
+full_scale_icon					= 2,11
+full_icon_name					= npc_icon_exo_outfit
 
-inv_name			= exo_outfit_name
-inv_name_short		= exo_outfit_name
-description			= exo_outfit_description
-inv_weight			= 25.0
-slot				= 6
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 14
-inv_grid_y			= 13
-full_icon_name		= npc_icon_exo_outfit
-;nightvision_sect	= effector_nightvision_bad
+visual							= dynamics\outfit\exo_outfit
+actor_visual					= actors\stalker_neutral\stalker_neutral_4.ogf
+player_hud_section				= actor_hud_exo
 
-cost				= 55000
-full_scale_icon		= 2,11			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
+inv_name						= exo_outfit_name
+inv_name_short					= exo_outfit_name
+description						= exo_outfit_description
 
-immunities_sect			= sect_exo_outfit_immunities
+inv_weight						= 25.0
 
-; MEDIUM RESISTANCE
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x        	 			= 21
+inv_grid_y         				= 4
+
+slot							= 6
+
+cost							= 70000
+
+immunities_sect					= sect_exo_outfit_immunities
+
 burn_protection 				= 0.039
 shock_protection 				= 0.039
 radiation_protection 			= 0.039
 chemical_burn_protection 		= 0.039
 telepatic_protection 			= 0.039
+
 strike_protection 				= 0.4
 explosion_protection 			= 0.4
 wound_protection				= 0.4
+
 fire_wound_protection  			= 0.4
 physic_strike_wound_immunity 	= 0.4
-
-;Á‡ÔÂ˘ÂÌËÂ ÂÊËÏ‡ Sprint ‰Îˇ ¿ÍÚÂ‡
-sprint_allowed					= false
+hit_fraction_actor				= 0.2
+control_inertion_factor			= 2.5
 
 bones_koeff_protection			= actor_heavy_armor_1
-hit_fraction_actor				= 0.2
+
+artefact_count                	= 1
+
+sprint_allowed					= false
 
 additional_inventory_weight		= 40
 additional_inventory_weight2	= 40
-artefact_count                  = 1
-control_inertion_factor			= 2.5
 
-upgrades                = up_gr_ab_exo_outfit, up_gr_cd_exo_outfit, up_gr_ef_exo_outfit, up_gr_gh_exo_outfit, up_gr_k_exo_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u20a
+upgrades                		= up_gr_ab_exo_outfit, up_gr_cd_exo_outfit, up_gr_e_exo_outfit, up_gr_f_exo_outfit, up_gr_gh_exo_outfit, up_gr_kl_exo_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u20a
 
 [sect_exo_outfit_immunities]
-burn_immunity				= 0.01			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.01
-shock_immunity				= 0.01
-wound_immunity				= 0.01
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.01
-explosion_immunity			= 0.01
-fire_wound_immunity			= 0.01
+burn_immunity					= 0.01
+strike_immunity					= 0.01
+shock_immunity					= 0.01
+wound_immunity					= 0.01
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.01
+explosion_immunity				= 0.01
+fire_wound_immunity				= 0.01
 
 [sect_exo_outfit_immunities_1]
-burn_immunity				= 0.005			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.005
-shock_immunity				= 0.005
-wound_immunity				= 0.005
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.005
-explosion_immunity			= 0.005
-fire_wound_immunity			= 0.005
+burn_immunity					= 0.005
+strike_immunity					= 0.005
+shock_immunity					= 0.005
+wound_immunity					= 0.005
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.005
+explosion_immunity				= 0.005
+fire_wound_immunity				= 0.005
 
-;---------------------------------------------------------------------------------------------
-;		› «Œ— ≈À≈“ —¬Œ¡Œƒ€
-;---------------------------------------------------------------------------------------------
+;====================================================================================
+;============================== ¡¿Õƒ»“€ -  Œ∆¿Õ¿ﬂ  ”–“ ¿ (◊≈–Õ¿ﬂ)
+;====================================================================================
+
+[bandit_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\bandit_outfit"
+class							= E_STLK
+cform							= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 0,6
+full_icon_name					= npc_icon_bandit_outfit
+
+visual							= dynamics\outfit\bandit_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_bandit_novice.ogf
+player_hud_section				= actor_hud_bandit_outfit
+
+inv_name						= bandit_outfit_name
+inv_name_short					= bandit_outfit_name
+description						= bandit_outfit_description
+
+inv_weight						= 3.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 11
+inv_grid_y         				= 7
+
+slot							= 6
+
+cost							= 1500
+
+immunities_sect					= sect_bandit_outfit_immunities
+
+burn_protection 				= 0.005
+shock_protection 				= 0.005
+radiation_protection 			= 0.005
+chemical_burn_protection 		= 0.005
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.15
+explosion_protection 			= 0.15
+wound_protection				= 0.15
+
+fire_wound_protection  			= 0.1
+physic_strike_wound_immunity 	= 0.1
+hit_fraction_actor				= 0.3
+control_inertion_factor			= 1.0
+power_loss 						= 1.0
+
+bones_koeff_protection  		= actor_armor_suit
+
+artefact_count          		= 0
+
+upgrades                		= up_gr_ab_bandit_outfit, up_gr_cd_bandit_outfit, up_gr_ef_bandit_outfit, up_gr_g_bandit_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u7
+
+[sect_bandit_outfit_immunities]
+burn_immunity					= 0.05
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.05
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.02
+
+;====================================================================================
+;============================== ¡¿Õƒ»“€ - œÀ¿Ÿ ( Œ–»◊Õ≈¬€…)
+;====================================================================================
+
+[bandit_veteran_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\bandit_veteran_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 0,6
+full_icon_name					= npc_icon_bandit_veteran_outfit
+
+visual          				= dynamics\outfit\bandit_veteran_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_bandit_brown.ogf
+player_hud_section				= actor_hud_bandit_cloak_brown
+
+inv_name						= bandit_veteran_outfit_name
+inv_name_short					= bandit_veteran_outfit_name
+description						= bandit_veteran_outfit_description
+
+inv_weight						= 3.5
+
+inv_grid_width     				= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 13
+inv_grid_y         				= 7
+
+slot							= 6
+
+cost							= 5000
+
+immunities_sect					= sect_bandit_veteran_outfit_immunities
+
+burn_protection 				= 0.015
+shock_protection 				= 0.010
+radiation_protection 			= 0.000
+chemical_burn_protection 		= 0.010
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.1
+explosion_protection 			= 0.1
+wound_protection				= 0.2
+
+fire_wound_protection  			= 0.2
+physic_strike_wound_immunity 	= 0.1
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_armor_suit
+
+artefact_count         			= 0
+
+upgrades                		= up_gr_ab_bandit_outfit, up_gr_cd_bandit_outfit, up_gr_ef_bandit_outfit, up_gr_g_bandit_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u7
+
+[sect_bandit_veteran_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.01
+shock_immunity					= 0.04
+wound_immunity					= 0.025
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.015
+
+[shram_outfit]:bandit_veteran_outfit
+actor_visual	        = actors\stalker_hero\stalker_hero_brown_cloak.ogf
+player_hud_section         			= actor_hud_bandit_cloak_brown
+
+inv_name			= shram_outfit_name
+inv_name_short		= shram_outfit_name
+description			= shram_outfit_description
+
+inv_grid_width     				= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 15
+inv_grid_y         				= 27
+
+cost				= 100
+
+;====================================================================================
+;============================== ¡¿Õƒ»“€ - œÀ¿Ÿ (◊≈–Õ€…)
+;====================================================================================
+
+[bandit_master_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\bandit_master_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 0,6
+full_icon_name					= npc_icon_bandit_master_outfit
+
+visual          				= dynamics\outfit\bandit_master_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_bandit_black.ogf
+player_hud_section				= actor_hud_bandit_cloak_black
+
+inv_name						= bandit_master_outfit_name
+inv_name_short					= bandit_master_outfit_name
+description						= bandit_master_outfit_description
+
+inv_weight						= 3.5
+
+inv_grid_width    	 			= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 15
+inv_grid_y         				= 7
+
+slot							= 6
+
+cost							= 6000
+
+immunities_sect					= sect_bandit_master_outfit_immunities
+
+burn_protection 				= 0.020
+shock_protection 				= 0.020
+radiation_protection 			= 0.000
+chemical_burn_protection 		= 0.020
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.2
+explosion_protection 			= 0.2
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.45
+physic_strike_wound_immunity 	= 0.2
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor
+
+artefact_count          		= 0
+
+upgrades                		= up_gr_ab_bandit_master_outfit, up_gr_cd_bandit_master_outfit, up_gr_ef_bandit_master_outfit, up_gr_g_bandit_master_outfit
+installed_upgrades      		=
+upgrade_scheme         	 		= upgrade_scheme_u8a
+
+[sect_bandit_master_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.01
+shock_immunity					= 0.04
+wound_immunity					= 0.025
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.015
+
+;====================================================================================
+;============================== ¡¿Õƒ»“€ - ¡–ŒÕ≈ Œ—“ﬁÃ
+;====================================================================================
+
+[bandit_heavy_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\bandit_heavy_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 4,11
+full_icon_name					= npc_icon_killer_outfit
+
+visual          				= dynamics\outfit\bandit_heavy_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_bandit.ogf
+player_hud_section				= actor_hud_bandit_heavy
+
+inv_name						= bandit_heavy_outfit_name
+inv_name_short					= bandit_heavy_outfit_name
+description						= bandit_heavy_outfit_description
+
+inv_weight						= 5.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 17
+inv_grid_y         				= 7
+
+slot							= 6
+
+cost							= 12000
+
+immunities_sect					= sect_bandit_heavy_outfit_immunities
+
+burn_protection 				= 0.015
+shock_protection 				= 0.030
+radiation_protection 			= 0.015
+chemical_burn_protection 		= 0.010
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.2
+explosion_protection 			= 0.25
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.2
+physic_strike_wound_immunity 	= 0.25
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor
+
+artefact_count          		= 1
+
+upgrades               		 	= up_gr_ab_stalker_outfit, up_gr_cd_stalker_outfit, up_gr_ef_stalker_outfit, up_gr_gh_stalker_outfit, up_gr_i_stalker_outfit
+installed_upgrades     		 	=
+upgrade_scheme          		= upgrade_scheme_u15a
+
+[sect_bandit_heavy_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.01
+shock_immunity					= 0.04
+wound_immunity					= 0.020
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.012
+
+;====================================================================================
+;============================== ƒŒÀ√ - —“¿Õƒ¿–“Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[dolg_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency			=
+$spawn 							= "outfit\dolg_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 8,11
+full_icon_name					= npc_icon_dolg_outfit
+
+visual							= dynamics\outfit\dolg_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_dolg.ogf
+player_hud_section				= actor_hud_02
+
+inv_name						= dolg_outfit_name
+inv_name_short					= dolg_outfit_name
+description						= dolg_outfit_description
+
+inv_weight						= 7.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 11
+inv_grid_y         				= 9
+
+slot							= 6
+
+cost							= 15000
+
+immunities_sect					= sect_dolg_outfit_immunities
+
+burn_protection 				= 0.009
+shock_protection 				= 0.009
+radiation_protection 			= 0.009
+chemical_burn_protection 		= 0.009
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.6
+hit_fraction_actor				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor_1
+
+artefact_count         	 		= 0
+
+upgrades                		= up_gr_ab_dolg_outfit, up_gr_cd_dolg_outfit, up_gr_ef_dolg_outfit, up_gr_gh_dolg_outfit, up_gr_i_dolg_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u14b
+
+[sect_dolg_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.0
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.01
+
+[sect_dolg_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.008
+
+[sect_dolg_outfit_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.0
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ƒŒÀ√ - Õ¿”◊Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[dolg_scientific_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\dolg_scientific_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 8,6
+full_icon_name					= npc_icon_dolg_scientific_outfit
+
+visual          				= dynamics\outfit\dolg_scientific_outfit
+actor_visual					= actors\stalker_dolg\stalker_dolg_1.ogf
+player_hud_section				= actor_hud_dolg_scientific
+
+inv_name						= dolg_scientific_outfit_name
+inv_name_short					= dolg_scientific_outfit_name
+description						= dolg_scientific_outfit_description
+
+inv_weight						= 9.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 13
+inv_grid_y         				= 9
+
+slot							= 6
+
+cost							= 40000
+
+immunities_sect					= sect_dolg_scientific_outfit_immunities
+
+burn_protection 				= 0.080
+shock_protection 				= 0.090
+radiation_protection 			= 0.090
+chemical_burn_protection 		= 0.070
+telepatic_protection 			= 0.025
+
+strike_protection 				= 0.4
+explosion_protection 			= 0.4
+wound_protection				= 0.4
+
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor				= 0.25
+control_inertion_factor 		= 1.5
+
+bones_koeff_protection 			= actor_light_armor_1
+
+artefact_count					= 2
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades						= up_gr_ab_dolg_scientific_outfit, up_gr_cd_dolg_scientific_outfit, up_gr_ef_dolg_scientific_outfit, up_gr_gh_dolg_scientific_outfit, up_gr_i_dolg_scientific_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u17a
+
+[sect_dolg_scientific_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_dolg_scientific_outfit_immunities_1]
+burn_immunity					= 0.02
+strike_immunity					= 0.008
+shock_immunity					= 0.02
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_dolg_scientific_outfit_immunities_2]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.007
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ƒŒÀ√ - “ﬂ∆≈À€…  ŒÃ¡»Õ≈«ŒÕ (— ¿“-9)
+;====================================================================================
+
+[dolg_heavy_extra_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\dolg_heavy_extra_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 10,6
+full_icon_name					= npc_icon_dolg_heavy_outfit
+
+visual          				= dynamics\outfit\dolg_skat_light
+actor_visual					= actors\stalker_dolg\stalker_dolg_3_2.ogf
+player_hud_section				= actor_hud_military_heavy_black
+
+inv_name						= dolg_skat_light_outfit_name
+inv_name_short					= dolg_skat_light_outfit_name
+description						= dolg_skat_light_outfit_description
+
+inv_weight						= 11.0
+
+inv_grid_width     				= 2
+inv_grid_height   	 			= 3
+inv_grid_x        	 			= 15
+inv_grid_y         				= 9
+
+slot							= 6
+
+cost							= 55000
+
+immunities_sect					= sect_dolg_heavy_extra_outfit_immunities
+
+burn_protection 				= 0.047
+shock_protection 				= 0.047
+radiation_protection 			= 0.047
+chemical_burn_protection 		= 0.047
+telepatic_protection 			= 0.047
+
+strike_protection 				= 0.35
+explosion_protection 			= 0.35
+wound_protection				= 0.35
+
+fire_wound_protection  			= 0.45
+physic_strike_wound_immunity 	= 0.45
+hit_fraction_actor				= 0.2
+control_inertion_factor 		= 1.8
+
+bones_koeff_protection			= actor_heavy_armor
+
+artefact_count					= 0
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades						= up_gr_ab_dolg_heavy_outfit, up_gr_cd_dolg_heavy_outfit, up_gr_ef_dolg_heavy_outfit, up_gr_gh_dolg_heavy_outfit, up_gr_i_dolg_heavy_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u16a
+
+[sect_dolg_heavy_extra_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_dolg_heavy_extra_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.03
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_dolg_heavy_extra_outfit_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.02
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.01
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ƒŒÀ√ - “ﬂ∆≈À€…  ŒÃ¡»Õ≈«ŒÕ (— ¿“-9Ã)
+;====================================================================================
+
+[dolg_heavy_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\dolg_heavy_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 8,6
+full_icon_name					= npc_icon_dolg_heavy_outfit
+
+visual          				= dynamics\outfit\dolg_skat
+actor_visual					= actors\stalker_dolg\stalker_dolg_3_1.ogf
+player_hud_section				= actor_hud_military_heavy_black
+
+inv_name						= dolg_skat_outfit_name
+inv_name_short					= dolg_skat_outfit_name
+description						= dolg_skat_outfit_description
+
+inv_weight						= 12.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 17
+inv_grid_y         				= 9
+
+slot							= 6
+
+cost							= 65000
+
+immunities_sect					= sect_dolg_heavy_outfit_immunities
+
+burn_protection 				= 0.053
+shock_protection 				= 0.053
+radiation_protection 			= 0.053
+chemical_burn_protection 		= 0.053
+telepatic_protection 			= 0.053
+
+strike_protection 				= 0.45
+explosion_protection 			= 0.45
+wound_protection				= 0.45
+
+fire_wound_protection  			= 0.45
+physic_strike_wound_immunity 	= 0.45
+hit_fraction_actor				= 0.2
+control_inertion_factor 		= 1.8
+
+bones_koeff_protection 			= actor_heavy_armor
+
+artefact_count          		= 0
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades						= up_gr_ab_dolg_heavy_extra_outfit, up_gr_cd_dolg_heavy_extra_outfit, up_gr_ef_dolg_heavy_extra_outfit, up_gr_gh_dolg_heavy_extra_outfit, up_gr_i_dolg_heavy_extra_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u16a
+
+[sect_dolg_heavy_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_dolg_heavy_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.03
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_dolg_heavy_outfit_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.02
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.01
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ƒŒÀ√ - “ﬂ∆≈À€…  ŒÃ¡»Õ≈«ŒÕ (ÿ“”–ÃŒ¬Œ…)
+;====================================================================================
+
+[dolg_heavy_extra2_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\dolg_heavy_extra2_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_stalker_heavy_outfit
+
+visual							= dynamics\outfit\dolg_heavy_outfit
+actor_visual					= actors\stalker_dolg\stalker_dolg_5.ogf
+player_hud_section				= actor_hud_dolg_heavy
+
+inv_name						= dolg_heavy_extra2_outfit_name
+inv_name_short					= dolg_heavy_extra2_outfit_name
+description						= dolg_heavy_extra2_outfit_description
+
+inv_weight						= 14.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 19
+inv_grid_y         				= 9
+
+slot							= 6
+
+cost							= 50000
+
+immunities_sect					= sect_dolg_heavy_extra2_outfit_immunities
+
+burn_protection 				= 0.03
+shock_protection 				= 0.03
+chemical_burn_protection		= 0.03
+radiation_protection 			= 0.03
+telepatic_protection 			= 0.03
+
+strike_protection				= 0.35
+explosion_protection 			= 0.35
+wound_protection				= 0.35
+
+fire_wound_protection  			= 0.35
+physic_strike_wound_immunity 	= 0.35
+hit_fraction_actor				= 0.25
+control_inertion_factor			= 1.8
+
+bones_koeff_protection			= actor_medium_armor_1
+
+artefact_count					= 2
+
+upgrades						= up_gr_ab_dolg_heavy_extra2_outfit, up_gr_cd_dolg_heavy_extra2_outfit, up_gr_ef_dolg_heavy_extra2_outfit, up_gr_gh_dolg_heavy_extra2_outfit, up_gr_i_dolg_heavy_extra2_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u15
+
+[sect_dolg_heavy_extra2_outfit_immunities]
+burn_immunity					= 0.05
+strike_immunity					= 0.05
+shock_immunity					= 0.0
+wound_immunity					= 0.05
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.01
+
+[sect_dolg_heavy_extra2_outfit_immunities_1]
+burn_immunity					= 0.04
+strike_immunity					= 0.0
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.008
+
+[sect_dolg_heavy_extra2_outfit_immunities_2]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ƒŒÀ√ - › «Œ— ≈À≈“
+;====================================================================================
+
+[dolg_exo_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\dolg_exo_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 5
+
+full_scale_icon					= 2,11
+full_icon_name					= npc_icon_dolg_exo_outfit
+
+visual							= dynamics\outfit\dolg_exo_outfit
+actor_visual					= actors\stalker_dolg\stalker_dolg_4.ogf
+player_hud_section				= actor_hud_dolg_exo
+
+inv_name						= dolg_black_exoskeleton_name
+inv_name_short					= dolg_black_exoskeleton_name
+description						= dolg_black_exoskeleton_description
+
+inv_weight						= 20.0
+
+inv_grid_width     				= 2
+inv_grid_height   	 			= 3
+inv_grid_x         				= 21
+inv_grid_y         				= 9
+
+slot							= 6
+
+cost							= 80000
+
+immunities_sect					= sect_dolg_black_exoskeleton_immunities
+
+burn_protection 				= 0.050
+shock_protection 				= 0.050
+radiation_protection 			= 0.050
+chemical_burn_protection 		= 0.040
+telepatic_protection 			= 0.020
+
+strike_protection 				= 0.7
+explosion_protection 			= 0.7
+wound_protection				= 0.7
+
+fire_wound_protection  			= 0.8
+physic_strike_wound_immunity 	= 0.8
+hit_fraction_actor				= 0.2
+control_inertion_factor			= 2.5
+
+bones_koeff_protection			= actor_heavy_armor_1
+
+artefact_count                	= 1
+
+sprint_allowed					= false
+
+additional_inventory_weight		= 35
+additional_inventory_weight2	= 35
+
+power_restore_speed				= 0.005
+
+upgrades                		= up_gr_ab_dolg_exo_outfit, up_gr_cd_dolg_exo_outfit, up_gr_e_dolg_exo_outfit, up_gr_f_dolg_exo_outfit, up_gr_gh_dolg_exo_outfit, up_gr_kl_dolg_exo_outfit
+installed_upgrades      		=
+upgrade_scheme         		 	= upgrade_scheme_u20a
+
+[sect_dolg_black_exoskeleton_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.005
+
+[sect_dolg_black_exoskeleton_immunities_1]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.005
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== —¬Œ¡Œƒ¿ - À≈√ »…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[svoboda_light_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\svoboda_light_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 10,11
+full_icon_name					= npc_icon_svoboda_light_outfit
+
+visual							= dynamics\outfit\svoboda_light_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_freedom_novice.ogf
+player_hud_section				= actor_hud_03
+
+inv_name						= svoboda_light_outfit_name
+inv_name_short					= svoboda_light_outfit_name
+description						= svoboda_light_outfit_description
+
+inv_weight						= 3.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 11
+inv_grid_y         				= 12
+
+slot							= 6
+
+cost							= 12000
+
+immunities_sect					= sect_svoboda_light_outfit_immunities
+
+radiation_protection 			= 0.011
+chemical_burn_protection 		= 0.011
+burn_protection 				= 0.011
+shock_protection 				= 0.011
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.25
+explosion_protection 			= 0.25
+wound_protection				= 0.25
+
+fire_wound_protection  			= 0.2
+physic_strike_wound_immunity 	= 0.2
+hit_fraction_actor				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor
+
+artefact_count          		= 2
+
+upgrades                		= up_gr_ab_svoboda_light_outfit, up_gr_cd_svoboda_light_outfit, up_gr_ef_svoboda_light_outfit, up_gr_gh_svoboda_light_outfit, up_gr_i_svoboda_light_outfit
+installed_upgrades     	 		=
+upgrade_scheme          		= upgrade_scheme_u13a
+
+[sect_svoboda_light_outfit_immunities]
+burn_immunity					= 0.05
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.05
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.015
+
+[sect_svoboda_light_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+;====================================================================================
+;============================== —¬Œ¡Œƒ¿ - —“¿Õƒ¿–“Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[svoboda_light2_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\svoboda_light2_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_svoboda_heavy_outfit
+
+visual          				= dynamics\outfit\svoboda_light2_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_freedom.ogf
+player_hud_section				= actor_hud_freedom_outfit
+
+inv_name						= svoboda_light2_outfit_name
+inv_name_short					= svoboda_light2_outfit_name
+description						= svoboda_light2_outfit_description
+
+inv_weight						= 6.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 13
+inv_grid_y         				= 12
+
+slot							= 6
+
+cost							= 20000
+
+immunities_sect					= sect_svoboda_light2_outfit_immunities
+
+burn_protection 				= 0.040
+shock_protection 				= 0.040
+radiation_protection 			= 0.040
+chemical_burn_protection 		= 0.040
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.6
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor_1
+
+artefact_count          		= 1
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades                		= up_gr_ab_svoboda_light2_outfit, up_gr_cd_svoboda_light2_outfit, up_gr_ef_svoboda_light2_outfit, up_gr_gh_svoboda_light2_outfit, up_gr_i_svoboda_light2_outfit
+installed_upgrades      		=
+upgrade_scheme					= upgrade_scheme_u16a
+
+[sect_svoboda_light2_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_svoboda_light2_outfit_immunities_1]
+burn_immunity					= 0.02
+strike_immunity					= 0.008
+shock_immunity					= 0.02
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_svoboda_light2_outfit_immunities_2]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.007
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== —¬Œ¡Œƒ¿ - Õ¿”◊Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[svoboda_scientific_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency			=
+$spawn							= "outfit\svoboda_scientific_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 8,6
+full_icon_name					= npc_icon_dolg_scientific_outfit
+
+visual          				= dynamics\outfit\svoboda_scientific_outfit
+actor_visual					= actors\stalker_freedom\stalker_freedom_5.ogf
+player_hud_section				= actor_hud_freedom_scientific
+
+inv_name						= svoboda_scientific_outfit_name
+inv_name_short					= svoboda_scientific_outfit_name
+description						= svoboda_scientific_outfit_description
+
+inv_weight						= 8.5
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 15
+inv_grid_y         				= 12
+
+slot							= 6
+
+cost							= 45000
+
+immunities_sect					= sect_svoboda_scientific_outfit_immunities
+
+burn_protection 				= 0.09
+shock_protection 				= 0.09
+radiation_protection 			= 0.09
+chemical_burn_protection 		= 0.08
+telepatic_protection 			= 0.04
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor				= 0.25
+control_inertion_factor 		= 1.5
+
+bones_koeff_protection			= actor_light_armor_1
+
+artefact_count					= 2
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades						= up_gr_ab_svoboda_scientific_outfit, up_gr_cd_svoboda_scientific_outfit, up_gr_ef_svoboda_scientific_outfit, up_gr_gh_svoboda_scientific_outfit, up_gr_i_svoboda_scientific_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u17a
+
+[sect_svoboda_scientific_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_svoboda_scientific_outfit_immunities_1]
+burn_immunity					= 0.02
+strike_immunity					= 0.008
+shock_immunity					= 0.02
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_svoboda_scientific_outfit_immunities_2]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.007
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== —¬Œ¡Œƒ¿ - “ﬂ∆≈À€…  ŒÃ¡»Õ≈«ŒÕ (¡≈–»ÀÀ)
+;====================================================================================
+
+[svoboda_heavy_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\svoboda_heavy_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+visual							= dynamics\outfit\svoboda_heavy_outfit
+actor_visual					= actors\stalker_freedom\stalker_freedom_3_1.ogf
+player_hud_section				= actor_hud_freedom_heavy_outfit
+
+inv_name						= svoboda_heavy_outfit_name
+inv_name_short					= svoboda_heavy_outfit_name
+description						= svoboda_heavy_outfit_description
+
+inv_weight						= 7.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 17
+inv_grid_y         				= 12
+
+full_icon_name					= npc_icon_svoboda_heavy_outfit
+
+cost							= 35000
+slot							= 6
+full_scale_icon					= 2,6
+
+immunities_sect					= sect_svoboda_heavy_outfit_immunities
+
+burn_protection 				= 0.020
+shock_protection 				= 0.020
+radiation_protection 			= 0.020
+chemical_burn_protection 		= 0.020
+telepatic_protection 			= 0.020
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.0
+physic_strike_wound_immunity 	= 0.35
+hit_fraction_actor				= 0.2
+control_inertion_factor 		= 1.5
+
+bones_koeff_protection 			= actor_medium_armor
+
+artefact_count          		= 0
+
+upgrades                		= up_gr_ab_svoboda_heavy_outfit, up_gr_cd_svoboda_heavy_outfit, up_gr_ef_svoboda_heavy_outfit, up_gr_gh_svoboda_heavy_outfit, up_gr_i_svoboda_heavy_outfit
+installed_upgrades      		=
+upgrade_scheme         	 		= upgrade_scheme_u15
+
+[sect_svoboda_heavy_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.0
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.01
+
+[sect_svoboda_heavy_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.008
+
+[sect_svoboda_heavy_outfit_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.0
+shock_immunity					= 0.02
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== —¬Œ¡Œƒ¿ - “ﬂ∆≈À€…  ŒÃ¡»Õ≈«ŒÕ (ÿ“”–ÃŒ¬Œ…)
+;====================================================================================
+
+[svoboda_heavy_extra_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\svoboda_heavy_extra_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_stalker_heavy_outfit
+
+visual							= dynamics\outfit\svoboda_heavy_extra_outfit
+actor_visual					= actors\stalker_freedom\stalker_freedom_6.ogf
+player_hud_section				= actor_hud_freedom_heavy
+
+inv_name						= svoboda_heavy_extra_outfit_name
+inv_name_short					= svoboda_heavy_extra_outfit_name
+description						= svoboda_heavy_extra_outfit_description
+
+inv_weight						= 12.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x        	 			= 19
+inv_grid_y         				= 12
+
+slot							= 6
+
+cost							= 52000
+
+immunities_sect					= sect_svoboda_heavy_extra_outfit_immunities
+
+burn_protection 				= 0.04
+shock_protection 				= 0.04
+chemical_burn_protection		= 0.04
+radiation_protection 			= 0.04
+telepatic_protection 			= 0.04
+
+strike_protection				= 0.4
+explosion_protection 			= 0.4
+wound_protection				= 0.4
+
+fire_wound_protection  			= 0.35
+physic_strike_wound_immunity 	= 0.35
+hit_fraction_actor				= 0.25
+control_inertion_factor			= 1.8
+
+bones_koeff_protection			= actor_medium_armor_1
+
+artefact_count					= 0
+
+upgrades						= up_gr_ab_svoboda_heavy_extra_outfit, up_gr_cd_svoboda_heavy_extra_outfit, up_gr_ef_svoboda_heavy_extra_outfit, up_gr_gh_svoboda_heavy_extra_outfit, up_gr_i_svoboda_heavy_extra_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u15
+
+[sect_svoboda_heavy_extra_outfit_immunities]
+burn_immunity					= 0.045
+strike_immunity					= 0.045
+shock_immunity					= 0.0
+wound_immunity					= 0.045
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.01
+
+[sect_svoboda_heavy_extra_outfit_immunities_1]
+burn_immunity					= 0.035
+strike_immunity					= 0.0
+shock_immunity					= 0.035
+wound_immunity					= 0.035
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.035
+explosion_immunity				= 0.035
+fire_wound_immunity				= 0.008
+
+[sect_svoboda_heavy_extra_outfit_immunities_2]
+burn_immunity					= 0.025
+strike_immunity					= 0.025
+shock_immunity					= 0.0
+wound_immunity					= 0.025
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.025
+explosion_immunity				= 0.025
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== —¬Œ¡Œƒ¿ - › «Œ— ≈À≈“
+;====================================================================================
+
 [svoboda_exo_outfit]:outfit_base
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\svoboda_exo_outfit"
-$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
-visual          = dynamics\outfit\svoboda_exo_outfit
-actor_visual	= actors\stalker_freedom\stalker_freedom_4.ogf
-player_hud_section	= actor_hud_exo
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\svoboda_exo_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform          					= skeleton
+ef_equipment_type				= 5
 
-ef_equipment_type	= 5
+full_scale_icon					= 2,11
+full_icon_name					= npc_icon_exo_outfit
 
-inv_name			= exo_freedom_outfit_name
-inv_name_short		= exo_freedom_outfit_name
-description			= exo_freedom_outfit_description
-inv_weight			= 15.0
-slot				= 6
-inv_grid_width		= 2
-inv_grid_height		= 3
-inv_grid_x			= 13
-inv_grid_y			= 27
-full_icon_name		= npc_icon_exo_outfit
-;nightvision_sect	= effector_nightvision_bad
+visual							= dynamics\outfit\svoboda_exo_outfit
+actor_visual					= actors\stalker_freedom\stalker_freedom_4.ogf
+player_hud_section				= actor_hud_freedom_exo
 
-cost				= 60000
-full_scale_icon		= 2,11			;ËÍÓÌÍ‡ ÒÚ‡ÎÍÂ‡ ‚ ÍÓÒÚ˛ÏÂ ‚ ÔÓÎÌ˚È ÓÒÚ
+inv_name						= exo_freedom_outfit_name
+inv_name_short					= exo_freedom_outfit_name
+description						= exo_freedom_outfit_description
 
-immunities_sect			= sect_svoboda_exo_outfit_immunities
+inv_weight						= 15.0
 
-; MEDIUM RESISTANCE
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 21
+inv_grid_y         				= 12
+
+slot							= 6
+
+cost							= 75000
+
+immunities_sect					= sect_svoboda_exo_outfit_immunities
+
 burn_protection 				= 0.034
 shock_protection 				= 0.034
 radiation_protection 			= 0.034
 chemical_burn_protection 		= 0.034
 telepatic_protection 			= 0.034
+
 strike_protection 				= 0.4
 explosion_protection 			= 0.4
 wound_protection				= 0.4
-fire_wound_protection  			= 0.4
-physic_strike_wound_immunity 	= 0.4
 
-;Á‡ÔÂ˘ÂÌËÂ ÂÊËÏ‡ Sprint ‰Îˇ ¿ÍÚÂ‡
-sprint_allowed			= false
-bones_koeff_protection	= actor_heavy_armor_1
-hit_fraction_actor		= 0.2
-artefact_count          = 2
-control_inertion_factor = 2.1
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity	= 0.4
+hit_fraction_actor				= 0.2
+control_inertion_factor 		= 2.1
+
+bones_koeff_protection			= actor_heavy_armor_1
+
+artefact_count					= 3
+
+sprint_allowed					= false
 
 additional_inventory_weight		= 20
-additional_inventory_weight2	= 20 ; 40+
+additional_inventory_weight2	= 20
 
-upgrades                = up_gr_ab_svoboda_exo_outfit, up_gr_cd_svoboda_exo_outfit, up_gr_ef_svoboda_exo_outfit, up_gr_gh_svoboda_exo_outfit, up_gr_k_svoboda_exo_outfit
-installed_upgrades      =
-upgrade_scheme          = upgrade_scheme_u19a
+bleeding_restore_speed			= 0.006
+
+upgrades                		= up_gr_ab_svoboda_exo_outfit, up_gr_cd_svoboda_exo_outfit, up_gr_e_svoboda_exo_outfit, up_gr_f_svoboda_exo_outfit, up_gr_gh_svoboda_exo_outfit, up_gr_kl_svoboda_exo_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u19a
 
 [sect_svoboda_exo_outfit_immunities]
-burn_immunity				= 0.01			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.01
-shock_immunity				= 0.01
-wound_immunity				= 0.01
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.01
-explosion_immunity			= 0.01
-fire_wound_immunity			= 0.01
+burn_immunity					= 0.01
+strike_immunity					= 0.01
+shock_immunity					= 0.01
+wound_immunity					= 0.01
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.01
+explosion_immunity				= 0.01
+fire_wound_immunity				= 0.01
 
 [sect_svoboda_exo_outfit_immunities_1]
-burn_immunity				= 0.005			;ÍÓ˝ÙÙËˆËÂÌÚ˚ ËÏÏÛÌËÚÂÚ‡ Ò‡ÏÓ„Ó ÍÓÒÚ˛Ï‡
-strike_immunity				= 0.005
-shock_immunity				= 0.005
-wound_immunity				= 0.005
-radiation_immunity			= 0.0
-telepatic_immunity			= 0.0
-chemical_burn_immunity		= 0.005
-explosion_immunity			= 0.005
-fire_wound_immunity			= 0.005
+burn_immunity					= 0.005
+strike_immunity					= 0.005
+shock_immunity					= 0.005
+wound_immunity					= 0.005
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.005
+explosion_immunity				= 0.005
+fire_wound_immunity				= 0.005
 
+;====================================================================================
+;============================== Õ¿≈ÃÕ» » - ¡–ŒÕ≈ Œ—“ﬁÃ
+;====================================================================================
 
-;*****************************************************************
-;*****************************************************************
+[killer_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\killer_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
 
-[stalker_outfit_up_stalk]:stalker_outfit
+full_scale_icon					= 4,11
+full_icon_name					= npc_icon_killer_outfit
+
+visual          				= dynamics\outfit\killer_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_killer.ogf
+player_hud_section				= actor_hud_killer_outfit
+
+inv_name						= killer_outfit_name
+inv_name_short					= killer_outfit_name
+description						= killer_outfit_description
+
+inv_weight						= 5.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 13
+inv_grid_y         				= 15
+
+slot							= 6
+
+cost							= 15000
+
+immunities_sect					= sect_killer_outfit_immunities
+
+burn_protection 				= 0.030
+shock_protection 				= 0.030
+radiation_protection 			= 0.030
+chemical_burn_protection 		= 0.020
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.2
+explosion_protection 			= 0.25
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.25
+physic_strike_wound_immunity 	= 0.2
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor
+
+artefact_count          		= 0
+
+upgrades                		= up_gr_ab_killer_outfit, up_gr_cd_killer_outfit, up_gr_ef_killer_outfit, up_gr_gh_killer_outfit, up_gr_i_killer_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u16a
+
+[sect_killer_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.01
+shock_immunity					= 0.04
+wound_immunity					= 0.02
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.012
+
+[sect_killer_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.008
+shock_immunity					= 0.03
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_killer_outfit_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.005
+shock_immunity					= 0.02
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.006
+
+;====================================================================================
+;============================== Õ¿≈ÃÕ» » - ¡–ŒÕ≈ Œ—“ﬁÃ (—≈–€…)
+;====================================================================================
+
+[killer_outfit_dark]:outfit_base
 GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= "outfit\stalker_outfit_up_stalk"
-;$prefetch 		= 32
-class			= E_STLK
-cform           = skeleton
+discovery_dependency 	= 
+$spawn 			= "outfit\killer_outfit_dark"
+class				= E_STLK
+cform           		= skeleton
+ef_equipment_type		= 4
 
-upgrades                = up_gr_ab_stalker_outfit, up_gr_cd_stalker_outfit, up_gr_ef_stalker_outfit, up_gr_gh_stalker_outfit, up_gr_i_stalker_outfit
-installed_upgrades      = up_b_stalker_outfit, up_d_stalker_outfit, up_f_stalker_outfit, up_h_stalker_outfit, up_i_stalker_outfit, up_i2_stalker_outfit
-upgrade_scheme          = upgrade_scheme_u15a
+full_scale_icon					= 4,11
+full_icon_name					= npc_icon_killer_outfit
+
+visual          		= dynamics\outfit\killer_outfit_dark
+actor_visual		= actors\stalker_hero\stalker_hero_killer_dark.ogf
+player_hud_section	= actor_hud_killer_outfit_dark
+
+inv_name			= killer_outfit_dark_name
+inv_name_short		= killer_outfit_dark_name
+description			= killer_outfit_dark_description
+
+inv_weight			= 4.0
+
+inv_grid_width		= 2
+inv_grid_height		= 2
+inv_grid_x			= 11
+inv_grid_y			= 15
+
+slot				= 6
+
+cost				= 14000
+
+immunities_sect		= sect_killer_outfit_dark_immunities
+
+burn_protection 				= 0.030
+shock_protection 				= 0.030
+radiation_protection 			= 0.025
+chemical_burn_protection 		= 0.015
+telepatic_protection 			= 0.000
+
+strike_protection 			        = 0.2
+explosion_protection 			= 0.25
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.25
+physic_strike_wound_immunity 	= 0.2
+hit_fraction_actor                              = 0.3
+control_inertion_factor                 = 1.2
+
+bones_koeff_protection 			= actor_light_armor
+
+artefact_count          		= 0
+
+upgrades               		 	= up_gr_ab_killer_outfit_dark, up_gr_cd_killer_outfit_dark, up_gr_ef_killer_outfit_dark, up_gr_gh_killer_outfit_dark, up_gr_i_killer_outfit_dark
+installed_upgrades     		 	=
+upgrade_scheme          		= upgrade_scheme_u15a
+
+[sect_killer_outfit_dark_immunities]
+burn_immunity				= 0.04
+strike_immunity				= 0.01
+shock_immunity				= 0.04
+wound_immunity				= 0.02
+radiation_immunity			= 0.00
+telepatic_immunity			= 0.00
+chemical_burn_immunity		= 0.04
+explosion_immunity			= 0.04
+fire_wound_immunity			= 0.012
+
+[sect_killer_outfit_dark_immunities_1]
+burn_immunity				= 0.03
+strike_immunity				= 0.008
+shock_immunity				= 0.03
+wound_immunity				= 0.015
+radiation_immunity			= 0.00
+telepatic_immunity			= 0.00
+chemical_burn_immunity		= 0.03
+explosion_immunity			= 0.03
+fire_wound_immunity			= 0.01
+
+[sect_killer_outfit_dark_immunities_2]
+burn_immunity				= 0.02
+strike_immunity				= 0.005
+shock_immunity				= 0.02
+wound_immunity				= 0.01
+radiation_immunity			= 0.00
+telepatic_immunity			= 0.00
+chemical_burn_immunity		= 0.02
+explosion_immunity			= 0.02
+fire_wound_immunity			= 0.006
+
+;====================================================================================
+;============================== Õ¿≈ÃÕ» » - ” –≈œÀ≈ÕÕ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[killer_light2_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\killer_light2_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_svoboda_heavy_outfit
+
+visual          				= dynamics\outfit\killer_light2_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_killer_light2.ogf
+player_hud_section				= actor_hud_killer_scientific
+
+inv_name						= killer_light2_outfit_name
+inv_name_short					= killer_light2_outfit_name
+description						= killer_light2_outfit_description
+
+inv_weight						= 6.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 15
+inv_grid_y         				= 15
+
+slot							= 6
+
+cost							= 20000
+
+immunities_sect					= sect_killer_light2_outfit_immunities
+
+burn_protection 				= 0.040
+shock_protection 				= 0.040
+radiation_protection 			= 0.040
+chemical_burn_protection 		= 0.040
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.6
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor_1
+
+artefact_count          		= 1
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades                		= up_gr_ab_killer_light2_outfit, up_gr_cd_killer_light2_outfit, up_gr_ef_killer_light2_outfit, up_gr_gh_killer_light2_outfit, up_gr_i_killer_light2_outfit
+installed_upgrades      		=
+upgrade_scheme					= upgrade_scheme_u16a
+
+[sect_killer_light2_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_killer_light2_outfit_immunities_1]
+burn_immunity					= 0.02
+strike_immunity					= 0.008
+shock_immunity					= 0.02
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_killer_light2_outfit_immunities_2]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.007
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== Õ¿≈ÃÕ» » - Õ¿”◊Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[killer_scientific_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\killer_scientific_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 8,6
+full_icon_name					= npc_icon_dolg_scientific_outfit
+
+visual          				= dynamics\outfit\killer_scientific_outfit
+actor_visual					= actors\stalker_merc\stalker_merc_1.ogf
+player_hud_section				= actor_hud_killer_scientific
+
+inv_name						= killer_scientific_outfit_name
+inv_name_short					= killer_scientific_outfit_name
+description						= killer_scientific_outfit_description
+
+inv_weight						= 8.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 17
+inv_grid_y         				= 15
+
+slot							= 6
+
+cost							= 49000
+
+immunities_sect					= sect_killer_scientific_outfit_immunities
+
+burn_protection 				= 0.09
+shock_protection 				= 0.08
+radiation_protection 			= 0.08
+chemical_burn_protection 		= 0.06
+telepatic_protection 			= 0.02
+
+strike_protection 				= 0.5
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor				= 0.25
+control_inertion_factor 		= 1.5
+
+bones_koeff_protection			= actor_light_armor_1
+
+artefact_count					= 2
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades						= up_gr_ab_killer_scientific_outfit, up_gr_cd_killer_scientific_outfit, up_gr_ef_killer_scientific_outfit, up_gr_gh_killer_scientific_outfit, up_gr_i_killer_scientific_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u17a
+
+[sect_killer_scientific_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_killer_scientific_outfit_immunities_1]
+burn_immunity					= 0.02
+strike_immunity					= 0.008
+shock_immunity					= 0.02
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_killer_scientific_outfit_immunities_2]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.007
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== Õ¿≈ÃÕ» » - “ﬂ∆≈À€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[killer_heavy_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\killer_heavy_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_stalker_heavy_outfit
+
+visual							= dynamics\outfit\killer_heavy_outfit
+actor_visual					= actors\stalker_merc\stalker_merc_3.ogf
+player_hud_section				= actor_hud_killer_heavy
+
+inv_name						= killer_heavy_outfit_name
+inv_name_short					= killer_heavy_outfit_name
+description						= killer_heavy_outfit_description
+
+inv_weight						= 10.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 19
+inv_grid_y         				= 15
+
+slot							= 6
+
+cost							= 64000
+
+immunities_sect					= sect_killer_heavy_outfit_immunities
+
+burn_protection 				= 0.03
+shock_protection 				= 0.03
+chemical_burn_protection		= 0.03
+radiation_protection 			= 0.03
+telepatic_protection 			= 0.03
+
+strike_protection				= 0.35
+explosion_protection 			= 0.35
+wound_protection				= 0.35
+
+fire_wound_protection  			= 0.35
+physic_strike_wound_immunity 	= 0.35
+hit_fraction_actor				= 0.25
+control_inertion_factor			= 1.8
+
+bones_koeff_protection			= actor_medium_armor_1
+
+artefact_count					= 2
+
+upgrades						= up_gr_ab_killer_heavy_outfit, up_gr_cd_killer_heavy_outfit, up_gr_ef_killer_heavy_outfit, up_gr_gh_killer_heavy_outfit, up_gr_i_killer_heavy_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u15
+
+[sect_killer_heavy_outfit_immunities]
+burn_immunity					= 0.05
+strike_immunity					= 0.05
+shock_immunity					= 0.0
+wound_immunity					= 0.05
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.01
+
+[sect_killer_heavy_outfit_immunities_1]
+burn_immunity					= 0.04
+strike_immunity					= 0.0
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.008
+
+[sect_killer_heavy_outfit_immunities_2]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== Õ¿≈ÃÕ» » - › «Œ— ≈À≈“
+;====================================================================================
+
+[killer_exo_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\killer_exo_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform          					= skeleton
+ef_equipment_type				= 5
+
+full_scale_icon					= 2,11
+full_icon_name					= npc_icon_killer_exo_outfit
+
+visual          				= dynamics\outfit\killer_exo_outfit
+actor_visual					= actors\stalker_merc\stalker_merc_4.ogf
+player_hud_section				= actor_hud_killer_exo
+
+inv_name						= killer_blue_exoskeleton_name
+inv_name_short					= killer_blue_exoskeleton_name
+description						= killer_blue_exoskeleton_description
+
+inv_weight						= 11.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 21
+inv_grid_y         				= 15
+
+slot							= 6
+
+cost							= 88000
+
+immunities_sect					= sect_killer_blue_exoskeleton_immunities
+
+burn_protection 				= 0.03
+shock_protection 				= 0.03
+radiation_protection 			= 0.03
+chemical_burn_protection 		= 0.03
+telepatic_protection 			= 0.03
+
+strike_protection 				= 0.5
+explosion_protection 			= 0.7
+wound_protection				= 0.35
+
+fire_wound_protection  			= 0.7
+physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor				= 0.25
+control_inertion_factor			= 2.5
+
+bones_koeff_protection			= actor_heavy_armor_1
+
+artefact_count          		= 2
+
+sprint_allowed					= false
+
+additional_inventory_weight		= 15
+additional_inventory_weight2	= 15
+
+satiety_restore_speed			= 0.001
+
+upgrades                		= up_gr_ab_killer_exo_outfit, up_gr_cd_killer_exo_outfit, up_gr_e_killer_exo_outfit, up_gr_f_killer_exo_outfit, up_gr_gh_killer_exo_outfit, up_gr_kl_killer_exo_outfit
+installed_upgrades      		=
+upgrade_scheme         	 		= upgrade_scheme_u20a
+
+[sect_killer_blue_exoskeleton_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.005
+
+[sect_killer_blue_exoskeleton_immunities_1]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.005
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ÃŒÕŒÀ»“ - ”À”◊ÿ≈ÕÕ€… —“¿Õƒ¿–“Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[monolith_light_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\monolith_light_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 6,11
+full_icon_name					= npc_icon_monolit_outfit
+
+visual          				= dynamics\outfit\monolith_light_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_monolit_light.ogf
+player_hud_section				= actor_hud_monolith_outfit
+
+inv_name						= monolit_light_outfit_name
+inv_name_short					= monolit_light_outfit_name
+description						= monolit_light_outfit_description
+
+inv_weight						= 5.0
+
+inv_grid_width    	 			= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 13
+inv_grid_y         				= 18
+
+slot							= 6
+
+cost							= 21000
+
+immunities_sect					= sect_monolit_light_outfit_immunities
+
+burn_protection 				= 0.04
+shock_protection 				= 0.04
+radiation_protection 			= 0.055
+chemical_burn_protection 		= 0.055
+telepatic_protection 			= 0.00
+
+strike_protection 				= 0.4
+explosion_protection 			= 0.4
+wound_protection				= 0.4
+
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor
+
+artefact_count        	 		= 0
+
+upgrades                		= up_gr_ab_monolith_outfit, up_gr_cd_monolith_outfit, up_gr_ef_monolith_outfit, up_gr_gh_monolith_outfit, up_gr_i_monolith_outfit
+installed_upgrades     	 		=
+upgrade_scheme          		= upgrade_scheme_u15a
+
+[sect_monolit_light_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_monolit_light_outfit_immunities_1]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.007
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ÃŒÕŒÀ»“ - —“¿Õƒ¿–“Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[monolith_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\monolith_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 6,11
+full_icon_name					= npc_icon_monolit_outfit
+
+visual          				= dynamics\outfit\monolith_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_monolith.ogf
+player_hud_section				= actor_hud_monolith_outfit
+
+inv_name						= monolit_outfit_name
+inv_name_short					= monolit_outfit_name
+description						= monolit_outfit_description
+
+inv_weight						= 5.0
+
+inv_grid_width    	 			= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 15
+inv_grid_y         				= 18
+
+slot							= 6
+
+cost							= 19000
+
+immunities_sect					= sect_monolit_outfit_immunities
+
+burn_protection 				= 0.045
+shock_protection 				= 0.045
+radiation_protection 			= 0.045
+chemical_burn_protection 		= 0.045
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.4
+explosion_protection 			= 0.4
+wound_protection				= 0.4
+
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor 				= 0.3
+control_inertion_factor 		= 1.2
+
+bones_koeff_protection 			= actor_light_armor
+
+artefact_count        	 		= 0
+
+upgrades                		= up_gr_ab_monolith_outfit, up_gr_cd_monolith_outfit, up_gr_ef_monolith_outfit, up_gr_gh_monolith_outfit, up_gr_i_monolith_outfit
+installed_upgrades     	 		=
+upgrade_scheme          		= upgrade_scheme_u15a
+
+[sect_monolit_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_monolit_outfit_immunities_1]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.007
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ÃŒÕŒÀ»“ - Õ¿”◊Õ€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[monolith_scientific_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\monolith_scientific_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 8,6
+full_icon_name					= npc_icon_monolit_scientific_outfit
+
+visual         					= dynamics\outfit\monolith_scientific_outfit
+actor_visual					= actors\stalker_monolith\stalker_monolith_1.ogf
+player_hud_section				= actor_hud_monolith_outfit
+
+inv_name						= monolit_scientific_outfit_name
+inv_name_short					= monolit_scientific_outfit_name
+description						= monolit_scientific_outfit_description
+
+inv_weight						= 6.0
+
+inv_grid_width     				= 2
+inv_grid_height   	 			= 3
+inv_grid_x         				= 17
+inv_grid_y         				= 18
+
+slot							= 6
+
+cost							= 48000
+
+immunities_sect					= sect_monolit_scientific_outfit_immunities
+
+burn_protection 				= 0.080
+shock_protection 				= 0.080
+radiation_protection 			= 0.080
+chemical_burn_protection 		= 0.080
+telepatic_protection 			= 0.010
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.4
+physic_strike_wound_immunity 	= 0.7
+hit_fraction_actor				= 0.25
+control_inertion_factor 		= 1.5
+
+bones_koeff_protection 			= actor_light_armor_1
+
+artefact_count					= 0
+
+upgrades						= up_gr_ab_monolith_scientific_outfit, up_gr_cd_monolith_scientific_outfit, up_gr_ef_monolith_scientific_outfit, up_gr_gh_monolith_scientific_outfit, up_gr_i_monolith_scientific_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u17a
+
+[sect_monolit_scientific_outfit_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_monolit_scientific_outfit_immunities_1]
+burn_immunity					= 0.02
+strike_immunity					= 0.008
+shock_immunity					= 0.02
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_monolit_scientific_outfit_immunities_2]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.007
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ÃŒÕŒÀ»“ - “ﬂ∆≈À€…  ŒÃ¡»Õ≈«ŒÕ
+;====================================================================================
+
+[monolith_heavy_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\monolith_heavy_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 2,6
+full_icon_name					= npc_icon_stalker_heavy_outfit
+
+visual							= dynamics\outfit\monolith_heavy_outfit
+actor_visual					= actors\stalker_monolith\stalker_monolith_3.ogf
+player_hud_section				= actor_hud_monolith_heavy
+
+inv_name						= monolit_heavy_outfit_name
+inv_name_short					= monolit_heavy_outfit_name
+description						= monolit_heavy_outfit_description
+
+inv_weight						= 12.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x        	 			= 19
+inv_grid_y         				= 18
+
+slot							= 6
+
+cost							= 52000
+
+immunities_sect					= sect_monolith_heavy_outfit_immunities
+
+burn_protection 				= 0.04
+shock_protection 				= 0.04
+chemical_burn_protection		= 0.04
+radiation_protection 			= 0.04
+telepatic_protection 			= 0.04
+
+strike_protection				= 0.4
+explosion_protection 			= 0.4
+wound_protection				= 0.4
+
+fire_wound_protection  			= 0.35
+physic_strike_wound_immunity 	= 0.35
+hit_fraction_actor				= 0.25
+control_inertion_factor			= 1.8
+
+bones_koeff_protection			= actor_medium_armor_1
+
+artefact_count					= 0
+
+upgrades						= up_gr_ab_monolith_heavy_outfit, up_gr_cd_monolith_heavy_outfit, up_gr_ef_monolith_heavy_outfit, up_gr_gh_monolith_heavy_outfit, up_gr_i_monolith_heavy_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u15
+
+[sect_monolith_heavy_outfit_immunities]
+burn_immunity					= 0.045
+strike_immunity					= 0.045
+shock_immunity					= 0.0
+wound_immunity					= 0.045
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.01
+
+[sect_monolith_heavy_outfit_immunities_1]
+burn_immunity					= 0.035
+strike_immunity					= 0.0
+shock_immunity					= 0.035
+wound_immunity					= 0.035
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.035
+explosion_immunity				= 0.035
+fire_wound_immunity				= 0.008
+
+[sect_monolith_heavy_outfit_immunities_2]
+burn_immunity					= 0.025
+strike_immunity					= 0.025
+shock_immunity					= 0.0
+wound_immunity					= 0.025
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.025
+explosion_immunity				= 0.025
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ÃŒÕŒÀ»“ - › «Œ— ≈À≈“
+;====================================================================================
+
+[monolith_exo_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\monolith_exo_outfit"
+$prefetch 						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 5
+
+full_scale_icon					= 2,11
+full_icon_name					= npc_icon_monolit_exo_outfit
+
+visual         					= dynamics\outfit\monolith_exo_outfit
+actor_visual					= actors\stalker_monolith\stalker_monolith_4.ogf
+player_hud_section				= actor_hud_monolith_exo
+
+inv_name						= monolit_exoskeleton_name
+inv_name_short					= monolit_exoskeleton_name
+description						= monolit_exoskeleton_description
+
+inv_weight						= 8.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 21
+inv_grid_y         				= 18
+
+slot							= 6
+
+cost							= 86000
+
+immunities_sect					= sect_monolit_exoskeleton_immunities
+
+burn_protection 				= 0.075
+shock_protection 				= 0.080
+radiation_protection 			= 0.166
+chemical_burn_protection 		= 0.070
+telepatic_protection 			= 0.04
+
+strike_protection 				= 0.8
+explosion_protection 			= 0.8
+wound_protection				= 0.8
+
+fire_wound_protection  			= 0.8
+physic_strike_wound_immunity 	= 0.8
+hit_fraction_actor				= 0.2
+control_inertion_factor			= 2.5
+
+bones_koeff_protection			= actor_heavy_armor_1
+
+artefact_count          		= 0
+
+sprint_allowed					= false
+
+additional_inventory_weight		= 10
+additional_inventory_weight2	= 10
+
+health_restore_speed			= 0.0007
+
+upgrades                		= up_gr_ab_monolith_exo_outfit, up_gr_cd_monolith_exo_outfit, up_gr_e_monolith_exo_outfit, up_gr_f_monolith_exo_outfit, up_gr_gh_monolith_exo_outfit, up_gr_kl_monolith_exo_outfit
+installed_upgrades      		=
+upgrade_scheme          		= upgrade_scheme_u20a
+
+[sect_monolit_exoskeleton_immunities]
+burn_immunity					= 0.03
+strike_immunity					= 0.01
+shock_immunity					= 0.03
+wound_immunity					= 0.01
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.005
+
+[sect_monolit_exoskeleton_immunities_1]
+burn_immunity					= 0.015
+strike_immunity					= 0.005
+shock_immunity					= 0.015
+wound_immunity					= 0.005
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.015
+explosion_immunity				= 0.015
+fire_wound_immunity				= 0.005
+
+[monolith_exo_outfit_pripyat]:monolith_exo_outfit
+installed_upgrades      		= up_e_monolith_exo_outfit, up_e2_monolith_exo_outfit, up_l_monolith_exo_outfit, up_l2_monolith_exo_outfit
+
+;====================================================================================
+;============================== ¬Œ≈ÕÕ€≈ - ¡–ŒÕ≈∆»À≈“ («≈À≈Õ€…)
+;====================================================================================
+
+[soldier_outfit_green]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\obsolete\soldier_outfit_green"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 6,6
+full_icon_name					= npc_icon_soldier_outfit_m1
+
+visual          				= dynamics\outfit\military_outfit_green
+actor_visual					= actors\stalker_hero\stalker_hero_soldier_green.ogf
+player_hud_section				= actor_hud_military_outfit_green
+
+inv_name						= outfit_soldier_name
+inv_name_short					= outfit_soldier_name
+description						= outfit_soldier_description
+
+inv_weight						= 3.5
+
+inv_grid_width     				= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 11
+inv_grid_y         				= 21
+
+slot							= 6
+
+cost							= 8000
+
+immunities_sect					= sect_soldier_outfit_green_immunities
+
+burn_protection 				= 0.010
+shock_protection 				= 0.010
+radiation_protection 			= 0.010
+chemical_burn_protection 		= 0.010
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.15
+explosion_protection 			= 0.15
+wound_protection				= 0.15
+
+fire_wound_protection  			= 0.15
+physic_strike_wound_immunity 	= 0.15
+hit_fraction_actor 				= 0.25
+control_inertion_factor			= 1.2
+
+bones_koeff_protection			= actor_light_armor
+
+artefact_count					= 0
+
+upgrades						= up_gr_ab_cs_light_outfit, up_gr_cd_cs_light_outfit, up_gr_ef_cs_light_outfit, up_gr_gh_cs_light_outfit, up_gr_i_cs_light_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u14b
+
+[sect_soldier_outfit_green_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.01
+shock_immunity					= 0.04
+wound_immunity					= 0.025
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.015
+
+;====================================================================================
+;============================== ¬Œ≈ÕÕ€≈ - ¡–ŒÕ≈∆»À≈“ (—≈–€…)
+;====================================================================================
+
+[soldier_outfit_grey]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\obsolete\soldier_outfit_grey"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 6,6
+full_icon_name					= npc_icon_soldier_outfit_m1
+
+visual          				= dynamics\outfit\military_outfit_grey
+actor_visual					= actors\stalker_hero\stalker_hero_soldier_grey.ogf
+player_hud_section				= actor_hud_military_outfit_grey
+
+inv_name						= outfit1_soldier_name
+inv_name_short					= outfit1_soldier_name
+description						= outfit1_soldier_description
+
+inv_weight						= 4.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 13
+inv_grid_y         				= 21
+
+slot							= 6
+
+cost							= 10000
+
+immunities_sect					= sect_soldier_outfit_grey_immunities
+
+burn_protection 				= 0.010
+shock_protection 				= 0.010
+radiation_protection 			= 0.010
+chemical_burn_protection 		= 0.010
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.2
+explosion_protection 			= 0.2
+wound_protection				= 0.2
+
+fire_wound_protection  			= 0.2
+physic_strike_wound_immunity 	= 0.2
+hit_fraction_actor 				= 0.3
+control_inertion_factor			= 1.2
+
+bones_koeff_protection			= actor_light_armor
+
+artefact_count					= 0
+
+upgrades						= up_gr_ab_cs_light_outfit, up_gr_cd_cs_light_outfit, up_gr_ef_cs_light_outfit, up_gr_gh_cs_light_outfit, up_gr_i_cs_light_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u14b
+
+[sect_soldier_outfit_grey_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.01
+shock_immunity					= 0.04
+wound_immunity					= 0.025
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.015
+
+;====================================================================================
+;============================== ¬Œ≈ÕÕ€≈ - ¡–ŒÕ≈∆»À≈“ ( Œ–»◊Õ≈¬€…)
+;====================================================================================
+
+[soldier_outfit_brown]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\obsolete\soldier_outfit_brown"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 6,6
+full_icon_name					= npc_icon_soldier_outfit_m1
+
+visual          				= dynamics\outfit\military_outfit_brown
+actor_visual					= actors\stalker_hero\stalker_hero_soldier_brown.ogf
+player_hud_section				= actor_hud_military_outfit_brown
+
+inv_name						= outfit2_soldier_name
+inv_name_short					= outfit2_soldier_name
+description						= outfit2_soldier_description
+
+inv_weight						= 5.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 2
+inv_grid_x         				= 15
+inv_grid_y         				= 21
+
+slot							= 6
+
+cost							= 15500
+
+immunities_sect					= sect_soldier_outfit_brown_immunities
+
+burn_protection 				= 0.015
+shock_protection 				= 0.015
+radiation_protection 			= 0.015
+chemical_burn_protection 		= 0.015
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.3
+physic_strike_wound_immunity 	= 0.3
+hit_fraction_actor 				= 0.3
+control_inertion_factor			= 1.2
+
+bones_koeff_protection			= actor_light_armor_1
+
+artefact_count					= 0
+
+upgrades						= up_gr_ab_cs_light_outfit, up_gr_cd_cs_light_outfit, up_gr_ef_cs_light_outfit, up_gr_gh_cs_light_outfit, up_gr_i_cs_light_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u14b
+
+[sect_soldier_outfit_brown_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.01
+shock_immunity					= 0.04
+wound_immunity					= 0.025
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.015
+
+;====================================================================================
+;============================== ¬Œ≈ÕÕ€≈ - “ﬂ∆≈À€… ¡–ŒÕ≈∆»À≈“ (¡≈–»ÀÀ)
+;====================================================================================
+
+[specops_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\specops_outfit"
+class							= E_STLK
+cform          					= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 4,6
+full_icon_name					= npc_icon_specops_outfit
+
+visual							= dynamics\outfit\specops_outfit
+actor_visual					= actors\stalker_soldier\stalker_soldier_3.ogf
+player_hud_section				= actor_hud_07
+
+inv_name						= specops_outfit_name
+inv_name_short					= specops_outfit_name
+description						= specops_outfit_description
+
+inv_weight						= 7.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 17
+inv_grid_y         				= 21
+
+slot							= 6
+
+cost							= 30000
+
+immunities_sect					= sect_specops_outfit_immunities
+
+burn_protection 				= 0.020
+shock_protection 				= 0.020
+radiation_protection 			= 0.020
+chemical_burn_protection 		= 0.020
+telepatic_protection 			= 0.020
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection  			= 0.0
+physic_strike_wound_immunity 	= 0.35
+hit_fraction_actor				= 0.2
+control_inertion_factor 		= 1.5
+
+bones_koeff_protection 			= actor_medium_armor
+
+artefact_count         	 		= 0
+
+upgrades                		= up_gr_ab_specops_outfit, up_gr_cd_specops_outfit, up_gr_ef_specops_outfit, up_gr_gh_specops_outfit, up_gr_i_specops_outfit
+installed_upgrades      		=
+upgrade_scheme         	 		= upgrade_scheme_u16a
+
+[sect_specops_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.0
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.04
+fire_wound_immunity				= 0.01
+
+[sect_specops_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.0
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.008
+
+[sect_specops_outfit_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.0
+shock_immunity					= 0.02
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ¬Œ≈ÕÕ€≈ - — ¿“-9
+;====================================================================================
+
+[military_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\military_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 10,6
+full_icon_name					= npc_icon_military_outfit
+
+visual							= dynamics\outfit\military_skat_light
+actor_visual					= actors\stalker_soldier\stalker_soldier_4_2.ogf
+player_hud_section				= actor_hud_military_heavy_green
+
+inv_name						= military_skat_light_name
+inv_name_short					= military_skat_light_name
+description						= military_skat_light_description
+
+inv_weight						= 11.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 19
+inv_grid_y         				= 21
+
+slot							= 6
+
+cost							= 50000
+
+immunities_sect					= sect_military_outfit_immunities
+
+burn_protection 				= 0.047
+shock_protection 				= 0.047
+radiation_protection 			= 0.047
+chemical_burn_protection 		= 0.047
+telepatic_protection 			= 0.047
+
+strike_protection 				= 0.35
+explosion_protection 			= 0.35
+wound_protection				= 0.35
+
+fire_wound_protection  			= 0.45
+physic_strike_wound_immunity 	= 0.45
+hit_fraction_actor				= 0.2
+control_inertion_factor 		= 1.8
+
+bones_koeff_protection			= actor_heavy_armor
+
+artefact_count					= 0
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades						= up_gr_ab_military_extra_outfit, up_gr_cd_military_extra_outfit, up_gr_ef_military_extra_outfit, up_gr_gh_military_extra_outfit, up_gr_i_military_extra_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u16a
+
+
+[sect_military_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_military_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.03
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_military_outfit_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.02
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.01
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ¬Œ≈ÕÕ€≈ - — ¿“-9Ã
+;====================================================================================
+
+[military_extra_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\military_extra_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 10,6
+full_icon_name					= npc_icon_military_outfit
+
+visual          				= dynamics\outfit\military_skat
+actor_visual					= actors\stalker_soldier\stalker_soldier_4_1.ogf
+player_hud_section				= actor_hud_military_heavy_green
+
+inv_name						= military_skat_name
+inv_name_short					= military_skat_name
+description						= military_skat_description
+
+inv_weight						= 12.0
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 21
+inv_grid_y         				= 21
+
+slot							= 6
+
+cost							= 60000
+
+immunities_sect					= sect_military_extra_outfit_immunities
+
+burn_protection 				= 0.053
+shock_protection 				= 0.053
+radiation_protection 			= 0.053
+chemical_burn_protection 		= 0.053
+telepatic_protection 			= 0.053
+
+strike_protection 				= 0.45
+explosion_protection 			= 0.45
+wound_protection				= 0.45
+
+fire_wound_protection  			= 0.45
+physic_strike_wound_immunity 	= 0.45
+hit_fraction_actor				= 0.2
+control_inertion_factor 		= 1.8
+
+bones_koeff_protection			= actor_heavy_armor
+
+artefact_count					= 0
+
+nightvision_sect				= effector_nightvision_bad
+
+upgrades						= up_gr_ab_military_extra_outfit, up_gr_cd_military_extra_outfit, up_gr_ef_military_extra_outfit, up_gr_gh_military_extra_outfit, up_gr_i_military_extra_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u16a
+
+[sect_military_extra_outfit_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_military_extra_outfit_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.03
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_military_extra_outfit_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.02
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.01
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ¬Œ≈ÕÕ€≈ - — ¿“-10
+;====================================================================================
+
+[military_outfit_black]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\military_outfit_black"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 10,6
+full_icon_name					= npc_icon_military_outfit
+
+visual							= dynamics\outfit\military_skat_light_black
+actor_visual					= actors\stalker_soldier\stalker_soldier_4_4.ogf
+player_hud_section				= actor_hud_military_heavy_black
+
+inv_name						= military_skat_light_black_name
+inv_name_short					= military_skat_light_black_name
+description						= military_skat_light_black_description
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 15
+inv_grid_y         				= 24
+
+slot							= 6
+
+cost							= 55000
+
+immunities_sect					= sect_military_outfit_black_immunities
+
+burn_protection 				= 0.047
+shock_protection 				= 0.047
+radiation_protection 			= 0.047
+chemical_burn_protection 		= 0.047
+telepatic_protection 			= 0.047
+
+strike_protection 				= 0.35
+explosion_protection 			= 0.35
+wound_protection				= 0.35
+
+fire_wound_protection  			= 0.45
+physic_strike_wound_immunity 	= 0.45
+hit_fraction_actor				= 0.2
+control_inertion_factor 		= 1.8
+
+bones_koeff_protection			= actor_heavy_armor
+
+artefact_count          		= 2
+
+nightvision_sect				= effector_nightvision_good
+
+upgrades						= up_gr_ab_military_extra_outfit_black, up_gr_cd_military_extra_outfit_black, up_gr_ef_military_extra_outfit_black, up_gr_gh_military_extra_outfit_black, up_gr_i_military_extra_outfit_black
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u16a
+
+[sect_military_outfit_black_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_military_outfit_black_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.03
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_military_outfit_black_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.02
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.01
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== ¬Œ≈ÕÕ€≈ - — ¿“-10Ã
+;====================================================================================
+
+[military_extra_outfit_black]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\military_extra_outfit_black"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 4
+
+full_scale_icon					= 10,6
+full_icon_name					= npc_icon_military_outfit
+
+visual							= dynamics\outfit\military_skat_black
+actor_visual					= actors\stalker_soldier\stalker_soldier_4_3.ogf
+player_hud_section				= actor_hud_military_heavy_black
+
+inv_name						= military_skat_black_name
+inv_name_short					= military_skat_black_name
+description						= military_skat_black_description
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 17
+inv_grid_y         				= 24
+
+slot							= 6
+
+cost							= 65000
+
+immunities_sect					= sect_military_extra_outfit_black_immunities
+
+burn_protection 				= 0.053
+shock_protection 				= 0.053
+radiation_protection 			= 0.053
+chemical_burn_protection 		= 0.053
+telepatic_protection 			= 0.053
+
+strike_protection 				= 0.45
+explosion_protection 			= 0.45
+wound_protection				= 0.45
+
+fire_wound_protection  			= 0.45
+physic_strike_wound_immunity 	= 0.45
+hit_fraction_actor				= 0.2
+control_inertion_factor 		= 1.8
+
+bones_koeff_protection			= actor_heavy_armor
+
+artefact_count          		= 2
+
+nightvision_sect				= effector_nightvision_good
+
+upgrades						= up_gr_ab_military_extra_outfit_black, up_gr_cd_military_extra_outfit_black, up_gr_ef_military_extra_outfit_black, up_gr_gh_military_extra_outfit_black, up_gr_i_military_extra_outfit_black
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u16a
+
+[sect_military_extra_outfit_black_immunities]
+burn_immunity					= 0.04
+strike_immunity					= 0.04
+shock_immunity					= 0.04
+wound_immunity					= 0.04
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.04
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+[sect_military_extra_outfit_black_immunities_1]
+burn_immunity					= 0.03
+strike_immunity					= 0.03
+shock_immunity					= 0.03
+wound_immunity					= 0.03
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.03
+explosion_immunity				= 0.02
+fire_wound_immunity				= 0.008
+
+[sect_military_extra_outfit_black_immunities_2]
+burn_immunity					= 0.02
+strike_immunity					= 0.02
+shock_immunity					= 0.02
+wound_immunity					= 0.02
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.02
+explosion_immunity				= 0.01
+fire_wound_immunity				= 0.005
+
+;====================================================================================
+;============================== Œ–¿Õ∆≈¬€… Õ¿”◊Õ»  ——œ-99 "› ŒÀŒ√"
+;====================================================================================
+
+[red_ecolog_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn							= "outfit\red_ecolog_outfit"
+$prefetch						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 2
+
+full_scale_icon					= 12,11
+full_icon_name					= npc_icon_scientific_outfit
+
+visual          				= dynamics\outfit\ecolog_suit_red
+actor_visual					= actors\stalker_ecolog\ecolog_red.ogf
+player_hud_section				= actor_hud_scientific_orange
+
+inv_name						= red_ecolog_outfit_name
+inv_name_short					= red_ecolog_outfit_name
+description						= red_ecolog_outfit_description
+
+inv_weight						= 4
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 11
+inv_grid_y         				= 24
+
+slot							= 6
+
+cost							= 50000
+
+immunities_sect					= sect_red_ecolog_outfit_immunities
+
+burn_protection 				= 0.15
+shock_protection 				= 0.15
+radiation_protection 			= 0.15
+chemical_burn_protection 		= 0.15
+telepatic_protection 			= 0.15
+
+strike_protection 				= 0.15
+explosion_protection 			= 0.15
+wound_protection				= 0.15
+
+fire_wound_protection			= 0.0
+physic_strike_wound_immunity	= 0.25
+hit_fraction_actor				= 0.25
+control_inertion_factor			= 1.2
+
+bones_koeff_protection 			= actor_light_armor_1
+
+artefact_count          		= 5
+
+nightvision_sect				= effector_nightvision_good
+
+upgrades						= up_gr_a_red_ecolog_outfit, up_gr_b_red_ecolog_outfit, up_gr_c_red_ecolog_outfit,  up_gr_d_red_ecolog_outfit, up_gr_e_red_ecolog_outfit, up_gr_f_red_ecolog_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u6
+
+[sect_red_ecolog_outfit_immunities]
+burn_immunity					= 0.005
+strike_immunity					= 0.01
+shock_immunity					= 0.005
+wound_immunity					= 0.025
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.005
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.015
+
+;====================================================================================
+;============================== «≈À≈Õ€… Õ¿”◊Õ»  ——œ-99Ã "¬≈√¿"
+;====================================================================================
+
+[green_ecolog_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn							= "outfit\green_ecolog_outfit"
+$prefetch						= 32
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 2
+
+full_scale_icon					= 12,11
+full_icon_name					= npc_icon_scientific_outfit
+
+visual          				= dynamics\outfit\ecolog_suit_green
+actor_visual					= actors\stalker_ecolog\ecolog_green.ogf
+player_hud_section				= actor_hud_scientific_green
+
+inv_name						= green_ecolog_outfit_name
+inv_name_short					= green_ecolog_outfit_name
+description						= green_ecolog_outfit_description
+
+inv_weight						= 7
+
+inv_grid_width     				= 2
+inv_grid_height    				= 3
+inv_grid_x         				= 13
+inv_grid_y         				= 24
+
+slot							= 6
+
+cost							= 70000
+
+immunities_sect					= sect_green_ecolog_outfit_immunities
+
+burn_protection 				= 0.15
+shock_protection 				= 0.15
+radiation_protection 			= 0.15
+chemical_burn_protection 		= 0.15
+telepatic_protection 			= 0.15
+
+strike_protection 				= 0.3
+explosion_protection 			= 0.3
+wound_protection				= 0.3
+
+fire_wound_protection			= 0.0
+physic_strike_wound_immunity	= 0.25
+hit_fraction_actor				= 0.25
+control_inertion_factor			= 1.2
+
+bones_koeff_protection 			= actor_medium_armor
+
+artefact_count          		= 5
+
+nightvision_sect				= effector_nightvision_good
+
+upgrades						= up_gr_a_green_ecolog_outfit, up_gr_b_green_ecolog_outfit, up_gr_c_green_ecolog_outfit,  up_gr_d_green_ecolog_outfit, up_gr_e_green_ecolog_outfit, up_gr_f_green_ecolog_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u6
+
+[sect_green_ecolog_outfit_immunities]
+burn_immunity					= 0.005
+strike_immunity					= 0.01
+shock_immunity					= 0.005
+wound_immunity					= 0.015
+radiation_immunity				= 0.00
+telepatic_immunity				= 0.00
+chemical_burn_immunity			= 0.005
+explosion_immunity				= 0.03
+fire_wound_immunity				= 0.01
+
+;====================================================================================
+;==============================  Œ∆¿Õ¿ﬂ  ”–“ ¿ ƒ»√√≈–Œ¬
+;====================================================================================
+
+[digger_novice_outfit]:outfit_base
+GroupControlSection				= spawn_group
+discovery_dependency 			=
+$spawn 							= "outfit\digger_novice_outfit"
+class							= E_STLK
+cform           				= skeleton
+ef_equipment_type				= 3
+
+full_scale_icon					= 0,11
+full_icon_name					= npc_icon_novice_outfit
+
+visual							= dynamics\outfit\digger_outfit
+actor_visual					= actors\stalker_hero\stalker_hero_digger.ogf
+player_hud_section				= actor_hud_digger
+
+inv_name						= digger_outfit_name
+inv_name_short					= digger_outfit_name
+description						= digger_outfit_description
+
+inv_weight						= 4.0
+
+inv_grid_width     				= 2
+inv_grid_height   	 			= 2
+inv_grid_x        	 			= 11
+inv_grid_y         				= 27
+
+slot							= 6
+
+cost							= 1750
+
+immunities_sect					= sect_digger_novice_outfit_immunities
+
+burn_protection 				= 0.005
+shock_protection 				= 0.005
+radiation_protection 			= 0.015
+chemical_burn_protection 		= 0.005
+telepatic_protection 			= 0.000
+
+strike_protection 				= 0.15
+explosion_protection 			= 0.15
+wound_protection				= 0.15
+
+fire_wound_protection  			= 0.5
+physic_strike_wound_immunity 	= 0.5
+hit_fraction_actor				= 0.5
+control_inertion_factor			= 1.0
+power_loss 						= 1.0
+
+bones_koeff_protection			= actor_armor_suit
+
+artefact_count					= 0
+
+nightvision_sect				=
+
+sprint_allowed					= true
+
+additional_inventory_weight		= 0
+additional_inventory_weight2	= 0
+
+upgrades						= up_gr_ab_novice_outfit, up_gr_cd_novice_outfit, up_gr_ef_novice_outfit, up_gr_g_novice_outfit
+installed_upgrades				=
+upgrade_scheme					= upgrade_scheme_u8a
+
+[sect_digger_novice_outfit_immunities]
+burn_immunity					= 0.05
+strike_immunity					= 0.0
+shock_immunity					= 0.0
+wound_immunity					= 0.05
+radiation_immunity				= 0.0
+telepatic_immunity				= 0.0
+chemical_burn_immunity			= 0.05
+explosion_immunity				= 0.05
+fire_wound_immunity				= 0.02

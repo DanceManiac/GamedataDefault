@@ -2,9 +2,28 @@ function init    (obj)
 				xr_motivator.AddToMotivator(obj)
 end
 
+--[[
 function actor_init    (npc)
 				npc:bind_object(actor_binder(npc))
 end
+--]]
+
+--/ -----------------------------------------------------------------
+--/#+# [se_stor] организуем внешний доступ к биндеру актора:
+--/ -----------------------------------------------------------------
+function actor_init(npc)
+	_G.g_bind_actor = this.actor_binder(npc)
+	npc:bind_object(g_bind_actor)
+end
+function save(...)
+	_G.g_bind_actor:ext_save(...)
+end
+function load(...)
+	_G.g_bind_actor:ext_load(...)
+end
+
+local iSID = 9901 --/#+# начальный story_id для stor-элементов хранения данных
+--/<-----------------------------------------------------------------
 
 delayed_alife_release_objects = {}
 to_delayed_alife_release_objects = {}
@@ -20,6 +39,11 @@ lasthealth  = 0
 lasttime        = 0
 post_process = 0
 local weapon_hide = {}
+
+knife_switch = false
+bolt_switch = false
+grenade_switch = false
+
 ----------------------------------------------------------------------------------------------------------------------
 class "actor_binder" (object_binder)
 ----------------------------------------------------------------------------------------------------------------------
@@ -64,7 +88,8 @@ function actor_binder:net_spawn(data)
 				self.task_manager = task_manager.get_task_manager()
 
 				-- Анремте это, чтобы пропустить интро на марше.
-				--self.object:give_info_portion("mar_lvl_sim")
+				-- self.object:give_info_portion("mar_lvl_sim")
+
 				if level.name() ~= "marsh" then
 					sim_board.get_sim_board():start_sim()
 				end
@@ -74,6 +99,14 @@ function actor_binder:net_spawn(data)
 		self.already_jumped = false
 		benchmark.main()							          --' Distemper 06.2008 --
 
+		-- пауза при загрузке
+		if ogsm_options.show_pause then
+			ui_main_menu.start()
+		end
+
+		ogsm.on_load()
+
+	if rx_ai then rx_ai.actor_net_spawn() end
 	return true
 end
 ----------------------------------------------------------------------------------------------------------------------
@@ -104,15 +137,27 @@ function actor_binder:net_destroy()
 				self.object:set_callback(callback.level_border_enter, nil)
 				self.object:set_callback(callback.level_border_exit, nil)
 				self.object:set_callback(callback.take_item_from_box, nil)
+				self.object:set_callback(callback.use_object, nil)
 
 				if sr_psy_antenna.psy_antenna then
 								sr_psy_antenna.psy_antenna:destroy()
 								sr_psy_antenna.psy_antenna = false
 				end
-		xrs_dyn_music.stop_sound()
-				object_binder.net_destroy(self)
---		xr_sound.stop_all_sounds()
-				xr_s.on_actor_destroy()                                       --' Distemper 03.2008 --
+	if cop_dyn_music and ogsm_options.music_type == 2 then
+		if(_G.amb_vol~=0) then
+			get_console():execute("snd_volume_eff "..tostring(_G.amb_vol))
+			_G.amb_vol = 0
+		end
+		if(_G.mus_vol~=0) then
+		    get_console():execute("snd_volume_music "..tostring(_G.mus_vol))
+			_G.mus_vol = 0
+		end
+		cop_dyn_music.finish_theme()
+	end
+	xrs_dyn_music.stop_sound()
+	xr_s.on_actor_destroy()
+	object_binder.net_destroy(self)
+
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:reinit()
@@ -138,6 +183,13 @@ function actor_binder:reinit()
 				self.object:set_callback(callback.level_border_enter, self.level_border_enter, self)
 				self.object:set_callback(callback.level_border_exit, self.level_border_exit, self)
 				self.object:set_callback(callback.take_item_from_box, self.take_item_from_box, self)
+				self.object:set_callback(callback.use_object, self.use_object, self)
+
+	--/#+# [lua_helper] ------------------------------------------------
+	if event then event("actor_stor"):once(true):trigger() --/#!#> событие: инициализация 'storage' актора
+	elseif lua_helper.Init_ActorPStor then lua_helper.Init_ActorPStor()
+	end
+	--/< ---------------------------------------------------------------
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:take_item_from_box(box, item)
@@ -148,6 +200,25 @@ function actor_binder:take_item_from_box(box, item)
 	--if(sim_board.get_sim_board().smarts_by_names[smart_name]~=nil) then
 		--  game_relations.set_gulag_relation_actor(smart_name, "enemy")
 	--end
+-- подбираем свой пустой рюкзак (by Charsi & Kirgudu)
+	if box:section() == "active_ruck" --  наш заложенный рюкзак
+		and box:is_inv_box_empty() then -- и он пустой
+			-- спрашиваем, поднять ли рюкзак
+			local spwn = ui_confirm.confirm(get_hud(), game.translate_string("ui_st_take_backpack_caption"), nil,
+				function(e)
+					alife():release(alife():object(e.id)) -- удаляем ящик
+					ogsm.spawn_item_in_inv(e.sect) -- спавним юзабельный рюкзак в инвентарь
+				end,
+			{id = box:id(), sect = "inv_ruck"})
+			level.start_stop_menu(spwn, true)
+	end
+-- подбираем свой пустой рюкзак (by Charsi & Kirgudu)
+	if box_name == "gar_smart_terrain_5_6_box" and box:is_inv_box_empty() and db.actor:has_info("gar_quest_redemption_started") and not db.actor:has_info("gar_quest_redemption_done") then
+		db.actor:give_info_portion("gar_quest_redemption_done")
+	end
+	if box_name == "level_prefix_inventory_box_0002" and box:is_inv_box_empty() and not db.actor:has_info("mar_take_your_things_done") then
+		db.actor:give_info_portion("mar_take_your_things_done")
+	end
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:level_border_enter(npc, info_id)
@@ -160,65 +231,79 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:info_callback(npc, info_id)
 				printf("*INFO*: npc='%s' id='%s'", npc:name(), info_id)
+				--' Сюжетный саундтрек
+				if ogsm_options.soundtrack == 1 then ogsm_soundtrack.proceed_info(info_id) end
 				--' Сюжет
 				level_tasks.proceed(self.object)
 				-- Отметки на карте
 				level_tasks.process_info_portion(info_id)
+
+				-- обработка наступления некоторых событий
+				additional_events.event_processing(info_id)
+				
+				dialogs.check_info_merchant()
+				-- dialogs.info_call(info_id)
 end
 ----------------------------------------------------------------------------------------------------------------------
-function actor_binder:on_trade (item, sell_bye, money)
-		if sell_bye == true then
-			 game_stats.money_trade_update (money)
-		 xr_statistic.inc_recieved_money_counter(money)
-		else
-			 game_stats.money_trade_update (-money)
-		 xr_statistic.inc_spent_money_counter(money)
-		end
+-- Kirgudu
+function actor_binder:on_trade(item, sell_buy, money)
+	ogsm_trade_manager.on_trade(item, sell_buy, money)
 end
+-- Kirgudu
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:article_callback(npc, group, name)
 				--printf("article_callback [%s][%s]", group, name)
 				if device().precache_frame >1 then return end
 
-				if group == "Diary" then
-								news_manager.send_encyclopedy("diary", group)
-				else
-								news_manager.send_encyclopedy("encyclopedy", group)
-				end
+				if ogsm_notepad then ogsm_notepad.OnArticle(group, name) end
+
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_take (obj)
-		level_tasks.proceed(self.object)
-		printf("on_item_take [%s]", obj:name())
-		if isArtefact(obj) then
-								bind_anomaly_zone.artefact_ways_by_id[obj:id()] = nil
-								local artefact =  obj:get_artefact()
-								artefact:FollowByPath("NULL",0,vector():set(500,500,500))
-								if bind_anomaly_zone.parent_zones_by_artefact_id[obj:id()] ~= nil then
-												bind_anomaly_zone.parent_zones_by_artefact_id[obj:id()]:on_artefact_take()
-								end
-				end
-				for k,v in pairs(task_manager:get_task_manager().task_info) do
-								if(v.type=="bring_item" and v.state~="finished") then
-												v:on_item_take(obj)
-								end
-				end
-		--game_stats.update_take_item (obj, self.object)
+	level_tasks.proceed(self.object)
+	printf("on_item_take [%s]", obj:name())
+	if isArtefact(obj) then
+		bind_anomaly_zone.artefact_ways_by_id[obj:id()] = nil
+		local artefact =  obj:get_artefact()
+		artefact:FollowByPath("NULL",0,vector():set(500,500,500))
+		if bind_anomaly_zone.parent_zones_by_artefact_id[obj:id()] ~= nil then
+			bind_anomaly_zone.parent_zones_by_artefact_id[obj:id()]:on_artefact_take()
+		end
+		ogsm.on_artefact_take(obj)
+	end
+	for k,v in pairs(task_manager:get_task_manager().task_info) do
+		if(v.type=="bring_item" and v.state~="finished") then
+			v:on_item_take(obj)
+		end
+	end
+	--game_stats.update_take_item (obj, self.object)
+
+	ogsm.on_item_take(obj)
+
+	if rx_ai then rx_ai.actor_item_take(obj) end
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_drop (obj)
 		level_tasks.proceed(self.object)
 				for k,v in pairs(task_manager:get_task_manager().task_info) do
-								if(v.type=="bring_item" and v.state~="finished") then
-												v:on_item_drop(obj)
-								end
-				end
-		--game_stats.update_drop_item (obj, self.object)
+		if (v.type == "bring_item" and v.state ~= "finished") then
+			v:on_item_drop(obj)
+		end
+	end
+	-- game_stats.update_drop_item (obj, self.object)
+end
+----------------------------------------------------------------------------------------------------------------------
+function actor_binder:use_object(obj, who)
+	ogsm.on_use_object(obj:section(), obj:id())
 end
 ----------------------------------------------------------------------------------------------------------------------
 
 function actor_binder:task_callback(_task, _state)
-		if _state ~= task.fail then
+	if ogsm_rt_manager and ogsm_rt_manager.get_rt_manager().task_info[_task:get_id()] ~= nil then
+		ogsm_rt_manager.get_rt_manager():task_callback(_task, _state)
+		return
+	end
+	if _state ~= task.fail then
 		if _state == task.completed then
 			news_manager.send_task(db.actor, "complete", _task)
 		else
@@ -237,7 +322,21 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:update(delta)
 				object_binder.update(self, delta)
-
+-- Eugenium
+	if (db.actor:item_in_slot(6) == nil) then
+		if (not has_alife_info("ogsm_psybar_removed")) then
+			db.actor:give_info_portion("ogsm_psybar_removed")
+			get_hud():RemoveCustomStatic("hud_psy_back")
+			get_hud():RemoveCustomStatic("hud_psy_level")
+		end
+	else
+		if (has_alife_info("ogsm_psybar_removed")) then
+			db.actor:disable_info_portion("ogsm_psybar_removed")
+			get_hud():RemoveCustomStatic("hud_psy_back")
+			get_hud():RemoveCustomStatic("hud_psy_level")
+		end
+	end
+-- Eugenium
 				if self.already_jumped==false and jump_level.need_jump==true and (device().frame > self.spawn_frame+2000) then
 			jump_level.try_to_jump()
 			self.already_jumped = true
@@ -247,9 +346,19 @@ function actor_binder:update(delta)
 				-- DEBUG slowdown
 --        slowdown.update()
 
+
+	-- Music
+	if ogsm_music and ogsm_options.music_type == 1 then ogsm_music.interactive_music() end
+	-- Music
+
 				local time = time_global()
 
 				game_stats.update (delta, self.object)
+
+	-- Обновление сна
+	if ogsm_sleep.is_sleep_active() and xr_conditions.actor_dead() then
+		xr_logic.issue_event(db.actor, db.storage[db.actor:id()]["ar_sleep"], "update")
+	end
 
 				-- апдейт погоды
 				self.weather_manager:update()
@@ -285,6 +394,12 @@ function actor_binder:update(delta)
 								self.object:set_actor_direction(dir:getH())
 								self.st.sleep_relocate_time = nil
 				end
+		
+		ogsm_item_sounds.check_knife()
+		ogsm_item_sounds.check_bolt()
+		ogsm_item_sounds.check_grenade()
+		--ogsm_item_sounds.do_switch()
+		
 		-- Апдейт прятание оружия игрока во время диалога
 		if self.object:is_talking() then
 			if self.weapon_hide_in_dialog == false then
@@ -364,6 +479,34 @@ function actor_binder:update(delta)
 									"]")
 	end]]--
 
+	-- Еда портится от радиации (Kirgudu) (автор изначальной идеи TAG)
+	if ogsm_options.food_radiation and self.object.radiation>0.4 and (self.object:object("bread") or self.object:object("kolbasa") or self.object:object("cheese")) then
+		local need_say = false
+		local sect = nil
+		self.object:iterate_inventory(function (dummy,item)
+			sect = item:section()
+			if sect=="bread" then
+				need_say = true
+				ogsm.remove_item(item)
+				ogsm.spawn_item_in_inv("bread_rad")
+			elseif sect=="kolbasa" and self.object.radiation>0.5 then
+				need_say = true
+				ogsm.remove_item(item)
+				ogsm.spawn_item_in_inv("kolbasa_rad")
+			elseif sect=="cheese" and self.object.radiation>0.6 then
+				need_say = true
+				ogsm.remove_item(item)
+				ogsm.spawn_item_in_inv("cheese_rad")
+			end
+		end, nil)
+		if need_say then
+			local news_caption = game.translate_string("st_tip").." "..game.translate_string("st_actor_name")
+			local news_text = "%c[255,255,0,0]"..game.translate_string("food_got_worse")
+			db.actor:give_game_news(news_caption, news_text, "ui_npc_u_actor", 0, 10000)
+			xr_sound.set_sound_play(db.actor:id(), "pda_sos")
+		end
+	end
+
 	--' Вывод сообщения о большой радиации
 	if self.object.radiation >= 0.7 then
 			local hud = get_hud()
@@ -397,7 +540,7 @@ function actor_binder:update(delta)
 
 			self.bCheckStart = false
 	end
-
+	if rx_ai then rx_ai.actor_update() end
 		--' Distemper 03.2008 --
 	if xrs_dyn_music.play_combat == 0 then
 			xrs_dyn_music.interactive_music(0)
@@ -406,6 +549,7 @@ function actor_binder:update(delta)
 	elseif xrs_dyn_music.play_combat == 2 then
 			xrs_dyn_music.interactive_music(10)
 	end
+
 
 	xr_s.on_actor_update(delta)
 			--' end  --
@@ -431,27 +575,42 @@ function actor_binder:update(delta)
 		end
 	end
 
-	local al = alife()
-	if al ~= nil then
-		local name = al:level_name(al:level_id())
-		if(self.last_level_name==nil) then
-			self.last_level_name = name
-		else
-			if(name~=self.last_level_name) then
-							self.last_level_name = name
-				local time = xr_surge_hide.surge_can_be_started(name)
-				if time then
-										xr_surge_hide.activate_surge(time)
-							end
+-- Kirgudu
+-- выброс старого типа, при вторичных заходах на локацию
+	if ogsm_options.surge_type == 0 then
+		local al = alife()
+		if al ~= nil then
+			local name = al:level_name(al:level_id())
+			if(self.last_level_name==nil) then
+				self.last_level_name = name
+			else
+				if(name~=self.last_level_name) then
+					self.last_level_name = name
+					local time = xr_surge_hide.surge_can_be_started(name)
+					if time then
+						xr_surge_hide.activate_surge(time)
+					end
+				end
 			end
 		end
 	end
+-- Kirgudu
+
 	if guiders.teleported_to_another_level and not guiders.level_changed then
 		guiders.action_teleport_to_point()
 	end
+
+	ogsm.on_actor_update(self.object)
+
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)
+	if ogsm_options.random_intro == 1 then ogsm_random_intro.on_save() end
+	--/#+# for debug --------------------------------------------------
+	local size = packet:w_tell()
+	--/<---------------------------------------------------------------
+				if rx_ai then rx_ai.actor_save(packet) end
+
 				set_save_marker(packet, "save", false, "actor_binder")
 
 				object_binder.save(self, packet)
@@ -469,15 +628,18 @@ function actor_binder:save(packet)
 				end
 
 				xr_logic.pstor_save_all(self.object, packet)
-				self.weather_manager:save(packet)
-				release_body_manager.get_release_body_manager():save(packet) --' Distemper 12.02.2008
-		xr_surge_hide.save(packet)
-				sr_psy_antenna.save( packet )
+				-- self.weather_manager:save(packet)
+				-- release_body_manager.get_release_body_manager():save(packet) --' Distemper 12.02.2008
+		-- xr_surge_hide.save(packet)
+				-- sr_psy_antenna.save( packet )
 				--self.actor_detector:save(packet)
 
 		packet:w_bool(sim_board.get_sim_board().simulation_started)
 
 				-- Сохранение списка ожидания на команду атаки от игрока
+				SetVar("wait_for_combat", sim_combat.wait_for_combat)
+				-- printf("bind_stalker save::> wait_for_combat=[%s]", table.size(sim_combat.wait_for_combat))
+				--[[
 				local n = 0
 				for k,v in pairs(sim_combat.wait_for_combat) do
 								n = n + 1
@@ -487,11 +649,15 @@ function actor_binder:save(packet)
 								packet:w_u16(k)
 								packet:w_stringZ(v)
 				end
-				xr_sound.actor_save(packet)
+				--]]
+				-- xr_sound.actor_save(packet)
 			packet:w_stringZ(tostring(self.last_level_name))
-		xr_statistic.save(packet)
-		guiders.save(packet)
-		treasure_manager.save(packet)
+		-- xr_statistic.save(packet)
+		-- guiders.save(packet)
+		-- treasure_manager.save(packet)
+		SetVar("delayed_alife_release_objects", delayed_alife_release_objects)
+		-- printf("bind_stalker save::> delayed_alife_release_objects=[%s]", table.size(delayed_alife_release_objects))
+		--[[
 		n = 0
 		for k,v in pairs(delayed_alife_release_objects) do
 			n = n + 1
@@ -501,6 +667,10 @@ function actor_binder:save(packet)
 			printf("TO_RELEASING OBJ:[%s]", tostring(k))
 			packet:w_u16(k)
 		end
+		--]]
+		SetVar("script_ids", db.script_ids)
+		-- printf("bind_stalker save::> script_ids=[%s]", table.size(db.script_ids))
+		--[[
 		n = 0
 		for k,v in pairs(db.script_ids) do
 			n = n + 1
@@ -510,11 +680,39 @@ function actor_binder:save(packet)
 			packet:w_u16(k)
 			packet:w_stringZ(v)
 		end
+		--]]
+		-- if ogsm_rt_manager then ogsm_rt_manager.get_rt_manager():save(packet) end
+		-- if ogsm_rare_items_manager then ogsm_rare_items_manager.get_rim():save(packet) end
 --		minigames_manager.get_minigames_manager():save(packet)
 				set_save_marker(packet, "save", true, "actor_binder")
+
+	if ogsm_respawn then ogsm_respawn.save() end
+	if ogsm_notepad then ogsm_notepad.save() end
+
+	--/#+# [se_stor] вызов сохранений во внешних модулях с публичным save() -----
+	if se_stor then
+		if to_log then to_log(script_name()..":save:size=["..(packet:w_tell() - size).."]") end --/#~#
+		if event then --/ вызов через 'систему сигналов'
+			event("actor_saved"):trigger()
+		elseif type(se_stor.save) == 'function' then --/ 'прямой' вызов
+			se_stor.save()
+		end
+	end
+	--/<-------------------------------------------------------------------------
+end
+--/#+# [se_stor] сохранение в чанках данных из внешних модулей без публичного save(): --
+function actor_binder:ext_save(pk)
+	self.weather_manager:save(pk)
+	release_body_manager.get_release_body_manager():save(pk)
+	if ogsm_rt_manager then ogsm_rt_manager.get_rt_manager():save(pk) end
+	if ogsm_rare_items_manager then ogsm_rare_items_manager.get_rim():save(pk) end
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:load(reader)
+	--/#+# for debug --------------------------------------------------
+	local size = reader:r_tell()
+	--/<---------------------------------------------------------------
+
 				set_save_marker(reader, "load", false, "actor_binder")
 
 				object_binder.load(self, reader)
@@ -522,7 +720,7 @@ function actor_binder:load(reader)
 				--' Загружаем уровень сложности
 				local game_difficulty = reader:r_u8()
 				printf("load game_difficulty %s", tostring(game_difficulty))
-				get_console():execute("g_game_difficulty "..game_difficulty_by_num[game_difficulty])
+				get_console():execute("g_game_difficulty "..tostring(game_difficulty_by_num[game_difficulty]))
 
 				local stored_input_time = reader:r_u8()
 				if stored_input_time == true then
@@ -530,41 +728,79 @@ function actor_binder:load(reader)
 				end
 
 				xr_logic.pstor_load_all(self.object, reader)
-				self.weather_manager:load(reader)
-				release_body_manager.get_release_body_manager():load(reader) --' Distemper 12.02.2008
-		xr_surge_hide.load(reader)
-				sr_psy_antenna.load(reader)
+				-- self.weather_manager:load(reader)
+				-- release_body_manager.get_release_body_manager():load(reader) --' Distemper 12.02.2008
+		-- xr_surge_hide.load(reader)
+				-- sr_psy_antenna.load(reader)
 				--self.actor_detector:load(reader)
 
 		sim_board.get_sim_board().simulation_started = reader:r_bool()
 
 				-- Загрузка списка ожидания на команду атаки от игрока
+				sim_combat.wait_for_combat = GetVar("wait_for_combat", {})
+				DelVar("wait_for_combat")
+				-- printf("bind_stalker load::> wait_for_combat=[%s]", table.size(sim_combat.wait_for_combat))
+				--[[
 				local n = reader:r_u8()
 				sim_combat.wait_for_combat = {}
 				for i = 1,n do
 								sim_combat.wait_for_combat[reader:r_u16()] = reader:r_stringZ()
 				end
+				--]]
 
-				xr_sound.actor_load(reader)
+				-- xr_sound.actor_load(reader)
 				local n = reader:r_stringZ()
 				if(n~="nil") then
 						self.last_level_name = n
 				end
-		xr_statistic.load(reader)
-		guiders.load(reader)
-		treasure_manager.load(reader)
+		-- xr_statistic.load(reader)
+		-- guiders.load(reader)
+		-- treasure_manager.load(reader)
+		to_delayed_alife_release_objects = GetVar("delayed_alife_release_objects", {})
+		DelVar("delayed_alife_release_objects")
+		-- printf("bind_stalker load::> delayed_alife_release_objects=[%s]", table.size(to_delayed_alife_release_objects))
+		--[[
 		n = reader:r_u8()
 		for i = 1,n do
 			to_delayed_alife_release_objects[reader:r_u16()] = true
 		end
 		printf("delayed_alife_release_objects")
-		print_table(delayed_alife_release_objects)
+		print_table(to_delayed_alife_release_objects)
+		--]]
+		db.script_ids = GetVar("script_ids", {})
+		DelVar("script_ids")
+		-- printf("bind_stalker load::> script_ids=[%s]", table.size(db.script_ids))
+		--[[
 		n = reader:r_u8()
 		for i = 1,n do
 			db.script_ids[reader:r_u16()] = reader:r_stringZ()
 		end
+		--]]
+		-- if ogsm_rt_manager then ogsm_rt_manager.get_rt_manager():load(reader) end
+		-- if ogsm_rare_items_manager then ogsm_rare_items_manager.get_rim():load(reader) end
 --		minigames_manager.get_minigames_manager():load(reader)
 				set_save_marker(reader, "load", true, "actor_binder")
+
+	if ogsm_respawn then ogsm_respawn.load() end
+	if ogsm_notepad then ogsm_notepad.load() end
+
+	--/#+# [se_stor] вызов загрузки во внешних модулях с публичным save() -------
+	if se_stor then
+		if to_log then to_log(script_name()..":load:size=["..(reader:r_tell() - size).."]") end --/#~#
+		if event then --/ вызов через 'систему сигналов'
+			event("actor_load"):trigger()
+		elseif type(se_stor.load) == 'function' then --/ 'прямой' вызов
+			se_stor.load()
+		end
+	end
+	--/<-------------------------------------------------------------------------
+end
+--/#+# [se_stor] загрузка данных из чанков во внешние модули без публичного load(): ----
+function actor_binder:ext_load(pk)
+	self.weather_manager:load(pk)
+	release_body_manager.get_release_body_manager():load(pk) --' Distemper 12.02.2008
+	if ogsm_rt_manager then ogsm_rt_manager.get_rt_manager():load(pk) end
+	if ogsm_rare_items_manager then ogsm_rare_items_manager.get_rim():load(pk) end
 end
 ----------------------------------------------------------------------------------------------------------------------
 

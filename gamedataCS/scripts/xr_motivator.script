@@ -70,6 +70,9 @@ function motivator_binder:net_spawn(sobject)
 	printf("motivator_binder:net_spawn(): self.object:name()='%s'", self.object:name())
 	local ppos = self.object:position()
 	--printf("position [%s][%s][%s]", ppos.x, ppos.y, ppos.z)
+
+	if cop_dyn_music and ogsm_options.music_type == 2 then cop_dyn_music.npc_table[self.object:id()] = self.object:id() end
+
 	xrs_dyn_music.npc_table[self.object:id()] = self.object
 	--memusage.collect_info(self.object, "netspawn_start")
 	if not object_binder.net_spawn(self, sobject) then
@@ -91,15 +94,18 @@ function motivator_binder:net_spawn(sobject)
 	self.object:set_callback(callback.hit, motivator_binder.hit_callback, self)
 	self.object:set_callback(callback.death, motivator_binder.death_callback, self)
 	self.object:set_callback(callback.use_object, motivator_binder.use_callback, self)
+	-- callbacks for AI Additions
+	self.object:set_callback(callback.on_item_drop, self.on_item_drop, self)
+	self.object:set_callback(callback.on_item_take, self.on_item_take, self)
 	--memusage.collect_info(self.object, "after__callback")
 
 	--self.object:set_callback(callback.sound, motivator_binder.hear_callback, self)
 
 	-- ставим дефолтное расстояние входа в смарткаверы
 
-	self.object:apply_loophole_direction_distance(1.0)
+	self.object:apply_loophole_direction_distance(1.6)
 
-		--' Загрузка историй для лагеря.
+	--' Загрузка историй для лагеря.
 	if self.loaded == false then
 		local char_ini = ""
 		local spawn_ini = self.object:spawn_ini()
@@ -119,9 +125,10 @@ function motivator_binder:net_spawn(sobject)
 	end
 
 	if not self.object:alive() then
+		if rx_ai then rx_ai.corpse_net_spawn(self.object,self.loaded) end
 		return true
 	end
--- setting npc relation and sympathy from storage
+	-- установка отношения npc и симпатии из хранилища
 	local relation = db.goodwill.relations and db.goodwill.relations[self.object:id()]
 		if relation ~= nil and db.actor then
 				game_relations.set_npcs_relation(self.object, db.actor, relation)
@@ -155,12 +162,12 @@ function motivator_binder:net_spawn(sobject)
 	--' грузим универсальную реакцию на актёра вышедшего из левелчейнджера
 	actor_reaction.add_actor_reactions(self.object)
 
+	ogsm.on_net_spawn(self.object)
+
 	--' Универсальный тормоз на выход из комбата
 	if self.object:character_community() ~= "zombied" then
 		post_combat_idle.add_post_combat_idle(self.object)
 	end
-
-
 
 	self.object:group_throw_time_interval(2000)
 
@@ -169,11 +176,16 @@ function motivator_binder:net_spawn(sobject)
 		stc_strelok_health_manager.cs_strelok_health(self.object)
 	end
 
+	if rx_ai then rx_ai.npc_net_spawn(self.object) end
 	return true
 end
 
 function motivator_binder:net_destroy()
+	if rx_ai then rx_ai.npc_net_destroy(self.object) end
 	--printf("motivator_binder:net_destroy(): self.object:name()='%s'", self.object:name())
+
+	if cop_dyn_music and ogsm_options.music_type == 2 then cop_dyn_music.npc_table[self.object:id()] = nil end
+
 	xrs_dyn_music.npc_table[self.object:id()] = nil
 	xrs_dyn_music.stop_combat(self.object:id())
 		xr_sound.stop_sounds_by_id(self.object:id())
@@ -202,6 +214,9 @@ function motivator_binder:clear_callbacks()
 	self.object:set_callback(callback.hit, nil)
 	self.object:set_callback(callback.death, nil)
 	-- self.object:set_callback(callback.use_object, nil)
+	-- callbacks for AI Additions
+	self.object:set_callback(callback.on_item_drop, nil)
+	self.object:set_callback(callback.on_item_take, nil)
 end
 
 function motivator_binder:hit_callback(obj, amount, local_direction, who, bone_index)
@@ -230,58 +245,107 @@ function motivator_binder:hit_callback(obj, amount, local_direction, who, bone_i
 		xr_wounded.hit_callback(self.object:id())
 			 sim_combat.hit_callback(self.object:id(),who:id())
 	end
+
+	-- Music
+	if ogsm_music and ogsm_options.music_type == 1 and db.actor and who and who:id()==db.actor:id() and amount>0 then
+		ogsm_music.calc_adrenaline("actor_hit_enemy",self.object,"npc")
+	end
+	-- Music
+
+	if rx_ai then rx_ai.npc_hit(obj,amount,local_direction,who,bone_index) end
 end
 
 function motivator_binder:death_callback(victim, who)
 	callstack()
+
+	local id, npc, npc_id, npc_name = victim:id(), self.object, self.object:id(), self.object:name() -- From SRP
+
+	if rx_ai then rx_ai.npc_death(npc,who) end
+
+	if cop_dyn_music and ogsm_options.music_type == 2 then cop_dyn_music.npc_table[npc_id] = nil end
+
+	-- Некрологи из Clear Sky Location Pack (with update 1.0)
+	if ogsm_options.show_obituary then
+		local m_game_vertex = who:game_vertex_id()
+		local lvert = game_graph():vertex(m_game_vertex)
+		local lid = lvert:level_id()
+		local mlevel = alife():level_name(lid)
+		local victim_name = victim:character_name()
+		local victim_comm = victim:character_community()
+		local news_caption = game.translate_string("st_tip")
+		local m_text_kill_string = game.translate_string("stalker_died").." "..victim_name.." ("..game.translate_string(victim_comm).."). "..game.translate_string("location").." "..game.translate_string(mlevel)
+		local news_text = "%c[255,160,160,160]"..game.translate_string("obituary").."\\n".."%c[default]"..m_text_kill_string
+		local texture = "ui_iconsTotal_obituary"
+		xr_sound.set_sound_play(db.actor:id(), "pda_tips")
+		db.actor:give_game_news(news_caption, news_text, texture, 15*10, 15*1000)
+	end
+	-- Некрологи из Clear Sky Location Pack (with update 1.0)
+
 	--' Distemper 03.2008 --
-	xrs_dyn_music.stop_combat(self.object:id())
+	xrs_dyn_music.npc_table[npc_id] = nil
+	xrs_dyn_music.stop_combat(npc_id)
 	--' Если игрок был с квестом от механика - фейлить его
-	local st = db.storage[self.object:id()]
-	local npc = self.object
+	local st = db.storage[npc_id]
 	stalker_generic.remove_level_spot(npc, st)
 	--' end  --
+
+	-- From SRP
+	-- DC20190408: Hack per Shoker to add a corpse map spot in case the engine fails to.
+	-- The spot needs to be added twice to guarantee that the engine's interference will
+	-- not prevent it from being rendered on the minimap.
+--	dbglog("Killed %s has %d spots on death", victim:name(), level.map_has_object_spot(id, "deadbody_location"))
+	if not ogsm_options.dead_spots_like_pda_spots or ogsm_options.spots_mode < 2 then
+		level.map_add_object_spot_ser(id, "deadbody_location", "")
+		level.map_add_object_spot_ser(id, "deadbody_location", "")
+	end
+
 	if who:id() == db.actor:id() then
-		xr_statistic.addKillCount(self.object)
+		xr_statistic.addKillCount(npc)
 		xr_statistic.inc_killed_stalkers_counter()
 	end
 
-	--' Загрузка историй для лагеря.
-	local known_info = utils.cfg_get_string(st.ini,st.section_logic , "known_info", self.object, false, "", nil)
-	printf("xr_info from death loaded!!!")
-	xr_info.loadInfo(self.object, st.ini, known_info)
+	--' DEXXX
+	ogsm.dbglog("death of "..npc_name)
+	if ogsm_options.enable_marauder and ogsm_marauder and not string.find(npc_name, "neutral_bodies") then
+		ogsm_marauder.main(npc_id)
+	end
+	--' end
 
+	--' Загрузка историй для лагеря.
+	local known_info = utils.cfg_get_string(st.ini,st.section_logic , "known_info", npc, false, "", nil)
+	printf("xr_info from death loaded!!!")
+	xr_info.loadInfo(npc, st.ini, known_info)
 
 	if self.st.death then
-		xr_logic.issue_event(self.object, self.st.death, "death_callback", victim, who)
+		xr_logic.issue_event(npc, self.st.death, "death_callback", victim, who)
 	end
 	if self.st.active_section then
-		xr_logic.issue_event(self.object, self.st[self.st.active_scheme], "death_callback", victim, who)
+		xr_logic.issue_event(npc, self.st[self.st.active_scheme], "death_callback", victim, who)
 	end
-	sr_territory.issue_event(self.object, "death_callback", victim, who)
+	sr_territory.issue_event(npc, "death_callback", victim, who)
 
-	sr_light.check_light(self.object)
+	sr_light.check_light(npc)
 
-	death_manager.drop_manager(self.object):create_release_item()
+	death_manager.drop_manager(npc):create_release_item()
+	if rx_wmgr then death_manager.reset_wm_weapons() end
 
-		db.delete_enemy( self.e_index )
+	db.delete_enemy( self.e_index )
 
 	self:clear_callbacks()
 	-- Отключаем реакцию на кровососа
-	bloodsucker_reaction.disable_bloodsucker_reaction(self.object)
+	bloodsucker_reaction.disable_bloodsucker_reaction(npc)
 	--' Наносим небольшой импульс вперед.
 	if(actor_stats.remove_from_ranking~=nil)then
-		local community = self.object:character_community()
+		local community = npc:character_community()
 		if community == "zombied" or
 			 community == "monolith" or
 			 community == "arena_enemy"
 		then
 		else
-			actor_stats.remove_from_ranking(self.object:id())
+			actor_stats.remove_from_ranking(npc_id)
 		end
-
 	end
-	release_body_manager.get_release_body_manager():moving_dead_body(self.object) --' Distemper 11.02.2008
+	release_body_manager.get_release_body_manager():moving_dead_body(npc) --' Distemper 11.02.2008
 end
 
 function motivator_binder:use_callback(obj, who)
@@ -298,23 +362,74 @@ function motivator_binder:use_callback(obj, who)
 			treasure_manager.use(self.object)
 			self.treasure_processed = true
 		end
+		if ogsm_options.loot_money == true then
+			ogsm_lootmoney.lootmoney(self.object)
+		end
+	end
+end
+
+function motivator_binder:on_item_drop(obj)
+	local snpc = alife():object(self.object:id())
+	if not (snpc and snpc.online) then
+		return		-- уходит в оффлайн
+	end
+	if rx_ai then
+		rx_ai.npc_item_drop(self.object,obj)
+	end
+--	local sobj = alife():object(obj:id())
+--	if not sobj then
+--		return		-- предмет удалён
+--	end
+end
+
+function motivator_binder:on_item_take(obj)
+--	local sobj = alife():object(obj:id())
+--	if not sobj then
+--		return		-- предмет удалён
+--	end
+	if rx_ai then
+		rx_ai.npc_item_take(self.object,obj)
 	end
 end
 
 function motivator_binder:update(delta)
 	object_binder.update(self, delta)
+
 	if bind_stalker.to_delayed_alife_release_objects[self.object:id()] == true then
 		printf("releasing object ["..self.object:name().."]")
+		ogsm.dbglog("xr_motivator_release_"..self.object:name())
 		alife():release(alife():object(self.object:id()),true)
 		return
 	end
+
+	-- Music
+	if ogsm_music and ogsm_options.music_type == 1 and ogsm.get_npc_relation(self.object,db.actor)=="enemy" and self.object:alive() and self.object.health>0.01 
+	and self.object:name() ~= "komandir_military" and self.object:name() ~= "esc_driver" and self.object:name() ~= "esc_military_secret_trader" then 
+			if self.object:see(db.actor) then 
+				ogsm_music.calc_adrenaline("enemy_see_actor", self.object,"npc") 
+			end
+			if db.actor:see(self.object) then
+				ogsm_music.calc_adrenaline("actor_see_enemy", self.object,"npc") 
+			end
+	end
+
+	local wpn = utils.wpn_info_get(self.object)
+	if wpn["ammo"]~=nil then
+		local enemy = self.object:best_enemy()
+		if ogsm_music and ogsm_options.music_type == 1 and enemy and enemy:id()==db.actor:id() and self.object:see(db.actor) and self.prev_ammo>wpn["ammo"] then
+			ogsm_music.calc_adrenaline("enemy_hit_actor",self.object,"npc")
+		end
+	end
+	
+	self.prev_ammo = wpn["ammo"] or 0
+	-- Music
 
 	local object_alive = self.object:alive()
 	local object = self.object
 	local actor = db.actor
 	local st = db.storage[object:id()]
 	local st_combat = st.combat
-	if not self.strelok_particles_added and object:profile_name() == "stc_strelok" then
+	if not self.strelok_particles_added and object:profile_name() == "stc_strelok" and not ogsm_options.hide_electra then
 		object:start_particles("monsters\\polter_idle","bip01_head")
 		self.strelok_particles_added = true
 	end
@@ -444,6 +559,7 @@ function motivator_binder:update(delta)
 		object:set_tip_text_default()
 	end
 
+	if rx_ai and object_alive then rx_ai.npc_update(object,self.st) end
 end
 
 function motivator_binder:reload(section)
@@ -555,11 +671,15 @@ end
 
 -- Эвалюаторы, которые имеют высший приоритет, и, соответственно, перебивают остальные скрипты собой
 function addCommonPrecondition(action)
-	--action:add_precondition (world_property(xr_evaluators_id.reaction,false))
 	action:add_precondition (world_property(xr_evaluators_id.stohe_meet_base + 1,false))
 	action:add_precondition (world_property(xr_evaluators_id.sidor_wounded_base + 0,  false))
-	--'action:add_precondition (world_property(xr_evaluators_id.chugai_heli_hunter_base, false))
 	action:add_precondition (world_property(xr_evaluators_id.abuse_base, false))
+	if ogsm_hideout then
+		action:add_precondition(world_property(ogsm_hideout.property_blowout, false))
+		action:add_precondition(world_property(ogsm_hideout.property_hideout_lost, false))
+		action:add_precondition(world_property(ogsm_hideout.property_inhide, false))
+	end
+	if rx_ai then rx_ai.addCommonPrecondition(action) end
 end
 function register_bloodsucker_restr(obj)
 		printf("registering blood restr!!!")

@@ -44,7 +44,7 @@
     </center_background>
 
     <center_caption x="55" y="237" width="650" height="16">
-		<text align="l" font="letterica16" color="ui_3">#root15/FD-655#69/</text>
+		<text align="l" font="letterica16" color="ui_3"></text>
 	</center_caption>
 	
 	<actor_ch_info x="50" y="92" width="500" height="125">

@@ -1,7 +1,9 @@
+;;; Defender 1
+
 [logic@work1]
 active = walker@wait1
-suitable = {=check_npc_name(sim_default_stalker_3)} true
-prior = 40
+suitable = {=check_npc_name(sim_default_stalker_)} true
+prior = 140
 on_death = death@1
 
 [death@1]
@@ -13,13 +15,13 @@ path_look = agr_stalker_defender_on_trains_1_look
 on_info = {+train_pre_jump_1} walker@wait1_2 %=play_sound(agr_stalker_train_shout_1)%
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
-meet = no_meet
+meet = meet@defender
 
 [walker@wait1_2]
 path_walk = agr_stalker_defender_on_trains_1_walk
 path_look = agr_stalker_defender_on_trains_1_look_2
 on_info = {+train_jump_1} %=hit_npc(agr_smart_terrain_4_4_near_1_agr_hit_1:bip01_spine1:100:1000)% walker@wait1_1
-meet = no_meet
+meet = meet@defender
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 radius = 0
@@ -30,11 +32,14 @@ path_look = agr_stalker_defender_on_trains_1_look_2
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 radius = 0
+meet = meet@defender
+
+;;; Defender 2
 
 [logic@work2]
 active = walker@wait2
-suitable = {=check_npc_name(sim_default_stalker_3)} true
-prior = 40
+suitable = {=check_npc_name(sim_default_stalker_)} true
+prior = 140
 on_death = death@2
 
 [death@2]
@@ -45,7 +50,7 @@ path_walk = agr_stalker_defender_on_trains_2_walk
 path_look = agr_stalker_defender_on_trains_2_look
 on_info = {+train_pre_jump_2} walker@wait2_2 %=play_sound(agr_stalker_train_shout_1)%
 ;combat_ignore_cond = always
-meet = no_meet
+meet = meet@defender
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 radius = 0
@@ -55,7 +60,7 @@ path_walk = agr_stalker_defender_on_trains_2_walk
 path_look = agr_stalker_defender_on_trains_2_look_2
 on_info = {+train_jump_2} %=hit_npc(agr_smart_terrain_4_4_near_1_agr_hit_2:bip01_spine1:100:1000)% walker@wait2_1
 ;combat_ignore_cond = always
-meet = no_meet
+meet = meet@defender
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 radius = 0
@@ -66,11 +71,14 @@ path_look = agr_stalker_defender_on_trains_2_look_2
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 radius = 0
+meet = meet@defender
+
+;;; Defender 3
 
 [logic@work3]
 active = walker@wait3
-suitable = {=check_npc_name(sim_default_stalker_3)} true
-prior = 40
+suitable = {=check_npc_name(sim_default_stalker_)} true
+prior = 140
 on_death = death@3
 
 [death@3]
@@ -81,7 +89,7 @@ path_walk = agr_stalker_defender_on_trains_3_walk
 path_look = agr_stalker_defender_on_trains_3_look
 on_info = {+train_pre_jump_3} walker@wait3_2 %=play_sound(agr_stalker_train_shout_1)%
 ;combat_ignore_cond = always
-meet = no_meet
+meet = meet@defender
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 radius = 0
@@ -90,7 +98,7 @@ radius = 0
 path_walk = agr_stalker_defender_on_trains_3_walk
 path_look = agr_stalker_defender_on_trains_3_look_2
 on_info = {+train_jump_3} %=hit_npc(agr_smart_terrain_4_4_near_1_agr_hit_3:bip01_spine1:100:1000)% walker@wait3_1
-meet = no_meet
+meet = meet@defender
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 radius = 0
@@ -101,12 +109,19 @@ path_look = agr_stalker_defender_on_trains_3_look_2
 def_state_campering = threat_na
 def_state_campering_fire = threat_fire
 radius = 0
+meet = meet@defender
+
+[meet@defender]
+meet_state = 2|guard@meet_general_wait
+meet_state_wpn = 2|threat@meet_weapon_wait
+victim = 2|actor
+victim_wpn = 2|actor
 
 ;;; Commander 1
 
 [logic@commander_1]
 active = walker@commander_1
-suitable = {=check_npc_name(sim_default_stalker_)} true
+suitable = {=check_npc_name(sim_default_stalker_) =npc_is_squad_leader} true
 prior = 40
 
 [walker@commander_1]
@@ -115,13 +130,17 @@ path_look = agr_stalker_commander_1_look
 meet = meet@commander_1
 
 [meet@commander_1]
+meet_state = 2|guard@meet_general_wait
+meet_state_wpn = 2|threat@meet_weapon_wait
+victim = 2|actor
+victim_wpn = 2|actor
 meet_dialog = agr_stalker_commander_1_about_situation
 
 ;;; Commander 2
 
 [logic@commander_2]
 active = walker@commander_2
-suitable = {=check_npc_name(sim_default_stalker_)} true
+suitable = {=check_npc_name(sim_default_stalker_) =npc_is_squad_leader} true
 prior = 40
 
 [walker@commander_2]
@@ -130,14 +149,18 @@ path_look = agr_stalker_commander_2_look
 meet = meet@commander_2
 
 [meet@commander_2]
+meet_state = 2|guard@meet_general_wait
+meet_state_wpn = 2|threat@meet_weapon_wait
+victim = 2|actor
+victim_wpn = 2|actor
 meet_dialog = agr_stalker_commander_2_about_situation
 
-;;; Guarder
+;;; Guarder 1
 
 [logic@guarder]
 active = walker@guarder
-suitable = {=check_npc_name(sim_default_stalker_)} true
-prior = 40
+suitable = {=check_npc_name(sim_default_stalker_) =npc_is_squad_leader} true
+prior = 140
 
 [walker@guarder]
 path_walk = agr_stalker_guarder_1_walk
@@ -145,4 +168,76 @@ path_look = agr_stalker_guarder_1_look
 meet = meet@guarder
 
 [meet@guarder]
+meet_state = 2|guard@meet_general_wait
+meet_state_wpn = 2|threat@meet_weapon_wait
+victim = 2|actor
+victim_wpn = 2|actor
 meet_dialog = agr_stalker_guard_dialog
+
+;;; Guarder 2
+
+[logic@guarder2]
+active = walker@guarder2
+suitable = {=check_npc_name(sim_default_stalker_) -freeplay}
+prior = 140
+
+[walker@guarder2]
+path_walk = agr_stalker_guarder_2_walk
+path_look = agr_stalker_guarder_2_look
+on_info = {+agr_stalker_captive_1_dead} remark@dead1, {+agr_stalker_captive_2_dead} remark@dead2
+on_info2 = {!is_alive_one(1039) !is_alive_one(1040)} walker@guarder_post_hit
+meet = meet@guarder2
+
+[remark@dead1]
+anim = punch
+target = actor
+on_game_timer = 3 | remark@dead1_1 %=play_sound(agr_prisoner1_guard_hit)%
+meet = no_meet
+
+[remark@dead1_1]
+anim = punch
+target = actor
+on_signal = sound_end | remark@dead1_2
+meet = no_meet
+
+[remark@dead1_2]
+anim = punch
+target = actor
+on_game_timer = 2 | walker@guarder2 %=disable_info_kill(agr_stalker_captive_1_dead)%
+meet = no_meet
+
+[remark@dead2]
+anim = punch
+target = actor
+on_game_timer = 3 | remark@dead2_1 %=play_sound(agr_prisoner2_guard_hit)%
+meet = no_meet
+
+[remark@dead2_1]
+anim = punch
+target = actor
+on_signal = sound_end | remark@dead2_2
+meet = no_meet
+
+[remark@dead2_2]
+anim = punch
+target = actor
+on_game_timer = 2 | walker@guarder2 %=disable_info_kill(agr_stalker_captive_2_dead)%
+meet = no_meet
+
+[walker@guarder_post_hit]
+path_walk = agr_stalker_guarder_2_walk
+path_look = agr_stalker_guarder_2_look
+meet = meet
+
+[meet@guarder2]
+meet_state = 2|guard@meet_general_wait
+meet_state_wpn = 2|threat@meet_weapon_wait
+victim = 2|actor
+victim_wpn = 2|actor
+meet_dialog = agr_stalker_trader_about_prisoner
+
+[meet]
+meet_state = 2|guard@nil
+meet_state_wpn = 2|threat@meet_weapon_wait
+victim = 2|actor
+victim_wpn = 2|actor

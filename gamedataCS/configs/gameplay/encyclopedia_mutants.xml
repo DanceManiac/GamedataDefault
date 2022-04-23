@@ -1,100 +1,523 @@
 <?xml version='1.0' encoding="UTF-8"?>
 <encyclopedia>
-    <!-- LIST OF ENCYCLOPEDIA ENTRIES -->
+
+	<!-- Private -->
+
+	<article id="private_1_note" name="private_1" group="private"></article>
+	<article id="private_2_note" name="private_2" group="private"></article>
+	<article id="private_3_note" name="private_3" group="private"></article>
+	<article id="private_4_note" name="private_4" group="private"></article>
+	<article id="private_5_note" name="private_5" group="private"></article>
+	<article id="private_6_note" name="private_6" group="private"></article>
+	<article id="private_7_note" name="private_7" group="private"></article>
+	<article id="private_8_note" name="private_8" group="private"></article>
+	<article id="private_9_note" name="private_9" group="private"></article>
+	<article id="private_10_note" name="private_10" group="private"></article>
+	<article id="private_11_note" name="private_11" group="private"></article>
+	<article id="private_12_note" name="private_12" group="private"></article>
+	<article id="private_13_note" name="private_13" group="private"></article>
+	<article id="private_14_note" name="private_14" group="private"></article>
+	<article id="private_15_note" name="private_15" group="private"></article>
+	<article id="private_16_note" name="private_16" group="private"></article>
+	<article id="private_17_note" name="private_17" group="private"></article>
+	<article id="private_18_note" name="private_18" group="private"></article>
+	<article id="private_19_note" name="private_19" group="private"></article>
+	<article id="private_20_note" name="private_20" group="private"></article>
+	<article id="private_21_note" name="private_21" group="private"></article>
+	<article id="private_22_note" name="private_22" group="private"></article>
+	<article id="private_23_note" name="private_23" group="private"></article>
+	<article id="private_24_note" name="private_24" group="private"></article>
+	<article id="private_25_note" name="private_25" group="private"></article>
+	<article id="private_26_note" name="private_26" group="private"></article>
+	<article id="private_27_note" name="private_27" group="private"></article>
+	<article id="private_28_note" name="private_28" group="private"></article>
+	<article id="private_29_note" name="private_29" group="private"></article>
+	<article id="private_30_note" name="private_30" group="private"></article>
 
 
-    <!-------------------------------- Crow ----------------------------->
+	<!-- Monsters -->
+
+	<article id="mutant_crow_general" name="crow" group="monsters"></article>
+	<article id="mutant_flesh_general" name="flesh" group="monsters"></article>
+	<article id="mutant_blind_general" name="blind" group="monsters"></article>
+	<article id="mutant_tushkano_general" name="tushkano" group="monsters"></article>
+	<article id="mutant_rat_general" name="rat" group="monsters"></article>
+	<article id="mutant_boar_general" name="boar" group="monsters"></article>
+	<article id="mutant_pseudodog_general" name="pseudodog" group="monsters"></article>
+	<article id="mutant_psydog_general" name="psydog" group="monsters"></article>
+	<article id="mutant_bloodsucker_general" name="bloodsucker" group="monsters"></article>
+	<article id="mutant_bloodsucker_marsh_general" name="bloodsucker_marsh" group="monsters"></article>
+	<article id="mutant_pseudogiant_general" name="pseudogiant" group="monsters"></article>
+	<article id="mutant_poltergeist_general" name="poltergeist" group="monsters"></article>
+	<article id="mutant_poltergeist_flame_general" name="poltergeist_flame" group="monsters"></article>
+	<article id="mutant_controller_general" name="controller" group="monsters"></article>
+	<article id="mutant_snork_general" name="snork" group="monsters"></article>
+	<article id="mutant_cat_general" name="cat" group="monsters"></article>
+	<article id="mutant_chimera_general" name="chimera" group="monsters"></article>
+	<article id="mutant_burer_general" name="burer" group="monsters"></article>
+	<article id="mutant_fracture_general" name="fracture" group="monsters"></article>
+	<article id="mutant_zombie_general" name="zombie" group="monsters"></article>
+	<article id="mutant_zombieg_general" name="zombieg" group="monsters"></article>
+	<article id="mutant_zombierusty_general" name="zombierusty" group="monsters"></article>
+	<article id="mutant_zombieplague_general" name="zombieplague" group="monsters"></article>
+	<article id="mutant_zombieelectro_general" name="zombieelectro" group="monsters"></article>
+	<article id="mutant_electrochimera_general" name="electrochimera" group="monsters"></article>
+	<article id="mutant_psyburer_general" name="psyburer" group="monsters"></article>
+	<article id="mutant_phantom_general" name="phantom" group="monsters"></article>
 
 
-    <article id="mutant_crow_general" name="Crow" group="Mutants">
-        <texture x="500" y="150" width="100" height="100">ui\ui_icon_photo</texture>
-        <text>enc_mutant_crow_general</text>
-    </article>
+	<!-- Trophies -->
 
-    <!-------------------------------- FLESH ----------------------------->
-
-
-    <article id="mutant_flesh_general" name="Flesh" group="Mutants">
-        <texture>ui_npc_monster_flesh</texture>
-        <text>enc_mutant_flesh_general</text>
-    </article>
-   
-    <!-------------------------------- BLIND DOG ----------------------------->
-
-    <article id="mutant_blind_general" name="Blind" group="Mutants">
-        <texture>ui_npc_monster_dog</texture>
-        <text>enc_mutant_blind_general</text>
-    </article>
-    
-     <!-------------------------------- TUSHKANO ----------------------------->
-
-    <article id="mutant_tushkano" name="Tushkano" group="Mutants">
-        <texture>ui_npc_monster_tushkano</texture>
-        <text>enc_mutant_tushkano</text>
-    </article>
+	<article id="mutant_dog_tail" name="mutant_dog_tail" group="trophies"></article>
+	<article id="mutant_dog_strong_tail" name="mutant_dog_strong_tail" group="trophies"></article>
+	<article id="mutant_flesh_eye" name="mutant_flesh_eye" group="trophies"></article>
+	<article id="mutant_boar_leg" name="mutant_boar_leg" group="trophies"></article>
+	<article id="mutant_zombie_hand" name="mutant_zombie_hand" group="trophies"></article>
+	<article id="mutant_izlom_hand" name="mutant_izlom_hand" group="trophies"></article>
+	<article id="mutant_snork_leg" name="mutant_snork_leg" group="trophies"></article>
+	<article id="mutant_cat_tail" name="mutant_cat_tail" group="trophies"></article>
+	<article id="mutant_psevdodog_tail" name="mutant_psevdodog_tail" group="trophies"></article>
+	<article id="mutant_poltergeist_hand" name="mutant_poltergeist_hand" group="trophies"></article>
+	<article id="mutant_burer_hand" name="mutant_burer_hand" group="trophies"></article>
+	<article id="mutant_krovosos_jaw" name="mutant_krovosos_jaw" group="trophies"></article>
+	<article id="mutant_marsh_krovosos_jaw" name="mutant_marsh_krovosos_jaw" group="trophies"></article>
+	<article id="mutant_chimera_nail" name="mutant_chimera_nail" group="trophies"></article>
+	<article id="mutant_controller_hand" name="mutant_controller_hand" group="trophies"></article>
+	<article id="mutant_pseudogigant_nail" name="mutant_pseudogigant_nail" group="trophies"></article>
+	<article id="mutant_tushkano_face" name="mutant_tushkano_face" group="trophies"></article>
 
 
-    <!-------------------------------- Boar ----------------------------->
+	<!-- Anomalies -->
 
-    <article id="mutant_boar_general" name="Boar" group="Mutants">
-        <texture>ui_npc_monster_mutant_boar</texture>
-        <text>enc_mutant_boar_general</text>
-    </article>
-
-
-    <!-------------------------------- PSEUDODOG ----------------------------->
-
-    <article id="mutant_pseudodog_general" name="Pseudodog" group="Mutants">
-        <texture>ui_npc_monster_pseudodog_grey</texture>
-        <text>enc_mutant_pseudodog_general</text>
-    </article>
-  
-    <!-------------------------------- Bloodsucker ----------------------------->
-
-    <article id="mutant_bloodsucker_general" name="Bloodsucker" group="Mutants">
-        <texture>ui_npc_monster_krovosos</texture>
-        <text>enc_mutant_bloodsucker_general</text>
-    </article>
-
-    <!-------------------------------- Pseudogiant ----------------------------->
-
-    <article id="mutant_pseudogiant_general" name="Pseudogiant" group="Mutants">
-        <texture>ui_npc_monster_psevdogigant</texture>
-        <text>enc_mutant_pseudogiant_general</text>
-    </article>
+	<article id="tramplin_info" name="tramplin" group="anomalies"></article>
+	<article id="voronka_info" name="voronka" group="anomalies"></article>
+	<article id="karusel_info" name="karusel" group="anomalies"></article>
+	<article id="electra_info" name="electra" group="anomalies"></article>
+	<article id="zharka_info" name="zharka" group="anomalies"></article>
+	<article id="razlom_info" name="razlom" group="anomalies"></article>
+	<article id="simbiont_info" name="simbiont" group="anomalies"></article>
+	<article id="pukh_info" name="pukh" group="anomalies"></article>
+	<article id="studen_info" name="studen" group="anomalies"></article>
+	<article id="teleport_info" name="teleport" group="anomalies"></article>
+	<article id="tuman_info" name="tuman" group="anomalies"></article>
+	<article id="psyzone_info" name="psyzone" group="anomalies"></article>
+	<article id="radioactive_info" name="radioactive" group="anomalies"></article>
+	<article id="duhovka_info" name="duhovka" group="anomalies"></article>
+	<article id="kometa_info" name="kometa" group="anomalies"></article>
+	<article id="vivoroten_info" name="vivoroten" group="anomalies"></article>
+	<article id="vibros_info" name="vibros" group="anomalies"></article>
+	<article id="peklo_info" name="peklo" group="anomalies"></article>
+	<article id="space_bubble_info" name="space_bubble" group="anomalies"></article>
 
 
-    <!-------------------------------- Poltergeist ----------------------------->
+	<!-- Artefacts -->
 
-    <article id="mutant_poltergeist_general" name="Poltergeist" group="Mutants">
-        <texture>ui_npc_monster_poltergeist</texture>
-        <text>enc_mutant_poltergeist_general</text>
-    </article>
+	<article id="af_medusa" name="af_medusa" group="artefacts"></article>
+	<article id="af_vyvert" name="af_vyvert" group="artefacts"></article>
+	<article id="af_cristall_flower" name="af_cristall_flower" group="artefacts"></article>
+	<article id="af_night_star" name="af_night_star" group="artefacts"></article>
+	<article id="af_gravi" name="af_gravi" group="artefacts"></article>
+	<article id="af_gold_fish" name="af_gold_fish" group="artefacts"></article>
+	<article id="af_mica" name="af_mica" group="artefacts"></article>
+	<article id="af_slug" name="af_slug" group="artefacts"></article>
+	<article id="af_ball" name="af_ball" group="artefacts"></article>
+	<article id="af_thorn" name="af_thorn" group="artefacts"></article>
+	<article id="af_cristall" name="af_cristall" group="artefacts"></article>
+	<article id="af_fireball" name="af_fireball" group="artefacts"></article>
+	<article id="af_dummy_glassbeads" name="af_dummy_glassbeads" group="artefacts"></article>
+	<article id="af_eye" name="af_eye" group="artefacts"></article>
+	<article id="af_fire" name="af_fire" group="artefacts"></article>
+	<article id="af_blood" name="af_blood" group="artefacts"></article>
+	<article id="af_mincer_meat" name="af_mincer_meat" group="artefacts"></article>
+	<article id="af_baloon" name="af_baloon" group="artefacts"></article>
+	<article id="af_soul" name="af_soul" group="artefacts"></article>
+	<article id="af_fuzz_kolobok" name="af_fuzz_kolobok" group="artefacts"></article>
+	<article id="af_glass" name="af_glass" group="artefacts"></article>
+	<article id="af_electra_sparkler" name="af_electra_sparkler" group="artefacts"></article>
+	<article id="af_electra_flash" name="af_electra_flash" group="artefacts"></article>
+	<article id="af_electra_moonlight" name="af_electra_moonlight" group="artefacts"></article>
+	<article id="af_dummy_battery" name="af_dummy_battery" group="artefacts"></article>
+	<article id="af_dummy_dummy" name="af_dummy_dummy" group="artefacts"></article>
+	<article id="af_ice" name="af_ice" group="artefacts"></article>
+	<article id="af_compass" name="af_compass" group="artefacts"></article>
+	<article id="af_dummy_pellicle" name="af_dummy_pellicle" group="artefacts"></article>
 
-    <!-------------------------------- Controller ----------------------------->
 
-    <article id="mutant_controller_general" name="Controller" group="Mutants">
-        <texture>ui_npc_monster_kontroler_4</texture>
-        <text>enc_mutant_controller_general</text>
-    </article>
+	<!-- Locations -->
 
-
-    <!-------------------------------- Zombie ----------------------------->
-
-    <article id="mutant_zombie_general" name="Zombie" group="Mutants">
-        <texture x="500" y="150" width="100" height="100">ui\ui_icon_photo</texture>
-        <text>enc_mutant_zombie_general</text>
-    </article>
-
-
-    <!-------------------------------- Snork ----------------------------->
-
-    <article id="mutant_snork_general" name="Snork" group="Mutants">
-        <texture>ui_npc_monster_snork</texture>
-        <text>enc_mutant_snork_general</text>
-    </article>
+	<article id="marsh_visited" name="marsh" group="locations"></article>
+	<article id="escape_visited" name="escape" group="locations"></article>
+	<article id="garbage_visited" name="garbage" group="locations"></article>
+	<article id="darkvalley_visited" name="darkvalley" group="locations"></article>
+	<article id="agroprom_visited" name="agroprom" group="locations"></article>
+	<article id="agroprom_underground_visited" name="agroprom_underground" group="locations"></article>
+	<article id="yantar_visited" name="yantar" group="locations"></article>
+	<article id="red_forest_visited" name="red_forest" group="locations"></article>
+	<article id="military_visited" name="military" group="locations"></article>
+	<article id="limansk_visited" name="limansk" group="locations"></article>
+	<article id="hospital_visited" name="hospital" group="locations"></article>
+	<article id="jupiter_underground_visited" name="jupiter_underground" group="locations"></article>
+	<article id="stancia_2_visited" name="stancia_2" group="locations"></article>
 
 
+	<!-- Factions -->
+
+	<article id="csky_info" name="csky" group="factions"></article>
+	<article id="renegade_info" name="renegade" group="factions"></article>
+	<article id="stalker_info" name="stalker" group="factions"></article>
+	<article id="bandit_info" name="bandit" group="factions"></article>
+	<article id="army_info" name="army" group="factions"></article>
+	<article id="killer_info" name="killer" group="factions"></article>
+	<article id="dolg_info" name="dolg" group="factions"></article>
+	<article id="freedom_info" name="freedom" group="factions"></article>
+	<article id="ecolog_info" name="ecolog" group="factions"></article>
+	<article id="monolith_info" name="monolith" group="factions"></article>
+	<article id="zombied_info" name="zombied" group="factions"></article>
+	<article id="trader_info" name="trader" group="factions"></article>
+
+
+	<!-- Stories -->
+
+	<article id="dm_ogsm_story_1" name="story_1" group="stories"></article>
+	<article id="dm_ogsm_story_2" name="story_2" group="stories"></article>
+	<article id="dm_ogsm_story_3" name="story_3" group="stories"></article>
+	<article id="dm_ogsm_story_4" name="story_4" group="stories"></article>
+	<article id="dm_ogsm_story_5" name="story_5" group="stories"></article>
+	<article id="dm_ogsm_story_6" name="story_6" group="stories"></article>
+	<article id="dm_ogsm_story_7" name="story_7" group="stories"></article>
+	<article id="dm_ogsm_story_8" name="story_8" group="stories"></article>
+	<article id="dm_ogsm_story_9" name="story_9" group="stories"></article>
+	<article id="dm_ogsm_story_10" name="story_10" group="stories"></article>
+	<article id="dm_ogsm_story_11" name="story_11" group="stories"></article>
+	<article id="dm_ogsm_story_12" name="story_12" group="stories"></article>
+	<article id="dm_ogsm_story_13" name="story_13" group="stories"></article>
+	<article id="dm_ogsm_story_14" name="story_14" group="stories"></article>
+	<article id="dm_ogsm_story_15" name="story_15" group="stories"></article>
+	<article id="dm_ogsm_story_16" name="story_16" group="stories"></article>
+	<article id="dm_ogsm_story_17" name="story_17" group="stories"></article>
+	<article id="dm_ogsm_story_18" name="story_18" group="stories"></article>
+	<article id="dm_ogsm_story_19" name="story_19" group="stories"></article>
+	<article id="dm_ogsm_story_20" name="story_20" group="stories"></article>
+	<article id="dm_ogsm_story_21" name="story_21" group="stories"></article>
+	<article id="dm_ogsm_story_22" name="story_22" group="stories"></article>
+
+
+	<!-- Documents -->
+
+	<article id="doc_01" name="doc_01" group="documents"></article>
+	<article id="doc_02" name="doc_02" group="documents"></article>
+	<article id="doc_03" name="doc_03" group="documents"></article>
+	<article id="doc_04" name="doc_04" group="documents"></article>
+	<article id="doc_05" name="doc_05" group="documents"></article>
+	<article id="doc_06" name="doc_06" group="documents"></article>
+	<article id="doc_07" name="doc_07" group="documents"></article>
+	<article id="doc_08" name="doc_08" group="documents"></article>
+	<article id="doc_09" name="doc_09" group="documents"></article>
+	<article id="doc_10" name="doc_10" group="documents"></article>
+	<article id="doc_11" name="doc_11" group="documents"></article>
+	<article id="doc_12" name="doc_12" group="documents"></article>
+	<article id="doc_13" name="doc_13" group="documents"></article>
+	<article id="doc_14" name="doc_14" group="documents"></article>
+	<article id="doc_15" name="doc_15" group="documents"></article>
+
+
+	<!-- Weapon -->
+
+	<article id="wpn_pm" name="wpn_pm" group="weapon"></article>
+	<article id="wpn_pmm" name="wpn_pmm" group="weapon"></article>
+	<article id="wpn_bm16_full" name="wpn_bm16_full" group="weapon"></article>
+	<article id="wpn_abakan" name="wpn_abakan" group="weapon"></article>
+	<article id="wpn_ak74" name="wpn_ak74" group="weapon"></article>
+	<article id="wpn_saiga" name="wpn_saiga" group="weapon"></article>
+	<article id="wpn_ak74_priklad" name="wpn_ak74_priklad" group="weapon"></article>
+	<article id="wpn_ak101" name="wpn_ak101" group="weapon"></article>
+	<article id="wpn_ak104" name="wpn_ak104" group="weapon"></article>
+	<article id="wpn_ak108" name="wpn_ak108" group="weapon"></article>
+	<article id="wpn_akm" name="wpn_akm" group="weapon"></article>
+	<article id="wpn_rpk" name="wpn_rpk" group="weapon"></article>
+	<article id="wpn_ak74u" name="wpn_ak74u" group="weapon"></article>
+	<article id="wpn_beretta" name="wpn_beretta" group="weapon"></article>
+	<article id="wpn_bm16" name="wpn_bm16" group="weapon"></article>
+	<article id="wpn_colt1911" name="wpn_colt1911" group="weapon"></article>
+	<article id="wpn_aps" name="wpn_aps" group="weapon"></article>
+	<article id="wpn_desert_eagle" name="wpn_desert_eagle" group="weapon"></article>
+	<article id="grenade_f1" name="grenade_f1" group="weapon"></article>
+	<article id="wpn_fn2000" name="wpn_fn2000" group="weapon"></article>
+	<article id="wpn_fort" name="wpn_fort" group="weapon"></article>
+	<article id="wpn_g36" name="wpn_g36" group="weapon"></article>
+	<article id="wpn_g36c" name="wpn_g36c" group="weapon"></article>
+	<article id="wpn_gauss" name="wpn_gauss" group="weapon"></article>
+	<article id="wpn_gauss_aes" name="wpn_gauss_aes" group="weapon"></article>
+	<article id="grenade_gd-05" name="grenade_gd" group="weapon"></article>
+	<article id="wpn_groza" name="wpn_groza" group="weapon"></article>
+	<article id="wpn_hpsa" name="wpn_hpsa" group="weapon"></article>
+	<article id="wpn_tt33" name="wpn_tt33" group="weapon"></article>
+	<article id="wpn_glock17" name="wpn_glock17" group="weapon"></article>
+	<article id="wpn_l85" name="wpn_l85" group="weapon"></article>
+	<article id="wpn_lr300" name="wpn_lr300" group="weapon"></article>
+	<article id="wpn_mp5" name="wpn_mp5" group="weapon"></article>
+	<article id="wpn_ump45" name="wpn_ump45" group="weapon"></article>
+	<article id="wpn_p90" name="wpn_p90" group="weapon"></article>
+	<article id="wpn_pb" name="wpn_pb" group="weapon"></article>
+	<article id="wpn_pb_short" name="wpn_pb_short" group="weapon"></article>
+	<article id="wpn_pkm" name="wpn_pkm" group="weapon"></article>
+	<article id="wpn_rg-6" name="wpn_rg" group="weapon"></article>
+	<article id="grenade_rgd5" name="grenade_rgd5" group="weapon"></article>
+	<article id="wpn_rpg7" name="wpn_rpg7" group="weapon"></article>
+	<article id="wpn_sig220" name="wpn_sig220" group="weapon"></article>
+	<article id="wpn_sig550" name="wpn_sig550" group="weapon"></article>
+	<article id="wpn_sigsg550sniper" name="wpn_sigsg550sniper" group="weapon"></article>
+	<article id="wpn_sig552" name="wpn_sig552" group="weapon"></article>
+	<article id="wpn_spas12" name="wpn_spas12" group="weapon"></article>
+	<article id="wpn_svd" name="wpn_svd" group="weapon"></article>
+	<article id="wpn_svu" name="wpn_svu" group="weapon"></article>
+	<article id="wpn_toz34" name="wpn_toz34" group="weapon"></article>
+	<article id="wpn_toz34_obrez" name="wpn_toz34_obrez" group="weapon"></article>
+	<article id="wpn_usp" name="wpn_usp" group="weapon"></article>
+	<article id="wpn_val" name="wpn_val" group="weapon"></article>
+	<article id="wpn_vihr" name="wpn_vihr" group="weapon"></article>
+	<article id="wpn_9a91" name="wpn_9a91" group="weapon"></article>
+	<article id="wpn_vintorez" name="wpn_vintorez" group="weapon"></article>
+	<article id="wpn_walther" name="wpn_walther" group="weapon"></article>
+	<article id="wpn_fn57" name="wpn_fn57" group="weapon"></article>
+	<article id="wpn_wincheaster1300" name="wpn_wincheaster1300" group="weapon"></article>
+	<article id="wpn_gsh18" name="wpn_gsh18" group="weapon"></article>
+
+	<article id="explosive_mobiltank" name="explosive_mobiltank" group="weapon"></article>
+	<article id="explosive_dinamit" name="explosive_dinamit" group="weapon"></article>
+
+
+	<!-- Ammunition -->
+
+	<article id="ammo_9x18_fmj" name="ammo_9x18_fmj" group="ammunition"></article>
+	<article id="ammo_9x18_pmm" name="ammo_9x18_pmm" group="ammunition"></article>
+	<article id="ammo_9x18_pbp" name="ammo_9x18_pbp" group="ammunition"></article>
+	<article id="ammo_9x19_fmj" name="ammo_9x19_fmj" group="ammunition"></article>
+	<article id="ammo_9x19_pbp" name="ammo_9x19_pbp" group="ammunition"></article>
+	<article id="ammo_11.43x23_fmj" name="ammo_11.43x23_fmj" group="ammunition"></article>
+	<article id="ammo_11.43x23_hydro" name="ammo_11.43x23_hydro" group="ammunition"></article>
+	<article id="ammo_5.45x39_fmj" name="ammo_5.45x39_fmj" group="ammunition"></article>
+	<article id="ammo_5.45x39_ap" name="ammo_5.45x39_ap" group="ammunition"></article>
+	<article id="ammo_5.56x45_ss190" name="ammo_5.56x45_ss190" group="ammunition"></article>
+	<article id="ammo_5.56x45_ap" name="ammo_5.56x45_ap" group="ammunition"></article>
+	<article id="ammo_9x39_pab9" name="ammo_9x39_pab9" group="ammunition"></article>
+	<article id="ammo_9x39_sp5" name="ammo_9x39_sp5" group="ammunition"></article>
+	<article id="ammo_9x39_ap" name="ammo_9x39_ap" group="ammunition"></article>
+	<article id="ammo_7.62x54_7h1" name="ammo_7.62x54_7h1" group="ammunition"></article>
+	<article id="ammo_7.62x54_7h14" name="ammo_7.62x54_7h14" group="ammunition"></article>
+	<article id="ammo_7.62x54_ap" name="ammo_7.62x54_ap" group="ammunition"></article>
+	<article id="ammo_pkm_100" name="ammo_pkm_100" group="ammunition"></article>
+	<article id="ammo_12x70_buck" name="ammo_12x70_buck" group="ammunition"></article>
+	<article id="ammo_12x76_zhekan" name="ammo_12x76_zhekan" group="ammunition"></article>
+	<article id="ammo_12x76_dart" name="ammo_12x76_dart" group="ammunition"></article>
+	<article id="ammo_og-7b" name="ammo_og-7b" group="ammunition"></article>
+	<article id="ammo_gauss" name="ammo_gauss" group="ammunition"></article>
+	<article id="ammo_gauss_aes" name="ammo_gauss_aes" group="ammunition"></article>
+	<article id="ammo_7.62x39_fmj" name="ammo_7.62x39_fmj" group="ammunition"></article>
+	<article id="ammo_7.62x39_ap" name="ammo_7.62x39_ap" group="ammunition"></article>
+	<article id="ammo_7.62x25_fmj" name="ammo_7.62x25_fmj" group="ammunition"></article>
+	<article id="ammo_7.62x25_ap" name="ammo_7.62x25_ap" group="ammunition"></article>
+	<article id="ammo_10.9x32.5" name="ammo_10.9x32.5" group="ammunition"></article>
+	<article id="ammo_5.7x28_fmj" name="ammo_5.7x28_fmj" group="ammunition"></article>
+	<article id="ammo_5.7x28_ap" name="ammo_5.7x28_ap" group="ammunition"></article>
+	<article id="ammo_vog-25" name="ammo_vog-25" group="ammunition"></article>
+	<article id="ammo_vog-25p" name="ammo_vog-25p" group="ammunition"></article>
+	<article id="ammo_m209" name="ammo_m209" group="ammunition"></article>
+
+
+	<!-- Outfit -->
+
+	<article id="cs_novice_outfit" name="cs_novice_outfit" group="outfit"></article>
+	<article id="cs_light_outfit" name="cs_light_outfit" group="outfit"></article>
+	<article id="cs_light_extra_outfit" name="cs_light_extra_outfit" group="outfit"></article>
+	<article id="cs_standart_outfit" name="cs_standart_outfit" group="outfit"></article>
+	<article id="cs_heavy_outfit" name="cs_heavy_outfit" group="outfit"></article>
+	<article id="cs_heavy_extra_outfit" name="cs_heavy_extra_outfit" group="outfit"></article>
+	<article id="novice_outfit" name="novice_outfit" group="outfit"></article>
+	<article id="novice_outfit_white" name="novice_outfit_white" group="outfit"></article>
+	<article id="stalker_light_outfit" name="stalker_light_outfit" group="outfit"></article>
+	<article id="stalker_outfit" name="stalker_outfit" group="outfit"></article>
+	<article id="scientific_outfit" name="scientific_outfit" group="outfit"></article>
+	<article id="stalker_heavy_outfit" name="stalker_heavy_outfit" group="outfit"></article>
+	<article id="exo_outfit" name="exo_outfit" group="outfit"></article>
+	<article id="bandit_outfit" name="bandit_outfit" group="outfit"></article>
+	<article id="bandit_veteran_outfit" name="bandit_veteran_outfit" group="outfit"></article>
+	<article id="bandit_master_outfit" name="bandit_master_outfit" group="outfit"></article>
+	<article id="bandit_heavy_outfit" name="bandit_heavy_outfit" group="outfit"></article>
+	<article id="dolg_outfit" name="dolg_outfit" group="outfit"></article>
+	<article id="dolg_scientific_outfit" name="dolg_scientific_outfit" group="outfit"></article>
+	<article id="dolg_heavy_extra_outfit" name="dolg_heavy_extra_outfit" group="outfit"></article>
+	<article id="dolg_heavy_extra2_outfit" name="dolg_heavy_extra2_outfit" group="outfit"></article>
+	<article id="dolg_heavy_outfit" name="dolg_heavy_outfit" group="outfit"></article>
+	<article id="dolg_exo_outfit" name="dolg_exo_outfit" group="outfit"></article>
+	<article id="svoboda_light_outfit" name="svoboda_light_outfit" group="outfit"></article>
+	<article id="svoboda_light2_outfit" name="svoboda_light2_outfit" group="outfit"></article>
+	<article id="svoboda_heavy_outfit" name="svoboda_heavy_outfit" group="outfit"></article>
+	<article id="svoboda_heavy_extra_outfit" name="svoboda_heavy_extra_outfit" group="outfit"></article>
+	<article id="svoboda_scientific_outfit" name="svoboda_scientific_outfit" group="outfit"></article>
+	<article id="svoboda_exo_outfit" name="svoboda_exo_outfit" group="outfit"></article>
+	<article id="killer_outfit" name="killer_outfit" group="outfit"></article>
+	<article id="killer_outfit_dark" name="killer_outfit_dark" group="outfit"></article>
+	<article id="killer_light2_outfit" name="killer_light2_outfit" group="outfit"></article>
+	<article id="killer_scientific_outfit" name="killer_scientific_outfit" group="outfit"></article>
+	<article id="killer_heavy_outfit" name="killer_heavy_outfit" group="outfit"></article>
+	<article id="killer_exo_outfit" name="killer_exo_outfit" group="outfit"></article>
+	<article id="monolith_light_outfit" name="monolith_light_outfit" group="outfit"></article>
+	<article id="monolith_outfit" name="monolith_outfit" group="outfit"></article>
+	<article id="monolith_scientific_outfit" name="monolith_scientific_outfit" group="outfit"></article>
+	<article id="monolith_heavy_outfit" name="monolith_heavy_outfit" group="outfit"></article>
+	<article id="monolith_exo_outfit" name="monolith_exo_outfit" group="outfit"></article>
+	<article id="soldier_outfit_green" name="soldier_outfit_green" group="outfit"></article>
+	<article id="soldier_outfit_grey" name="soldier_outfit_grey" group="outfit"></article>
+	<article id="soldier_outfit_brown" name="soldier_outfit_brown" group="outfit"></article>
+	<article id="specops_outfit" name="specops_outfit" group="outfit"></article>
+	<article id="military_outfit" name="military_outfit" group="outfit"></article>
+	<article id="military_extra_outfit" name="military_extra_outfit" group="outfit"></article>
+	<article id="military_outfit_black" name="military_outfit_black" group="outfit"></article>
+	<article id="military_extra_outfit_black" name="military_extra_outfit_black" group="outfit"></article>
+	<article id="red_ecolog_outfit" name="red_ecolog_outfit" group="outfit"></article>
+	<article id="green_ecolog_outfit" name="green_ecolog_outfit" group="outfit"></article>
+	<article id="digger_novice_outfit" name="digger_novice_outfit" group="outfit"></article>
+	<article id="shram_outfit" name="shram_outfit" group="outfit"></article>
+
+
+	<!-- Helping -->
+
+	<article id="medkit" name="medkit" group="helping"></article>
+	<article id="medkit_army" name="medkit_army" group="helping"></article>
+	<article id="medkit_scientic" name="medkit_scientic" group="helping"></article>
+	<article id="yadulin" name="yadulin" group="helping"></article>
+	<article id="bandage" name="bandage" group="helping"></article>
+	<article id="antirad" name="antirad" group="helping"></article>
+	<article id="vodka" name="vodka" group="helping"></article>
+	<article id="energy_drink" name="energy_drink" group="helping"></article>
+	<article id="nuts" name="nuts" group="helping"></article>
+	<article id="olives" name="olives" group="helping"></article>
+	<article id="bread" name="bread" group="helping"></article>
+	<article id="kolbasa" name="kolbasa" group="helping"></article>
+	<article id="cheese" name="cheese" group="helping"></article>
+	<article id="conserva" name="conserva" group="helping"></article>
+	<article id="vegetables" name="vegetables" group="helping"></article>
+	<article id="sardines" name="sardines" group="helping"></article>
+	<article id="flash_scientific_ac_sect" name="flash_scientific_ac_sect" group="helping"></article>
+	<article id="flash_scientific_eg_sect" name="flash_scientific_eg_sect" group="helping"></article>
+	<article id="flash_scientific_aceg_sect" name="flash_scientific_aceg_sect" group="helping"></article>
+	<article id="flash_exoskeleton_f2_sect" name="flash_exoskeleton_f2_sect" group="helping"></article>
+	<article id="flash_exoskeleton_h2_sect" name="flash_exoskeleton_h2_sect" group="helping"></article>
+	<article id="flash_exoskeleton_f2h2_sect" name="flash_exoskeleton_f2h2_sect" group="helping"></article>
+	<article id="flash_exoskeleton_ac2_sect" name="flash_exoskeleton_ac2_sect" group="helping"></article>
+	<article id="flash_exoskeleton_bd2_sect" name="flash_exoskeleton_bd2_sect" group="helping"></article>
+	<article id="flash_shotguns_ac_sect" name="flash_shotguns_ac_sect" group="helping"></article>
+	<article id="flash_shotguns_bd_sect" name="flash_shotguns_bd_sect" group="helping"></article>
+	<article id="flash_sniperrifles_ab_sect" name="flash_sniperrifles_ab_sect" group="helping"></article>
+	<article id="flash_sniperrifles_cd_sect" name="flash_sniperrifles_cd_sect" group="helping"></article>
+	<article id="flash_sniperrifles_abcd_sect" name="flash_sniperrifles_abcd_sect" group="helping"></article>
+	<article id="flash_silentrifles_ab_sect" name="flash_silentrifles_ab_sect" group="helping"></article>
+	<article id="flash_silentrifles_cd_sect" name="flash_silentrifles_cd_sect" group="helping"></article>
+	<article id="flash_groza_ac_sect" name="flash_groza_ac_sect" group="helping"></article>
+	<article id="flash_groza_eg_sect" name="flash_groza_eg_sect" group="helping"></article>
+	<article id="flash_groza_aceg_sect" name="flash_groza_aceg_sect" group="helping"></article>
+	<article id="flash_fn2000_ac_sect" name="flash_fn2000_ac_sect" group="helping"></article>
+	<article id="flash_fn2000_bd_sect" name="flash_fn2000_bd_sect" group="helping"></article>
+	<article id="flash_fn2000_2ac_sect" name="flash_fn2000_2ac_sect" group="helping"></article>
+	<article id="flash_fn2000_2bd_sect" name="flash_fn2000_2bd_sect" group="helping"></article>
+	<article id="flash_pkm_ab_sect" name="flash_pkm_ab_sect" group="helping"></article>
+	<article id="flash_pkm_cd_sect" name="flash_pkm_cd_sect" group="helping"></article>
+	<article id="flash_pkm_abcd_sect" name="flash_pkm_abcd_sect" group="helping"></article>
+
+
+	<!-- Equipment -->
+
+	<article id="guitar_a" name="guitar_a" group="equipment"></article>
+	<article id="harmonica_a" name="harmonica_a" group="equipment"></article>
+	<article id="device_pda" name="device_pda" group="equipment"></article>
+	<article id="dev_flash_1" name="dev_flash_1" group="equipment"></article>
+	<article id="device_torch" name="device_torch" group="equipment"></article>
+	<article id="matras" name="matras" group="equipment"></article>
+	<article id="notepad" name="notepad" group="equipment"></article>
+	<article id="inv_ruck" name="inv_ruck" group="equipment"></article>
+	<article id="detector_simple" name="detector_simple" group="equipment"></article>
+	<article id="detector_advanced" name="detector_advanced" group="equipment"></article>
+	<article id="detector_elite" name="detector_elite" group="equipment"></article>
+	<article id="hand_radio" name="hand_radio" group="equipment"></article>
+	<article id="bolt" name="bolt" group="equipment"></article>
+	<article id="wpn_binoc" name="wpn_binoc" group="equipment"></article>
+	<article id="wpn_knife" name="wpn_knife" group="equipment"></article>
+	<article id="wpn_addon_scope" name="wpn_addon_scope" group="equipment"></article>
+	<article id="wpn_addon_scope_pgo" name="wpn_addon_scope_pgo" group="equipment"></article>
+	<article id="wpn_addon_scope_susat" name="wpn_addon_scope_susat" group="equipment"></article>
+	<article id="wpn_addon_scope_acog" name="wpn_addon_scope_acog" group="equipment"></article>
+	<article id="wpn_addon_scope_gauss" name="wpn_addon_scope_gauss" group="equipment"></article>
+	<article id="wpn_addon_silencer" name="wpn_addon_silencer" group="equipment"></article>
+	<article id="wpn_addon_silencer_pb" name="wpn_addon_silencer_pb" group="equipment"></article>
+	<article id="wpn_addon_silencer_svu" name="wpn_addon_silencer_svu" group="equipment"></article>
+	<article id="wpn_addon_grenade_launcher" name="wpn_addon_grenade_launcher" group="equipment"></article>
+	<article id="wpn_addon_grenade_launcher_m203" name="wpn_addon_grenade_launcher_m203" group="equipment"></article>
+
+
+	<!-- Quest items -->
+
+	<article id="esc_trader_habar" name="esc_trader_habar" group="equipment"></article>
+	<article id="device_pda_digger" name="device_pda_digger" group="equipment"></article>
+	<article id="device_pda_freedom" name="device_pda_freedom" group="equipment"></article>
+	<article id="device_pda_comendant" name="device_pda_comendant" group="equipment"></article>
+	<article id="device_pda_fang" name="device_pda_fang" group="equipment"></article>
+	<article id="device_pda_strelok" name="device_pda_strelok" group="equipment"></article>
+	<article id="red_forest_pda_map" name="red_forest_pda_map" group="equipment"></article>
+	<article id="device_pda_military" name="device_pda_military" group="equipment"></article>
+	<article id="device_pda_old" name="device_pda_old" group="equipment"></article>
+	<article id="device_pda_garbage_traitor" name="device_pda_garbage_traitor" group="equipment"></article>
+	<article id="device_pda_bloodsucker" name="device_pda_bloodsucker" group="equipment"></article>
+	<article id="esc_device_pda_driver" name="esc_device_pda_driver" group="equipment"></article>
+	<article id="esc_mechanic_flash_card" name="esc_mechanic_flash_card" group="equipment"></article>
+	<article id="agr_map_animals" name="agr_map_animals" group="equipment"></article>
+	<article id="agr_pda_for_secret_trader" name="agr_pda_for_secret_trader" group="equipment"></article>
+	<article id="ammo_package" name="ammo_package" group="equipment"></article>
+	<article id="products_package" name="products_package" group="equipment"></article>
+	<article id="ashot_ammo_package" name="ashot_ammo_package" group="equipment"></article>
+	<article id="item_electro_charge" name="item_electro_charge" group="equipment"></article>
+	<article id="gar_digger_dead_pda" name="gar_digger_dead_pda" group="equipment"></article>
+	<article id="gar_digger_messenger_pda" name="gar_digger_messenger_pda" group="equipment"></article>
+	<article id="val_bandit_spy_quest_pda" name="val_bandit_spy_quest_pda" group="equipment"></article>
+	<article id="yan_stalker_dead_pda" name="yan_stalker_dead_pda" group="equipment"></article>
+	<article id="mar_quest_wpn_pm_1" name="mar_quest_wpn_pm_1" group="weapon"></article>
+	<article id="mar_quest_wpn_ak74u_1" name="mar_quest_wpn_ak74u_1" group="weapon"></article>
+	<article id="mar_quest_af_cristall_flower_1" name="mar_quest_af_cristall_flower_1" group="artefacts"></article>
+	<article id="mar_quest_scout_pda" name="mar_quest_scout_pda" group="equipment"></article>
+	<article id="mar_quest_novice_outfit_1" name="mar_quest_novice_outfit_1" group="outfit"></article>
+	<article id="esc_quest_magic_vodka" name="esc_quest_magic_vodka" group="helping"></article>
+	<article id="esc_quest_akm47" name="esc_quest_akm47" group="weapon"></article>
+	<article id="esc_quest_luky_detector" name="esc_quest_luky_detector" group="equipment"></article>
+	<article id="esc_quest_spec_medkit" name="esc_quest_spec_medkit" group="helping"></article>
+	<article id="gar_quest_wpn_wincheaster1300" name="gar_quest_wpn_wincheaster1300" group="weapon"></article>
+	<article id="gar_quest_wpn_desert_eagle" name="gar_quest_wpn_desert_eagle" group="weapon"></article>
+	<article id="gar_quest_vodka_2" name="gar_quest_vodka_2" group="helping"></article>
+	<article id="gar_quest_novice_outfit" name="gar_quest_novice_outfit" group="outfit"></article>
+	<article id="gar_quest_wpn_pm" name="gar_quest_wpn_pm" group="weapon"></article>
+	<article id="val_quest_scope_x8" name="val_quest_scope_x8" group="equipment"></article>
+	<article id="val_quest_flash_movies" name="val_quest_flash_movies" group="equipment"></article>
+	<article id="val_quest_guitar_serg" name="val_quest_guitar_serg" group="equipment"></article>
+	<article id="agr_quest_wpn_spas12" name="agr_quest_wpn_spas12" group="weapon"></article>
+	<article id="agr_quest_duty_secret_pda" name="agr_quest_duty_secret_pda" group="equipment"></article>
+	<article id="agr_quest_duty_case" name="agr_quest_duty_case" group="equipment"></article>
+	<article id="agr_quest_duty_abakan" name="agr_quest_duty_abakan" group="weapon"></article>
+	<article id="agr_mechanic_pda" name="agr_mechanic_pda" group="equipment"></article>
+	<article id="agr_quest_af_dummy_battery_1" name="agr_quest_af_dummy_battery_1" group="artefacts"></article>
+	<article id="agr_quest_af_fuzz_kolobok_1" name="agr_quest_af_fuzz_kolobok_1" group="artefacts"></article>
+	<article id="yan_quest_ammo_sleep" name="yan_quest_ammo_sleep" group="ammunition"></article>
+	<article id="yan_quest_scarlet_flower" name="yan_quest_scarlet_flower" group="artefacts"></article>
+	<article id="yan_quest_granade" name="yan_quest_granade" group="equipment"></article>
+	<article id="red_forest_pda_map_2" name="red_forest_pda_map_2" group="equipment"></article>
+	<article id="red_quest_tank_minigun" name="red_quest_tank_minigun" group="weapon"></article>
+	<article id="red_quest_prototipe_device" name="red_quest_prototipe_device" group="equipment"></article>
+	<article id="mil_quest_af_mincer_meat_1" name="mil_quest_af_mincer_meat_1" group="artefacts"></article>
+	<article id="mil_quest_af_fire_1" name="mil_quest_af_fire_1" group="artefacts"></article>
+	<article id="mil_device_pda_lost_squard" name="mil_device_pda_lost_squard" group="equipment"></article>
+	<article id="mil_quest_ammo_7.62x54_7h14" name="mil_quest_ammo_7.62x54_7h14" group="ammunition"></article>
+	<article id="quest_item_cup" name="quest_item_cup" group="equipment"></article>
+	<article id="quest_item_lighter" name="quest_item_lighter" group="equipment"></article>
+	<article id="quest_item_poolball" name="quest_item_poolball" group="equipment"></article>
+	<article id="quest_item_handclock" name="quest_item_handclock" group="equipment"></article>
+	<article id="pda_for_quests" name="pda_for_quests" group="equipment"></article>
 
 </encyclopedia>
-

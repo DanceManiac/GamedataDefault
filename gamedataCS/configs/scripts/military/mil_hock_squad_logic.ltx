@@ -1,81 +1,119 @@
 [logic@hock]
-active = camper@0
+active = camper
 suitable = {=check_npc_name(mil_hog)} true
+level_spot = quest_npc
 on_death = death
+
+[camper]
+path_walk = com_2_walk
+path_look = com_2_look
+on_info = {+mil_actor_bridge} camper@0
+meet = meet@1
 
 [camper@0]
 path_walk = com_2_walk
 path_look = com_2_look
 on_info = {+mil_start_after_red_forest +mil_actor_bridge} camper@1
 on_info2 = {+forester_telled_coordinates +forester_talked_2} camper@1
-meet = no_meet
+meet = meet@1
 
 [camper@1]
 path_walk = com_2_walk
 path_look = com_2_look
-meet = meet
-on_info = {+mil_merc_talked_f1_f2_wt1 -mil_merc_talked_i_hate_freedom -mil_racya_dialog_3_end} remark@1
+meet = meet@2
+on_info = {+mil_merc_talked_f1_f2_wt1 -mil_merc_talked_i_hate_freedom -mil_racya_dialog_3_end} remark@1 %=create_item_in_inv(hand_radio:mil_hog) =disable_ui%
 
 [remark@1]
 target = actor
 anim = guard_rac
 combat_ignore_cond = always
-on_signal = sound_end | %+mil_racya_dialog_1% remark@2
+on_game_timer = 25 | {+mil_merc_talked_f1_f2_wt1} remark@2 %=play_sound(mil_hog_to_freedom_2:killer:mil_hog_name)%
 meet = no_meet
-snd = mil_hog_to_freedom_2
 
 [remark@2]
 target = actor
 anim = guard_rac
 combat_ignore_cond = always
-on_info = {+mil_racya_dialog_1_end} remark@3
+on_signal = sound_end | remark@3 %+mil_racya_dialog_1%
 meet = no_meet
 
 [remark@3]
 target = actor
 anim = guard_rac
 combat_ignore_cond = always
-on_signal = sound_end | %+mil_racya_dialog_2% remark@4
+on_info = {+mil_racya_dialog_1_end} remark@4 %=play_sound(mil_hog_to_freedom_4:killer:mil_hog_name)%
 meet = no_meet
-snd = mil_hog_to_freedom_4
 
 [remark@4]
 target = actor
 anim = guard_rac
 combat_ignore_cond = always
-on_info = {+mil_racya_dialog_2_end} remark@5
+on_signal = sound_end | remark@5 %+mil_racya_dialog_2%
 meet = no_meet
 
 [remark@5]
 target = actor
 anim = guard_rac
 combat_ignore_cond = always
-on_signal = sound_end | %+mil_racya_dialog_3% remark@6
+on_info = {+mil_racya_dialog_2_end} remark@6 %=play_sound(mil_hog_to_freedom_6:killer:mil_hog_name)%
 meet = no_meet
-snd = mil_hog_to_freedom_6
 
 [remark@6]
 target = actor
 anim = guard_rac
 combat_ignore_cond = always
-on_info = {+mil_racya_dialog_3_end} remark@7 %=play_sound(mil_hog_to_actor:killer:mil_hog_name)%
+on_signal = sound_end | remark@7 %+mil_racya_dialog_3%
 meet = no_meet
 
 [remark@7]
 target = actor
-anim = wait
+anim = guard_rac
 combat_ignore_cond = always
+on_info = {+mil_racya_dialog_3_end} camper@2 %=play_sound(mil_hog_to_actor:killer:mil_hog_name)%
 meet = no_meet
-on_signal = sound_end | camper@1
 
-[meet]
+[camper@2]
+path_walk = com_2_walk
+path_look = com_2_look
+combat_ignore_cond = always
+on_signal = sound_end | camper@3 %=enable_ui%
+meet = no_meet
+
+[camper@3]
+path_walk = com_2_walk
+path_look = com_2_look
+on_info = {+start_surge_info} walker@surge_hide
+meet = meet@3
+
+[walker@surge_hide]
+path_walk = com_2_walk
+on_info = {-start_surge_info} camper@2
+meet = no_meet
+
+[meet@1]
 meet_state = 10 | guard@nil
-meet_state_wpn = 40 | threat@mil_hog_greetings
+meet_state_wpn = 40 | threat@mil_hog_greetings | 30 | threat@mil_hog_greetings | 20 | threat@mil_hog_greetings | 10 | nil@nil %=hit_npc_from_actor%
 victim = 10 | actor
-victim_wpn = 30 | actor
+victim_wpn = 40 | actor
+use	= true
+use_wpn	= false
+meet_dialog = hock_hello
+
+[meet@2]
+meet_state = 10 | guard@nil
+meet_state_wpn = 40 | threat@mil_hog_greetings | 30 | threat@mil_hog_greetings | 20 | threat@mil_hog_greetings | 10 | nil@nil %=hit_npc_from_actor%
+victim = 10 | actor
+victim_wpn = 40 | actor
+use	= true
+use_wpn	= false
+
+[meet@3]
+meet_state = 5 | guard@nil
+meet_state_wpn = 5 | guard@nil
+victim = 5 | actor
+victim_wpn = 5 | actor
 use	= true
 use_wpn	= true
-;meet_dialog = hello_mil_killer
 
 [death]
 on_info = %+mil_hog_death%
@@ -83,3 +121,26 @@ on_info = %+mil_hog_death%
 [known_info]
 mil_merc_talked_f1_f2_wt1
 mil_merc_talked_i_hate_freedom
+
+;-------------------------------------------
+
+[logic@work1]
+active = kamp
+suitable = {+mil_water_tower_radio !npc_is_squad_leader !is_smart_in_combat(mil_smart_terrain_4_2)}
+
+[logic@work2]
+active = kamp
+suitable = {+mil_water_tower_radio !npc_is_squad_leader !is_smart_in_combat(mil_smart_terrain_4_2)}
+
+[logic@work3]
+active = kamp
+suitable = {+mil_water_tower_radio !npc_is_squad_leader !is_smart_in_combat(mil_smart_terrain_4_2)}
+
+[logic@work4]
+active = kamp
+suitable = {+mil_water_tower_radio !npc_is_squad_leader !is_smart_in_combat(mil_smart_terrain_4_2)}
+
+[kamp]
+center_point = kamp_1
+path_walk = kamp_1_task
+def_state_moving = patrol

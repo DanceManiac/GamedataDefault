@@ -154,12 +154,16 @@ function animation:__init(npc, mgr)
 		attach_items = {hand_radio	= {mode = "detach", done = true},
 						bread		= {mode = "detach", done = true},
 						vodka		= {mode = "detach", done = true},
-						energy_drink= {mode = "detach", done = true},
+						energy_drink    = {mode = "detach", done = true},
+						energy_drink_open = {mode = "detach", done = true},
 						kolbasa		= {mode = "detach", done = true},
 						guitar_a	= {mode = "detach", done = true},
 						harmonica_a	= {mode = "detach", done = true},
 						wpn_binoc	= {mode = "detach", done = true},
-						detector_simple	= {mode = "detach", done = true}}
+						detector_simple	= {mode = "detach", done = true},
+						detector_advanced	= {mode = "detach", done = true},
+						detector_elite	= {mode = "detach", done = true},
+						anomaly_scaner	= {mode = "detach", done = true}}
 	}
 	
 	self.clb_settings = {}
@@ -180,8 +184,8 @@ function animation:set_state(id, reset)
 		then
 			--' обнулить озвучку (только если он задан в анимации)
 			if self.npc:active_sound_count() > 0 then
-				if self.mgr.subanim > 0 then
-					for key = self.mgr.subanim, 0 do
+				if self.mgr.subanim > 0 and state_mgr_animation_list.animations[self.states.target_state].subanim ~= nil then
+					for key = self.mgr.subanim, 0, -1 do
 						local a = state_mgr_animation_list.animations[self.states.target_state].subanim[key]
 						if a and a.into_music then
 							stop_play_sound(self.npc)
@@ -212,8 +216,8 @@ function animation:set_state(id, reset)
 			end		
 		else
 			--' выход из поданимаций	
-			if self.mgr.subanim > 0 then
-				for key = self.mgr.subanim, 0 do
+			if self.mgr.subanim > 0 and state_mgr_animation_list.animations[self.states.target_state].subanim ~= nil then
+				for key = self.mgr.subanim, 0, -1 do
 					local a = state_mgr_animation_list.animations[self.states.target_state].subanim[key]
 					if a then 
 						if a.out then

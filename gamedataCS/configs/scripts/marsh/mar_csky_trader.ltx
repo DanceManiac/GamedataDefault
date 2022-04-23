@@ -2,46 +2,59 @@
 active = walker@tutorial_1
 trade = misc\trade\trade_trader_mar_csky.ltx
 level_spot = trader
+on_death = death
 
 [walker@tutorial_1]
 path_walk = mar_smart_terrain_csky_base_trader_walk
 path_look = mar_smart_terrain_csky_base_trader_look
 on_info = {+mar_intro_talk_with_trader_radio_played} walker@tutorial_5, {+mar_intro_talk_with_trader_started} remark@tutorial_2
+on_info2 = {+mar_tutorial_return_to_base_reversed} walker@wait_trade
 def_state_standing = wait_trade
-def_state_moving = walk_noweap
-def_state_moving1 = walk_noweap
-combat_ignore_cond = true
-meet = meet@ward
+;def_state_moving = walk_noweap
+;def_state_moving1 = walk_noweap
+combat_ignore_cond = {!is_enemy_actor}
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-csky_trader_meet_info !is_faction_enemy_to_actor(csky)} %+csky_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+csky_trader_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_trader_meet_bye) -csky_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
+meet = meet@wait_trade
 
 [remark@tutorial_2]
 anim = wait_rac_noweap
 target = actor
-;lvl
 on_info = {+mar_intro_talk_with_trader_radio_timer -mar_lvl_sim} remark@tutorial_3, {+mar_intro_talk_with_trader_radio_timer +mar_lvl_sim} walker@tutorial_5
-combat_ignore_cond = true
+combat_ignore_cond = {!is_enemy_actor}
 meet = no_meet
 
 [remark@tutorial_3]
 anim = wait_rac_noweap
 target = actor
 on_timer = 1000 | remark@tutorial_4
-combat_ignore_cond = true
+combat_ignore_cond = {!is_enemy_actor}
 meet = no_meet
 
 [remark@tutorial_4]
 anim = wait_rac_noweap
 target = actor
 snd = mar_csky_trader_reply_0
-on_signal = sound_end | walker@tutorial_5 %+mar_intro_talk_with_trader_radio_played%
-combat_ignore_cond = true
+on_signal = sound_end | remark@tutorial_5
+combat_ignore_cond = {!is_enemy_actor}
+meet = no_meet
+
+[remark@tutorial_5]
+anim = wait_rac_noweap
+target = actor
+on_timer = 100 | walker@tutorial_5 %+mar_intro_talk_with_trader_radio_played%
+combat_ignore_cond = {!is_enemy_actor}
 meet = no_meet
 
 [walker@tutorial_5]
 path_walk = mar_smart_terrain_csky_base_trader_walk
 path_look = mar_smart_terrain_csky_base_trader_look
 on_info = {+mar_intro_talk_with_guide_end} smartcover@intro2
+on_info2 = {+mar_tutorial_return_to_base_reversed} walker@wait_trade
 def_state_standing = wait_trade
-combat_ignore_cond = true
+combat_ignore_cond = {!is_enemy_actor}
 meet = meet@no_trade
 
 [smartcover@intro2]
@@ -50,7 +63,12 @@ cover_name = mar_smart_cover_csky_trader_lead_stand_look_in_window
 loophole_name = lead_stand_look_in_window
 cover_state = idle_target
 on_info = {+mar_csky_trader_first_talked} smartcover@main_window_idle
-combat_ignore_cond = true
+on_info2 = {+mar_tutorial_return_to_base_reversed} walker@wait_trade
+combat_ignore_cond = {!is_enemy_actor}
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-csky_trader_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_trader_meet) +csky_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+csky_trader_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_trader_meet_bye) -csky_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet@no_trade
 
 ;-----------------------------------------------------------------------------
@@ -60,34 +78,56 @@ path_walk = mar_smart_terrain_csky_base_trader_walk
 cover_name = mar_smart_cover_csky_trader_lead_stand_look_in_window
 loophole_name = lead_stand_look_in_window
 cover_state = idle_target
-combat_ignore_cond = true
-meet = meet@ward
+combat_ignore_cond = {!is_enemy_actor}
+on_info = {+mar_tutorial_return_to_base_reversed} walker@wait_trade
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-csky_trader_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_trader_meet) +csky_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+csky_trader_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_trader_meet_bye) -csky_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
+meet = meet@wait_trade
+
+[walker@wait_trade]
+path_walk = mar_smart_terrain_csky_base_trader_walk
+path_look = mar_smart_terrain_csky_base_trader_look
+def_state_standing = wait_trade
+combat_ignore_cond = {!is_enemy_actor}
+on_actor_dist_le_nvis = 2 | {-csky_trader_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_trader_meet) +csky_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+csky_trader_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_trader_meet_bye) -csky_trader_meet_info%
+meet = meet@wait_trade
 
 ;-----------------------------------------------------------------------------
 
 [meet@no_trade]
-meet_state = 5 | nil@nil
-meet_state_wpn = 5 | nil@nil
+meet_state = 5 | wait_trade@nil
+meet_state_wpn = 5 | wait_trade@nil
 victim = 5 | actor
 victim_wpn = 5 | actor
 use = true
 use_wpn = true
 precond = visibility
-meet_dialog	= {-mar_intro_talk_with_guide_started} mar_csky_trader_intro_dialog, {+mar_intro_talk_with_guide_end -mar_csky_trader_first_talked} mar_csky_trader_intro2_dialog
+meet_dialog	= {-mar_intro_talk_with_guide_started} mar_csky_trader_intro_dialog
 trade_enable = false
 allow_break = false
-sound_start 	= mar_csky_trader_meet
-;sound_stop 		= mar_csky_trader_meet_bye
-quest_npc = true
+;-- Edited: Jurok --ON-------------------------------------------------------
+;sound_start = mar_csky_trader_meet
+;sound_stop = mar_csky_trader_meet_bye
+;-- Edited: Jurok --OFF------------------------------------------------------
+;quest_npc = true
 
-[meet@ward]
-meet_state = 5 | {-mar_intro_talk_with_guide_end} ward_noweap@nil, nil@nil
-meet_state_wpn = 5 | {-mar_intro_talk_with_guide_end} ward_noweap@nil, nil@nil
+[meet@wait_trade]
+meet_state = 5 | wait_trade@nil
+meet_state_wpn = 5 | wait_trade@nil
 victim = 5 | actor
 victim_wpn = 5 | actor
 use = true
 use_wpn = true
 precond = visibility
-sound_start 	= mar_csky_trader_meet
-sound_stop 		= mar_csky_trader_meet_bye
-quest_npc = true
+meet_dialog	= {+mar_intro_talk_with_guide_end -mar_csky_trader_first_talked} mar_csky_trader_intro2_dialog
+;-- Edited: Jurok --ON-------------------------------------------------------
+;sound_start = mar_csky_trader_meet
+;sound_stop = mar_csky_trader_meet_bye
+;-- Edited: Jurok --OFF------------------------------------------------------
+;quest_npc = true
+
+[death]
+on_info = %+mar_csky_trader_dead =set_faction_community_to_actor(csky:enemy)%

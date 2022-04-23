@@ -20,7 +20,7 @@
 
 	<caption_static x="29" y="41" width="797" height="48" stretch="1">
 		<texture>ui_pda2_caption</texture>
-		<text font="letterica16" align="l" x="20" y="21" color="ui_9">FFD@32-45\\</text>
+		<text font="letterica16" align="l" x="20" y="21" color="ui_9"></text>
 	</caption_static>
 
 	<anim_static x="790" y="55" width="27" height="32" frames = "16" duration = "1000" columns = "8" frame_width = "32" frame_height = "32" cyclic = "1" autoplay = "1" stretch="1"> 

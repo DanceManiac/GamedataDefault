@@ -1,0 +1,186 @@
+-- инициализация
+class "spawner" (CUIScriptWnd)
+
+function spawner:__init(owner,action) super()
+	self.action = action
+	self.owner = owner
+	self:InitControls()
+	self:InitCallBacks()
+end
+
+function spawner:__finalize() end
+
+function spawner:InitControls()
+	-- здесь определяем координаты левого верхнего угла и ширину-высоту
+	self:SetWndRect(Frect():set(50,50,550,450))
+	-- файл-описатель наших элементов
+	local xml = CScriptXmlInit()
+	xml:ParseFile("ui_dots_wnd.xml")
+	-- рамка
+	xml:InitStatic("background", self)
+	-- рамка 2
+	xml:InitFrame("list_frame", self)
+	-- кнопки
+	self:Register(xml:Init3tButton("caption", self),"caption")
+	self:Register(xml:Init3tButton("btn_1", self),"btn_1")
+	-- кнопка выхода
+	self:Register(xml:Init3tButton("btn_quit", self),"btn_quit")
+	self:Register(xml:InitEditBox("edit_box", 	self), "edit_box")
+
+  local caption = self:GetButton("caption")
+  local btn_1 = self:GetButton("btn_1")
+  if self.action == "spawn" then
+    caption:SetText("Секция желаемого объекта, количество")
+    btn_1:SetText("Spawn!")
+  elseif self.action == "info" then
+    caption:SetText("Инфо для добавления")
+    btn_1:SetText("Дать инфо!")
+  elseif self.action == "find" then
+    caption:SetText("Часть имени объекта для поиска")
+    btn_1:SetText("Искать!")
+  elseif self.action == "remove" then
+    caption:SetText("Часть имени объекта для удаления")
+    btn_1:SetText("Удалить!")
+  end
+end
+
+function spawner:InitCallBacks()
+	-- тут интерактивные элементы, при определенном действии выполняется заданная ф-ия
+	self:AddCallback("btn_1", ui_events.BUTTON_CLICKED, self.dots1, self)
+	self:AddCallback("btn_quit", ui_events.BUTTON_CLICKED, self.on_quit, self)
+end
+
+function spawner:OnKeyboard(dik, keyboard_action)
+	CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		-- на выход повесим Esc
+		if dik == DIK_keys.DIK_ESCAPE then
+			self:on_quit()
+		end
+		if dik == DIK_keys.DIK_RETURN then
+			self:dots1()
+		end
+	end
+	return true
+end
+
+-- Показ типса
+function spawner:send_tip(news_text, header, timeout, showtime)
+  if news_text == nil then return end
+  if header == nil then header = game.translate_string("st_tip") end
+  if timeout == nil then timeout = 0 end
+  if showtime == nil then showtime = 5 end
+  
+  local news_text = "%c[255,160,160,160]"..header.."\\n".."%c[default]"..news_text
+  db.actor:give_game_news("", news_text, "ui_iconsTotal_found_thing", timeout*1000, showtime*1000)
+  return true
+end
+
+-- Функция спауна 
+function spawner:spawn(text)
+	local type = text
+	local vid, gvid
+	local a = vector()
+	a = db.actor:position()
+	a.z = a.z + 3
+	a.y = a.y + 2.5
+	vid = db.actor:level_vertex_id()
+	gvid = db.actor:game_vertex_id()
+
+	local n = 1
+	local sf = string.find(text,",")
+	if sf then
+	  n = string.sub(text,sf+1)+0
+	  if n==nil then
+	    n = 0
+	  elseif n>999 then
+	    n = 999
+	  end
+	  type = string.sub(text,1,sf-1)
+	end
+
+	if not system_ini():section_exist(type) then
+	  self:send_tip("Секция "..type.." не существует!","Спавн объекта",0,10)
+	  return false
+	end
+
+	for i=1,n do
+	    alife():create(type,vector():set(a.x-1+math.random()*2,a.y,a.z-1+math.random()*2),vid,gvid)
+	end
+
+	self:send_tip("Создано "..type.." в количестве "..n.." штук.","Спавн объекта",0,10)
+	return true
+end
+
+
+-- Функция удаления всего
+function spawner:remove_all(name)
+    local obj
+    local n=0
+    for a=1,65535 do
+	obj = alife():object(a)
+	if obj and string.find(obj:name(),name) then
+	        alife():release(obj,true)
+        	n = n+1
+	end
+     end
+     self:send_tip("Удалено "..n.." объектов.","Удаление объекта",0,10)
+end
+
+function spawner:find_closest (type)
+    local min = 999999
+    local dist
+    local closest = -1
+    local obj
+    for a=1,65535,1 do
+	obj = alife():object(a)
+	if obj and string.find(obj:name(),type) then
+	        dist = obj.position:distance_to(db.actor:position())
+        	if dist < min then
+			min = dist
+			closest = a
+		end
+	end
+    end
+
+    if closest>0 then
+  	  obj = alife():object(closest)
+  	  local map = alife():level_name(game_graph():vertex(obj.m_game_vertex_id):level_id())
+  	  local text = obj:name().."; уровень="..game.translate_string(map)
+  	  if map == level.name() then
+  	    local p1 = db.actor:position()
+  	    local p2 = obj.position
+  	    dist = obj.position:distance_to(db.actor:position())
+  	    local dx = p2.x - p1.x
+  	    local dy = p2.y - p1.y
+  	    local dz = p2.z - p1.z
+  	    text = string.format("%s; расстояние=%.2fм; dX=%.2f, dY=%.2f, dZ=%.2f", text, dist, dx,dy,dz)
+  	  end
+	  self:send_tip(text,"Cheat: Find Object",0,30)
+	  return true
+    else
+  	  self:send_tip(type.." не найден!","Поиск объекта",0,10)
+  	  return false
+    end
+end
+
+function spawner:dots1()
+	local text = self:GetEditBox("edit_box"):GetText()
+	if text ~= "" then
+		if self.action == "spawn" then
+			self:spawn(text)
+	  	elseif self.action == "info" then
+  			db.actor:give_info_portion(text)
+  			self:send_tip(text.." добавлено.","Инфопоршен",0,15)
+	  	elseif self.action == "find" then
+  			self:find_closest(text)
+	  	elseif self.action == "remove" then
+  			self:remove_all(text)
+	  	end
+	end
+	self:on_quit()
+end
+
+function spawner:on_quit()
+	self:GetHolder():start_stop_menu(self,true)
+end

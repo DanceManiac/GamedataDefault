@@ -89,7 +89,7 @@ function add_to_binder(npc, ini, scheme, section, storage)
 end
 
 function set_combat_checker(npc, ini, scheme, section)
-	local is_zombied = npc:section() == "stalker_zombied"
+	local is_zombied = npc:character_community() == "zombied"
 
 	if section or is_zombied then
 		local st      = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)

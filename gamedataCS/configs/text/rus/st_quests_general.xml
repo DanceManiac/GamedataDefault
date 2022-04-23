@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <string_table>
+	<string id="hide_hint">
+		<text>Укрытие от выброса</text>
+	</string>
 	<string id="hide_from_surge_name">
 		<text>Спрятаться от выброса</text>
 	</string>
 	<string id="hide_from_surge_name2">
-		<text>Дождаться окончания выброса</text>
+		<text>Оставаться в укрытии до окончания выброса</text>
 	</string>
 	<string id="hide_from_surge_text">
-		<text>Бежать к ближайшему укрытию и спрятаться от выброса</text>
+		<text>Бежать к ближайшему укрытию и спрятаться от выброса.</text>
 	</string>
 	<string id="hide_from_surge_text1">
 		<text>Внимание! Все в укрытия! Приближается выброс! Повторяю, приближается выброс! Ориентировочное время до выброса:</text>
@@ -16,16 +19,16 @@
 		<text>секунд.</text>
 	</string>
 	<string id="sim_bring_item">
-		<text>Принести предметы.</text>
+		<text>Принести предметы:</text>
 	</string>
 	<string id="sim_bring_item_text">
-		<text>Отнести собранные предметы командиру группировки</text>
+		<text>Отнести собранные предметы командиру отряда.</text>
 	</string>
 	<string id="sim_capture_smart">
 		<text>Захватить</text>
 	</string>
 	<string id="sim_capture_smart_text">
-		<text>Необходимо захватить и удержать под своим контролем указанный объект</text>
+		<text>Необходимо захватить и удержать под своим контролем указанный объект.</text>
 	</string>
 	<string id="sim_capture_wait_smart">
 		<text>Удержать точку до прихода союзников</text>
@@ -46,7 +49,7 @@
 		<text>Уничтожить противника</text>
 	</string>
 	<string id="sim_eliminate_smart_text">
-		<text>Уничтожить противника в ключевой точке</text>
+		<text>Уничтожить противника в ключевой точке.</text>
 	</string>
 	<string id="sim_find_upgrade">
 		<text>Найти усовершенствование</text>
@@ -64,31 +67,42 @@
 		<text>Получить награду</text>
 	</string>
 	<string id="sim_take_reward_text">
-		<text>Награда ждёт у торговца группировки</text>
+		<text>Награда ждёт у торговца группировки.</text>
 	</string>
 	<string id="st_sim_eliminate_path_smart">
 		<text>Расчистить дорогу</text>
 	</string>
 	<string id="st_sim_eliminate_path_text">
-		<text>Необходимо помочь пробиться отряду союзников</text>
+		<text>Необходимо помочь пробиться отряду союзников.</text>
 	</string>
 	<string id="st_sim_eliminate_resource_smart">
 		<text>Уничтожить противника</text>
 	</string>
 	<string id="st_sim_eliminate_resource_text">
-		<text>Нужно выбить противника с данной территории: это ослабит его позиции</text>
+		<text>Нужно выбить противника с данной территории: это ослабит его позиции.</text>
 	</string>
 	<string id="test_storyline_task_text">
-		<text>Подойти к бочке</text>
+		<text>Подойти к бочке.</text>
 	</string>
 	<string id="tm_random_task_bring_item">
 		<text>шт.</text>
 	</string>
+
+	<string id="stc_get_gauss_name">
+		<text>Найти электромагнитное ружьё</text>
+	</string>
+	<string id="stc_get_gauss_text">
+		<text>Основная цель — Стрелок, находящийся здесь, на теплотрассе. Его пси-защиту можно разрушить только с помощью сильного электромагнитного воздействия. Ружьё ЭМ1 — лучший способ это осуществить. Последний раз с ружьём ЭМ1 был замечен Петренко из «Чистого неба», но вот уже несколько минут он не выходит на связь.</text>
+	</string>
+	<string id="st_gauss_hint">
+		<text>Петренко из разведгруппы «Чистого неба» отслеживал Стрелка с этой вышки...</text>
+	</string>
+
 	<string id="stc_kill_gunslinger_name">
 		<text>Вывести из строя пси-защиту Стрелка</text>
 	</string>
 	<string id="stc_kill_gunslinger_text">
-		<text>Уровень пси-излучения на станции зашкаливает, но Стрелок защищён от него прототипом. Если вывести из строя это устройство, Стрелка можно будет остановить. Электронику прототипа можно вывести из строя на расстоянии при помощи электромагнитного ружья.</text>
+		<text>Уровень пси-излучения на станции зашкаливает, но Стрелок защищён от него прототипом пси-шлема. Если вывести из строя это устройство, Стрелка можно будет остановить. Электронику пси-шлема можно вывести из строя на расстоянии при помощи электромагнитного ружья.</text>
 	</string>
 	<string id="stc_kill_monolith_name">
 		<text>Найти телепорт, ведущий на теплотрассу</text>

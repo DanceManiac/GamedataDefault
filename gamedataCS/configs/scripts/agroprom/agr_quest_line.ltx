@@ -2,22 +2,25 @@
 active = sr_idle@line_0
 
 [sr_idle@line_0]
-on_info = sr_idle@line_1
+on_info = {=actor_on_level(agroprom)} sr_idle@line_1 %=disable_level_changer(1030) =disable_level_changer(1031)%
 
 [sr_idle@line_1]
-on_info = {=actor_on_level(agroprom) +agr_actor_inside_1 +agr_garbage_end} sr_idle@line_2 %=give_inited_task(storyline:agr_start_quest:csky) +agr_actor_on_agroprom%
+on_info = {!black_screen +agr_garbage_end} sr_idle@line_2 %=give_inited_task(storyline:agr_start_quest:csky) +agr_actor_on_agroprom%
 
 [sr_idle@line_2]
 on_info = {+agr_actor_inside_3} sr_idle@line_3 %=give_inited_task(storyline:agr_blokpost_1:csky) +agr_duty_open%
 
 [sr_idle@line_3]
-on_info = {+agr_actor_inside_5} sr_idle@line_4 %=give_inited_task(storyline:agr_go_to_hole:csky)%
+on_info = {+agr_actor_inside_5} sr_idle@line_4 %=give_inited_task(storyline:agr_go_to_hole:dolg)%
 
 [sr_idle@line_4]
 on_info = {+agr_actor_inside_9} sr_idle@line_5 %=give_inited_task(storyline:agr_go_in_hole:csky)%
 
 [sr_idle@line_5]
-on_info = {+agru_find_secret_task_complete =actor_on_level(agroprom)} sr_idle@line_6 %+agru_go_out_end_task_complete =give_inited_task(storyline:yan_actor_go_base_science:stalker)%
-on_info2 = {+agru_end_agroprom_underhround =actor_on_level(agroprom)} sr_idle@line_6 %+agru_go_out_end_task_complete =give_inited_task(storyline:yan_actor_go_base_science:stalker)%
+on_info = {!black_screen +agru_find_secret_task_complete =actor_on_level(agroprom)} sr_idle@line_6 %=disable_level_changer(1030:agr_disabled_level_changer) =disable_level_changer(1031:agr_disabled_level_changer) +agru_go_out_end_task_complete =give_inited_task(storyline:yan_actor_go_base_science:csky)%
+on_info2 = {!black_screen +agru_end_agroprom_underhround =actor_on_level(agroprom)} sr_idle@line_6 %=disable_level_changer(1030:agr_disabled_level_changer) =disable_level_changer(1031:agr_disabled_level_changer) +agru_go_out_end_task_complete =give_inited_task(storyline:yan_actor_go_base_science:csky)%
 
 [sr_idle@line_6]
+on_info = {+agr_take_reward_complete} sr_idle@line_7 %=enable_level_changer(1030) =enable_level_changer(1031)%, {+agr_duty_base_commander_dead} sr_idle@line_7 %=enable_level_changer(1030) =enable_level_changer(1031)%, {=actor_in_freedom} sr_idle@line_7 %=enable_level_changer(1030) =enable_level_changer(1031)%, {=actor_in_bandit} sr_idle@line_7 %=enable_level_changer(1030) =enable_level_changer(1031)%
+
+[sr_idle@line_7]

@@ -1,7 +1,7 @@
 [list_treasure_agroprom_underground]
 agru_treasure_1
 agru_treasure_2
-;agru_treasure_3
+agru_treasure_3
 agru_treasure_4
 agru_treasure_5
 agru_quest_treasure_1
@@ -9,73 +9,82 @@ agru_quest_treasure_2
 agru_quest_treasure_3
 agru_quest_treasure_4
 
-[agru_treasure_1] ; часть трубы в комнате управления насосной станции
+[agru_treasure_1] ; Труба в комнате управления
 target = agru_treasure_1
 name = st_agru_treasure_1
 description = st_agru_treasure_1_descr
-items = ammo_12x70_buck, 10, medkit_army, 1
-condlist = {=actor_on_level(agroprom:agroprom_underground)} true, false
+items = grenade_rgd5, 3
+community = zombied, dolg
+condlist = {=actor_on_level(agroprom:agroprom_underground) -agru_end_agroprom_underhround} true, false
 
-[agru_treasure_2] ; рюкзак в аномалии в резервуаре
+[agru_treasure_2] ; Рюкзак в аномалии
 target = agru_treasure_2
 name = st_agru_treasure_2
 description = st_agru_treasure_2_descr
-items = antirad, 1, ammo_12x70_buck, 10
+items = mutant_snork_leg, 4, mutant_krovosos_jaw, 2
+community = zombied, dolg
+condlist = {=actor_on_level(agroprom:agroprom_underground) -agru_end_agroprom_underhround} true, false
+
+[agru_treasure_3] ; Шкавчик у винтовой лестницы
+target = agru_treasure_3
+name = st_agru_treasure_3
+description = st_agru_treasure_3_descr
+items = medkit, 1
+community = zombied, dolg
 condlist = {=actor_on_level(agroprom:agroprom_underground)} true, false
 
-;[agru_treasure_3] ; шкавчик у винтовой лестницы
-;target = agru_treasure_3
-;name = st_agru_treasure_3
-;description = st_agru_treasure_3_descr
-;items = medkit
-;condlist = {=actor_on_level(agroprom:agroprom_underground)} true, false
-
-[agru_treasure_4] ; рюкзак у трупа в туннеле
+[agru_treasure_4] ; Рюкзак у трупа
 target = agru_treasure_4
 name = st_agru_treasure_4
 description = st_agru_treasure_4_descr
-items = medkit, 3, ammo_12x70_buck, 6
-condlist = {=actor_on_level(agroprom:agroprom_underground)} true, false
+items = ammo_5.56x45_ap, 300, wpn_sig550, 1
+community = zombied, dolg
+condlist = {=actor_on_level(agroprom:agroprom_underground) -agru_end_agroprom_underhround} true, false
 
-[agru_treasure_5] ; рюкзак в аномалии под лестницей
+[agru_treasure_5] ; Рюкзак под лестницей
 target = agru_treasure_5
 name = st_agru_treasure_5
 description = st_agru_treasure_5_descr
-items = medkit, 1, bandage, 1, antirad, 1
+items = medkit_army, 2, bandage, 4
+community = zombied, dolg
 condlist = {=actor_on_level(agroprom:agroprom_underground)} true, false
 
-[agru_quest_treasure_1]
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;Quest treasure
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[agru_quest_treasure_1] ;Крестовина под лестницей
 target = agru_q1_n
 name = st_agru_q1_n
 description = st_agru_q1_n_descr
-items = ammo_12x76_zhekan, 20, medkit, 1
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_zooman)} true, false
-treasure_cost = 250
+items = detector_advanced, 1
+condlist = {=check_npc_name(agr_zooman)} true, false
+treasure_cost = 800
 say_item_name = false
 
-[agru_quest_treasure_2]
+[agru_quest_treasure_2] ;Кейс в подземельях
 target = agru_q2_n
 name = st_agru_q2_n
 description = st_agru_q2_n_descr
-items = wpn_walther, 1, ammo_9x19_fmj, 50
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_holeman)} true, false
-treasure_cost = 900
+items = wpn_colt1911, 1, ammo_11.43x23_hydro, 200
+condlist = {=check_npc_name(agr_holeman) -agru_end_agroprom_underhround} true, false
+treasure_cost = 1400
 say_item_name = false
 
-[agru_quest_treasure_3]
+[agru_quest_treasure_3] ;Труп в подземке
 target = agru_q3_t_a
 name = st_agru_q3_t_a
 description = st_agru_q3_t_a_descr
-items = ammo_og-7b, 1
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_stalker_secret_trader)} true, false
-treasure_cost = 400
-say_item_name = true
+items = wpn_fort, 1, ammo_9x18_pbp, 150, wpn_groza, 1, ammo_9x39_ap, 240, ammo_vog-25, 4, conserva, 2, hand_radio, 1
+condlist = {=check_npc_name(agr_duty_barman) -agru_end_agroprom_underhround} true, false
+treasure_cost = 1800
+say_item_name = false
 
-[agru_quest_treasure_4]
+[agru_quest_treasure_4] ;Труба в коллекторе
 target = agru_q4_n
 name = st_agru_q4_n
 description = st_agru_q4_n_descr
-items = antirad, 3, ammo_pkm_100, 200
-condlist = {=actor_on_level(agroprom) =check_npc_name(agr_duty_trader)} true, false
-treasure_cost = 1000
-say_item_name = true
+items = af_dummy_battery, 1
+condlist = {=check_npc_name(agr_duty_trader) -agru_end_agroprom_underhround} true, false
+treasure_cost = 2600
+say_item_name = false

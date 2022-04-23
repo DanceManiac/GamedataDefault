@@ -1,0 +1,103 @@
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------
+----------------------- Вывод динамических индикаторов состояния ----------------------
+
+
+-- Вывод состояний организма
+function show_condition()
+
+	local hud = get_hud()
+	local px, py
+
+	px, py = 25, 550
+
+	-- Сон
+	local tmp = ogsm.load_variable("slp",0)
+	local slp2 = hud:GetCustomStatic("indik2_slp")
+	if db.actor:alive() then
+		if tmp > 300 and tmp <= 320 then
+			if slp2 == nil then
+				hud:AddCustomStatic("indik2_slp")
+				slp2 = hud:GetCustomStatic("indik2_slp")
+				slp2:wnd():SetWndPos(vector2():set(px, py))
+				slp2:wnd():SetColor(2000000000)
+			else
+				slp2:wnd():SetColor(2000000000)
+			end
+		elseif tmp > 320 and tmp <= 340 then
+			if slp2 == nil then
+				hud:AddCustomStatic("indik2_slp")
+				slp2 = hud:GetCustomStatic("indik2_slp")
+				slp2:wnd():SetWndPos(vector2():set(px, py))
+				slp2:wnd():SetColor(2600000000)
+			else
+				slp2:wnd():SetColor(2600000000)
+			end
+		elseif tmp > 340 then
+			if slp2 == nil then
+				hud:AddCustomStatic("indik2_slp")
+				slp2 = hud:GetCustomStatic("indik2_slp")
+				slp2:wnd():SetWndPos(vector2():set(px, py))
+				slp2:wnd():SetColor(3300000000)
+			else
+				slp2:wnd():SetColor(3300000000)
+			end
+		else
+			if slp2 ~= nil then
+				hud:RemoveCustomStatic("indik2_slp")
+			end
+		end
+	else
+		if slp2 ~= nil then
+			hud:RemoveCustomStatic("indik2_slp")
+		end
+	end
+
+
+	px, py = 25, 630
+
+	-- Голод
+	local tmp2 = ogsm.load_variable("eat",0)
+	local hun2 = hud:GetCustomStatic("indik2_hun")
+	if db.actor:alive() then
+		if tmp2 > 90 and tmp2 <= 120 then
+			if hun2 == nil then
+				hud:AddCustomStatic("indik2_hun")
+				hun2 = hud:GetCustomStatic("indik2_hun")
+				hun2:wnd():SetWndPos(vector2():set(px, py))
+				hun2:wnd():SetColor(2000000000)
+			else
+				hun2:wnd():SetColor(2000000000)
+			end
+		elseif tmp2 > 120 and tmp2 <= 150 then
+			if hun2 == nil then
+				hud:AddCustomStatic("indik2_hun")
+				hun2 = hud:GetCustomStatic("indik2_hun")
+				hun2:wnd():SetWndPos(vector2():set(px, py))
+				hun2:wnd():SetColor(2600000000)
+			else
+				hun2:wnd():SetColor(2600000000)
+			end
+		elseif tmp2 > 150 then
+			if hun2 == nil then
+				hud:AddCustomStatic("indik2_hun")
+				hun2 = hud:GetCustomStatic("indik2_hun")
+				hun2:wnd():SetWndPos(vector2():set(px, py))
+				hun2:wnd():SetColor(3300000000)
+			else
+				hun2:wnd():SetColor(3300000000)
+			end
+		else
+			if hun2 ~= nil then
+				hud:RemoveCustomStatic("indik2_hun")
+			end
+		end
+	else
+		if hun2 ~= nil then
+			hud:RemoveCustomStatic("indik2_hun")
+		end
+	end
+end
+
+
+----------------------- Вывод динамических индикаторов состояния ----------------------
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------

@@ -1,84 +1,174 @@
 [logic]
 active = walker
+relation = friend
+sympathy = 1
+on_death = death
+level_spot = leader
 trade = misc\trade\trade_saharov.ltx
+on_hit = hit
 
 [walker]
-meet = meet
-invulnerable = true
 path_walk = yan_walker_saharov_walk
 path_look = yan_walker_saharov_look
-on_info = {+yan_actor_away_saharov} camper@1
-combat_ignore_cond = always
+on_info = {+yan_actor_away_saharov +agr_take_reward_complete} camper@1 %=play_sound(yan_scientist_start_frase:ecolog:yan_st_sakharov_name)%
+on_info2 = {=actor_enemy} walker@1
+invulnerable = true
+combat_ignore_cond = true
 def_state_moving1 = yan_professor_walk
 def_state_moving2 = yan_professor_walk
 def_state_moving3 = yan_professor_walk
 def_state_standing = yan_professor_wait
 out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-ecolog_trader_meet_info =see_actor !npc_talking !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet) +ecolog_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+ecolog_trader_meet_info !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet_bye) -ecolog_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
+meet = no_meet
 
 [camper@1]
-meet = meet
 path_walk = yan_camper_saharov_walk
 path_look = yan_camper_saharov_look
-combat_ignore_cond = always
+invulnerable = true
+combat_ignore_cond = true
 def_state_moving1 = yan_professor_walk
 def_state_moving2 = yan_professor_walk
 def_state_moving3 = yan_professor_walk
 def_state_standing = yan_professor_wait
-;--on_info = {+yan_otnesti_doc_saharavy} camper@2
-;on_info = {+yan_vzyal_quest_doc} camper@3 ;last
 on_info = {-yan_actor_away_saharov} walker
 on_info2 = {+yan_quest_levsha !talking -yan_ui_disabled} remark@sakharov_start_operation %+yan_ui_disabled%
+on_info3 = {=actor_enemy} walker@1
 out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-ecolog_trader_meet_info =see_actor !npc_talking !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet) +ecolog_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+ecolog_trader_meet_info !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet_bye) -ecolog_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
+meet = meet
 
 [camper@2]
-meet = meet
 path_walk = yan_camper_saharov_walk
 path_look = yan_camper_saharov_look
-combat_ignore_cond = always
+invulnerable = true
+combat_ignore_cond = true
 def_state_moving1 = yan_professor_walk
 def_state_moving2 = yan_professor_walk
 def_state_moving3 = yan_professor_walk
 def_state_standing = yan_professor_wait
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-ecolog_trader_meet_info =see_actor !npc_talking !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet) +ecolog_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+ecolog_trader_meet_info !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet_bye) -ecolog_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet@has_item
+on_info = {=actor_enemy} walker@1
 out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
 
 [camper@3]
 path_walk = yan_walker_saharov_walk
 path_look = yan_walker_saharov_look
-combat_ignore_cond = always
+invulnerable = true
+combat_ignore_cond = true
 def_state_moving1 = yan_professor_walk
 def_state_moving2 = yan_professor_walk
 def_state_moving3 = yan_professor_walk
 def_state_standing = yan_professor_wait
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-ecolog_trader_meet_info =see_actor !npc_talking !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet) +ecolog_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+ecolog_trader_meet_info !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet_bye) -ecolog_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet@has_no_item
-on_info = {+yan_actor_away_saharov} camper@3_1
+on_info = {+yan_actor_away_saharov} camper@3_1 %=play_sound(yan_scientist_start_frase:ecolog:yan_st_sakharov_name)%
+on_info2 = {=actor_enemy} walker@1
 out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
-
 
 [remark@sakharov_start_operation]
 anim = rac_sakharov
 target = actor
 meet = no_meet
+invulnerable = true
 combat_ignore_cond = true
-on_signal = sound_end | camper@1 %=play_sound(yan_professr_reply_actor:stalker:yan_st_levsha_name)%
+on_game_timer = 1 | remark@sakharov_start_operation_1 %=disable_ui%
+on_info = {=actor_enemy} walker@1
+out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
+
+[remark@sakharov_start_operation_1]
+anim = rac_sakharov
+target = actor
+meet = no_meet
+invulnerable = true
+combat_ignore_cond = true
+on_game_timer = 22 | remark@sakharov_start_operation_2 %=play_sound(yan_professor_about_actor:ecolog:yan_st_sakharov_name)%
+on_info = {=actor_enemy} walker@1
+out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
+
+[remark@sakharov_start_operation_2]
+anim = rac_sakharov
+target = actor
+meet = no_meet
+invulnerable = true
+combat_ignore_cond = true
+on_signal = sound_end | remark@sakharov_start_operation_3
+on_info = {=actor_enemy} walker@1
+out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
+
+[remark@sakharov_start_operation_3]
+anim = rac_sakharov
+target = actor
+meet = no_meet
+invulnerable = true
+combat_ignore_cond = true
+on_info = remark@sakharov_start_operation_reply %=play_sound(yan_professr_reply_actor:stalker:yan_st_levsha_name)%
+on_info2 = {=actor_enemy} walker@1
+out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
+
+[remark@sakharov_start_operation_reply]
+anim = rac_sakharov_reply
+target = actor
+meet = no_meet
+invulnerable = true
+combat_ignore_cond = true
+on_signal = sound_end | camper@1 %+yan_quest_levsha_prepared =enable_ui%
+on_info = {=actor_enemy} walker@1
 out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
 
 [camper@3_1]
 path_walk = yan_walker_saharov_walk
 path_look = yan_walker_saharov_look
-combat_ignore_cond = always
+invulnerable = true
+combat_ignore_cond = true
 def_state_moving1 = yan_professor_walk
 def_state_moving2 = yan_professor_walk
 def_state_moving3 = yan_professor_walk
 def_state_standing = yan_professor_wait
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-ecolog_trader_meet_info =see_actor !npc_talking !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet) +ecolog_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+ecolog_trader_meet_info !is_faction_enemy_to_actor(ecolog)} %=play_sound(yan_sakharov_meet_bye) -ecolog_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet@has_no_item
 on_info = {-yan_actor_away_saharov} walker
+on_info2 = {=actor_enemy} walker@1
 out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
+
+[walker@1]
+path_walk = yan_walker_saharov_walk
+path_look = yan_walker_saharov_look
+on_info = {!actor_enemy} walker
+invulnerable = true
+combat_ignore_cond = true
+def_state_moving1 = yan_professor_walk
+def_state_moving2 = yan_professor_walk
+def_state_moving3 = yan_professor_walk
+def_state_standing = yan_professor_wait
+out_restr = yan_space_restrictor_no_weapon_actor_base_cut2
+meet = no_meet
 
 [meet]
 meet_state = 5|nil@nil
-sound_start = yan_sakharov_meet
-sound_stop 	= yan_sakharov_meet_bye
+meet_state_wpn = 5|nil@nil
+victim = 5 | actor
+victim_wpn = 5 | actor
+;-- Edited: Jurok --ON-------------------------------------------------------
+;sound_start = yan_sakharov_meet
+;sound_stop = yan_sakharov_meet_bye
+;-- Edited: Jurok --OFF------------------------------------------------------
 quest_npc = true
 use = true
 use_wpn = true
@@ -88,5 +178,11 @@ meet_dialog = yan_scientist_bring_documents
 
 [meet@has_no_item]:meet
 meet_dialog = yan_scientist_hello_dialog
+
+[death]
+on_info = %+yan_stalker_sakharov_dead =set_faction_community_to_actor(ecolog:enemy) =set_faction_community_to_actor(stalker:enemy)%
+
+[hit]
+on_info = %+yan_stalker_sakharov_dead =set_faction_community_to_actor(ecolog:enemy) =set_faction_community_to_actor(stalker:enemy)%
 
 [dont_spawn_character_supplies]

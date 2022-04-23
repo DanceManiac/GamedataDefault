@@ -282,8 +282,12 @@ function se_smart_terrain:unregister_npc(obj)
 	end
 
 	-- TODO: Тут надо выгнать чувака с занимаемой им работы
-	self.npc_info[obj.id].job_link.npc_id = nil
-	self.npc_info[obj.id] = nil
+	if( self.npc_info[obj.id] ~= nil ) then
+		if( self.npc_info[obj.id].job_link ~= nil and self.npc_info[obj.id].job_link.npc_id ~= nil ) then
+			self.npc_info[obj.id].job_link.npc_id = nil
+		end
+		self.npc_info[obj.id] = nil
+	end
 
 	obj:clear_smart_terrain()
 end
@@ -298,14 +302,21 @@ function se_smart_terrain:clear_dead(obj)
 	-- Устанавливаем таймер смерти на работе
 	self.dead_time[self.npc_info[obj.id].job_id] = game.get_game_time()
 
-	self.npc_info[obj.id].job_link.npc_id = nil
-	self.npc_info[obj.id] = nil
+	if( self.npc_info[obj.id] ~= nil ) then
+		if( self.npc_info[obj.id].job_link ~= nil and self.npc_info[obj.id].job_link.npc_id ~= nil ) then
+			self.npc_info[obj.id].job_link.npc_id = nil
+		end
+		self.npc_info[obj.id] = nil
+	end
 
 	obj:clear_smart_terrain()
 end
 -- выдать объекту задание.
 function se_smart_terrain:task(obj)
-	local job_data = self.job_data[self.npc_info[obj.id].job_id]
+	local job_data 
+	if self.npc_info[obj.id] and self.job_data[self.npc_info[obj.id].job_id] then
+		job_data = self.job_data[self.npc_info[obj.id].job_id]
+	end
 
 	if not job_data then
 		abort("[smart_terrain %s] task: obj=%s job_path=nil, CLEARING. job_id = %s", self:name(), obj:name(), tostring(self.npc_info[obj.id].job_id))
@@ -413,9 +424,18 @@ function se_smart_terrain:load_jobs()
 
 		else
 			if v.prefix_name ~= nil then
-				v.alife_path = v.prefix_name .. "_" .. ltx:r_string(active_section, path_field)
+				local ps = ltx:r_string(active_section, path_field)
+				v.alife_path = v.prefix_name .. "_" .. ps
+				if not level.patrol_path_exists(v.alife_path) and level.patrol_path_exists(ps) then
+					v.alife_path = ps
+				end
 			else
-				v.alife_path = self:name() .. "_" .. ltx:r_string(active_section, path_field)
+				local ps = ltx:r_string(active_section, path_field)
+				v.alife_path = self:name() .. "_" .. ps
+				if not level.patrol_path_exists(v.alife_path) and level.patrol_path_exists(ps) then
+					v.alife_path = ps
+				end
+				--error_log(v.alife_path)
 			end
 		end
 
@@ -479,8 +499,9 @@ function se_smart_terrain:update_jobs(object)
 		-- Выбираем работу
 		local selected_job_id, selected_job_prior, selected_job_link = job_iterator(self.jobs, npc_info, 0, self)
 		if selected_job_id == nil then
-			print_table(self.jobs)
-			abort("Insufficient smart_terrain jobs %s", self:name())
+			error_log( string.format( "Insufficient smart_terrain jobs %s", self:name() ) ) -- by rgggclp
+			object:clear_smart_terrain() -- by rgggclp
+			return -- by rgggclp
 		end
 
 		-- Назначаем работу
@@ -578,7 +599,10 @@ function se_smart_terrain:update_jobs(object)
 
 				v.begin_job = true
 				if v.stype == modules.stype_mobile then
-					v.se_obj:smart_terrain_task_activate()
+					if v.se_obj ~= nil then
+						--error_log(string.format("%s = %s",self:name(),v.se_obj:name()))
+						v.se_obj:smart_terrain_task_activate()
+					end
 				end
 
 				local obj_storage = db.storage[v.se_obj.id]
@@ -594,7 +618,23 @@ function se_smart_terrain:setup_logic(obj)
 	--printf("setup npc logic %s", obj:name())
 --	callstack()
 	local npc_data = self.npc_info[obj:id()]
+	
+	--clp
+	if npc_data == nil then
+		error_log( self:name().." setup_logic() - npc_data == nil" )
+		return
+	end
+	--clp
+	
 	local job = self.job_data[npc_data.job_id]
+	
+	--clp
+	if job == nil then
+		error_log( self:name().." setup_logic() - job == nil" )
+		return
+	end
+	--clp
+	
 	local ltx = job.ini_file or self.ltx
 	local ltx_name = job.ini_path or self.ltx_name
 
@@ -614,6 +654,13 @@ function se_smart_terrain:getJob(obj_id)
 end
 -- Расстояние до работы
 function se_smart_terrain:distance_to_job_location(obj, job)
+
+	--clp
+	if job == nil or obj == nil then
+		return 10000
+	end
+	--clp
+	
 	local obj_gv, obj_pos
 
 	local storage = db.storage[obj.id]
@@ -621,8 +668,15 @@ function se_smart_terrain:distance_to_job_location(obj, job)
 	if storage == nil then
 		obj_gv, obj_pos = game_graph():vertex(obj.m_game_vertex_id), obj.position
 	else
-		local obj = db.storage[obj.id].object
-		obj_gv, obj_pos = game_graph():vertex(obj:game_vertex_id()), obj:position()
+	
+		--clp
+		local obj1 = db.storage[obj.id].object
+		if obj1 == nil then
+			return 10000
+		end
+		obj_gv, obj_pos = game_graph():vertex(obj1:game_vertex_id()), obj1:position()
+		--clp
+
 	end
 
 	local job_gv = game_graph():vertex(job.game_vertex_id)
@@ -645,6 +699,11 @@ function se_smart_terrain:switch_to_desired_job(npc)
 	--printf("***** %s -> %s", npc:name(), tostring(npc_info.need_job))
 	local changing_npc_id = self.npc_by_job_section[npc_info.need_job]
 	--printf("changing_npc_id %s", tostring(changing_npc_id))
+
+	local npc_name = db.storage[npc_id] and db.storage[npc_id].object and db.storage[npc_id].object:character_name() --clp
+	--if npc_name then
+	--	error_log( string.format( "npc %s , need_job: %s",tostring(npc_id),tostring(npc_info.need_job) ) )
+	--end
 
 	if changing_npc_id == nil then
 		-- Мы не нашли с кем меняться, просто ресетим себя
@@ -671,6 +730,7 @@ function se_smart_terrain:switch_to_desired_job(npc)
 	end
 
 	local desired_job = self.npc_info[changing_npc_id].job_id
+	--error_log( string.format( "job: %s",tostring(desired_job) ) )
 
 	-- Переключаем НПС на желаемую работу
 	if npc_info.job_link ~= nil then
@@ -774,6 +834,8 @@ function se_smart_terrain:STATE_Read(packet, size)
 		--printf("__ id %s", tostring(id))
 		self.npc_info[id] = {}
 		local npc_info = self.npc_info[id]
+
+		npc_info.se_obj = alife():object(id) --clp
 
 		npc_info.job_prior = packet:r_u8()
 		--printf("__ job_prior %s", tostring(npc_info.job_prior))
@@ -919,7 +981,9 @@ function se_smart_terrain:show()
 		end
 		self.relation = relation
 	end
-
+	if ogsm_options.smart_display == true then
+		level.map_add_object_spot(self.id, "alife_smart_terrain_marker", smart_names.get_smart_terrain_name(self))
+	end
 		if(self.smrt_showed_spot==spot) then
 		level.map_change_spot_hint(self.id, "alife_presentation_smart_"..self.sim_type.."_"..self.smrt_showed_spot, self:get_smart_props())
 		return

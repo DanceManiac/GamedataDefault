@@ -1,0 +1,121 @@
+--[[ ----------------------------------------------------------------------------------------------
+ File       : hwm_ui_sleep.script
+ Description: Интерфейс спального мешка
+ Copyright  : 2015 © HARDWAR mod
+ Author     : Charsi (использованы материалы Call of Pripyat)
+ Last edit  : 18.06.2019 by Kirgudu for OGSM CS CF
+--]] ----------------------------------------------------------------------------------------------
+
+class "sleep_menu" (CUIScriptWnd)
+
+function sleep_menu:__init() super()
+	self:SetWndRect			(Frect():set(0,0,1024,768))
+
+	local xml = CScriptXmlInit()
+	xml:ParseFile("ui_sleep_dialog.xml")
+
+	self.back    = xml:InitStatic("background", self)
+	self.static  = xml:InitStatic("sleep_static", self.back)
+	self.static2 = xml:InitStatic("sleep_static", self.static)
+	self.cover   = xml:InitStatic("static_cover", self.back)
+	self.marker  = xml:InitStatic("st_marker", self.back)
+	self.cover2  = xml:InitStatic("st_marker_cover_1", self.back)
+	self.cover3  = xml:InitStatic("st_marker_cover_2", self.back)
+
+	for i=1,24 do
+		local btn_name = "sleep_st_"..i
+		local st = xml:InitStatic("sleep_st", self.back)
+		st:SetWindowName(btn_name)
+		st:SetWndPos(vector2():set(40+(i-1)*25,163-180))
+		local btn = xml:Init3tButton("sleep_btn", st)
+		btn_name = "sleep_btn_"..i
+		self:Register(btn, btn_name)
+		self:AddCallback(btn_name, ui_events.BUTTON_CLICKED, function() self:on_btn(i) end)
+		self:AddCallback(btn_name, ui_events.STATIC_FOCUS_LOST, function() self:on_mouse_btn(i, false) end)
+		self:AddCallback(btn_name, ui_events.STATIC_FOCUS_RECEIVED, function() self:on_mouse_btn(i, true) end)
+	end
+
+	self.btn_sleep = xml:InitButton("btn_sleep", self.back)
+	self:Register(self.btn_sleep, "btn_sleep")
+	self:AddCallback("btn_sleep", ui_events.BUTTON_CLICKED, self.on_sleep, self)
+
+	self.btn_cancel = xml:InitButton("btn_cancel", self.back)
+	self:Register(self.btn_cancel, "btn_cancel")
+	self:AddCallback("btn_cancel", ui_events.BUTTON_CLICKED, self.on_quit, self)
+
+	self:on_btn(8)
+	self.cur_hours = level.get_time_hours() + 1
+	self:init_static()
+end
+
+function sleep_menu:on_mouse_btn(i, state)
+	if self.h == i then return end -- для выбранной кнопки всегда оставляем оранжевый цвет
+
+	local st = self:GetStatic("sleep_st_"..i)
+	if state then
+		st:SetTextColor(255,255,255,255)
+	else
+		st:SetTextColor(255,127,127,127)
+	end
+end
+
+function sleep_menu:init_static()
+	for i=1,24 do
+		local st = self:GetStatic("sleep_st_"..i)
+		st:SetText((self.cur_hours + i + 23)%24 .. "ч")
+	end
+
+	local delta = math.floor(591/24*self.cur_hours)
+	local r = Frect():set(delta,413,591,531)
+	self.static:SetOriginalRect(r)
+	local width = 591-delta
+	self.static:SetWndSize(vector2():set(width, 118))
+	self.static2:SetWndPos(vector2():set(width, 0))
+
+	r = Frect():set(0,413,delta,531)
+	self.static2:SetOriginalRect(r)
+	width = delta
+	self.static2:SetWndSize(vector2():set(width, 118))
+end
+
+function sleep_menu:on_btn(h)
+	local st = nil
+	if self.h then
+		st = self:GetStatic("sleep_st_"..self.h)
+		st:SetTextColor(255,127,127,127)
+	end
+	self.h = h
+	self.marker:SetWndPos(vector2():set(h*25 + 10, 32))
+	st = self:GetStatic("sleep_st_"..h)
+	st:SetTextColor(255,231,168,12)
+end
+
+function sleep_menu:on_sleep()
+	ogsm_sleep.main(self.h)
+	self:on_quit()
+end
+
+function sleep_menu:on_quit()
+	self:GetHolder():start_stop_menu(self, true)
+end
+
+function sleep_menu:OnKeyboard(dik, keyboard_action)
+	CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		if dik == DIK_keys.DIK_LEFT then
+			self:on_btn((self.h + 22)%24 + 1)
+		end
+		if dik == DIK_keys.DIK_RIGHT then
+			self:on_btn((self.h)%24 + 1)
+		end
+		if dik == DIK_keys.DIK_ESCAPE then
+			self:on_quit()
+		end
+		--[[
+		if dik == DIK_keys.DIK_RETURN then
+			self:on_sleep()
+		end
+		--]]
+	end
+	return true
+end
