@@ -38,7 +38,7 @@ inv_grid_y         					= 21
 
 inv_weight              			= 3.1
 
-cost                 				= 7500
+cost                 				= 30000 ;MW 7500
 
 weapon_class            			= assault_rifle
 
@@ -220,11 +220,11 @@ fire_bone2                			= wpn_body
 anm_show                			= lr300_draw
 anm_hide                			= lr300_holster
 anm_idle                			= lr300_idle
-anm_idle_sprint         			= lr300_idle_sprint_nev
+anm_idle_sprint         			= hk416_sprint
 anm_idle_moving         			= lr300_idle_moving
 anm_shots               			= lr300_shoot
 anm_reload              			= lr300_reload
-anm_idle_aim            			= lr300_idle_aim_stop
+anm_idle_aim            			= lr300_idle_aim
 
 anm_switch              			= lr300_switch_off
 anm_switch_g            			= lr300_switch_on
@@ -235,8 +235,8 @@ anm_show_w_gl           			= lr300_draw_w_gl
 anm_idle_w_gl           			= lr300_idle_w_gl
 anm_shots_w_gl          			= lr300_shoot_w_gl
 anm_reload_w_gl         			= lr300_reload_w_gl
-anm_idle_w_gl_aim       			= lr300_idle_aim_w_gl_stop
-anm_idle_sprint_w_gl    			= lr300_idle_sprint_w_gl_nev
+anm_idle_w_gl_aim       			= lr300_idle_aim_w_gl
+anm_idle_sprint_w_gl    			= lr300_idle_sprint_w_gl
 anm_idle_moving_w_gl    			= lr300_idle_moving_w_gl
 anm_bore_w_gl           			= lr300_idle_bore_w_gl
 
@@ -246,7 +246,7 @@ anm_idle_g              			= lr300_idle_grenade
 anm_reload_g            			= lr300_reload_grenade
 anm_idle_g_aim          			= lr300_idle_grenade
 anm_shots_g             			= lr300_shoot_grenade
-anm_idle_sprint_g       			= lr300_idle_sprint_w_gl_nev
+anm_idle_sprint_g       			= lr300_idle_sprint_grenade
 anm_idle_moving_g       			= lr300_idle_moving_grenade
 anm_bore_g              			= lr300_idle_bore_grenade
 
@@ -267,7 +267,7 @@ lean_hud_offset_rot        			= 0,0,0
 
 [wpn_lr300_minigame]:wpn_lr300
 ammo_limit      					= 100
-ammo_class      					= ammo_sig550_minigame
+ammo_class      					= ammo_minigame
 fire_modes      					= 1
 $spawn          					= "weapons\wpn_lr300_minigame"
 cost            					= 0

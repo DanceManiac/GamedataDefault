@@ -21,15 +21,14 @@ local min_weapon_condition = rx_utils.read_from_ini(cd_ini,'main',"min_weapon_co
 local check_prd = rx_utils.read_from_ini(cd_ini,'main',"check_period",5000,3)
 local check_prd_active = 2700
 
-local visible_mod = 1.2
+local visible_mod	= 1.2
 local cost_factor = 1				-- Множитель цены предмета при расчете приоритета
 local distance_factor = 1.8			-- Влияние расстояния на приоритет собирания
 local memory_factor = 0.1			-- Влияние memory_time на приоритет собирания
 local max_dist_from_node = 9		-- Максимальное расстояние лута до аи сетки (квадрат)
 local knife_slot = 0
 
--- список clsid собираемых предметов
-local item_clsids = {
+local item_clsids = {	-- список clsid собираемых предметов
 
 --	[clsid.equ_exo] = true,
 --	[clsid.equ_military] = true,
@@ -198,7 +197,21 @@ function evaluator_corpse:evaluate()
 		return false
 	end
 
-	if npc:best_enemy() or self.a.corpse_detection_enabled == false or xr_wounded.is_wounded(npc) or db.storage[npc:id()].danger_flag or xr_surge_hide.surge_activated then
+	-- if  ngsm_xr_detour then
+		-- if ngsm_xr_detour.anom_detour == true and res then 
+			-- freeGObject(self.st)
+			-- ngsm_xr_detour.drop_anom_detour_flag()
+			-- bad_dangers[danger_object.entity_corpse]=true
+			-- tm=tg() + 300000
+			-- return false		
+      	-- end
+        -- local npos = npc:position()
+        -- if time_global() > tm or (npos:distance_to(db.actor:position()) < 75 and res) then 
+	        -- bad_dangers[danger_object.entity_corpse]=false
+        -- end
+	-- end
+	
+	if ngsm_xr_detour.anom_detour == true or npc:best_enemy() or self.a.corpse_detection_enabled == false or xr_wounded.is_wounded(npc) or db.storage[npc:id()].danger_flag or xr_surge_hide.surge_activated then
 		self.a.active = nil
 		self.rtimer = tg+6000
 		return false
@@ -448,7 +461,13 @@ end
 function action_search_corpse:execute()
 	action_base.execute(self)
 	local npc = self.object
-
+	
+	--// NGSM
+    if new_xr_detour and new_xr_detour.anom_detour == true then
+        return
+    end
+	--// NGSM
+	
 	if self.id ~= self.a.target_id then
 		if self.a.target_id == nil then
 			self:update_animation()
@@ -548,9 +567,6 @@ function action_search_corpse:execute()
 				self:set_animation("search_corpse_high")
 			elseif is_mutant then
 				self.timer = time_global()+9000
-				if can_play_loot_sound(npc,target) then
-					rx_sound.set_sound_play(npc:id(),"corpse_monster_loot_begin")
-				end
 				self.torso_look = true
 				local knife = npc:item_in_slot(knife_slot)
 				if knife then
@@ -798,6 +814,15 @@ function grab_item(npc,act)
 		return
 	end
 	item:transfer_item(item,npc)
+
+	--// NGSM
+	local sobj = alife():object(item:id())
+	local gi_id = item:id()
+	if ngsm_xr_armor.armors[gi_id] == nil then
+		ngsm_xr_armor.armors[gi_id] = {}
+	end
+	table.insert(ngsm_xr_armor.armors[gi_id],sobj)
+	--// NGSM
 end
 
 function get_all_from_corpse(npc,act)
@@ -841,10 +866,6 @@ function get_all_from_corpse(npc,act)
 	elseif items_value > 5 and math.random(items_value) < 40 then
 		rx_sound.set_sound_play(npc:id(),"corpse_loot_bad")
 	end
-
-	-- добавлено для блокировки лута денег игроком в ogsm_lootmoney.script (Kirgudu)
-	xr_logic.pstor_store(corpse_npc, "money_looted", true)
-
 	npc:enable_memory_object(corpse_npc,false)
 	act.a.obj_stor[corpse_npc_id] = false
 end
@@ -894,7 +915,7 @@ function add_to_binder(npc, char_ini, scheme, section, st)
 	local manager = npc:motivation_action_manager()
 
 	-- Evaluators
-	if excluded_communities[npc:character_community()] or excluded_npcs[npc:name()] or excluded_npcs[npc:profile_name()] or excluded_npcs[(db.storage[npc:id()].squad_obj or {}).squad_id] or string.find(npc:section(),"^red_bridge_csky_soldier_") or not npc:alive() then
+	if excluded_communities[npc:character_community()] or not ngsm.IsSim(npc) or not npc:alive() then --//excluded_npcs[npc:name()] or excluded_npcs[npc:profile_name()] or excluded_npcs[(db.storage[npc:id()].squad_obj or {}).squad_id] or string.find(npc:section(),"^red_bridge_csky_soldier_") or not npc:alive() then
 		manager:add_evaluator (evid_corpse_exist,property_evaluator_const(false))
 		local action = manager:action(stalker_ids.action_gather_items)
 		action:add_precondition(world_property(xr_evaluators_id.state_mgr+2,true))
@@ -907,6 +928,13 @@ function add_to_binder(npc, char_ini, scheme, section, st)
 	-- Actions
 	manager:remove_action(actid_corpse_exist)
 	local action = action_search_corpse (npc:name(),"action_search_corpse", st)
+	
+	--// NGSM
+	if ngsm_xr_detour then
+		action:add_precondition (world_property(ngsm_xr_detour.evid_detour_anomaly,false))
+	end
+	--// NGSM
+	
 	action:add_precondition		(world_property(stalker_ids.property_alive, true))
 	action:add_precondition		(world_property(stalker_ids.property_enemy,	false))
 	action:add_precondition		(world_property(stalker_ids.property_danger,false))
@@ -965,32 +993,6 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 
 function is_quest_item(obj)
-	-- Чтобы НПС не подбирали нужные нам айтемы, вносим сюда их имена (автор: phorumer)
-	if obj:name() == "mar_wpn_mp5" or
-           obj:name() == "esc_ammo_5.45x39_fmj_0003" or
-           obj:name() == "esc_ammo_5.45x39_fmj_0004" or
-           obj:name() == "esc_ammo_5.45x39_fmj_0005" or
-           obj:name() == "esc_ammo_5.45x39_fmj_0006" or
-           obj:name() == "esc_ammo_5.45x39_fmj_0007" or
-           obj:name() == "esc_ammo_5.45x39_fmj_0008" or
-           obj:name() == "esc_grenade_rgd5" or
-           obj:name() == "esc_grenade_rgd5_0000" or
-           obj:name() == "esc_grenade_rgd5_0001" or
-           obj:name() == "esc_bread_0001" or
-           obj:name() == "esc_bread_0002" or
-           obj:name() == "esc_conserva" or
-           obj:name() == "esc_conserva_0000" or
-           obj:name() == "esc_conserva_0001" or
-           obj:name() == "esc_energy_drink_0006" or
-           obj:name() == "esc_energy_drink_0007" or
-           obj:name() == "esc_kolbasa" or
-           obj:name() == "esc_kolbasa_0000" or
-           obj:name() == "esc_vodka_0001" or
-           obj:name() == "esc_vodka_0002" or
-           obj:name() == "agr_bandage_0001" or
-           obj:name() == "agr_bandage_0002" then
-		return true
-	end
 	local sec = obj:section()
 	if forbidden_items[sec] ~= nil then
 		return forbidden_items[sec]

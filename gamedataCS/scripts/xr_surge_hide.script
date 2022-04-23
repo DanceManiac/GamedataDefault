@@ -2,12 +2,10 @@
 -- Surge hide scheme -----------------------------------------------------------
 -- Made by Peacemaker ----------------------------------------------------------
 -- 05.03.07 --------------------------------------------------------------------
--- Last edit (by Kirgudu): 04.09.2018 ------------------------------------------
 --------------------------------------------------------------------------------
 
 surge_finished = false
 surge_activated = false
-periodical_surge_started = false
 start_surge = false
 weather_surge = true
 time_before_surge = 0
@@ -19,14 +17,13 @@ cur_prop = 15
 local add_prop = 10
 levels_surge_table = {
 		marsh       = {condlist="{+mar_story_go_to_escape_done} true", surge_time=30},
-		escape      = {condlist="{+esc_bring_habar_complete +esc_prisoner_guard_restored -esc_wolf_brother_1} true, {+esc_bring_habar_complete +esc_prisoner_guard_restored +esc_wolf_brother_4} true", surge_time=40},
+		escape      = {condlist="{+esc_bring_habar_complete +esc_help_prisoner +esc_prisoner_guard_restored} true, {+esc_bring_habar_complete -esc_help_prisoner} true", surge_time=40},
 		garbage     = {condlist="{+gar_story_got_info_from_digger -val_deliver_pda_done} true, {+agr_garbage_end} true", surge_time=45},
 		darkvalley  = {condlist="{+val_deliver_pda_done -val_strike_antenna_ready} true, {+val_destroy_killer_base_done} true", surge_time=45},
 		agroprom    = {condlist="{+agru_go_out_end_task_complete} true", surge_time=30},
 		yantar      = {condlist="{+red_bridge_finished} true", surge_time=30},
-		red_forest  = {condlist="{+red_forester_actor_has_compas -mil_actor_go_to_limansk} true, {+red_bridge_finished} true, {+red_bridge_actor_fail} true", surge_time=30},
+		red_forest  = {condlist="{+red_strelok_task_end -red_bridge_scene_begin} true, {+red_bridge_finished} true, {+red_bridge_actor_fail} true", surge_time=30},
 		military    = {condlist="{+mil_actor_go_to_limansk} true", surge_time=30},
-		limansk     = {condlist="{+lim_electro_fence_off} true", surge_time=30},
 }
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -38,7 +35,7 @@ function evaluator_surge_hide_end:__init(name, storage) super (nil, name)
 	self.st = storage
 end
 function evaluator_surge_hide_end:evaluate()
-	return not xr_logic.is_active(self.object, self.st)
+	return true --' NGSM (xr_hider) not xr_logic.is_active(self.object, self.st)
 end
 -- Are we on position
 class "evaluator_surge_hide_on_position" (property_evaluator)
@@ -78,7 +75,7 @@ function action_surge_hide_go_position:execute()
 		if(self.st.npc_position_num~=npc_position_num) then
 			self.st.pp = patrol(self.st.path_walk):point(0)
 			local dir = vector():set(math.random(-1,1), 0, math.random(-1,1))
-			local delta_dist = math.random(0.8,0.8)
+			local delta_dist = math.random(0,0.5)
 			self.st.pp.x = self.st.pp.x + dir.x * delta_dist
 			self.st.pp.z = self.st.pp.z + dir.z * delta_dist
 
@@ -90,12 +87,7 @@ function action_surge_hide_go_position:execute()
 			end
 
 			self.object:set_path_type(game_object.level_path)
-			local npc = self.object
-			if(npc:position():distance_to(self.st.pp)<=25) then
-				state_mgr.set_state(self.object, "walk")
-			elseif (npc:position():distance_to(self.st.pp)>25) then
-				state_mgr.set_state(self.object, "run")
-			end
+			state_mgr.set_state(self.object, "run") --' NGSM
 			self.st.npc_position_num = npc_position_num
 			self.st.pos_vertex = tmp_pos_vertex
 		end
@@ -210,7 +202,7 @@ function get_dest_vertex(npc, pp, pos_tbl, npc_pos, path_walk)
 	dir.z = dir.z + math.random(-1,1)/5
 	dir:normalize()
 
-	local radius = 2 + math.random(-0.3,0.3)
+	local radius = 3 + math.random(-0.3,0.3)
 	local dest_vertex = 4294967295
 
 	while(dest_vertex==4294967295) or (dest_vertex==4294967296) do
@@ -236,6 +228,7 @@ function get_dest_vertex(npc, pp, pos_tbl, npc_pos, path_walk)
 end
 
 function stalker_can_switch_offline(npc)
+  if not ngsm.IsSim(npc) then --'NGSM
 	local board = npc.board
 	local is_commander = false
 	if not(npc:alive()) then
@@ -302,6 +295,9 @@ function stalker_can_switch_offline(npc)
 			return false
 		end
 	end
+	else
+        return false
+	end
 end
 
 function save(package)
@@ -333,6 +329,9 @@ function load(reader)
 end
 
 function activate_surge(time)
+
+    ngsm.call("ngsm_xr_hider", "Start") --' NGSM
+
 	if phase == 0 then
 		if time==nil  then
 			abort("Surge time is not set!")
@@ -343,24 +342,22 @@ function activate_surge(time)
 			level.set_weather_fx("fx_surge_day_1")
 		end
 		initialization_time = game.get_game_time()
-        time_before_surge = tonumber(time)
+		time_before_surge = tonumber(time)
 		start_surge = true
 		phase = 1
-		db.actor:give_info_portion("start_surge_info")
-		db.actor:disable_info_portion("surge_finished_info")
 	elseif phase == 1 then
 		weather_surge = false
-		if has_alife_info("mar_intro_talk_with_commander_2_done") then
-			local level_name = level.name()
-			if db.actor and level_name ~= "agroprom_underground" and level_name ~= "jupiter_underground" and level_name ~= "stancia_2" then	
- 				xr_sound.set_sound_play(db.actor:id(), "surge_started")
-			else
-				xr_sound.set_sound_play(db.actor:id(), "blowout_begin")
-			end
-		end
+		xr_sound.set_sound_play(db.actor:id(), "blowout_begin")
 		level.add_cam_effector("camera_effects\\shell_shock.anm", 20080501, false, "")
 		level.add_pp_effector("snd_shock.ppe", 20080401, false)
 		level.set_pp_effector_factor(20080401, 0, 1)
+        
+		--// NGSM
+  	    if ngsm_xr_detour then
+            ngsm_xr_detour.need_upd_anom_list = true
+		end
+		--// NGSM
+    
 		phase = 2
 	elseif phase == 2 then
 		phase = 3
@@ -407,9 +404,7 @@ function activate_surge(time)
 			task:give_task(db.actor:character_community())
 			surge_finished = false
 			surge_activated = true
-			if has_alife_info("mar_intro_talk_with_commander_2_done") then
-				news_manager.send_tip(db.actor, game.translate_string("hide_from_surge_text1").." "..time.." "..game.translate_string("hide_from_surge_text2"))
-			end
+			news_manager.send_tip(db.actor, game.translate_string("hide_from_surge_text1").." "..time.." "..game.translate_string("hide_from_surge_text2"))
 		end
 	end
 end
@@ -438,44 +433,4 @@ function surge_can_be_started(level)
 		end
 	end
 	return nil
-end
-
-function blowout_timer_1()
-	if ogsm_options.surge_type == 2 then
-		local al = alife()
-		if al ~= nil and not start_surge then
-			local name = al:level_name(al:level_id())
-			local timeout = surge_can_be_started(name)
-			if timeout then
-				if ogsm_sleep and ogsm_sleep.is_sleep_active() then ogsm_sleep.stopper() end
-				activate_surge(timeout)
-			else
-				if not start_surge and not surge_activated and not ogsm.is_g_timer_exists("bl2") then
-					ogsm.g_start_timer("bl1", 0, 2, 0)
-				end
-			end
-		end
-	end
-end
-
-function blowout_timer_2()
-	if ogsm_options.surge_type == 2 then
-		-- рестарт таймера для следующего выброса
-		if not start_surge and not surge_activated and not ogsm.is_g_timer_exists("bl1") then
-			ogsm.g_start_timer("bl1", 0, ogsm_options.surge_period + math.random(-4,4), 0)
-		end
-	end
-end
-
--- Инициализация обработки таймеров для периодического выброса (не перемещать из конца скрипта)
-local FuncByName = {
-	["bl1"] = blowout_timer_1,
-	["bl2"] = blowout_timer_2
-}
-local sModule = script_name()
-if FuncByName then
-	if not _G["ogsm_timers"] then _G["ogsm_timers"] = {} end
-	local t = _G["ogsm_timers"]
-	for name,func in pairs(FuncByName) do t[name] = func end
-	FuncByName = nil
 end

@@ -11,6 +11,17 @@ local count_by_level = {}
 -- Предметы, которые нельзя удалять (квестовые например)
 local always_keep_item = {}
 
+--// NGSM
+--' Предметы, которые удаляем всегда
+local always_offs_items = {
+	"guitar_a",
+	"device_torch",
+	"device_pda",
+	"wpn_binoc",
+	"wpn_knife"
+}
+--// NGSM
+
 -- Предметы, относящиеся к патронам. Их надо спаунить другим методом.
 ammo_sections = {}
 
@@ -154,9 +165,6 @@ function keep_item(npc, item)
     if item_in_slot ~= nil and item_in_slot:id() == item_id then
 		-- Тут надо уменьшить кондишн оружия
 		item:set_condition((math.random(80)+10)/100)
-		if ogsm_options.death_weapon_store == true then
-			npc:transfer_item(item, npc)
-		end
 		printf("3")
         return
     end
@@ -164,9 +172,6 @@ function keep_item(npc, item)
     if item_in_slot ~= nil and item_in_slot:id() == item_id then
 		-- Тут надо уменьшить кондишн оружия
 		item:set_condition((math.random(80)+10)/100)
-		if ogsm_options.death_weapon_store == true then
-			npc:transfer_item(item, npc)
-		end
 		printf("4")
         return
     end
@@ -189,17 +194,30 @@ function keep_item(npc, item)
     end
     local item_in_slot = npc:item_in_slot(3)
     if item_in_slot ~= nil and item_in_slot:id() == item_id then
-		if ogsm_options.death_weapon_store == true then
-			npc:transfer_item(item, npc)
-		end
 		printf("5")
 		return
 	end
-	if not npc:marked_dropped(item) then
-		printf("6")
-		printf("releasing object ["..item:name().."]")
-		alife():release(alife():object(item:id()), true)
+	
+	--// NGSM
+	if ngsm_options.all_items_spawn then
+		for a=1,#always_offs_items do
+			if always_offs_items[a]==section then
+				if not npc:marked_dropped(item) then
+					alife():release(alife():object(item:id()), true)
+					break
+				end
+			end
+		end
+	else
+		for a=1,#always_offs_items do
+			if not npc:marked_dropped(item) then
+				alife():release(alife():object(item:id()), true)
+				break
+			end
+		end
 	end
+    --// NGSM
+
 end
 
 -- Функция спавнит необходимое число предметов

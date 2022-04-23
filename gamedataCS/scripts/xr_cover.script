@@ -250,7 +250,17 @@ function add_to_binder(npc, ini, scheme, section, storage)
 		new_action:add_precondition(world_property(xr_evaluators_id.sidor_wounded_base + 0,false))
 --		new_action:add_precondition(world_property(xr_evaluators_id.smartcover_action + 3, false))
 		if rx_ai then rx_ai.addCommonPrecondition(new_action) end
+		
 		new_action:add_precondition(world_property(properties["need_cover"],true))
+		
+	    --// NGSM
+	    if ngsm_options.new_ai_modules == true then
+            if ngsm_xr_hider then
+		        new_action:add_precondition	(world_property(ngsm_xr_hider.evid_surge_hider, false))
+		    end
+		end
+		--// NGSM
+		
 	   	new_action:add_effect(world_property(properties["need_cover"],false))
 		manager:add_action(operators["action_cover"], new_action)
 

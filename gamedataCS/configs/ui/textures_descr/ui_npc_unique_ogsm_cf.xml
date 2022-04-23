@@ -1,0 +1,93 @@
+<w>
+    <file name="ui\ui_npc_unique_ogsm_cf">
+
+    <texture id="icon_stalker_nebo_7"         x="0"   y="0" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_7"    x="165" y="0" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_8"    x="330" y="0" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_9"    x="495" y="0" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_10"   x="660" y="0" width="165" height="108" />
+    <texture id="icon_stalker_bandit_3_3"     x="825" y="0" width="165" height="108" />
+
+    <texture id="icon_stalker_bandit_3_4"     x="0"   y="108" width="165" height="108" />
+    <texture id="icon_stalker_bandit_3_5"     x="165" y="108" width="165" height="108" />
+    <texture id="icon_stalker_bandit_4_3"     x="330" y="108" width="165" height="108" />
+    <texture id="icon_stalker_bandit_4_4"     x="495" y="108" width="165" height="108" />
+    <texture id="icon_stalker_bandit_4_5"     x="660" y="108" width="165" height="108" />
+    <texture id="icon_stalker_bandit_2_4"     x="825" y="108" width="165" height="108" />
+
+    <texture id="icon_stalker_bandit_2_5"     x="0"   y="216" width="165" height="108" />
+    <texture id="icon_stalker_dolg_2_7"       x="165" y="216" width="165" height="108" />
+    <texture id="icon_stalker_freedom_1_7"    x="330" y="216" width="165" height="108" />
+    <texture id="icon_stalker_freedom_1_8"    x="495" y="216" width="165" height="108" />
+    <texture id="icon_stalker_freedom_2_7"    x="660" y="216" width="165" height="108" />
+    <texture id="icon_stalker_merc_2_4"       x="825" y="216" width="165" height="108" />
+
+    <texture id="icon_stalker_merc_2_5"       x="0"   y="324" width="165" height="108" />
+    <texture id="icon_stalker_merc_2_6"       x="165" y="324" width="165" height="108" />
+    <texture id="icon_stalker_merc_2_7"       x="330" y="324" width="165" height="108" />
+    <texture id="icon_stalker_monolith_2_7"   x="495" y="324" width="165" height="108" />
+    <texture id="icon_stalker_monolith_2_8"   x="660" y="324" width="165" height="108" />
+    <texture id="icon_stalker_monolith_2_9"   x="825" y="324" width="165" height="108" />
+
+    <texture id="icon_stalker_monolith_2_10"  x="0"   y="432" width="165" height="108" />
+    <texture id="icon_stalker_soldier_1_4"    x="165" y="432" width="165" height="108" />
+    <texture id="icon_stalker_soldier_1_5"    x="330" y="432" width="165" height="108" />
+    <texture id="icon_stalker_zombied_1_5"    x="495" y="432" width="165" height="108" />
+    <texture id="icon_stalker_zombied_1_6"    x="660" y="432" width="165" height="108" />
+    <texture id="icon_stalker_zombied_3_9"    x="825" y="432" width="165" height="108" />
+
+    <texture id="icon_stalker_zombied_3_10"   x="0"   y="432" width="165" height="108" />
+
+
+
+
+
+    <texture id="icon_stalker_suslov"         x="0"   y="756" width="165" height="108" />
+    <texture id="icon_stalker_aydar"          x="165" y="756" width="165" height="108" />
+    <texture id="icon_stalker_catbird"        x="330" y="756" width="165" height="108" />
+    <texture id="icon_stalker_dog"            x="495" y="756" width="165" height="108" />
+    <texture id="icon_stalker_goblin"         x="660" y="756" width="165" height="108" />
+    <texture id="icon_stalker_hermit"         x="825" y="756" width="165" height="108" />
+
+    <texture id="icon_stalker_levsha"         x="0"   y="864" width="165" height="108" />
+    <texture id="icon_stalker_orest"          x="165" y="864" width="165" height="108" />
+    <texture id="icon_stalker_shilov"         x="330" y="864" width="165" height="108" />
+    <texture id="icon_stalker_vagrant"        x="495" y="864" width="165" height="108" />
+    <texture id="icon_stalker_van"            x="660" y="864" width="165" height="108" />
+    <texture id="icon_stalker_bandit_3_mask"  x="825" y="864" width="165" height="108" />
+
+    <texture id="icon_stalker_prozrachniy"    x="0"   y="972" width="165" height="108" />
+    <texture id="icon_stalker_zyb"            x="165" y="972" width="165" height="108" />
+    <texture id="icon_stalker_avoska"         x="330" y="972" width="165" height="108" />
+    <texture id="icon_stalker_garin"          x="495" y="972" width="165" height="108" />
+    <texture id="icon_stalker_mantsev"        x="660" y="972" width="165" height="108" />
+    <texture id="icon_stalker_shelga"         x="825" y="972" width="165" height="108" />
+
+    <texture id="icon_stalker_smuggler"       x="0"   y="1080" width="165" height="108" />
+    <texture id="icon_stalker_svejak"         x="165" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_vasyan"         x="330" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_gromov"         x="495" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_inquisitor"     x="660" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_mityai"         x="825" y="1080" width="165" height="108" />
+
+    <texture id="icon_stalker_zvyagintsev"    x="0"   y="1188" width="165" height="108" />
+    <texture id="icon_stalker_ashot"          x="165" y="1188" width="165" height="108" />
+    <texture id="icon_stalker_sullen"         x="330" y="1188" width="165" height="108" />
+    <texture id="icon_stalker_shchukin"       x="495" y="1188" width="165" height="108" />
+    <texture id="icon_stalker_raven"          x="660" y="1188" width="165" height="108" />
+    <texture id="icon_stalker_kostiuk"        x="825" y="1188" width="165" height="108" />
+
+    <texture id="icon_stalker_colt"           x="0"   y="1296" width="165" height="108" />
+    <texture id="icon_stalker_ovechko"        x="165" y="1296" width="165" height="108" />
+    <texture id="icon_stalker_pupin"          x="330" y="1296" width="165" height="108" />
+    <texture id="icon_stalker_repkin"         x="495" y="1296" width="165" height="108" />
+    <texture id="icon_stalker_vasiliev"       x="660" y="1296" width="165" height="108" />
+    <texture id="icon_stalker_tookarev"       x="825" y="1296" width="165" height="108" />
+	
+	
+	
+    <texture id="icon_stalker_tropnik"       x="0" y="1950" width="165" height="108" />
+
+
+   </file>
+</w>

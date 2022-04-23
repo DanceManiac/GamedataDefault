@@ -38,7 +38,7 @@ inv_grid_y         					= 13
 
 inv_weight        					= 3.1
 
-cost              	 				= 4000
+cost              	 				= 16000 ;MW 4000
 
 weapon_class         				= assault_rifle
 
@@ -215,7 +215,7 @@ fire_bone2                			= wpn_body
 anm_show							= ak74_draw
 anm_hide                			= ak74_holster
 anm_idle                			= ak74_idle
-anm_idle_sprint         			= ak74_idle_sprint_nev
+anm_idle_sprint         			= ak74_sprint
 anm_idle_moving         			= ak74_idle_moving
 anm_shots               			= ak74_shoot
 anm_reload              			= ak74_reload
@@ -231,7 +231,7 @@ anm_idle_w_gl           			= ak74_idle_w_gl
 anm_shots_w_gl          			= ak74_shoot_w_gl
 anm_reload_w_gl         			= ak74_reload_w_gl
 anm_idle_w_gl_aim       			= ak74_idle_aim_w_gl
-anm_idle_sprint_w_gl    			= ak74_idle_sprint_w_gl_nev
+anm_idle_sprint_w_gl    			= ak74_idle_sprint_w_gl
 anm_idle_moving_w_gl    			= ak74_idle_moving_w_gl
 anm_bore_w_gl           			= ak74_idle_bore_w_gl
 
@@ -241,7 +241,7 @@ anm_idle_g              			= ak74_idle_w_gl
 anm_reload_g            			= ak74_reload_grenade
 anm_idle_g_aim          			= ak74_idle_aim_w_gl
 anm_shots_g             			= ak74_shoot_grenade
-anm_idle_sprint_g       			= ak74_idle_sprint_w_gl_nev
+anm_idle_sprint_g       			= ak74_idle_sprint_w_gl
 anm_idle_moving_g       			= ak74_idle_moving_w_gl
 anm_bore_g             	 			= ak74_idle_bore_w_gl
 
@@ -262,7 +262,7 @@ lean_hud_offset_rot        			= 0,0,0
 
 [wpn_ak74_minigame]:wpn_ak74
 ammo_limit      					= 100
-ammo_class      					= ammo_ak74_minigame
+ammo_class      					= ammo_minigame
 fire_modes      					= 1
 $spawn          					= "weapons\wpn_ak74_minigame"
 cost            					= 0
@@ -292,7 +292,7 @@ upgrades                			= up_gr_ab_saiga, up_gr_cd_saiga, up_gr_e_saiga, up_g
 installed_upgrades      			=
 upgrade_scheme          			= upgrade_scheme_u10a_ogsm
 
-cost                				= 8000
+cost                				= 32000 ;MW 8000
 
 description          				= st_wpn_saiga_descr
 inv_name          					= st_wpn_saiga
@@ -398,7 +398,7 @@ inv_grid_y         					= 13
 
 inv_weight							= 3.2
 
-cost								= 3800
+cost								= 15200 ;MW 3800
 
 upgrades                			= up_gr_ab_ak74_priklad, up_gr_cd_ak74_priklad, up_gr_ef_ak74_priklad, up_gr_gh_ak74_priklad
 installed_upgrades      			=
@@ -440,7 +440,7 @@ grenade_launcher_status	= 2
 $spawn								= "weapons\wpn_ak101"
 visual								= dynamics\weapons\wpn_ak101\wpn_ak101.ogf
 
-cost              	 				= 8000
+cost              	 				= 32000 ;MW 8000
 
 description          				= st_wpn_ak101_descr
 inv_name          					= st_wpn_ak101
@@ -498,256 +498,11 @@ gl_hud_offset_rot_16x9			= -0.197000,-0.009000, 0.000000
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[wpn_ak103]:wpn_ak74
-$spawn								= "weapons\wpn_ak103"
-visual								= dynamics\weapons\wpn_ak103\wpn_ak103.ogf
-
-cost              	 				= 8000
-
-description          				= st_wpn_ak103_descr
-inv_name          					= st_wpn_ak103
-inv_name_short    					= st_wpn_ak103
-
-inv_grid_width     					= 5
-inv_grid_height    					= 2
-inv_grid_x         					= 24
-inv_grid_y         					= 36
-
-inv_weight							= 3.8
-
-upgrades                			= up_gr_ab_ak101, up_gr_cd_ak101, up_gr_ef_ak101, up_gr_gh_ak101
-installed_upgrades      			=
-upgrade_scheme          			= upgrade_scheme_u16a_ogsm
-
-ammo_class           				= ammo_7.62x39_fmj, ammo_7.62x39_ap
-
-shell_particles         			= weapons\generic_shells
-
-fire_dispersion_base       			= 1.2
-
-cam_dispersion              		= 2.0
-cam_dispersion_inc         			= 2.0
-cam_step_angle_horz        			= 2.0
-cam_max_angle						= 20
-cam_max_angle_horz         			= 20
-
-zoom_cam_dispersion          		= 1.6
-zoom_cam_dispersion_inc     	 	= 1.6
-zoom_cam_step_angle_horz     		= 1.6
-zoom_cam_max_angle           		= 10
-zoom_cam_max_angle_horz      		= 10
-
-fire_dispersion_condition_factor    = 15
-misfire_probability     			= 0.0001
-misfire_condition_k     			= 0.025
-condition_shot_dec      			= 0.00005
-
-hit_power							= 0.7, 0.7, 0.7, 0.7
-hit_impulse							= 120
-
-rpm                     			= 680
-
-scope_name              			= wpn_addon_scope
-scope_x                     		= 48
-scope_y                     		= -6
-silencer_name           			= wpn_addon_silencer
-silencer_x                  		= 217
-silencer_y                  		= 7
-grenade_launcher_name   			= wpn_addon_grenade_launcher
-grenade_launcher_x          		= 126
-grenade_launcher_y          		= 17
-
-;==================================== Copyright 2009 MulleR, Mongol ====================================
-snd_shoot							= weapons\akm\akm_shoot
-snd_shoot1							= weapons\akm\akm_shoot1
-snd_shoot2							= weapons\akm\akm_shoot2
-snd_shoot3							= weapons\akm\akm_shoot3		
-snd_silncer_shot					= weapons\akm\akm_shot_sil
-;==================================== Copyright 2009 MulleR, Mongol ====================================
-
-hud									= wpn_ak103_hud
-
-[wpn_ak103_hud]:wpn_ak74_hud
-item_visual							= dynamics\weapons\wpn_ak103\wpn_ak103_hud.ogf
-
-aim_hud_offset_pos					= -0.101300,0.017000,-0.018000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= -0.029100,-0.033000,0.020000			; +вниз\-вверх , +вправо\-влево
-
-aim_hud_offset_pos_16x9				= -0.101300,0.035000,0.029000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.000300,-0.001500,-0.007500			; +вниз\-вверх , +вправо\-влево
-
-gl_hud_offset_pos				= -0.088280,-0.118700,0.000000
-gl_hud_offset_rot				= -0.217500,-0.015500,0.022000
-
-gl_hud_offset_pos_16x9			= -0.068500,-0.101500, 0.000000
-gl_hud_offset_rot_16x9			= -0.197000,-0.009000, 0.000000
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[wpn_ak104]:wpn_ak74
-$spawn								= "weapons\wpn_ak104"
-visual								= dynamics\weapons\wpn_ak104\wpn_ak104.ogf
-
-cost              	 				= 7000
-
-description          				= st_wpn_ak104_descr
-inv_name          					= st_wpn_ak104
-inv_name_short    					= st_wpn_ak104
-
-inv_grid_width     					= 5
-inv_grid_height    					= 2
-inv_grid_x         					= 35
-inv_grid_y         					= 34
-
-inv_weight							= 3.7
-
-upgrades                			= up_gr_ab_ak101, up_gr_cd_ak101, up_gr_ef_ak101, up_gr_gh_ak101
-installed_upgrades      			=
-upgrade_scheme          			= upgrade_scheme_u16a_ogsm
-
-ammo_class           				= ammo_7.62x39_fmj, ammo_7.62x39_ap
-
-fire_point                 			=  0,0.218,0.556
-
-shell_particles         			= weapons\generic_shells
-
-fire_dispersion_base       			= 1.2
-
-cam_dispersion              		= 2.0
-cam_dispersion_inc         			= 2.0
-cam_step_angle_horz        			= 2.0
-cam_max_angle						= 20
-cam_max_angle_horz         			= 20
-
-zoom_cam_dispersion          		= 1.6
-zoom_cam_dispersion_inc     	 	= 1.6
-zoom_cam_step_angle_horz     		= 1.6
-zoom_cam_max_angle           		= 10
-zoom_cam_max_angle_horz      		= 10
-
-fire_dispersion_condition_factor    = 15
-misfire_probability     			= 0.0001
-misfire_condition_k     			= 0.025
-condition_shot_dec      			= 0.00005
-
-hit_power							= 0.7, 0.7, 0.7, 0.7
-hit_impulse							= 120
-
-rpm                     			= 680
-
-scope_name              			= wpn_addon_scope
-scope_x                     		= 48
-scope_y                     		= -6
-silencer_name           			= wpn_addon_silencer
-silencer_x                  		= 212
-silencer_y                  		= 8
-grenade_launcher_name   			= wpn_addon_grenade_launcher
-grenade_launcher_x          		= 126
-grenade_launcher_y          		= 17
-
-;==================================== Copyright 2009 MulleR, Mongol ====================================
-snd_shoot							= weapons\akm\akm_shoot
-snd_shoot1							= weapons\akm\akm_shoot1
-snd_shoot2							= weapons\akm\akm_shoot2
-snd_shoot3							= weapons\akm\akm_shoot3		
-snd_silncer_shot					= weapons\akm\akm_shot_sil
-;==================================== Copyright 2009 MulleR, Mongol ====================================
-
-hud									= wpn_ak104_hud
-
-[wpn_ak104_hud]:wpn_ak74_hud
-item_visual							= dynamics\weapons\wpn_ak104\wpn_ak104_hud.ogf
-
-aim_hud_offset_pos					= -0.101300,0.017000,-0.018000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= -0.029100,-0.033000,0.020000			; +вниз\-вверх , +вправо\-влево
-
-aim_hud_offset_pos_16x9				= -0.101300,0.035000,0.029000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.000300,-0.001500,-0.007500			; +вниз\-вверх , +вправо\-влево
-
-gl_hud_offset_pos				= -0.088280,-0.118700,0.000000
-gl_hud_offset_rot				= -0.217500,-0.015500,0.022000
-
-gl_hud_offset_pos_16x9			= -0.068500,-0.101500, 0.000000
-gl_hud_offset_rot_16x9			= -0.197000,-0.009000, 0.000000
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[wpn_ak105]:wpn_ak74
-$spawn								= "weapons\wpn_ak105"
-visual								= dynamics\weapons\wpn_ak105\wpn_ak105.ogf
-
-cost              	 				= 7000
-
-description          				= st_wpn_ak105_descr
-inv_name          					= st_wpn_ak105
-inv_name_short    					= st_wpn_ak105
-
-inv_grid_width     					= 5
-inv_grid_height    					= 2
-inv_grid_x         					= 33
-inv_grid_y         					= 25
-
-inv_weight							= 3.5
-
-upgrades                			= up_gr_ab_ak101, up_gr_cd_ak101, up_gr_ef_ak101, up_gr_gh_ak101
-installed_upgrades      			=
-upgrade_scheme          			= upgrade_scheme_u16a_ogsm
-
-fire_point                 			=  0,0.218,0.556
-
-fire_dispersion_base       			= 1.2
-
-cam_dispersion              		= 2.0
-cam_dispersion_inc         			= 2.0
-cam_step_angle_horz        			= 2.0
-cam_max_angle						= 20
-cam_max_angle_horz         			= 20
-
-zoom_cam_dispersion          		= 1.6
-zoom_cam_dispersion_inc     	 	= 1.6
-zoom_cam_step_angle_horz     		= 1.6
-zoom_cam_max_angle           		= 10
-zoom_cam_max_angle_horz      		= 10
-
-fire_dispersion_condition_factor    = 15
-misfire_probability     			= 0.0001
-misfire_condition_k     			= 0.025
-condition_shot_dec      			= 0.00005
-
-scope_name              			= wpn_addon_scope
-scope_x                     		= 48
-scope_y                     		= -6
-silencer_name           			= wpn_addon_silencer
-silencer_x                  		= 212
-silencer_y                  		= 8
-grenade_launcher_name   			= wpn_addon_grenade_launcher
-grenade_launcher_x          		= 126
-grenade_launcher_y          		= 17
-
-hud									= wpn_ak105_hud
-
-[wpn_ak105_hud]:wpn_ak74_hud
-item_visual							= dynamics\weapons\wpn_ak105\wpn_ak105_hud.ogf
-
-aim_hud_offset_pos					= -0.101300,0.017000,-0.018000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= -0.029100,-0.033000,0.020000			; +вниз\-вверх , +вправо\-влево
-
-aim_hud_offset_pos_16x9				= -0.101300,0.035000,0.029000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.000300,-0.001500,-0.007500			; +вниз\-вверх , +вправо\-влево
-
-gl_hud_offset_pos				= -0.088280,-0.118700,0.000000
-gl_hud_offset_rot				= -0.217500,-0.015500,0.022000
-
-gl_hud_offset_pos_16x9			= -0.068500,-0.101500, 0.000000
-gl_hud_offset_rot_16x9			= -0.197000,-0.009000, 0.000000
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 [wpn_ak108]:wpn_ak74
 $spawn								= "weapons\wpn_ak108"
 visual								= dynamics\weapons\wpn_ak108\wpn_ak108.ogf
 
-cost              	 				= 12000
+cost              	 				= 48000 ;MW 12000
 
 description          				= st_wpn_ak108_descr
 inv_name          					= st_wpn_ak108
@@ -773,10 +528,6 @@ fire_modes           				= 1, 3, -1
 shell_particles         			= weapons\generic_shells
 
 fire_dispersion_base       			= 1.0
-
-cam_relax_speed          			= 10
-cam_dispersion           			= 1.5
-cam_dispersion_inc       			= 1.5
 
 bullet_speed            			= 580
 rpm                     			= 680
@@ -819,97 +570,11 @@ aim_hud_offset_rot_16x9				= 0.000000,-0.000900,-0.007500			; +вниз\-вверх , +вп
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[wpn_ak109]:wpn_ak74
-$spawn								= "weapons\wpn_ak109"
-visual								= dynamics\weapons\wpn_ak109\wpn_ak109.ogf
-
-cost              	 				= 9000
-
-description          				= st_wpn_ak109_descr
-inv_name          					= st_wpn_ak109
-inv_name_short    					= st_wpn_ak109
-
-inv_grid_width     					= 5
-inv_grid_height    					= 2
-inv_grid_x         					= 24
-inv_grid_y         					= 36
-
-inv_weight							= 3.8
-
-upgrades                			= up_gr_ab_ak101, up_gr_cd_ak101, up_gr_ef_ak101, up_gr_gh_ak101
-installed_upgrades      			=
-upgrade_scheme          			= upgrade_scheme_u16a_ogsm
-
-ammo_class           				= ammo_7.62x39_fmj, ammo_7.62x39_ap
-
-shell_particles         			= weapons\generic_shells
-
-fire_dispersion_base       			= 1.2
-
-cam_dispersion              		= 2.0
-cam_dispersion_inc         			= 2.0
-cam_step_angle_horz        			= 2.0
-cam_max_angle						= 20
-cam_max_angle_horz         			= 20
-
-zoom_cam_dispersion          		= 1.6
-zoom_cam_dispersion_inc     	 	= 1.6
-zoom_cam_step_angle_horz     		= 1.6
-zoom_cam_max_angle           		= 10
-zoom_cam_max_angle_horz      		= 10
-
-fire_dispersion_condition_factor    = 15
-misfire_probability     			= 0.0001
-misfire_condition_k     			= 0.025
-condition_shot_dec      			= 0.00005
-
-hit_power							= 0.7, 0.7, 0.7, 0.7
-hit_impulse							= 120
-
-rpm                     			= 680
-
-scope_name              			= wpn_addon_scope
-scope_x                     		= 48
-scope_y                     		= -6
-silencer_name           			= wpn_addon_silencer
-silencer_x                  		= 217
-silencer_y                  		= 7
-grenade_launcher_name   			= wpn_addon_grenade_launcher
-grenade_launcher_x          		= 126
-grenade_launcher_y          		= 17
-
-;==================================== Copyright 2009 MulleR, Mongol ====================================
-snd_shoot							= weapons\akm\akm_shoot
-snd_shoot1							= weapons\akm\akm_shoot1
-snd_shoot2							= weapons\akm\akm_shoot2
-snd_shoot3							= weapons\akm\akm_shoot3		
-snd_silncer_shot					= weapons\akm\akm_shot_sil
-;==================================== Copyright 2009 MulleR, Mongol ====================================
-
-hud									= wpn_ak109_hud
-
-[wpn_ak109_hud]:wpn_ak74_hud
-item_visual							= dynamics\weapons\wpn_ak109\wpn_ak109_hud.ogf
-
-aim_hud_offset_pos					= -0.101300,0.017000,-0.018000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= -0.029100,-0.033000,0.020000			; +вниз\-вверх , +вправо\-влево
-
-aim_hud_offset_pos_16x9				= -0.101300,0.035000,0.029000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.000300,-0.001500,-0.007500			; +вниз\-вверх , +вправо\-влево
-
-gl_hud_offset_pos				= -0.088280,-0.118700,0.000000
-gl_hud_offset_rot				= -0.217500,-0.015500,0.022000
-
-gl_hud_offset_pos_16x9			= -0.068500,-0.101500, 0.000000
-gl_hud_offset_rot_16x9			= -0.197000,-0.009000, 0.000000
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 [wpn_akm]:wpn_ak74
 $spawn								= "weapons\wpn_akm"
 visual								= dynamics\weapons\wpn_akm\wpn_akm.ogf
 
-cost              	 				= 10000
+cost              	 				= 40000 ;MW 10000
 
 description          				= st_wpn_akm_descr
 inv_name          					= st_wpn_akm
@@ -949,6 +614,7 @@ misfire_probability     			= 0.0001
 misfire_condition_k     			= 0.025
 condition_shot_dec      			= 0.00005
 
+scope_status               			= 0
 silencer_status            			= 0
 grenade_launcher_status    			= 0
 
@@ -984,35 +650,11 @@ gl_hud_offset_rot_16x9			= -0.190000,-0.010000, 0.000000
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[wpn_akms]:wpn_akm
-$spawn								= "weapons\wpn_akms"
-visual								= dynamics\weapons\wpn_akms\wpn_akms.ogf
-
-cost              	 				= 10000
-
-description          				= st_wpn_akms_descr
-inv_name          					= st_wpn_akms
-inv_name_short    					= st_wpn_akms
-
-inv_grid_width     					= 5
-inv_grid_height    					= 2
-inv_grid_x         					= 35
-inv_grid_y         					= 34
-
-inv_weight							= 2.8
-
-hud									= wpn_akms_hud
-
-[wpn_akms_hud]:wpn_akm_hud
-item_visual							= dynamics\weapons\wpn_akms\wpn_akms_hud.ogf
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 [wpn_rpk]:wpn_ak74
 $spawn								= "weapons\wpn_rpk"
 visual								= dynamics\weapons\wpn_rpk\wpn_rpk.ogf
 
-cost              	 				= 14000
+cost              	 				= 56000 ;MW 14000
 
 description          				= st_wpn_rpk_descr
 inv_name          					= st_wpn_rpk
@@ -1062,6 +704,7 @@ hit_impulse							= 120
 
 rpm                     			= 740
 
+scope_status               			= 0
 silencer_status            			= 0
 grenade_launcher_status    			= 0
 
@@ -1085,51 +728,3 @@ aim_hud_offset_rot					= -0.011500,-0.032000,0.002500			; +вниз\-вверх , +вправо
 
 aim_hud_offset_pos_16x9				= -0.103000,0.051400,0.029000			; +вправо\-влево , +вверх\-вниз
 aim_hud_offset_rot_16x9				= 0.017700,0.000000,-0.007500			; +вниз\-вверх , +вправо\-влево
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[wpn_ak12]:wpn_ak74
-$spawn								= "weapons\wpn_ak12"
-visual								= dynamics\weapons\wpn_ak12\wpn_ak12.ogf
-
-cost              	 				= 20000
-
-description          				= st_wpn_ak12_descr
-inv_name          					= st_wpn_ak12
-inv_name_short    					= st_wpn_ak12
-
-inv_grid_width     					= 5
-inv_grid_height    					= 2
-inv_grid_x         					= 28
-inv_grid_y         					= 25
-
-inv_weight							= 3.2
-
-scope_texture						= wpn_crosshair_l85
-
-scope_name 					= wpn_addon_scope_acog
-scope_x                     		= 70
-scope_y                     		= -7
-silencer_name           			= wpn_addon_silencer
-silencer_x                  		= 209
-silencer_y                  		= 9
-grenade_launcher_name   			= wpn_addon_grenade_launcher
-grenade_launcher_x          		= 113
-grenade_launcher_y          		= 16
-
-hud									= wpn_ak12_hud
-
-[wpn_ak12_hud]:wpn_ak74_hud
-item_visual							= dynamics\weapons\wpn_ak12\wpn_ak12_hud.ogf
-
-anm_reload              			= ak12_reload
-anm_reload_w_gl         			= ak12_reload_w_gl
-
-aim_hud_offset_pos					= -0.103500,0.034600,-0.018000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= -0.014000,-0.032400,0.020000			; +вниз\-вверх , +вправо\-влево
-
-aim_hud_offset_pos_16x9				= -0.103300,0.052200,0.029000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.015600,-0.000200,-0.007500			; +вниз\-вверх , +вправо\-влево
-
-gl_hud_offset_pos_16x9				= -0.068500,-0.101500,0.000000
-gl_hud_offset_rot_16x9				= -0.200000,-0.010000,0.000000

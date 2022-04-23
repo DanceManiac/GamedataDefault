@@ -1,4 +1,4 @@
-guitar_a = 1, prob=0.1 \n
+guitar_a = 1, prob=1 \n
 harmonica_a = 1, prob=0.1 \n
 hand_radio = 1, prob=0.1 \n
 wpn_binoc = 1, prob=1 \n
@@ -12,11 +12,12 @@ mutant_zombie_hand = 1, prob=0.03 \n
 mutant_izlom_hand = 1, prob=0.03 \n
 mutant_tushkano_face = 1, prob=0.03 \n
 
-af_medusa = 1, prob=0.03 \n
-af_mica = 1, prob=0.03 \n
-af_thorn = 1, prob=0.03 \n
-af_cristall = 1, prob=0.03 \n
-af_blood = 1, prob=0.03 \n
-af_mincer_meat = 1, prob=0.03 \n
-af_electra_sparkler = 1, prob=0.03 \n
-af_electra_flash = 1, prob=0.03 \n
+af_medusa = 1, prob=0.005 \n
+af_night_star = 1, prob=0.005 \n
+af_mica = 1, prob=0.005 \n
+af_thorn = 1, prob=0.005 \n
+af_dummy_glassbeads = 1, prob=0.005 \n
+af_blood = 1, prob=0.005 \n
+af_soul = 1, prob=0.005 \n
+af_electra_sparkler = 1, prob=0.005 \n
+af_dummy_battery = 1, prob=0.005 \n

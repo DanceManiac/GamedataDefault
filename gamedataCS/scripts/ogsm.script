@@ -1,19 +1,17 @@
 ------------------------- Copyright 2007-2011 DEXXX, xStream --------------------------
 ---------------------------- Библиотека служебных скриптов ----------------------------
-------------------------- Last edit (by Kirgudu): 04.05.2020 --------------------------
+
 
 dbgset = false
 need_jump = false
 
-local r_timers = nil
+local timers = nil
 local g_timers = nil
 local need_delayed_otf_fix = false
 local can_release = true
 local after_load = true
 local oNearest = nil --/ время 'ближайшего' таймера
 local ALIFE_TIME_FACTOR = nil --/ текущий таймфактор
-local fs = getFS()
-local iAutoSaveTimeout = 3 --/ отсрочка запуска вызванного автосэйва, в секундах реального времени
 
 
 -- Записываем переменную
@@ -37,10 +35,10 @@ end
 -- Kirgudu
 -- Проверка того, что таймер реального времени с указанным именем существует
 function is_timer_exists(name)
-	if r_timers == nil then r_timers_first_load() end
+	if timers == nil then timers_first_load() end
 
 	for a=1,99,1 do
-		if r_timers[a] and r_timers[a].name == name then
+		if timers[a] and timers[a].name == name then
 			return true
 		end
 	end
@@ -67,10 +65,10 @@ function start_timer(name,delay,action)
 		return false
 	end
 
-	if r_timers == nil then r_timers_first_load() end
+	if timers == nil then timers_first_load() end
 
 	local a=1
-	while r_timers[a] ~= nil do
+	while timers[a] ~= nil do
 		a=a+1
 		if a>99 then
 			return false
@@ -89,7 +87,7 @@ function start_timer(name,delay,action)
 	save_variable("rt"..a.."d", CTimeToTable(settime))
 	save_variable("rt"..a.."p", action)
 
-	r_timers[a] = {name = name, ctime = settime, params = action}
+	timers[a] = {name = name, ctime = settime, params = action}
 
 	if not oNearest then oNearest = game.get_game_time() end --/ preset
 	if oNearest > settime then
@@ -143,8 +141,8 @@ function g_start_timer(name,delay_d,delay_h,delay_m,action)
 end
 
 -- Чтение таймеров реального времени из pstor при первом апдейте
-function r_timers_first_load()
-	r_timers = {}
+function timers_first_load()
+	timers = {}
 	if not oNearest then oNearest = game.get_game_time() end --/ preset
 	local name, delay, params
 	for a=1,99,1 do
@@ -152,7 +150,7 @@ function r_timers_first_load()
 		-- dbglog("timers:> load real pstor> find idx=["..a.."]")
 		if name ~= nil then
 			-- dbglog("timers:> load real pstor> found idx=["..a.."]")
-			params = load_variable("rt"..a.."p",{})
+			params = load_variable("rt"..a.."p",nil)
 			-- dbglog("timers:> load real pstor> load params=["..tostring(params).."]")
 			local val = load_variable("rt"..a.."d",{})
 			-- dbglog("timers:> load real pstor> load time=["..tostring(val).."], type=["..type(val).."]")
@@ -168,7 +166,7 @@ function r_timers_first_load()
 				save_variable("rt"..a.."p", delay)
 			end
 			if delay ~= nil then
-				r_timers[a] = {name = name, ctime = delay, params = params}
+				timers[a] = {name = name, ctime = delay, params = params}
 				if oNearest > delay then
 					oNearest = game.CTime(delay) --/ change nearest time
 				end
@@ -190,7 +188,7 @@ function g_timers_first_load()
 		-- dbglog("timers:> load game pstor> find idx=["..a.."]")
 		if name ~= nil then
 			-- dbglog("timers:> load game pstor> found idx=["..a.."]")
-			params = load_variable("gt"..a.."p",{})
+			params = load_variable("gt"..a.."p",nil)
 			-- dbglog("timers:> load game pstor> load params=["..tostring(params).."]")
 			local val = load_variable("gt"..a.."d",{})
 			-- dbglog("timers:> load game pstor> load time=["..tostring(val).."], type=["..type(val).."]")
@@ -233,7 +231,7 @@ end
 
 -- Проверка таймеров, использует 3 следующие за ним функции для выбора действия
 function check_timers()
-	if r_timers == nil then r_timers_first_load() end
+	if timers == nil then timers_first_load() end
 	if g_timers == nil then g_timers_first_load() end
 
 	local oTimeCur = game.get_game_time() --/ текущее значение (game-mseconds)
@@ -243,12 +241,12 @@ function check_timers()
 		oNearest = Set_Rest_GameSeconds(15*60) --/< минимальный период перепроверки ~15мин
 		--/ проверка отработавших таймеров и (пере)выбор ближайшего к срабатыванию
 		local triggered = false
-		for idx,t in pairs(r_timers) do
+		for idx,t in pairs(timers) do
 			if t.ctime then
 				if not triggered and t.ctime <= oTimeCur then --/ просрочен?
 					-- dbglog("timers:> triggered real time=["..Get_StringOnTimeOrDate("D", t.ctime).." "..Get_StringOnTimeOrDate("s", t.ctime).."]")
 					triggered = true --/ запрещаем срабатывание более одного таймера за один update цикл
-					__r_timer_found(idx, t.name, t.params) --/> запуск (сработал таймер)
+					__timer_found(idx, t.name, t.params) --/> запуск (сработал таймер)
 				elseif t.ctime < oNearest then --/ вычисляем 'следующий ближайший'
 					-- dbglog("timers:> postponed real time=["..Get_StringOnTimeOrDate("D", t.ctime).." "..Get_StringOnTimeOrDate("s", t.ctime).."]")
 					oNearest = game.CTime(t.ctime)
@@ -270,9 +268,9 @@ function check_timers()
 	end
 end
 
-function __r_timer_found(idx, name, params)
+function __timer_found(idx, name, params)
 	-- dbglog("timers:> found real> idx=["..idx.."], name=["..name.."], action=["..params.."]")
-	r_timers[idx] = nil
+	timers[idx] = nil
 	del_variable("rt"..idx)
 	del_variable("rt"..idx.."d")
 	del_variable("rt"..idx.."p")
@@ -290,54 +288,176 @@ function __g_timer_found(idx, name, params)
 	-- dbglog("timers:> action game> idx=["..idx.."], name=["..name.."], action=["..params.."]")
 end
 
-local timers = nil
-function __do_timer_action(timer_name, params)
-	if not timers then timers = _G["ogsm_timers"] end
-	local timer_action = timers and timers[timer_name]
-	if type(timer_action) == 'function' then
-		timer_action(timer_name, params)
-		return
+function __do_timer_action(select_string,params_string)
+
+	if ogsm_sleep then
+		if select_string=="slp" then
+			ogsm_sleep.test_for_need_sleep()
+		end
+		if select_string=="nrg" then
+			ogsm_sleep.test_for_need_sleep_nrg(params_string)
+		end
+		if select_string=="mtr" then
+			ogsm_sleep.test_for_need_sleep_matras(params_string)
+		end
+		if select_string=="men" then
+			del_variable("smn")
+		end
 	end
 
-	if timer_name=="spw" then
-		spawn_item_in_inv(params)
-		return
+	if ogsm_satiety then
+		if select_string=="eat" then
+			ogsm_satiety.test_for_need_eat()
+		end
+		if select_string=="brd" then
+			ogsm_satiety.eat_item(params_string, 3)
+		end
+		if select_string=="klb" then
+			ogsm_satiety.eat_item(params_string, 6)
+		end
+		if select_string=="kns" then
+			ogsm_satiety.eat_item(params_string, 12)
+		end
+		if select_string=="nts" then
+			ogsm_satiety.eat_item(params_string, 3)
+		end
+		if select_string=="olv" then
+			ogsm_satiety.eat_item(params_string, 12)
+		end
+		if select_string=="chs" then
+			ogsm_satiety.eat_item(params_string, 6)
+		end
+		if select_string=="srd" then
+			ogsm_satiety.eat_item(params_string, 12)
+		end
+		if select_string=="vgt" then
+			ogsm_satiety.eat_item(params_string, 12)
+		end
 	end
 
-	if timer_name=="kill" then
-		local obj = level.object_by_id(params)
+	if ogsm_items then
+		if select_string=="mdk" then
+			ogsm_items.use_medkit(params_string)
+		end
+
+		if select_string=="bnd" then
+			ogsm_items.use_bandage(params_string)
+		end
+		if select_string=="ant" then
+			ogsm_items.use_antirad(params_string)
+		end
+		if select_string=="yad" then
+			ogsm_items.use_yad(params_string)
+		end
+		if select_string=="vdk" then
+			ogsm_items.use_vodka(params_string)
+		end
+		if select_string=="hrm" then
+			ogsm_items.use_harmonica(params_string)
+		end
+		if select_string=="rad" then
+			ogsm_items.use_radio(params_string)
+		end
+		if select_string=="gtr" then
+			ogsm_items.use_guitar(params_string)
+		end
+		if select_string=="npd" then
+			ogsm_items.use_notepad(params_string)
+		end
+	end
+
+	if ogsm_marauder and select_string=="otf" then
+		local a = level.object_by_id(params_string)
+		if a ~= nil then a:set_condition((math.random(25)+40)/100) end
+	end
+
+	if ogsm_respawn and select_string=="rsp" then
+		ogsm_respawn.level_spawn(level.name())
+		g_start_timer("rsp",0, ogsm_respawn.t_spawn+math.random(-1,1), 0)
+	end
+
+	if ogsm_rare_items_manager and select_string=="rim" then
+		local who = alife():object(params_string)
+		if who then
+			if ogsm_rare_items_manager.is_dead(who:name()) then return end
+			ogsm_rare_items_manager.get_rim():rnd(who:name())
+		end
+	end
+
+	if select_string=="spw" then
+		spawn_item_in_inv(params_string)
+	end
+
+	if select_string=="kill" then
+		local obj = level.object_by_id(params_string)
 		if obj and obj:alive() then
 			obj:kill(obj)
 		else
-			switch_online(params)
-			start_timer("kill", 0.1, params)
+			switch_online(params_string)
+			start_timer("kill", 0.1, params_string)
 		end
-		return
 	end
 
-	if timer_name=="bar" then
-		db.actor:eat(db.actor:object(params))
-		return
+	if select_string=="bar" then
+		db.actor:eat(db.actor:object(params_string))
 	end
 
-	if timer_name=="sav" then
-		autosave(params)
-		return
+	if select_string=="sav" then
+		autosave(params_string)
 	end
 
-	if timer_name=="pss" then
-		gi("esc_puzo_squad_spawn")
-		return
-	end
-end
+	-- Kirgudu
+	-- периодический выброс
+	if ogsm_options.surge_type == 2 then
+		if select_string == "bl1" then
+			local al = alife()
+			if al ~= nil and not xr_surge_hide.start_surge then
+				local name = al:level_name(al:level_id())
+				local time = xr_surge_hide.surge_can_be_started(name)
+				if time then
+					if ogsm_sleep.is_sleep_active() then ogsm_sleep.stopper() end
+					xr_surge_hide.activate_surge(time)
+				else
+					if not xr_surge_hide.start_surge and not xr_surge_hide.surge_activated and not is_g_timer_exists("bl2") then
+						g_start_timer("bl1", 0, 2, 0)
+					end
+				end
+			end
+		end
 
--- удаляем объект из игры
-function remove_item(remove_item)
-  if remove_item~=nil then
-	alife():release(alife():object(remove_item:id()), true)
-    return true
-  end
-  return false
+		-- рестарт таймера для следующего выброса
+		if select_string == "bl2" then
+			if not is_g_timer_exists("bl1") and not xr_surge_hide.start_surge and not xr_surge_hide.surge_activated then
+				g_start_timer("bl1", 0, ogsm_options.surge_period + math.random(-4,4), 0)
+			end
+		end
+
+		-- первичный старт таймера периодического выброса в некоторых случаях его отсутствия
+		local surge_timer_exists = load_variable("sts", false)
+		if surge_timer_exists ~= true then
+			surge_timer_exists = is_g_timer_exists("bl1")
+			if surge_timer_exists ~= true and not xr_surge_hide.start_surge and not xr_surge_hide.surge_activated then
+				g_start_timer("bl1", 0, ogsm_options.surge_period + math.random(-4,4), 0)
+			end
+			save_variable("sts", true)
+		end
+	end
+	-- Kirgudu
+	
+	--// NGSM
+	if ngsm_options.new_ai_modules == true then
+		if select_string=="new_anom" then
+	    	if ngsm_xr_detour then
+		    	ngsm_xr_detour.need_upd_anom_list = true
+			end
+		end
+		if select_string=="sm_surge_hides" then
+    	    ngsm.call("ngsm_xr_hider", "Stop")
+			ngsm.del_var("surge_end")
+		end
+	end
+	--// NGSM
+
 end
 
 -- Спавним объект в инвентарь
@@ -386,7 +506,29 @@ function get_npc_relation(obj,target)
 end
 
 
--- Колбэк на взятие артефакта
+-- Колбэк на взятие предмета
+function on_item_take(obj)
+
+    --// NGSM
+	if ngsm_options.new_ai_modules == true then
+	    ngsm_marauder.dead_change(obj)
+	end
+	--// NGSM
+	
+	if chinese_ammo and obj:clsid() == clsid.wpn_ammo then chinese_ammo.on_take(obj) end
+	if xr_medic then xr_medic.pickup(obj) end
+	if string.find(obj:section(), "doc_") then db.actor:give_info_portion(obj:section().."_info") end
+
+	-- фикс замены визуала надетой брони на дефолтный (Artos, *Shoker*)
+	if obj:clsid() == clsid.equ_stalker_s or obj:clsid() == clsid.equ_military then
+		if level.main_input_receiver() then
+			need_delayed_otf_fix = true
+		else
+			outfit_fix_main(obj)
+		end
+	end
+end
+
 function on_artefact_take(obj)
 	local s_obj = alife():object(obj:id())
 	if s_obj then
@@ -404,75 +546,68 @@ function on_artefact_take(obj)
 	end
 end
 
--- Колбэк на взятие предмета
-function on_item_take(obj)
-	local cls = obj:clsid()
-
-	if chinese_ammo and cls == clsid.wpn_ammo then chinese_ammo.on_take(obj) end
-	if xr_medic then xr_medic.pickup(obj) end
-
-	if ogsm_notepad then ogsm_notepad.OnItemTake(obj:section()) end
-
-	-- фикс замены визуала надетой брони на дефолтный (Artos, *Shoker*)
-	if cls == clsid.equ_stalker_s or cls == clsid.equ_military then
-		if level.main_input_receiver() then
-			need_delayed_otf_fix = true
-		else
-			outfit_fix_main(obj)
-		end
-	-- Выдача отдельных инфопоршней для выдачи статей для оптики, глушителей, граников и их выстрелов, а так же ПДА (использованы наработки из OGSM_v2.4.3_Gold_Edition. DEXXX) (monk)
-	elseif cls == clsid.wpn_scope_s or cls == clsid.wpn_addon_scope_susat or cls == clsid.wpn_silencer or cls == clsid.wpn_grenade_launcher or cls == clsid.wpn_ammo_og7b or cls == clsid.wpn_ammo_vog25 or cls == clsid.device_pda then
-		local sect = obj:section()
-		if not has_alife_info(sect .. "_info") then
-			db.actor:give_info_portion(sect .. "_info")
-		end
-	end
-end
-
-
--- Колбэк на использование предмета из инвентаря ГГ
-function on_use_object(section, id)
-	-- рюкзак для тайника
-	if section == "inv_ruck" then
-		local stash = alife():create("active_ruck", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id())
-		level.map_add_object_spot_ser(stash.id, "my_treasure", game.translate_string("ui_st_backpack_my_stash"))
-		--news_manager.send_tip(db.actor, game.translate_string("ui_st_backpack_stash_laid"), nil, nil, 5000)
-		local news_caption = game.translate_string("st_tip")..". "..game.translate_string("st_actor_name")..":"
-		local news_text = "%c[0,0,255,25]"..game.translate_string("ui_st_backpack_stash_laid")
-		db.actor:give_game_news(news_caption, news_text, "ui_npc_u_actor", 0, 10000)
-		xr_sound.set_sound_play(db.actor:id(), "pda_tips")
-		return
-	end
-
-	-- экспериментальный КПК
-	if string.find(section, "notepad") then
-		spawn_item_in_inv("notepad")
-		level.start_stop_menu(ogsm_notepad.GetNotepad(get_hud()), true)
-		return
-	end
-
-	-- прочие предметы, добавляемые во внешних модулях
-	local usable_items = _G["ogsm_usable_items"] or {}
-	for k,v in ipairs(usable_items) do
+-- Колбэк на потерю предмета из инвентаря ГГ
+function on_item_drop(obj)
+	local section = obj:section()
+	local stype = nil
+	local usable_items = {
+		{"energy_drink", "nrg"},
+		{"matras", "mtr"},
+		{"yadulin", "yad"},
+		{"vodka", "vdk"},
+		{"bread", "brd"},
+		{"kolbasa", "klb"},
+		{"conserva", "kns"},
+		{"nuts", "nts"},
+		{"olives", "olv"},
+		{"cheese", "chs"},
+		{"sardines", "srd"},
+		{"vegetables", "vgt"},
+		{"harmonica_a", "hrm"},
+		{"hand_radio", "rad"},
+		{"guitar_a", "gtr"},
+		{"notepad", "npd"},
+		{"medkit", "mdk"},
+		{"bandage", "bnd"},
+		{"antirad", "ant"}
+	}
+	for k,v in pairs(usable_items) do
 		if string.find(section, v[1]) then
-			start_timer(v[2], 0.1, {section = section, id = id})
+			stype = v[2]
 			break
 		end
 	end
+	if stype ~= nil then start_timer(stype, 0.1, obj:id()) end
 end
 
 
 -- Колбэк на апдейт ГГ
 function on_actor_update(obj)
+    
+	--// NGSM
+    ngsm_virtual_save.update()
+	ngsm_wpn_explode_fx.update()
+    if ngsm_options.new_ai_modules == true then
+        ngsm_xr_armor.change()
+	    ngsm_netpackets.convert_npcs()
+	end
+	if ngsm_dinamic_hud then
+		ngsm_dinamic_hud.update()
+	end
+	if ngsm.load_var("surge_end") then
+	    ngsm_callbacks.on_surge_end()
+	end
+	--// NGSM
 
 	-- Fade-эффект при загрузке
 	if ogsm_options.show_pause and after_load then
-		level.add_pp_effector("stc_fade_out.ppe", 7000, false)
+		level.add_pp_effector("red_fade_out.ppe", 7000, false)
 		after_load = false
 	end
 
 	-- Обновление таймеров
 	check_timers()
+	ngsm.check_timers_new()
 
 	-- Проверка уровня пси-здоровья
 	if db.actor.psy_health == 0 then
@@ -489,10 +624,7 @@ function on_actor_update(obj)
 	end
 
 	-- Обновление постпроцессов
-	if ogsm_postprocess then ogsm_postprocess.update() end
-
-	-- Обновление визуального эффекта высокого кровотечения
-	if ogsm_hud_effects and ogsm_options.hud_effects then ogsm_hud_effects.update() end
+	--if ogsm_postprocess then ogsm_postprocess.update() end
 
 	-- Отображение времени
 	if ogsm_clock and ogsm_options.show_clock then ogsm_clock.show_time() end
@@ -504,7 +636,8 @@ function on_actor_update(obj)
 	if ogsm_indicators and ogsm_options.show_indicators then ogsm_indicators.show_indicators() end
 
 	-- Обновление индикаторов состояния
-	if ogsm_condition and ogsm_options.show_condition then ogsm_condition.show_condition() end
+	-- if ogsm_condition and ogsm_options.show_indicators then ogsm_condition.show_condition() end
+	if ogsm_condition then ogsm_condition.show_condition() end
 
 	-- Проверка близости аномалии
 	if ogsm_anomaly then ogsm_anomaly.on_update() end
@@ -513,16 +646,15 @@ function on_actor_update(obj)
 	if chinese_ammo and not obj:is_talking() then chinese_ammo.on_update() end
 
 	-- Выдача информации о локации
-	local level_name = level.name()
-	if not xr_conditions.black_screen() and load_variable("lvl", "marsh") ~= level_name then
+	if not xr_conditions.black_screen() and load_variable("lvl", "marsh") ~= level.name() then
 		if not has_alife_info(load_variable("lvl", "marsh").."_visited") then
 			db.actor:give_info_portion(load_variable("lvl", "marsh").."_visited")
 		end
 		-- Автосохранение при первом посещении уровня
-		if not has_alife_info(level_name.."_visited") then
-			start_autosave(level_name)
+		if not has_alife_info(level.name().."_visited") then
+			start_timer("sav", 3, level.name())
 		end
-		save_variable("lvl", level_name)
+		save_variable("lvl", level.name())
 	end
 
 	-- Фикс замены визуала надетой брони на дефолтный (Artos, *Shoker*)
@@ -544,33 +676,19 @@ function on_actor_update(obj)
 		end
 		can_release = false
 	end
-
-	-- Kirgudu
-	if ogsm_options.surge_type == 2 and xr_surge_hide.periodical_surge_started ~= true then
-		-- первичный старт таймера периодического выброса в некоторых случаях его отсутствия
-		local surge_timer_exists = load_variable("sts", false)
-		if surge_timer_exists ~= true then
-			surge_timer_exists = is_g_timer_exists("bl1")
-			if surge_timer_exists ~= true and not xr_surge_hide.start_surge and not xr_surge_hide.surge_activated then
-				g_start_timer("bl1", 0, ogsm_options.surge_period + math.random(-4,4), 0)
-			end
-			save_variable("sts", true)
-		end
-		xr_surge_hide.periodical_surge_started = true
-	end
-	-- Kirgudu
 end
 
 -- Загружаем все переменные, которые нужно, вызывается при загрузке игры автоматически
 function on_load()
 	-- Первый запуск мода
 	if load_variable("frn",true) then
+	    --// NGSM
+		if ngsm_options.treasures_start_spawn then
+	        ngsm_treasure_manager.main()
+	    end
+	    --// NGSM
 		local sobj = alife():object("val_comendant_dead")
 		if sobj then alife():release(sobj) end
-		local sobj = alife():story_object(441)
-		if sobj then sobj.sim_forced_online = true end
-		local sobj = alife():story_object(408)
-		if sobj then sobj.sim_forced_online = true end
 		if ogsm_sleep then g_start_timer("slp",0,0,6) end
 		if ogsm_satiety then g_start_timer("eat",0,0,6) end
 		if ogsm_respawn then
@@ -585,17 +703,15 @@ function on_load()
 				g_start_timer("bl1", 0, ogsm_options.surge_period + math.random(-4,4), 0)
 			end
 			save_variable("sts", true)
-			xr_surge_hide.periodical_surge_started = true
 		end
 		-- Kirgudu
 		if ogsm_freeplay then ogsm_freeplay.startup_spawn() end
 		if ogsm_locations then ogsm_locations.startup_spawn() end
 		if ogsm_bring_items then ogsm_bring_items.startup_spawn() end
 		if ogsm_rare_items_manager then ogsm_rare_items_manager.get_rim():rnd_all() end
-		if ogsm_options.mark_smarts then mark_smarts() end
-		if ogsm_options.spawn_military_btr then spawn_military_btr() end
-		if ogsm_notepad then ogsm_notepad.OnFirstRun() end
+		mark_smarts()
 		spawn_item_in_inv("matras")
+		spawn_item_in_inv("notepad")
 		save_variable("frn",false)
 		save_variable("lvl", level.name())
 	end
@@ -627,60 +743,16 @@ function on_load()
 		ogsm_rt_manager.get_rt_manager():on_load()
 	end
 
-	-- Инициализируем менеджер экспериментального КПК
-	-- printf("Notepad:: 0")
-	if ogsm_notepad then ogsm_notepad.GetNotepad(get_hud()) end
-
 	-- Выдача необходимых инфопоршенов при читерском телепорте
 	if dbgset and need_jump and load_variable("lvl", "marsh") ~= level.name() and not has_alife_info(load_variable("lvl", "marsh").."_visited") then
 		local f = _G["lvl_"..level.name().."_start"]
 		if f ~= nil then f.main() end
 	end
-end
-
--- Спавним БТР'ы на Кордоне
-function on_net_spawn(obj)
-	build_btrs_table(obj)
-end
-
-btrs_friends={}
-
-function build_btrs_table(obj)
-	if obj and (IsStalker(obj) and obj:character_community()=="army" and obj:alive()) or obj:section()=="vehicle_btr" then
-			btrs_friends[obj:id()] = obj:section()
+	
+	if ngsm_options.new_ai_modules == true then
+	    ngsm_xr_offline_trade.update_trade()
 	end
-end
-
-function spawn_military_btr()
-	ogsm_packet.spawn_military_tech_pack( alife():create("vehicle_btr",vector():set(-168.11, -29.71, -298.21),80887,629 ) ,"vehicle_btr")
-	ogsm_packet.spawn_military_tech_pack( alife():create("vehicle_btr",vector():set(-237.85, -26.23, -378.81),22230,582 ) ,"vehicle_btr")
-	ogsm_packet.spawn_military_tech_pack( alife():create("helicopter",vector():set(-150.0, 0.0, -620.0),102570,565 ) ,"helicopter")
-end
-
-function on_start_game() --/ from '_g.start_game_callback'
-	math.randomseed(device():time_global())
-	Initialize_Module('ogsm_notepad', 'init')
-	Initialize_Module('ogsm_satiety', 'init')
-	Initialize_Module('ogsm_sleep', 'init')
-	Initialize_Module('ogsm_items', 'init')
-	Initialize_Module('ogsm_marauder', 'init')
-	Initialize_Module('ogsm_respawn', 'init')
-	Initialize_Module('ogsm_rare_items_manager', 'init')
-end
-
-function Initialize_Module(fname, action)
-	prefetch(fname) --/ подключение модуля (скрипт-файла)
-	local res = fs:exist("$game_scripts$", (fname or "<x>")..".script")
-	local module = res and _G[fname]
-	if module then
-		ASSERT(type(module) == 'table', "Initialize_Module:='"..tostring(fname).."'~wrong, must be a table")
-		if action == 'nil' then return true end --/>
-		if type(module[action]) == 'function' then
-			module[action]()
-			return true --/>
-		end
-	end
-	return false --/>
+	
 end
 
 -- Отметка смартов на карте
@@ -691,8 +763,8 @@ function mark_smarts()
 		obj = sim:object(i)
 		if obj and obj:clsid() == clsid.smart_terrain then
 			obj_name = obj:name()
-			if obj_name ~= "gar_smart_terrain_4_3" and
-			   obj_name ~= "agr_smart_terrain_5_7u" then
+			if obj_name ~= "val_smart_terrain_9_11" and
+			   obj_name ~= "yan_smart_terrain_5_4" then
 				name = game.translate_string("st_name_"..obj_name)
 				if obj.sim_type then
 					if obj.sim_type == "territory" then s = " - Ключевая точка"
@@ -841,18 +913,9 @@ function outfit_fix_main(obj)
 end
 
 
--- Автосохранение (запуск)
-function start_autosave(save_name)
-	start_timer("sav", iAutoSaveTimeout, save_name)
-end
-
--- Автосохранение (выполнение)
+-- Автосохранение
 function autosave(p)
 	if p and db.actor and db.actor:alive() then
-		if db.actor:is_talking() or has_alife_info("ui_inventory") or has_alife_info("ui_pda") then
-			start_timer("sav", iAutoSaveTimeout, p)
-			return
-		end
 		local save_name = user_name().." - "..game.translate_string(p)
 		get_console():execute("save "..save_name)
 	end
@@ -918,7 +981,6 @@ end
 
 function cheat_inv_spawn()
 	local items = {
-		{"conserva", 5},
 		{"svoboda_exo_outfit", 1},
 		{"wpn_groza", 1},
 		{"wpn_addon_scope", 1},

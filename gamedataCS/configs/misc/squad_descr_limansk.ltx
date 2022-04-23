@@ -4,14 +4,14 @@
 
 [lim_csky_storm_troops]
 faction = csky
-npc = lim_csky_commander_2, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier
+npc = lim_csky_commander_2, lim_csky_soldier, lim_csky_soldier
 target_smart = lim_smart_terrain_1
 invulnerability = true
 attack_power = 500
 
 [lim_csky_storm_troops2]
 faction = csky
-npc = lim_csky_commander_2, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier
+npc = lim_csky_commander_2, lim_csky_soldier, lim_csky_soldier
 target_smart = {+lim_condition4} lim_smart_terrain_4, lim_smart_terrain_3
 invulnerability = {+lim_condition6} false, true
 attack_power = 500
@@ -20,56 +20,49 @@ relationship = friend
 [lim_csky_enter_squad]
 faction = csky
 npc = lim_csky_commander, lim_csky_soldier, lim_csky_soldier
-target_smart = lim_smart_terrain_1
+target_smart = {+lim_condition3} lim_smart_terrain_2, lim_smart_terrain_1
 attack_power = 500
 relationship = friend
 
 [lim_csky_bridge_squad]
 faction = csky
-npc = lim_csky_commander, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier
+npc = lim_csky_commander, lim_csky_soldier, lim_csky_soldier
 target_smart = lim_smart_terrain_6
 attack_power = 500
 relationship = friend
 
 [lim_allyes_recon_squad]
 faction = csky
-npc = lim_csky_commander, lim_csky_soldier, lim_csky_soldier_2, lim_csky_soldier, lim_csky_soldier
+npc = lim_csky_commander_2, lim_csky_soldier, lim_csky_soldier
 target_smart = lim_smart_terrain_10
 relationship = friend
 
 [lim_allyes_final_squad]
 faction = csky
-npc = lim_csky_commander, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier
+npc = lim_csky_commander, lim_csky_soldier, lim_csky_soldier
 target_smart = lim_smart_terrain_10
 relationship = friend
 
 [lim_allyes_final_squad2]
 faction = csky
-npc = lim_csky_commander, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier
+npc = lim_csky_tech, lim_csky_soldier, lim_csky_soldier
 target_smart = lim_smart_terrain_10
 relationship = friend
 
 [lim_allyes_final_squad3]
 faction = csky
-npc = kat_cs_commander, kat_cs_grenadier, kat_csky_soldier, kat_csky_soldier, kat_csky_soldier
+npc = lim_csky_tech, lim_csky_soldier, lim_csky_soldier
 target_smart = lim_smart_terrain_10
-relationship = friend
-
-[lim_csky_construction_squad]
-faction = csky
-npc = lim_csky_commander, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier, lim_csky_soldier
-target_smart = lim_smart_terrain_9
-attack_power = 500
 relationship = friend
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;; Killer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[lim_stalker_killer_squad_1]
+[lim_stalker_kill_smart]
 faction = killer
-npc = sim_default_killer_2, sim_default_killer_2, sim_default_killer_2, sim_default_killer_1
-target_smart = {+lim_military_minigun_out} lim_smart_terrain_9, lim_smart_terrain_8
+npc = sim_default_killer_2, sim_default_killer_2, sim_default_killer_1
+target_smart = lim_smart_terrain_9
 attack_power = 500
 sympathy = 1
 relationship = friend
@@ -97,35 +90,35 @@ relationship = enemy
 
 [lim_military_squad_1]
 faction = monolith
-npc = sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_1, sim_default_monolith_0, sim_default_monolith_0
+npc = sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_0
 target_smart = lim_smart_terrain_3
 sympathy = 0
 relationship = enemy
 
 [lim_enemy_stalker_smart_9_squad_1]
 faction = monolith
-npc = sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_1, sim_default_monolith_0, sim_default_monolith_0
+npc = sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_0
 target_smart = lim_smart_terrain_9
 sympathy = 0
 relationship = enemy
 
 [lim_enemy_stalker_smart_9_squad_2]
 faction = monolith
-npc = sim_default_monolith_2, sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_1, sim_default_monolith_0
+npc = sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_0
 target_smart = lim_smart_terrain_9
 sympathy = 0
 relationship = enemy
 
 [lim_enemy_stalker_smart_9_squad_3]
 faction = monolith
-npc = sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_1, sim_default_monolith_0, sim_default_monolith_0
+npc = sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_0
 target_smart = lim_smart_terrain_9
 sympathy = 0
 relationship = enemy
 
 [lim_enemy_stalker_smart_9_squad_4]
 faction = monolith
-npc = sim_default_monolith_2, sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_1, sim_default_monolith_0
+npc = sim_default_monolith_2, sim_default_monolith_1, sim_default_monolith_0
 target_smart = lim_smart_terrain_9
 sympathy = 0
 relationship = enemy
@@ -136,7 +129,7 @@ relationship = enemy
 
 [lim_smart_6_enemy_squad_1]
 faction = army
-npc = sim_default_military_3, sim_default_military_3, sim_default_military_2, sim_default_military_2, sim_default_military_2
+npc = sim_default_military_3, sim_default_military_2, sim_default_military_2
 target_smart = lim_smart_terrain_6
 sympathy = 0
 relationship = enemy
@@ -154,7 +147,7 @@ relationship = enemy
 
 [lim_duty_squad_1]
 faction = duty
-npc = sim_default_duty_2, sim_default_duty_2, sim_default_duty_2, sim_default_duty_2, sim_default_duty_2
+npc = sim_default_duty_2, sim_default_duty_2, sim_default_duty_2
 target_smart = lim_smart_terrain_3
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -163,5 +156,5 @@ target_smart = lim_smart_terrain_3
 
 [lim_freedom_squad_1]
 faction = freedom
-npc = sim_default_freedom_2, sim_default_freedom_2, sim_default_freedom_2, sim_default_freedom_2, sim_default_freedom_2
+npc = sim_default_freedom_2, sim_default_freedom_2, sim_default_freedom_2
 target_smart = lim_smart_terrain_3

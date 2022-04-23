@@ -536,6 +536,14 @@ function add_to_binder(object, ini, scheme, section, storage)
 		action:add_effect (world_property(stalker_ids.property_enemy,		false))
 		manager:add_action (operators["patrol"], action)
 		xr_logic.subscribe_action_for_events(object, storage, action)
+    
+	    --// NGSM
+	    if ngsm_options.new_ai_modules == true then
+            if ngsm_xr_hider then
+		        action:add_precondition	(world_property(ngsm_xr_hider.evid_surge_hider, false))
+		    end
+		end
+		--// NGSM
 
 		action = manager:action (xr_actions_id.alife)	
 		action:add_precondition	(world_property(properties["end"],			true))

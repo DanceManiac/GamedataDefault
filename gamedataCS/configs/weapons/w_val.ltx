@@ -37,7 +37,7 @@ inv_grid_y         					= 17
 
 inv_weight              			= 2.5
 
-cost                 				= 10000
+cost                 				= 40000 ;MW 10000
 
 weapon_class            			= assault_rifle
 
@@ -89,7 +89,7 @@ condition_shot_dec      			= 0.0005
 position        	        		= -0.026, -0.135, -0.0125
 orientation             			= 0, -2.0, 0
 
-fire_point              			= 0.0,0.174,0.562
+fire_point              			= 0.000000,0.174,0.562
 fire_point2             			= 0.0, 0.097, 0.722
 
 smoke_particles         			= weapons\generic_shoot_00
@@ -154,7 +154,7 @@ zoom_enabled            			= true
 zoom_rotate_time					= 0.25
 scope_zoom_factor       			= 55
 
-scope_texture						= wpn_crosshair_vss
+scope_texture						= wpn_crosshair
 
 scope_name              			= wpn_addon_scope
 scope_x                     		= 59
@@ -199,8 +199,8 @@ hands_orientation_16x9				= 1.599999,2.099999,-2.000000
 aim_hud_offset_pos					= -0.108700,0.045000,-0.035500
 aim_hud_offset_rot					= -0.017250,-0.043000,-0.022500
 
-aim_hud_offset_pos_16x9				= -0.140500,0.077000,-0.010000
-aim_hud_offset_rot_16x9				= 0.019500,0.021600,-0.010000
+aim_hud_offset_pos_16x9				= -0.140500,0.075600,-0.010000
+aim_hud_offset_rot_16x9				= 0.017700,0.021600,-0.010000
 
 item_position						= 0.007119,0.019630,0.009658
 item_orientation					= -15.646272,-3.230760,364.546112
@@ -234,7 +234,7 @@ grenade_bone            			= grenade
 
 [wpn_val_minigame]:wpn_val
 ammo_limit      					= 100
-ammo_class      					= ammo_val_minigame
+ammo_class      					= ammo_minigame
 fire_modes      					= 1
 $spawn          					= "weapons\wpn_val_minigame"
 cost            					= 0
@@ -274,14 +274,13 @@ inv_grid_y         					= 17
 
 inv_weight							= 2.0
 
-cost								= 8000
+cost								= 32000 ;MW 8000
 
 animation_slot          			= 8
 
-fire_dispersion_base   	 			= 0.6
 control_inertion_factor				= 1.2f
 
-position        	        		= -0.026, -0.1725, -0.0135
+fire_dispersion_base   	 			= 0.6
 
 cam_dispersion          			= 1.1
 cam_dispersion_inc					= 1.1
@@ -299,7 +298,7 @@ silencer_hit_impulse    			= 90
 silencer_fire_distance  			= 200
 silencer_bullet_speed   			= 580
 
-fire_point              			= 0.0,0.215,0.4
+fire_point              			= 0.0,0.174,0.4
 
 flame_particles            			= weapons\generic_weapon05
 
@@ -339,93 +338,3 @@ installed_upgrades		= up_b_vihr, up_d_vihr, up_f_vihr
 [wpn_vihr_ogsm_burst_1]:wpn_vihr
 $spawn					= "weapons\wpn_vihr_ogsm_burst_1"
 installed_upgrades		= up_a_vihr, up_c_vihr, up_e_vihr
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[wpn_9a91]:wpn_vihr
-$spawn					= "weapons\9a-91"
-visual					= dynamics\weapons\wpn_9a91\wpn_9a91.ogf
-
-upgrades                			= up_gr_ab_9a91, up_gr_cd_9a91, up_gr_ef_9a91
-installed_upgrades      			=
-upgrade_scheme          			= upgrade_scheme_u10a_ogsm
-
-description							= st_wpn_9a91_descr
-inv_name							= st_wpn_9a91
-inv_name_short						= st_wpn_9a91
-
-inv_grid_width     					= 4
-inv_grid_height    					= 2
-inv_grid_x         					= 33
-inv_grid_y         					= 17
-
-inv_weight							= 2.1
-
-cost								= 8000
-
-ammo_class              			= ammo_9x39_pab9, ammo_9x39_ap, ammo_9x39_sp5
-
-animation_slot          			= 8
-
-fire_dispersion_base   	 			= 0.6
-control_inertion_factor				= 1.2f
-
-orientation            			 = 0, 0, 0
-
-fire_point              			= 0.0,0.215,0.4
-
-cam_dispersion          			= 1.1
-cam_dispersion_inc					= 1.1
-cam_step_angle_horz					= 1.1
-zoom_cam_dispersion         		= 0.7
-zoom_cam_dispersion_inc     		= 0.7
-zoom_cam_step_angle_horz    		= 0.7
-
-fire_distance           			= 200
-bullet_speed            			= 580
-rpm                     			= 620
-
-silencer_hit_power      			= 0.7, 0.7, 0.7, 0.7
-silencer_hit_impulse    			= 90
-silencer_fire_distance  			= 200
-silencer_bullet_speed   			= 580
-
-scope_status            			= 2
-silencer_status         			= 2
-
-scope_name              			= wpn_addon_scope
-scope_x                     		= 50
-scope_y                     		= 1
-silencer_name          	 			= wpn_addon_silencer
-silencer_x              			= 154
-silencer_y              			= 12
-
-snd_silncer_shot					= weapons\groza\groza_shot_sil
-
-hud									= wpn_9a91_hud
-
-[wpn_9a91_hud]:wpn_vihr_hud
-item_visual				= dynamics\weapons\wpn_9a91\wpn_9a91_hud.ogf
-
-hands_position				= -0.033000,-0.194000,0.311998
-hands_orientation			= -2.100000,0.050000,-2.000000
-
-hands_position_16x9				= -0.022000,-0.215000,0.311998
-hands_orientation_16x9			= 1.599999,2.099999,-2.000000
-
-aim_hud_offset_pos					= -0.108900,0.047300,-0.205500
-aim_hud_offset_rot					= -0.017250,-0.043000,-0.022500
-
-aim_hud_offset_pos_16x9				= -0.140300,0.077600,-0.190000
-aim_hud_offset_rot_16x9				= 0.017700,0.021600,-0.010000
-
-item_position				= 0.007119,0.019630,0.009658
-item_orientation			= -15.646272,-3.230760,364.546112
-
-[wpn_9a91_ogsm_accuracy_1]:wpn_9a91
-$spawn					= "weapons\wpn_9a91_ogsm_accuracy_1"
-installed_upgrades		= up_b_9a91, up_d_9a91, up_f_9a91
-
-[wpn_9a91_ogsm_burst_1]:wpn_9a91
-$spawn					= "weapons\wpn_9a91_ogsm_burst_1"
-installed_upgrades		= up_a_9a91, up_c_9a91, up_e_9a91

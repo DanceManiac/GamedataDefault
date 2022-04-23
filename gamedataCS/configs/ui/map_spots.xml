@@ -13,13 +13,6 @@
         <smart_spot x="0" y="0" width="80" height="80" stretch="1" alignment="c">
         </smart_spot>
 
-         <alife_smart_terrain_marker>
-		<level_map spot="alife_smart_terrain_marker_spot"/>
-         </alife_smart_terrain_marker>
-         <alife_smart_terrain_marker_spot x="0" y="0" width="45" height="45" alignment="c" stretch="1" scale_min="1" scale_max="3" scale="1" location_level="0">
-		<texture r="250" g="250" b="250">ui_smart_terrain_spot</texture>
-         </alife_smart_terrain_marker_spot>
-
 	<ogsm_hide_spot>
 		<level_map spot="ogsm_hide_spot_level" pointer="quest_pointer"/>
 		<mini_map spot="ogsm_hide_spot_map" pointer="quest_pointer"/>
@@ -105,6 +98,7 @@
                 <texture_below r="255" g="0" b="0">ui_mini_sn_spot_below</texture_below>
                 <texture_above r="255" g="0" b="0">ui_mini_sn_spot_above</texture_above>
         </red_mini_spot>
+
 
 	<eliminate_lager_location>
 		<level_map spot="eliminate_lager_spot"		pointer="quest_pointer"/>
@@ -328,6 +322,7 @@
         <spec_treasure_spot_mini  x="0" y="0" width="13" height="13" alignment="c" stretch="0" scale="1" scale_min="1.1" scale_max="3.1">
                 <texture>ui_sm_mapQuest_spec</texture>
         </spec_treasure_spot_mini>
+		
 
         <alife_combat_fight>
                 <level_map spot="alife_combat_fight_spot" pointer="combat_pointer"/>
@@ -468,19 +463,20 @@
     <texture x="720" y="630" width="128" height="128" r="255" g="128" b="255">ui\ui_common</texture>
   </alife_presentation_faction_stalker_spot>
 
-  <alife_presentation_faction_monolith>
-    <level_map spot="alife_presentation_faction_monolith_spot"/>
-  </alife_presentation_faction_monolith>
-  <alife_presentation_faction_monolith_spot x="0" y="0" width="27" height="27" alignment="c" stretch="1" scale_min="1" scale_max="3" scale="1">
-    <texture x="720" y="630" width="128" height="128" r="255" g="128" b="255">ui\ui_common</texture>
-  </alife_presentation_faction_monolith_spot>
-
   <alife_presentation_faction_digger>
     <level_map spot="alife_presentation_faction_digger_spot"/>
   </alife_presentation_faction_digger>
   <alife_presentation_faction_digger_spot x="0" y="0" width="27" height="27" alignment="c" stretch="1" scale_min="1" scale_max="3" scale="1">
     <texture x="720" y="630" width="128" height="128" r="255" g="128" b="255">ui\ui_common</texture>
   </alife_presentation_faction_digger_spot>
+
+
+  <alife_presentation_faction_monolith>
+    <level_map spot="alife_presentation_faction_monolith_spot"/>
+  </alife_presentation_faction_monolith>
+  <alife_presentation_faction_monolith_spot x="0" y="0" width="27" height="27" alignment="c" stretch="1" scale_min="1" scale_max="3" scale="1">
+    <texture x="720" y="630" width="128" height="128" r="255" g="128" b="255">ui\ui_common</texture>
+  </alife_presentation_faction_monolith_spot>
 
 
   <!-- Смарттеррейны -->
@@ -945,28 +941,6 @@
         <ui_pda2_quest_npc_location_mini_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
                 <texture color="pda_blue">ui_pda2_important2</texture>
         </ui_pda2_quest_npc_location_mini_spot>
-
-        <ui_pda2_leader_location hint="st_ui_pda_legend_leader">
-                <level_map spot="ui_pda2_leader_location_spot"/>
-                <mini_map spot="ui_pda2_leader_location_mini_spot"/>
-        </ui_pda2_leader_location>
-        <ui_pda2_leader_location_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
-                <texture r="11" g="178" b="248">ui_pda2_important1</texture>
-        </ui_pda2_leader_location_spot>
-        <ui_pda2_leader_location_mini_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
-                <texture color="pda_blue">ui_pda2_important1</texture>
-        </ui_pda2_leader_location_mini_spot>
-
-        <ui_pda2_barman_location hint="st_ui_pda_legend_barman">
-                <level_map spot="ui_pda2_barman_location_spot"/>
-                <mini_map spot="ui_pda2_barman_location_mini_spot"/>
-        </ui_pda2_barman_location>
-        <ui_pda2_barman_location_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
-                <texture r="11" g="178" b="248">ui_pda2_barman</texture>
-        </ui_pda2_barman_location_spot>
-        <ui_pda2_barman_location_mini_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
-                <texture color="pda_blue">ui_pda2_barman</texture>
-        </ui_pda2_barman_location_mini_spot>
 
 		<!--task_highlight -->
 		<ui_pda_short_blink_point_location ttl="13" hint="disable_hint">

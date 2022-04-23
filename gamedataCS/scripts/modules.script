@@ -37,6 +37,18 @@ if ogsm_hideout then
 	load_scheme("ogsm_hideout",    "ogsm_hideout",      stype_stalker)
 end
 if rx_ai then rx_ai.load_schemes() end
+
+--// NGSM
+if ngsm_options.new_ai_modules == true then
+	if ngsm_xr_detour then
+	    load_scheme("ngsm_xr_detour", "detour_anomaly", stype_stalker) --'Обход аномалий
+	end
+	if ngsm_xr_hider then
+	    load_scheme("ngsm_xr_hider", "surge_hider", stype_stalker) --'Поиск укрытий
+	end
+end
+--// NGSM
+
 ----------------------------------------------------------------------
 -- Загрузка модулей монстров:
 ----------------------------------------------------------------------
@@ -62,7 +74,6 @@ load_scheme("ph_hit",         "ph_hit",      stype_item)
 load_scheme("ph_on_hit",      "ph_on_hit",   stype_item)
 --'load_scheme("ph_impulse",     "ph_impulse",  stype_item)
 --'load_scheme("ph_camera",      "ph_camera",   stype_item)
-load_scheme("ph_car",         "ph_car",      stype_item)
 load_scheme("ph_button",      "ph_button",   stype_item)
 load_scheme("ph_code",        "ph_code",     stype_item)
 load_scheme("ph_sound",       "ph_sound",    stype_item)

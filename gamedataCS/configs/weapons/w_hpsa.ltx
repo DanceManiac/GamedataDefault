@@ -22,7 +22,7 @@ upgrade_scheme          			= upgrade_scheme_u10a_ogsm
 holder_range_modifier				= 1.0
 holder_fov_modifier					= 1.0
 
-cost								= 1200
+cost								= 4800 ;MW 1200
 
 ammo_limit		 					= 130
 ammo_current		 				= 13
@@ -137,7 +137,7 @@ snd_shoot1							= weapons\hpsa\hpsa_shoot1
 snd_shoot2							= weapons\hpsa\hpsa_shoot2
 snd_shoot3							= weapons\hpsa\hpsa_shoot3       
 snd_empty							= weapons\hpsa\hpsa_empty
-snd_reload							= weapons\pistol_reload, 0.8
+snd_reload							= weapons\pistol_reload, 0.8  ;weapons\hpsa\hpsa_reload
 snd_close							= weapons\hpsa\hpsa_close
 snd_silncer_shot					= weapons\hpsa\hpsa_shot_sil
 ;==================================== Copyright 2009 MulleR, Mongol ====================================
@@ -161,7 +161,7 @@ hands_orientation					= -0.500000,1.000000,1.149999
 hands_position_16x9					= 0.033000,-0.189500,0.039000
 hands_orientation_16x9				= 2.349998,2.749999,2.849998
 
-item_position						= 0.000746,0.003321,0.005479
+item_position						= 0.000746,-0.000321,0.003479
 item_orientation					= 1.239378,-0.134046,-2.052052
 
 item_visual             			= dynamics\weapons\wpn_hpsa\wpn_hpsa_hud.ogf
@@ -192,11 +192,11 @@ anm_idle_sprint_empty				= hp_sprint, hpsa_opened
 anm_bore							= hpsa_idle_bore
 anm_bore_empty						= hpsa_idle_bore, hpsa_opened
 
-aim_hud_offset_pos					= -0.105500,0.043000,-0.010000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= 0.006000,0.004100,-0.015000			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos					= -0.105500,0.044700,-0.010000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot					= 0.005200,0.004450,-0.015000			; +вниз\-вверх , +вправо\-влево
 
-aim_hud_offset_pos_16x9				= -0.168300,0.074100,-0.013000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.036900,0.056950,0.012500			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos_16x9				= -0.168300,0.076400,-0.013000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot_16x9				= 0.037000,0.056950,0.012500			; +вниз\-вверх , +вправо\-влево
 
 gl_hud_offset_pos					= 0,0,0
 gl_hud_offset_rot					= 0,0,0
@@ -216,7 +216,7 @@ upgrades                			= up_gr_ab_tt33, up_gr_cd_tt33, up_gr_e_tt33, up_gr_f
 installed_upgrades      			=
 upgrade_scheme          			= upgrade_scheme_u10b_ogsm
 
-cost								= 6000
+cost								= 24000 ;MW 6000
 
 description							= st_wpn_tt33_descr
 inv_name							= st_wpn_tt33
@@ -268,7 +268,6 @@ snd_shoot1							= weapons\tt33\tt33_shoot1
 snd_shoot2							= weapons\tt33\tt33_shoot2
 snd_shoot3							= weapons\tt33\tt33_shoot3       
 ;==================================== Copyright 2009 MulleR, Mongol ====================================
-snd_silncer_shot					= weapons\tt33\tt33_shot_sil
 
 hud									= wpn_tt33_hud
 
@@ -277,79 +276,8 @@ fire_point              			= 0.0, 0.133, 0.22
 [wpn_tt33_hud]:wpn_hpsa_hud
 item_visual							= dynamics\weapons\wpn_tt33\wpn_tt33_hud.ogf
 
-aim_hud_offset_pos					= -0.106000,0.034500,-0.010000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= -0.003500,0.004900,-0.015000			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos					= -0.106000,0.038500,-0.010000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot					= -0.002900,0.004900,-0.015000			; +вниз\-вверх , +вправо\-влево
 
-aim_hud_offset_pos_16x9				= -0.168300,0.065000,-0.013000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.027000,0.056980,0.012500			; +вниз\-вверх , +вправо\-влево
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[wpn_glock17]:wpn_hpsa
-$spawn								= "weapons\wpn_glock17"
-visual								= dynamics\weapons\wpn_glock17\wpn_glock17.ogf
-
-upgrades               	 			= up_gr_ab_glock17, up_gr_cd_glock17, up_gr_e_glock17, up_gr_f_glock17
-installed_upgrades      			=
-upgrade_scheme          			= upgrade_scheme_u10a_ogsm
-
-cost								= 5000
-
-description							= st_wpn_glock17_descr
-inv_name							= st_wpn_glock17
-inv_name_short						= st_wpn_glock17
-
-inv_weight							= 0.905
-
-inv_grid_width     					= 2
-inv_grid_height    					= 1
-inv_grid_x         					= 36
-inv_grid_y         					= 33
-
-fire_dispersion_base				= 0.82
-
-ammo_elapsed		 	= 17
-ammo_mag_size		 	= 17
-
-hit_power           				= 0.72, 0.72, 0.72, 0.72
-hit_impulse	 		 				= 80
-
-silencer_hit_power      			= 0.72, 0.72, 0.72, 0.72
-silencer_hit_impulse	 			= 80
-
-hud                      	= wpn_glock17_hud
-
-snd_shoot							= weapons\glock17\glock17_shoot
-snd_shoot1							= weapons\glock17\glock17_shoot1
-snd_shoot2							= weapons\glock17\glock17_shoot2
-
-silencer_x                  		= 74
-silencer_y                  		= -16
-
-[wpn_glock17_hud]:wpn_hpsa_hud
-item_visual             			= dynamics\weapons\wpn_glock17\wpn_glock17_hud.ogf
-
-anm_show							= hpsa_draw, idle
-anm_show_empty						= hpsa_draw, idle
-anm_hide             				= hpsa_holster, idle
-anm_hide_empty         				= hpsa_holster, idle
-anm_idle             				= hpsa_idle, idle
-anm_idle_empty             			= hpsa_idle, idle
-anm_shots							= hpsa_shoot, shoot
-anm_shot_l							= hpsa_shoot, shoot
-anm_idle_aim						= hpsa_idle_aim, idle
-anm_idle_aim_empty					= hpsa_idle_aim, idle
-anm_reload							= hpsa_reload, reload
-anm_reload_empty					= hpsa_reload, reload
-anm_idle_moving 					= hpsa_idle_moving, idle
-anm_idle_moving_empty 				= hpsa_idle_moving, idle
-anm_idle_sprint						= hp_sprint, idle
-anm_idle_sprint_empty				= hp_sprint, idle
-anm_bore							= hpsa_idle_bore, idle
-anm_bore_empty						= hpsa_idle_bore, idle
-
-aim_hud_offset_pos					= -0.105500,0.043000,-0.010000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= 0.006000,0.004100,-0.015000			; +вниз\-вверх , +вправо\-влево
-
-aim_hud_offset_pos_16x9				= -0.168300,0.074100,-0.013000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.036900,0.056950,0.012500			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos_16x9				= -0.166900,0.069000,-0.013000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot_16x9				= 0.027500,0.055500,0.012500			; +вниз\-вверх , +вправо\-влево

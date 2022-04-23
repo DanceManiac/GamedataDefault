@@ -116,7 +116,7 @@ inv_weight						= 0.3
 inv_grid_x         				= 0
 inv_grid_y         				= 14
 
-cost							= 5000
+cost							= 20000 ;MW 5000
 
 jump_height						= .5
 
@@ -170,7 +170,7 @@ inv_weight						= 0.4
 inv_grid_x         				= 1
 inv_grid_y         				= 14
 
-cost							= 10000
+cost							= 40000 ;MW 10000
 
 jump_height						= .3
 
@@ -226,7 +226,7 @@ inv_weight						= 0.5
 inv_grid_x         				= 2
 inv_grid_y         				= 14
 
-cost							= 15000
+cost							= 60000 ;MW 15000
 
 jump_height						= .4
 
@@ -280,7 +280,7 @@ inv_weight						= 0.4
 inv_grid_x         				= 3
 inv_grid_y         				= 14
 
-cost							= 10000
+cost							= 40000 ;MW 10000
 
 jump_height						= .2
 
@@ -333,7 +333,7 @@ inv_weight						= 0.5
 inv_grid_x        	 			= 4
 inv_grid_y         				= 14
 
-cost							= 15000
+cost							= 60000 ;MW 15000
 
 jump_height						= .3
 
@@ -386,7 +386,7 @@ inv_weight						= 0.6
 inv_grid_x         				= 5
 inv_grid_y         				= 14
 
-cost							= 20000
+cost							= 80000 ;MW 20000
 
 jump_height						= .2
 
@@ -439,7 +439,7 @@ inv_weight						= 0.3
 inv_grid_x         				= 6
 inv_grid_y         				= 14
 
-cost							= 5000
+cost							= 20000 ;MW 5000
 
 jump_height						= .5
 
@@ -491,7 +491,7 @@ inv_weight						= 0.4
 inv_grid_x        	 			= 7
 inv_grid_y         				= 14
 
-cost							= 10000
+cost							= 40000 ;MW 10000
 
 jump_height						= .5
 
@@ -543,7 +543,7 @@ inv_weight						= 0.5
 inv_grid_x         				= 8
 inv_grid_y         				= 14
 
-cost							= 15000
+cost							= 60000 ;MW 15000
 
 jump_height						= .5
 
@@ -580,58 +580,6 @@ chemical_burn_immunity 			= 0
 explosion_immunity 				= 0
 fire_wound_immunity  			= 0
 
-;--------------------------------------------------------------------------
-
-[af_dummy_pellicle]:af_base     ; Плёнка ;OGSM_CS_1.8_CE_Fixes
-$spawn 							= "artefacts\dummy pellicle"
-class   						= SCRPTART ; физ объект
-visual							= dynamics\artefacts\af_plenka.ogf
-description						= st_af_dummy_pellicle_descr
-inv_name						= st_af_dummy_pellicle_name
-inv_name_short					= st_af_dummy_pellicle_name
-
-inv_weight						= 0.5
-
-inv_grid_x						= 9
-inv_grid_y			= 14
-
-jump_height						= .0 ; игнорируется при типе SCRPTART
-
-cost							= 15000
-
-particles						= artefact\af_gravi_idle
-det_show_particles				= artefact\af_gravi_show
-det_hide_particles				= artefact\af_gravi_hide
-particles_bone				      = joint2
-
-af_rank							= 3
-
-lights_enabled 					= false
-
-artefact_activation_seq		            = af_activation_gravi
-
-health_restore_speed 			= 0			
-radiation_restore_speed                 = 0
-satiety_restore_speed 			= 0
-power_restore_speed 			= 0
-bleeding_restore_speed 			= 0
-
-additional_inventory_weight		= 0
-additional_inventory_weight2	= 0
-
-hit_absorbation_sect 			= af_dummy_pellicle_absorbation
-
-[af_dummy_pellicle_absorbation]
-burn_immunity 					= 0	 
-strike_immunity 				= 0
-shock_immunity 					= 0
-wound_immunity 					= 0	
-radiation_immunity				= 0
-telepatic_immunity				= 0
-chemical_burn_immunity 			= 0.009
-explosion_immunity 				= 0
-fire_wound_immunity 			= 0
-
 ;------------------------------------------------------------------------------------------
 ;------------------ Артефакты для термальной аномалии -------------------------------------
 ;------------------------------------------------------------------------------------------
@@ -649,7 +597,7 @@ inv_weight						= 0.2
 inv_grid_x         				= 0
 inv_grid_y        	 			= 15
 
-cost							= 2500
+cost							= 10000 ;MW 2500
 
 jump_height						= .5
 
@@ -701,7 +649,7 @@ inv_weight						= 0.3
 inv_grid_x         				= 1
 inv_grid_y        	 			= 15
 
-cost							= 5000
+cost							= 20000 ;MW 5000
 
 jump_height						= .1
 
@@ -755,7 +703,7 @@ inv_weight						= 0.4
 inv_grid_x         				= 2
 inv_grid_y         				= 15
 
-cost							= 10000
+cost							= 40000 ;MW 10000
 
 impulse_threshold				= 10
 radius							= 10
@@ -809,7 +757,7 @@ inv_weight						= 0.4
 inv_grid_x        	 			= 3
 inv_grid_y         				= 15
 
-cost							= 10000
+cost							= 40000 ;MW 10000
 
 jump_height						= .5
 
@@ -862,7 +810,7 @@ inv_weight						= 0.5
 inv_grid_x         				= 4
 inv_grid_y         				= 15
 
-cost							= 15000
+cost							= 60000 ;MW 15000
 
 jump_height						= .1
 
@@ -914,7 +862,7 @@ inv_weight						= 0.6
 inv_grid_x        	 			= 5
 inv_grid_y         				= 15
 
-cost							= 20000
+cost							= 80000 ;MW 20000
 
 jump_height						= .1
 
@@ -968,7 +916,7 @@ inv_weight						= 0.2
 inv_grid_x         				= 0
 inv_grid_y         				= 16
 
-cost							= 2500
+cost							= 10000 ;MW 2500
 
 jump_height						= .01
 
@@ -1022,7 +970,7 @@ inv_weight						= 0.3
 inv_grid_x         				= 1
 inv_grid_y         				= 16
 
-cost							= 5000
+cost							= 20000 ;MW 5000
 
 jump_height						= .1
 
@@ -1076,7 +1024,7 @@ inv_weight						= 0.4
 inv_grid_x        	 			= 2
 inv_grid_y         				= 16
 
-cost							= 10000
+cost							= 40000 ;MW 10000
 
 jump_height						= .5
 
@@ -1128,7 +1076,7 @@ inv_weight						= 0.4
 inv_grid_x         				= 3
 inv_grid_y         				= 16
 
-cost							= 10000
+cost							= 40000 ;MW 10000
 
 jump_height						= .1
 
@@ -1183,7 +1131,7 @@ inv_weight						= 0.5
 inv_grid_x         				= 4
 inv_grid_y         				= 16
 
-cost							= 15000
+cost							= 60000 ;MW 15000
 
 jump_height						= .5
 
@@ -1235,7 +1183,7 @@ inv_weight						= 0.6
 inv_grid_x         				= 5
 inv_grid_y        	 			= 16
 
-cost							= 20000
+cost							= 80000 ;MW 20000
 
 jump_height						= .5
 
@@ -1289,7 +1237,7 @@ inv_weight						= 0.2
 inv_grid_x        	 			= 0
 inv_grid_y         				= 17
 
-cost							= 2500
+cost							= 10000 ;MW 2500
 
 jump_height						= .5 ; игнорируется при типе SCRPTART
 
@@ -1343,7 +1291,7 @@ inv_weight						= 0.3
 inv_grid_x         				= 1
 inv_grid_y         				= 17
 
-cost							= 5000
+cost							= 20000 ;MW 5000
 
 jump_height						= .1
 
@@ -1397,7 +1345,7 @@ inv_weight						= 0.4
 inv_grid_x         				= 2
 inv_grid_y        	 			= 17
 
-cost							= 10000
+cost							= 40000 ;MW 10000
 
 jump_height						= .1
 
@@ -1451,7 +1399,7 @@ inv_weight						= 0.4
 inv_grid_x         				= 3
 inv_grid_y        	 			= 17
 
-cost							= 10000
+cost							= 40000 ;MW 10000
 
 jump_height						= .2
 
@@ -1503,7 +1451,7 @@ inv_weight						= 0.5
 inv_grid_x         				= 4
 inv_grid_y         				= 17
 
-cost							= 15000
+cost							= 60000 ;MW 15000
 
 jump_height						= .0
 
@@ -1555,7 +1503,7 @@ inv_weight						= 0.6
 inv_grid_x         				= 5
 inv_grid_y         				= 17
 
-cost							= 20000
+cost							= 80000 ;MW 20000
 
 jump_height						= .0
 
@@ -1593,7 +1541,7 @@ explosion_immunity 				= 0
 fire_wound_immunity  			= 0
 
 ;------------------------------------------------------------------------------------------
-;------------------ Quest artefact --------------------------------------------------------
+;------------------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------------------
 
 [af_compass]:af_base
@@ -1611,7 +1559,7 @@ inv_grid_y         				= 18
 
 jump_height						= .2
 
-cost							= 50000
+cost							= 200000 ;MW 50000
 
 particles						= artefact\af_electra_idle
 det_show_particles				= artefact\af_electra_show
@@ -1623,9 +1571,6 @@ lights_enabled 					= true
 
 trail_light_color 				= 1.0,1.0,0.75
 trail_light_range 				= 2.0
-
-can_trade			= false
-quest_item 			= true
 
 health_restore_speed 			= 0
 radiation_restore_speed 		= 0
@@ -1645,3 +1590,55 @@ telepatic_immunity 				= 0
 chemical_burn_immunity 			= 0
 explosion_immunity 				= 0
 fire_wound_immunity  			= 0
+
+;--------------------------------------------------------------------------
+
+[af_dummy_pellicle]:af_base     ; Плёнка ;OGSM_CS_1.8_CE_CF
+$spawn 							= "artefacts\dummy pellicle"
+class   						= SCRPTART ; физ объект
+visual							= dynamics\artefacts\af_plenka.ogf
+description						= st_af_dummy_pellicle_descr
+inv_name						= st_af_dummy_pellicle_name
+inv_name_short					= st_af_dummy_pellicle_name
+
+inv_weight						= 0.5
+
+inv_grid_x						= 9
+inv_grid_y			= 14
+
+jump_height						= .0 ; игнорируется при типе SCRPTART
+
+cost							= 60000 ;MW 15000
+
+particles						= artefact\af_gravi_idle
+det_show_particles				= artefact\af_gravi_show
+det_hide_particles				= artefact\af_gravi_hide
+particles_bone				      = joint2
+
+af_rank							= 3
+
+lights_enabled 					= false
+
+artefact_activation_seq		            = af_activation_gravi
+
+health_restore_speed 			= 0			
+radiation_restore_speed             = 0
+satiety_restore_speed 			= 0
+power_restore_speed 			= 0
+bleeding_restore_speed 			= 0
+
+additional_inventory_weight		= 0
+additional_inventory_weight2	= 0
+
+hit_absorbation_sect 			= af_dummy_pellicle_absorbation
+
+[af_dummy_pellicle_absorbation]
+burn_immunity 					= 0	 
+strike_immunity 				= 0
+shock_immunity 					= 0
+wound_immunity 					= 0	
+radiation_immunity				= 0
+telepatic_immunity				= 0
+chemical_burn_immunity 			= 0.009
+explosion_immunity 				= 0
+fire_wound_immunity 			= 0

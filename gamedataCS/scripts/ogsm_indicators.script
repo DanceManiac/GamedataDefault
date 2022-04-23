@@ -1,56 +1,12 @@
 ------------------------------ Copyright 2007-2010 DEXXX ------------------------------
 ------------------- Вывод динамических индикаторов опасности на HUD -------------------
--------------------------- Last edit (by monk): 09.05.2017 ----------------------------
+
 
 -- Вывод индикаторов опасности
 function show_indicators()
 
 	local hud = get_hud()
 	local px, py
-
-	px, py = 25, 240
-
-	-- Кровопотеря
-	local bld2 = hud:GetCustomStatic("indik2_bld")
-	if db.actor:alive() then
-		if db.actor:get_bleeding() > 0 and db.actor:get_bleeding() <= 0.4 then
-			if bld2 == nil then
-				hud:AddCustomStatic("indik2_bld")
-				bld2 = hud:GetCustomStatic("indik2_bld")
-				bld2:wnd():SetWndPos(vector2():set(px, py))
-				bld2:wnd():SetColor(2000000000)
-			else
-				bld2:wnd():SetColor(2000000000)
-			end
-		elseif db.actor:get_bleeding() > 0.4 and db.actor:get_bleeding() <= 0.8 then
-			if bld2 == nil then
-				hud:AddCustomStatic("indik2_bld")
-				bld2 = hud:GetCustomStatic("indik2_bld")
-				bld2:wnd():SetWndPos(vector2():set(px, py))
-				bld2:wnd():SetColor(2600000000)
-			else
-				bld2:wnd():SetColor(2600000000)
-			end
-		elseif db.actor:get_bleeding() > 0.8 then
-			if bld2 == nil then
-				hud:AddCustomStatic("indik2_bld")
-				bld2 = hud:GetCustomStatic("indik2_bld")
-				bld2:wnd():SetWndPos(vector2():set(px, py))
-				bld2:wnd():SetColor(3300000000)
-			else
-				bld2:wnd():SetColor(3300000000)
-			end
-		else
-			if bld2 ~= nil then
-				hud:RemoveCustomStatic("indik2_bld")
-			end
-		end
-	else
-		if bld2 ~= nil then
-			hud:RemoveCustomStatic("indik2_bld")
-		end
-	end
-
 
 	px, py = 25, 310
 

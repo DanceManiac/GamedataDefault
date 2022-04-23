@@ -186,8 +186,13 @@ function configure_schemes(npc, ini, ini_filename, stype, section_logic, gulag_n
 	if stype == modules.stype_stalker or
 	   npc:clsid() == clsid.script_trader
 	then
-		local trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_generic.ltx")
-		trade_manager.trade_init(npc, trade_ini)
+		--clp
+		local obj = alife():object( npc:id() )
+		if 	obj ~= nil and obj.fcSkill ~= "trader" and obj.fcSkill ~= "inventoryManager" then
+			local trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_generic.ltx")
+			trade_manager.trade_init(npc, trade_ini)
+		end
+		--clp
 	end
 
 	st.active_section = nil
@@ -237,6 +242,18 @@ function disable_generic_schemes(npc, stype)
 		xr_combat_ignore.disable_scheme(npc, "combat_ignore")
 		stalker_generic.disable_invulnerability(npc)
 		if ogsm_hideout then ogsm_hideout.disable_scheme(npc, "ogsm_hideout") end
+		
+		--// NGSM
+	    if ngsm_options.new_ai_modules == true then
+		    if ngsm_xr_detour then
+	            ngsm_xr_detour.disable_scheme(npc, "detour_anomaly") --'Обход аномалий
+			end
+	        if ngsm_xr_hider then
+	            ngsm_xr_hider.disable_scheme(npc, "surge_hider") --'Поиск укрытий
+	        end
+		end
+		--// NGSM
+		
 	elseif stype == modules.stype_mobile then
 		mob_combat.disable_scheme(npc, "mob_combat")
 		xr_combat_ignore.disable_scheme(npc, "combat_ignore")
@@ -300,6 +317,18 @@ end
 
 		if ogsm_hideout then ogsm_hideout.enable_scheme(npc, ini, "ogsm_hideout", "ogsm_hideout") end
 		if rx_ai then rx_ai.enable_schemes(ini,npc,section) end
+		
+		--// NGSM
+	    if ngsm_options.new_ai_modules == true then
+		    if ngsm_xr_detour then
+	            ngsm_xr_detour.set_scheme(npc,ini,"detour_anomaly","detour_anomaly") --'Обход аномалий
+		    end
+		    if ngsm_xr_hider then
+	            ngsm_xr_hider.set_scheme(npc,ini, "surge_hider", "surge_hider")
+	        end
+	    end
+		--// NGSM
+		
 	elseif stype == modules.stype_mobile then
 		local combat_section = utils.cfg_get_string(ini, section, "on_combat", npc, false, "")
 		if combat_section then
@@ -1490,7 +1519,17 @@ end
 
 function get_customdata_or_ini_file(npc, filename)
 	--printf( "get_customdata_or_ini_file: filename=%s", filename )
-	local st = db.storage[npc:id()]
+	
+    --// NGSM
+	local npc_id
+	if (npc and npc.fov) then
+		npc_id = npc:id()
+	else
+		npc_id = npc.id
+	end
+    --// NGSM
+	
+	local st = db.storage[npc_id] --NGSM db.storage[npc:id()]
 	if filename == "<customdata>" then
 		--printf("custom_data_or_ini:1!!!")
 		local ini = npc:spawn_ini()

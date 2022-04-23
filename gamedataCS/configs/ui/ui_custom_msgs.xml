@@ -197,21 +197,14 @@
 		<text font="graffiti22"  r="240" g="217" b="182" a="255" align="l"/>
 	</cs_debug>
 
-	<ff_hud_bleed  x="0" y="0" width="1024" height="768" stretch="1">
-		<texture>ui\ui_hud_fx_bleed</texture>
-	</ff_hud_bleed>
-
 	<hud_psy_back x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
-		<texture>ui_hud_psy_back</texture>
+		<texture>ui\ui_hud_psy_back</texture>
 	</hud_psy_back>
 	<hud_psy_level x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
-		<texture>ui_hud_psy_progress</texture>
+		<texture>ui\ui_hud_psy_progress</texture>
 	</hud_psy_level>
 
 
-	<indik1_bld width="64" height="64" light_anim="la_hud1" la_cyclic="1" la_texture="1" la_text="0" la_alpha="0">
-		<texture>ui_hud_icon_drop</texture>
-	</indik1_bld>
 	<indik1_rad width="64" height="64" light_anim="la_hud1" la_cyclic="1" la_texture="1" la_text="0" la_alpha="0">
 		<texture>ui_hud_icon_radiation</texture>
 	</indik1_rad>
@@ -222,9 +215,6 @@
 		<texture>ui_hud_icon_weapon</texture>
 	</indik1_wpn>
 
-	<indik2_bld width="64" height="64" stretch="1" complex_mode="1">
-		<texture>ui_hud_icon_drop</texture>
-	</indik2_bld>
 	<indik2_rad width="64" height="64" stretch="1" complex_mode="1">
 		<texture>ui_hud_icon_radiation</texture>
 	</indik2_rad>
@@ -234,7 +224,6 @@
 	<indik2_wpn width="64" height="64" stretch="1" complex_mode="1">
 		<texture>ui_hud_icon_weapon</texture>
 	</indik2_wpn>
-
 	<indik2_slp width="64" height="64" stretch="1" complex_mode="1">
 		<texture>ui_hud_icon_sleep</texture>
 	</indik2_slp>
@@ -242,8 +231,146 @@
 		<texture>ui_hud_icon_eat</texture>
 	</indik2_hun>
 
-	<hud_bolt x="820" y="720" width="38" height="38" stretch="1">
-		<texture x="400" y="1550" width="50" height="50">ui\ui_icon_equipment</texture>
-	</hud_bolt>
+        <indicator_booster_psy x="146" y="660" width="31" height="41">
+		<texture>ui_inGame2_shield_Psy</texture>
+	</indicator_booster_psy>
+        <indicator_booster_rad x="104" y="660" width="31" height="41">
+		<texture>ui_inGame2_shield_radiation_cleanup</texture>
+	</indicator_booster_rad>
+        <indicator_booster_health x="20" y="660" width="31" height="41">
+		<texture>ui_inGame2_shield_health</texture>
+	</indicator_booster_health>
+        <indicator_booster_power x="62" y="660" width="31" height="41">
+		<texture>ui_inGame2_shield_stamina</texture>
+	</indicator_booster_power>
 
+<!-- Dinamic HUD -->
+	<hud_gas_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas1</texture>
+	</hud_gas_blue>
+	<hud_gas_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas2</texture>
+	</hud_gas_green>
+	<hud_gas_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas3</texture>
+	</hud_gas_yellow>
+	<hud_gas_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas4</texture>
+	</hud_gas_red>
+	<hud_gas_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas5</texture>
+	</hud_gas_red2>
+	<hud_gas_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas6</texture>
+	</hud_gas_red3>
+
+	<hud_kill_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc1</texture>
+	</hud_kill_blue>
+	<hud_kill_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc2</texture>
+	</hud_kill_green>
+	<hud_kill_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc3</texture>
+	</hud_kill_yellow>
+	<hud_kill_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc4</texture>
+	</hud_kill_red>
+	<hud_kill_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc5</texture>
+	</hud_kill_red2>
+	<hud_kill_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc6</texture>
+	</hud_kill_red3>
+	
+	<hud_sci_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci1</texture>
+	</hud_sci_blue>
+	<hud_sci_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci2</texture>
+	</hud_sci_green>
+	<hud_sci_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci3</texture>
+	</hud_sci_yellow>
+	<hud_sci_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci4</texture>
+	</hud_sci_red>
+	<hud_sci_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci5</texture>
+	</hud_sci_red2>
+	<hud_sci_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci6</texture>
+	</hud_sci_red3>
+
+	<hud_mil_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil1</texture>
+	</hud_mil_blue>
+	<hud_mil_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil2</texture>
+	</hud_mil_green>
+	<hud_mil_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil3</texture>
+	</hud_mil_yellow>
+	<hud_mil_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil4</texture>
+	</hud_mil_red>
+	<hud_mil_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil5</texture>
+	</hud_mil_red2>
+	<hud_mil_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil6</texture>
+	</hud_mil_red3>
+
+	<hud_exo_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo1</texture>
+	</hud_exo_blue>
+	<hud_exo_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo2</texture>
+	</hud_exo_green>
+	<hud_exo_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo3</texture>
+	</hud_exo_yellow>
+	<hud_exo_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo4</texture>
+	</hud_exo_red>
+	<hud_exo_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo5</texture>
+	</hud_exo_red2>
+	<hud_exo_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo6</texture>
+	</hud_exo_red3>
+
+	<hud_blood1 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood1</texture>
+	</hud_blood1>
+	<hud_blood2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood2</texture>
+	</hud_blood2>
+	<hud_blood3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood3</texture>
+	</hud_blood3>
+	<hud_blood4 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood4</texture>
+	</hud_blood4>
+	<hud_blood5 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood5</texture>
+	</hud_blood5>
+
+	<hud_blur1 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath1</texture>
+	</hud_blur1>
+	<hud_blur2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath2</texture>
+	</hud_blur2>
+	<hud_blur3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath5</texture>
+	</hud_blur3>
+	<hud_blur4 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath3</texture>
+	</hud_blur4>
+	<hud_blur5 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath4</texture>
+	</hud_blur5>
+<!-- /Dinamic HUD -->
+	
 </header>

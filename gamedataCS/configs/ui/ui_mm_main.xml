@@ -48,7 +48,7 @@
 
 	<menu_main btn_height="34" font="graffiti22" color="ui_mm_font">
     		<btn name="btn_new_game"	caption="ui_mm_newgame" />
-		<btn name="btn_load"		caption="ui_mm_load_game_n" />
+		<btn name="btn_load"		caption="ui_mm_load_game" />
 		<btn name="btn_multiplayer"	caption="ui_mm_multiplayer_n" />
 <!--   		<btn name="btn_arena_game"	caption="ui_mm_arenagame" /> -->
 		<btn name="btn_options"		caption="ui_mm_options_n" />
@@ -58,7 +58,7 @@
 
 	<menu_main_last_save btn_height="34" font="graffiti22" color="ui_mm_font">
 		<btn name="btn_new_game"	caption="ui_mm_newgame" />
-		<btn name="btn_load"		caption="ui_mm_load_game_n" />
+		<btn name="btn_load"		caption="ui_mm_load_game" />
 		<btn name="btn_lastsave"	caption="ui_mm_last_save" />
 		<btn name="btn_multiplayer"	caption="ui_mm_multiplayer_n" />
 		<btn name="btn_options"		caption="ui_mm_options_n" />
@@ -77,8 +77,8 @@
 	<menu_main_single btn_height="34" font="graffiti22" color="ui_mm_font">
     		<btn name="btn_ret"		caption="ui_mm_return_game" />
 		<btn name="btn_lastsave"	caption="ui_mm_last_save" />
-		<btn name="btn_load"		caption="ui_mm_load_game_n" />
-		<btn name="btn_save"		caption="ui_mm_save_game_n" />
+		<btn name="btn_load"		caption="ui_mm_load_game" />
+		<btn name="btn_save"		caption="ui_mm_save_game" />
 		<btn name="btn_options"		caption="ui_mm_options_n" />
 		<btn name="btn_credits"		caption="ui_mm_credits" />
 		<btn name="btn_quit_to_mm"	caption="ui_mm_quit_game" />
@@ -87,7 +87,7 @@
 
 	<menu_main_single_dead btn_height="34" font="graffiti22" color="ui_mm_font">
     		<btn name="btn_lastsave"	caption="ui_mm_last_save" />
-		<btn name="btn_load"		caption="ui_mm_load_game_n" />
+		<btn name="btn_load"		caption="ui_mm_load_game" />
 		<btn name="btn_options"		caption="ui_mm_options_n" />
 		<btn name="btn_credits"		caption="ui_mm_credits" />
 		<btn name="btn_quit_to_mm"	caption="ui_mm_quit_game" />
@@ -115,5 +115,9 @@
 	<ogsm_version x="5" y="720" width="100" height="30">
 		<text align="l" font="letterica16" r="255" g="80" b="80" complex_mode="0"/>
 	</ogsm_version>
+	
+	<ngsm_version x="5" y="700" width="100" height="30">
+		<text align="l" font="letterica16" r="80" g="255" b="80" complex_mode="0"/>
+	</ngsm_version>
 
 </w>

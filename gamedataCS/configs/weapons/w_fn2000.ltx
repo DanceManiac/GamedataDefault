@@ -37,7 +37,7 @@ inv_grid_y         					= 38
 
 inv_weight              			= 4.8
 
-cost              					= 45000
+cost              					= 180000 ;MW 45000
 
 weapon_class          				= assault_rifle
 
@@ -188,7 +188,7 @@ snd_empty							= weapons\fn2000\fn2000_empty, 0.8
 snd_reload							= weapons\fn2000\fn2000_reload, 1.0
 snd_shoot_grenade					= weapons\m203\m203_grenshoot
 snd_reload_grenade					= weapons\fn2000\fn2000_grenload, 1.0
-snd_switch							= weapons\fn2000\fn2000_switch, 1.0
+snd_switch							= weapons\m203\m203_switch, 1.0
 snd_silncer_shot					= weapons\fn2000\fn2000_shot_sil
 ;==================================== Copyright 2009 MulleR, Mongol ====================================
 
@@ -226,14 +226,14 @@ fire_bone2							= wpn_body
 anm_show             				= fn_2000_draw
 anm_hide             				= fn_2000_holster
 anm_idle             				= fn_2000_idle
-anm_idle_sprint         			= fn_2000_idle_sprint_nev
+anm_idle_sprint         			= fn_2000_idle_sprint_gl
 anm_idle_moving 					= fn_2000_idle_moving
 anm_shots               			= fn_2000_shoot
 anm_reload             	 			= fn_2000_reload
 anm_idle_aim           				= fn_2000_idle_aim
 
-anm_switch              			= fn_2000_switch_off_p
-anm_switch_g            			= fn_2000_switch_on_p
+anm_switch              			= fn_2000_switch_off
+anm_switch_g            			= fn_2000_switch_on
 anm_bore							= fn_2000_idle_bore
 
 anm_show_w_gl           			= fn_2000_draw
@@ -242,7 +242,7 @@ anm_idle_w_gl           			= fn_2000_idle
 anm_shots_w_gl          			= fn_2000_shoot
 anm_reload_w_gl         			= fn_2000_reload
 anm_idle_w_gl_aim       			= fn_2000_idle_aim
-anm_idle_sprint_w_gl				= fn_2000_idle_sprint_nev
+anm_idle_sprint_w_gl				= fn_2000_idle_sprint
 anm_idle_moving_w_gl				= fn_2000_idle_moving
 anm_bore_w_gl						= fn_2000_idle_bore
 
@@ -252,7 +252,7 @@ anm_idle_g          				= fn_2000_idle_gl
 anm_reload_g       					= fn_2000_reload_gl
 anm_idle_g_aim      				= fn_2000_idle_aim_gl
 anm_shots_g         				= fn_2000_shoot_gl
-anm_idle_sprint_g					= fn_2000_idle_sprint_gl_nev
+anm_idle_sprint_g					= fn_2000_idle_sprint_gl
 anm_idle_moving_g					= fn_2000_idle_moving_gl
 anm_bore_g							= fn_2000_idle_bore_gl
 
@@ -289,10 +289,10 @@ inv_name_short				= st_wpn_p90
 
 inv_grid_width				= 3
 inv_grid_height				= 2
-inv_grid_x					= 37
-inv_grid_y					= 38
+inv_grid_x					= 34
+inv_grid_y					= 36
 
-cost					= 7500
+cost					= 30000 ;MW 7500
 
 inv_weight					= 2.78
 
@@ -317,7 +317,7 @@ silencer_hit_power      = 0.41, 0.41, 0.41, 0.41
 silencer_fire_distance  = 170
 silencer_bullet_speed   = 515
 
-shell_particles	 		= weapons\generic_shells2
+shell_particles	 		= weapons\fake_shells
 
 position                = -0.026, -0.132, -0.025
 orientation             = 0, 0, 0
@@ -368,7 +368,7 @@ fire_point2					= 0.0,-0.008,0.408
 anm_show             	= p90_draw
 anm_hide             	= p90_holster
 anm_idle             	= p90_idle
-anm_idle_sprint         = p90_idle_sprint_nev
+anm_idle_sprint         = p90_idle_sprint
 anm_idle_moving 			= p90_idle_move
 anm_shots               = p90_shoot
 anm_reload              = p90_reload
@@ -385,7 +385,7 @@ lean_hud_offset_pos				= 0,0,0
 lean_hud_offset_rot				= 0,0,0
 
 aim_hud_offset_pos_16x9				= -0.161000,0.030500,-0.3018000     
-aim_hud_offset_rot_16x9				= 0.014500,0.023700,-0.010000       
+aim_hud_offset_rot_16x9				= 0.014000,0.0225000,-0.010000       
 
 gl_hud_offset_pos_16x9				= -0.124500,-0.084000,0.000000
 gl_hud_offset_rot_16x9				= -0.170000,0.030000,0.000000

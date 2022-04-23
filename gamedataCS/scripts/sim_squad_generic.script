@@ -81,7 +81,7 @@ function sim_squad_generic:__init(sim_board, player_id, squad_id)
 	--' Саундменеджер отряда
 	self.sound_manager = sound_manager.get_sound_manager("squad_"..squad_id)
 
-	--' Отображение на карте отключено
+	--' Is map spot show disabled
 	self.show_disabled = false
 
 	self.box_items = {}
@@ -220,7 +220,7 @@ function sim_squad_generic:create_npc(spawn_smart)
 	end
 
 	local custom_resource = nil
-	local min_npc, max_npc = 3,5
+	local min_npc, max_npc = 2,3
 	if self.player_id == "monster" then
 		local level_name = alife():level_name(game_graph():vertex(spawn_smart.m_game_vertex_id):level_id())
 		local min, max = 0,5
@@ -427,31 +427,23 @@ function sim_squad_generic:check_commander(force_changing)
 		self.commander_id = nil
 		return false
 	end
-
-	--/ обнуляем командира перед поиском нового
-	self.commander_id = nil
-
-	local current_rank = 0
 	for k,v in pairs(self.squad_npc) do
 		local obj = alife():object(k)
 		if obj then
 			if obj.alive and obj:alive() then
-				local rank = obj:rank()
-				if rank > current_rank then
-					self.commander_id = k --/> командир есть
-					current_rank = rank
-				end
+				self.commander_id = k
+				return true --/> командир есть
+			else
+				self.commander_id = nil --/ здесь бойца из отряда не удаляем (проверить! при необходимости взять из on_death)
 			end
-			--/ здесь бойца из отряда не удаляем, даже если он мёртв (проверить! при необходимости взять из on_death)
 		else
 			self.squad_npc[k] = nil
 		end
 	end
-
 	--/ удалять отряд отсюда, похоже, нельзя - он используется далее после считывания commander_id
 	-- self.board:remove_squad(self)
-
-	return self.commander_id ~= nil --/> командир есть или командира нет, доступных живых бойцов нет
+	self.commander_id = nil
+	return false --/> командира нет, доступных живых бойцов нет
 end
 
 --' Рассчет дополнительной силы отряда в атаке
@@ -736,7 +728,7 @@ function sim_squad_generic:give_squad_task(target_smart)
 	self.current_action = nil
 end
 
---' Может ли отряд стрелять, находясь в кавере в подготовительной фазе
+--' Может ли отряд стрелят, находясь в кавере в подготовительной фазе
 function sim_squad_generic:cover_attack()
 	--printf("squad %s. cover_attack.", self.squad_id)
 	local player = self.board.players[self.player_id]
@@ -810,8 +802,6 @@ function sim_squad_generic:issue_order(order)
 	end
 	if order == "attack" then
 		xr_sound.set_sound_play(self.commander_id, "alife_start_attack")
-	elseif order == "battlecry" then
-		xr_sound.set_sound_play(self.commander_id, "alife_battlecry")
 	elseif order == "prepare" then
 		--' Начинаем разыгрывать историю "Приготовиться к атаке"
 		if self.attacking_by_quest ~= nil then
@@ -875,6 +865,13 @@ function sim_squad_generic:issue_order(order)
 	elseif order == "combat_done" then
 		if self.current_action ~= nil and self.current_action.name == "attack_point" then
 			xr_sound.set_sound_play(self.commander_id, "alife_attack_done", player.player_name, self.current_action.dest_smrt_id)
+		--[[local squad_action = self.current_action
+		if squad_action ~= nil and squad_action.name == "attack_point" then
+			if utils.graph_distance(alife():object(squad_action.dest_smrt_id).m_game_vertex_id, com_pos) < 40 then
+				xr_sound.set_sound_play(self.commander_id, "alife_attack_done", player.player_name, squad_action.dest_smrt_id)
+			elseif utils.graph_distance(alife():object(self.smart_id).m_game_vertex_id, com_pos) < 40 then
+				xr_sound.set_sound_play(self.commander_id, "alife_attack_done", player.player_name, self.smart_id)
+			end]]--
 		else
 			xr_sound.set_sound_play(self.commander_id, "alife_defence_done", player.player_name, self.smart_id)
 		end
@@ -1261,9 +1258,6 @@ function sim_squad_generic:get_squad_props()
 			["dolg"] = "ui_st_name_dolg",
 			["freedom"] = "ui_st_name_freedom",
 			["stalker"] = "ui_st_name_stalker",
-			["army"] = "ui_st_name_army",
-			["monolith"] = "ui_st_name_monolith",
-			["killer"] = "ui_st_name_killer",
 			["ecolog"] = "ui_st_name_ecolog",
 			["bandit_enemy"] = "ui_st_name_bandit_enemy",
 			["stalker_enemy"] = "ui_st_name_stalker_enemy"
@@ -1412,12 +1406,8 @@ function sim_attack_point:update()
 	self.board:assign_squad_to_smart(squad, self.dest_smrt_id)
 	self.board:enter_smart(squad, self.dest_smrt_id)
 
-	-- Доклад командира о захвате точки
-	if self.attack_smart_owner ~= nil and self.attack_smart_owner ~= "none" and self.attack_smart_owner ~= squad.player_id and dest_smart.player_name == squad.player_id then
-		-- Убрать у раненых НПС бодрый голос при докладе
-		if not xr_wounded.is_heavy_wounded_by_id(squad.commander_id) then
-			xr_sound.set_sound_play(squad.commander_id, "alife_point_captured", squad.player_id, self.dest_smrt_id)
-		end
+	if self.attack_smart_owner ~= "none" and dest_smart.player_name ~= squad.player_id then
+		xr_sound.set_sound_play(squad.commander_id, "alife_point_captured", squad.player_id, self.dest_smrt_id)
 	end
 
 	local player = self.board.players[self.player_id]
@@ -1576,7 +1566,7 @@ function sim_stay_point:update()
 		end
 	end
 
-	-- Мы не можем уйти, если мы являемся инициатором задания на отложенную атаку
+	--??? Мы не можем уйти, если мы являемся инициатором задания на отложенную атаку
 	if squad.delayed_attack_task ~= nil then
 		--printf("  false 1")
 		return false
@@ -1658,21 +1648,13 @@ function sim_stay_point:init_defend_smart_delay(squad)
 	-- Если мы мутанты, то смотрим есть ли рядом нейтральные или дружественные игроку отряды.
 	-- Если есть - выдаем квест на оборону их. И не уходим с точки. пока он активен.
 	local target_smart = self.board.smarts[self.delay_attack_id]
-
-	-- Проверка на расстояние. Если слишком далеко - игрока не видим.
-	if db.actor:position():distance_to(target_smart.smrt.position) > 100 then return end
-
-	-- Проверяем, что на смарт никто не нападает
-	if target_smart.smrt.combat_manager:point_under_attack() then return end
-
-	local actor_community = alife():actor():community()
-	local tm = task_manager.get_task_manager()
 	for kk,vv in pairs(target_smart.squads) do
 		-- Проверяем дружественность отряда и на то, что на него никто не нападает.
-		if vv.squad_online == true
-			 and not game_relations.check_all_squad_members(vv.squad_id, "enemy")
-			 and not game_relations.is_factions_enemies(vv.player_id, actor_community)
+		if vv.squad_online == true and
+			 not(game_relations.is_factions_enemies(vv.player_id, alife():actor():community())) and
+			 not target_smart.smrt.combat_manager:point_under_attack()
 		then
+			local tm = task_manager.get_task_manager()
 			-- проверить, что на смарт уже не выдан квест
 			if tm:get_tasks_by_smart(self.delay_attack_id) ~= nil then
 				return
@@ -1685,7 +1667,7 @@ function sim_stay_point:init_defend_smart_delay(squad)
 			local task = tm:select_task("defend_smart_delay", target_smart.smrt, vv.player_id)
 			squad.delayed_attack_task = task.entity_id
 			task.src_squad_id = squad.squad_id
-			if task.status ~= "selected" then
+			if(task.status~="selected") then
 				task:give_task(vv.player_id)
 			end
 			return

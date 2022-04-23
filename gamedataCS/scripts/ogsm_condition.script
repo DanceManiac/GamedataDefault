@@ -1,7 +1,6 @@
 ------------------------------ Copyright 2007-2010 DEXXX ------------------------------
 ----------------------- Вывод динамических индикаторов состояния ----------------------
 
-
 -- Вывод состояний организма
 function show_condition()
 
@@ -89,12 +88,25 @@ function show_condition()
 		else
 			if hun2 ~= nil then
 				hud:RemoveCustomStatic("indik2_hun")
+				need_upd_2 = false
 			end
 		end
 	else
 		if hun2 ~= nil then
 			hud:RemoveCustomStatic("indik2_hun")
 		end
+	end
+end
+
+function update_hud()
+    local hud = get_hud()
+	local ind_hud_1 = hud:GetCustomStatic("indik2_hun")
+	if ind_hud_1 then
+		hud:RemoveCustomStatic("indik2_hun")
+	end
+	local ind_hud_2 = hud:GetCustomStatic("indik2_slp")
+	if ind_hud_2 then
+		hud:RemoveCustomStatic("indik2_slp")
 	end
 end
 

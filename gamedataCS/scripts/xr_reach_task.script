@@ -94,6 +94,15 @@ function add_to_binder( npc )
 		action:add_precondition(world_property(xr_medic.evid_self_medic, false))
 	end
 	action:add_precondition( world_property( xr_evaluators_id.reached_strn_job_location, false ) )
+	
+	--// NGSM
+	if ngsm_options.new_ai_modules == true then
+        if ngsm_xr_hider then
+	        action:add_precondition	(world_property(ngsm_xr_hider.evid_surge_hider, false))
+	    end
+	end
+	--// NGSM
+	
 	action:add_effect      ( world_property( xr_evaluators_id.reached_strn_job_location, true  ) )
 	manager:add_action( xr_actions_id.reach_strn_job_location, action )
 

@@ -22,7 +22,7 @@ upgrade_scheme          			= upgrade_scheme_u5_ogsm
 holder_range_modifier				= 1.0
 holder_fov_modifier					= 1.0
 
-cost								= 600
+cost								= 2400 ;MW 600
 
 ammo_limit		 					= 80
 ammo_current		 				= 8
@@ -101,7 +101,7 @@ silencer_bullet_speed				= 310
 hud                     			= wpn_pb_hud
 visual                  			= dynamics\weapons\wpn_pb\wpn_pb.ogf
 
-position                			= -0.021, -0.09, -0.015
+position                			= -0.021, -0.07, 0.04
 orientation             			= 0, 0, 0
 
 fire_point              			= 0.0, 0.104, 0.273
@@ -138,7 +138,7 @@ snd_shoot1							= weapons\pb\pb_shoot1
 snd_shoot2							= weapons\pb\pb_shoot2
 snd_shoot3							= weapons\pb\pb_shoot3
 snd_empty							= weapons\pm\pm_empty
-snd_reload							= weapons\pistol_reload, 0.8
+snd_reload							= weapons\pistol_reload, 0.8  ;weapons\pm\pm_reload
 snd_close							= weapons\pm\pm_close
 ;==================================== Copyright 2009 MulleR, Mongol ====================================
 
@@ -161,7 +161,7 @@ hands_orientation					= -0.500000,1.000000,1.149999
 hands_position_16x9					= 0.033000,-0.189500,0.039000
 hands_orientation_16x9				= 2.349998,2.749999,2.849998
 
-item_position						= 0.000746,-0.000321,-0.006
+item_position						= 0.000746,-0.000321,-0.0060.000746,-0.000321,-0.006
 item_orientation					= 1.239378,-0.134046,-2.052052
 
 item_visual             			= dynamics\weapons\wpn_pb\wpn_pb_hud.ogf
@@ -192,11 +192,11 @@ anm_idle_sprint_empty				= pb_sprint, pb_opened
 anm_bore							= pb_idle_bore
 anm_bore_empty						= pb_idle_bore, pb_opened
 
-aim_hud_offset_pos					= -0.107800,0.040900,-0.010000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= 0.005400,0.004400,-0.015000			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos					= -0.107800,0.040800,-0.010000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot					= 0.000500,0.004500,-0.015000			; +вниз\-вверх , +вправо\-влево
 
-aim_hud_offset_pos_16x9				= -0.168500,0.072400,-0.010000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.036300,0.054500,0.010000			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos_16x9				= -0.168500,0.072000,-0.010000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot_16x9				= 0.031000,0.054700,0.010000			; +вниз\-вверх , +вправо\-влево
 
 gl_hud_offset_pos					= 0,0,0
 gl_hud_offset_rot					= 0,0,0
@@ -211,7 +211,7 @@ lean_hud_offset_rot					= 0,0,0
 [wpn_pb_short]:wpn_pb
 $spawn								= "weapons\wpn_pb_short"
 
-cost								= 500
+cost								= 2000 ;MW 500
 
 description							= st_wpn_pb_short_descr
 inv_name							= st_wpn_pb_short
@@ -230,17 +230,15 @@ visual								= dynamics\weapons\wpn_pb_short\wpn_pb_short.ogf
 
 fire_point              			= 0.0, 0.123, 0.15
 
-silencer_status						= 2
-
-silencer_name  						= wpn_addon_silencer_pb
-silencer_x 							= 70
-silencer_y 							= -13
+silencer_status						= 0
 
 snd_shoot							= weapons\pb_short\pb_short_shoot
 snd_shoot1							= weapons\pb_short\pb_short_shoot1
 snd_shoot2							= weapons\pb_short\pb_short_shoot2
 snd_shoot3							= weapons\pb_short\pb_short_shoot3
-snd_silncer_shot						= weapons\pb\pb_shoot
 
 [wpn_pb_short_hud]:wpn_pb_hud
 item_visual							= dynamics\weapons\wpn_pb_short\wpn_pb_short_hud.ogf
+
+aim_hud_offset_pos					= -0.107800,0.041250,-0.010000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot					= 0.001000,0.004500,-0.015000			; +вниз\-вверх , +вправо\-влево

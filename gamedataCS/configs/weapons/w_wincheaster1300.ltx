@@ -35,7 +35,7 @@ inv_grid_y         					= 12
 
 inv_weight							= 3.1
 
-cost					 			= 6000
+cost					 			= 24000 ;MW 6000
 
 weapon_class			 			= shotgun
 
@@ -86,14 +86,12 @@ condition_shot_dec 					= 0.0005
 position                 			= -0.024, -0.075, -0.01
 orientation              			= 0, -4, 0
 
-shell_point							= 0.0, 0.180, 0.15
-fire_point              			= 0.0, 0.15, 0.647
+shell_point							= 0.0, 0.180, 0.647
+fire_point              			= 0.0, 0.158, 0.647
 fire_point2							= 0.0, 0.158, 0.647
 
-flame_particles		   				= weapons\weapon_muzzle_shotgun
+flame_particles		   				= weapons\generic_weapon05
 smoke_particles		   				= weapons\generic_shoot_00
-shell_particles		   				= weapons\generic_shells_shotgun_winchester
-
 rpm_empty_click 	   				= 200
 
 PDM_disp_base 						= 1.0
@@ -155,42 +153,42 @@ snd_shoot_duplet					= weapons\w1300\w1300_shoot_both
 [wpn_winchester1300_hud]:hud_base
 zoom_hide_crosshair					= true
 
-shell_point							= 0,0,0
+shell_point							= 0.02,0.072,0.228
 shell_dir                     		= 0.0, 1.0, 0.0
-shell_bone							= eject
+shell_bone							= wpn_body
 
-fire_point							= 0,0,0
-fire_bone							= muzzle
+fire_point							= 0, 0.075, 0.937
+fire_bone							= wpn_body
 
 attach_place_idx					= 0
 item_visual                   		= dynamics\weapons\wpn_winchester1300\wpn_winchester1300_hud
 
-hands_position						= 0.11,-0.06,0.1
-hands_orientation					= 0,0,0
+hands_position						= -0.119500,-0.120500,0.185001
+hands_orientation					= 1.050001,1.700001,3.449997
 
-hands_position_16x9					= 0.11,-0.06,0.1
-hands_orientation_16x9				= 0,0,0
+hands_position_16x9					= -0.131500,-0.138500,0.187499
+hands_orientation_16x9				= 1.699999,2.999999,3.449998
 
-item_position						= 0,0,0
-item_orientation						= 0,0,0
+item_position						= 0.003519,0.010573,-0.003368
+item_orientation					= 0.045015,1.047468,0.056850
 
-anm_show			= winchester1300_draw
-anm_hide			= winchester1300_holster
-anm_idle			= winchester1300_idle
-anm_idle_aim			= winchester1300_idle_aim
-anm_idle_moving			= winchester1300_idle_moving
-anm_idle_sprint			= winchester1300_idle_sprint
-anm_bore			= winchester1300_idle_bore
-anm_shots			= winchester1300_shoot, winchester1300_shoot_w
-anm_open			= winchester1300_reload_start
-anm_add_cartridge		= winchester1300_reload, winchester1300_reload_w
-anm_close			= winchester1300_reload_end
+anm_show							= winchester1300_draw
+anm_hide							= winchester1300_holster
+anm_idle							= winchester1300_idle
+anm_idle_aim						= winchester1300_idle_aim
+anm_idle_moving						= winchester1300_idle_moving
+anm_idle_sprint						= mossberg_sprint
+anm_bore							= winchester1300_idle_bore
+anm_shots							= winchester1300_shoot
+anm_open							= winchester1300_reload_start
+anm_add_cartridge					= winchester1300_reload
+anm_close							= winchester1300_reload_end
 
-aim_hud_offset_pos					= -0.110000,0.057000,-0.000000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= 0.001500,0.000600,0.000000			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos					= -0.110000,0.095300,0.000000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot					= 0.040000,0.012200,-0.025000			; +вниз\-вверх , +вправо\-влево
 
-aim_hud_offset_pos_16x9				= -0.110000,0.057000,0.000000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.001500,0.000600,0.000000			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos_16x9				= -0.100500,0.116800,0.000000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot_16x9				= 0.062800,0.023450,-0.017500			; +вниз\-вверх , +вправо\-влево
 
 [wpn_wincheaster1300_ogsm_accuracy_1]:wpn_wincheaster1300
 $spawn 					= "weapons\wpn_wincheaster1300_ogsm_accuracy_1"

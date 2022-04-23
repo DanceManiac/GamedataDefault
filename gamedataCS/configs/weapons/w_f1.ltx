@@ -39,7 +39,7 @@ force_grow_speed					= 15
 
 destroy_time						= 2500
 
-cost								= 500
+cost								= 2000 ;MW 500
 
 blast								= 2.20
 blast_r								= 8
@@ -87,32 +87,29 @@ wallmark_section		 			= explosion_marks
 [grenade_f1_hud]:hud_base
 fire_point							= 0,0,0
 fire_bone           				= wpn_body
-													 
-attach_place_idx				= 0
-item_visual							= dynamics\weapons\wpn_grenades\wpn_f1_hud.ogf
 
-hands_position						= -0.061000,-0.160000,0.100000
+attach_place_idx					= 0
+item_visual							= dynamics\weapons\wpn_grenades\wpn_f1_hud
+
+hands_position						= -0.065000,-0.145000,0.002500
 hands_orientation					= -0.500000,1.000000,-2.000000
 
-hands_position_16x9					= -0.061000,-0.160000,0.100000
-hands_orientation_16x9				= -0.500000,1.000000,-2.000000
+hands_position_16x9					= -0.096500,-0.163000,0.039000
+hands_orientation_16x9				= -4.399999,1.000000,-2.000000
 
-item_position						= 0.006232,-0.011377,0.008668
-item_orientation					= 18.500000,1.500000,0.000000
-	
-anm_hide							= lancew_f1_holster, f1_holster					
-anm_show							= lancew_f1_draw, f1_draw
-anm_idle							= lancew_f1_idle, f1_idle
-anm_bore							= lancew_f1_no_reload
-anm_idle_moving	 					= lancew_f1_moving, f1_idle_moving
-anm_idle_sprint	 					= lancew_f1_sprint, f1_idle_sprint
+item_position						= 0.004498,-0.003965,0.000290
+item_orientation					= -359.925262,-2.224621,-7.030276
 
-anm_throw_begin						= f1_throw_begin_ñ, f1_throw_begin
-anm_throw_idle	 					= lancew_f1_throw_idle
-anm_throw							= lancew_f1_throw
+anm_hide							= f1_holster
+anm_show							= f1_draw
+anm_idle							= f1_idle
+anm_bore							= f1_idle_bore
+anm_idle_moving	 					= f1_idle_moving
+anm_idle_sprint	 					= f1_idle_sprint
+
+anm_throw_begin						= f1_throw_begin
+anm_throw_idle						= f1_throw_idle
+anm_throw							= f1_throw
 
 throw_point							= 0.0,0.4,0.3
 throw_dir							= 0,0,1
-
-;--  --------------------------------------------------------
-[kat_hosp_door_explosive_charge]:grenade_f1

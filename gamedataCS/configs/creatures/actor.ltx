@@ -21,7 +21,7 @@ terrain								= actor_terrain
 
 max_item_mass           			= 35
 jump_speed              			= 6
-crouch_coef            		 		= 0.3
+crouch_coef            		 		= 0.7
 climb_coef              			= 0.7
 run_coef                			= 2.75
 sprint_koef             			= 2.75
@@ -41,11 +41,11 @@ ef_creature_type					= 17		; option for evaluation functions
 attachable_items					= device_torch,attachable_item,hand_radio
 
 ph_box0_center						= 0.0,  0.9,  0.0
-ph_box0_size						= 0.35, 0.9,  0.35		; ширина в плечах , высота стоя , толщина
+ph_box0_size						= 0.35, 0.9,  0.35
 ph_box1_center						= 0.0,  0.75,  0.0
-ph_box1_size						= 0.35, 0.75,  0.35		; ширина в плечах , высота вприсяди , толщина
+ph_box1_size						= 0.35, 0.75,  0.35
 ph_box2_center						= 0.0,  0.6,  0.0
-ph_box2_size						= 0.35, 0.6,  0.35		; ширина в плечах , высота в полной присяди , толщина
+ph_box2_size						= 0.35, 0.6,  0.35
 
 stalker_restrictor_radius			= 0.55
 stalker_small_restrictor_radius		= 0.55
@@ -73,7 +73,7 @@ hit_sounds							= actor_hit_snds
 immunities_sect						= actor_immunities_gd_novice
 condition_sect						= actor_condition
 
-heavy_breath_snd					= actor\breath_1		;звук тяжелого дыхания при усталости
+heavy_breath_snd					= actor\breath_1
 heavy_blood_snd						= affects\heartbeat
 heavy_danger_snd					= affects\heartbeat
 
@@ -105,19 +105,19 @@ LegsCount                                                = 2
 step_params                                                = stalker_step_manager
 foot_bones                                                = stalker_foot_bones
 
-memory_update_time                        = 100                                ; время обновления памяти
+memory_update_time                        = 100
 
 ; visibility parameters
-DynamicObjectsCount                        = 32                                ; число динамических объектов
+DynamicObjectsCount                        = 32
 min_view_distance                   = 1.0                                ; коэффициент, который множится на eye_range, в зависимости от угла
 max_view_distance                         = 1.0                                ; коэффициент, который множится на eye_range, в зависимости от угла
 visibility_threshold                 = 1.0                                ; значение, при достижении суммой которого объект считается видимым
-always_visible_distance         = 1.0                                ; всегда видимое расстояние
+always_visible_distance         = 1.0
 time_quant                                        = 0.005
 decrease_value                                = 0.1                                ; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
-velocity_factor                             = 0.5                                ; коэффициент скорости
+velocity_factor                             = 0.5
 luminocity_factor                        = 0.5;0                         ; фактор освещения (только для Актёра)
-transparency_threshold                 = 0.4                                ; 0.25 ; порог прозрачности
+transparency_threshold                 = 0.4                                ; 0.25
 still_visible_time                        = 5000                                ; время, которое объект всё ещё считается видимым, даже если он уже не во фрустуме
 
 [actor_immunities_gd_novice]
@@ -174,11 +174,11 @@ satiety_critical		= 0.0       ;критическое значения сытости (в процентах от 0..1
 radiation_health_v		= 0.004     ;уменьшение здоровья при воздействии радиации
 morale_v				= 0.0001	;скорость восстановления морали
 psy_health_v			= 0.001		;скорость восстановления psy-здоровья
-alcohol_v				= -0.0003	;скорость выведения алкоголя
+alcohol_v				= -0.0003
 health_hit_part			= 1.0		;процент хита, уходящий на отнимание здоровья
 power_hit_part			= 0.1		;процент хита, уходящий на отнимание силы
 max_power_leak_speed	= 0.0		;накопление усталости (макс граница, до которой восстанавливается сила) в секунду игрового времени
-max_walk_weight			= 60	;максимальный вес, который можно нести
+max_walk_weight			= 60
 
 bleeding_v 				= 0.0005	;потеря крови при номинальной ране в секунду
 
@@ -194,12 +194,12 @@ radiation_health_v_sleep = 0.001
 morale_v_sleep           = 0.0
 psy_health_v_sleep       = 0.0
 
-alcohol_v_sleep               = -0.0005		;скорость выведения алкоголя, когда герой спит. С единицы до нуля снижается за 1/ (6 * 0.0005) = 333 секунды реального времени
+alcohol_v_sleep               = -0.0005
 
 bleeding_v_sleep              = 0.0
 wound_incarnation_v_sleep     = 0.0
 max_power_leak_speed_sleep    = -0.00001
-health_restore_v              = 0.0
+health_restore_v              = 0.0001
 
 ;;;;;;;;
 ;actor_condition only
@@ -208,9 +208,9 @@ jump_power 				= 0.01 ;умешьшение силы с прыжком без учета веса ноши
 jump_weight_power       = 0.05                ;0.045                                        ;умешьшение силы с прыжком с учетом веса ноши, для максимального допустимого веса
 overweight_jump_k                        =        5;10                ;10                                        ;коэффициент влияние перегрузки прыжок с весом (умножается на jump_weight_power)
 
-stand_power                                =  -0.005     ; скорость восстановления энергии в состоянии покоя
-walk_power                                =        0.00001                                ;умешьшение силы за секунду во время ходьбы без учета веса ноши
-walk_weight_power                =        0.00005;                        ;умешьшение силы за секунду во время ходьбы с учетом веса ноши, для максимального допустимого веса
+stand_power                                =  -0.005
+walk_power                                =        0.00001                                ;умешьшение силы за секнду во время ходьбы без учета веса ноши
+walk_weight_power                =        0.00005;                        ;умешьшение силы за секнду во время ходьбы с учетом веса ноши, для максимального допустимого веса
 overweight_walk_k                =        5;9        ;10                                ;коэффициент влияние перегрузки ноши (умножается на walk_weight_power)
 accel_k                                        =        3;5                                        ;коэффициент на бег (умножается walk_power, walk_weight_power)
 sprint_k                                =        75;150;185;180;200;        ;коэффициент на "sprint" бег (умножается walk_power, walk_weight_power)
@@ -251,14 +251,14 @@ bip01_spine2                             = 0.9, 0, 4.0		; грудь
 bip01_neck                               = 1.0, 0, 4.0		; шея
 bip01_head                               = 1.0, 0, 3.0		; голова
 eyelid_1                                 = 1.0, 0, 3.0		; переносица
-eye_left                                 = 1.0, 0, 3.0		; глаз лев		
-eye_right                                = 1.0, 0, 3.0		; глаз прав
-jaw_1                                    = 1.0, 0, 3.0		; челюсть
+eye_left                                 = 1.0, 0, 3.0		
+eye_right                                = 1.0, 0, 3.0
+jaw_1                                    = 1.0, 0, 3.0
 
-bip01_l_clavicle                         = 0.7, 4, 4.0		; ключица лев
-bip01_l_upperarm                         = 0.6, 4, 3.0		; плечо лев
-bip01_l_forearm                          = 0.5, 4, 2.0		; предплечье лев
-bip01_l_hand                             = 0.4, 4, 1.0		; кисть лев
+bip01_l_clavicle                         = 0.7, 4, 4.0		; ключица
+bip01_l_upperarm                         = 0.6, 4, 3.0		; плечо
+bip01_l_forearm                          = 0.5, 4, 2.0		; предплечье
+bip01_l_hand                             = 0.4, 4, 1.0		; кисть
 bip01_l_finger0                          = 0.0, 4, 0.2
 bip01_l_finger01                         = 0.0, 4, 0.2
 bip01_l_finger02                         = 0.0, 4, 0.2
@@ -269,10 +269,10 @@ bip01_l_finger2                          = 0.0, 4, 0.2
 bip01_l_finger21                         = 0.0, 4, 0.2
 bip01_l_finger22                         = 0.0, 4, 0.2
 
-bip01_r_clavicle                         = 0.7, 2, 4.0		; ключица прав
-bip01_r_upperarm                         = 0.6, 2, 3.0		; плечо прав
-bip01_r_forearm                          = 0.5, 2, 2.0		; предплечье прав
-bip01_r_hand                             = 0.4, 2, 1.0		; кисть прав
+bip01_r_clavicle                         = 0.7, 2, 4.0
+bip01_r_upperarm                         = 0.6, 2, 3.0
+bip01_r_forearm                          = 0.5, 2, 2.0
+bip01_r_hand                             = 0.4, 2, 1.0
 bip01_r_finger0                          = 0.0, 2, 0.2
 bip01_r_finger01                         = 0.0, 2, 0.2
 bip01_r_finger02                         = 0.0, 2, 0.2
@@ -283,14 +283,14 @@ bip01_r_finger2                          = 0.0, 2, 0.2
 bip01_r_finger21                         = 0.0, 2, 0.2
 bip01_r_finger22                         = 0.0, 2, 0.2
 
-bip01_l_thigh                            = 0.5, 8, 4.0		; бедро лев
-bip01_l_calf                             = 0.4, 8, 3.0		; голень лев
-bip01_l_foot                             = 0.3, 8, 2.0		; стопа лев
-bip01_l_toe0                             = 0.2, 8, 1.0		; пальцы лев
-bip01_r_thigh                            = 0.5, 6, 4.0		; бедро прав
-bip01_r_calf                             = 0.4, 6, 3.0		; голень прав
-bip01_r_foot                             = 0.3, 6, 2.0		; стопа прав
-bip01_r_toe0                             = 0.2, 6, 1.0		; пальцы прав
+bip01_l_thigh                            = 0.5, 8, 4.0		; бедро
+bip01_l_calf                             = 0.4, 8, 3.0		; голень
+bip01_l_foot                             = 0.3, 8, 2.0		; стопа
+bip01_l_toe0                             = 0.2, 8, 1.0		; пальцы
+bip01_r_thigh                            = 0.5, 6, 4.0
+bip01_r_calf                             = 0.4, 6, 3.0
+bip01_r_foot                             = 0.3, 6, 2.0
+bip01_r_toe0                             = 0.2, 6, 1.0
 
 [actor_animation]
 ;углы  дворота ног актера во время стрейфов (в градусах)
@@ -362,8 +362,6 @@ visual = dynamics\weapons\wpn_hand\wpn_hand_bandit_cloak_brown
 visual = dynamics\weapons\wpn_hand\wpn_hand_bandit_heavy
 [actor_hud_dolg_scientific]:actor_hud
 visual = dynamics\weapons\wpn_hand\wpn_hand_dolg_scientific
-[actor_hud_dolg_heavy]:actor_hud
-visual = dynamics\weapons\wpn_hand\wpn_hand_dolg_heavy
 [actor_hud_dolg_exo]:actor_hud
 visual = dynamics\weapons\wpn_hand\wpn_hand_dolg_exo
 [actor_hud_freedom_outfit]:actor_hud
@@ -372,8 +370,6 @@ visual = dynamics\weapons\wpn_hand\wpn_hand_freedom_outfit
 visual = dynamics\weapons\wpn_hand\wpn_hand_freedom_heavy_outfit
 [actor_hud_freedom_scientific]:actor_hud
 visual = dynamics\weapons\wpn_hand\wpn_hand_freedom_scientific
-[actor_hud_freedom_heavy]:actor_hud
-visual = dynamics\weapons\wpn_hand\wpn_hand_freedom_heavy_extra
 [actor_hud_freedom_exo]:actor_hud
 visual = dynamics\weapons\wpn_hand\wpn_hand_freedom_exo
 [actor_hud_killer_outfit]:actor_hud
@@ -414,5 +410,47 @@ visual = dynamics\weapons\wpn_hand\wpn_hand_digger
 visual = dynamics\weapons\wpn_hand\wpn_hand_brown_plash
 [actor_hud_bandit_cloak_black]:actor_hud
 visual = dynamics\weapons\wpn_hand\wpn_hand_bandit_cloak_black
-[actor_hud_neutral_outfit_green]:actor_hud
-visual = dynamics\weapons\wpn_hand\wpn_hand_neutral_outfit_green
+
+
+[tttmp]
+;описание распознаваемых детектором зон
+zone_class_1		= zone_mosquito_bald
+zone_sound_1_		= detectors\DA-2_beep1
+
+zone_freq_1		= 0.1, 40 ; min,max
+
+zone_class_2		= zone_mincer
+zone_sound_2_		= detectors\DA-2_beep1
+zone_freq_2		= 0.1, 20
+
+zone_class_3		= zone_radioactive
+zone_sound_3_		= detectors\geiger_1
+zone_sound_3_1		= detectors\geiger_2
+zone_sound_3_2		= detectors\geiger_3
+zone_sound_3_3		= detectors\geiger_4
+zone_sound_3_4		= detectors\geiger_5
+zone_sound_3_5		= detectors\geiger_6
+zone_sound_3_6		= detectors\geiger_1
+zone_sound_3_7		= detectors\geiger_1
+zone_sound_3_8		= detectors\geiger_1
+zone_freq_3		= 0.1,20
+
+zone_class_4		= zone_gravi_zone
+zone_sound_4_		= detectors\DA-2_beep1
+zone_freq_4		= 0.5, 30
+
+zone_class_5		= zone_field_radioactive
+zone_sound_5_		= detectors\geiger_1
+zone_sound_5_1		= detectors\geiger_2
+zone_sound_5_2		= detectors\geiger_3
+zone_sound_5_3		= detectors\geiger_4
+zone_sound_5_4		= detectors\geiger_5
+zone_sound_5_5		= detectors\geiger_6
+zone_sound_5_6		= detectors\geiger_1
+zone_sound_5_7		= detectors\geiger_1
+zone_sound_5_8		= detectors\geiger_1
+zone_freq_5		= 0.1,20
+
+zone_class_6		= zone_mine_electric
+zone_sound_6_		= detectors\DA-2_beep1
+zone_freq_6		= 0.1, 40 ; min,max

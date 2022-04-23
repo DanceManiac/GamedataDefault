@@ -22,7 +22,7 @@ upgrade_scheme          			= upgrade_scheme_u10a_ogsm
 holder_range_modifier				= 1.0
 holder_fov_modifier					= 1.0
 
-cost								= 2400
+cost								= 9600 ;MW 2400
 
 ammo_limit		 					= 70
 ammo_current		 				= 7
@@ -137,7 +137,7 @@ snd_shoot1							= weapons\colt\colt_shoot1
 snd_shoot2							= weapons\colt\colt_shoot2
 snd_shoot3							= weapons\colt\colt_shoot3
 snd_empty							= weapons\colt\colt_empty
-snd_reload							= weapons\pistol_reload, 0.8
+snd_reload							= weapons\pistol_reload, 0.8  ;weapons\colt\colt_reload
 snd_close							= weapons\colt\colt_close
 snd_silncer_shot					= weapons\colt\colt_shot_sil
 ;==================================== Copyright 2009 MulleR, Mongol ====================================
@@ -216,7 +216,7 @@ upgrades                			= up_gr_ab_aps, up_gr_cd_aps, up_gr_e_aps, up_gr_f_ap
 installed_upgrades      			=
 upgrade_scheme          			= upgrade_scheme_u10b_ogsm
 
-cost								= 6000
+cost								= 24000 ;MW 6000
 class                  =     WP_LR300
 fire_modes             =     1, -1
 
@@ -264,11 +264,12 @@ silencer_bullet_speed				= 380
 
 silencer_status						= 0
 
-snd_shoot							= weapons\aps\aps_shoot
-snd_shoot1							= weapons\aps\aps_shoot1
-snd_shoot2							= weapons\aps\aps_shoot2
-snd_shoot3							= weapons\aps\aps_shoot3       
-snd_silncer_shot					= weapons\aps\aps_shot_sil
+;==================================== Copyright 2009 MulleR, Mongol ====================================
+snd_shoot							= weapons\pm\pm_shoot
+snd_shoot1							= weapons\pm\pm_shoot1
+snd_shoot2							= weapons\pm\pm_shoot2
+snd_shoot3							= weapons\pm\pm_shoot3
+;==================================== Copyright 2009 MulleR, Mongol ====================================
 
 hud									= wpn_aps_hud
 
@@ -277,10 +278,10 @@ fire_point              			= 0.0, 0.143, 0.21
 [wpn_aps_hud]:wpn_colt1911_hud
 item_visual							= dynamics\weapons\wpn_aps\wpn_aps_hud.ogf
 
-item_position						= 0.000746,0.002000,0.006500
+item_position						= 0.000746,-0.005000,0.006500
 
 aim_hud_offset_pos					= -0.105200,0.038000,-0.001500			; +вправо\-влево , +вверх\-вниз
 aim_hud_offset_rot					= 0.005500,0.004400,-0.015000			; +вниз\-вверх , +вправо\-влево
 
-aim_hud_offset_pos_16x9				= -0.167600,0.061600,-0.001500			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_pos_16x9				= -0.167600,0.068600,-0.001500			; +вправо\-влево , +вверх\-вниз
 aim_hud_offset_rot_16x9				= 0.037000,0.055900,0.017500			; +вниз\-вверх , +вправо\-влево

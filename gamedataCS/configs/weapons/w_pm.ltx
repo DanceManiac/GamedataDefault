@@ -22,7 +22,7 @@ upgrade_scheme         	 			= upgrade_scheme_u10b_ogsm
 holder_range_modifier				= 1.0
 holder_fov_modifier					= 1.0
 
-cost								= 500
+cost								= 2000 ;MW 500
 
 ammo_limit		 					= 80
 ammo_current		 				= 8
@@ -137,7 +137,7 @@ snd_shoot1							= weapons\pm\pm_shoot1
 snd_shoot2							= weapons\pm\pm_shoot2
 snd_shoot3							= weapons\pm\pm_shoot3
 snd_empty							= weapons\pm\pm_empty
-snd_reload							= weapons\pistol_reload, 0.8
+snd_reload							= weapons\pistol_reload, 0.8  ;weapons\pm\pm_reload
 snd_close							= weapons\pm\pm_close
 ;==================================== Copyright 2009 MulleR, Mongol ====================================
 
@@ -201,7 +201,7 @@ lean_hud_offset_rot					= 0,0,0
 
 [wpn_pm_minigame]:wpn_pm
 ammo_limit      					= 100
-ammo_class     	 					= ammo_pm_minigame
+ammo_class     	 					= ammo_minigame
 fire_modes      					= 1
 $spawn          					= "weapons\wpn_pm_minigame"
 cost            					= 0
@@ -222,7 +222,7 @@ upgrades                			= up_gr_ab_gsh18, up_gr_cd_gsh18, up_gr_e_gsh18, up_g
 installed_upgrades      			=
 upgrade_scheme          			= upgrade_scheme_u10a_ogsm
 
-cost								= 8000
+cost								= 32000 ;MW 8000
 
 description							= st_wpn_gsh18_descr
 inv_name							= st_wpn_gsh18
@@ -269,8 +269,8 @@ silencer_bullet_speed				= 400
 silencer_status						= 2
 
 silencer_name  						= wpn_addon_silencer
-silencer_x                  		= 68
-silencer_y                 	 		= -14
+silencer_x                  		= 75
+silencer_y                 	 		= -15
 
 ;==================================== Copyright 2009 MulleR, Mongol ====================================
 snd_shoot							= weapons\walther\walther_shoot
@@ -282,64 +282,13 @@ snd_silncer_shot					= weapons\walther\walther_shot_sil
 
 hud									= wpn_gsh18_hud
 
-position                			= -0.021, -0.085, 0.0
-
 [wpn_gsh18_hud]:wpn_pm_hud
-item_position						= 0.000746,-0.004000,0.003479
+item_position						= 0.000746,0.004000,0.003479
 
 item_visual							= dynamics\weapons\wpn_gsh18\wpn_gsh18_hud.ogf
 
-aim_hud_offset_pos					= -0.106400,0.038000,-0.010000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= 0.006000,0.006000,-0.015000			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos					= -0.106000,0.043000,-0.010000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot					= 0.010500,0.004000,-0.015000			; +вниз\-вверх , +вправо\-влево
 
-aim_hud_offset_pos_16x9				= -0.166100,0.072250,-0.011500			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.036600,0.056000,-0.005000			; +вниз\-вверх , +вправо\-влево
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[wpn_pmm]:wpn_pm
-$spawn								= "weapons\wpn_pmm"
-visual								= dynamics\weapons\wpn_pmm\wpn_pmm.ogf
-
-upgrades                			= up_gr_ab_pmm, up_gr_cd_pmm, up_gr_e_pmm, up_gr_f_pmm
-installed_upgrades      			=
-upgrade_scheme          			= upgrade_scheme_u10a_ogsm
-
-cost								= 1000
-
-ammo_current		 				= 12
-ammo_elapsed		 				= 12
-
-ammo_mag_size		 				= 12
-ammo_class		 					= ammo_9x18_fmj, ammo_9x18_pbp, ammo_9x18_pmm
-
-description							= st_wpn_pmm_descr
-inv_name							= st_wpn_pmm
-inv_name_short						= st_wpn_pmm
-
-inv_grid_width     					= 2
-inv_grid_height    					= 1
-inv_grid_x         					= 34
-inv_grid_y         					= 33
-
-inv_weight							= 0.76
-
-silencer_status						= 2
-
-silencer_name  						= wpn_addon_silencer
-silencer_x                  		= 64
-silencer_y                  		= -14
-
-snd_silncer_shot					= weapons\pm\pm_shot_sil
-
-hud									= wpn_pmm_hud
-
-[wpn_pmm_hud]:wpn_pm_hud
-
-item_visual							= dynamics\weapons\wpn_pmm\wpn_pmm_hud.ogf
-
-aim_hud_offset_pos					= -0.107210,0.040000,-0.010000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= 0.000000,0.005700,-0.015000			; +вниз\-вверх , +вправо\-влево
-
-aim_hud_offset_pos_16x9				= -0.166330,0.075000,-0.011500			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.033000,0.055000,-0.005000			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos_16x9				= -0.166100,0.076800,-0.011500			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot_16x9				= 0.040500,0.054500,-0.005000			; +вниз\-вверх , +вправо\-влево

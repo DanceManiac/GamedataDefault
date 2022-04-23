@@ -30,9 +30,6 @@ function init_guiders_dialog(dialog)
   local script = phrase:GetPhraseScript()
 	script:AddPrecondition("guiders.precondition_teleport_points_available")
 	script:AddPrecondition("guiders.precondition_surge_is_coming")
--- nevermind
-	phrase = dialog:AddPhrase("st_tm_guide_23", "23", "2", -10000)
-	script = phrase:GetPhraseScript()
 -- point_name
 	for k,v in pairs_ordered(guiders_table.teleport_points) do
     phrase = dialog:AddPhrase("NO TEXT", k, "2", -10000)
@@ -98,9 +95,9 @@ function action_fill_temp_teleport_points(fs, npc, dn, pi)
                 end
 
                 if path ~= nil and #path ~= 0 then
-                    cost = path[#path].value
+                    cost = path[#path].value * 2 --' NGSM
                     if v.level == level.name() then
-                        cost = math.floor(cost/10)
+                        cost = math.floor(cost/3) --' NGSM/10)
                     end
                     if actor_in_faction() == npc:character_community() then
                         cost = math.floor(cost/2)

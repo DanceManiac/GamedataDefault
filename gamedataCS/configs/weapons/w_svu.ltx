@@ -36,7 +36,7 @@ inv_grid_y         					= 19
 
 inv_weight              			= 3.6
 
-cost                    			= 14000
+cost                    			= 56000 ;MW 14000
 
 weapon_class						= sniper_rifle
 
@@ -88,10 +88,9 @@ condition_shot_dec 					= 0.0003
 position                			= -0.026, -0.084, 0.0
 orientation             			= 0, 0, 0
 
-fire_point              			= 0.0, 0.128, 0.422
+fire_point              			= 0.0, 0.128, 0.522
 fire_point2             			= 0.0, 0.128, 0.522
 
-flame_particles						= weapons\generic_weapon05
 smoke_particles						= weapons\generic_shoot_00
 rpm_empty_click 					= 200
 
@@ -132,7 +131,7 @@ strap_bone1							= bip01_spine1
 startup_ammo           	 			= 10
 visual                  			= dynamics\weapons\wpn_svu\wpn_svu.ogf
 
-light_disabled          			= false
+light_disabled          			= true
 light_color		 					= 0.6,0.5,0.3
 light_range		 					= 0.01
 light_var_color		 				= 0.05
@@ -147,37 +146,28 @@ grenade_launcher_status				= 0
 
 zoom_enabled						= true
 zoom_rotate_time					= 0.25
-scope_zoom_factor       			= 10  ; 55 - без оптики
+scope_zoom_factor       			= 10
 
 scope_texture						= wpn_crosshair
 
 scope_name 							= wpn_addon_scope
-scope_x 							= 55
-scope_y 							= 9
-silencer_name           			= wpn_addon_silencer_svu
-silencer_x              			= 192                
-silencer_y              			= 21
-grenade_launcher_name   			= wpn_addon_grenade_launcher_m203
-grenade_launcher_x      			= 0
-grenade_launcher_y      			= 0
-
-;==================================== Copyright 2009 MulleR, Mongol ====================================
-snd_holster							= weapons\sniper_holster
-snd_draw							= weapons\sniper_holster
-snd_shoot							= weapons\svd\svd_shot
-snd_empty							= weapons\svu\svu_empty, 0.5
-snd_reload							= weapons\svu\svu_reload
-snd_close							= weapons\generic_close
-;==================================== Copyright 2009 MulleR, Mongol ====================================
+scope_x 							= 0
+scope_y 							= 0
+silencer_name           			= wpn_addon_silencer 
+silencer_x              			= 0                
+silencer_y              			= 0
 
 snd_silncer_shot        			= weapons\svu\svu_shot
 silencer_smoke_particles   			= weapons\generic_shoot_00
 
-silencer_light_color    			= 0.6,0.5,0.3
-silencer_light_range    			= 0.01
-silencer_light_var_color			= 0.05
-silencer_light_var_range			= 0.5
-silencer_light_time     			= 0.2
+;==================================== Copyright 2009 MulleR, Mongol ====================================
+snd_holster							= weapons\sniper_holster
+snd_draw							= weapons\sniper_holster
+snd_shoot							= weapons\svu\svu_shot
+snd_empty							= weapons\svu\svu_empty, 0.5
+snd_reload							= weapons\svu\svu_reload
+snd_close							= weapons\generic_close
+;==================================== Copyright 2009 MulleR, Mongol ====================================
 
 [wpn_svu_hud]:hud_base
 zoom_hide_crosshair					= true
@@ -203,8 +193,8 @@ fire_bone              	 			= wpn_body
 aim_hud_offset_pos					= -0.071000,0.031999,-0.103000
 aim_hud_offset_rot					= -0.002500,0.020000,0.000000
 
-aim_hud_offset_pos_16x9				= -0.181710,0.101000,-0.120500
-aim_hud_offset_rot_16x9				= 0.081500,0.070700,0.000000
+aim_hud_offset_pos_16x9				= -0.143500,0.024000,-0.120500
+aim_hud_offset_rot_16x9				= -0.005000,-0.005000,0.000000
 
 gl_hud_offset_pos					= 0,0,0
 gl_hud_offset_rot					= 0,0,0

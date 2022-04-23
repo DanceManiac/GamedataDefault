@@ -9,28 +9,23 @@ target_smart = agr_smart_terrain_1_6
 
 [agr_smart_terrain_1_6_duty_2_base_squad]
 faction = dolg
-npc = sim_default_duty_2, sim_default_duty_1, sim_default_duty_1, sim_default_duty_0, sim_default_duty_0
-target_smart = agr_smart_terrain_1_6
+npc = sim_default_duty_2, sim_default_duty_1, sim_default_duty_0
+target_smart = {+agru_go_out_end_task_complete} nil, agr_smart_terrain_1_6
 
 [agr_smart_terrain_1_6_duty_3_base_squad]
 faction = dolg
-npc = sim_default_duty_2, sim_default_duty_1, sim_default_duty_1, sim_default_duty_0, sim_default_duty_0
+npc = sim_default_duty_2, sim_default_duty_1, sim_default_duty_0
 target_smart = {+agru_go_out_end_task_complete} nil, agr_smart_terrain_1_6
 
 [agr_smart_terrain_1_6_duty_4_base_squad]
 faction = dolg
-npc = sim_default_duty_2, sim_default_duty_1, sim_default_duty_1, sim_default_duty_0, sim_default_duty_0
+npc = sim_default_duty_2, sim_default_duty_1, sim_default_duty_0
 target_smart = {+agru_go_out_end_task_complete} nil, agr_smart_terrain_1_6_near_1
 
 [agr_smart_terrain_1_6_duty_5_base_squad]
 faction = dolg
-npc = sim_default_duty_2, sim_default_duty_2, sim_default_duty_1, sim_default_duty_1, sim_default_duty_0
-target_smart = {+agru_go_out_end_task_complete} nil, agr_smart_terrain_1_6_near_2
-
-[agr_smart_terrain_1_6_duty_6_base_squad]
-faction = dolg
-npc = sim_default_duty_2, sim_default_duty_2, sim_default_duty_1, sim_default_duty_1, sim_default_duty_0
-target_smart = agr_smart_terrain_1_6
+npc = sim_default_duty_2, sim_default_duty_1, sim_default_duty_0
+target_smart = agr_smart_terrain_1_6_near_2
 
 [agr_smart_terrain_5_7_duty_1_squad]
 faction = dolg
@@ -39,7 +34,7 @@ target_smart = {+agru_leader_dolg_task_complete} nil, agr_smart_terrain_5_7
 
 [agr_smart_terrain_7_4_duty_1_squad]
 faction = dolg
-npc = sim_default_duty_1, sim_default_duty_1, sim_default_duty_0, sim_default_duty_0, sim_default_duty_0
+npc = sim_default_duty_1, sim_default_duty_0, sim_default_duty_0
 target_smart = {+agr_actor_inside_3} nil, agr_smart_terrain_7_4
 attack_power = 500
 on_death = %+agr_smart_terrain_7_4_duty_1_squad_dead%
@@ -47,19 +42,19 @@ on_death = %+agr_smart_terrain_7_4_duty_1_squad_dead%
 [agr_smart_terrain_7_4_duty_2_squad]
 faction = dolg
 npc = agr_dolg_blockpost_commander, agr_dolg_blockpost_soldier_1, agr_dolg_blockpost_soldier_2, agr_dolg_blockpost_soldier_3, agr_dolg_blockpost_soldier_4
-target_smart = {+agr_actor_inside_11} nil, {+agr_actor_inside_3} agr_smart_terrain_5_4:agr_smart_terrain_4_6:agr_smart_terrain_1_6, agr_smart_terrain_7_4
+target_smart = {+agr_actor_inside_3} agr_smart_terrain_5_4:agr_smart_terrain_4_6:agr_smart_terrain_1_6, agr_smart_terrain_7_4
 attack_power = 500
 on_death = %+agr_smart_terrain_7_4_duty_2_squad_dead%
 
 [agr_smart_terrain_7_4_duty_3_squad]
 faction = dolg
-npc = sim_default_duty_1, sim_default_duty_1, sim_default_duty_0, sim_default_duty_0, sim_default_duty_0
+npc = sim_default_duty_1, sim_default_duty_0, sim_default_duty_0
 target_smart = gar_smart_terrain_1_5
 attack_power = 500
 
 [agr_smart_terrain_6_6_duty_1_squad]
 faction = dolg
-npc = sim_default_duty_1, sim_default_duty_1, sim_default_duty_0, sim_default_duty_0, sim_default_duty_0
+npc = sim_default_duty_1, sim_default_duty_0, sim_default_duty_0
 target_smart = {+agr_actor_inside_3} nil, agr_smart_terrain_6_6
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -68,29 +63,29 @@ target_smart = {+agr_actor_inside_3} nil, agr_smart_terrain_6_6
 
 [agr_smart_terrain_4_4_stalker_1_squad]
 faction = stalker
-npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1;, sim_default_stalker_1, sim_default_stalker_1
+npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1
 target_smart = agr_smart_terrain_4_4
 
 [agr_smart_terrain_4_4_stalker_2_squad]
 faction = stalker
-npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1;, sim_default_stalker_1, sim_default_stalker_1
+npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1
 target_smart = agr_smart_terrain_4_4
 
 [agr_smart_terrain_4_4_stalker_4_squad]
 faction = stalker
-npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1;, sim_default_stalker_1, sim_default_stalker_1
+npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1
 target_smart = agr_smart_terrain_4_4_near_1
 attack_power = 400
 
 [agr_smart_terrain_4_4_stalker_5_squad]
 faction = stalker
-npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1;, sim_default_stalker_1, sim_default_stalker_1
+npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1
 target_smart = agr_smart_terrain_4_4_near_3
 attack_power = 400
 
 [agr_smart_terrain_4_4_stalker_7_squad]
 faction = stalker
-npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1;, sim_default_stalker_1, sim_default_stalker_1
+npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_1
 target_smart = agr_smart_terrain_4_4_near_2
 attack_power = 400
 
@@ -100,7 +95,7 @@ attack_power = 400
 
 [agr_smart_terrain_2_3_bandits_1_squad] ; ”крытие из камней
 faction = bandit_enemy
-npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
+npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
 target_smart = agr_smart_terrain_2_3
 sympathy = 0.1
 relationship = enemy
@@ -108,7 +103,7 @@ on_death = %+agr_smart_terrain_2_3_bandits_1_squad_death%
 
 [agr_smart_terrain_2_3_bandits_1_squad_attack]
 faction = bandit_enemy
-npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
+npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
 target_smart = {+agr_stalker_base_start_attack_3} agr_smart_terrain_4_4_near_2, agr_smart_terrain_2_3
 attack_power = 400
 sympathy = 0.1
@@ -116,7 +111,7 @@ relationship = enemy
 
 [agr_smart_terrain_6_4_bandits_1_squad] ; “упик тоннел€
 faction = bandit_enemy
-npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
+npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
 target_smart = agr_smart_terrain_6_4
 sympathy = 0.1
 relationship = enemy
@@ -124,7 +119,7 @@ on_death = %+agr_smart_terrain_6_4_bandits_1_squad_death%
 
 [agr_smart_terrain_6_4_bandits_1_squad_attack]
 faction = bandit_enemy
-npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
+npc = sim_default_bandit_enemy_2, sim_default_bandit_enemy_1, sim_default_bandit_enemy_1
 target_smart = {+agr_stalker_base_start_attack_2} agr_smart_terrain_4_4_near_3, agr_smart_terrain_6_4
 attack_power = 400
 sympathy = 0.1
@@ -136,7 +131,7 @@ relationship = enemy
 
 [agr_smart_terrain_1_3_scientists_squad]
 faction = ecolog
-npc = sim_default_ecolog_1, sim_default_ecolog_0, sim_default_ecolog_0, sim_default_ecolog_0, sim_default_ecolog_0
+npc = sim_default_ecolog_0, sim_default_ecolog_0, sim_default_ecolog_0
 target_smart = {+agr_stalker_scientist_quest_3} yan_smart_terrain_4_2, {+agr_stalker_scientist_quest_1} agr_smart_terrain_1_2, agr_smart_terrain_1_3
 attack_power = 400
 spawn_point = agr_smart_terrain_1_3_scientists_spawn_point
@@ -150,7 +145,7 @@ sympathy = 0.1
 
 [agr_smart_terrain_1_2_zombied_1_lair]
 faction = zombied
-npc = agr_stalker_zombied, agr_stalker_zombied, agr_stalker_zombied, agr_stalker_zombied, agr_stalker_zombied
+npc = agr_stalker_zombied, agr_stalker_zombied, agr_stalker_zombied
 target_smart = agr_smart_terrain_1_2
 relationship = enemy
 sympathy = 0.1
@@ -176,16 +171,16 @@ attack_power = 400
 [agr_smart_terrain_7_5_dogs_1_lair]
 faction = monster
 npc = dog_normal, dog_normal, dog_normal, dog_normal, dog_strong
-target_smart = {+agr_actor_inside_11 ~40} agr_smart_terrain_7_5:agr_smart_terrain_7_4, {+agr_actor_inside_11 ~60} agr_smart_terrain_7_5:agr_smart_terrain_6_6, agr_smart_terrain_7_5
+target_smart = {+agr_actor_inside_11} agr_smart_terrain_7_5:agr_smart_terrain_6_6, agr_smart_terrain_7_5
 attack_power = 400
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Snorks
 
 [agr_smart_terrain_3_5_snorks_1_lair]
 faction = monster
-npc = agr_snork_jumper_1, agr_snork_jumper_2, agr_snork_jumper_3, agr_snork_jumper_4, agr_snork_jumper_5
+npc = agr_snork_jumper_1, agr_snork_jumper_1, agr_snork_jumper_1
 target_smart = {+agr_actor_inside_6} nil, {+agr_actor_inside_3} agr_smart_terrain_4_6, agr_smart_terrain_3_5
-attack_power = 400
+attack_power = 200
 
 [agr_smart_terrain_4_2_snorks_1_lair]
 faction = monster

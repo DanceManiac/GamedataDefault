@@ -38,7 +38,7 @@ inv_grid_y         					= 21
 
 inv_weight       	 				= 3.25
 
-cost              					= 2500
+cost              					= 10000 ;MW 2500
 
 weapon_class      					= assault_rifle
 
@@ -197,10 +197,10 @@ hands_orientation					= -6.700007,-0.800001,-5.400002
 hands_position_16x9					= -0.100500,-0.191500,0.135500
 hands_orientation_16x9				= -3.999999,3.199998,-6.000006
 
-item_position						= 0.00500,-0.001619,-0.004513
-item_orientation					= 3.099572,0.078592,6.138245
+item_position						= 0.014173,-0.001619,-0.004513
+item_orientation					= 4.899572,0.078592,366.138245
 
-shell_point             			= 0.001,0.049,0.286
+shell_point             			= 0.021,0.099,0.286
 shell_dir               			= 0.0, 1.0, 0.0
 shell_bone              			= wpn_body
 
@@ -212,18 +212,18 @@ fire_bone2                			= wpn_body
 anm_show                     		= mp5_draw
 anm_hide                     		= mp5_holster
 anm_idle                     		= mp5_idle
-anm_idle_sprint         			= mp5_sprint_nev
+anm_idle_sprint         			= mp5_sprint
 anm_idle_moving         			= mp5_idle_moving
-anm_shots               			= mp5_shoot_1, mp5_shoot
+anm_shots               			= mp5_shoot
 anm_reload              			= mp5_reload
-anm_idle_aim            			= mp5_idle_aim_stop
+anm_idle_aim            			= mp5_idle_aim
 anm_bore                			= mp5_idle_bore
 
-aim_hud_offset_pos					= -0.058700,0.008000,-0.018000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot					= -0.032900,-0.063600,0.010000			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos					= -0.080500,0.004500,-0.018000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot					= -0.037000,-0.032000,0.010000			; +вниз\-вверх , +вправо\-влево
 
-aim_hud_offset_pos_16x9				= -0.066500,0.050000,0.029000			; +вправо\-влево , +вверх\-вниз
-aim_hud_offset_rot_16x9				= 0.043450,-0.016700,-0.017500			; +вниз\-вверх , +вправо\-влево
+aim_hud_offset_pos_16x9				= -0.088700,0.042000,0.029000			; +вправо\-влево , +вверх\-вниз
+aim_hud_offset_rot_16x9				= 0.032200,0.014700,-0.017500			; +вниз\-вверх , +вправо\-влево
 
 gl_hud_offset_pos       			= 0,0,0
 gl_hud_offset_rot       			= 0,0,0
@@ -236,7 +236,7 @@ lean_hud_offset_rot        			= 0,0,0
 
 [wpn_mp5_minigame]:wpn_mp5
 ammo_limit      					= 100
-ammo_class      					= ammo_beretta_minigame
+ammo_class      					= ammo_minigame
 fire_modes      					= 1
 $spawn          					= "weapons\wpn_mp5_minigame"
 cost            					= 0
@@ -261,7 +261,7 @@ installed_upgrades		= up_a_mp5, up_c_mp5, up_e_mp5
 $spawn								= "weapons\wpn_ump45"
 visual								= dynamics\weapons\wpn_ump45\wpn_ump45.ogf
 
-cost              					= 7500
+cost              					= 30000 ;MW 7500
 
 description          				= st_wpn_ump45_descr
 inv_name          					= st_wpn_ump45
@@ -317,8 +317,8 @@ hud									= wpn_ump45_hud
 [wpn_ump45_hud]:wpn_mp5_hud
 item_visual							= dynamics\weapons\wpn_ump45\wpn_ump45_hud.ogf
 
-aim_hud_offset_pos					= -0.059000,0.013800,-0.018000			; +вправо\-влево , +вверх\-вниз , +назад\-вперед
-aim_hud_offset_rot					= -0.021400,-0.063600,0.010000			; +вниз\-вверх , +вправо\-влево , +назад\-вперед
+aim_hud_offset_pos					= -0.080500,0.012800,-0.018000			; +вправо\-влево , +вверх\-вниз , +назад\-вперед
+aim_hud_offset_rot					= -0.022200,-0.032500,0.010000			; +вниз\-вверх , +вправо\-влево , +назад\-вперед
 
-aim_hud_offset_pos_16x9				= -0.066500,0.052000,0.029000			; +вправо\-влево , +вверх\-вниз , +назад\-вперед
-aim_hud_offset_rot_16x9				= 0.049500,-0.016700,-0.017500			; +вниз\-вверх , +вправо\-влево , +назад\-вперед
+aim_hud_offset_pos_16x9				= -0.088300,0.050000,0.029000			; +вправо\-влево , +вверх\-вниз , +назад\-вперед
+aim_hud_offset_rot_16x9				= 0.046400,0.014100,-0.017500			; +вниз\-вверх , +вправо\-влево , +назад\-вперед

@@ -39,11 +39,6 @@ lasthealth  = 0
 lasttime        = 0
 post_process = 0
 local weapon_hide = {}
-
-knife_switch = false
-bolt_switch = false
-grenade_switch = false
-
 ----------------------------------------------------------------------------------------------------------------------
 class "actor_binder" (object_binder)
 ----------------------------------------------------------------------------------------------------------------------
@@ -137,7 +132,6 @@ function actor_binder:net_destroy()
 				self.object:set_callback(callback.level_border_enter, nil)
 				self.object:set_callback(callback.level_border_exit, nil)
 				self.object:set_callback(callback.take_item_from_box, nil)
-				self.object:set_callback(callback.use_object, nil)
 
 				if sr_psy_antenna.psy_antenna then
 								sr_psy_antenna.psy_antenna:destroy()
@@ -183,7 +177,6 @@ function actor_binder:reinit()
 				self.object:set_callback(callback.level_border_enter, self.level_border_enter, self)
 				self.object:set_callback(callback.level_border_exit, self.level_border_exit, self)
 				self.object:set_callback(callback.take_item_from_box, self.take_item_from_box, self)
-				self.object:set_callback(callback.use_object, self.use_object, self)
 
 	--/#+# [lua_helper] ------------------------------------------------
 	if event then event("actor_stor"):once(true):trigger() --/#!#> событие: инициализация 'storage' актора
@@ -203,6 +196,7 @@ function actor_binder:take_item_from_box(box, item)
 -- подбираем свой пустой рюкзак (by Charsi & Kirgudu)
 	if box:section() == "active_ruck" --  наш заложенный рюкзак
 		and box:is_inv_box_empty() then -- и он пустой
+
 			-- спрашиваем, поднять ли рюкзак
 			local spwn = ui_confirm.confirm(get_hud(), game.translate_string("ui_st_take_backpack_caption"), nil,
 				function(e)
@@ -211,14 +205,9 @@ function actor_binder:take_item_from_box(box, item)
 				end,
 			{id = box:id(), sect = "inv_ruck"})
 			level.start_stop_menu(spwn, true)
+
 	end
 -- подбираем свой пустой рюкзак (by Charsi & Kirgudu)
-	if box_name == "gar_smart_terrain_5_6_box" and box:is_inv_box_empty() and db.actor:has_info("gar_quest_redemption_started") and not db.actor:has_info("gar_quest_redemption_done") then
-		db.actor:give_info_portion("gar_quest_redemption_done")
-	end
-	if box_name == "level_prefix_inventory_box_0002" and box:is_inv_box_empty() and not db.actor:has_info("mar_take_your_things_done") then
-		db.actor:give_info_portion("mar_take_your_things_done")
-	end
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:level_border_enter(npc, info_id)
@@ -231,8 +220,6 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:info_callback(npc, info_id)
 				printf("*INFO*: npc='%s' id='%s'", npc:name(), info_id)
-				--' Сюжетный саундтрек
-				if ogsm_options.soundtrack == 1 then ogsm_soundtrack.proceed_info(info_id) end
 				--' Сюжет
 				level_tasks.proceed(self.object)
 				-- Отметки на карте
@@ -240,9 +227,6 @@ function actor_binder:info_callback(npc, info_id)
 
 				-- обработка наступления некоторых событий
 				additional_events.event_processing(info_id)
-				
-				dialogs.check_info_merchant()
-				-- dialogs.info_call(info_id)
 end
 ----------------------------------------------------------------------------------------------------------------------
 -- Kirgudu
@@ -255,7 +239,7 @@ function actor_binder:article_callback(npc, group, name)
 				--printf("article_callback [%s][%s]", group, name)
 				if device().precache_frame >1 then return end
 
-				if ogsm_notepad then ogsm_notepad.OnArticle(group, name) end
+				if ogsm_notepad then ogsm_notepad.send_article(group, name) end
 
 end
 ----------------------------------------------------------------------------------------------------------------------
@@ -286,15 +270,20 @@ end
 function actor_binder:on_item_drop (obj)
 		level_tasks.proceed(self.object)
 				for k,v in pairs(task_manager:get_task_manager().task_info) do
-		if (v.type == "bring_item" and v.state ~= "finished") then
-			v:on_item_drop(obj)
-		end
+								if(v.type=="bring_item" and v.state~="finished") then
+												v:on_item_drop(obj)
+								end
+				end
+		--game_stats.update_drop_item (obj, self.object)
+
+	ogsm.on_item_drop(obj)
+
+--	(c)kstn
+	if obj:section()=="inv_ruck" then
+		self.rr_id=obj:id()
 	end
-	-- game_stats.update_drop_item (obj, self.object)
-end
-----------------------------------------------------------------------------------------------------------------------
-function actor_binder:use_object(obj, who)
-	ogsm.on_use_object(obj:section(), obj:id())
+--	(c)kstn
+
 end
 ----------------------------------------------------------------------------------------------------------------------
 
@@ -322,21 +311,7 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:update(delta)
 				object_binder.update(self, delta)
--- Eugenium
-	if (db.actor:item_in_slot(6) == nil) then
-		if (not has_alife_info("ogsm_psybar_removed")) then
-			db.actor:give_info_portion("ogsm_psybar_removed")
-			get_hud():RemoveCustomStatic("hud_psy_back")
-			get_hud():RemoveCustomStatic("hud_psy_level")
-		end
-	else
-		if (has_alife_info("ogsm_psybar_removed")) then
-			db.actor:disable_info_portion("ogsm_psybar_removed")
-			get_hud():RemoveCustomStatic("hud_psy_back")
-			get_hud():RemoveCustomStatic("hud_psy_level")
-		end
-	end
--- Eugenium
+
 				if self.already_jumped==false and jump_level.need_jump==true and (device().frame > self.spawn_frame+2000) then
 			jump_level.try_to_jump()
 			self.already_jumped = true
@@ -394,12 +369,6 @@ function actor_binder:update(delta)
 								self.object:set_actor_direction(dir:getH())
 								self.st.sleep_relocate_time = nil
 				end
-		
-		ogsm_item_sounds.check_knife()
-		ogsm_item_sounds.check_bolt()
-		ogsm_item_sounds.check_grenade()
-		--ogsm_item_sounds.do_switch()
-		
 		-- Апдейт прятание оружия игрока во время диалога
 		if self.object:is_talking() then
 			if self.weapon_hide_in_dialog == false then
@@ -479,33 +448,28 @@ function actor_binder:update(delta)
 									"]")
 	end]]--
 
-	-- Еда портится от радиации (Kirgudu) (автор изначальной идеи TAG)
-	if ogsm_options.food_radiation and self.object.radiation>0.4 and (self.object:object("bread") or self.object:object("kolbasa") or self.object:object("cheese")) then
-		local need_say = false
-		local sect = nil
-		self.object:iterate_inventory(function (dummy,item)
-			sect = item:section()
-			if sect=="bread" then
-				need_say = true
-				ogsm.remove_item(item)
-				ogsm.spawn_item_in_inv("bread_rad")
-			elseif sect=="kolbasa" and self.object.radiation>0.5 then
-				need_say = true
-				ogsm.remove_item(item)
-				ogsm.spawn_item_in_inv("kolbasa_rad")
-			elseif sect=="cheese" and self.object.radiation>0.6 then
-				need_say = true
-				ogsm.remove_item(item)
-				ogsm.spawn_item_in_inv("cheese_rad")
-			end
-		end, nil)
-		if need_say then
-			local news_caption = game.translate_string("st_tip").." "..game.translate_string("st_actor_name")
-			local news_text = "%c[255,255,0,0]"..game.translate_string("food_got_worse")
-			db.actor:give_game_news(news_caption, news_text, "ui_npc_u_actor", 0, 10000)
-			xr_sound.set_sound_play(db.actor:id(), "pda_sos")
-		end
-	end
+       --[[--' Хлеб, колбаса и сырок портятся от радиации
+       if self.object.radiation>0.4 and (self.object:object("bread") or self.object:object("kolbasa") or self.object:object("cheese")) then
+       local need_say = false
+       self.object:iterate_inventory(function (dummy,item)
+                       if item:section()=="bread" then
+                           need_say = true
+                           ogsm.remove_item(item)
+                           ogsm.spawn_item_in_inv("bread_rad")
+                       elseif item:section()=="kolbasa" then
+                           need_say = true
+                           ogsm.remove_item(item)
+                           ogsm.spawn_item_in_inv("kolbasa_rad")
+                       elseif item:section()=="cheese" then
+                           need_say = true
+                           ogsm.remove_item(item)
+                           ogsm.spawn_item_in_inv("cheese_rad")
+                       end 
+                       end, nil)
+       if need_say then
+       news_manager.send_tip(db.actor, "%c[default]Шрам:%c[25,240,25,25] Тьфу, ты... Еда от радиации испортилась.\n", nil, "st_actor_name", 5000)
+    end
+end]]--
 
 	--' Вывод сообщения о большой радиации
 	if self.object.radiation >= 0.7 then
@@ -602,10 +566,22 @@ function actor_binder:update(delta)
 
 	ogsm.on_actor_update(self.object)
 
+--	(c)kstn
+	if self.rr_id~=nil then
+		local se_obj=alife():object(self.rr_id)
+		if se_obj==nil or se_obj:section_name()~="inv_ruck" then
+			local ruck=alife():create("active_ruck", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id())
+			level.map_add_object_spot_ser(ruck.id, "my_treasure", game.translate_string("ui_st_backpack_my_stash"))
+			news_manager.send_tip(db.actor, game.translate_string("ui_st_backpack_stash_laid"), nil, nil, 5000)
+			self.rr_id=nil
+		end
+	end
+--	(c)kstn
+
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)
-	if ogsm_options.random_intro == 1 then ogsm_random_intro.on_save() end
+	ogsm_random_intro.on_save()
 	--/#+# for debug --------------------------------------------------
 	local size = packet:w_tell()
 	--/<---------------------------------------------------------------
@@ -617,7 +593,15 @@ function actor_binder:save(packet)
 
 				--' Сохраняем уровень сложности
 				packet:w_u8(level.get_game_difficulty())
-
+        
+        --// NGSM
+        --// Сохраняем имя сейв-файла
+        local new_sav = ngsm_virtual_save.gen_save_name()
+	      packet:w_stringZ(new_sav)
+	      --//Запасной виртуальный сейв
+	      local temp_sav = user_name().."_temp"
+	      packet:w_stringZ(temp_sav)
+        --// NGSM
 
 				--' Сохраняем данные об отключенном вводе
 				if self.st.disable_input_time == nil then
@@ -686,9 +670,6 @@ function actor_binder:save(packet)
 --		minigames_manager.get_minigames_manager():save(packet)
 				set_save_marker(packet, "save", true, "actor_binder")
 
-	if ogsm_respawn then ogsm_respawn.save() end
-	if ogsm_notepad then ogsm_notepad.save() end
-
 	--/#+# [se_stor] вызов сохранений во внешних модулях с публичным save() -----
 	if se_stor then
 		if to_log then to_log(script_name()..":save:size=["..(packet:w_tell() - size).."]") end --/#~#
@@ -699,6 +680,10 @@ function actor_binder:save(packet)
 		end
 	end
 	--/<-------------------------------------------------------------------------
+  --// NGSM
+	ngsm_virtual_save.save_to_file(new_sav)
+	ngsm_virtual_save.save_to_file(temp_sav)
+  --// NGSM
 end
 --/#+# [se_stor] сохранение в чанках данных из внешних модулей без публичного save(): --
 function actor_binder:ext_save(pk)
@@ -721,6 +706,18 @@ function actor_binder:load(reader)
 				local game_difficulty = reader:r_u8()
 				printf("load game_difficulty %s", tostring(game_difficulty))
 				get_console():execute("g_game_difficulty "..tostring(game_difficulty_by_num[game_difficulty]))
+
+        --// NGSM
+        --// Загружаем имя сейв-фаила (его дату)  
+        local new_sav_n = reader:r_stringZ()
+	      local temp_sav_n = reader:r_stringZ()
+        local sav_chk = io.open( "savedgames_add\\"..new_sav_n..".sav", "r" )
+        if sav_chk == nil then
+	        ngsm_virtual_save.load_from_file(temp_sav_n)
+        else
+	        ngsm_virtual_save.load_from_file(new_sav_n)
+	      end
+        --// NGSM
 
 				local stored_input_time = reader:r_u8()
 				if stored_input_time == true then
@@ -780,9 +777,6 @@ function actor_binder:load(reader)
 		-- if ogsm_rare_items_manager then ogsm_rare_items_manager.get_rim():load(reader) end
 --		minigames_manager.get_minigames_manager():load(reader)
 				set_save_marker(reader, "load", true, "actor_binder")
-
-	if ogsm_respawn then ogsm_respawn.load() end
-	if ogsm_notepad then ogsm_notepad.load() end
 
 	--/#+# [se_stor] вызов загрузки во внешних модулях с публичным save() -------
 	if se_stor then

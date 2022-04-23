@@ -1,0 +1,52 @@
+---------------------------- Библиотека служебных скриптов ----------------------------
+
+
+--//
+function on_waking()
+	if ngsm_options.new_ai_modules == true then
+	    ngsm_xr_offline_trade.update_trade_on_sleep()
+	end
+end
+
+function on_surge_end()
+    if ogsm.is_timer_exists("sm_surge_hides") == false then
+        ogsm.start_timer("sm_surge_hides", 10)
+		ngsm.save_var("surge_end", true)
+	end
+end
+
+--Апдейт онлайн сталкера
+function stalker_binder(obj, alive, binder)
+    if alive then
+	    if ngsm_options.new_ai_modules == true then
+	        ngsm_xr_armor.npc_update(binder)
+	    end
+	end
+end
+
+-- Переключает в оффлайн
+function on_npc_offline(obj)
+    if ngsm_options.new_ai_modules == true then
+	    ngsm.call("ngsm_xr_hider", "on_npc_offline", obj)
+	end
+end
+
+--Коллбек на хит NPC
+function on_npc_hit(obj, amount, local_direction, who, bone_index)
+    if ngsm_options.new_ai_modules == true then
+	    if ngsm_xr_detour then
+	        ngsm_xr_detour.on_hit(obj, who)
+		end
+	    ngsm_xr_armor.hit_check(obj, amount, local_direction, who, bone_index)
+	end
+end
+
+--Колбек на смерть NPC
+function on_npc_death(npc, who)
+    if ogsm_options.enable_marauder and ngsm_marauder and not string.find(npc:name(), "neutral_bodies") then
+	    ngsm_marauder.spawn_outfit(npc:id(), nil)
+	end
+end
+
+
+---------------------------- Библиотека служебных скриптов ----------------------------

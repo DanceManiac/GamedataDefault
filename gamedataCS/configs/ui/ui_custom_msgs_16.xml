@@ -193,21 +193,14 @@
 		<text font="graffiti22" r="240" g="217" b="182" a="255" align="l"/>
 	</cs_debug>
 
-	<ff_hud_bleed  x="0" y="0" width="1024" height="768" stretch="1">
-		<texture>ui\ui_hud_fx_bleed</texture>
-	</ff_hud_bleed>
-
-	<hud_psy_back x="0" y="0" width="0" height="0" stretch="1" complex_mode="1">
-		<texture>ui_hud_psy_back</texture>
+	<hud_psy_back x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
+		<texture>ui\ui_hud_psy_back</texture>
 	</hud_psy_back>
-	<hud_psy_level x="0" y="0" width="0" height="0" stretch="1" complex_mode="1">
-		<texture>ui_hud_psy_progress</texture>
+	<hud_psy_level x="0" y="0" width="1" height="1" stretch="1" complex_mode="1">
+		<texture>ui\ui_hud_psy_progress</texture>
 	</hud_psy_level>
 
 
-	<indik1_bld width="64" height="64" light_anim="la_hud1" la_cyclic="1" la_texture="1" la_text="0" la_alpha="0">
-		<texture>ui_hud_icon_drop</texture>
-	</indik1_bld>
 	<indik1_rad width="64" height="64" light_anim="la_hud1" la_cyclic="1" la_texture="1" la_text="0" la_alpha="0">
 		<texture>ui_hud_icon_radiation</texture>
 	</indik1_rad>
@@ -218,9 +211,6 @@
 		<texture>ui_hud_icon_weapon</texture>
 	</indik1_wpn>
 
-	<indik2_bld width="53" height="64" stretch="1" complex_mode="1">
-		<texture>ui_hud_icon_drop</texture>
-	</indik2_bld>
 	<indik2_rad width="53" height="64" stretch="1" complex_mode="1">
 		<texture>ui_hud_icon_radiation</texture>
 	</indik2_rad>
@@ -238,8 +228,498 @@
 		<texture>ui_hud_icon_eat</texture>
 	</indik2_hun>
 
-	<hud_bolt x="820" y="720" width="38" height="38" stretch="1">
-		<texture x="400" y="1550" width="50" height="50">ui\ui_icon_equipment</texture>
-	</hud_bolt>
+	<ind_af_medusa_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_medusa</texture>
+	</ind_af_medusa_1>
+	<ind_af_cristall_flower_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall_flower</texture>
+	</ind_af_cristall_flower_1>
+	<ind_af_night_star_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_night_star</texture>
+	</ind_af_night_star_1>
+	<ind_af_vyvert_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_vyvert</texture>
+	</ind_af_vyvert_1>
+	<ind_af_gravi_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gravi</texture>
+	</ind_af_gravi_1>
+	<ind_af_gold_fish_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gold_fish</texture>
+	</ind_af_gold_fish_1>
+	<ind_af_cristall_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall</texture>
+	</ind_af_cristall_1>
+	<ind_af_fireball_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fireball</texture>
+	</ind_af_fireball_1>
+	<ind_af_dummy_glassbeads_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_glassbeads</texture>
+	</ind_af_dummy_glassbeads_1>
+	<ind_af_eye_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_eye</texture>
+	</ind_af_eye_1>
+	<ind_af_fire_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fire</texture>
+	</ind_af_fire_1>
+	<ind_af_blood_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_blood</texture>
+	</ind_af_blood_1>
+	<ind_af_mincer_meat_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_mincer_meat</texture>
+	</ind_af_mincer_meat_1>
+	<ind_af_soul_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_soul</texture>
+	</ind_af_soul_1>
+	<ind_af_fuzz_kolobok_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fuzz_kolobok</texture>
+	</ind_af_fuzz_kolobok_1>
+	<ind_af_baloon_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_baloon</texture>
+	</ind_af_baloon_1>
+	<ind_af_glass_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_glass</texture>
+	</ind_af_glass_1>
+	<ind_af_electra_sparkler_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_sparkler</texture>
+	</ind_af_electra_sparkler_1>
+	<ind_af_electra_flash_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_flash</texture>
+	</ind_af_electra_flash_1>
+	<ind_af_electra_moonlight_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_moonlight</texture>
+	</ind_af_electra_moonlight_1>
+	<ind_af_dummy_battery_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_battery</texture>
+	</ind_af_dummy_battery_1>
+	<ind_af_dummy_dummy_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_dummy</texture>
+	</ind_af_dummy_dummy_1>
+	<ind_af_ice_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_ice</texture>
+	</ind_af_ice_1>
+	<ind_af_compass_1 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_compass</texture>
+	</ind_af_compass_1>
+
+	<ind_af_medusa_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_medusa</texture>
+	</ind_af_medusa_2>
+	<ind_af_cristall_flower_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall_flower</texture>
+	</ind_af_cristall_flower_2>
+	<ind_af_night_star_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_night_star</texture>
+	</ind_af_night_star_2>
+	<ind_af_vyvert_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_vyvert</texture>
+	</ind_af_vyvert_2>
+	<ind_af_gravi_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gravi</texture>
+	</ind_af_gravi_2>
+	<ind_af_gold_fish_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gold_fish</texture>
+	</ind_af_gold_fish_2>
+	<ind_af_cristall_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall</texture>
+	</ind_af_cristall_2>
+	<ind_af_fireball_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fireball</texture>
+	</ind_af_fireball_2>
+	<ind_af_dummy_glassbeads_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_glassbeads</texture>
+	</ind_af_dummy_glassbeads_2>
+	<ind_af_eye_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_eye</texture>
+	</ind_af_eye_2>
+	<ind_af_fire_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fire</texture>
+	</ind_af_fire_2>
+	<ind_af_blood_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_blood</texture>
+	</ind_af_blood_2>
+	<ind_af_mincer_meat_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_mincer_meat</texture>
+	</ind_af_mincer_meat_2>
+	<ind_af_soul_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_soul</texture>
+	</ind_af_soul_2>
+	<ind_af_fuzz_kolobok_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fuzz_kolobok</texture>
+	</ind_af_fuzz_kolobok_2>
+	<ind_af_baloon_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_baloon</texture>
+	</ind_af_baloon_2>
+	<ind_af_glass_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_glass</texture>
+	</ind_af_glass_2>
+	<ind_af_electra_sparkler_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_sparkler</texture>
+	</ind_af_electra_sparkler_2>
+	<ind_af_electra_flash_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_flash</texture>
+	</ind_af_electra_flash_2>
+	<ind_af_electra_moonlight_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_moonlight</texture>
+	</ind_af_electra_moonlight_2>
+	<ind_af_dummy_battery_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_battery</texture>
+	</ind_af_dummy_battery_2>
+	<ind_af_dummy_dummy_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_dummy</texture>
+	</ind_af_dummy_dummy_2>
+	<ind_af_ice_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_ice</texture>
+	</ind_af_ice_2>
+	<ind_af_compass_2 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_compass</texture>
+	</ind_af_compass_2>
+
+	<ind_af_medusa_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_medusa</texture>
+	</ind_af_medusa_3>
+	<ind_af_cristall_flower_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall_flower</texture>
+	</ind_af_cristall_flower_3>
+	<ind_af_night_star_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_night_star</texture>
+	</ind_af_night_star_3>
+	<ind_af_vyvert_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_vyvert</texture>
+	</ind_af_vyvert_3>
+	<ind_af_gravi_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gravi</texture>
+	</ind_af_gravi_3>
+	<ind_af_gold_fish_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gold_fish</texture>
+	</ind_af_gold_fish_3>
+	<ind_af_cristall_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall</texture>
+	</ind_af_cristall_3>
+	<ind_af_fireball_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fireball</texture>
+	</ind_af_fireball_3>
+	<ind_af_dummy_glassbeads_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_glassbeads</texture>
+	</ind_af_dummy_glassbeads_3>
+	<ind_af_eye_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_eye</texture>
+	</ind_af_eye_3>
+	<ind_af_fire_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fire</texture>
+	</ind_af_fire_3>
+	<ind_af_blood_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_blood</texture>
+	</ind_af_blood_3>
+	<ind_af_mincer_meat_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_mincer_meat</texture>
+	</ind_af_mincer_meat_3>
+	<ind_af_soul_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_soul</texture>
+	</ind_af_soul_3>
+	<ind_af_fuzz_kolobok_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fuzz_kolobok</texture>
+	</ind_af_fuzz_kolobok_3>
+	<ind_af_baloon_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_baloon</texture>
+	</ind_af_baloon_3>
+	<ind_af_glass_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_glass</texture>
+	</ind_af_glass_3>
+	<ind_af_electra_sparkler_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_sparkler</texture>
+	</ind_af_electra_sparkler_3>
+	<ind_af_electra_flash_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_flash</texture>
+	</ind_af_electra_flash_3>
+	<ind_af_electra_moonlight_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_moonlight</texture>
+	</ind_af_electra_moonlight_3>
+	<ind_af_dummy_battery_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_battery</texture>
+	</ind_af_dummy_battery_3>
+	<ind_af_dummy_dummy_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_dummy</texture>
+	</ind_af_dummy_dummy_3>
+	<ind_af_ice_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_ice</texture>
+	</ind_af_ice_3>
+	<ind_af_compass_3 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_compass</texture>
+	</ind_af_compass_3>
+
+	<ind_af_medusa_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_medusa</texture>
+	</ind_af_medusa_4>
+	<ind_af_cristall_flower_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall_flower</texture>
+	</ind_af_cristall_flower_4>
+	<ind_af_night_star_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_night_star</texture>
+	</ind_af_night_star_4>
+	<ind_af_vyvert_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_vyvert</texture>
+	</ind_af_vyvert_4>
+	<ind_af_gravi_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gravi</texture>
+	</ind_af_gravi_4>
+	<ind_af_gold_fish_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gold_fish</texture>
+	</ind_af_gold_fish_4>
+	<ind_af_cristall_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall</texture>
+	</ind_af_cristall_4>
+	<ind_af_fireball_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fireball</texture>
+	</ind_af_fireball_4>
+	<ind_af_dummy_glassbeads_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_glassbeads</texture>
+	</ind_af_dummy_glassbeads_4>
+	<ind_af_eye_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_eye</texture>
+	</ind_af_eye_4>
+	<ind_af_fire_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fire</texture>
+	</ind_af_fire_4>
+	<ind_af_blood_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_blood</texture>
+	</ind_af_blood_4>
+	<ind_af_mincer_meat_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_mincer_meat</texture>
+	</ind_af_mincer_meat_4>
+	<ind_af_soul_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_soul</texture>
+	</ind_af_soul_4>
+	<ind_af_fuzz_kolobok_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fuzz_kolobok</texture>
+	</ind_af_fuzz_kolobok_4>
+	<ind_af_baloon_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_baloon</texture>
+	</ind_af_baloon_4>
+	<ind_af_glass_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_glass</texture>
+	</ind_af_glass_4>
+	<ind_af_electra_sparkler_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_sparkler</texture>
+	</ind_af_electra_sparkler_4>
+	<ind_af_electra_flash_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_flash</texture>
+	</ind_af_electra_flash_4>
+	<ind_af_electra_moonlight_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_moonlight</texture>
+	</ind_af_electra_moonlight_4>
+	<ind_af_dummy_battery_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_battery</texture>
+	</ind_af_dummy_battery_4>
+	<ind_af_dummy_dummy_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_dummy</texture>
+	</ind_af_dummy_dummy_4>
+	<ind_af_ice_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_ice</texture>
+	</ind_af_ice_4>
+	<ind_af_compass_4 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_compass</texture>
+	</ind_af_compass_4>
+
+	<ind_af_medusa_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_medusa</texture>
+	</ind_af_medusa_5>
+	<ind_af_cristall_flower_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall_flower</texture>
+	</ind_af_cristall_flower_5>
+	<ind_af_night_star_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_night_star</texture>
+	</ind_af_night_star_5>
+	<ind_af_vyvert_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_vyvert</texture>
+	</ind_af_vyvert_5>
+	<ind_af_gravi_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gravi</texture>
+	</ind_af_gravi_5>
+	<ind_af_gold_fish_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_gold_fish</texture>
+	</ind_af_gold_fish_5>
+	<ind_af_cristall_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_cristall</texture>
+	</ind_af_cristall_5>
+	<ind_af_fireball_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fireball</texture>
+	</ind_af_fireball_5>
+	<ind_af_dummy_glassbeads_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_glassbeads</texture>
+	</ind_af_dummy_glassbeads_5>
+	<ind_af_eye_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_eye</texture>
+	</ind_af_eye_5>
+	<ind_af_fire_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fire</texture>
+	</ind_af_fire_5>
+	<ind_af_blood_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_blood</texture>
+	</ind_af_blood_5>
+	<ind_af_mincer_meat_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_mincer_meat</texture>
+	</ind_af_mincer_meat_5>
+	<ind_af_soul_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_soul</texture>
+	</ind_af_soul_5>
+	<ind_af_fuzz_kolobok_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_fuzz_kolobok</texture>
+	</ind_af_fuzz_kolobok_5>
+	<ind_af_baloon_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_baloon</texture>
+	</ind_af_baloon_5>
+	<ind_af_glass_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_glass</texture>
+	</ind_af_glass_5>
+	<ind_af_electra_sparkler_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_sparkler</texture>
+	</ind_af_electra_sparkler_5>
+	<ind_af_electra_flash_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_flash</texture>
+	</ind_af_electra_flash_5>
+	<ind_af_electra_moonlight_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_electra_moonlight</texture>
+	</ind_af_electra_moonlight_5>
+	<ind_af_dummy_battery_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_battery</texture>
+	</ind_af_dummy_battery_5>
+	<ind_af_dummy_dummy_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_dummy_dummy</texture>
+	</ind_af_dummy_dummy_5>
+	<ind_af_ice_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_ice</texture>
+	</ind_af_ice_5>
+	<ind_af_compass_5 width="24" height="30" stretch="1" complex_mode="1">
+		<texture>ui_af_compass</texture>
+	</ind_af_compass_5>
+	
+<!-- Dinamic HUD -->
+	<hud_gas_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas1</texture>
+	</hud_gas_blue>
+	<hud_gas_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas2</texture>
+	</hud_gas_green>
+	<hud_gas_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas3</texture>
+	</hud_gas_yellow>
+	<hud_gas_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas4</texture>
+	</hud_gas_red>
+	<hud_gas_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas5</texture>
+	</hud_gas_red2>
+	<hud_gas_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_gas6</texture>
+	</hud_gas_red3>
+
+	<hud_kill_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc1</texture>
+	</hud_kill_blue>
+	<hud_kill_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc2</texture>
+	</hud_kill_green>
+	<hud_kill_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc3</texture>
+	</hud_kill_yellow>
+	<hud_kill_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc4</texture>
+	</hud_kill_red>
+	<hud_kill_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc5</texture>
+	</hud_kill_red2>
+	<hud_kill_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_merc6</texture>
+	</hud_kill_red3>
+	
+	<hud_sci_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci1</texture>
+	</hud_sci_blue>
+	<hud_sci_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci2</texture>
+	</hud_sci_green>
+	<hud_sci_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci3</texture>
+	</hud_sci_yellow>
+	<hud_sci_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci4</texture>
+	</hud_sci_red>
+	<hud_sci_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci5</texture>
+	</hud_sci_red2>
+	<hud_sci_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_sci6</texture>
+	</hud_sci_red3>
+
+	<hud_mil_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil1</texture>
+	</hud_mil_blue>
+	<hud_mil_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil2</texture>
+	</hud_mil_green>
+	<hud_mil_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil3</texture>
+	</hud_mil_yellow>
+	<hud_mil_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil4</texture>
+	</hud_mil_red>
+	<hud_mil_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil5</texture>
+	</hud_mil_red2>
+	<hud_mil_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_mil6</texture>
+	</hud_mil_red3>
+
+	<hud_exo_blue x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo1</texture>
+	</hud_exo_blue>
+	<hud_exo_green x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo2</texture>
+	</hud_exo_green>
+	<hud_exo_yellow x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo3</texture>
+	</hud_exo_yellow>
+	<hud_exo_red x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo4</texture>
+	</hud_exo_red>
+	<hud_exo_red2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo5</texture>
+	</hud_exo_red2>
+	<hud_exo_red3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\hud_exo6</texture>
+	</hud_exo_red3>
+
+	<hud_blood1 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood1</texture>
+	</hud_blood1>
+	<hud_blood2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood2</texture>
+	</hud_blood2>
+	<hud_blood3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood3</texture>
+	</hud_blood3>
+	<hud_blood4 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood4</texture>
+	</hud_blood4>
+	<hud_blood5 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\blood5</texture>
+	</hud_blood5>
+
+	<hud_blur1 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath1</texture>
+	</hud_blur1>
+	<hud_blur2 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath2</texture>
+	</hud_blur2>
+	<hud_blur3 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath5</texture>
+	</hud_blur3>
+	<hud_blur4 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath3</texture>
+	</hud_blur4>
+	<hud_blur5 x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>dinamic_hud\breath4</texture>
+	</hud_blur5>
+<!-- /Dinamic HUD -->
 
 </header>

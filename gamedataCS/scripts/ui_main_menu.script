@@ -7,7 +7,7 @@
 -- Version:     0.9
 
 ---------------------->> CoP style load mod
--- руками не трогать!
+-- руками не трогать
 local press_any_key_on_start = false
 local sound_volume_eff,sound_volume_music = 0,0
 ----------------------<< CoP style load mod
@@ -118,9 +118,11 @@ function main_menu:InitControls()
 
 	local _ver = xml:InitStatic		("static_version",self)
 	local ogsm_ver = xml:InitStatic		("ogsm_version",self)
+	local ngsm_ver = xml:InitStatic		("ngsm_version",self)
 	local mm						= _G.main_menu.get_main_menu()
-	_ver:SetText					("S.T.A.L.K.E.R. - Clear Sky ver. " .. mm:GetGSVer())
-	ogsm_ver:SetText					(game.translate_string("st_ogsm_version"))
+	_ver:SetText					("Clear Sky " .. mm:GetGSVer())
+	ogsm_ver:SetText					("OGSM CS 1.8 CE compilation fixes (01.01.17)")
+	ngsm_ver:SetText					("OGSM CS 1.8 CE compilation addons (11.02.17)")
 end
 
 function main_menu:Show(f)
@@ -225,6 +227,10 @@ end
 function main_menu:OnMessageQuitGame()
 	local console = get_console()
 	console:execute("disconnect")
+	
+	--// NGSM
+	ngsm_virtual_save.OnDisconect()
+	--// NGSM
 end
 
 function main_menu:OnMessageQuitWin()
@@ -404,6 +410,7 @@ function main_menu:OnKeyboard(dik, keyboard_action)  --virtual function
 				-- console:execute("main_menu off")							   --' xStream 02.2008
 			end
 		end
+
 --		if dik == DIK_keys.DIK_S then
 --			self:OnButton_load_spawn()
 --		else

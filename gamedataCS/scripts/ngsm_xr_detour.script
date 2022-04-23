@@ -1,0 +1,670 @@
+--[[ -----------------------------------------------------------------------------------------------
+ File       : m_detour.script 
+ Description: Sheme: "Detour of anomalies" ("НПС - обход аномалий и костров")
+ Copyright  : на основе  Stalkers_are_not_blind_0.99 by Red75 и его адаптации под ЧН Artos 2008 © SIMBION:STCS mod	
+ Last edit  : 02.08.2009 (by Zmeelov) доработка под ЧН, отладка, адаптация для Zm мода
+ Comment    : Zm: Сталкеры в ЧН действительно обходят аномалии, но если в момент обхода аномалии застряли - стоят до следующей загрузки 
+--]] -----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------
+--/ SETING (настройки)
+----------------------------------------------------------------------
+need_upd_anom_list = true
+local anoms_list = {} --/массив аномалий на локации
+local anoms      = {} --/массив видимых НПС аномалий
+local camps_list = {} --/массив костров на локации
+local camps      = {} --/массив видимых НПС костров
+local cur_level  = "" --/текущий уровень
+
+local level_vertexes = {
+	marsh=514248,
+	garbage=358066,
+	escape=624951,
+	darkvalley=360974,
+	red_forest=164829,
+	agroprom=375233,
+	yantar=147712,
+	military=385322,
+	agroprom_underground=5348,
+	limansk=61524,
+	hospital=7865,
+	stancia_2=203361,
+	jupiter_underground=40996
+}
+
+local hide_tbl = {}
+local level_name = level.name()
+local level_vertexes = level_vertexes[level_name]
+----------------------------------------------------------------------
+--/ SCHEME PARTs (глобальные переменные)
+----------------------------------------------------------------------
+evid_detour_anomaly  = 1099
+actid_detour_anomaly = evid_detour_anomaly
+anom_detour=false; --##
+----------------------------------------------------------------------------------------------------
+--/ EVALUATOR
+----------------------------------------------------------------------------------------------------
+class "evaluator_detour_anomaly" (property_evaluator)
+
+function evaluator_detour_anomaly:__init(name, storage) super(nil, name)
+	self.st = storage
+	self.hasdetector = false
+	self.iscamp = false
+end
+
+function evaluator_detour_anomaly:evaluate()
+	if self.object == nil or not IsStalker(self.object) then return false end
+	local npc = self.object
+
+	if self.flg == nil then
+		self.flg = false --/laststate
+	end
+	if not self.tmr_stuck then
+		self.tmr_stuck = {}
+	end
+	if not self.rdelta then
+		self.rdelta = {}
+	end
+	if self.mgr == nil then
+		self.mgr = npc:motivation_action_manager()
+	end
+	if self.mgr:evaluator(xr_evaluators_id.sidor_wounded_base) and
+		 self.mgr:evaluator(xr_evaluators_id.sidor_wounded_base):evaluate() then
+		--/ Чтобы избежать ситуации когда раненый лежит недалеко от аномалии и после лечения начинает её игнорировать
+		return false
+	end
+
+	local cur_time = time_global()
+	if (self.tmr_next_ev or 0) < cur_time then --/ таймер паузы - время на выполнение обхода
+		if npc:mental_state() == anim.danger then
+			self.tmr_next_ev = cur_time + 5000
+		elseif npc:mental_state() == anim.free then
+			self.tmr_next_ev = cur_time + 4000
+		else
+			self.tmr_next_ev = cur_time + 2000
+		end
+		
+		local aid,cls,pos,dist,radius = get_nearest_anomaly(npc,self.prefdir)
+		--/ Если NPC уже увидел аномалию, увеличим радиус обнаружения на 2 м, чтобы избежать частого переключения схем
+		if aid then
+			local obj = alife():object(aid)
+			if isCampfire(obj) then --/ костер
+				self.iscamp = true
+			else
+				self.iscamp = false
+			end
+			if self.rdelta[aid] == nil then
+				if self.iscamp then
+					self.rdelta[aid] = 1.5
+				else
+					self.rdelta[aid] = 4 
+				end
+			end
+			local v_radius
+			v_radius = radius + self.rdelta[aid]+2
+			if self.flg and not self.iscamp then
+				v_radius = v_radius + 2
+			end
+			if dist < v_radius then
+				--/ проверка: не болтается ли NPC рядом с аномалией слишком долго.
+				if self.tmr_stuck[aid] == nil or self.tmr_stuck[aid] < cur_time - 400 then --  - 400
+					if not self.iscamp then
+						self.tmr_stuck[aid] = cur_time + 300 --/ даем  секунд чтобы выбраться из аномалии
+						self.rdelta[aid] = 4 --4
+					else
+						self.tmr_stuck[aid] = cur_time + 1000 --/ даем  секунд чтобы выбраться из костра
+						self.rdelta[aid] = 1.5
+					end
+
+				end
+					self.flg = true
+				
+			else
+				self.flg = false
+			end
+		end
+	end
+	return self.flg
+end
+
+function block_scheme(st)
+end
+
+----------------------------------------------------------------------------------------------------
+--/ ACTION
+----------------------------------------------------------------------------------------------------
+class "action_detour_anomaly" (action_base)
+
+function action_detour_anomaly:__init (npc, action_name, storage) super (nil, action_name)
+	self.st = storage
+	self.hasdetector = false
+	self.iscamp = false
+end
+
+local nps_pos_tmr  = {} --/ массив координат и времен NPCs
+
+local state_to_mgr = { "raid", "raid_fire", "assault_fire" }
+
+function action_detour_anomaly:initialize()
+	action_base.initialize(self)
+	local npc = self.object
+	--/ ориентируем
+	npc:set_desired_position()
+	npc:set_desired_direction()
+	--/ задаем параметры движения
+npc:set_detail_path_type(move.line)
+npc:set_path_type(game_object.level_path)
+	--/ освобождаем от всех ограничений
+	npc:remove_all_restrictions()
+	npc:set_body_state(move.standing)
+	npc:set_movement_type(move.walk)
+	npc:movement_enabled(true)
+	--/ используем стэйт-менеджер для настройки анимации
+	local state_mng = "idle" --/ "idle"|"search"|"assault"|"rush"
+	state_mgr.set_state(npc, state_mng)
+	self.st.state_mng = state_mng
+	self.prefdir = npc:direction()
+	self.reverse = false
+	self.pos_tmr = {pos=npc:position(), tmr=time_global()+4000}
+	self.tmr_err = time_global() + 5000 
+	self.lvid = npc:level_vertex_id()
+	if not self.rdelta then
+		self.rdelta = {}
+	end
+end
+
+function action_detour_anomaly:execute()
+anom_detour=true --##
+	action_base.execute(self)
+	local npc = self.object
+	if not (npc and IsStalker(npc)) then return false end --/>
+	local cur_time = time_global()
+	if (self.tmr_next_ac or 0) < cur_time then --/ таймер паузы
+		self.tmr_next_ac = cur_time + 2000  --2000 --##1000 @@@
+		local aid,cls,anpos,dist,radius = get_nearest_anomaly(npc,self.prefdir)
+		if aid then
+			local obj = alife():object(aid)
+			if isCampfire(obj) then --/ костер
+				self.iscamp = true
+			else
+				self.iscamp = false
+			end
+			if self.pos_tmr.tmr < cur_time and veceq(npc:position(),self.pos_tmr.pos) then
+				--/ NPC застрял... включаем реверс... и уменьшаем радиус обхода
+				self.reverse = not self.reverse
+				if not self.rdelta[aid] then
+					if self.iscamp then
+						self.rdelta[aid] = 0.75
+					else
+						self.rdelta[aid] = 2.5 --4.5 --3.5  --2.5 @@@@@@@@@@@@@@@@@@@@@
+					end
+				else
+					self.rdelta[aid] = self.rdelta[aid] - 0.3 --/TODO: Error:attempt to perform arithmetic on field '?' (a nil value)
+				end
+			elseif not veceq(npc:position(),self.pos_tmr.pos) then
+				self.pos_tmr = {pos=npc:position(), tmr=cur_time+4000} --/ обновляем координату и время 
+				self.hasdetector = npc_have_detector(npc) --/ проверка наличия детектора у NPC
+			end
+			--
+			--/ проверка - не завис ли NPC?
+			local state_mng = self.st.state_mng
+			if not state_mng then
+				state_mng = "move"
+			end
+			if self.tmr_err < cur_time then
+				self.tmr_err = cur_time + 5000
+				if self.lvid == npc:level_vertex_id() then
+npc:set_movement_type(move.walk)
+npc:set_mental_state(anim.free)
+local lvid = math.random(1, level_vertexes)
+npc:set_dest_level_vertex_id(lvid)
+npc:set_desired_position()
+npc:set_desired_direction()
+	  npc:set_path_type(game_object.level_path)
+	  npc:set_detail_path_type(move.line)
+npc:remove_all_restrictions() -- Освободим сталкера от всех ограничений
+if npc:animation_count() > 0 then
+npc:clear_animations()
+npc:set_mental_state(anim.panic)
+npc:set_movement_type(move.walk)
+end
+				end
+			end
+			--
+			--/ проверка: "куда поворачивать?!"
+	local flg = get_k_radius(npc)
+			local angle = math.random(45,285) --## 45,285  120,240
+	aaa = math.random(27,90)/10 --27,60
+anom_detour=false --##
+			if dist < radius*flg then --/ NPC внутри аномалии, срочно отходим
+				angle = math.random(120, 135) --## 90,270  160,200
+				self.reverse = false
+				npc:set_movement_type(move.run)
+			end
+			npc:movement_enabled(true)
+			if self.reverse then
+				angle = -angle
+			end
+			local curdir, newdir = self.prefdir, nil
+			local anvec = vector():set(anpos):sub(npc:position())
+			anvec.y = 0
+			anvec:normalize()
+			if curdir.x*anvec.z-curdir.z*anvec.x < 0 then
+				newdir = vector_rotate_y(anvec,angle)
+			else
+				newdir = vector_rotate_y(anvec,-angle)
+			end
+
+			local vertex_id = level.vertex_in_direction(npc:level_vertex_id(),newdir,aaa) --##3
+
+			utils.send_to_nearest_accessible_vertex(npc,vertex_id)
+		end
+	end
+anom_detour=false --## конец ставить сюда?
+end
+
+function action_detour_anomaly:finalize ()
+anom_detour=false --##
+	action_base.finalize(self)
+end
+
+----------------------------------------------------------------------------------------------------
+--/ BINDER
+----------------------------------------------------------------------------------------------------
+function add_to_binder(object, ini, scheme, section, storage)
+	local properties = {}
+	local operators  = {}
+	
+	properties["detour_anomaly"] = evid_detour_anomaly
+	operators["detour_anomaly"]  = actid_detour_anomaly
+	
+	local manager = object:motivation_action_manager()
+	
+	--/ Evaluators
+	manager:add_evaluator   (evid_detour_anomaly, this.evaluator_detour_anomaly("detour_anomaly", storage))
+	
+	--/ Actions
+	local action = this.action_detour_anomaly(object, "detour_anomaly", storage)
+	action:add_precondition (world_property(stalker_ids.property_alive, true))
+	action:add_precondition (world_property(xr_evaluators_id.sidor_wounded_base, false))
+	action:add_precondition (world_property(evid_detour_anomaly, true))
+	action:add_effect       (world_property(evid_detour_anomaly, false))
+	manager:add_action (actid_detour_anomaly, action)
+	
+	action = manager:action (xr_actions_id.alife)
+	action:add_precondition (world_property(evid_detour_anomaly, false))
+	
+	action = manager:action (stalker_ids.action_combat_planner)
+	action:add_precondition (world_property(evid_detour_anomaly, false))
+end
+
+function set_scheme(npc, ini, scheme, section)
+	local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
+	st.enabled = true
+end
+
+function disable_scheme(npc, scheme)
+	local st = db.storage[npc:id()][scheme]
+	if st then
+		st.enabled = false
+	end
+end
+
+--/ Вызывается при переключении на новую секцию. Производит вычитывание настроек из текущей секции.
+function reset_scheme(loading)
+	--/ reserv
+end
+
+----------------------------------------------------------------------------------------------------
+--/ HELPERs (функции)
+----------------------------------------------------------------------------------------------------
+--/ Проверка наличия детектора
+function npc_have_detector(npc)
+	return npc:object("detector_simple") ~= nil
+			or npc:object("detector_advances") ~= nil
+			or npc:object("detector_elite") ~= nil
+end
+
+function veceq(v1,v2)
+	return math.abs(v1.x-v2.x) < 0.5 and
+         math.abs(v1.y-v2.y) < 0.5 and
+         math.abs(v1.z-v2.z) < 0.5
+end
+
+function vec2str(v)
+	if v.x and v.y and v.z then
+		return v.x .. ";" .. v.y .. ";" .. v.z
+	else
+		return "not a vector"
+	end
+end
+
+function get_nearest_anomaly_zones(npc)
+	local ret = {}
+	if not cur_level or cur_level ~= level.name() then
+	need_upd_anom_list = true --так же устанавливается в начале выброса в xr_surge_hide
+	end
+	if need_upd_anom_list == true then
+		cur_level = level.name()
+		anoms_list = {} --/ обнуляем массив аномалий
+		camps_list = {} --/ обнуляем массив костров
+		anoms = {}
+		camps = {}
+		anoms_list = enumerate_anoms() --/ для совместимости с модами
+		
+		camps_list = enumerate_camps() --/ массив костров на текущей локации
+	end
+		anoms = get_vis_anoms(npc,30,anoms_list) --30 --60 ok
+	
+	ret = anoms
+
+	--/ добавляем костры
+	camps = get_vis_anoms(npc,8,camps_list)  
+	if camps and #camps > 0 then
+		for k,v in pairs(camps) do
+			table.insert(ret,{id=v.id, clsid=v.clsid, pos=v.pos, radius=v.radius})
+
+		end
+	end
+	need_upd_anom_list = false
+	return ret
+end
+
+function get_nearest_anomaly(npc,npc_dir)
+	anoms = get_nearest_anomaly_zones(npc)
+	if not (anoms and #anoms > 0) then return false end 
+	local npos = npc:position()
+	local ndir
+	if npc_dir then
+		ndir = npc_dir
+	else
+		ndir = npc:direction()
+	end
+	local t = {} --/ массив параметров аномалии
+	local aid, radius = nil, 0.5
+
+	local mindist = 1500
+
+	for k,v in pairs(anoms) do
+
+
+		local delta = vector():set(v.pos):sub(npos)
+		local scalarmul = (delta.x*ndir.x+delta.z*ndir.z)/math.sqrt(delta.x*delta.x+delta.z*delta.z)
+		--/ если скалярное произведения текущего направления движения NPC
+		--/ и относительного радиус вектора аномалии меньше 0, то NPC удаляется от аномалии
+		if scalarmul > (-0.6) then ---  -0.6
+			local dist = npos:distance_to(v.pos) - v.radius
+			if dist < mindist  then           
+				mindist = dist
+				aid = v.id --k
+				t = v
+			end
+		end
+	end
+	if not aid then
+		return false 
+	end
+	if t.radius and t.radius > 0 then
+		radius = t.radius
+	end
+	return aid, t.clsid, t.pos, radius+mindist, radius          -- +addrad
+end
+
+--/---------------------------
+function get_vis_anoms(npc,radius,tbl)
+	local ret = {}
+	if tbl and #tbl > 0 then
+		for k,v in pairs(tbl) do
+			local obj = level.object_by_id(v.id)
+			if obj then
+				local dist = npc:position():distance_to(v.pos) - v.radius
+				if dist < radius then
+					table.insert(ret,{id=v.id, clsid=v.clsid, pos=v.pos, radius=v.radius})
+				end
+			end
+		end
+	end
+
+	return ret
+end
+
+--/-----------------------------------------------
+function enumerate_anoms()
+    --##Zm
+    local a = 1
+    local alg = ngsm.load_var("anom_disable_alg"..a, 128)
+    math.randomseed (alg)
+	local ret = {}
+	for i=0,65534 do
+		local obj = level.object_by_id(i)
+		if obj then
+			local sobj = alife():object(obj:id()) ---------------------
+			
+			if sobj and sobj:section_name() then
+addrad = 0
+if string.find(sobj:section_name(), "zone_mincer_strong") or string.find(sobj:section_name(), "zone_mine_gravitational") then
+addrad = 2.7  ---оч эффективная добавка,в одиночные аномалии вляпываются только новички --2.7
+elseif string.find(sobj:section_name(), "zone_buzz") or string.find(sobj:section_name(), "zone_witches_galantine_strong") then
+addrad = 1.7  ---оч эффективная добавка,в одиночные аномалии вляпываются только новички --1.7
+end
+if atmanoms then
+			if atmanoms.chek_anoms_name(sobj) == true then
+				if math.random()< 0.6 
+				then 
+				else
+				local pos = sobj.position
+				local radius = system_ini():r_float(sobj:section_name(),"effective_radius")+addrad + 1.5 --##
+				table.insert(ret,{id=i, clsid=obj:clsid(), pos=pos, radius=radius})
+				end
+			end
+--##			
+			if 	atmanoms.chek_anoms_allspawn_name(sobj) == true then
+				local pos = sobj.position
+				local radius = system_ini():r_float(sobj:section_name(),"effective_radius")+addrad + 1.5 --##
+				table.insert(ret,{id=i, clsid=obj:clsid(), pos=pos, radius=radius})
+--##					
+			end
+end
+			end
+		end
+
+	end
+	return ret
+end
+--##Zm
+--/-----------------------------------------------
+function enumerate_camps()
+	local ret = {}
+	for i=0,65534 do
+		local sobj = level.object_by_id(i)
+		if sobj then
+			local obj = alife():object(i)
+			if obj and isCampfire(obj) then
+				local pos = obj.position
+				local radius = system_ini():r_float(obj:section_name(),"effective_radius")
+
+				table.insert(ret,{id=i, clsid=obj:clsid(), pos=pos, radius=radius})
+			end
+		end
+	end
+
+	return ret
+end
+
+function isCampfire(obj)
+		if obj then
+		local otype = get_clsid(obj)
+		if otype and (otype == 186 or otype == 196) then --/zone_campfire (zone_flame_small)
+			local s_name = obj:name()
+			if s_name and (
+				 string.find(s_name, "campfire") or
+				 string.find(s_name, "zone_flame") or
+				 string.find(s_name, "zone_zhar"))
+				then
+				return true
+			end
+		end
+	end
+	return false
+end
+
+----------------------------------------------------------------------------------------------------
+function get_k_radius(npc)
+local flg = 1.0
+npc_rank = ranks.get_obj_rank_name( npc )
+	if 	npc_rank == "novice" then
+		flg = 2.33
+	elseif npc_rank == "stalker" then
+		flg = 2.33
+	elseif npc_rank == "veteran" then
+		flg = 2.99
+	elseif npc_rank == "master" then
+		flg = 2.99
+	elseif 	npc_rank == "novice" and npc_have_detector(npc) then --/ NPC имеет детектор и лучше видит аномалию
+		flg = 2.99
+	elseif npc_rank == "stalker" and npc_have_detector(npc) then
+		flg = 2.99
+	elseif npc_rank == "veteran" and npc_have_detector(npc) then
+		flg = 3.33
+	elseif npc_rank == "master" and npc_have_detector(npc) then
+		flg = 3.33
+	end
+return flg
+end
+------------------------------------------------------------------------------------------------------
+function drop_anom_detour_flag()
+anom_detour=false --##
+end
+--##Zm----для watcher_act--если вещь в аномалии или за аномалией--0.275 закрывает видимость сектора 90 град относительно NPC за аномалией--
+function get_nearest_anomaly_obj(obj,npc)
+	anomsss = anoms_list ---get_nearest_anomaly_zones(obj) - тормозит
+	if not (anomsss and #anomsss > 0) then return true end 
+	local npos = npc:position()
+	local opos = obj:position()
+	local t = {} --/ массив параметров аномалии
+
+	for k,v in pairs(anomsss) do
+		local anom_pos = v.pos
+		local delta  = opos:distance_to(anom_pos) --расст от вещи до аномалии		
+		local delta2 = npos:distance_to(anom_pos) --расст от NPC до аномалии
+		local delta3 = npos:distance_to(opos) --расст от NPC до вещи
+
+		local dist = delta - v.radius
+		if dist <= 2 or (((delta3 + 0.275*(delta+delta2)) > (delta + delta2)) and (delta3 > delta2)) then --dist <= 2
+		return false
+		end 
+	end
+return true
+end
+--##Zm обход аномалий отрядом-----------------------------------------------------------------------------
+function on_hit(npc, who)
+    local sobj = alife():object(who:id()) --Обход аномалий неписями в составе отряда - NPC друг друга толкают в аномалию и схема из m_detour не успевает срабатывать
+	if sobj and sobj:section_name() and string.find(sobj:section_name(), "zone_") then --называть тип аномалии
+		local aid,cls,anpos,dist,radius = get_nearest_anomaly(npc,npc:direction()) --Если схема обхода аномалии ее не видит аномалию, то это обновит список аном и заставляет увидеть
+        if actor_need_help then
+            if string.find(sobj:section_name(), "zone_mine_gravitational") or string.find(sobj:section_name(), "zone_mincer_strong") or string.find(sobj:section_name(), "zone_witches_galantine_strong") or string.find(sobj:section_name(), "zone_buzz_strong") then
+                if actor_need_help.is_in_actor_team(npc:id()) or (actor_team_ids and actor_team_ids[npc:id()] and actor_team_ids[npc:id()]==true)  then
+	                actor_need_help.anom_detour_gg_helper_pos_stop(who)
+	                    if not string.find(sobj:section_name(), "mine_field") then
+		                    amk.send_tip("Отряд, стой! Тут аномалия, я уже вляпался. Пробую выбраться.", npc:character_name()..":", nil, 15, nil, nil)
+	                    else
+		                    amk.send_tip("Отряд, стой! Здесь мины!.", npc:character_name()..":", nil, 15, nil, nil)
+	                    end
+                    end
+                end
+                --npc рассредотачиваются, чтобы не заталкивать друг друга в аномалию
+               --весь отряд целиком отступает и останавливается
+               if actor_need_help.is_in_actor_team(npc:id()) or (actor_team_ids and actor_team_ids[npc:id()] and actor_team_ids[npc:id()]==true)  then
+	               if not string.find(sobj:section_name(), "mine_field") then
+		               amk.send_tip("Отряд, стой! Тут аномалия, я уже вляпался. Пробую выбраться.", npc:character_name()..":", nil, 15, nil, nil)
+	               else
+		               amk.send_tip("Отряд, стой! Здесь мины!.", npc:character_name()..":", nil, 15, nil, nil)
+	               end
+               end
+           end
+		   local vertex_id = select_position(npc, who)
+		   if vertex_id and check_position(vertex_id) then
+			   utils.send_to_nearest_accessible_vertex(npc,vertex_id)
+		   else
+			   local anvec = vector():set(who:position()):sub(npc:position()) --OK
+			   local znrnd = math.random(0, 1)
+			   local zn = (0.5 - znrnd)*2
+			   local angle = 160
+			   anvec.y = 0
+			   anvec:normalize()
+			   local dlt = math.random(350,2000)/10 --30,50
+			   local newdir_npc = vector_rotate_y(anvec,angle)  
+			   local vertex_id = level.vertex_in_direction(npc:level_vertex_id(),newdir_npc,dlt) 
+		       utils.send_to_nearest_accessible_vertex(npc,vertex_id)
+		   end
+	   end
+end
+------------------------------------------------------------------------------------------------------
+function check_position(lvid) 
+	for id = 1, 65535 do
+	local obj = level.object_by_id(id);
+ 
+		if obj ~= nil then
+		local hlv = obj:level_vertex_id()
+			if lvid == hlv then
+			return false
+			end						
+		end
+	end
+return true
+end
+-------------------------------------------------------------------------------------------------------
+-- Выбор пути отскока при касании аномалии
+function select_position(npc, anom)
+	local node_1_vertex_id = nil
+	local node_1_distance = nil
+	local node_2_vertex_id = nil
+	local node_2_distance = nil
+	local dlt = math.random(35,90)/10
+	local anvec = vector():set(anom:position()):sub(npc:position())
+	-- проверяем точку слева от актера
+	local desired_direction = vector_rotate_y(anvec, math.random(115,145) )
+	node_1_vertex_id = level.vertex_in_direction(npc:level_vertex_id(),
+		desired_direction,
+		dlt)
+	if npc:accessible(node_1_vertex_id) ~= true or node_1_vertex_id == npc:level_vertex_id() or node_1_vertex_id == anom:level_vertex_id() then			
+		node_1_vertex_id = nil
+	end
+	-- проверяем точку справа от актера
+	desired_direction = vector_rotate_y(anvec, -math.random(115,145) )
+	node_2_vertex_id = level.vertex_in_direction (  npc:level_vertex_id(),
+		desired_direction,
+		dlt)
+	if npc:accessible(node_2_vertex_id) ~= true or node_2_vertex_id == npc:level_vertex_id() or node_2_vertex_id == anom:level_vertex_id() then			
+		node_2_vertex_id = nil
+	end
+	
+	-- Проверяем растояния до точек
+	if node_1_vertex_id ~= nil then
+		node_1_distance = npc:position():distance_to_sqr(level.vertex_position(node_1_vertex_id))
+	else
+		node_1_distance = -1
+	end
+	if node_2_vertex_id ~= nil then
+		node_2_distance = npc:position():distance_to_sqr(level.vertex_position(node_2_vertex_id))
+	else
+		node_2_distance = -1
+	end
+	
+	-- Выбираем ближайшую из существующих
+	if node_1_distance == -1 and node_2_distance == -1 then
+		--' Не смогли найти точку, ругаться
+		return npc:level_vertex_id() --nil
+	end
+	if node_1_distance == -1 then
+		return node_2_vertex_id
+	end
+	if node_2_distance == -1 then
+		return node_1_vertex_id
+	end
+	if node_1_distance < node_2_distance then
+		return node_1_vertex_id
+	else
+		return node_2_vertex_id
+	end
+end

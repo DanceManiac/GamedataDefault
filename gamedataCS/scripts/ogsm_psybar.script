@@ -1,42 +1,57 @@
 ------------------------------ Copyright 2007-2010 DEXXX ------------------------------
 --------------------------- Вывод шкалы пси-здоровья на HUD ---------------------------
--------------------------- Last edit (by Charsi): 22.05.2018 --------------------------
 
-local posx = 759
-local posy = 644
-local posy_no_outfit = 665
+
+local posx = 758
+local posy = 640
 local width = 163
-local height = 28
-local p_dx = 35
-local p_dy = 12
+local height = 38
+local p_dx = 36
+local p_dy = 19
 local p_width = 113
-local p_height = 13
+local p_height = 10
 
-local w_posx = 803
-local w_posy = 644
-local w_posy_no_outfit = 667
+local w_posx = 802
+local w_posy = 641
 local w_width = 136
-local w_height = 28
+local w_height = 38
 local w_p_dx = 29
-local w_p_dy = 11
-local w_p_width = 94
-local w_p_height = 13
+local w_p_dy = 19
+local w_p_width = 95
+local w_p_height = 10
 
 local new_width = 0
 local n_width = 0
 local saved_aspect = 0
 local saved_width = -1
 
+local need_upd = false
+
 -- Вывод шкалы пси-здоровья
 function show_psybar()
-	if db.actor:alive() and not ogsm_clock.actor_lios() then -- Актор жив и не смотрит в прицел
-		shkala()
+local act_it = db.actor:active_item()
+if db.actor:alive() and need_upd == false then
+	if act_it and act_it:section() == "wpn_binoc" then
+		local zoom = 67.5/device().fov
+		zoom = (zoom-1)*1.5 + 1
+		if zoom < 1.001 then zoom = 1.001 end
+		if zoom > 1.3 then
+			if get_hud():GetCustomStatic("hud_psy_back") then get_hud():RemoveCustomStatic("hud_psy_back") end
+			if get_hud():GetCustomStatic("hud_psy_level") then get_hud():RemoveCustomStatic("hud_psy_level") end
+			return
+		else
+			shkala()
+		end
 	else
-		if get_hud():GetCustomStatic("hud_psy_back") then get_hud():RemoveCustomStatic("hud_psy_back") end
-		if get_hud():GetCustomStatic("hud_psy_level") then get_hud():RemoveCustomStatic("hud_psy_level") end
+		shkala()
 	end
+else
+	if get_hud():GetCustomStatic("hud_psy_back") then get_hud():RemoveCustomStatic("hud_psy_back") end
+	if get_hud():GetCustomStatic("hud_psy_level") then get_hud():RemoveCustomStatic("hud_psy_level") end
+	need_upd = false
+	return
 end
-
+end
 function shkala()
 	local wnd
 	local custom_static_psy_back = get_hud():GetCustomStatic("hud_psy_back")
@@ -57,11 +72,7 @@ function shkala()
 				get_hud():AddCustomStatic("hud_psy_back", true)
 				custom_static_psy_back = get_hud():GetCustomStatic("hud_psy_back")
 				wnd = custom_static_psy_back:wnd()
-				if (db.actor:item_in_slot(6) ~= nil) then
-					wnd:SetWndPos(vector2():set(posx, posy))
-				else
-					wnd:SetWndPos(vector2():set(posx, posy_no_outfit))
-				end
+				wnd:SetWndPos(vector2():set(posx, posy))
 				wnd:SetHeight(height)
 				wnd:SetWidth(width)
 			end
@@ -69,11 +80,7 @@ function shkala()
 				get_hud():AddCustomStatic("hud_psy_level", true)
 				custom_static_psy = get_hud():GetCustomStatic("hud_psy_level")
 				wnd = custom_static_psy:wnd()
-				if (db.actor:item_in_slot(6) ~= nil) then
-					wnd:SetWndPos(vector2():set(posx+p_dx, posy+p_dy))
-				else
-					wnd:SetWndPos(vector2():set(posx+p_dx, posy_no_outfit+p_dy))
-				end
+				wnd:SetWndPos(vector2():set(posx+p_dx, posy+p_dy))
 				wnd:SetHeight(p_height)
 				wnd:SetWidth(p_width)
 			end
@@ -83,11 +90,7 @@ function shkala()
 				get_hud():AddCustomStatic("hud_psy_back", true)
 				custom_static_psy_back = get_hud():GetCustomStatic("hud_psy_back")
 				wnd = custom_static_psy_back:wnd()
-				if (db.actor:item_in_slot(6) ~= nil) then
-					wnd:SetWndPos(vector2():set(w_posx, w_posy))
-				else
-					wnd:SetWndPos(vector2():set(w_posx, w_posy_no_outfit))
-				end
+				wnd:SetWndPos(vector2():set(w_posx, w_posy))
 				wnd:SetHeight(w_height)
 				wnd:SetWidth(w_width)
 			end
@@ -95,11 +98,7 @@ function shkala()
 				get_hud():AddCustomStatic("hud_psy_level", true)
 				custom_static_psy = get_hud():GetCustomStatic("hud_psy_level")
 				wnd = custom_static_psy:wnd()
-				if (db.actor:item_in_slot(6) ~= nil) then
-					wnd:SetWndPos(vector2():set(w_posx+w_p_dx, w_posy+w_p_dy))
-				else
-					wnd:SetWndPos(vector2():set(w_posx+w_p_dx, w_posy_no_outfit+w_p_dy))
-				end
+				wnd:SetWndPos(vector2():set(w_posx+w_p_dx, w_posy+w_p_dy))
 				wnd:SetHeight(w_p_height)
 				wnd:SetWidth(w_p_width)
 			end
@@ -115,6 +114,9 @@ function shkala()
 	end
 end
 
+function update_hud()
+    need_upd = true
+end
 
 --------------------------- Вывод шкалы пси-здоровья на HUD ---------------------------
 ------------------------------ Copyright 2007-2010 DEXXX ------------------------------

@@ -429,6 +429,8 @@ function sim_board:register_smart(obj)
         self.smarts[obj.id] = {smrt = obj, targets = {}, dangers = {}, squads = {}, stayed_squad_quan = 0}
 
         self.smarts_by_names[obj:name()] = obj
+		
+		ngsm.SMARTS[obj:name()] = obj --' NGSM
 
         if obj.respawn_sector ~= nil then
                 self:register_spawn_smart(obj)
@@ -932,8 +934,8 @@ function sim_board:reset_nearest_squads(smart)
             if vv.current_action ~= nil and vv.current_action.name == "stay_point" then
 				--printf("reseting squad %s in %s", vv.squad_id, v:name())
                 --' Перед выбором нового убираем персонажа из текущего комбат менеджера
-                if vv.sim_combat_id ~= nil then -- Kirgudu
-                    local sim_combat = self.smarts[vv.sim_combat_id].smrt.combat_manager -- Kirgudu
+                if v.sim_combat_id ~= nil then
+                    local sim_combat = self.smarts[v.sim_combat_id].smrt.combat_manager
                     sim_combat:unregister_squad(vv)
                 end
                 vv.current_action:finalize()
@@ -994,94 +996,31 @@ function clear()
         board = nil
 end
 
-local function outta_my_way_fools(faction_name, point_name)
-	local actor = db.actor
-	if actor and actor:character_community() == "actor_"..faction_name then
-		local board = get_sim_board()
-		local point_id = board.smarts_by_names[point_name].id
-		for k, squad in pairs (board.players[faction_name].squads) do
-			local current_action = squad.current_action
-			if current_action ~= nil then
-				if current_action.dest_smrt_id == point_id or current_action.next_point_id == point_id then
-					return true
-				end
-			end
-		end
-	end
-	return false
-end
-
 -- Проверяет доступность смарттеррейна для симуляции
-function is_point_avail(point, faction_id)
-	if point.no_mutant == true and faction_id == "monster" then
-		return false
-	end
-	if faction_id == "csky" then
-		local csky_exp = sim_faction.get_current_expansion("csky")
-		if csky_exp == "expansion_0" then
-			local point_name = point:name()
-			if point_name == "mar_smart_terrain_10_5" or point_name == "mar_smart_terrain_11_11" or point_name == "mar_smart_terrain_12_2" then
-				return false
-			end
-		elseif csky_exp == "expansion_1" then
-			local point_name = point:name()
-			if point_name == "mar_smart_terrain_11_11" or point_name == "mar_smart_terrain_12_2" then
-				return false
-			end
-		end
-	elseif faction_id == "bandit" then
-		local bandit_exp = sim_faction.get_current_expansion("bandit")
-		if bandit_exp == "expansion_0" or bandit_exp == "expansion_1" or bandit_exp == "expansion_2" or bandit_exp == "expansion_3"  then
-			local point_name = point:name()
-			if point_name == "val_smart_terrain_5_7" then
-				return false
-			end
-		elseif bandit_exp == "expansion_4" or bandit_exp == "expansion_5" then
-			local point_name = point:name()
-			if point_name == "val_smart_terrain_5_7" then
-				return false
-			end
-		end
-	elseif faction_id == "army" then
-		local army_exp = sim_faction.get_current_expansion("army")
-		if army_exp == "expansion_0"  then
-			local point_name = point:name()
-			if point_name == "esc_smart_terrain_2_14" or point_name == "esc_smart_terrain_4_13" then
-				return false
-			end
-		end
-	elseif faction_id == "stalker" then
-		local point_name = point:name()
-		if point_name == "gar_smart_terrain_1_5" or point_name == "gar_smart_terrain_1_7" or point_name == "gar_smart_terrain_5_2" or point_name == "gar_smart_terrain_6_1" or point_name == "gar_smart_terrain_8_3" or point_name == "gar_smart_terrain_8_7" or point_name == "agr_smart_terrain_7_4" or point_name == "yan_smart_terrain_6_4" or point_name == "mil_smart_terrain_2_6" or point_name == "mil_smart_terrain_2_10" or (point_name == "esc_smart_terrain_4_13" and has_alife_info("=is_dark_night")) then
-			return false
-		elseif point_name == "gar_smart_terrain_3_5" then
-			local stalker_exp = sim_faction.get_current_expansion("stalker")
-			if stalker_exp == "expansion_0" or stalker_exp == "expansion_1" or stalker_exp == "expansion_2" or stalker_exp == "expansion_3" then
-				return false
-			end
-		end
-		local find = string.find
-		if find(point_name, "gar_smart_terrain_") or find(point_name, "agr_smart_terrain_") or find(point_name, "mil_smart_terrain_") then
-			if outta_my_way_fools("dolg", point_name) or outta_my_way_fools("freedom", point_name) then
-				return false
-			end
-		end
-	elseif faction_id == "freedom" or faction_id == "dolg" then
-		local point_name = point:name()
-		if point_name == "gar_smart_terrain_3_5" or point_name == "gar_smart_terrain_3_8" or point_name == "gar_smart_terrain_5_8" or point_name == "agr_smart_terrain_1_3" or point_name == "agr_smart_terrain_5_3" or (point_name == "val_smart_terrain_1_2" and not has_alife_info("val_strike_antenna_two_captured")) or (point_name == "red_smart_terrain_3_2" and not has_alife_info("red_forester_search_compas_task")) then
-			return false
-		end
-		local find = string.find
-		if find(point_name, "gar_smart_terrain_") or find(point_name, "agr_smart_terrain_") or find(point_name, "mil_smart_terrain_") then
-			if outta_my_way_fools("stalker", point_name) then
-				return false
-			end
-		end
-	end
-	if point.sim_avail == nil then
-		return true
-	end
-	return xr_logic.pick_section_from_condlist(db.actor_proxy, nil, point.sim_avail) == "true"
+function is_point_avail(point, faction_id, faction_id_2)
+        if point.no_mutant == true and faction_id == "monster" then
+                return false
+        end
+        local point_name = point:name()
+        if point_name == "mil_smart_terrain_2_10" and faction_id_2 ~= nil and faction_id_2 ~= "monolith" and faction_id_2 ~= "monster" then --/ Укрытие в сухом лесу (Милитари, Барьер)
+                return false
+        end
+        if point_name == "mil_smart_terrain_2_3" and faction_id_2 == "stalker" then --/ Стоянка в низине (Милитари)
+                return false
+        end
+        if point_name == "agr_smart_terrain_5_3" and faction_id_2 == "duty" then --/ Баррикады у вагона (Агропром)
+                return false
+        end
+        if point_name == "val_smart_terrain_5_7" and not has_alife_info("val_bring_to_fang_done") and faction_id_2 == "bandit" then --/ Крайний блокпост (Тёмная долина)
+                return false
+        end
+        if point_name == "esc_smart_terrain_4_13" and has_alife_info("esc_prisoner_go_out") then --/ Палаточный лагерь (сержант Репкин, Кордон)
+                return false
+        end
+        if point.sim_avail == nil then
+                return true
+        end
+        return xr_logic.pick_section_from_condlist(db.actor_proxy, nil, point.sim_avail) == "true"
 end
 
 

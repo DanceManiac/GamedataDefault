@@ -29,8 +29,8 @@ end
 schemes = {} -- соответствие схем модулям
 stypes = {} -- типы схем
 
--- Загружает схему из файла на диске и активирует в мотиваторе.
--- Здесь:
+-- загружает схему из файла на диске и активирует в мотиваторе.
+-- здесь:
 -- filename - имя файла, в котором реализована схема, без расширения
 -- scheme - имя схемы
 function load_scheme(filename, scheme, stype)
@@ -205,14 +205,14 @@ function distance_between(obj1, obj2)
 	return obj1:position():distance_to(obj2:position())
 end
 
--- Если один объект nil, например нет актера, то считаем, что он далеко
+-- если один объект nil, например нет актера, то считаем, что он далеко
 function distance_between_safe(obj1, obj2)
 	if(obj1 == nil or obj2 == nil) then return 100000 end
 	return obj1:position():distance_to(obj2:position())
 end
 
 local aa = nil
--- Проверка на инфопоршны, даже если игрока не существует
+-- проверка на инфопоршен, даже если игрока не существует
 function has_alife_info(info_id)
 	if aa == nil then
 		return false
@@ -245,7 +245,7 @@ function script_object:update()
 	end
 end
 
--- Передача персонажу информации
+-- передача персонажу информации
 function GiveInfoViaPda(obj_receiver, obj_sender, info_number)
 	obj_receiver:give_info_portion_via_pda(info_number, obj_sender)
 end
@@ -255,22 +255,22 @@ end
 -- Functions and variables added by Zmey
 --------------------------------------------------
 
--- Константа, которую использовать в местах, где нужно задать неограниченное время действия
+-- константа, которую использовать в местах, где нужно задать неограниченное время действия
 time_infinite = 100000000
 
--- Название скрипта, который в данный момент находится в отладке
+-- название скрипта, которvй в данный момент находится в отладке
 -- (в этом скрипте будут срабатывать вызовы функции debug_log)
 debug_script_name = ""
 
--- Выводит в лог строчку, если script_name == debug_script_name
--- Используется для отладки сценариев
+-- выводит в лог строчку, если script_name == debug_script_name
+-- используется для отладки сценариев
 function debug_log(script_name, fmt, ...)
 	if debug_script_name == script_name then
 		log(string.format(fmt, ...))
 	end
 end
 
--- Если в данный момент выполняется какое-то действие, прерывает его и отключает скриптовый режим
+-- если в данный момент выполняется какое-то действие, прерывает его и отключает скриптовый режим
 function interrupt_action(who, script_name)
 	if who:get_script() then
 		who:script(false, script_name)
@@ -490,7 +490,7 @@ if (editor() == false) then
 	----------------------------------------------------------------------------------------------------------------------
 	-- Evaluators
 	----------------------------------------------------------------------------------------------------------------------
-	-- Зарезервированы id с номерами от 0 до 256 для создания стандартных эвалуаторов.
+	-- зарезервированы id с номерами от 0 до 256 для создания стандартных эвалуаторов.
 
 	--Constant evaluator
 	class "const_evaluator" (property_evaluator)
@@ -596,7 +596,7 @@ function random_number (min_value, max_value)
 	end
 end
 
--- Время суток в мс
+-- время суток в мс
 -- Чугай
 local ms_per_day = 24 * 60 * 60 * 1000
 function day_time()
@@ -608,7 +608,7 @@ function local_hours()
 	return math.floor( math.mod( game.time()/1000, 86400 )/ 3600 )
 end
 
--- Парсит строку вида "ааа, ббб, ввв..." в таблицу {"ааа", "ббб", "ввв", ...}
+-- парсит строку вида "ааа, ббб, ввв..." в таблицу {"ааа", "ббб", "ввв", ...}
 -- Чугай
 function parse_names( s )
 	local t = {}
@@ -653,7 +653,7 @@ function empty (container)
 	return (true)
 end
 
--- Парсит строку вида "n1, n2, n3..." в таблицу { n1, n2, n3, ... } где n1, n2, n3... - целые числа
+-- парсит строку вида "n1, n2, n3..." в таблицу { n1, n2, n3, ... } где n1, n2, n3... - целые числа
 -- Чугай
 --[[function parse_nums( s )
 	local t = {}
@@ -665,7 +665,7 @@ end
 	return t
 end]]
 
--- Парсит строку вида "n1, n2, n3..." в таблицу { n1, n2, n3, ... } где n1, n2, n3... - дробные числа
+-- парсит строку вида "n1, n2, n3..." в таблицу { n1, n2, n3, ... } где n1, n2, n3... - дробные числа
 function parse_nums( s )
 	local t = {}
 
@@ -676,7 +676,7 @@ function parse_nums( s )
 	return t
 end
 
--- Проверяет, есть ли объект в онлайне
+-- проверяет, есть ли объект в онлайне
 function is_object_online(obj_id)
 	return level.object_by_id(obj_id) ~= nil
 end
@@ -692,7 +692,7 @@ function get_clsid(npc)
 	-- end
 end
 
--- Вычисляет yaw в радианах
+--вычисляет yaw в радианах
 function yaw( v1, v2 )
 	return math.acos( ( (v1.x*v2.x) + (v1.z*v2.z ) ) / ( math.sqrt(v1.x*v1.x + v1.z*v1.z ) * math.sqrt(v2.x*v2.x + v2.z*v2.z ) ) )
 end
@@ -708,7 +708,7 @@ function vector_cross(v1, v2)
 	return vector():set(v1.y  * v2.z  - v1.z  * v2.y, v1.z  * v2.x  - v1.x  * v2.z, v1.x  * v2.y  - v1.y  * v2.x)
 end
 
--- Вращает вектор вокруг оси y против часовой стрелки
+--вращает вектор вокруг оси y против часовой стрелки
 
 function vector_rotate_y(v, angle)
 	angle = angle * 0.017453292519943295769236907684886
@@ -717,7 +717,7 @@ function vector_rotate_y(v, angle)
 	return vector ():set (v.x * c - v.z * s, v.y, v.x * s + v.z * c)
 end
 
--- Очистка таблицы
+-- очистка таблицы
 function clear_table (t)
 	while #t > 0 do
 		table.remove (t, #t)
@@ -748,16 +748,16 @@ function stop_play_sound(obj)
 	end
 end
 
--- Возвращает произвольную точку пути у которой установлен бит
+-- возвращает произвольную точку пути у которой установлен бит
 -- old_point - индекс точки, которую не надо выбирать,
--- Параметр не обязательный (например текущей точки)
+-- параметр не обязательный (например текущей точки)
 function point_with_bit(patrol_path, bit, old_point)
 	local points = {}
 
 	for i = 0, patrol_path:count()-1 do
-		-- Добавляем в таблицу точки с нужным битом
+		--Добавляем в таблицу точки с нужным битом
 		if( patrol_path:flag(i, bit)) then
-			-- Добавляем точку если old_point == nil или новая точка не совпадает с old_point
+			--Добавляем точку если old_point == nil или новая точка не совпадает с old_point
 			if(old_point == nil) then
 				table.insert(points, patrol_path:point(i))
 			elseif(old_point ~= i) then
@@ -777,16 +777,16 @@ function point_with_bit(patrol_path, bit, old_point)
 	end
 end
 
--- Возвращает произвольную точку пути у которой установлен бит
+--возвращает произвольную точку пути у которой установлен бит
 -- old_point - индекс точки, которую не надо выбирать,
--- Параметр не обязательный (например текущей точки)
+-- параметр не обязательный (например текущей точки)
 function point_with_bit_id(patrol_path, bit, old_point)
 	local points = {}
 
 	for i = 0, patrol_path:count()-1 do
-		-- Добавляем в таблицу точки с нужным битом
+		--Добавляем в таблицу точки с нужным битом
 		if( patrol_path:flag(i, bit)) then
-			-- Добавляем точку если old_point == nil или новая точка не совпадает с old_point
+			--Добавляем точку если old_point == nil или новая точка не совпадает с old_point
 			if(old_point == nil) then
 				table.insert(points, i)
 				elseif(old_point ~= i) then
@@ -806,7 +806,7 @@ function point_with_bit_id(patrol_path, bit, old_point)
 	end
 end
 
--- Возвращает индекс самой ближней точки пути с заданым битом, от текущей точки
+--Возвращает индекс самой ближней точки пути с заданым битом, от текущей точки
 function near_point_with_bit(point, patrol_path, bit)
 	local new_point = nil
 	local index = nil
@@ -815,7 +815,7 @@ function near_point_with_bit(point, patrol_path, bit)
 	for i = 0, patrol_path:count()-1 do
 		if( patrol_path:flag(i, bit) ) then
 			if(new_point == nil or patrol_path:point(i):distance_to(point) < dist) then
-				-- Если эта точка первая из нашедшихся, либо от нее путь ближе, то запоминаем ее
+				--Если эта точка первая из нашедшихся, либо от нее путь ближе, то запоминаем ее
 				new_point = patrol_path:point(i)
 				index = i
 				dist = new_point:distance_to(point)
@@ -920,31 +920,7 @@ local trader_classes = {}
 local weapon_classes = {}
 local weapon_only_classes = {}
 local artefact_classes = {}
-------------------------------------------------------Kirgudu_start
-local food_classes = {}
-local medical_classes = {}
-local ammo_classes = {}
-------------------------------------------------------Kirgudu_end
-------------------------------------------------------makdm_start
-local detector_classes = {}
-local outfit_classes = {}
-local weapon_reload_classes = {}
 
-function IsDetector(object, class_id)
-	local id = class_id or get_clsid(object)
-	return detector_classes[id] == true
-end
-
-function IsOutfit(object, class_id)
-	local id = class_id or get_clsid(object)
-	return outfit_classes[id] == true
-end
-
-function IsWeapon_reload(object, class_id)
-	local id = class_id or get_clsid(object)
-	return weapon_reload_classes[id] == true
-end
----------------------------------------------------------makdm_end
 function IsMonster (object, class_id)
 	local id = class_id or get_clsid(object)
 	return monster_classes[id] == true
@@ -974,25 +950,9 @@ function IsTrader(object, class_id)
 	local id = class_id or get_clsid(object)
 	return trader_classes[id] == true
 end
-------------------------------------------------------Kirgudu_start
-function IsFood(object, class_id)
-	local id = class_id or get_clsid(object)
-	return food_classes[id] == true
-end
 
-function IsMedical(object, class_id)
-	local id = class_id or get_clsid(object)
-	return medical_classes[id] == true
-end
-
-function IsAmmo(object, class_id)
-	local id = class_id or get_clsid(object)
-	return ammo_classes[id] == true
-end
-------------------------------------------------------Kirgudu_end
 -------------------------------------------------------------------------------------------
 
--- получить геймобжект по стори_айди.
 function level_object_by_sid( sid )
 	local sim = alife()
 
@@ -1006,7 +966,6 @@ function level_object_by_sid( sid )
 	return nil
 end
 
--- Получить айдишник обьекта по стори айди.
 function id_by_sid( sid )
 	local sim = alife()
 
@@ -1020,17 +979,13 @@ function id_by_sid( sid )
 	return nil
 end
 
--- Крешнуть игру (после вывода сообщения об ошибке в лог)
+-- крешнуть игру (после вывода сообщения об ошибке в лог)
 function abort(fmt, ...)
 	local reason = string.format(fmt, ...)
 	assert("ERROR: " .. reason)
 	error_log("ERROR: " .. reason)
 	dbglog(fmt, ...)
 	log(string.format("%s",nil))
-end
-
-ASSERT = function(condition, fmt, ...)
-	if not condition then abort("<ASSERT>:"..tostring(fmt), ...) end
 end
 
 function set_postprocess(name_ini_file)
@@ -1047,7 +1002,7 @@ function set_inactivate_input_time(delta)
 	level.disable_input()
 end
 
--- Принимает: позицию положения, позицию куда смотреть, время сна в минутах.
+-- принимает: позицию положения, позицию куда смотреть, время сна в минутах.
 function set_sleep_relocate(point, look, timeout)
 	db.storage[db.actor:id()].sleep_relocate_time = game.get_game_time()
 	db.storage[db.actor:id()].sleep_relocate_idle = timeout*60
@@ -1058,13 +1013,13 @@ function set_sleep_relocate(point, look, timeout)
 	--db.actor:actor_sleep(0, timeout)
 end
 
--- Проверяет целую часть числа на нечётность
+-- проверяет целую часть числа на нечётность
 function odd(x)
 	return math.floor( x * 0.5 ) * 2 == math.floor( x )
 end
 
 
---' Находится ли NPC во фруструме игрока
+--' находится ли NPC во фруструме игрока
 function npc_in_actor_frustrum(npc)
 	local actor_dir = device().cam_dir
 	--local actor_dir = db.actor:direction()
@@ -1076,33 +1031,33 @@ function npc_in_actor_frustrum(npc)
 	return yaw < 35
 end
 
---' Усталость
+--' усталость
 function on_actor_critical_power()
 end
 
 function on_actor_critical_max_power()
 end
 
---' Кровотечение
+--' кровотечение
 function on_actor_bleeding()
 end
 
 function on_actor_satiety()
 end
 
---' Радиация
+--' радиация
 function on_actor_radiation()
 end
 
---' Заклинило оружие
+--' заклинило оружие
 function on_actor_weapon_jammed()
 end
 
---' Не может ходить из-за веса
+--' не может ходить из-за веса
 function on_actor_cant_walk_weight()
 end
 
---' Пси воздействие
+--' пси воздействие
 function on_actor_psy()
 end
 
@@ -1130,6 +1085,8 @@ function get_texture_info(id_name, id_default)
 end
 
 function start_game_callback()
+    ngsm.main_timer()
+	ngsm_marauder.initialize()
 	aa = alife()
 
 	monster_classes = {
@@ -1221,55 +1178,7 @@ function start_game_callback()
 		[clsid.artefact] = true,
 		[clsid.artefact_s] = true
 	}
---------------------------------------------------------------------makdm_start		
-	weapon_reload_classes = {
-		[clsid.wpn_vintorez_s] = true,
-		[clsid.wpn_ak74_s] = true,
-		[clsid.wpn_lr300_s] = true,
-		[clsid.wpn_hpsa_s] = true,
-		[clsid.wpn_pm_s] = true,
-		[clsid.wpn_shotgun_s] = true,
-		[clsid.wpn_bm16_s] = true,
-		[clsid.wpn_svd_s] = true,
-		[clsid.wpn_svu_s] = true,
-		[clsid.wpn_rpg7_s] = true,
-		[clsid.wpn_val_s] = true,
-		[clsid.wpn_walther_s] = true,
-		[clsid.wpn_usp45_s] = true,
-		[clsid.wpn_groza_s] = true,
-		[clsid.wpn_rg6_s] = true
-	}
-		
-	outfit_classes = {
-		[clsid.equ_exo] = true,
-		[clsid.equ_military] = true,
-		[clsid.equ_scientific] = true,
-		[clsid.equ_stalker] = true,
-		[clsid.equ_stalker_s] = true
-	}
-		
-	detector_classes = {
-		--[56] = true,
-		[53] = true,
-		[54] = true,
-		[55] = true}
-----------------------------------------------------------------------makdm_end	
-------------------------------------------------------Kirgudu_start	
-	ammo_classes = {
-		[clsid.wpn_ammo] = true,
-		[clsid.wpn_ammo_m209] = true,
-		[clsid.wpn_ammo_og7b] = true,
-		[clsid.wpn_ammo_vog25] = true
-	}
-		
-	food_classes = {
-		[clsid.obj_food] = true
-	}
 
-	medical_classes = {
-		[clsid.obj_medkit] = true
-	}
-------------------------------------------------------Kirgudu_end
 	printf("start_game_callback called")
 	smart_names.init_smart_names_table()
 	task_manager.clear_task_manager()
@@ -1289,9 +1198,6 @@ function start_game_callback()
 
 	m_netpk.attach()
 	se_stor.attach() -- инициализация модуля se_stor
-
-	prefetch("ogsm") --/ подключение модуля ogsm
-	if (ogsm) then bInit = ogsm.on_start_game() end --/#!# инициализация главного модуля мода
 
 	-- Tестирование оптимизации
 	--local test_object = test_object.test_object_class()
@@ -1338,7 +1244,7 @@ ammo_section["ammo_vog-25"] = true
 ammo_section["ammo_m209"] = true
 
 quest_section = {}
--- преобразует строку в соответствии со значением
+
 function get_param_string(src_string , obj)
 	--printf("src_string is [%s] obj name is [%s]", tostring(src_string), obj:name())
 	local script_ids = db.script_ids[obj:id()]
@@ -1352,10 +1258,10 @@ end
 
 local save_markers = {}
 
--- Функции для проверки корректности сейв лоад
+-- функции для проверки корректности сейв лоад
 function set_save_marker(p, mode, check, prefix)
 
-	-- Определяем ключ маркера.
+	-- определяем ключ маркера.
 	local result = ""
 	--	if debug ~= nil then
 	--		local info_table = debug.getinfo(2)
@@ -1407,18 +1313,18 @@ function set_save_marker(p, mode, check, prefix)
 	end
 
 end
--- переводит вектор в строку.
+
 function vec_to_str (vector)
 	if vector == nil then return "nil" end
 	return string.format("[%d:%d:%d]", vector.x, vector.y, vector.z)
 end
--- выводит в лог стэк вызова функций.
+
 function callstack()
 	if debug ~= nil then
 		log(debug.traceback(2))
 	end
 end
--- меняет team:squad:group обьекта.
+
 function change_team_sqaud_group(se_obj, team, squad, group)
 	local cl_obj = db.storage[se_obj.id] and db.storage[se_obj.id].object
 	if cl_obj ~= nil then
@@ -1432,14 +1338,14 @@ function change_team_sqaud_group(se_obj, team, squad, group)
 end
 
 ----------
--- Вывод информации в лог
+-- вывод информации в лог
 function dbglog(fmt,...)
 	local msg = string.format(fmt, ...)
 	get_console():execute("load ~~~ " .. msg)
 end
 
 ----------
--- Вывод таблицы в лог
+-- вывод таблицы в лог
 function dbglog_table(table, subs)
   local sub
   if subs ~= nil then
@@ -1477,38 +1383,16 @@ end
 -- Доработка: Kirgudu
 ----------
 
-----------
--- Получение массива целых значений, представляющих дату и время (для сохранения в storehouse)
--- Адаптация: Kirgudu
--- В случае отсутствия параметра типа CTime берётся нулевое игровое время
-function CTimeToTable(dateTime) --/ передаем время CTime
-	dateTime = dateTime or game.CTime()
-	local Y, M, D, h, m, s, ms = 0, 0, 0, 0, 0, 0, 0
-	Y, M, D, h, m, s, ms = dateTime:get(Y, M, D, h, m, s, ms)
-	return {Y, M, D, h, m, s, ms}
-end
-
-----------
--- Получение значения переменной типа CTime из массива целых значений, представляющего дату и время (для чтения из storehouse)
--- Адаптация: Kirgudu
--- В случае отсутствия параметра типа массив целых чисел берётся нулевое игровое время
-function TableToCTime(t) --/ передаем массив аргументов в формате {Y, M, D, h, m, s, ms}.
-	local dateTime = game.CTime()
-	if t then dateTime:set(t[1], t[2], t[3], t[4], t[5], t[6], t[7]) end
-	return dateTime
-end
-
-----------
 -- Получение строки с датой/временем
 -- Авторы оригинала: Artos, Garry_Galler
--- Адаптация: Kirgudu
+-- Доработка: Kirgudu
 -- В случае отсутствия второго параметра типа CType берёт текущее игровое время
-function Get_StringOnTimeOrDate(sType, dateTime) --/ передаем аргументы из числа "Y", "M", "D", "h", "m", "s", "ms" - по одной штуке - смотря какое значение текущего игрового времени или даты хотим получить - по умолчанию функция возвращает секунды.
+function Get_StringOnTimeOrDate(sType, dateTime) --/ передаем аргументы из числа "Y", "M", "D", h"", "m", "s", "ms" - по одной штуке - смотря какое значение текущего игрового времени или даты хотим получить - по умолчанию функция возвращает секунды.
 	if not dateTime then dateTime = game.get_game_time() end
 	if sType then
 		local tTime = {
 			["Y"]  = game.CTime.DateToYear,    --/ 2012
-			["M"]  = game.CTime.DateToMonth, --/ 01/2012
+			["M"]  = game.CTime.DateToToMonth, --/ 01/2012
 			["D"]  = game.CTime.DateToDay,     --/ 01/01/2012
 			["h"]  = game.CTime.TimeToHours,   --/ 23
 			["m"]  = game.CTime.TimeToMinutes, --/ 23:59
@@ -1641,75 +1525,13 @@ function pairs_ordered(t)
 	return next_ordered, t, nil
 end
 
--- Выборка из таблицы с сортировкой по value (быстрая сортировка с разбивкой на две части).
--- Работает также в случае если value - тоже таблица (простая).
--- Выводимая таблица представляет собой простой массив, индекс исходной таблицы перемещается в поле "__oldKey".
--- Значения элементов выводимого массива всегда представляют собой таблицу.
--- Если value исходной таблицы представляет собой простое значение - оно перемещается в поле "__oldValue".
--- t - исходная таблица
--- o - порядок сортировки, может принимать значения asc (по возрастанию) или desc (по убыванию), при отсутствии по умолчанию берётся asc.
--- s - значение, по которому должна произойти сортировка. Может принимать вид:
---     "", nil или без параметра - для случаев, когда vаlue представляет собой простое значение. Пример:
---       t = {3,7,1,9,4}; вызов сортировки: t2 = sort_table_by_value(t, "")
---     "key" - для случаев, когда value представляет собой таблицу, указывается название поля этой таблицы для сортировки по нему. Пример:
---       t = {{a=3,b=7,c=1},{a=8,b=2,c=5}}; вызов сортировки: t2 = sort_table_by_value(t, "b")
-function sort_table_by_value(t, o, s)
-	local function qSort(t, o, s, low, high)
-		local i, j, x = low, high, t[math.floor((low+high)/2)]
-		while (i <= j) do
-			if s == "" then
-				if o == "desc" then
-					while (t[i]["__oldValue"] > x["__oldValue"]) do i = i + 1 end
-					while (t[j]["__oldValue"] < x["__oldValue"]) do j = j - 1 end
-				else
-					while (t[i]["__oldValue"] < x["__oldValue"]) do i = i + 1 end
-					while (t[j]["__oldValue"] > x["__oldValue"]) do j = j - 1 end
-				end
-			else
-				if o == "desc" then
-					while (t[i][s] > x[s]) do i = i + 1 end
-					while (t[j][s] < x[s]) do j = j - 1 end
-				else
-					while (t[i][s] < x[s]) do i = i + 1 end
-					while (t[j][s] > x[s]) do j = j - 1 end
-				end
-			end
-			if (i <= j) then
-				local temp = t[i]
-				t[i] = t[j]
-				t[j] = temp
-				i, j = i + 1, j - 1
-			end
-		end
-		if (low < j) then qSort(t, o, s, low, j) end
-		if (i < high) then qSort(t, o, s, i, high) end
-	end
-
-	s = s or ""
-	if not o or (o ~= "asc" and o ~= "desc") then o = "asc" end
-	if not t or type(t) ~= "table" then return nil, "sort_table_by_value: wrong source" end
-	if type(s) ~= "string" then return nil, "sort_table_by_value: wrong sort parameter" end
-	if t.__oldKey then return nil, "sort_table_by_value: source table already has '__oldKey' field" end
-	if t.__oldValue then return nil, "sort_table_by_value: source table already has '__oldValue' field" end
-	local t1, t2, low, high = deepcopy(t), {}, 1, 0
-	for k,v in pairs(t1) do
-		high = high + 1
-		local v2 = (type(v) == "table") and v or {__oldValue = v}
-		v2.__oldKey = k
-		table.insert(t2, v2)
-	end
-	if high <= 1 then return t2, nil end
-	qSort(t2, o, s, low, high)
-	return t2, nil
-end
-
--- Глубокое копирование любого объекта, включая таблицу, по значению
+-- Глубокое копирование любого объекта по значению
 function deepcopy(object)
 	local lookup_table = {}
 	local function _copy(object)
 		if type(object) ~= "table" then
 			return object
-		elseif lookup_table[object] then
+			elseif lookup_table[object] then
 			return lookup_table[object]
 		end
 		local new_table = {}
@@ -1717,7 +1539,7 @@ function deepcopy(object)
 		for index, value in pairs(object) do
 			new_table[_copy(index)] = _copy(value)
 		end
-		return setmetatable(new_table, _copy(getmetatable(object)))
+		return setmetatable(new_table, getmetatable(object))
 	end
 	return _copy(object)
 end
@@ -1745,26 +1567,18 @@ function string:trim()
 	return match(self,'^()%s*$') and '' or match(self,'^%s*(.*%S)')
 end
 
--- Разбивка строки по НАБОРУ РАЗДЕЛИТЕЛЕЙ sep, вывод в виде списка строк. Начальные и конечные пробелы обрезаются.
-function string:split_sep(sep, clear)
-	local t = {}
-	self:gsub("([^"..(sep or ":").."]+)", function(c) t[#t + 1] = c:trim() end)
-	return t
-end
-
--- Разбивка строки по СТРОКЕ sep, вывод в виде списка строк. Начальные и конечные пробелы обрезаются.
-function string:split(sep, clear)
-	local t = {}
-	local pattern = "(.-)".. (sep or ":")
-	local function helper(line) t[#t + 1] = line:trim() return "" end
-	helper((self:gsub(pattern, helper)))
+-- Разбивка строки по разделителю sep, вывод в виде списка строк
+function string:split(sep)
+	local sep, t = sep or ":", {}
+	local pattern = string.format("([^%s]+)", sep)
+	self:gsub(pattern, function(c) t[#t + 1] = c:trim() end)
 	return t
 end
 
 -- Разбивка строки по разделителю "(\r)\n", вывод в виде списка строк
 function string:lines()
 	local t = {}
-	local function helper(line) t[#t + 1] = line return "" end
+	local function helper(line) table.insert(t, line) return "" end
 	helper((self:gsub("(.-)\r?\n", helper)))
 	return t
 end
@@ -1787,24 +1601,6 @@ function string:wrap(limit, indent, indent1)
 		end)
 end
 
--- Разбивка строки по максимальной длине без учёта пробелов (с разрывом слов), вывод в виде списка строк
--- limit - максимальная длина слова на одной строке
-function string:wrap_fixed(limit)
-	local t = {}
-	if not limit or limit <= 0 then
-		table.insert(t, self)
-		return t
-	end
-	while self:len() > limit do
-		table.insert(t, self:sub(1, limit))
-		self = self:sub(limit + 1)
-	end
-	if self:len() > 0 then
-		table.insert(t, self)
-	end
-	return t
-end
-
 -- Полная разбивка строки по разделителю и максимальной длине, вывод в виде списка строк
 -- separator - разделитель (строка)
 -- limit - максимальная длина строки
@@ -1815,10 +1611,7 @@ function string:wrap_full(separator, limit, indent, indent1)
 	for k,v in pairs(ar) do
 		v = v:wrap(limit, indent, indent1):lines()
 		for kk,vv in pairs(v) do
-			vv = vv:wrap_fixed(limit)
-			for kkk,vvv in pairs(vv) do
-				table.insert(t, vvv)
-			end
+			table.insert(t, vv)
 		end
 	end
 	return t
@@ -2154,26 +1947,26 @@ function FormatToString(fmt,...)
 	end
 	--/ основное тело функции: парсинг исходной строки
 	if type(fmt) == 'string' then
-		if fmt:match('%%[sd]') then --/ есть патерн(ы)
+		if fmt:match('%\%[s|d]') then --/ есть патерн(ы)
 			if next({...}) then --/ есть аргумент(ы)?
 				local arg,val,typ,i = {...},nil,nil,nil
 				for i=1,#arg do
 					val = arg[i] --/ значение текущего аргумента
 					typ = type(val) --/ тип текущего аргумента
 					if typ == 'string' then
-						fmt = fmt:gsub('%%s',val,1)
+						fmt = fmt:gsub('%\%s',val,1)
 					elseif typ == 'number' then
-						if fmt:match('%%d') then
-							fmt = fmt:gsub('%%d',val,1)
+						if fmt:match('%\%d') then
+							fmt = fmt:gsub('%\%d',val,1)
 						else
-							fmt = fmt:gsub('%%s',val,1)
+							fmt = fmt:gsub('%\%s',val,1)
 						end
 					else
-						fmt = fmt:gsub('%%s',to_str(val,typ),1)
+						fmt = fmt:gsub('%\%s',to_str(val,typ),1)
 					end
 				end
 			end
-			fmt = fmt:gsub('%%[sd]',"<NOT_arg!>") --/ заглушка от отсутствия аргументов
+			fmt = fmt:gsub('%\%[s|d]',"<NOT_arg!>") --/ заглушка от отсутствия аргументов
 		end
 	else
 		fmt = to_str(fmt,type(fmt))

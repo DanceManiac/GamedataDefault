@@ -77,6 +77,19 @@ function action_wounded:execute ()
 		end
 	end
 
+	-- Swartz
+	if self.object:character_community() == "monolith" then
+	    local posit = self.object:position()
+	    local enemy = db.actor
+	    if enemy and posit:distance_to(enemy:position()) < 2.5 and self.object:see(enemy) then
+            rnd = math.random(1,4)
+            if rnd == 3 then
+                ngsm_xr_kamikadze.monolith_die()
+	            ngsm_xr_kamikadze.monolith_explode(self.object)
+	        end
+	    end
+	end	
+    -- Swartz
 	-- Проверяем возможность скушать аптечку.
 	if self.a.autoheal == true then
 		if wound_manager.can_use_medkit ~= true then
@@ -653,22 +666,21 @@ end
 
 
 function is_wounded(npc)
-	local npc_id = npc:id()
-	if db.storage[npc_id] and db.storage[npc_id].wounded ~= nil then
-		return tostring(db.storage[npc_id].wounded.wound_manager.state) ~= "nil"
+	if db.storage[npc:id()].wounded ~= nil then
+		return tostring(db.storage[npc:id()].wounded.wound_manager.state) ~= "nil"
 	end
 	return false
 end
 
 function wounded_cover(npc_id)
-	if db.storage[npc_id] and db.storage[npc_id].wounded ~= nil then
+	if db.storage[npc_id].wounded ~= nil then
 		return db.storage[npc_id].wounded.wound_manager.cover
 	end
 	return false
 end
 
 function wounded_fight(npc_id)
-	if db.storage[npc_id] and db.storage[npc_id].wounded ~= nil then
+	if db.storage[npc_id].wounded ~= nil then
 		return db.storage[npc_id].wounded.wound_manager.fight ~= "false"
 	end
 	return false
@@ -682,13 +694,13 @@ end
 
 
 function is_heavy_wounded_by_id(npc_id)
-	if db.storage[npc_id] and db.storage[npc_id].wounded ~= nil then
+	if db.storage[npc_id].wounded ~= nil then
 		return tostring(db.storage[npc_id].wounded.wound_manager.state) ~= "nil"
 	end
 	return false
 end
 function is_psy_wounded_by_id(npc_id)
-	if db.storage[npc_id] and db.storage[npc_id].wounded ~= nil then
+	if db.storage[npc_id].wounded ~= nil then
 		return db.storage[npc_id].wounded.wound_manager.state == "psy_pain" or
 			   db.storage[npc_id].wounded.wound_manager.state == "psy_armed" or
 			   db.storage[npc_id].wounded.wound_manager.state == "psy_shoot" or

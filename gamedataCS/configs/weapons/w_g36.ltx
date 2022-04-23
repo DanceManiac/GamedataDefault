@@ -37,7 +37,7 @@ inv_grid_y         					= 23
 
 inv_weight              			= 3.6
 
-cost                 				= 12500
+cost                 				= 50000 ;MW 12500
 
 weapon_class            			= assault_rifle
 
@@ -88,7 +88,7 @@ misfire_probability     			= 0.001
 misfire_condition_k     			= 0.05
 condition_shot_dec      			= 0.0004
 
-position                			= -0.026, -0.122, -0.03
+position                			= -0.026, -0.132, 0.0
 orientation             			= 0, -8 , 0
 
 fire_point              			=  0.0, 0.21, 0.58
@@ -161,11 +161,11 @@ scope_name              			= wpn_addon_scope_susat
 scope_x                 			= 0
 scope_y                 			= 0
 silencer_name           			= wpn_addon_silencer
-silencer_x                  		= 206
-silencer_y                  		= 16
+silencer_x                  		= 219
+silencer_y                  		= 17
 grenade_launcher_name   			= wpn_addon_grenade_launcher_m203
-grenade_launcher_x          		= 126
-grenade_launcher_y          		= 31
+grenade_launcher_x          		= 142
+grenade_launcher_y          		= 33
 
 ;==================================== Copyright 2009 MulleR, Mongol ====================================
 snd_holster							= weapons\rifle_holster
@@ -216,10 +216,10 @@ fire_bone2							= wpn_body
 
 anm_show             				= g36_draw
 anm_hide             				= g36_holster
-anm_idle             				= sig550_idle
-anm_idle_sprint         			= g36_idle_sprint_nev
-anm_idle_moving 					= sig550_idle_moving
-anm_shots               			= g36_shoot_pr
+anm_idle             				= g36_idle
+anm_idle_sprint         			= hk_g36_sprint
+anm_idle_moving 					= g36_idle_moving
+anm_shots               			= g36_shoot
 anm_reload              			= g36_reload
 anm_idle_aim           				= g36_idle_aim
 
@@ -230,10 +230,10 @@ anm_bore							= g36_idle_bore
 anm_hide_w_gl           			= g36_holster_w_gl
 anm_show_w_gl           			= g36_draw_w_gl
 anm_idle_w_gl           			= g36_idle_w_gl
-anm_shots_w_gl          			= g36_shoot_pr_w_gl
+anm_shots_w_gl          			= g36_shoot_w_gl
 anm_reload_w_gl         			= g36_reload_w_gl
 anm_idle_w_gl_aim       			= g36_idle_w_gl_aim
-anm_idle_sprint_w_gl				= g36_idle_sprint_w_gl_nev
+anm_idle_sprint_w_gl				= g36_idle_sprint_w_gl
 anm_idle_moving_w_gl				= g36_idle_moving_w_gl
 anm_bore_w_gl						= g36_idle_bore_w_gl
 
@@ -243,7 +243,7 @@ anm_idle_g         					= g36_idle_grenade
 anm_reload_g       					= g36_reload_grenade
 anm_idle_g_aim     					= g36_idle_grenade
 anm_shots_g        					= g36_shoot_grenade
-anm_idle_sprint_g					= g36_idle_sprint_w_gl_nev
+anm_idle_sprint_g					= g36_idle_sprint_grenade
 anm_idle_moving_g					= g36_idle_moving_grenade
 anm_bore_g							= g36_idle_bore_grenade
 
@@ -271,107 +271,3 @@ installed_upgrades		= up_b_g36, up_d_g36, up_f_g36, up_h_g36
 $spawn 					= "weapons\wpn_g36_ogsm_burst_1"
 installed_upgrades		= up_a_g36, up_c_g36, up_e_g36, up_g_g36
 grenade_launcher_status	= 2
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; OGSM CS CF ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[wpn_g36c]:wpn_g36
-$spawn                  			= "weapons\g36c"
-
-upgrades                			= up_gr_ab_g36c, up_gr_cd_g36c, up_gr_ef_g36c
-upgrade_scheme          			= upgrade_scheme_u10a_ogsm
-
-description       					= st_wpn_g36c_descr
-inv_name             				= st_wpn_g36c
-inv_name_short         	 			= st_wpn_g36c
-
-inv_grid_width     					= 4
-inv_grid_height    					= 2
-inv_grid_x         					= 24
-inv_grid_y         					= 25
-
-inv_weight              			= 2.8
-
-cost                 				= 6500
-
-cam_relax_speed         			= 5
-cam_relax_speed_ai     				= 360
-cam_dispersion          			= 1.3
-cam_dispersion_inc      			= 1.3
-cam_dispersion_frac     			= 0.7
-cam_max_angle						= 10
-cam_max_angle_horz     	 			= 10
-cam_step_angle_horz     			= 1.3
-
-zoom_cam_relax_speed         		= 5
-zoom_cam_relax_speed_ai      		= 120
-zoom_cam_dispersion          		= 0.9
-zoom_cam_dispersion_inc      		= 0.9
-zoom_cam_dispersion_frac     		= 0.7
-zoom_cam_max_angle           		= 5
-zoom_cam_max_angle_horz      		= 5
-zoom_cam_step_angle_horz     		= 0.9
-
-position                			= -0.026, -0.132, -0.025
-orientation             			= 0, 0 , 0
-
-fire_point              			=  0.0, 0.2, 0.49
-
-hit_power               			= 0.6, 0.6, 0.6, 0.6
-
-fire_distance           			= 150
-bullet_speed            			= 580
-
-silencer_hit_power      			= 0.6, 0.6, 0.6, 0.6
-silencer_fire_distance  			= 150
-silencer_bullet_speed   			= 580
-
-hud                     			= wpn_g36c_hud
-
-visual                       		= dynamics\weapons\wpn_g36c\wpn_g36c.ogf
-
-scope_status            			= 2
-
-scope_zoom_factor       			= 55
-
-scope_name              			= wpn_addon_scope_acog
-scope_x                 			= 70
-scope_y                 			= -8
-silencer_name           			= wpn_addon_silencer
-silencer_x                  		= 175
-silencer_y                  		= 16
-
-snd_shoot				= weapons\g36c\g36c_shoot
-snd_shoot1				= weapons\g36c\g36c_shoot1
-snd_shoot2				= weapons\g36c\g36c_shoot2
-snd_shoot3				= weapons\g36c\g36c_shoot3
-
-[wpn_g36c_hud]:wpn_g36_hud
-item_visual							= dynamics\weapons\wpn_g36c\wpn_g36c_hud.ogf
-
-fire_point                              = 0,0.075,0.636
-
-item_orientation                        = 1.778962,0.604979,365.867584
-item_position                           = 0.002866,-0.006395,-0.03
-
-aim_hud_offset_pos					= -0.143000,0.068000,-0.230000
-aim_hud_offset_rot					= 0.000300,0.016000,-0.010000
-
-aim_hud_offset_pos_16x9					= -0.130000,0.061000,-0.130500
-aim_hud_offset_rot_16x9					= 0.032000,0.006100,0.018000
-
-gl_hud_offset_pos					= 0.000000,0.000000,0.000000
-gl_hud_offset_rot					= 0.000000,0.000000,0.000000
-
-gl_hud_offset_pos_16x9					= 0.000000,0.000000,0.000000
-gl_hud_offset_rot_16x9					= 0.000000,0.000000,0.000000
-
-
-[wpn_g36c_ogsm_accuracy_1]:wpn_g36c
-$spawn 					= "weapons\wpn_g36c_ogsm_accuracy_1"
-installed_upgrades		= up_b_g36c, up_d_g36c, up_f_g36c
-
-[wpn_g36c_ogsm_burst_1]:wpn_g36c
-$spawn 					= "weapons\wpn_g36c_ogsm_burst_1"
-installed_upgrades		= up_a_g36c, up_c_g36c, up_e_g36c

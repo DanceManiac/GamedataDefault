@@ -19,6 +19,10 @@ function event_processing(info_id)
 	elseif info_id == "freeplay" then
 		-- после окончани€ основного сюжета на „јЁ—
 		lower_actor_feeling(0.1, 0.35, 0.6)
+    elseif info_id == "gar_quest_redemption_done" then
+	    local actor_money = ngsm.load_var("a_money")
+		db.actor:give_money(actor_money)
+		news_manager.relocate_money(db.actor, "in", actor_money)
 	end
 end
 
@@ -48,13 +52,11 @@ end
 -- сдвиг времени без визуального сна (например, дл€ обморока после выброса)
 function time_shift(span)
 	if span > 0 then
-		-- пока в обмороке, герой всЄ равно высыпаетс€ и тер€ет эффект от энергетика
+		-- пока в обмороке, герой всЄ равно высыпаетс€
 		local tmp = ogsm.load_variable("slp", 0)
 		tmp = tmp - span * 120
 		if tmp < 0 then tmp = 0 end
 		ogsm.save_variable("slp", tmp)
-		ogsm.del_variable("nrg")
-		ogsm.del_variable("smn")
 
 		-- пока в обмороке, герой не голодает
 		local tmp = ogsm.load_variable("eat", 0)
