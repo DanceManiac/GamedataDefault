@@ -89,10 +89,6 @@
     </secondary_task_location_complex_flesh_up_ac_spas12>
 	
 	
-	<secondary_task_location_complex_find_upgrade>
-		<complex_spot spot="secondary_task_find_upgrade_complex_spot" pointer="quest_pointer2"/>
-		<mini_map     spot="secondary_task_spot_mini" pointer="quest_pointer2"/>
-    </secondary_task_location_complex_find_upgrade>
     <secondary_task_find_upgrade_complex_spot x="0"  y="0"  width="30" height="27" stretch="0" alignment="c" location_level="5" scale="0" scale_min="2.5" scale_max="5.1">
 	    <left_icon   x="0"  y="0"  width="0"  height="0"  stretch="1" />
         <right_icon  x="0"  y="0"  width="0"  height="0"  stretch="1" />

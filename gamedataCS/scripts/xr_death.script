@@ -10,42 +10,13 @@ function action_process_death:__init(obj, storage)
 	self.st = storage
 end
 
--- Kirgudu
--- НПС, убийство которых героем не должно пройти без последствий
-local important_npcs = {
-	-- боец ЧН на вышке (Болота) во время первого задания
-	{obj_name = "^mar_csky_tutorial_man", info = "mar_csky_tutorial_man_dead"},
-	-- командир патруля сталкеров (Кордон) на автобусной остановке
-	{obj_name = "^esc_st_patrol_lead", info = "esc_stalker_enemy"},
-	-- командир военных на Кордоне
-	{obj_name = "^esc_zak_stalkerbase", info = "esc_zak_stalkerbase_killed_by_a_hero"}
-}
 function action_process_death:death_callback(victim, who)
-	local victim_id, victim_name = victim:id(), victim:name()
 	if who ~= nil then
-		-- проверяем, что убийца - главный герой
-		local who_id, who_name = who:id(), who:name()
-		if who_id == db.actor:id() then
-			-- ищем задание на убийство
-			local task_desc = ogsm_rt_manager.get_rt_manager():get_kill_stalker_task_desc_by_npc(victim:id())
-			-- если задание существует, делаем запись о том, что оно выполнено главным героем
-			if task_desc and task_desc ~= nil then
-				task_desc.stalker_killer = "Scar"
-			end
-			-- проверяем, что убитый - важный персонаж
-			for _,v in ipairs(important_npcs) do
-				if string.find(victim_name, v.obj_name) then
-					-- выдаём инфопорцию
-					gi(v.info)
-				end
-			end
-		end
-		printf("[%s] killed by [%s]", victim_name, who_name)
-		db.storage[victim_id].death.killer = who_id
+		printf("[%s] killed by [%s]", victim:name(), who:name() )
+		db.storage[victim:id()].death.killer = who:id()
 	else
-		printf("[%s] killed by [Unknown]", victim_name)
-		db.storage[victim_id].death.killer = -1
--- Kirgudu
+		printf("[%s] killed by [Unknown]", victim:name())
+		db.storage[victim:id()].death.killer = -1
 	end
 
 	if db.actor then
@@ -62,7 +33,7 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 -- binder
 ----------------------------------------------------------------------------------------------------------------------
-function add_to_binder(npc, ini, scheme, section, storage)
+function add_to_binder(npc, ini, scheme, section, storage) 	
 	local action = this.action_process_death(npc, storage)
 	xr_logic.subscribe_action_for_events(npc, storage, action)
 end
@@ -82,7 +53,7 @@ function reset_death(npc, scheme, st, section)
 		if tmp then
 			st.death.info = xr_logic.parse_condlist(npc, death_section, "death", tmp)
 		end
---		printf("tmp [%s]", tostring(tmp))
+--		printf("tmp [%s]", tostring(tmp))		
 		tmp = utils.cfg_get_string(st.ini, death_section, "on_info2", npc, false, "")
 		if tmp then
 			st.death.info2 = xr_logic.parse_condlist(npc, death_section, "death", tmp)

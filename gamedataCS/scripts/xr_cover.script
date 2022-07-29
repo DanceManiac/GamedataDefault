@@ -1,8 +1,5 @@
 ------------------------------------------------------------------------------------
 --    —хема: пр€чемс€ в кавере
---	Bak (19.06.2016):
---	убрал команды персонажу из activate_scheme (очень, очень плохое дело, да и не работало)
---	добавил использование смарткаверов (просто захотелось)
 ------------------------------------------------------------------------------------
 class "evaluator_need_cover" (property_evaluator)
 function evaluator_need_cover:__init(storage, name) super(nil, name)
@@ -13,8 +10,6 @@ function evaluator_need_cover:evaluate()
 end
 
 ----------------------------------------------------------------------------------------------------------------------
-local occupied_smart_covers = {}
-
 class "action_cover" (action_base)
 function action_cover:__init (npc_name, action_name, storage) super(nil, action_name)
 	self.st = storage
@@ -22,181 +17,104 @@ end
 function action_cover:initialize()
 	action_base.initialize(self)
 	self.board = sim_board.get_sim_board()
-	self.object:set_path_type(game_object.level_path)
-	state_mgr.set_state(self.object, "assault")
+end
+function action_cover:activate_scheme()
+    self.st.signals = {}
+    self.board = sim_board.get_sim_board()
+    --' ¬ысчитываем кавер.
+    local base_point
+    if self.st.smart ~= nil then
+		base_point = sim_board.get_sim_board():get_smart_by_name(self.st.smart).m_level_vertex_id
+    elseif self.st.path ~= nil then    
+		base_point = patrol(self.st.path):level_vertex_id(0)
+    end
+       
+    local direction_vector = vector():set(math.random(-100,100), 0, math.random(-100,100))
+    local base_vertex_id = level.vertex_in_direction(base_point, direction_vector, math.random(self.st.radius_min,self.st.radius_max))
+    local self_random_position = level.vertex_position(base_vertex_id)
+
+	--' ѕолучаем врага, относительно которого надо искать кавер
+	self.enemy_random_position = self_random_position --' дефолтова€ позици€
+	if self.st.use_attack_direction then
+		printf("use_attack_direction [true]")
+		local squad = db.storage[self.object:id()].squad_obj
+		if squad ~= nil then
+			printf("squad ~= [nil]")
+			local combat = self.board.smarts[squad.sim_combat_id].smrt.combat_manager
+			for k,data in pairs(combat.squads) do
+				local squad = self.board.squads[k]
+				if squad.smart == nil or squad.smart.id ~= combat.smart.id then
+					printf("squad.smart == [nil] or squad.smart.id ~= combat.smart.id")				
+					for kk,vv in pairs(squad.squad_npc) do
+						local obj = alife():object(kk)
+						self.enemy_random_position = obj.position
+						break
+					end
+					printf("enemy_random_position is [default]")
+					break
+				end
+			end	
+			printf("enemy_random_position is [default] combat.squads is empty")			
+		end		
+	end
+
+	local cover = nil
+	local tcover = nil
+	if self.st.use_precalc_cover then
+		tcover = cover_manager.get_cover(self.object, sim_board.get_sim_board():get_smart_by_name(self.st.smart))
+		if tcover ~= nil then
+			self.enemy_random_position = tcover.look_pos
+		end
+	else
+		local cover_dist = 2
+	    while cover == nil and cover_dist <= 4 do
+			cover = self.object:best_cover(self_random_position, self.enemy_random_position, cover_dist, 1, 150)		
+			cover_dist = cover_dist + 1		
+		end	
+	end
+
+	if cover == nil then
+		printf("cover is [nil]")
+		self.cover_vertex_id = base_vertex_id
+		self.cover_position = self_random_position
+		printf("cover doesn't exists -- cover_vertex [%s] cover_position [%s]", tostring(self.cover_vertex_id), vec_to_str(self.cover_position))
+	else
+		if tcover ~= nil then
+			self.cover_vertex_id = tcover.cover_vertex_id
+			self.cover_position = tcover.cover_position
+		else
+			self.cover_vertex_id = cover:level_vertex_id()
+			self.cover_position = cover:position()
+		end
+		printf("cover exists -- cover_vertex [%s] cover_position [%s]", tostring(self.cover_vertex_id), vec_to_str(self.cover_position))
+	end
+			
+	if not self.object:accessible(self.cover_position) then
+		local ttp = vector():set(0,0,0)
+		self.cover_vertex_id = self.object:accessible_nearest(self.cover_position, ttp)
+		self.cover_position = level.vertex_position(self.cover_vertex_id)
+		printf("cover exists but not accesible -- cover_vertex [%s] cover_position [%s]", tostring(self.cover_vertex_id), vec_to_str(self.cover_position))
+	end	
+
 	self.object:set_dest_level_vertex_id(self.cover_vertex_id)
+	printf("cover position is %s enemy position is %s",  vec_to_str(self.cover_position), vec_to_str(self.enemy_random_position))
 	local desired_direction = vector():sub(self.cover_position,self.enemy_random_position)
 	printf("desired_direction = %s", vec_to_str(desired_direction))
 	if desired_direction ~= nil and not utils.vector_cmp(desired_direction, vector():set(0,0,0)) then
 		desired_direction:normalize()
 		self.object:set_desired_direction(desired_direction)
 	end
-	if self.smart_cover_name then
-		self.object:set_dest_smart_cover(self.smart_cover_name)
---		self.object:use_smart_covers_only(true)
-	end
-end
-function action_cover:activate_scheme()
-    self.st.signals = {}
-    self.board = sim_board.get_sim_board()
-	
-	local smartcovers = se_smart_cover.registered_smartcovers_by_lv_id[game_graph():vertex(self.object:game_vertex_id()):level_id()]	
-	local tcover = nil
-	if self.st.use_precalc_cover then
-		tcover = cover_manager.get_cover(self.object, sim_board.get_sim_board():get_smart_by_name(self.st.smart))
---		rx_utils.printf("cover[%s] use_precalc_cover %s ",self.object:character_name(),tcover~=nil)
-	end
-	
-	-- если есть просчитанное укрытие - вз€ть его
-	if tcover ~= nil then
-		self.enemy_random_position = tcover.look_pos
-		self.cover_vertex_id = tcover.cover_vertex_id
-		self.cover_position = tcover.cover_position
-		if tcover.is_smart_cover and smartcovers and smartcovers[tcover.cover_vertex_id] then
-			local name = smartcovers[tcover.cover_vertex_id]:name()
-			occupied_smart_covers[name] = true
-			self.smart_cover_name = name
---			rx_utils.printf("cover[%s] precalc is_smart_cover %s ",self.object:character_name(),name)
-		end
-	else --' иначе искать укрытие вокруг случайной точки
-	
-		--' ѕолучаем точку, вокруг которой искать укрытие
-		local base_point
-		if self.st.smart ~= nil then
-			base_point = sim_board.get_sim_board():get_smart_by_name(self.st.smart).m_level_vertex_id
-		elseif self.st.path ~= nil then    
-			base_point = patrol(self.st.path):level_vertex_id(0)
-		end
-
-		--' ѕолучаем случайную позицию в радиусе
-		local direction_vector = vector():set(math.random(-100,100), 0, math.random(-100,100))
-		local base_vertex_id = level.vertex_in_direction(base_point, direction_vector, math.random(self.st.radius_min,self.st.radius_max))
-		local self_random_position = level.vertex_position(base_vertex_id)
---		rx_utils.printf("cover[%s] search for cover (%s)",self.object:character_name(),self_random_position:distance_to(level.vertex_position(base_point)))
-
-		--' ѕолучаем врага, относительно которого надо искать кавер (и смотреть туда)
-		self.enemy_random_position = self_random_position --' дефолтова€ позици€
---		self.st.use_attack_direction = true --TEST!!!!!!!!!!!!
-		local squad = db.storage[self.object:id()].squad_obj
-		if squad ~= nil and (self.st.use_attack_direction or squad.commander_id == self.object:id()) then	-- пусть командир всегда смотрит на врага
-			printf("use_attack_direction [true]")
-			local self_player_id = squad.player_id
-			local combat = self.board.smarts[squad.sim_combat_id].smrt.combat_manager
-			for k,data in pairs(combat.squads) do
-				local squad = self.board.squads[k]
---				rx_utils.printf("check combat squad %s, player_id %s, stage %s, smart %s(%s) action %s",squad.squad_id,squad.player_id,data._stage,squad.smart and squad.smart.id,combat.smart.id,squad.current_action and squad.current_action.name)
-				if squad.player_id ~= self_player_id and (squad.smart == nil or squad.smart.id ~= combat.smart.id) then
-					printf("squad.smart == [nil] or squad.smart.id ~= combat.smart.id")
-					--' ¬раг ? найден
-					local obj = squad.commander_id and alife():object(squad.commander_id)
-					if obj then
-						printf("found enemy %s",obj:name())
-						self.enemy_random_position = obj.position
-						if squad.current_action and squad.current_action.name == "attack_point" and squad.player_id ~= "monster" then
-							break
-						end
-					end
-				end
-			end	
-			printf("enemy_random_position is [default] combat.squads is empty")
-		else
-			local m = matrix():setHPB(0,0,0)
-			m.k = direction_vector
-			m.c = level.vertex_position(base_point)
-			self.enemy_random_position = rx_utils.transform_tiny(m,vector():set(0,0,50))
-		end
-	
-		local cover = nil
-	
-		if smartcovers and not self.smart_cover_name then	-- попытка найти подход€щий смарткавер
-			self.object:use_smart_covers_only(true)
-			local cover_dist = 2
-			while cover == nil and cover_dist <= 6 do
-				if self.st.use_attack_direction then
-					cover = self.object:best_cover(self_random_position, self.enemy_random_position, cover_dist, 1, 150)
-				else
-					cover = self.object:safe_cover(self_random_position, cover_dist, 0)
-				end
-				if cover then
-	--				rx_utils.printf("cover[%s] check sm %s",self.object:character_name(),cover_dist)
-					if smartcovers[cover:level_vertex_id()] then
-						local name = smartcovers[cover:level_vertex_id()]:name()
---						rx_utils.printf("cover[%s] found smart_cover %s in %s",self.object:character_name(),name,cover_dist)
-						if occupied_smart_covers[name] then
---							rx_utils.printf("cover[%s] occupied(",self.object:character_name())
-							cover = nil
-						else
-							self.smart_cover_name = name
-							occupied_smart_covers[name] = true
-						end
-					else
-						cover = nil
-					end
-				end
-				cover_dist = cover_dist + 2
-			end
-			self.object:use_smart_covers_only(false)
-		end
-		
-		if not cover then	-- смарткавер не вышло, искать обычный
---			rx_utils.printf("cover[%s] search for regular",self.object:character_name())
-			if not cover then
-				local cover_dist = 2
-				while (cover == nil or cover:is_smart_cover()) and cover_dist <= 4 do
-					cover = self.object:best_cover(self_random_position, self.enemy_random_position, cover_dist, 1, 150)
-					cover_dist = cover_dist + 1
-				end
---				rx_utils.printf("cover[%s] found cover in %s",self.object:character_name(),cover_dist)
-			end
-		end
-
-		if cover then
-			self.cover_vertex_id = cover:level_vertex_id()
-			self.cover_position = cover:position()
-			printf("cover exists -- cover_vertex [%s] cover_position [%s]", tostring(self.cover_vertex_id), vec_to_str(self.cover_position))
-		else	-- если укрыти€ нет, сидеть просто в точке
-			self.cover_vertex_id = base_vertex_id
-			self.cover_position = self_random_position
-			printf("cover doesn't exists -- cover_vertex [%s] cover_position [%s]", tostring(self.cover_vertex_id), vec_to_str(self.cover_position))
-		end
-	end
-	
-	if not self.object:accessible(self.cover_position) then
-		local ttp = vector():set(0,0,0)
-		self.cover_vertex_id = self.object:accessible_nearest(self.cover_position, ttp)
-		self.cover_position = level.vertex_position(self.cover_vertex_id)
-		if self.smart_cover_name then
-			occupied_smart_covers[self.smart_cover_name] = nil
-			self.smart_cover_name = nil
-		end
-		printf("cover exists but not accesible -- cover_vertex [%s] cover_position [%s]", tostring(self.cover_vertex_id), vec_to_str(self.cover_position))
-	end	
-
-	printf("cover position is %s enemy position is %s",  vec_to_str(self.cover_position), vec_to_str(self.enemy_random_position))
+	self.object:set_path_type(game_object.level_path)
+	state_mgr.set_state(self.object, "assault")
 	printf("[%s]Setting cover %s", self.object:name(), self.cover_vertex_id)
 end
 function action_cover:execute()
-	-- local danger = self.object:best_danger()
-	-- if danger and danger:object() and self.object:relation(danger:object()) == game_object.enemy then
-		-- local desired_direction = vector():sub(self.cover_position,danger:object():position()):normalize()
-		-- self.object:set_desired_direction(desired_direction)
-	-- end
-	
 	--' ѕровер€ем пришли ли в точку.
 	if self.cover_position:distance_to_sqr(self.object:position()) <= 0.4 then
-		if self.smart_cover_name then
-			state_mgr.set_state(self.object, "idle")
-			self.object:set_dest_smart_cover(self.smart_cover_name)
---			self.object:set_smart_cover_target()
-			self.object:set_smart_cover_target_idle()
-		else
-			local anim = xr_logic.pick_section_from_condlist(db.actor, self.object, self.st.anim)
-			state_mgr.set_state(self.object, anim, nil, nil, {look_position = self.enemy_random_position}, nil, nil)
-		end
+		local anim = xr_logic.pick_section_from_condlist(db.actor, self.object, self.st.anim)
+		state_mgr.set_state(self.object, anim, nil, nil, {look_position = self.enemy_random_position}, nil, nil)
 	else
 		state_mgr.set_state(self.object, "assault")
-		self.object:set_path_type(game_object.level_path)
-		self.object:set_dest_level_vertex_id(self.cover_vertex_id)
 	end
 	if self.st.sound_idle ~= nil then
 		xr_sound.set_sound_play(self.object:id(), self.st.sound_idle)
@@ -206,20 +124,6 @@ end
 function action_cover:finalize()
 	action_base.finalize(self)
 end
-function action_cover:deactivate(npc)
-	if self.smart_cover_name then
-		occupied_smart_covers[self.smart_cover_name] = nil
-		self.smart_cover_name = nil
-	end
-end
-function action_cover:death_callback(npc)
-	self:deactivate(npc)
-end
-function action_cover:net_destroy(npc)
-	self:deactivate(npc)
-end
-
-
 --' ¬озвращает достиг ли персонаж точки начала работы схемы
 function action_cover:position_riched()
 	return self.cover_position:distance_to_sqr(self.object:position()) <= 0.4
@@ -234,7 +138,7 @@ function add_to_binder(npc, ini, scheme, section, storage)
 		
 	   	local manager = npc:motivation_action_manager()
 
-		properties["event"]		= xr_evaluators_id.reaction
+		properties["event"]			= xr_evaluators_id.reaction
 	 	properties["need_cover"]	= xr_evaluators_id.stohe_cover_base + 1
 		
 	 	operators["action_cover"]	= xr_actions_id.stohe_cover_base + 1
@@ -248,19 +152,8 @@ function add_to_binder(npc, ini, scheme, section, storage)
 		new_action:add_precondition(world_property(stalker_ids.property_enemy,false))
 		new_action:add_precondition(world_property(stalker_ids.property_anomaly,false))
 		new_action:add_precondition(world_property(xr_evaluators_id.sidor_wounded_base + 0,false))
---		new_action:add_precondition(world_property(xr_evaluators_id.smartcover_action + 3, false))
-		if rx_ai then rx_ai.addCommonPrecondition(new_action) end
-		
+		new_action:add_precondition(world_property(xr_evaluators_id.smartcover_action + 3, false))
 		new_action:add_precondition(world_property(properties["need_cover"],true))
-		
-	    --// NGSM
-	    if ngsm_options.new_ai_modules == true then
-            if ngsm_xr_hider then
-		        new_action:add_precondition	(world_property(ngsm_xr_hider.evid_surge_hider, false))
-		    end
-		end
-		--// NGSM
-		
 	   	new_action:add_effect(world_property(properties["need_cover"],false))
 		manager:add_action(operators["action_cover"], new_action)
 
@@ -288,6 +181,6 @@ function set_scheme(npc, ini, scheme, section, gulag_name)
 	
 	st.use_attack_direction = utils.cfg_get_bool(ini, section, "use_attack_direction", npc, false, true)
 	st.use_precalc_cover = utils.cfg_get_bool(ini, section, "use_precalc_cover", npc, false, false)
-	st.radius_min = utils.cfg_get_number(ini, section, "radius_min", npc, false, 4)
-	st.radius_max = utils.cfg_get_number(ini, section, "radius_max", npc, false, 10)
+	st.radius_min = utils.cfg_get_number(ini, section, "radius_min", npc, false, 3)
+	st.radius_max = utils.cfg_get_number(ini, section, "radius_max", npc, false, 5)
 end

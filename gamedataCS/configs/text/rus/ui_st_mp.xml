@@ -52,7 +52,7 @@
 		<text>Описание</text>
 	</string>
 	<string id="mp_disconnected">
-		<text>отсоединился</text>
+		<text>отсоеденился</text>
 	</string>
 	<string id="mp_enter_text">
 		<text>Введите текст для голосования</text>
@@ -82,10 +82,10 @@
 		<text>ВПЕРЁД!</text>
 	</string>
 	<string id="mp_has_drop_art">
-		<text>потерял %s артефакт</text>
+		<text>потерял%s Артефакт</text>
 	</string>
 	<string id="mp_has_tak_art">
-		<text>взял %s артефакт</text>
+		<text>взял%s Артефакт</text>
 	</string>
 	<string id="mp_headhuntrs">
 		<text>Наёмники</text>
@@ -223,13 +223,13 @@
 		<text>- От первого лица</text>
 	</string>
 	<string id="mp_si_forcerespawn">
-		<text>Принудит. рождение</text>
+		<text>Принудит. Рождение</text>
 	</string>
 	<string id="mp_si_fraglimit">
 		<text>Лимит фрагов</text>
 	</string>
 	<string id="mp_si_free_fly">
-		<text>- Свободный полёт</text>
+		<text>- Свободный полет</text>
 	</string>
 	<string id="mp_si_free_look">
 		<text>- Свободный обзор</text>
@@ -463,7 +463,7 @@
 		<text>Вы подняли свой артефакт. Активируйте его, чтобы возратить на базу!</text>
 	</string>
 	<string id="mp_sport_center">
-		<text>Спортивный центр</text>
+		<text>Споривный центр</text>
 	</string>
 	<string id="mp_training_camp">
 		<text>Тренировочный лагерь</text>

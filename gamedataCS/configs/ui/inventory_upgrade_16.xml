@@ -92,7 +92,6 @@
         <cell x="17" y="290" />
         <cell x="17" y="335" />
         <cell x="17" y="385" />
-        <cell x="17" y="430" />
      </column>
 
       <column>
@@ -102,7 +101,7 @@
         <cell x="100" y="240" />
         <cell x="100" y="290" />
         <cell x="100" y="335" />
-        <cell x="100" y="430" />
+        <cell x="100" y="385" />
       </column>
 
       <column>
@@ -190,7 +189,6 @@
         <cell x="17" y="290" />
         <cell x="17" y="335" />
         <cell x="17" y="385" />
-        <cell x="17" y="430" />
      </column>
 
       <column>
@@ -811,16 +809,16 @@
 
       <column>
         <cell x="17" y="5"   />
-        <cell x="17" y="55"  />
-        <cell x="17" y="105" />
-        <cell x="17" y="155" />
-        <cell x="17" y="205" />
-        <cell x="17" y="255" />
-        <cell x="17" y="305" />
+        <cell x="17" y="50"  />
+        <cell x="17" y="100" />
+        <cell x="17" y="145" />
+        <cell x="17" y="195" />
+        <cell x="17" y="240" />
+        <cell x="17" y="290" />
       </column>
 
       <column>
-        <cell x="100" y="305" />
+        <cell x="100" y="290" />
       </column>
 
     </template>	
@@ -910,119 +908,6 @@
         <cell x="17" y="130" />
       </column>
 
-    </template>
-
-<!-- OGSM CS -->
-
-    <template name="upgrade_scheme_u5_ogsm">
-	  <column>
-		<cell x="17" y="30"/>
-		<cell x="17" y="75"/>
-		<cell x="17" y="130"/>
-		<cell x="17" y="175"/>
-	  </column>
-	</template>
-
-    <template name="upgrade_scheme_u7a_ogsm">
-      <column>
-        <cell x="17" y="5"/>
-        <cell x="17" y="50"/>
-        <cell x="17" y="100"/>
-        <cell x="17" y="145"/>
-      </column>
-      <column>
-        <cell x="100" y="22"/>
-        <cell x="100" y="123"/>
-      </column>
-    </template>
-
-    <template name="upgrade_scheme_u8_ogsm">
-      <column>
-        <cell x="17" y="5"/>
-        <cell x="17" y="50"/>
-        <cell x="17" y="100"/>
-        <cell x="17" y="145"/>
-      </column>
-      <column>
-        <cell x="100" y="50"/>
-        <cell x="100" y="100"/>
-      </column>
-      <column>
-        <cell x="183" y="75"/>
-      </column>
-    </template>
-
-    <template name="upgrade_scheme_u10a_ogsm">
-	  <column>
-		<cell x="17" y="5"/>
-		<cell x="17" y="50"/>
-		<cell x="17" y="100"/>
-		<cell x="17" y="145"/>
-		<cell x="17" y="195"/>
-		<cell x="17" y="240"/>
-	  </column>
-	  <column>
-		<cell x="100" y="50"/>
-		<cell x="100" y="100"/>
-	  </column>
-	</template>
-
-    <template name="upgrade_scheme_u10b_ogsm">
-	  <column>
-		<cell x="17" y="5"/>
-		<cell x="17" y="50"/>
-		<cell x="17" y="100"/>
-		<cell x="17" y="145"/>
-		<cell x="17" y="195"/>
-		<cell x="17" y="240"/>
-		<cell x="17" y="295"/>
-	  </column>
-	  <column>
-		<cell x="100" y="50"/>
-		<cell x="100" y="100"/>
-	  </column>
-	</template>
-
-    <template name="upgrade_scheme_u11a_ogsm">
-	  <column>
-        <cell x="17" y="50"/>
-        <cell x="17" y="100"/>
-        <cell x="17" y="145"/>
-        <cell x="17" y="195"/>
-        <cell x="17" y="240"/>
-        <cell x="17" y="290"/>
-      </column>
-      <column>
-        <cell x="100" y="100"/>
-        <cell x="100" y="145"/>
-      </column>
-      <column>
-        <cell x="183" y="100"/>
-        <cell x="183" y="145"/>
-      </column>
-	</template>
-
-	<template name="upgrade_scheme_u16a_ogsm">
-      <column>
-        <cell x="17" y="5"/>
-        <cell x="17" y="50"/>
-        <cell x="17" y="100"/>
-        <cell x="17" y="145"/>
-        <cell x="17" y="195"/>
-        <cell x="17" y="240"/>
-        <cell x="17" y="290"/>
-        <cell x="17" y="335"/>
-      </column>
-      <column>
-        <cell x="100" y="50"/>
-        <cell x="100" y="100"/>
-        <cell x="100" y="240"/>
-        <cell x="100" y="290"/>
-      </column>
-      <column>
-        <cell x="183" y="145"/>
-        <cell x="183" y="195"/>
-      </column>
     </template>
 
   </templates>

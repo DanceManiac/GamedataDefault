@@ -1,26 +1,23 @@
 [logic]
 active = walker@wait
-level_spot = quest_npc
 
 [walker@wait]
 path_walk = mar_tutorial_man_walk
 path_look = mar_tutorial_man_shoot
 out_restr = mar_space_restrictor_tut_tower
-combat_ignore_cond = {!is_enemy_actor}
-;invulnerable = true
+combat_ignore_cond = true
+invulnerable = true
 on_actor_dist_le_nvis = 50 | camper@wait
-on_info = {+mar_tutorial_surge_warned} nil %=kill_npc%
 meet = no_meet
 
 [camper@wait]
 path_walk = mar_tutorial_man_walk
 path_look = mar_tutorial_man_look
 out_restr = mar_space_restrictor_tut_tower
-combat_ignore_cond = {!is_enemy_actor}
-;invulnerable = true
-on_info = {+mar_tutorial_tower_top_started} camper@good, {+mar_tutorial_tower_top_shout} %=play_sound(mar_csky_hide_in_tower:csky:mar_tutorial_man_name)%
+combat_ignore_cond = true
+invulnerable = true
+on_info = {+mar_tutorial_tower_top_started} camper@good, {+mar_tutorial_tower_top_shout} %=play_sound(mar_csky_hide_in_tower:csky)%
 on_signal = sound_end | camper@good %+mar_tutorial_tower_top_started%
-on_info2 = {+mar_tutorial_surge_warned} nil %=kill_npc%
 meet = no_meet
 radius = 0
 def_state_moving = sneak
@@ -32,11 +29,10 @@ def_state_campering_fire = hide_fire
 path_walk = mar_tutorial_man_walk
 path_look = mar_tutorial_man_look
 out_restr = mar_space_restrictor_tut_tower
-combat_ignore_cond = {!is_enemy_actor}
-;invulnerable = true
-on_info = {+mar_tutorial_kill_boars_started} camper@main, {+mar_tutorial_surge_warned} camper@main, {+mar_tutorial_tower_top_done -mar_tutorial_kill_boars_done} %=play_sound(mar_csky_player_in_tower:csky:mar_tutorial_man_name)%
+combat_ignore_cond = true
+invulnerable = true
+on_info = {+mar_tutorial_kill_boars_started} camper@main, {+mar_tutorial_surge_warned} camper@main, {+mar_tutorial_tower_top_done -mar_tutorial_kill_boars_done} %=play_sound(mar_csky_player_in_tower:csky)%
 on_signal = sound_end | camper@main %+mar_tutorial_kill_boars_started%
-on_info2 = {+mar_tutorial_surge_warned} nil %=kill_npc%
 meet = no_meet
 radius = 0
 def_state_moving = sneak
@@ -48,8 +44,8 @@ def_state_campering_fire = hide_fire
 path_walk = mar_tutorial_man_walk
 path_look = mar_tutorial_man_look
 out_restr = mar_space_restrictor_tut_tower
-combat_ignore_cond = {!is_enemy_actor}
-;invulnerable = true
+combat_ignore_cond = true
+invulnerable = true
 on_info = {+mar_tutorial_surge_warned} nil %=kill_npc%
 meet = no_meet
 radius = 0

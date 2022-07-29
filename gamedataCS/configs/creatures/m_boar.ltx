@@ -26,6 +26,8 @@ search_speed			= 1.5						         ; option for ALife Simulator
 MaxHealthValue		    = 200								 ; range [0..200]
 DynamicObjectsCount		= 32
 smart_terrain_choose_interval	= 00:15:00
+Spawn_Inventory_Item_Section = mutant_boar_leg
+Spawn_Inventory_Item_Probability = 0.0
 
 ;------------------------------------------------------------------------
 ; Physics
@@ -61,9 +63,8 @@ separate_range  = 3   ; радиус в котором расталкивание действует
 ;------------------------------------------------------------------------
 ; Movement
 ;------------------------------------------------------------------------
-;----------------------------------------------------------------------------
+
 ; speed factors			linear | angular_real | angular_path | min	 |  max
-;----------------------------------------------------------------------------
 Velocity_Stand			= 0,		1.4,			1.4,		1,		1	
 Velocity_RunFwdNormal	= 7.5,		3.5,			3.5,		0.4,	1	
 Velocity_RunFwdDamaged	= 4.5,		3.0,			3.0,		0.2,	1
@@ -124,18 +125,18 @@ wound_incarnation_v			= 0.04				;крутизна кривой заживления (какой процент раны 
 min_wound_size				= 0.01
 
 ;Sleep Settings
-sleep_health			= 1.0		;1.5				;коэффициенты скоростей изменения параметров во время сна
+sleep_health			= 1.0		;1.5				;ъю¤ЇЇшЎшхэЄv ёъюЁюёЄхщ шчьхэхэш  ярЁрьхЄЁют тю тЁхь  ёэр
 sleep_power				= 1.0		;1.5
 sleep_satiety			= 1.0		;0.8
 sleep_radiation			= 1.0	;1.1
 sleep_psy_health		= 1.0
 
 ;Eat settings
-eat_freq				=	5.0							; частота укусов в сек
-eat_slice				=	0.01						; увеличение сытости при 1 укусе
-eat_slice_weight		=	10.0						; уменьшение еды у трупа
+eat_freq				=	5.0							; ўрёЄюЄр єъєёют т ёхъ
+eat_slice				=	0.01						; єтхышўхэшх ёvЄюёЄш яЁш 1 єъєёх
+eat_slice_weight		=	10.0						; єьхэ№°хэшх хфv є ЄЁєяр
 
-satiety_threshold		= 0.5							; ниже этого значения монстр считается голодным
+satiety_threshold		= 0.5							; below this value monster fill hunger
 
 ;------------------------------------------------------------------------
 ; Sound
@@ -183,7 +184,7 @@ time_quant					= 0.001
 decrease_value				= 0.01				; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
 velocity_factor		     	= 0.5
 luminocity_factor			= 0.5 				; фактор освещения (только для Актёра)
-transparency_threshold		= 0.25				; видимость через камыши и кустарники
+transparency_threshold		= 0.25
 
 ;-------------------------------------------------------------------------
 ; Morale
@@ -240,12 +241,10 @@ actor_restrictor		= medium_monster ;medium_monster,stalker,none
 step_params				= m_boar_step_params
 LegsCount				= 4
 
-DayTime_Begin					= 0			; начало дня для монстра
-DayTime_End						= 21		; конец дня для монстра
-Min_Satiety		= 0.4	;0.6		; мин. норма сытости (меньше - уже голодный)
-Max_Satiety		= 1.0		; макс. норма сытости (больше - очень сытый)
+DayTime_Begin					= 0			; эрўрыр фэ  фы  ьюэёЄЁр
+DayTime_End						= 21		; ъюэхЎ фэ  фы  ьюэёЄЁр
 
-distance_to_corpse				= 2.1		; дист. до трупа, при которой он переходит в состояние еды
+distance_to_corpse				= 2.1		; фшёЄ. фю ЄЁєяр, яЁш ъюЄюЁющ юэ яхЁхїюфшЄ т ёюёЄю эшх хфv
 
 terrain							= boar_terrain
 
@@ -306,16 +305,16 @@ ce_power			= 2.5; 2.0			; power
 
 default				= 0.5, -1, 0.3
 
-bip01_pelvis 		= 0.5, -1, 0.3
-bip01_spine 		= 0.5, -1, 0.3
-bip01_spine1 		= 0.9, -1, 0.3
-bip01_spine2		= 0.9, -1, 0.3
-bip01_l_upperarm	= 0.5, -1, 0.3
-bip01_r_upperarm	= 0.5, -1, 0.3
-bip01_l_thigh		= 0.5, -1, 0.3
-bip01_r_thigh		= 0.5, -1, 0.3
-bip01_neck 			= 0.6, -1, 1.5
-bip01_head	 		= 0.6, -1, 0.3
+bip01_pelvis 		= 1.0, -1, 0.3
+bip01_spine 		= 1.0, -1, 0.3
+bip01_spine1 		= 1.0, -1, 0.3
+bip01_spine2		= 1.0, -1, 0.3
+bip01_l_upperarm	= 1.0, -1, 0.3
+bip01_r_upperarm	= 1.0, -1, 0.3
+bip01_l_thigh		= 1.0, -1, 0.3
+bip01_r_thigh		= 1.0, -1, 0.3
+bip01_neck 			= 1.5, -1, 1.5
+bip01_head	 		= 1.5, -1, 0.3
 
 
 [boar_critical_wound_bones_head]
@@ -400,14 +399,14 @@ stand_drag_0		=	  1,	0.2,    1,	     0.25,    0.7,    0.7,    1.0,     0.7,   1.
 ;===========================================================================
 [boar_immunities]
 burn_immunity			= 1.0								;коэффициенты иммунитета 
-strike_immunity			= 0.5
-shock_immunity			= 0.5
-wound_immunity			= 0.3
+strike_immunity			= 0.8
+shock_immunity			= 0.8
+wound_immunity			= 0.5
 radiation_immunity		= 0.0
 telepatic_immunity		= 1.0
 chemical_burn_immunity	= 0.8
 explosion_immunity		= 0.15
-fire_wound_immunity		= 0.15
+fire_wound_immunity		= 0.4 ;0.15
 
 ;*********************************************************************************
 ; BASE PROFILES
@@ -431,12 +430,12 @@ community			= boar
 burn_immunity			= 0.2
 strike_immunity			= 0.2
 shock_immunity			= 0.2
-wound_immunity			= 0.3
+wound_immunity			= 0.4
 radiation_immunity		= 0.0
 telepatic_immunity		= 0.0
 chemical_burn_immunity	= 0.2
 explosion_immunity		= 0.4
-fire_wound_immunity		= 0.12
+fire_wound_immunity		= 0.4
 
 [boar_attack_params_weak]
 ;---------------------------------------------------------------------------------------------------------------------------------------------
@@ -454,8 +453,8 @@ stand_attack_run_0 =    0.50,		0.5,	      100,        0.0, 1.0, 2.0,	 -1.0, 1.0,
 
 [boar_normal]:m_boar_e
 $spawn				= "monsters\boars\boar_02_normal"
-visual				= monsters\mutant_boar\mutant_boar_normal
-icon				= ui_npc_monster_mutant_boar_normal
+visual				= monsters\mutant_boar\mutant_boar
+icon				= ui_npc_monster_mutant_boar
 panic_threshold		= 0.2
 rank				= 150
 immunities_sect		= boar_immunities_normal
@@ -470,12 +469,12 @@ community			= boar
 burn_immunity			= 0.2
 strike_immunity			= 0.2
 shock_immunity			= 0.2
-wound_immunity			= 0.2
+wound_immunity			= 0.4
 radiation_immunity		= 0.0
 telepatic_immunity		= 0.0
 chemical_burn_immunity	= 0.2
 explosion_immunity		= 0.3
-fire_wound_immunity		= 0.1
+fire_wound_immunity		= 0.3
 
 [boar_attack_params_normal]
 ;---------------------------------------------------------------------------------------------------------------------------------------------
@@ -509,12 +508,12 @@ community			= boar
 burn_immunity			= 0.1
 strike_immunity			= 0.1
 shock_immunity			= 0.1
-wound_immunity			= 0.1
+wound_immunity			= 0.5
 radiation_immunity		= 0.0
 telepatic_immunity		= 0.0
 chemical_burn_immunity	= 0.1
 explosion_immunity		= 0.3
-fire_wound_immunity		= 0.07
+fire_wound_immunity		= 0.3
 
 [boar_attack_params_strong]
 ;---------------------------------------------------------------------------------------------------------------------------------------------

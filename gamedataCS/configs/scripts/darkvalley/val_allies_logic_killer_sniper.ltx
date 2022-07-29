@@ -1,5 +1,3 @@
-;------------------------------killer1--------------------
-
 [logic@work10]
 active = walker@start_work1
 suitable = {=check_npc_name(val_killer_sniper_1)} true
@@ -17,14 +15,13 @@ on_info = {+val_killer_1_1_dead} smartcover@kill1 %=hit_npc_from_actor%
 cover_name = val_killer_1_1_smartcover_3
 target_path = val_killer_1_1_smartcover_3_target
 cover_state = fire_target
-on_info = {=fighting_dist_le(3)} remark@work1
+on_info2 = {=fighting_dist_le(3)} remark@work1
 
 [remark@work1]
 out_restr = val_space_restrictor_1_1_zone
 on_info = {=fighting_dist_ge(5)} smartcover@kill1
 
 ;------------------------------killer2--------------------
-
 [logic@work20]
 active = walker@start_work2
 suitable = {=check_npc_name(val_killer_sniper_2)} true
@@ -42,13 +39,12 @@ on_info = {+val_killer_1_1_dead} smartcover@kill2 %=hit_npc_from_actor%
 cover_name = val_killer_1_1_smartcover_1
 target_path = val_killer_1_1_smartcover_1_target
 cover_state = fire_target
-on_info = {=fighting_dist_le(3)} remark@work2
+on_info2 = {=fighting_dist_le(3)} remark@work2
 
 [remark@work2]
 out_restr = val_space_restrictor_1_1_zone
 on_info = {=fighting_dist_ge(5)} smartcover@kill1
 
-;------------------------------killer3--------------------
 
 [logic@work30]
 active = walker@start_work3
@@ -67,13 +63,11 @@ on_info = {+val_killer_1_1_dead} smartcover@kill3 %=hit_npc_from_actor%
 cover_name = val_killer_1_1_smartcover_2
 target_path = val_killer_1_1_smartcover_2_target
 cover_state = fire_target
-on_info = {=fighting_dist_le(3)} remark@work3
+on_info2 = {=fighting_dist_le(3)} remark@work3
 
 [remark@work3]
 out_restr = val_space_restrictor_1_1_zone
 on_info = {=fighting_dist_ge(5)} smartcover@kill1
-
-;------------------------------killer4--------------------
 
 [logic@work40]
 active = walker@start_work4
@@ -92,13 +86,12 @@ on_info = {+val_killer_1_1_dead} smartcover@kill4 %=hit_npc_from_actor%
 cover_name = val_killer_1_1_smartcover_4
 target_path = val_killer_1_1_smartcover_4_target
 cover_state = fire_target
-on_info = {=fighting_dist_le(3)} remark@work4
+on_info2 = {=fighting_dist_le(3)} remark@work4
 
 [remark@work4]
 out_restr = val_space_restrictor_1_1_zone
 on_info = {=fighting_dist_ge(5)} smartcover@kill4
 
-;------------------------------killer5--------------------
 
 [logic@work50]
 active = walker@start_work5
@@ -121,10 +114,10 @@ on_info = {+val_killer_1_1_dead} smartcover@kill5 %=hit_npc_from_actor%
 cover_name = val_killer_1_1_smartcover_5
 target_path = val_killer_1_1_smartcover_5_target
 cover_state = fire_target
-on_info = {=fighting_dist_le(3)} remark@work5
+on_info2 = {=fighting_dist_le(3)} remark@work5
 
 [remark@work5]
 out_restr = val_space_restrictor_1_1_zone
 on_info = {=fighting_dist_ge(5)} smartcover@kill5
-;radius = 15
-;meet = no_meet
+radius = 15
+meet = no_meet

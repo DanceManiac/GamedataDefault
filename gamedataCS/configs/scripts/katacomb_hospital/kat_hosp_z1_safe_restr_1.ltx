@@ -34,34 +34,34 @@ on_game_timer = 20 | sr_idle %-cover_fire +cover_fire_end -cover_fire_hide +snip
 [sr_idle]
 on_actor_inside = {+sniper_fire_scene_end +katacomb_task_sniper_back} sr_idle@hide %-hospital_z1_badly -cover_fire_end +cover_fire%
 on_actor_outside = {+sniper_fire_scene_end} sr_idle@wait
-on_info = {+rush_2} sr_idle@3
+on_info = {+rush_2} sr_idle3
 on_info2 = {+sniper_off +minigun_off} sr_idle@idle
 
-[sr_idle@1]
+[sr_idle1]
 on_game_timer = 30 | sr_idle@hide %-cover_fire_end +cover_fire%
-on_info = {+rush_2} sr_idle@3
+on_info = {+rush_2} sr_idle3
 on_info2 = %-hospital_z1_badly%
-on_info3 = {+sniper_off +minigun_off} sr_idle@idle
+on_info2 = {+sniper_off +minigun_off} sr_idle@idle
 
 [sr_idle@hide]
 on_game_timer = 30 | sr_idle@go %+cover_fire_hide%
-on_info = {+rush_2} sr_idle@3 %-cover_fire +cover_fire_end -cover_fire_go -cover_fire_hide%
+on_info = {+rush_2} sr_idle3 %-cover_fire +cover_fire_end -cover_fire_go -cover_fire_hide%
 on_info2 = {+sniper_off +minigun_off} sr_idle@idle
 
 [sr_idle@go]
-;on_game_timer = 10 | sr_idle@2 %+cover_fire_go =play_sound(clear_sky_go_pda)%
-on_game_timer = 20 | sr_idle@2 %+cover_fire_go%
-on_info = {+rush_2} sr_idle@3 %-cover_fire +cover_fire_end -cover_fire_go -cover_fire_hide%
+;on_game_timer = 10 | sr_idle2 %+cover_fire_go =play_sound(clear_sky_go_pda)%
+on_game_timer = 20 | sr_idle2 %+cover_fire_go%
+on_info = {+rush_2} sr_idle3 %-cover_fire +cover_fire_end -cover_fire_go -cover_fire_hide%
 on_info2 = {+sniper_off +minigun_off} sr_idle@idle
 
-[sr_idle@2]
-on_game_timer = 50 | sr_idle@3 %-cover_fire +cover_fire_end -cover_fire_go -cover_fire_hide%
-on_info = {+rush_2} sr_idle@3 %-cover_fire +cover_fire_end -cover_fire_go -cover_fire_hide%
+[sr_idle2]
+on_game_timer = 50 | sr_idle3 %-cover_fire +cover_fire_end -cover_fire_go -cover_fire_hide%
+on_info = {+rush_2} sr_idle3 %-cover_fire +cover_fire_end -cover_fire_go -cover_fire_hide%
 on_info2 = {+sniper_off +minigun_off} sr_idle@idle
 
-[sr_idle@3]
+[sr_idle3]
 on_game_timer = 100 | {-cover_fire -rush_2} sr_idle@wait %+hospital_z1_badly%
-;on_actor_inside = {-cover_fire -rush_2} sr_idle@1 %+hospital_z1_badly =play_sound(clear_sky_badly_pda)%, {+rush_2} sr_idle@1 %-rush_2 +hospital_z1_badly =play_sound(clear_sky_badly_pda)%
+;on_actor_inside = {-cover_fire -rush_2} sr_idle1 %+hospital_z1_badly =play_sound(clear_sky_badly_pda)%, {+rush_2} sr_idle1 %-rush_2 +hospital_z1_badly =play_sound(clear_sky_badly_pda)%
 on_actor_inside = {-cover_fire -rush_2} sr_idle %+hospital_z1_badly%, {+rush_2} sr_idle %-rush_2 +hospital_z1_badly%
 on_info = {+sniper_off +minigun_off} sr_idle@idle
 

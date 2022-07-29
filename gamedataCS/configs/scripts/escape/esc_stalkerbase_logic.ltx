@@ -2,153 +2,35 @@
 
 [logic@work1]
 active = walker@enter_work1
-suitable = {-esc_puzo_squad_spawn =check_npc_name(hello_guard_stalker)}, {+esc_puzo_squad_spawn =check_npc_name(esc_stalker_puzo)}
+suitable = {=check_npc_name(sim_default_stalker_)} true
 prior = 41
 
 [walker@enter_work1]
 path_walk = grd_1_walk
 path_look = grd_1_look
-on_actor_in_zone = esc_space_restrictor_stalkerbase | {!gulag_enemy_actor(esc_smart_terrain_5_7) -esc_stalker_leader_meet} remark@idle_g
+on_actor_in_zone = esc_space_restrictor_stalkerbase | {!gulag_enemy_actor(esc_smart_terrain_5_7)} remark@idle_g
 
 [remark@idle_g]
-anim = guard
-on_info = {!gulag_enemy_actor(esc_smart_terrain_5_7) +esc_reach_trader_complete} remark@idle_g1 %=play_sound(esc_stalkerbase_guard_redirect:stalker:esc_smart_terrain_5_7)%
-target = actor
-
-[remark@idle_g1]
-anim = guard
-on_signal = sound_end | walker@last_g_work1
+anim = ward
+on_info = {!gulag_enemy_actor(esc_smart_terrain_5_7) +esc_reach_trader_complete -esc_stalker_leader_meet} walker@last_g_work1 %=play_sound(esc_stalkerbase_guard_redirect:stalker)%
 target = actor
 
 [walker@last_g_work1]
 path_walk = grd_1_walk
 path_look = grd_1_look
-on_info = {+esc_stalker_leader_meet} walker@last_g_work2
-meet = meet@work1
-
-[walker@last_g_work2]
-path_walk = grd_1_walk
-path_look = grd_1_look
-meet = meet
-
-[meet@work1]
-meet_dialog = guard_stalker_base_hello
 
 ;Prisoner Guard
 
 [logic@work2]
 active = walker@work2
-suitable = {-esc_puzo_squad_spawn =check_npc_name(prisoner_guard_stalker)} true
-on_death = death@work2
-prior = 140
-help_wounded_enabled = false
+suitable = {=check_npc_name(sim_default_stalker_)} true
+prior = 40
 
 [walker@work2]
 path_walk = storywalker_1_walk
 path_look = storywalker_1_look
 meet = meet@work2
 out_restr = esc_space_restrictor_in_restr_1
-on_info = {+esc_prisoner_go_out -esc_prisoner_guard_restored} remark@wounded2 %+esc_prisoner_guard_wounded%
-on_info2 = {+esc_zak_stalkerbase_killed_by_a_hero} %=play_sound(esc_prisoner_guard_zak_hit:stalker:esc_smart_terrain_5_7)%
-on_info3 = {+start_surge_info} walker@surge_hide_work2
 
 [meet@work2]
 meet_dialog = {+esc_prisoner_go_out} esc_stalker_about_prisoner
-
-[remark@wounded2]
-anim = wounded_heavy_3
-on_info = {+esc_prisoner_guard_restored} walker@work2 %=actor_friend%
-on_info2 = {+escape_visited -esc_prisoner_guard_restored} %=kill_npc%
-on_game_timer = 10000 | {-esc_prisoner_guard_restored} %=kill_npc%
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-snd = help_heavy
-no_move = true
-danger = danger_condition
-wounded = wounded@work2
-meet = meet@wounded2
-
-[walker@surge_hide_work2]
-path_walk = storywalker_1_walk
-path_look = storywalker_1_look
-on_info = {+surge_finished_info} walker@work2
-meet = meet@work2
-
-[meet@wounded2]
-meet_dialog = esc_prisoner_guard
-meet_state = 3 | nil@nil
-meet_state_wpn = 3 | nil@nil
-victim = 0 | actor
-victim_wpn = 0 | actor
-use = true
-use_wpn = true
-precond = visibility
-trade_enable = false
-
-[wounded@work2]
-hp_state        = 20|wounded_heavy@help_heavy
-hp_state_see    = 20|wounded_heavy@help_heavy
-hp_victim       = 20|nil
-hp_fight        = 20|false
-hp_cover        = 20|false
-autoheal = false
-enable_talk = true
-not_for_help = true
-
-[danger_condition]
-ignore_distance = 0
-ignore_distance_grenade = 0
-ignore_distance_corpse = 0
-ignore_distance_hit = 0
-ignore_distance_sound = 0
-
-[death@work2]
-on_info = %+esc_prisoner_guard_restored%
-
-;------------------------------------------------------
-
-[logic@work3]
-active = walker@work3
-suitable = {=check_npc_name(esc_stalker_guard_2)} true
-on_death = death@work3
-prior = 41
-
-[walker@work3]
-path_walk = grd_2_walk
-path_look = grd_2_look
-on_info = {+esc_prisoner_go_out} %=kill_npc%
-on_info2 = {+esc_zak_stalkerbase_dead +gar_story_got_info_from_digger} %=destroy_object%
-meet = meet@work3
-
-[meet@work3]
-meet_state = 3 | guard@nil
-meet_state_wpn = 3 | threat@meet_weapon_wait
-victim = 3 | actor
-victim_wpn = 3 | actor
-trade_enable = false
-
-[death@work3]
-on_info = %+esc_stalker_guard_2_dead%
-
-[logic@work4]
-active = walker@work4
-suitable = {=check_npc_name(esc_stalker_guard_3)} true
-on_death = death@work4
-prior = 41
-
-[walker@work4]
-path_walk = grd_3_walk
-path_look = grd_3_look
-on_info = {+esc_prisoner_go_out} %=kill_npc%
-on_info2 = {+esc_zak_stalkerbase_dead +gar_story_got_info_from_digger} %=destroy_object%
-meet = meet@work3
-
-[meet@work4]
-meet_state = 3 | guard@nil
-meet_state_wpn = 3 | threat@meet_weapon_wait
-victim = 3 | actor
-victim_wpn = 3 | actor
-trade_enable = false
-
-[death@work4]
-on_info = %+esc_stalker_guard_3_dead%

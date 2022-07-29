@@ -13,6 +13,7 @@ path_walk = z3_cs_soldier1_walk
 path_look = z3_cs_commander_look
 radius = 0
 def_state_moving = sneak_run
+;def_state_campering_fire = hide_sniper_fire
 on_info = {+hospital_z3_cs_fire_1} camper@final
 wounded = wounded
 
@@ -24,7 +25,6 @@ path_look = z3_cs_soldier1_look_1
 radius = 0
 def_state_moving = sneak_run
 wounded = wounded
-on_info = {+freeplay} %=destroy_object%
 
 [wounded]
 hp_state        = 0|wounded_heavy@help_heavy

@@ -47,7 +47,7 @@ out_restr = mil_home
 
 [logic@work6]
 active = walker@house_6
-suitable = {+mil_merc_talked_f1_f2_wt1 -mil_destroy_house_military =check_npc_name(sim_default_military_)} true
+suitable = {+mil_merc_talked_f1_f2_wt1 -mil_destroy_house_military {=check_npc_name(sim_default_military_)} true
 
 [walker@house_6]
 path_walk = house_6_walk
@@ -93,7 +93,6 @@ out_restr = mil_home
 [logic@work9]
 active = walker@deftower_9
 suitable = {+mil_merc_talked_f1_f2_wt1 =check_npc_name(sim_default_military_3)} true
-prior = 150
 
 [walker@deftower_9_fire]
 path_walk = towerdef_1_walk
@@ -134,7 +133,7 @@ path_walk = towerdef_4_walk
 path_look = towerdef_4_look
 out_restr = mil_near_home
 
-;Зомбированые
+;Зомбирование
 
 [logic@zombied1]
 active = patrol@zombied1_no_danger
@@ -333,7 +332,7 @@ path_walk = zombied_15_walk
 on_actor_dist_ge = 20 | patrol@zombied15_no_danger
 
 
-;;; Soldiers are fighting with zombies ;;;
+;;; Soldiers with zombiers ;;;
 
 
 [logic@military_soldier_01]
@@ -402,8 +401,7 @@ on_actor_dist_le_nvis = 50 | walker@military_soldier_04
 
 [logic@military_sniper]
 active = camper@military_sniper_wait
-suitable = {=check_npc_name(mil_soldier_sniper_)} true
-prior = 100
+suitable = {=check_npc_name(sim_default_military_)} true
 
 [camper@military_sniper_wait]
 path_walk = towerdef_5_walk

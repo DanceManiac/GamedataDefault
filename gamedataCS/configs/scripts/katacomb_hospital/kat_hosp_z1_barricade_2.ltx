@@ -64,26 +64,12 @@ combat_ignore_keep_when_attacked = true
 cover_name = hosp_barricade_2_smartcover
 cover_state = idle_target
 loophole_name = br_1
-on_game_timer = 5 | %=play_sound(clear_sky_suicide:csky:hosp_clear_sky_suicide_name)%
-on_game_timer2 = 30 | walker
+on_game_timer = 5 | %=play_sound(clear_sky_suicide)%
+on_game_timer2 = 30 | walker ;%=play_sound(clear_sky_runner_killed) =hit_npc(200:bip01_head:1000:0)%
 
 [walker]
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 path_walk = barricade_hide_2_walk
 path_look = barricade_hide_2_look
-on_game_timer = 80 | walker@1 %=play_sound(clear_sky_runner_killed:csky:hosp_clear_sky_suicide_name) =hit_npc(200:bip01_head:1000:0)%
-
-[walker@1]
-path_walk = barricade_hide_2_walk
-path_look = barricade_hide_2_look
-meet = meet
-
-[meet]
-meet_state 		= 0|nil@nil
-meet_state_wpn = 0|nil@nil
-victim			= 0|nil
-victim_wpn = 0|nil
-use			= true
-use_wpn = true
-abuse			= false
+on_game_timer = 80 | %=play_sound(clear_sky_runner_killed) =hit_npc(200:bip01_head:1000:0)%

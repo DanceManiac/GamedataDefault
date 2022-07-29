@@ -30,15 +30,6 @@ function campfire_binder:net_spawn(server_object)
 end
 function campfire_binder:update(delta)
 	object_binder.update(self, delta)
-
-	--// NGSM
-    if	db.actor and db.actor:alive() then
-	    if db.actor:position():distance_to(self.object:position()) <= 4 and self.campfire:is_on() then
-			db.actor.health = 0.0003
-		end
-	end
-	--// NGSM
-
 --[[	printf("campfire_update!!!")
 	local kamp = xr_kamp.kamps[string.gsub(self.object:name(), "_campfire", "")]  
 	if kamp ~= nil and kamp.population > 0 then

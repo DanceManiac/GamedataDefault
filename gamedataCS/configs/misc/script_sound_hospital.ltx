@@ -40,9 +40,6 @@ clear_sky_victory_reply
 hospital_z3_csky_com_apply
 hospital_z3_csky_com_order
 
-;***********HOSPITAL**
-;********************
-
 [hosp_far_gunfire]
 type = 3d
 path = characters_voice\scenario\hospital\hospital_gunfire_1
@@ -64,9 +61,9 @@ shuffle = rnd
 idle = 3,5,100
 
 [clear_sky_about_hall]
-type = npc
-actor_stereo = true
-npc_prefix = false
+type = actor
+actor_stereo = false
+npc_prefix = true
 path = scenario\hospital\clear_sky_about_hall
 shuffle = rnd
 idle = 3,5,100
@@ -80,9 +77,9 @@ shuffle = rnd
 idle = 3,5,100
 
 [clear_sky_runner_killed]
-type = actor
-actor_stereo = false
-npc_prefix = true
+type = npc
+actor_stereo = true
+npc_prefix = false
 path = scenario\hospital\clear_sky_runner_killed
 shuffle = rnd
 idle = 3,5,100
@@ -208,17 +205,17 @@ shuffle = rnd
 idle = 3,5,100
 
 [clear_sky_gunner_killed]
-type = npc
-actor_stereo = true
-npc_prefix = false
+type = actor
+actor_stereo = false
+npc_prefix = true
 path = scenario\hospital\clear_sky_gunner_killed
 shuffle = rnd
 idle = 3,5,100
 
 [clear_sky_thanks_actor]
-type = npc
-actor_stereo = true
-npc_prefix = false
+type = actor
+actor_stereo = false
+npc_prefix = true
 path = scenario\hospital\clear_sky_thanks_actor
 shuffle = rnd
 idle = 3,5,100

@@ -52,13 +52,13 @@
 		<text>Костя</text>
 	</string>
 	<string id="name_9">
-		<text>Лёша</text>
+		<text>Леша</text>
 	</string>
 	<string id="name_army_0">
 		<text>Андрей</text>
 	</string>
 	<string id="name_bandit_0">
-		<text>Санёк</text>
+		<text>Санек</text>
 	</string>
 	<string id="name_bandit_1">
 		<text>Шурик</text>
@@ -70,7 +70,7 @@
 		<text>Васян</text>
 	</string>
 	<string id="name_bandit_12">
-		<text>Васёк</text>
+		<text>Васек</text>
 	</string>
 	<string id="name_bandit_13">
 		<text>Витюха</text>
@@ -94,7 +94,7 @@
 		<text>Димон</text>
 	</string>
 	<string id="name_bandit_2">
-		<text>Лёха</text>
+		<text>Леха</text>
 	</string>
 	<string id="name_bandit_20">
 		<text>Димуха</text>
@@ -136,7 +136,7 @@
 		<text>Петруха</text>
 	</string>
 	<string id="name_bandit_32">
-		<text>Стёпка</text>
+		<text>Степка</text>
 	</string>
 	<string id="name_bandit_33">
 		<text>Степуха</text>
@@ -175,19 +175,19 @@
 		<text>Капитан</text>
 	</string>
 	<string id="name_captain_1">
-		<text>Ст. лейтенант</text>
+		<text>Капитан</text>
 	</string>
 	<string id="name_lieutenant_0">
 		<text>Лейтенант</text>
 	</string>
 	<string id="name_lieutenant_1">
-		<text>Прапорщик</text>
+		<text>Лейтенант</text>
 	</string>
 	<string id="name_private_0">
 		<text>Рядовой</text>
 	</string>
 	<string id="name_private_1">
-		<text>Ефрейтор</text>
+		<text>Рядовой</text>
 	</string>
 	<string id="name_science_0">
 		<text>Андрей</text>
@@ -241,13 +241,13 @@
 		<text>Сержант</text>
 	</string>
 	<string id="name_sergeant_1">
-		<text>Старшина</text>
+		<text>Сержант</text>
 	</string>
 	<string id="name_stalker_0">
 		<text>Саня</text>
 	</string>
 	<string id="name_stalker_1">
-		<text>Санёк</text>
+		<text>Санек</text>
 	</string>
 	<string id="name_stalker_10">
 		<text>Артур</text>
@@ -391,7 +391,7 @@
 		<text>Женя</text>
 	</string>
 	<string id="name_stalker_5">
-		<text>Лёшка</text>
+		<text>Лешка</text>
 	</string>
 	<string id="name_stalker_50">
 		<text>Женька</text>
@@ -412,7 +412,7 @@
 		<text>Ванька</text>
 	</string>
 	<string id="name_stalker_56">
-		<text>Игорёк</text>
+		<text>Игорек</text>
 	</string>
 	<string id="name_stalker_57">
 		<text>Илья</text>
@@ -499,13 +499,13 @@
 		<text>Савва</text>
 	</string>
 	<string id="name_stalker_82">
-		<text>Семён</text>
+		<text>Семен</text>
 	</string>
 	<string id="name_stalker_83">
-		<text>Сёма</text>
+		<text>Сема</text>
 	</string>
 	<string id="name_stalker_84">
-		<text>Серёга</text>
+		<text>Серега</text>
 	</string>
 	<string id="name_stalker_85">
 		<text>Сеня</text>
@@ -514,7 +514,7 @@
 		<text>Степан</text>
 	</string>
 	<string id="name_stalker_87">
-		<text>Стёпа</text>
+		<text>Степа</text>
 	</string>
 	<string id="name_stalker_88">
 		<text>Тима</text>
@@ -523,10 +523,10 @@
 		<text>Тимка</text>
 	</string>
 	<string id="name_stalker_9">
-		<text>Артём</text>
+		<text>Артем</text>
 	</string>
 	<string id="name_stalker_90">
-		<text>Фёдор</text>
+		<text>Федор</text>
 	</string>
 	<string id="name_stalker_91">
 		<text>Федя</text>

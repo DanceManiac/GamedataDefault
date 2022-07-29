@@ -3,7 +3,7 @@
 
 [logic@work1]
 active = walker@enter_work1
-suitable = {=check_npc_name(red_bridge_renegade) +mil_actor_go_to_limansk +mil_sound_thanks} true
+suitable = {=check_npc_name(red_bridge_renegade) +red_bridge_scene_begin} true
 on_death = death
 
 [death]
@@ -79,7 +79,7 @@ def_state_moving3 = assault
 
 [logic@work2]
 active = walker@enter_work2
-suitable = {=check_npc_name(red_bridge_renegade) +mil_actor_go_to_limansk +mil_sound_thanks} true
+suitable = {=check_npc_name(red_bridge_renegade) +red_bridge_scene_begin} true
 on_death = death
 
 ;***** выходит из точки спауна *****
@@ -152,7 +152,7 @@ def_state_moving3 = assault
 
 [logic@work3]
 active = walker@enter_work3
-suitable = {=check_npc_name(red_bridge_renegade) +mil_actor_go_to_limansk +mil_sound_thanks} true
+suitable = {=check_npc_name(red_bridge_renegade) +red_bridge_scene_begin} true
 on_death = death
 
 ;***** выходит из точки спауна *****
@@ -201,7 +201,7 @@ def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
 on_info = {+red_bridge_down_done} walker@fire_free_work3
-on_info2 = {=hit_by_actor} remark@actor_hunt2_work3 %+red_bridge_bandit_attacked%
+on_info1 = {=hit_by_actor} remark@actor_hunt2_work3 %+red_bridge_bandit_attacked%
 on_info3 = {+red_bridge_bandit_attacked} remark@actor_hunt2_work3
 on_game_timer = 200 | remark@actor_hunt2_work3
 
@@ -225,7 +225,7 @@ def_state_moving3 = assault
 
 [logic@work4]
 active = walker@enter_work4
-suitable = {=check_npc_name(red_bridge_renegade) +mil_actor_go_to_limansk +mil_sound_thanks} true
+suitable = {=check_npc_name(red_bridge_renegade) +red_bridge_scene_begin} true
 on_death = death
 
 ;***** выходит из точки спауна *****
@@ -298,7 +298,7 @@ def_state_moving3 = assault
 
 [logic@work5]
 active = walker@enter_work5
-suitable = {=check_npc_name(red_bridge_renegade) +mil_actor_go_to_limansk +mil_sound_thanks} true
+suitable = {=check_npc_name(red_bridge_renegade) +red_bridge_scene_begin} true
 on_death = death
 
 ;***** выходит из точки спауна *****
@@ -371,7 +371,7 @@ def_state_moving3 = assault
 
 [logic@work6]
 active = walker@enter_work6
-suitable = {=check_npc_name(red_bridge_renegade) +mil_actor_go_to_limansk +mil_sound_thanks} true
+suitable = {=check_npc_name(red_bridge_renegade) +red_bridge_scene_begin} true
 on_death = death
 
 ;***** выходит из точки спауна *****
@@ -420,7 +420,7 @@ def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
 on_info = {+red_bridge_down_done} walker@fire_free_work6
-on_info2 = {=hit_by_actor} remark@actor_hunt2_work6 %+red_bridge_bandit_attacked%
+on_info1 = {=hit_by_actor} remark@actor_hunt2_work6 %+red_bridge_bandit_attacked%
 on_info3 = {+red_bridge_bandit_attacked} remark@actor_hunt2_work6
 on_game_timer = 200 | remark@actor_hunt2_work6
 
@@ -444,7 +444,7 @@ def_state_moving3 = assault
 
 [logic@work7]
 active = walker@enter_work7
-suitable = {=check_npc_name(red_bridge_renegade) +mil_actor_go_to_limansk +mil_sound_thanks} true
+suitable = {=check_npc_name(red_bridge_renegade) +red_bridge_scene_begin} true
 
 ;***** выходит из точки спауна *****
 [walker@enter_work7]
@@ -488,7 +488,7 @@ def_state_moving3 = assault
 
 [logic@work8]
 active = walker@enter_work8
-suitable = {=check_npc_name(red_bridge_renegade) +mil_actor_go_to_limansk +mil_sound_thanks} true
+suitable = {=check_npc_name(red_bridge_renegade) +red_bridge_scene_begin} true
 
 ;***** выходит из точки спауна *****
 [walker@enter_work8]

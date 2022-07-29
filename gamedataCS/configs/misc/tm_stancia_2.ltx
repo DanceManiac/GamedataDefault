@@ -1,18 +1,7 @@
 [list_tm_stancia_2]
-stc_get_gauss
 stc_kill_gunslinger
 stc_follow_to_teleport_1
 stc_follow_to_teleport_2
-
-[stc_get_gauss]
-prior = 100
-type = storyline
-task_type = storyline
-target_story_ids = 1400
-name = stc_get_gauss_name
-text = stc_get_gauss_text
-condlist_0 = {=actor_has_item(wpn_gauss_aes)} complete
-on_complete = % =disable_gauss_spot =give_inited_task(storyline:stc_kill_gunslinger:csky) %
 
 [stc_kill_gunslinger]
 prior = 100

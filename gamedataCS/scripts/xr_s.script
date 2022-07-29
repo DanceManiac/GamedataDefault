@@ -16,8 +16,9 @@ end
 
 -- Эта функция вызывается при старте игры. Необходимо дать возможность модулям зарегистрировать коллбэки.
 function init()
-  init_module_if_exists("cop_dyn_music")
-  if cop_dyn_music==nil or ogsm_options.music_type ~= 2 then init_module_if_exists("xrs_dyn_music") end
+  -- init_module_if_exists("xrs_dyn_weather")
+  init_module_if_exists("xrs_dyn_music")
+  -- init_module_if_exists("xrs_debug")
 end
 
 

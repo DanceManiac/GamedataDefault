@@ -43,28 +43,28 @@ function load_job(smart)
     --danger_ltx = "danger = danger@defence\n"
 
     ltx =   "[meet@generic_lager_comander]\n"..
-            "meet_state            = 30|hello_wpn|5|guard@meet_comander_wait\n"..
+            "meet_state            = 30|hello_wpn|5|talk_default@meet_comander_wait\n"..
             "meet_state_wpn        = 30|hello_wpn|5|threat@meet_weapon_wait\n"..
             "victim                = 30|actor\n"..
             "victim_wpn            = 30|actor\n"..
             "sound_start           = meet_comander_start\n"..
             "sound_start_wpn       = meet_weapon_start\n"..
             "sound_stop            = meet_comander_stop\n"..
-            "use                   = {=actor_enemy} false, true\n"..
-            "use_wpn               = false\n"..
+            "use                   = true\n"..
+            "use_wpn               = true\n"..
             "precond               = visibility\n"..
             "meet_only_at_path     = true\n"..
 
             "[meet@generic_lager_conductor]\n"..
-            "meet_state            = 10|hello_wpn|5|guard@meet_general_wait\n"..
+            "meet_state            = 10|hello_wpn|5|talk_default@meet_general_wait\n"..
             "meet_state_wpn        = 10|hello_wpn|5|threat@meet_weapon_wait\n"..
             "victim                = 10|actor\n"..
             "victim_wpn            = 10|actor\n"..
             "sound_start           = meet_general_start\n"..
             "sound_start_wpn       = meet_weapon_start\n"..
             "sound_stop            = meet_general_stop\n"..
-            "use                   = {=actor_enemy} false, true\n"..
-            "use_wpn               = false\n"..
+            "use                   = true\n"..
+            "use_wpn               = true\n"..
             "precond               = visibility\n"..
             "meet_only_at_path     = true\n"..
 
@@ -78,7 +78,7 @@ function load_job(smart)
             "sound_start           = meet_general_start\n"..
             "sound_start_wpn       = meet_weapon_start\n"..
             "sound_stop            = meet_general_stop\n"..
-            "use                   = {=actor_enemy} false, true\n"..
+            "use                   = true\n"..
             "use_wpn               = false\n"..
             "precond               = visibility\n"..
             "meet_only_at_path     = true\n"..
@@ -91,7 +91,7 @@ function load_job(smart)
             "sound_start           = \n"..
             "sound_start_wpn       = \n"..
             "sound_stop            = \n"..
-            "use                   = {=actor_enemy} false, true\n"..
+            "use                   = true\n"..
             "use_wpn               = false\n"..
             "precond               = visibility\n"..
 
@@ -103,21 +103,20 @@ function load_job(smart)
             "sound_start           = \n"..
             "sound_start_wpn       = \n"..
             "sound_stop            = \n"..
-            "use                   = {=actor_enemy} false, true\n"..
+            "use                   = true\n"..
             "use_wpn               = false\n"..
             "precond               = visibility\n"..
 
             "[meet@attack]\n"..
-            "meet_state            = 2|guard@meet_general_wait\n"..
-            "meet_state_wpn        = 2|threat@meet_weapon_wait\n"..
+            "meet_state            = 2|talk_default@meet_general_wait\n"..
+            "meet_state_wpn        = 2|talk_default@meet_weapon_wait\n"..
             "victim                = 2|actor\n"..
             "victim_wpn            = 2|actor\n"..
-            "sound_start           = \n"..
-            "sound_start_wpn       = \n"..
-            "sound_stop            = \n"..
-            "use                   = false\n"..
-            "use_wpn               = false\n"..
-            "trade_enable          = false\n"..
+            "sound_start           = meet_general_start\n"..
+            "sound_start_wpn       = meet_weapon_start\n"..
+            "sound_stop            = meet_general_stop\n"..
+            "use                   = true\n"..
+            "use_wpn               = true\n"..
             "precond               = usability\n"..
 
             "[danger@ignore_day]\n"..
@@ -156,11 +155,6 @@ function load_job(smart)
             local def_prior = 5
             if wp_prop.count ~= nil then
                 job_count = wp_prop.count
-            end
-
-            -- Это последний камп на деревне, делаем ему больше мест для работы --#SM+#--
-            if not level.patrol_path_exists(gname.."_kamp_"..(it+1)) then
-		job_count = 16
             end
 
             for i = 1, job_count do
@@ -295,7 +289,7 @@ function load_job(smart)
                             "active = patrol@"..way_name.."\n"..
 
                             "[patrol@"..way_name.."]\n"..
-                            "meet = no_meet\n"..
+                            "meet = meet@generic_lager_patrol\n"..
                             "formation = back\n"..
                             "path_walk = patrol_"..it.."_walk\n"..
                             "on_signal = end| %=search_gulag_job%\n"
@@ -338,7 +332,6 @@ function load_job(smart)
             -- добавляем описание должности в лтх.
             local job_ltx = "[logic@"..way_name.."]\n"..
                             "active = walker@"..way_name.."\n"..
-                            "corpse_detection_profile = point_3m\n"..
 
                             "[walker@"..way_name.."]\n"..
                             "meet = meet@generic_lager_comander\n"..
@@ -373,7 +366,6 @@ function load_job(smart)
             local job_ltx = "[logic@"..way_name.."]\n"..
                             "active = walker@"..way_name.."\n"..
                             "level_spot = guider\n"..
-                            "corpse_detection_profile = quest\n"..
 
                             "[walker@"..way_name.."]\n"..
                             "meet = meet@generic_lager_conductor\n"..
@@ -401,7 +393,7 @@ function load_job(smart)
             -- Необходимо вычитать количество работ из названия точки пути.
             local way_name = gname.."_guard_"..it.."_walk"
             --local guard_timeout = tostring(math.random(180,300))*1000
-            local guard_timeout = tostring(math.random(120,240))*1000
+            local guard_timeout = tostring(math.random(20,21))*1000
 
             -- добавляем должность
             t = { _prior = 25,
@@ -412,7 +404,6 @@ function load_job(smart)
             -- добавляем описание должности в лтх.
             local job_ltx = "[logic@"..way_name.."]\n"..
                             "active = walker@"..way_name.."\n"..
-                            "corpse_detection_profile = guard\n"..
 
                             "[walker@"..way_name.."]\n"..
                             "meet = meet@generic_lager_guard\n"..
@@ -431,7 +422,7 @@ function load_job(smart)
                             "meet = meet@generic_lager_guard\n"..
                             "path_walk = guard_"..it.."_walk\n"..
                             "path_look = guard_"..it.."_look\n"..
-                            "def_state_standing = guard\n"..danger_ltx..
+                            "def_state_standing = wait_na\n"..danger_ltx..
                             "on_info = {!is_obj_on_job(logic@follower_"..way_name..":3)} walker@"..way_name.."\n"..
                             "on_info2 = {=distance_to_obj_on_job_le(logic@follower_"..way_name..":3)} remark@"..way_name.."\n"
 
@@ -442,7 +433,7 @@ function load_job(smart)
             job1_ltx = job1_ltx .. danger_ltx
 
             job1_ltx = job1_ltx .. "[remark@"..way_name.."]\n"..
-                                    "anim = guard\n"..
+                                    "anim = wait_na\n"..
                                     "target = logic@follower_"..way_name.."\n"
 
             if smart.def_restr ~= nil then
@@ -462,7 +453,6 @@ function load_job(smart)
 
             local follower_ltx = "[logic@follower_"..way_name.."]\n"..
                                 "active = walker@follow_"..way_name.."\n"..
-                                "corpse_detection_profile = guard\n"..
 
                                 "[walker@follow_"..way_name.."]\n"..
                                 "meet = meet@generic_lager\n"..
@@ -477,9 +467,9 @@ function load_job(smart)
             follower_ltx = follower_ltx .. danger_ltx
 
             follower_ltx = follower_ltx .. "[remark@follower_"..way_name.."]\n"..
-                                            "anim = guard\n"..
+                                            "anim = wait_na\n"..
                                             "target = logic@"..way_name.."\n"..
-                                            "on_timer = 3000 | %=switch_to_desired_job%\n"
+                                            "on_timer = 2000 | %=switch_to_desired_job%\n"
 
             if smart.def_restr ~= nil then
                 follower_ltx = follower_ltx .."out_restr = "..smart.def_restr.."\n"
@@ -590,12 +580,11 @@ function load_job(smart)
                                     "active = patrol@"..sect_name.."\n"..
 
                                     "[patrol@"..sect_name.."]\n"..
-                                    "corpse_detection_profile = marching\n"..
-                                    "meet = no_meet\n"..
+                                    "meet = meet@attack\n"..
                                     "formation = around\n"..
                                     "def_state_moving = {=attacking_smart_captured} raid, rush\n"..
                                     "on_signal = arrive_to_wait|%=request_current_squad_stage(prepare)%\n"..
-                                    "on_info = {=current_squad_stage(combat)} cover@"..sect_name.."_attack, {=at_terminal_waypoint} %=request_current_squad_stage(prepare)%\n"..
+                                    "on_info = {=current_squad_stage(combat)} cover@"..sect_name.."_attack\n"..
                                     "path_walk = to_"..target_smart.."_patrol_"..it.."_walk\n"..danger_ltx
 
                                     if level.patrol_path_exists(gname.."_to_"..target_smart.."_patrol_"..it.."_look") then
@@ -680,8 +669,7 @@ function load_job(smart)
                                     "active = patrol@"..sect_name.."\n"..
 
                                     "[patrol@"..sect_name.."]\n"..
-                                    "corpse_detection_profile = marching\n"..
-                                    "meet = no_meet\n".. -- commented for dialog
+--                                  "meet = no_meet\n".. -- commented for dialog
                                     "formation = around\n"..
                                     "def_state_moving = {=attacking_smart_captured} raid, patrol\n"..
                                     "on_info = {!current_squad_stage(move:prepare:wait)} cover@"..sect_name.."_attack, {=npc_to_smart_dist("..target_smart..":30)} %=request_current_squad_stage(prepare)%\n"..
@@ -691,8 +679,8 @@ function load_job(smart)
                                         job_ltx = job_ltx.."on_info2 = {=current_squad_stage(prepare:wait)} walker@"..sect_name.."\n"..
 
                                         "[walker@"..sect_name.."]\n"..
-                                        "corpse_detection_profile = marching\n"..
-                                        "meet = no_meet\n"..danger_ltx..
+                                        "meet = no_meet\n"..
+                                        danger_ltx..
                                         "on_info = {=current_squad_stage(combat:post_combat:idle)} cover@"..sect_name.."_attack\n"..
                                         "def_state_standing = {=cover_attack} hide_fire, hide\n"..
                                         "def_state_moving = sneak\n"..
@@ -766,11 +754,8 @@ function load_job(smart)
             -- добавляем описание должности в лтх.
             local job_ltx = "[logic@"..way_name.."]\n"..
                             "active = camper@"..way_name.."\n"..
-                            "corpse_detection_profile = point_3m\n"..
-                            "can_use_knife = false\n"..
 
                             "[camper@"..way_name.."]\n"..
-                            "weapon_manager = generic_sniper\n"..
                             "meet = meet@generic_lager\n"..
                             "path_walk = sniper_"..it.."_walk\n"..
                             "path_look = sniper_"..it.."_look\n"..
@@ -956,7 +941,6 @@ function load_job(smart)
                                 "[surge_hide@"..way_name.."]\n"..
                                 "path_walk = surge_hide_"..it.."\n"..
                                 "on_info = {=is_surge_complete} walker@"..way_name.."\n"..
-                                "meet = no_meet\n"..
 
                                 "[walker@"..way_name.."]\n"..
                                 "path_walk = surge_hide_"..it.."\n"
@@ -993,7 +977,6 @@ function load_job(smart)
                                     "[surge_hide@"..way_name.."]\n"..
                                     "path_walk = kamp_"..it.."_task\n"..
                                     "on_info = {=is_surge_complete} walker@"..way_name.."\n"..
-                                    "meet = no_meet\n"..
 
                                     "[walker@"..way_name.."]\n"..
                                     "path_walk = kamp_"..it.."_task\n"
@@ -1107,14 +1090,14 @@ function load_job(smart)
                                     "active = mob_home@"..sect_name.."\n"..
 
                                     "[mob_home@"..sect_name.."]\n"..
-                                    "aggressive = true\n"..
+                                    "agressive = true\n"..
                                     "path_home = kamp_"..it.."_task\n"..
                                     "home_min_radius = "..home_min_radius.."\n"..
                                     "home_max_radius = "..home_max_radius.."\n"..
                                     "on_info = {=npc_to_smart_dist("..target_smart..":50)} mob_home@"..sect_name.."_arrived %=request_current_squad_stage(combat)%\n"..
 
                                     "[mob_home@"..sect_name.."_arrived]\n"..
-                                    "aggressive = true\n"..
+                                    "agressive = true\n"..
                                     "path_home = kamp_"..it.."_task\n"..
                                     "home_min_radius = "..home_min_radius.."\n"..
                                     "home_max_radius = "..home_max_radius.."\n"

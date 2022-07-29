@@ -2,8 +2,7 @@
 active = sr_idle@spawn_monster
 
 [sr_idle@spawn_monster]
-on_info = {!is_smart_captured(red_smart_terrain_monsters) !squad_exist(red_forest_monsters_snork_1) !actor_dist_to_zone_le(red_smart_terrain_monsters_defence:150) ~100} sr_idle@spawn_wait %=create_squad(red_forest_monsters_snork_1:red_smart_terrain_monsters)%
-on_info2 = {!is_smart_captured(red_smart_terrain_monsters_2) !squad_exist(red_snork_dangeon_keepers_2) !actor_dist_to_zone_le(red_smart_terrain_monsters_2_defence:150) +red_actor_find_teleport} sr_idle@spawn_wait %=create_squad(red_snork_dangeon_keepers_2:red_smart_terrain_monsters_2)%
+on_info = {!is_smart_captured(red_smart_terrain_3_2) !squad_exist(red_forest_monsters_snork_1) =dist_to_actor_ge(70) ~50} sr_idle@spawn_wait %=create_squad(red_forest_monsters_snork_1:red_smart_terrain_3_2)%
 
 [sr_idle@spawn_wait]
 on_game_timer = 3600 | sr_idle@spawn_monster

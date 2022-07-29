@@ -1,7 +1,6 @@
 [logic@stalker6]
 active = walker@snork_appear
-suitable = {=check_npc_name(yan_scene_6_stalker_6) -yan_stop_spawn_cut6} true
-prior = 95
+suitable = {-yan_stop_spawn_cut6} true
 post_combat_time = 0,0
 
 [walker@snork_appear]
@@ -29,7 +28,7 @@ radius = 0
 danger = danger_ignore
 combat_ignore_cond = true
 meet = no_meet
-on_info = {+yan_proriv_k_ystanovke} camper@to_zabor
+on_info = {+yan_destroy_zombi26_cut5} camper@to_zabor
 
 
 [camper@to_zabor]
@@ -70,7 +69,6 @@ def_state_moving = assault
 radius = 0
 on_signal = on_position | %+yan_zabor_stalker_6_on_position%
 on_info = {+typoi +yan_levsha_ready_cut6} remark@1
-meet = no_meet
 
 [remark@1]
 on_timer = 10000 | {-yan_zabor_2_already_jumping} camper@to_zabor_2 %+yan_zabor_2_already_jumping%
@@ -79,7 +77,6 @@ target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_7_walk,0
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 anim = wait_na
-meet = no_meet
 
 [camper@to_zabor_2]
 path_walk = zabor_2_walk
@@ -93,6 +90,7 @@ invulnerable = true
 [remark@zabor_2]
 anim = yan_zabor_1
 meet = no_meet
+;target = yan_smart_terrain_for_squad_levsha_zabor_2_look,0
 invulnerable = true
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
@@ -108,21 +106,16 @@ invulnerable = true
 radius = 0
 path_walk = yan_camp_6_walk
 path_look = yan_camp_6_look
-def_state_standing = threat
-def_state_moving = assault
 on_info = {+yan_ready_perekl_cut6} camper@go 
 on_actor_dist_le_nvis = 10 | camper@yan_prikritie 
-meet = no_meet
 
 [camper@yan_prikritie]
 invulnerable = true
 danger = danger_condition
 path_walk = yan_camp_6_walk
 path_look = yan_camp_6_look
-def_state_standing = threat
-def_state_moving = assault
-on_game_timer = 20 | %=play_sound(yan_prikritie:stalker:yan_smart_terrain_3_4)%
-on_game_timer2 = 60 | camper@go_1
+on_game_timer = 20 | %=play_sound(yan_prikritie:stalker)%
+on_game_timer2 = 60 |camper@go_1
 meet = no_meet
 combat_ignore_cond = true
 
@@ -132,10 +125,7 @@ invulnerable = true
 radius = 0
 path_walk = yan_camp_6_walk
 path_look = yan_camp_6_look
-def_state_standing = threat
-def_state_moving = assault
 on_info = {+yan_ready_perekl_cut6} camper@go 
-combat_ignore_cond = {=fighting_dist_ge(25)}
 meet = no_meet
 
 [camper@go]
@@ -145,9 +135,8 @@ path_look = yan_vikl_6_look
 def_state_moving = assault
 danger = danger_condition
 radius = 0
-;invulnerable = true
+invulnerable = true
 combat_ignore_cond = {=fighting_dist_ge(10)} 
-meet = no_meet
 
 [wounded]
 hp_state        = 0|wounded_heavy@help_heavy

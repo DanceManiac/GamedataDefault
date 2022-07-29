@@ -93,7 +93,8 @@ function generic_physics_binder:update(delta)
 		self.object:set_callback(callback.hit, generic_physics_binder.hit_callback, self)
 		self.object:set_callback(callback.death, generic_physics_binder.death_callback, self)
 		self.object:set_callback(callback.use_object, generic_physics_binder.use_callback, self)
-	elseif self.object:clsid() == clsid.inventory_box then
+	end
+	if self.object:clsid() == clsid.inventory_box then
 		self.object:set_callback(callback.use_object, generic_physics_binder.use_callback, self)
 	end
 	-- Контроль включения выключения прожектора
@@ -128,7 +129,6 @@ function generic_physics_binder:net_spawn(data)
 		self.box_items = xr_box.ph_item_box(self.object)
 	end
 	db.add_obj(self.object)
-	ogsm.on_net_spawn(self.object)
 	--[[ Контроль включения выключения прожекторов
 	if self.object:get_hanging_lamp() ~= nil then
 		hanging_lamp_table[self.object:id()] = self.object:get_hanging_lamp()
@@ -181,16 +181,13 @@ end
 
 function generic_physics_binder:use_callback(obj, who)
 	--xr_use.notify_on_use(obj, who)
-	if obj:clsid() == clsid.inventory_box then
-		-- Kirgudu
-		-- local box_name = obj:name()
-		-- if box_name == "gar_smart_terrain_5_6_box" and db.actor:has_info("gar_quest_redemption_started") then
-			-- db.actor:give_info_portion("gar_quest_redemption_done")
-		-- end
-		-- Kirgudu
-		treasure_manager.use_box(obj, who)
-		ogsm_icons.on_use_inventory_box(obj)
-	end
+    if obj:clsid() == clsid.inventory_box then
+	    local box_name = obj:name()
+	    if box_name == "gar_smart_terrain_5_6_box" and db.actor:has_info("gar_quest_redemption_started") then
+	        db.actor:give_info_portion("gar_quest_redemption_done")
+	    end
+        treasure_manager.use_box(obj, who)
+    end
 	if self.st.active_section then
 		xr_logic.issue_event(self.object, self.st[self.st.active_scheme], "use_callback", obj, who)
 	end

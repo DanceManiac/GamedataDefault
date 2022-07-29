@@ -7,7 +7,7 @@
 		<text>Пошаговый вводный учебный курс</text>
 	</string>
 	<string id="pda_tutorial_pda_fraction_war_phrase_1">
-		<text>Лады. Как ты понимаешь, наша основная задача — контроль над Болотами, а значит, война с агрессором.</text>
+		<text>Лады. Как ты понимаешь, наша основная задача - контроль над Болотами, а значит, война с агрессором.</text>
 	</string>
 	<string id="pda_tutorial_pda_fraction_war_phrase_10">
 		<text>Наконец, в этом поле ты сможешь увидеть текущую стратегическую цель, а также тактические задачи, которые нужно выполнить для достижения этой цели.</text>
@@ -22,16 +22,16 @@
 		<text>Слева отображается информация о твоей текущей группировке. В данный момент это «Чистое небо», то есть мы.</text>
 	</string>
 	<string id="pda_tutorial_pda_fraction_war_phrase_4">
-		<text>Справа — информация об основном противнике.</text>
+		<text>Справа - информация об основном противнике.</text>
 	</string>
 	<string id="pda_tutorial_pda_fraction_war_phrase_5">
-		<text>Вот это — примерный уровень нашего военного потенциала.</text>
+		<text>Вот это - примерный уровень нашего военного потенциала.</text>
 	</string>
 	<string id="pda_tutorial_pda_fraction_war_phrase_6">
 		<text>Тут показано количество наших бойцов.</text>
 	</string>
 	<string id="pda_tutorial_pda_fraction_war_phrase_7">
-		<text>А здесь — уровень нашего материального обеспечения.</text>
+		<text>А здесь - уровень нашего материального обеспечения.</text>
 	</string>
 	<string id="pda_tutorial_pda_fraction_war_phrase_8">
 		<text>В самом низу находятся символы, демонстрирующие особенности нашего военного снаряжения.</text>
@@ -61,7 +61,7 @@
 		<text>Дополнительных заданий может быть несколько. Осуществлять навигацию по списку ты можешь, прокручивая его при помощи этих кнопок.</text>
 	</string>
 	<string id="pda_tutorial_pda_tasks_phrase_5">
-		<text>Большинство заданий также будут отображены на карте — за исключением редких случаев, когда цель задания невозможно локализовать.</text>
+		<text>Большинство заданий также будут отображены на карте - за исключением редких случаев, когда цель задания невозможно локализовать.</text>
 	</string>
 	<string id="pda_tutorial_pda_tasks_phrase_6">
 		<text>Нам нужна будет твоя помощь не только в уничтожении врага, но и в захвате ключевых позиций.</text>
@@ -74,17 +74,5 @@
 	</string>
 	<string id="pda_tutorial_pda_tasks_phrase_9">
 		<text>При наведении на отметку на карте ты можешь получить дополнительную информацию о ней.</text>
-	</string>
-	<string id="battle_tutorial_skip">
-		<text>Пропустить брифинг</text>
-	</string>
-	<string id="tutorial_skip">
-		<text>Продолжить схватку</text>
-	</string>
-	<string id="after_arena_tutorial">
-		<text>Победа!</text>
-	</string>
-	<string id="arena_restart">
-		<text>Рестарт</text>
 	</string>
 </string_table>

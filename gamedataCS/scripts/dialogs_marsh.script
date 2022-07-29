@@ -1,12 +1,12 @@
 function tutorial_give_equipment(first_speaker, second_speaker)
-	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "cs_novice_outfit")
-	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "detector_simple")
-	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_pm")
+	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "ammo_12x70_buck", 5)
 	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "ammo_9x18_fmj", 2)
-	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_bm16_full")
-	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "ammo_12x70_buck", 4)
-	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "bandage", 3)
-	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "medkit", 3)
+	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_bm16")
+	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_pm")
+	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_knife")
+	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "detector_simple")
+	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "bandage", 5)
+	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "medkit", 2)
 	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "antirad", 1)
 end
 
@@ -22,6 +22,8 @@ end
 
 function disable_ui()
     level.show_weapon(false)
+--    get_console():execute("hud_crosshair 0")
+--    get_console():execute("hud_weapon 0")
 	level.disable_input()
 	level.hide_indicators_safe()
 	local hud = get_hud()
@@ -32,6 +34,8 @@ end
 
 function enable_ui()
     level.show_weapon(true)
+--	get_console():execute("hud_crosshair 1")
+--	get_console():execute("hud_weapon 1")
 	level.show_indicators()
 	level.enable_input()
 	--printf("marsh_dialogs <enable_ui>")
@@ -39,45 +43,4 @@ end
 
 function run_tutorial()
 	game.start_tutorial("part_1_pda")
-end
-
-function barman_give_equipment(first_speaker, second_speaker)
-	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "vodka", 1)
-	ogsm.start_timer("bar", 0.1, "vodka")
-end
-
--- вз€ть свои вещи
-function mar_take_your_things(first_speaker, second_speaker)
-	xr_effects.give_inited_task(nil, nil, {"storyline", "mar_take_your_things", "csky"})
-end
-
--- проверить наличие плаща
-function actor_has_shram_outfit(first_speaker, second_speaker)
-	return db.actor:object("shram_outfit") ~= nil
-end
-
--- проверить наличие плаща
-function actor_not_has_shram_outfit(first_speaker, second_speaker)
-	return db.actor:object("shram_outfit") == nil
-end
-
--- отдать плащ
-function shram_outfit_return(first_speaker, second_speaker)
-	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "shram_outfit")
-end
-
--- проверить наличие Ёћ-1
-function check_gauss(first_speaker, second_speaker)
-	return dialogs.actor_has_item(first_speaker, second_speaker, "wpn_gauss_aes")
-end
-
--- отдать Ёћ-1
-function free_gauss_talk_to_novikov(first_speaker, second_speaker)
-	xr_effects.give_inited_task(nil, nil, {"storyline", "mar_free_gauss_return_talk_with_novikov", "csky"})
-end
-
--- отдать Ёћ-1
-function free_gauss_return(first_speaker, second_speaker)
-	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "wpn_gauss_aes")
-	dialogs.relocate_money(first_speaker, 50000, "in")
 end

@@ -7,7 +7,7 @@
 		<text>Как ты?</text>
 	</string>
 	<string id="actor_help_wounded_1">
-		<text>Хреново мне, нужна аптечка или бинт хотя бы.</text>
+		<text>Хреново мне, не видишь что ли? Нужна аптечка или бинт хотя бы.</text>
 	</string>
 	<string id="actor_help_wounded_11">
 		<text>Держи аптечку.</text>
@@ -25,25 +25,25 @@
 		<text>Как же ты в Зоне ходишь? Зацепит тебя какая зараза, а ты даже вылечить себя не сможешь!</text>
 	</string>
 	<string id="actor_help_wounded_14">
-		<text>Хех, что ж ты так?.. Извини, свои я тебе не дам, иначе сам останусь ни с чем.</text>
+		<text>Хе, что ж ты так?.. Извини, свои я тебе не дам, иначе сам останусь ни с чем.</text>
 	</string>
 	<string id="actor_help_wounded_141">
 		<text>Твоё дело, только не думай, что это делает тебе честь.</text>
 	</string>
 	<string id="agr_duty_tir_dialog_all_targets_phrase_part_1">
-		<text>Будут подниматься все мишени. Тебе нужно сбить десять штук максимум за</text>
+		<text>Будут подниматся все мишени. Тебе нужно сбить десять штук максимум за</text>
 	</string>
 	<string id="agr_duty_tir_dialog_all_targets_phrase_part_2">
 		<text>секунд. Готов поставить</text>
 	</string>
 	<string id="agr_duty_tir_dialog_all_targets_phrase_part_3">
-		<text>на то, что ты не справишься вовремя.</text>
+		<text>на то, что ты не справишся вовремя.</text>
 	</string>
 	<string id="agr_duty_tir_dialog_count_on_time_phrase_part_1">
 		<text>Цели будут подниматся в произвольном порядке, начиная с</text>
 	</string>
 	<string id="agr_duty_tir_dialog_count_on_time_phrase_part_3">
-		<text>из них попаданием в «десятку» за 30 секунд. Я готов поставить на это</text>
+		<text>из них попаданием в десятку за 30 секунд. Я готов поставить на это</text>
 	</string>
 	<string id="agr_duty_tir_dialog_count_phrase_part_1">
 		<text>Поднимется десять целей в произвольном порядке, начиная с</text>
@@ -64,7 +64,7 @@
 		<text>Недооценил я тебя! Держи свои деньги: честно заработал.</text>
 	</string>
 	<string id="agr_duty_tir_dialog_points_phrase_part_1">
-		<text>Я уверен, что ты не наберёшь больше</text>
+		<text>Я уверен, что ты не наберешь больше</text>
 	</string>
 	<string id="agr_duty_tir_dialog_points_phrase_part_2">
 		<text>очков. Готов поставить на это</text>
@@ -154,7 +154,7 @@
 		<text>Приготовиться!</text>
 	</string>
 	<string id="crowkiller_game_runned_out">
-		<text>Вы вышли из зоны стрельбы!</text>
+		<text>Вы вышли из зоны!</text>
 	</string>
 	<string id="crowkiller_game_time_is_out">
 		<text>Время вышло!</text>
@@ -178,16 +178,16 @@
 		<text>Привет!</text>
 	</string>
 	<string id="dm_information_general">
-		<text>Что нового происходит в округе?</text>
+		<text>Что нового в Зоне?</text>
 	</string>
 	<string id="dm_information_no_more">
-		<text>Не в курсе последних событий, сам бы рад услышать что-нибудь новое.</text>
+		<text>Больше ничего не знаю</text>
 	</string>
 	<string id="dm_occupation_general">
 		<text>Что ты здесь делаешь?</text>
 	</string>
 	<string id="dm_occupation_no_more">
-		<text>Ничего больше не скажу.</text>
+		<text>Ничё больше не скажу.</text>
 	</string>
 	<string id="dm_place_general">
 		<text>Расскажи об этом месте.</text>
@@ -211,7 +211,7 @@
 		<text>Спасибо тебе большое.</text>
 	</string>
 	<string id="exchange_flash_card_0">
-		<text>У меня есть информация об усовершенствованиях. Взглянешь?</text>
+		<text>У меня есть информация об усовершенствованиях. Готов взглянуть?</text>
 	</string>
 	<string id="exchange_flash_card_1">
 		<text>Не то слово. Смотри, какие цены я готов предложить за информацию:</text>
@@ -232,22 +232,22 @@
 		<text>Пока.</text>
 	</string>
 	<string id="exchange_flash_card_21">
-		<text>Отлично. Вот твои деньги. Теперь я смогу провести новые усовершенствования.</text>
+		<text>Отлично. Вот твои деньги. Теперь я смогу провести новые усовершенстования.</text>
 	</string>
 	<string id="exchange_flash_card_22">
-		<text>Отлично. Вот твои деньги. Теперь я смогу провести новые усовершенствования.</text>
+		<text>Отлично. Вот твои деньги. Теперь я смогу провести новые усовершенстования.</text>
 	</string>
 	<string id="exchange_flash_card_23">
-		<text>Отлично. Вот твои деньги. Теперь я смогу провести новые усовершенствования.</text>
+		<text>Отлично. Вот твои деньги. Теперь я смогу провести новые усовершенстования.</text>
 	</string>
 	<string id="exchange_flash_card_24">
-		<text>Отлично. Вот твои деньги. Теперь я смогу провести новые усовершенствования.</text>
+		<text>Отлично. Вот твои деньги. Теперь я смогу провести новые усовершенстования.</text>
 	</string>
 	<string id="find_upgrade_task_0">
-		<text>Я нашёл информацию об усовершенствовании, которую ты искал.</text>
+		<text>Я нашел информацию об усовершенстовании, которое ты искал.</text>
 	</string>
 	<string id="find_upgrade_task_1">
-		<text>Спасибо за помощь. Теперь я смогу провести новые усовершенствования.</text>
+		<text>Спасибо за помощь. Теперь я смогу провести новые усовершенстования.</text>
 	</string>
 	<string id="hello_dialog_2">
 		<text>Привет!</text>
@@ -256,7 +256,7 @@
 		<text>Слышь, браток, помоги!</text>
 	</string>
 	<string id="recover_item_task_0">
-		<text>Вот, я вернул то, что ты просил.</text>
+		<text>Вот, я вернул, то что ты просил.</text>
 	</string>
 	<string id="recover_item_task_1">
 		<text>Спасибо.</text>
@@ -361,7 +361,7 @@
 		<text>Не знаю.</text>
 	</string>
 	<string id="tm_mechanic_task_0">
-		<text>Какое оружие ты можешь усовершенствовать?</text>
+		<text>Какое оружие ты можешь усовершенстовать?</text>
 	</string>
 	<string id="tm_random_task_0">
 		<text>Чем я могу помочь вам?</text>
@@ -421,7 +421,7 @@
 		<text>Есть ли для меня какая работёнка?</text>
 	</string>
 	<string id="tm_upgr_task_1">
-		<text>Мне необходима информация об усовершенствованиях.</text>
+		<text>Мне необходима информация об усовершенстованиях.</text>
 	</string>
 	<string id="tm_upgr_task_11">
 		<text>Оружие и броня.</text>
@@ -460,7 +460,7 @@
 		<text>Согласен?</text>
 	</string>
 	<string id="tm_upgr_task_51">
-		<text>Хорошо, если что найду — принесу.</text>
+		<text>Хорошо, если что найду - принесу.</text>
 	</string>
 	<string id="tm_upgr_task_52">
 		<text>Да.</text>
@@ -556,13 +556,13 @@
 		<text>Нет, спасибо.</text>
 	</string>
 	<string id="treasure_dialog_121">
-		<text>Ну как хочешь.</text>
+		<text>Ну как хошь.</text>
 	</string>
 	<string id="treasure_dialog_131">
 		<text>text in default</text>
 	</string>
 	<string id="treasure_dialog_2">
-		<text>Пока нет ничего интересного.</text>
+		<text>Да не, ничё нет интересного.</text>
 	</string>
 	<string id="actor_break_dialog_1">
 		<text>Ладно, бывай.</text>
@@ -571,7 +571,7 @@
 		<text>До встречи.</text>
 	</string>
 	<string id="actor_break_dialog_3">
-		<text>Пока.</text>
+		<text>Тогда пока.</text>
 	</string>
 	<string id="st_tm_guide_0">
 		<text>Куда ты можешь меня отвести?</text>
@@ -580,13 +580,10 @@
 		<text>Пока никуда.</text>
 	</string>
 	<string id="st_tm_guide_2">
-		<text>Да есть пара мест... Учти, я вожу только туда, куда знаю безопасную дорогу. Оплату беру за расстояние, но для своих делаю скидку, все остальные — платят полную цену. Так куда надо?</text>
+		<text>Да есть пару мест. Только ты учти, я вожу только туда, куда знаю безопасную дорогу. И оплату беру за расстояние с того, кто не наш. Так куда надо?</text>
 	</string>
 	<string id="st_tm_guide_21">
 		<text>Готов выдвигаться?</text>
-	</string>
-	<string id="st_tm_guide_22"> <!-- OGSM CS CF -->
-		<text>Извини, выброс начался — пора в укрытие тикать. Давай подождём.</text>
 	</string>
 	<string id="st_tm_guide_211">
 		<text>Да, пошли.</text>
@@ -594,687 +591,7 @@
 	<string id="st_tm_guide_212">
 		<text>Чуть позже.</text>
 	</string>
-	<string id="st_tm_guide_221"> <!-- OGSM CS CF -->
-		<text>Согласен.</text>
-	</string>
-	<string id="st_tm_guide_23"> <!-- SRP_v1.1.3 -->
-		<text>Никуда, я передумал.</text>
-	</string>
-	<string id="st_tm_guide_3"> <!-- OGSM CS CF -->
-		<text>Пока никуда, выброс на носу. Подходи позже.</text>
-	</string>
-	<string id="st_tm_guide_4"> <!-- SRP_v1.1.3 -->
-		<text>Извини, но бесплатно не работаю.</text>
-	</string>
-
-<!-- OGSM CS -->
-
-	<string id="stop_phrase">
-		<text>Побежал дальше...</text>
-	</string>
-
-	<string id="ecologs_dialog_0">
-		<text>Требуется помощь? Оплачиваемая.</text>
-	</string>
-	<string id="ecologs_dialog_1">
-		<text>Периодически нам действительно требуется помощь со стороны, однако всеми делами заведует профессор Сахаров, поэтому попробуйте лучше обратиться с идентичным вопросом непосредственно к нему.</text>
-	</string>
-	<string id="ecologs_dialog_2">
-		<text>Понятно.</text>
-	</string>
-
-	<string id="military_trader_dialog_0">
-		<text>А ты кто таков?</text>
-	</string>
-	<string id="military_trader_dialog_1">
-		<text>Я сержант Репкин. Халецкий сказал, что ты придёшь сюда. Сказал, что обязан тебе жизнью. Чёрт знает, как его угораздило задолжать сталкеру, но... не моё это дело. Моё дело — предложить тебе эксклюзив от Министерства Обороны. Выбор хоть и маловат, но такого в Зоне почти не найти! В общем, благодаря Халецкому, у тебя теперь есть шанс превратиться в настоящего вояку. Ха...</text>
-	</string>
-	<string id="military_trader_dialog_2">
-		<text>Звучит заманчиво. Давай посмотрим.</text>
-	</string>
-	<string id="military_trader_dialog_3">
-		<text>Если что — заглядывай, я тут пока обосновался.</text>
-	</string>
-
-	<string id="military_trader_dialogs_0">
-		<text>Давай посмотрим твой товар.</text>
-	</string>
-	<string id="military_trader_dialogs_1">
-		<text>Тебя что-то конкретное интересует?</text>
-	</string>
-	<string id="military_trader_dialogs_2">
-		<text>Показывай. Там видно будет.</text>
-	</string>
-	<string id="military_trader_dialogs_3">
-		<text>Смотри. Выбирай.</text>
-	</string>
-	<string id="military_trader_dialogs_4">
-		<text>Ясно.</text>
-	</string>
-
-	<string id="tm_random_task_5">
-		<text>Ты что, мужик, какая помощь? Ты на себя глянь, в себя приди сначала.</text>
-	</string>
-
-<!-- OGSM CS CF -->
-
-	<string id="esc_wolf_brother_hello">
-		<text>Спасибо за помощь, сталкер.</text>
-	</string>
-
-	<string id="guard_hello_1_0">
-		<text>Послушай, мужик, а зачем тебе Клык?</text>
-	</string>
-	<string id="guard_hello_1_1">
-		<text>С какой целью интересуешься? Если знаешь, где его найти, то за информацию готов заплатить или хабаром отдать. Знаешь, где его искать?</text>
-	</string>
-	<string id="guard_hello_1_2">
-		<text>Да нет, я просто так спросил, из любопытства, извини.</text>
-	</string>
-	<string id="guard_hello_1_3">
-		<text>Хм... ладно, проехали.</text>
-	</string>
-
-	<string id="guard_hello_2">
-		<text>Не приставай с разговорами, я на посту.</text>
-	</string>
-
-	<string id="guard_hello_3">
-		<text>Не мешай, я занят.</text>
-	</string>
-
-	<string id="guard_stalker_tonnel_hello">
-		<text>Парень, мы тут тоннель пытаемся охранять, не отвлекай. Ты к нам на базу поторопись, лучше.</text>
-	</string>
-
-	<string id="guard_stalker_base_hello">
-		<text>Поторопись, наёмник, Валерьян тебя уже ждёт.</text>
-	</string>
-
-	<string id="sniper_hello">
-		<text>Парень, мы тут мост пытаемся охранять, не отвлекай.</text>
-	</string>
-
-	<string id="stalker_novice_hello">
-		<text>Привет.</text>
-	</string>
-
-	<string id="digger_hello">
-		<text>Спасибо, сталкер, что из бандитского плена спас. Век не забуду.</text>
-	</string>
-
-	<string id="esc_st_patrol_lead_dialog_0">
-		<text>Фух... Вот же клопы казарменные, повылазили со своих щелей, и давай по нам очередь! Мы едва среагировать успели, SOS ребятам скинуть... Да, спасибо тебе, добрый человек, что откликнулся так вовремя. Только это, не в обиду, но я вижу, ты мужик бывалый — явно не из местной шайки-лейки. Что завело тебя к нам на окраину, если не секрет?</text>
-	</string>
-	<string id="esc_st_patrol_lead_dialog_1">
-		<text>Не секрет. Задание у меня одно важное от Сидоровича, вот им и занимаюсь. А у вас-то что за катавасия?</text>
-	</string>
-	<string id="esc_st_patrol_lead_dialog_2">
-		<text>Погонники вконец ошалели, вот и вся петрушка. Мы здесь в патруле, значится, никого не трогаем, бородатые шутейки попутно шуткуем. И вот те на! Вояки засаду над нами учинили, стали палить без суда и следствия. Видать, всё норовят к нашей базе поближе пристроиться...</text>
-	</string>
-	<string id="esc_st_patrol_lead_dialog_3">
-		<text>Весело тут у вас. Чую, военным без парочки уроков хороших манер не обойтись.</text>
-	</string>
-	<string id="esc_st_patrol_lead_dialog_4">
-		<text>В самую точку, дружище! Ух, наваляем сохатым...</text>
-	</string>
-	<string id="esc_st_patrol_lead_dialog_5">
-		<text>Ладно, пойду — время не жалует. Удачи! Может, свидимся когда.</text>
-	</string>
-
-	<string id="esc_scout_stalker_dialog_0">
-		<text>Хочешь что-то спросить, наёмник?</text>
-	</string>
-	<string id="esc_scout_stalker_dialog_1">
-		<text>Ты здесь вроде разведчика, значит? Расскажи немного о своей... профессии.</text>
-	</string>
-	<string id="esc_scout_stalker_dialog_2">
-		<text>С удовольствием. Видишь ли, главное оружие сталкера - это терпение. Умение выждать, понять, когда стоит двигаться вперёд, а когда - залечь и затаить дыхание, когда можно жать на спуск, а когда стоит бросить ствол и бежать со всех ног. Тот, кто не умеет ждать, - остаётся в Зоне навечно. Их тела обозначают аномалии и опасные участки, их обглоданные кости служат вехами остальным. Хороший разведчик всегда будет хорошим сталкером, потому как он обучен ждать, маскироваться, наблюдать и собирать информацию - а эти навыки котируются в Зоне очень высоко. Каждая крупица знаний о Зоне оплачена чьей-то жизнью. Кто-то погиб, чтобы узнать: череп псевдогиганта выдерживает выстрел из дробовика в упор, а «жарка» иногда неожиданно засыпает и просыпается, «электра» достаёт намного дальше, чем казалось поначалу, а кровососы, как и люди, предпочитают пережидать непогоду под крышей. Только знающий сталкер имеет все шансы на то, чтобы прожить здесь дольше других... Это - Зона. И я считаю, она не терпит спешки и излишней самоуверенности. Умение ждать, наблюдать - вот что неоднократно спасало жизнь не только мне, но и остальным сталкерам. Ты ведь тоже жив... Так что для меня лично это и не «профессия» вовсе, а простая жизненная необходимость. Как потребность в пище, сне, безопасном укрытии и далее по списку.</text>
-	</string>
-	<string id="esc_scout_stalker_dialog_3">
-		<text>Завидный подход к своему делу.</text>
-	</string>
-
-	<string id="esc_puzo_dialog_0">
-		<text>Здоров. Тоже хочешь воякам да бандюкам малину пообломать? Желающих у нас под завязку...</text>
-	</string>
-	<string id="esc_puzo_dialog_1">
-		<text>Что-то вроде. Валерьян-то, похоже, со всей Зоны единомышленников набирает?</text>
-	</string>
-	<string id="esc_puzo_dialog_2">
-		<text>А что остаётся делать, покуда паразиты сами не передохнут? Так, глядишь, все вместе да вычистим эту накипь проклятую. Как узнал, что сталкеры объединяются, так сразу своих ребят свистнул - и айда, на пополнение. Скоро другие подтянутся, а там ещё и ещё... Нормальных людей, как ни крути, много, так что прорвёмся дружными силами. Чтобы все как один, чтобы брат за брата. Ведь за общее дело воюем, за общее...</text>
-	</string>
-	<string id="esc_puzo_dialog_3">
-		<text>Ничего не скажешь, звучит убедительно. Что ж, пора и мне по делам двигать. Успехов!</text>
-	</string>
-
-	<string id="esc_stalkers_dialog_11">
-		<text>Ну... Так что ты хотел от братвы?</text>
-	</string>
-	<string id="esc_stalkers_dialog_12">
-		<text>Долг отдал — проваливай.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_0">
-		<text>Волк прислал отдать долг за своего брата.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_1">
-		<text>Как же, как же... Косяк за ним — долг большой, да и проценты набежали. Он уже 7000 должен.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_1111">
-		<text>Вот, держи.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_11111">
-		<text>Ладно... Скажи Волку, долг я списал.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_111111">
-		<text>Договорились.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_1112">
-		<text>У меня не будет столько.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_11121">
-		<text>А как будет, ты и приходи.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_1113">
-		<text>Про процент уговора не было.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_11131">
-		<text>Здрасьте! Как это не было?! Мы чё, лошьё: бабос без процента отдалживать? Семь штук, сказал!</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_1114">
-		<text>А ты подумай. Хорошо подумай. Я ведь рядом стою и ствол у меня под рукой... Вот скажи, зачем трупу какие-то проценты?</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_11141">
-		<text>Спокуха, брат... спокуха! Я это... я чисто постебался, ну ты чё? Давай базарить... чё, в натуре, двое реальных пацанов не сговорятся? Короче, за ним 5000.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_11142">
-		<text>Ты, мля, волыной своей не размахивай. Не на ссыкливого напал. Повторяю: с процентом — 7000.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_1115">
-		<text>Забыл уже? А ствол-то — вот он, при мне.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_1116">
-		<text>Дешевле будет тебя пристрелить.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_1117">
-		<text>Я подумаю.</text>
-	</string>
-	<string id="esc_stalkers_dialog_debt_2">
-		<text>Короче... с процентами — 7000.</text>
-	</string>
-
-	<string id="esc_wolf_brother_has_weapon_dialog_0">
-		<text>Меня Волк за тобой послал.</text>
-	</string>
-	<string id="esc_wolf_brother_has_weapon_dialog_1">
-		<text>Чего мы тогда ждём? Сваливать пора.</text>
-	</string>
-	<string id="esc_wolf_brother_has_weapon_dialog_2">
-		<text>Погнали.</text>
-	</string>
-
-	<string id="gar_digger_fixer_kill_pseudodogs_0">
-		<text>Может, есть какая работёнка?</text>
-	</string>
-	<string id="gar_digger_fixer_kill_pseudodogs_1">
-		<text>Мы тут недалеко начали разрабатывать одно перспективное место. Работать решили ночью, так как вокруг полно бандитов, а привлекать лишнее внимание не хотелось. Первое время всё было в порядке, но потом на нас напали ночью какие-то мутанты с пси-способностями. Пара человек погибла и пришлось бросить разработку. Если согласишься убить этих ночных охотников, то мы тебе за это заплатим.</text>
-	</string>
-	<string id="gar_digger_fixer_kill_pseudodogs_11">
-		<text>Хорошо, посмотрю что там.</text>
-	</string>
-	<string id="gar_digger_fixer_kill_pseudodogs_12">
-		<text>Мне это не интересно.</text>
-	</string>
-
-	<string id="gar_kill_pseudodogs_0">
-		<text>Всё, хана твоим ночным охотникам.</text>
-	</string>
-	<string id="gar_kill_pseudodogs_1">
-		<text>Отлично! Держи награду за хорошую работу.</text>
-	</string>
-	<string id="gar_kill_pseudodogs_2">
-		<text>Если будет ещё работёнка — зови.</text>
-	</string>
-
-	<string id="gar_prisoner_free_dialog_0">
-		<text>...</text>
-	</string>
-	<string id="gar_prisoner_free_dialog_1">
-		<text>Что стоим? Кого ждём?</text>
-	</string>
-	<string id="gar_prisoner_free_dialog_2">
-		<text>Бандиты на выходе со Свалки околачиваются. После пережитого что-то стрёмно туда идти...</text>
-	</string>
-	<string id="gar_prisoner_free_dialog_3">
-		<text>Ну вы, блин, даёте. Наверное, придётся опять помочь.</text>
-	</string>
-
-	<string id="val_guard_dialog_0">
-		<text>Приветствую, наёмник. Куда спешишь?</text>
-	</string>
-	<string id="val_guard_dialog_1">
-		<text>Мне нужен лидер «Свободы».</text>
-	</string>
-	<string id="val_guard_dialog_2">
-		<text>Лидер? Хм, какой ты шустрый. Лидер сейчас не принимает.</text>
-	</string>
-	<string id="val_guard_dialog_3">
-		<text>А к кому можно у вас на базе обратится с вопросами?</text>
-	</string>
-	<string id="val_guard_dialog_4">
-		<text>Иди к коменданту, он выслушает тебя.\nИ ещё: невздумай на территории базы пальбу поднимать — вперёд ногами вынесут. Ясно?</text>
-	</string>
-	<string id="val_guard_dialog_44">
-		<text>К сожалению, пока ни к кому, всё начальство занято и не принимает. Но пройтись по базе тебе никто не мешает.\nИ ещё: невздумай на территории базы пальбу поднимать — вперёд ногами вынесут. Ясно?</text>
-	</string>
-	<string id="val_guard_dialog_5">
-		<text>Ясно.</text>
-	</string>
-
-	<string id="val_kill_boars_0">
-		<text>Всё, нету больше «пятачков».</text>
-	</string>
-	<string id="val_kill_boars_1">
-		<text>Вах! Дерьжи награду, дарагой!</text>
-	</string>
-	<string id="val_kill_boars_2">
-		<text>Спасибо.</text>
-	</string>
-
-	<string id="val_freedom_dead_blockpost_dialog_0">
-		<text>Приветствую, мен!</text>
-	</string>
-	<string id="val_freedom_dead_blockpost_dialog_1">
-		<text>Чем вы тут занимаетесь?</text>
-	</string>
-	<string id="val_freedom_dead_blockpost_dialog_2">
-		<text>Нашего командира внезапно вызвал к себе комендант. Вот сидим, ждём пока вернётся.</text>
-	</string>
-	<string id="val_freedom_dead_blockpost_dialog_3">
-		<text>Место у вас здесь какое-то не очень удачное. Не находишь?</text>
-	</string>
-	<string id="val_freedom_dead_blockpost_dialog_4">
-		<text>Ты прав, сидим тут, как в яме, обзора нифига нет. Но приказ есть приказ — быть здесь, самостоятельно точку не покидать.</text>
-	</string>
-	<string id="val_freedom_dead_blockpost_dialog_5">
-		<text>Хм... Ну что ж, удачи вам.</text>
-	</string>
-
-	<string id="val_x18_door_dialog_0">
-		<text>На старом заводе обнаружилась дверь. Просто так не открыть. Что ты думаешь по этому поводу?</text>
-	</string>
-	<string id="val_x18_door_dialog_1">
-		<text>Что думаю? Может лаба там какая или ещё чего. Тут головастики столько всего понастроили, что нам работы на годы вперёд хватит.</text>
-	</string>
-
-	<string id="agr_blokpost_dialog_0">
-		<text>Ну ты даёшь, наёмник!</text>
-	</string>
-	<string id="agr_blokpost_dialog_1">
-		<text>В смысле?</text>
-	</string>
-	<string id="agr_blokpost_dialog_2">
-		<text>Тут, знаешь, вообще-то опасно.</text>
-	</string>
-	<string id="agr_blokpost_dialog_3">
-		<text>Хех... спасибо за предупреждение. Так в чём неурядица-то? Вдруг помочь вам смогу — на взаимовыгодных условиях...</text>
-	</string>
-	<string id="agr_blokpost_dialog_4">
-		<text>Монстры в последнее время совсем озверели, так что мы готовы дружить со всеми, кто поможет в борьбе с Зоной. Если хочешь заработать, поговори с командованием на базе. Наш отряд как раз туда направляется. Держись с ребятами — целее будешь.</text>
-	</string>
-	<string id="agr_blokpost_dialog_5">
-		<text>Ясно. Пошли.</text>
-	</string>
-
-	<string id="agr_hourman_dialog_0">
-		<text>Эй, салага, вступай к нам в «Долг»!</text>
-	</string>
-	<string id="agr_hourman_dialog_1">
-		<text>Я подумаю.</text>
-	</string>
-	<string id="agr_hourman_dialog_2">
-		<text>Сталкер, на территории базы не шали. Понял?</text>
-	</string>
-	<string id="agr_hourman_dialog_3">
-		<text>Понял.</text>
-	</string>
-	<string id="agr_hourman_dialog_4">
-		<text>Учти, ты соблюдаешь наши правила — тебя никто не трогает.</text>
-	</string>
-	<string id="agr_hourman_dialog_5">
-		<text>Да, понял я, понял.</text>
-	</string>
-
-	<string id="agr_hourman_hello_dialog_1">
-		<text>Здорово, солдат!</text>
-	</string>
-	<string id="agr_hourman_hello_dialog_2">
-		<text>Рад видеть живым!</text>
-	</string>
-	<string id="agr_hourman_hello_dialog_3">
-		<text>С возвращением!</text>
-	</string>
-
-	<string id="agr_hourman_quest_0">
-		<text>Есть какая работёнка?</text>
-	</string>
-	<string id="agr_hourman_quest_1">
-		<text>Станцию во дворе видел? Я её, вместе с местными умельцами, приспособил для связи с нашими отрядами в Зоне, но после Большого выброса она вышла из строя. От Крылова получил указание срочно починить её, но отсутствует одна важная деталь. Взять новую неоткуда, но по слухам, разный электронный хлам есть в брошенных помещениях НИИ. Отправлял туда добровольца, но что-то долго нет его. Может смотаешься, глянешь чего там?</text>
-	</string>
-	<string id="agr_hourman_quest_11">
-		<text>Извини, но сейчас мне ничего не нужно.</text>
-	</string>
-	<string id="agr_hourman_quest_2">
-		<text>Хорошо, я согласен.</text>
-	</string>
-	<string id="agr_hourman_quest_22">
-		<text>Может быть, в другой раз.</text>
-	</string>
-	<string id="agr_hourman_quest_3">
-		<text>Ну и отлично! Буду ждать тебя с хорошими вестями.</text>
-	</string>
-	<string id="agr_hourman_quest_4">
-		<text>Хорошо.</text>
-	</string>
-	<string id="agr_hourman_quest_44">
-		<text>Я передумал.</text>
-	</string>
-
-	<string id="agr_hourman_quest_complete_0">
-		<text>Я по поводу задания.</text>
-	</string>
-	<string id="agr_hourman_quest_complete_1">
-		<text>Ну, как успехи? Нашёл деталь?</text>
-	</string>
-	<string id="agr_hourman_quest_complete_2">
-		<text>Да, нашёл.</text>
-	</string>
-	<string id="agr_hourman_quest_complete_22">
-		<text>Нет ещё.</text>
-	</string>
-	<string id="agr_hourman_quest_complete_222">
-		<text>Поторопись, наёмник.</text>
-	</string>
-	<string id="agr_hourman_quest_complete_3">
-		<text>Отлично! Вот, возьми за помощь.</text>
-	</string>
-
-	<string id="agr_stalker_leader_hello">
-		<text>Здравствуй, сталкер.</text>
-	</string>
-
-	<string id="agr_stalker_leader_talked_dialog_0">
-		<text>Ты хотел меня видеть?</text>
-	</string>
-	<string id="agr_stalker_leader_talked_dialog_1">
-		<text>Да, это так. На нашей основной базе на Кордоне тебя награда дожидается, но я хотел бы отблагодарить тебя особо за оказанную помощь. Прими этот арт от меня и от всей нашей сталкерской братии.</text>
-	</string>
-	<string id="agr_stalker_leader_talked_dialog_2">
-		<text>Спасибо. Всегда рад помочь.</text>
-	</string>
-
-	<string id="yan_tech_ecologbase_dialog_0">
-		<text>Здравствуйте, Вы механик?</text>
-	</string>
-	<string id="yan_tech_ecologbase_dialog_1">
-		<text>Моя фамилия Васильев. Я член данной научной экспедиции и, по совместительству, также исполняю обязанности механика. Сталкеры нам постоянно приносят местные образцы флоры, фауны и так называемые артефакты. Мой шеф их охотно скупает, ну а я чиню и улучшаю оружие и броню наших добровольных помощников. Это способствует в установлении контакта и, что греха таить, помогает заработать лишнюю копейку. На гранты-то не сильно разбежишься.</text>
-	</string>
-	<string id="yan_tech_ecologbase_dialog_2">
-		<text>Ясно, буду знать.</text>
-	</string>
-
-	<string id="yan_tech_gordon_freeman_crowbar_dialog_0">
-		<text>Необычный, для учёных, инструмент я у вас тут заметил — монтировку.</text>
-	</string>
-	<string id="yan_tech_gordon_freeman_crowbar_dialog_1">
-		<text>Да тут, понимаете, занятная история приключилась. Пришёл к нам совсем недавно интересный посетитель: комбинезон какой-то очень технологичный, больше на скафандр похожий, пистолет какой-то особенный, а с виду человек интеллигентный, в очках. А вот припасов никаких с собой у него не было. Да, к тому же он ещё и иностранец оказался, то ли американец, то ли британец... В общем, ему срочно надо было попасть на Дикую территорию и, хотя мы предупредили его, что проход закрыт аномалиями, он всё равно отправился туда. Очень спешил. Ну, мы его накормили и в дорогу консервов дали, а он нам в благодарность эту фомку и оставил.</text>
-	</string>
-	<string id="yan_tech_gordon_freeman_crowbar_dialog_2">
-		<text>Да, занятный посетитель. И кого только в Зоне не встретишь...</text>
-	</string>
-
-	<string id="yan_dialog_about_after_psi_off_0">
-		<text>Профессор, пси-излучение отключено.</text>
-	</string>
-	<string id="yan_dialog_about_after_psi_off_1">
-		<text>Вы отлично справились! Излучение стабилизировано, хоть потоки заряженных частиц ещё и не стабильны, я думаю что... О, извините, что-то я заговорился...</text>
-	</string>
-	<string id="yan_dialog_about_after_psi_off_2">
-		<text>Да, ничего, я же там не один был, в конце концов.</text>
-	</string>
-	<string id="yan_dialog_about_after_psi_off_3">
-		<text>И тем не менее, спасибо Вам! Теперь мы сможем поточнее изучить установку. Ах да, вот возьмите, это от нас!</text>
-	</string>
-	<string id="yan_dialog_about_after_psi_off_4">
-		<text>А вот за это спасибо!</text>
-	</string>
-
-	<string id="red_forester_mercenaries_dialog_0">
-		<text>Всё, вытащили тех наёмников из «Пузыря». Они выйдут к мосту в Лиманск.</text>
-	</string>
-	<string id="red_forester_mercenaries_dialog_1">
-		<text>Хорошее дело мы с тобой сделали, наёмник, людей из беды спасли. Перед Зоной нам с тобой зачтётся, уверен.</text>
-	</string>
-	<string id="red_forester_mercenaries_dialog_2">
-		<text>Я тоже так думаю.</text>
-	</string>
-
-	<string id="hock_hello">
-		<text>Здорово.</text>
-	</string>
-
-	<string id="mil_kostiuk_hello_dialog_0">
-		<text>Спасибо за помощь, наёмник. Без тебя нам бы трудно пришлось. Награду тебе мы на нашей базе приготовили.</text>
-	</string>
-	<string id="mil_kostiuk_hello_dialog_1">
-		<text>Всегда пожалуйста.</text>
-	</string>
-
-	<string id="mil_take_reward_dialog_0">
-		<text>Костюк что-то мне про деньги говорил.</text>
-	</string>
-	<string id="mil_take_reward_dialog_1">
-		<text>Наёмник, спасибо, что помог захватить базу военных. Вот твоя награда.</text>
-	</string>
-
-	<string id="mil_questman_dialog_0">
-		<text>Приветствую, наёмник.</text>
-	</string>
-	<string id="mil_questman_dialog_1">
-		<text>Чем вы тут занимаетесь?</text>
-	</string>
-	<string id="mil_questman_dialog_2">
-		<text>Пытаемся отбить склады у всяких разных. Да тут вот ещё одна проблема нарисовалась...</text>
-	</string>
-	<string id="mil_questman_dialog_3">
-		<text>Какая?</text>
-	</string>
-	<string id="mil_questman_dialog_4">
-		<text>Оказалось, что не всех Большой Выброс убил — одна группировка уцелела. Они себя называют «Монолит». Прут со стороны «Выжигателя мозгов».</text>
-	</string>
-	<string id="mil_questman_dialog_5">
-		<text>«Монолит»... Что-то такое, вроде, слышал...</text>
-	</string>
-	<string id="mil_questman_dialog_6">
-		<text>Совсем безбашенные, черти. Дерутся до последнего, в плен не сдаются. Если где напорешься на них — не зевай, а то враз бошку отстрелят.</text>
-	</string>
-	<string id="mil_questman_dialog_7">
-		<text>Кстати, ты, я вижу, починкой занимаешься — будет повод чаще на огонёк забегать.</text>
-	</string>
-	<string id="mil_questman_dialog_8">
-		<text>Ну, Кулибин из меня не очень, но вот по-простому ствол починить или броньку подлатать — это ко мне можно. Дело нехитрое и плата разумная, так что приходи в любое время.</text>
-	</string>
-	<string id="mil_questman_dialog_9">
-		<text>Спасибо, всю инфу возьму на заметку.</text>
-	</string>
-
-	<string id="red_forest_back_to_the_gate_dialog_0">
-		<text>Это опять ты? Сказал же — ворота не открою!</text>
-	</string>
-	<string id="red_forest_back_to_the_gate_dialog_1">
-		<text>У меня дело от Лесника: нужно с уродами в шахтах «культурно» побалакать.</text>
-	</string>
-	<string id="red_forest_back_to_the_gate_dialog_2">
-		<text>А мы здесь что, мутантов окультуривать станем? Нам ещё жить охота, герой!</text>
-	</string>
-	<string id="red_forest_back_to_the_gate_dialog_3">
-		<text>Так вы в любое время можете калитку закрыть и оставить меня одного зимовать в лесу. Ничего не теряете.</text>
-	</string>
-	<string id="red_forest_back_to_the_gate_dialog_4">
-		<text>А если, в итоге, всё хорошо выйдет? Что будет с этого нам?</text>
-	</string>
-	<string id="red_forest_back_to_the_gate_dialog_5">
-		<text>Получите во владение целую укрепточку с бандитскими пожитками, какие голодранцам со Свалки и не снились.</text>
-	</string>
-	<string id="red_forest_back_to_the_gate_dialog_6">
-		<text>Прям-таки не снились?.. Хм, даже не знаю...</text>
-	</string>
-	<string id="red_forest_back_to_the_gate_dialog_7">
-		<text>Слушай, командир, ну где ты ещё такую красивую возможность встретишь?</text>
-	</string>
-	<string id="red_forest_back_to_the_gate_dialog_8">
-		<text>Верно говоришь, сталкер. Ладно, проходи, только особо не затягивай с этими, как их там... «дегенератами»! Если вдруг монстры из лесу повалят, то на запертые накрепко ворота не серчай, не ищи ни в ком вины.</text>
-	</string>
-	<string id="red_forest_back_to_the_gate_dialog_9">
-		<text>Уговор.</text>
-	</string>
-
-	<string id="red_csky_leader_weapons_dialog_0">
-		<text>Вижу, все при новом оружии. Откуда счастье привалило, если не секрет?</text>
-	</string>
-	<string id="red_csky_leader_weapons_dialog_1">
-		<text>А, это... это остатки былого величия... По пути сюда удалось найти и вскрыть пару давнишних схронов. И штурмовые группы перевооружились, и Суслову на Болота партию оружия отправили.</text>
-	</string>
-
-	<string id="red_csky_leader_fangghost_dialog_0">
-		<text>Так понимаю, вы уже «позаботились» о Клыке и Призраке?..</text>
-	</string>
-	<string id="red_csky_leader_fangghost_dialog_1">
-		<text>Да, это так, но успех частичный: Клыка ликвидировали, Призрак был только ранен и ему удалось уйти. Правда, наблюдатель отметил, что Клыка, как ему показалось, ликвидировали не наши бойцы и, плюс, что двое ребят из группы захвата погибли. Как бы там ни было, мы на нынешний момент имеем преимущество, так как группа Стрелка рассеяна, хотя это вовсе не означает, что угроза полностью исчезла. Надо остановить Стрелка во что бы то ни стало — вот последний и решающий шаг... для всех нас. Позже вышлю группу для эвакуации тел наших погибших бойцов.</text>
-	</string>
-
-	<string id="red_actor_say_bridge_sms">
-		<text>Главное — в воду не упасть. Иначе мне конец.</text>
-	</string>
-
-	<string id="red_csky_leader_message_scar">
-		<text>За то, что сбежал во время боя ты, Шрам, стал нам врагом!..</text>
-	</string>
-
-	<string id="mar_csky_doctor_freeplay_dialog_0">
-		<text>Здравствуйте, профессор.</text>
-	</string>
-	<string id="mar_csky_doctor_freeplay_dialog_1">
-		<text>Кстати, у меня к Вам есть несколько вопросов. Перед тем, как уйти с Болот, мой коллега, профессор Лебедев, рассказал мне о Стрелке и его планах устроить ещё один поход к центру Зоны. В последний раз он сообщил, что им удалось добраться до заброшенной атомной станции, а затем связь прервалась. Вы наверняка были там и можете рассказать, удалось ли остановить Стрелка и что стало с моим коллегой.</text>
-	</string>
-	<string id="mar_csky_doctor_freeplay_dialog_2">
-		<text>Да, профессор, нам удалось остановить Стрелка только на станции, но после этого произошёл сильный выброс, убивший там всех, включая и профессора Лебедева. Выжить после него смог только я. Не знаю, выжил ли Стрелок, во всяком случае я так и не нашёл его тело.</text>
-	</string>
-
-	<string id="actor_need_eat">
-		<text>Ох и проголодался же я...</text>
-	</string>
-	<string id="food_got_worse">
-		<text>Чёрт, еда в рюкзаке испортилась...</text>
-	</string>
-
-	<string id="actor_need_sleep">
-		<text>В глазах двоится... поспать бы надо...</text>
-	</string>
-	<string id="sleep_refuse_danger">
-		<text>Не спать! Опасно тут.</text>
-	</string>
-	<string id="sleep_refuse_surge">
-		<text>Нет покоя... Выброс!</text>
-	</string>
-	<string id="sleep_refuse_bleeding">
-		<text>Нельзя... сначала кровь остановить надо, иначе подохну.</text>
-	</string>
-	<string id="sleep_refuse_radiation">
-		<text>Рано мне мутантом становиться, сперва нужно антирадом закусить...</text>
-	</string>
-	<string id="sleep_refuse_energy">
-		<text>Ну вот зачем я столько стимулятора выпил?!</text>
-	</string>
-	<string id="sleep_refuse_satiety">
-		<text>Разве поспишь нормально на голодный желудок?..</text>
-	</string>
-	<string id="sleep_refuse_dream">
-		<text>Пока не хочется спать...</text>
-	</string>
-	<string id="sleep_refuse_work">
-		<text>Сначала работа, потом сон.</text>
-	</string>
-
-	<string id="st_deadbody">
-		<text>Мёртвый</text>
-	</string>
-	<string id="found_money">
-		<text>Найдено денег</text>
-	</string>
-	<string id="rubles">
-		<text>руб.</text>
-	</string>
-
-	<string id="return_message_partial_1">
-		<text>Барахло не беру, забирай обратно.</text>
-	</string>
-	<string id="return_message_partial_2">
-		<text>Хлам не нужен, оставь себе.</text>
-	</string>
-	<string id="return_message_partial_3">
-		<text>Что ты мне тут даёшь? Фуфло забирай обратно.</text>
-	</string>
-	<string id="return_message_all_1">
-		<text>Барахло не беру, сделка отменяется.</text>
-	</string>
-	<string id="return_message_all_2">
-		<text>Хлам не нужен, отказываюсь от сделки.</text>
-	</string>
-	<string id="return_message_all_3">
-		<text>Что за фуфел ты мне тут впариваешь? Всё отменяется.</text>
-	</string>
-
-        <string id="sleep_title">
-		<text>Сон</text>
-	</string>
-        <string id="sleep_one_hour">
-		<text>Спать 1 час</text>
-	</string>
-        <string id="sleep_three_hours">
-		<text>Спать 3 часа</text>
-	</string>
-        <string id="sleep_five_hours">
-		<text>Спать 5 часов</text>
-	</string>
-        <string id="sleep_until_morning">
-		<text>Спать до утра</text>
-	</string>
-
-        <string id="blow_to_the_actor_1">
-		<text>Для непонятливых объясняю: если просят убрать оружие, значит лучше убрать, лицо не пострадает. А то припёрся тут один...</text>
-	</string>
-        <string id="blow_to_the_actor_2">
-		<text>Что за народ! Пока по роже не дашь — не понимают, что ствол надо опустить...</text>
-	</string>
-        <string id="blow_to_the_actor_3">
-		<text>Ну, не понимают некоторые человеческих слов. Проходится бить по роже...</text>
-	</string>
-
-	<string id="tips_wait_conversation_finish">
-		<text>Мне надо дослушать сообщение.</text>
-	</string>
-	<string id="st_stash_emptied">
-		<text>Тайник опустошён:</text>
-	</string>
-
-        <string id="ui_st_enter_the_coordinates">
-		<text>Введите координаты:</text>
-	</string>
-        <string id="ui_st_move">
-		<text>Переместиться</text>
-	</string>
-        <string id="ui_st_location_overview">
-		<text>Обзор локации</text>
+	<string id="st_tm_guide_3">
+		<text>Пусто</text>
 	</string>
 </string_table>

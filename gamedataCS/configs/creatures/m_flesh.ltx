@@ -18,9 +18,13 @@ search_speed         = .5                       ; option for ALife Simulator
 visual				 = monsters\flesh\flesh
 corpse_visual		 = monsters\flesh\flesh_dead
 icon				 = ui_npc_monster_flesh
-MaxHealthValue		     = 200			; range [0..200]
+MaxHealthValue		     = 1.0			; range [0..200]
 DynamicObjectsCount	 = 32
 smart_terrain_choose_interval	= 00:15:00
+
+
+Spawn_Inventory_Item_Section = mutant_flesh_eye
+Spawn_Inventory_Item_Probability = 0.0
 
 ef_creature_type	 = 7				; option for evaluation functions
 ef_weapon_type		 = 2
@@ -32,7 +36,7 @@ class               = SM_FLESH					; AI class
 
 script_binding		= bind_monster.bind
 
-bone_torso			= bip01_spine 				; bone name
+bone_torso			= bip01_spine1 			; bone name
 bone_head			= bip01_head				; bone name
 bone_fire			= bip01_head				; bone name
 weapon_usage		= 0						; boolean
@@ -48,7 +52,7 @@ ph_box1_size 		 = 0.40, 0.6,  0.40
 ph_crash_speed_min			= 10
 ph_crash_speed_max			= 30
 ph_collision_damage_factor	= 0.1
-ph_mass 		     = 200;100						; также это еда
+ph_mass 		     = 200;100						; also it's the food
 
 destroyed_vis_name	 = dynamics\Dead_Body\skelet_crash_monster
 
@@ -72,14 +76,13 @@ separate_range  = 3   ; радиус в котором расталкивание действует
 ;----------------------------------------------------------------------------
 ; Movement::Velocities & Acceleration
 ;----------------------------------------------------------------------------
-;----------------------------------------------------------------------------
+
 ; speed factors			linear | angular_real | angular_path | min |  max
-;----------------------------------------------------------------------------
-Velocity_Stand			= 0,		1.79,			1.79,		1,		1
+Velocity_Stand			= 0,		1.79,			1.79		1,		1
 Velocity_WalkFwdNormal	= 1.5,		2.0,			2.0,		0.2,	2.0
 Velocity_WalkFwdDamaged	= 1.2,		1.14,			1.14,		0.2,	2.0
 Velocity_RunFwdNormal	= 5.2,		2.5,			2.5,		0.2,	1
-Velocity_RunFwdDamaged	= 4.5,  	3.0,			3.0,		0.3,	1
+Velocity_RunFwdDamaged	= 5.5,  	3.0,			3.0,		0.3,	1
 Velocity_Drag			= 1.5,		2.14,			2.14,		1,		1
 Velocity_Steal			= 1.3,		2.14,			2.14,		1,		1
 
@@ -108,15 +111,15 @@ Melee_Rotation_Factor	= 2.6
 ; Entity Conditions
 ;-------------------------------------------------------------------------
 
-satiety_v 			= 0.0001				;0.01			;скорость уменьшения сытости со временем
-radiation_v 		= 0.00001		;0.004			;скорость уменьшения радиации
-satiety_power_v 	= 0.005		;0.01			;увеличение силы при уменьшении сытости
-satiety_health_v 	= 0.0005 ;0.001	;0.03			;увеличение здоровья при уменьшении сытости
-satiety_critical 	= -1.0		;0.25			;критическое значения сытости (в процентах от 0..1) когда здоровье начианает уменьшаться 
-radiation_health_v 	= 0.01	;0.006			;уменьшение здоровья при воздействии радиации
-morale_v			= 0.01					;скорость восстановления морали
-health_hit_part 	= 1.0		;0.8			;процент хита, уходящий на отнимание здоровья 
-power_hit_part 		= 1.0		;0.9			;процент хита, уходящий на отнимание силы
+satiety_v 			= 0.0001				;0.01			;ёъюЁюёЄ№ єьхэ№°хэш  ёvЄюёЄш ёю тЁхьхэхь
+radiation_v 		= 0.00001		;0.004			;ёъюЁюёЄ№ єьхэ№°хэш  ЁрфшрЎшш
+satiety_power_v 	= 0.005		;0.01			;єтхышўхэшх ёшыv яЁш єьхэ№°хэшш ёvЄюёЄш
+satiety_health_v 	= 0.0005 ;0.001	;0.03			;єтхышўхэшх чфюЁют№  яЁш єьхэ№°хэшш ёvЄюёЄш
+satiety_critical 	= -1.0		;0.25			;ъЁшЄшўхёъюх чэрўхэш  ёvЄюёЄш (т яЁюЎхэЄрї юЄ 0..1) ъюуфр чфюЁют№х эрўшрэрхЄ єьхэ№°рЄ№ё 
+radiation_health_v 	= 0.01	;0.006			;єьхэ№°хэшх чфюЁют№  яЁш тючфхщёЄтшш ЁрфшрЎшш
+morale_v			= 0.01					;ёъюЁюёЄ№ тюёёЄрэютыхэш  ьюЁрыш
+health_hit_part 	= 1.0		;0.8			;яЁюЎхэЄ їшЄр, єїюф 	шщ эр юЄэшьрэшх чфюЁют№ 
+power_hit_part 		= 1.0		;0.9			;яЁюЎхэЄ їшЄр, єїюф 	шщ эр юЄэшьрэшх ёшыv
 psy_health_v		= 0.1						;скорость восстановления psy-здоровья
 
 immunities_sect				= flesh_immunities
@@ -127,17 +130,17 @@ wound_incarnation_v			= 0.05				;крутизна кривой заживления (какой процент раны 
 min_wound_size				= 0.01
 
 
-sleep_health				= 1.0		;1.5				;коэффициенты скоростей изменения параметров во время сна
+sleep_health				= 1.0		;1.5				;ъю¤ЇЇшЎшхэЄv ёъюЁюёЄхщ шчьхэхэш  ярЁрьхЄЁют тю тЁхь  ёэр
 sleep_power					= 1.0		;1.5
 sleep_satiety				= 1.0		;0.8
 sleep_radiation				= 1.0	;1.1
 sleep_psy_health			= 1.0
 
-eat_freq					=	5.0	; частота укусов в сек
-eat_slice					=	0.01	; увеличение сытости при 1 укусе
-eat_slice_weight			=	10.0	; уменьшение еды у трупа
+eat_freq					=	5.0	; ўрёЄюЄр єъєёют т ёхъ
+eat_slice					=	0.01	; єтхышўхэшх ёvЄюёЄш яЁш 1 єъєёх
+eat_slice_weight			=	10.0	; єьхэ№°хэшх хфv є ЄЁєяр
 
-satiety_threshold			= 0.5							; ниже этого значения монстр считается голодным
+satiety_threshold			= 0.5							; below this value monster fill hunger
 
 ;---------------------------------------------------------
 ; Sounds and sound parameters
@@ -188,17 +191,17 @@ time_quant					= 0.001
 decrease_value				= 0.01				; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
 velocity_factor		     	= 0.5
 luminocity_factor			= 0.5 				; фактор освещения (только для Актёра)
-transparency_threshold		= 0.25				; видимость через камыши и кустарники
+transparency_threshold		= 0.25
 
 
 ;---------------------------------------------------------
 ; Logic
 ;---------------------------------------------------------
 
-DayTime_Begin		= 6			; начало дня для монстра
-DayTime_End			= 21		; конец дня для монстра
-Min_Satiety		= 0.4	;0.6		; мин. норма сытости (меньше - уже голодный)
-Max_Satiety		= 1.0		; макс. норма сытости (больше - очень сытый)
+DayTime_Begin		= 6			; эрўрыр фэ  фы  ьюэёЄЁр
+DayTime_End			= 21		; ъюэхЎ фэ  фы  ьюэёЄЁр
+Min_Satiety		= 0.4	;0.6		; ьшэ. эюЁьр ёvЄюёЄш (ьхэ№°х - єцх уюыюфэvщ)
+Max_Satiety		= 1.0		; ьръё. эюЁьр ёvЄюёЄш (сюы№°х - юўхэ№ ёvЄvщ)
 
 
 ;-------------------------------------------------------------------------
@@ -229,7 +232,7 @@ critical_wound_anim_legs	= critical_hit_torso_0
 critical_wound_bones_legs	= flesh_critical_wound_bones_legs
 
 
-distance_to_corpse	= 0.9; дист. до трупа, при которой он переходит в состояние еды
+distance_to_corpse	= 0.9; фшёЄ. фю ЄЁєяр, яЁш ъюЄюЁющ юэ яхЁхїюфшЄ т ёюёЄю эшх хфv
 selector_approach	=      20.0,            1.0,                1000.0,             0.0,               0.0,						1000.0,				10000.0,
 
 DamagedThreshold	= 0.2
@@ -253,12 +256,12 @@ terrain				= flesh_terrain
 ;<hit_scale>	- коэфф. изменения хита (уменьшения здоровья)
 ;<wound_scale>	- коэфф. изменения величины открытой раны
 
-default				= 0.4,	-1,	0.10
+default				= 0.5,	-1,	0.10
 
-bip01_pelvis 		= 0.8, -1, 0.1
-bip01_spine 		= 0.8, -1, 0.1
-bip01_neck 			= 0.8, -1, 0.3
-bip01_head 			= 1.6, -1, 0.10
+bip01_pelvis 		= 1.0, -1, 0.1
+bip01_spine 		= 1.0, -1, 0.1
+bip01_neck 			= 1.0, -1, 0.3
+bip01_head 			= 2.0, -1, 0.10
 
 
 ;=================================================================================
@@ -286,7 +289,7 @@ stand_drag_0		=	   1,	    0.2,     1,	    0.25,    0.7,    0.7,     1.0,     0.7
 ; Immunities
 ;===========================================================================
 [flesh_immunities]
-burn_immunity			= 1.0				;коэффициенты иммунитета
+burn_immunity			= 1.0				;ъю¤ЇЇшЎшхэЄv шььєэшЄхЄр
 strike_immunity			= 1
 shock_immunity			= 1.0
 wound_immunity			= 0.15
@@ -362,7 +365,7 @@ community			= flesh
 burn_immunity			= 0.3
 strike_immunity			= 0.3
 shock_immunity			= 0.3
-wound_immunity			= 0.3
+wound_immunity			= 0.6
 radiation_immunity		= 0.0
 telepatic_immunity		= 0.0
 chemical_burn_immunity	= 0.3
@@ -386,9 +389,9 @@ stand_attack_3 =	  	0.40,		0.45,		    150,        0.0, 0.5, 1.0,		 -1.0, 1.0, -1
 
 [flesh_normal]:m_flesh_e
 $spawn				= "monsters\fleshes\flesh_02_normal"
-visual				= monsters\flesh\flesh_normal
+visual				= monsters\flesh\flesh
 corpse_visual		= monsters\flesh\flesh_dead
-icon				= ui_npc_monster_flesh_normal
+icon				= ui_npc_monster_flesh
 panic_threshold		= 0.2
 rank				= 150
 immunities_sect		= flesh_immunities_normal
@@ -401,12 +404,12 @@ community			= flesh
 burn_immunity			= 0.3
 strike_immunity			= 0.3
 shock_immunity			= 0.3
-wound_immunity			= 0.25
+wound_immunity			= 0.6
 radiation_immunity		= 0.0
 telepatic_immunity		= 0.0
 chemical_burn_immunity	= 0.3
 explosion_immunity		= 0.5
-fire_wound_immunity		= 0.2
+fire_wound_immunity		= 0.3
 
 [flesh_attack_params_normal]
 ;---------------------------------------------------------------------------------------------------------------------------------------------
@@ -435,18 +438,17 @@ attack_params		= flesh_attack_params_strong
 spec_rank			= strong
 community			= flesh
 
-sound_idle				= monsters\pseudoflesh\flesh_idle_
 
 [flesh_immunities_strong]
 burn_immunity			= 0.2
 strike_immunity			= 0.2
 shock_immunity			= 0.2
-wound_immunity			= 0.2
+wound_immunity			= 0.4
 radiation_immunity		= 0.0
 telepatic_immunity		= 0.0
 chemical_burn_immunity	= 0.2
 explosion_immunity		= 0.5
-fire_wound_immunity		= 0.1
+fire_wound_immunity		= 0.2
 
 [flesh_attack_params_strong]
 ;---------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,19 +1,17 @@
-local trade_manager = {}
+
+
+local trade_manager = {
+}
+
+
+
+
 
 function trade_init(npc, cfg)
-
-	trade_manager[npc:id()] = {}
-
-	if npc:clsid() ~= clsid.script_trader then
-		local com = npc:character_community()
-	        if com and (com=="csky" or com=="dolg" or com=="freedom" or com=="stalker" or com=="stalker_enemy" or com=="bandit" or com=="ecolog" or com=="killer" or com=="renegade" or com=="army") then
-			local rank_name = ranks.get_obj_rank_name(npc)
-			if rank_name and cfg == "misc\\trade_generic.ltx" then
-				cfg = xr_s.str_explode(".",cfg)
-				cfg = cfg[1].."_"..com.."_"..rank_name.."."..cfg[2]
-			end
-		end
-	end
+--'	printf("TRADE INIT[%s]", npc:name())
+--'	if trade_manager[npc:id()] == nil then
+		trade_manager[npc:id()] = {}
+--'	end
 
 	trade_manager[npc:id()].cfg_ltx = cfg
 	trade_manager[npc:id()].config = ini_file(cfg)

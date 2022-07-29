@@ -22,7 +22,7 @@
 		<text>Генерал Крылов</text>
 	</string>
 	<string id="agr_duty_base_mechanic_name">
-		<text>Полковник Громов</text>
+		<text>Громов</text>
 	</string>
 	<string id="agr_duty_base_trader_name">
 		<text>Митяй</text>
@@ -37,10 +37,7 @@
 		<text>Сержант Наливайко</text>
 	</string>
 	<string id="agr_hourman_name">
-		<text>Лейтенант Галин</text>
-	</string>
-	<string id="agr_serega_name">
-		<text>Серёга</text>
+		<text>Галин</text>
 	</string>
 	<string id="agr_prisoner_1_name">
 		<text>Савелий</text>
@@ -61,10 +58,10 @@
 		<text>Дрозд</text>
 	</string>
 	<string id="agr_stalker_map_animals_name">
-		<text>Зверовод</text>
+		<text>Лосев</text>
 	</string>
 	<string id="agr_stalker_pda_for_secret_trader_name">
-		<text>Чумной</text>
+		<text>Авель</text>
 	</string>
 	<string id="agr_stalker_pda_name">
 		<text>Амит</text>
@@ -79,28 +76,28 @@
 		<text>Инквизитор</text>
 	</string>
 	<string id="esc_driver_friend_name">
-		<text>Рядовой Пупин</text>
+		<text>Пупин</text>
 	</string>
 	<string id="esc_driver_name">
-		<text>Рядовой Овечко</text>
+		<text>Семен Овечко</text>
 	</string>
 	<string id="esc_flashman_name">
-		<text>Лейтенант Гайкин</text>
+		<text>Гайкин</text>
 	</string>
 	<string id="esc_leader_stalkerbase_name">
 		<text>Отец Валерьян</text>
 	</string>
 	<string id="esc_military_general_name">
-		<text>Прапорщик Соколов</text>
+		<text>Генерал</text>
 	</string>
 	<string id="esc_military_secret_trader_name">
-		<text>Сержант Репкин</text>
+		<text>Агент майора Халецкого</text>
 	</string>
 	<string id="esc_st_patrol_lead_name">
 		<text>Вовка Ёж</text>
 	</string>
 	<string id="esc_stalker_novice_quest_name">
-		<text>Шустрый</text>
+		<text>Бродяга</text>
 	</string>
 	<string id="esc_tech_stalkerbase_name">
 		<text>Фургон</text>
@@ -156,12 +153,6 @@
 	<string id="mar_csky_commander_name">
 		<text>Лебедев</text>
 	</string>
-	<string id="red_csky_commander_name">
-		<text>Лебедев</text>
-	</string>
-	<string id="aes_csky_commander_name">
-		<text>Лебедев</text>
-	</string>
 	<string id="mar_csky_guide_name">
 		<text>Иван Тропник</text>
 	</string>
@@ -169,7 +160,7 @@
 		<text>Профессор Каланча</text>
 	</string>
 	<string id="mar_csky_tactic_name">
-		<text>Бродяга</text>
+		<text>Шустрый</text>
 	</string>
 	<string id="mar_csky_tech_name">
 		<text>Новиков</text>
@@ -181,7 +172,7 @@
 		<text>Леший</text>
 	</string>
 	<string id="st_actor_name">
-		<text>Шрам</text>
+		<text>Наёмник Шрам</text>
 	</string>
 	<string id="yan_st_levsha_name">
 		<text>Левша</text>
@@ -219,136 +210,10 @@
 	<string id="val_freedom_trader_name">
 		<text>Ашот</text>
 	</string>
-	<string id="val_freedom_barmen_name">
-		<text>Ганжа</text>
-	</string>
 	<string id="sim_strelok_name">
 		<text>Стрелок</text>
 	</string>
 	<string id="agr_weaponmaster_name">
 		<text>Майор Звягинцев</text>
-	</string>
-	<string id="aes_petrenko_name">
-		<text>Петренко</text>
-	</string>
-	<string id="mar_tutorial_man_name">
-		<text>Ветров</text>
-	</string>
-	<string id="marsh_dead_ecolog_name">
-		<text>Профессор Тукарев</text>
-	</string>
-	<string id="mar_renegade_boss_name">
-		<text>Борзый</text>
-	</string>
-	<string id="esc_bandit_commander_name">
-		<text>Джон</text>
-	</string>
-	<string id="esc_stalker_assemble_1_name">
-		<text>Косой</text>
-	</string>
-	<string id="esc_stalker_assemble_2_name">
-		<text>Василь Василич</text>
-	</string>
-	<string id="esc_stalker_assemble_3_name">
-		<text>Пузо</text>
-	</string>
-	<string id="esc_stalker_assemble_4_name">
-		<text>Гоблин</text>
-	</string>
-	<string id="esc_stalker_guard_east_bridge_name">
-		<text>Никита Карацупа</text>
-	</string>
-	<string id="esc_stalker_guard_west_bridge_name">
-		<text>Индус</text>
-	</string>
-	<string id="esc_military_blockpost_commander_name">
-		<text>Лейтенант Чугуйкин</text>
-	</string>
-	<string id="esc_military_squad_1_commander_name">
-		<text>Прапорщик Бунтов</text>
-	</string>
-	<string id="esc_military_squad_2_commander_name">
-		<text>Лейтенант Коряжко</text>
-	</string>
-	<string id="esc_stalker_guard_1_name">
-		<text>Выдра</text>
-	</string>
-	<string id="gar_digger_leader_dead_name">
-		<text>Свежак</text>
-	</string>
-	<string id="gar_digger_night_trader_name">
-		<text>Шельга</text>
-	</string>
-	<string id="gar_digger_24h_trader_name">
-		<text>Манцев</text>
-	</string>
-	<string id="gar_conc_camp_bandit_1_name">
-		<text>Счастливчик</text>
-	</string>
-	<string id="gar_bandit_gangster1_name">
-		<text>Рябой</text>
-	</string>
-	<string id="gar_bandit_gangster2_name">
-		<text>Наждак</text>
-	</string>
-	<string id="val_freedom_blockpost_guard_leader_north_name">
-		<text>Мановар</text>
-	</string>
-	<string id="val_freedom_attack_commander_name">
-		<text>Капец</text>
-	</string>
-	<string id="val_bandit_spy_pda_name">
-		<text>Фартовый</text>
-	</string>
-	<string id="yan_ivan_zombied_name">
-		<text>Иван Куча</text>
-	</string>
-	<string id="yan_scene_6_stalker_7_name">
-		<text>Жека Дуплет</text>
-	</string>
-	<string id="yan_tech_ecologbase_name">
-		<text>Васильев</text>
-	</string>
-	<string id="red_forest_pda_stalker_name">
-		<text>Клещ</text>
-	</string>
-        <string id="mil_questman_name">
-		<text>Угрюмый</text>
-	</string>
-        <string id="mil_stalker_fang_name">
-		<text>Клык</text>
-	</string>
-	<string id="lim_cs_commander_2_name">
-		<text>Валентин Серов</text>
-	</string>
-	<string id="lim_cs_soldier_2_name">
-		<text>Иван Василенко</text>
-	</string>
-        <string id="lim_merc_helper_name">
-		<text>Кольт</text>
-	</string>
-        <string id="lim_bandit_minigunner_name">
-		<text>Рыжий</text>
-	</string>
-        <string id="lim_bridge_minigunner_name">
-		<text>Капитан Винницкий</text>
-	</string>
-        <string id="hosp_clear_sky_suicide_name">
-		<text>Матросов</text>
-	</string>
-        <string id="kat_cs_grenadier_name">
-		<text>Петро Белый</text>
-	</string>
-        <string id="kat_hosp_z1_floor2_enemy_2_name">
-		<text>Морозов</text>
-	</string>
-        <string id="kat_hosp_z1_sniper_name">
-		<text>Зайцев</text>
-	</string>
-	<string id="pri_monolith_leader_name">
-		<text>Харон</text>
-	</string>
-	<string id="sim_ghost_name">
-		<text>Призрак</text>
 	</string>
 </string_table>

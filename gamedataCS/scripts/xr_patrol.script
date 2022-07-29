@@ -350,10 +350,6 @@ function action_commander:execute()
 	
 		self.old_state = new_state
 	end
-	local wpn = rx_reload and rx_reload.get_weapon_to_reload(self.object,true,true)
-	if wpn then
-		self.object:set_item(object.aim_force_full1,wpn)
-	end
 	--printf("FORMATION %s", self.st.formation)
     patrols[self.st.patrol_key]:set_command(self.object, new_state, self.st.formation)
 end
@@ -444,14 +440,6 @@ function action_patrol:execute()
 		self.object:set_desired_direction(desired_direction)
 	end
 	self.object:set_path_type(game_object.level_path)
-	
-	local wpn = rx_reload and rx_reload.get_weapon_to_reload(self.object,false,true)
-	if wpn then
-		state_mgr.set_state(self.object, "idle")
-		self.object:set_item(object.aim_force_full1,wpn)
-		self.object:set_movement_type(state_lib.states[self.cur_state].movement or move.walk)
-		return
-	end
 	
 	--'перемещаемся по пути
       state_mgr.set_state(self.object, self.cur_state) 

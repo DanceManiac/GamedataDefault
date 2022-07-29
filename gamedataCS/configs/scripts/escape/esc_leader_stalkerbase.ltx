@@ -1,134 +1,61 @@
 [logic]
-active = walker@prewait
-level_spot = leader
-on_death = death
-
-[walker@prewait]
-path_walk = esc_leader_stalkerbase_walk
-path_look = esc_leader_stalkerbase_look
-on_info = {+esc_reach_trader_complete} walker@prewait1
-on_info2 = {=actor_enemy} walker@4
-on_info3 = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
-meet = no_meet
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
-out_restr = esc_space_restrictor_in_restr_4
-
-[walker@prewait1]
-path_walk = esc_leader_stalkerbase_walk
-path_look = esc_leader_stalkerbase_look
-on_info = {+esc_stalker_leader_meet} walker@wait
-on_info2 = {=actor_enemy} walker@4
-on_info3 = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
-meet = meet
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
-out_restr = esc_space_restrictor_in_restr_4
+active = walker@wait
+level_spot = quest_npc
 
 [walker@wait]
 path_walk = esc_leader_stalkerbase_walk
 path_look = esc_leader_stalkerbase_look
 on_info = {+esc_mission_2_stalker_leader_complete -esc_com_tell_about_habar} walker@dopros
-on_info2 = {+esc_prisoner_dialog_2 =dist_to_actor_ge(50)} walker@wait1
-on_info3 = {=actor_enemy} walker@4
-on_info4 = {+esc_zak_stalkerbase_killed_by_a_hero -esc_prisoner_complete_dialog} %=set_faction_community_to_actor(stalker:enemy)%
-on_actor_dist_le_nvis = 2 | {-esc_stalker_leader_meet_info !is_faction_enemy_to_actor(stalker)} %+esc_stalker_leader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+esc_stalker_leader_meet_info -esc_prisoner_dialog_2 !is_faction_enemy_to_actor(stalker)} %=play_sound(esc_stalker_leader_meet_bye) -esc_stalker_leader_meet_info%
+on_info2 = {=actor_enemy} walker@4
 meet = meet
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_4
 
-[walker@wait1]
+[smartcover@sit]
 path_walk = esc_leader_stalkerbase_walk
 path_look = esc_leader_stalkerbase_look
-on_info = {=actor_enemy} walker@4
-on_info2 = {+esc_pda_dialog_3_started -esc_pda_dialog_3_end} remark@esc_pda_dialog_3_1
-on_info3 = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
+cover_name = esc_smart_cover_stalker_leader
+loophole_name = lead_sit_sleep_write
+cover_state = fire_target
+on_info = {+esc_mission_2_stalker_leader_complete -esc_com_tell_about_habar} walker@dopros
 meet = meet
-on_actor_dist_le_nvis = 2 | {-esc_stalker_leader_meet_info !is_faction_enemy_to_actor(stalker) !npc_talking} %=play_sound(esc_stalker_leader_meet) +esc_stalker_leader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+esc_stalker_leader_meet_info !is_faction_enemy_to_actor(stalker) !npc_talking} %=play_sound(esc_stalker_leader_meet_bye) -esc_stalker_leader_meet_info%
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_4
-
-[remark@esc_pda_dialog_3_1]
-anim = wait_rac_noweap
-target = esc_leader_stalkerbase_look, 0
-on_game_timer = 10 | remark@esc_pda_dialog_3_2 %=play_sound(esc_stalker_assemble_3_2:stalker:esc_leader_stalkerbase_name)%
-on_info = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
-danger = danger_ignore
-combat_ignore_cond = always
-combat_ignore_keep_when_attacked = true
-meet = no_meet
-
-[remark@esc_pda_dialog_3_2]
-anim = wait_rac_noweap
-target = esc_leader_stalkerbase_look, 0
-on_signal = sound_end | remark@esc_pda_dialog_3_3 %+esc_pda_dialog_3_continues_1%
-on_info = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
-danger = danger_ignore
-combat_ignore_cond = always
-combat_ignore_keep_when_attacked = true
-meet = no_meet
-
-[remark@esc_pda_dialog_3_3]
-anim = wait_rac_noweap
-target = esc_leader_stalkerbase_look, 0
-on_info = {+esc_pda_dialog_3_continues_2} remark@esc_pda_dialog_3_4 %=play_sound(esc_stalker_assemble_3_4:stalker:esc_leader_stalkerbase_name)%
-on_info2 = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
-danger = danger_ignore
-combat_ignore_cond = always
-combat_ignore_keep_when_attacked = true
-meet = no_meet
-
-[remark@esc_pda_dialog_3_4]
-anim = wait_rac_noweap
-target = esc_leader_stalkerbase_look, 0
-on_signal = sound_end | walker@wait1 %+esc_pda_dialog_3_end%
-on_info = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
-danger = danger_ignore
-combat_ignore_cond = always
-combat_ignore_keep_when_attacked = true
-meet = no_meet
 
 [walker@dopros]
 path_walk = esc_leader_dopros_walk
 path_look = esc_leader_dopros_look
 on_actor_in_zone = esc_space_restrictor_zak | walker@dopros_1
-on_info = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
 def_state_moving = sprint
 meet = no_meet
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 
 [walker@dopros_1]
 path_walk = esc_leader_dopros_walk
 path_look = esc_leader_dopros_look
-on_actor_dist_le_nvis = 3 | {=actor_in_zone(esc_space_restrictor_zak)} remark %=disable_ui =actor_look(military_zak_walk)%
-on_info = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
+on_actor_dist_le_nvis = 3 | remark
 def_state_moving = walk
-meet = meet@no_break
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+meet = no_meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 
 [remark]
 anim = ward
 target = 409
 on_info = %=play_sound(esc_jail_monologue:stalker:esc_leader_stalkerbase_name)% remark@wait
-on_info2 = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
-meet = meet@no_break
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+meet = no_meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 
 [remark@wait]
@@ -138,43 +65,40 @@ target = 409
 on_info = {+esc_habar_mill_spawn} remark@wait1
 on_info2 = {+esc_habar_tonnel_spawn} remark@wait1
 on_info3 = {+esc_habar_podval_spawn} remark@wait1
-on_info4 = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
-meet = meet@no_break
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+meet = no_meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 
 [remark@wait1]
 on_info = {+esc_prisoner_complete_dialog} remark@preend
-on_info2 = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
 anim = ward
 target = 409
-meet = meet@no_break
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+meet = no_meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 
 [remark@preend]
-on_game_timer = 10 | %=play_sound(esc_habar_founded:stalker:esc_leader_stalkerbase_name)% remark@end
-on_info = {+esc_zak_stalkerbase_killed_by_a_hero} %=set_faction_community_to_actor(stalker:enemy)%
+on_game_timer = 10 | %=play_sound(esc_habar_founded:stalker:agr_stalker_base_leader_name)% remark@end
 anim = ward
 target = actor
-meet = meet@no_break
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+meet = no_meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 
 [remark@end]
 anim = ward
 target = actor
-on_signal = sound_end | remark@end2 %=enable_ui%
-meet = meet@no_break
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+on_signal = sound_end | remark@end2
+meet = no_meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 
 [remark@end2]
@@ -182,9 +106,9 @@ anim = ward
 target = actor
 meet = no_meet
 on_game_timer = 30 | walker@2
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 
 [walker@2]
@@ -192,9 +116,9 @@ path_walk = esc_leader_stalkerbase_walk
 path_look = esc_leader_stalkerbase_look
 meet = meet
 def_state_moving = walk
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_4
 on_npc_not_in_zone = 408 | esc_space_restrictor_zak | walker@3
 
@@ -204,9 +128,9 @@ path_look = esc_leader_stalkerbase_look
 meet = meet
 on_info = {=actor_enemy} walker@4
 def_state_moving = walk
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_4
 on_info2 = %+esc_prisoner_dialog_2%
 on_game_timer = 30 | walker@wait
@@ -217,9 +141,9 @@ path_look = esc_leader_stalkerbase_look
 meet = no_meet
 on_info = {!actor_enemy} walker@3
 def_state_moving = walk
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_4
 ;on_info = %+esc_prisoner_dialog_2%
 ;on_game_timer = 30 | walker@wait
@@ -235,19 +159,5 @@ use_wpn		= true
 abuse		= false
 trade_enable 	= false
 ;sound_start = esc_stalker_leader_meet
-;sound_stop = esc_stalker_leader_meet_bye
+;sound_stop 	= esc_stalker_leader_meet_bye
 quest_npc = true
-
-[meet@no_break]
-meet_state = 4 | nil@nil
-meet_state_wpn = 4 | nil@nil
-victim = 0 | actor
-victim_wpn = 0 | actor
-use		= true
-use_wpn		= true
-abuse		= false
-allow_break = false
-trade_enable = false
-
-[death]
-on_info = %+esc_leader_stalkerbase_dead =set_faction_community_to_actor(stalker:enemy)%

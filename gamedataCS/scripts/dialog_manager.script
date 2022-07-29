@@ -3,42 +3,25 @@
 -- Made by Peacemaker ----------------------------------------------------------
 -- 11.01.08 --------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
 local disabled_phrases = {} -- temporary table of phrases which have been disabled during a conversation
 local id_counter = 1 -- start from 1 because of adding root phrases
-
 phrase_table = {
                 hello = {},
                 information = {},
                 occupation = {},
                 place = {},
-		ogsm = {}
                }
-
 priority_table = {
-                hello = {},
-                information = {},
-                occupation = {},
-                place = {},
-		ogsm = {}
-		 }
-
-disable_table = {
-                dm_hello_dialog = 0,
-                dm_information_dialog = 0,
-                dm_occupation_dialog = 0,
-                dm_place_dialog = 0,
-		dm_ogsm_dialog = 0
-               }
-
-
+	                hello = {},
+	                information = {},
+	                occupation = {},
+	                place = {},
+				 }
 -- Generate id for phrase
 function get_id()
     id_counter = id_counter + 1
     return id_counter
 end
-
-
 -- Parse ini file and store all phrases and their parameters into phrase table
 function fill_phrase_table()
 	printf("fill_phrase_table")
@@ -54,25 +37,11 @@ function fill_phrase_table()
 			if(category=="intro") then
 				category = "hello"
 			elseif(category=="cool") then
-				if disable_table["dm_information_dialog"] == 0 then
-					category = "information"
-				else
-					category = "information"
-				end
+				category = "information"
 			elseif(category=="action") then
-				if disable_table["dm_occupation_dialog"] == 0 then
-					category = "occupation"
-				else
-					category = "information"
-				end
+				category = "occupation"
 			elseif(category=="about") then
-				if disable_table["dm_place_dialog"] == 0 then
-					category = "place"
-				else
-					category = "information"
-				end
-			elseif(category=="ogsm") then
-				category = "ogsm"
+				category = "place"
 			else
 				category = "default"
 			end
@@ -116,87 +85,183 @@ function fill_phrase_table()
 	        else
 	            temp_table.once = "always"
 	        end
--- количество эпизодов в истори€х
-	        if dm_ini_file:line_exist(id, "episodes") then
-	            temp_table.episodes = dm_ini_file:r_string(id, "episodes")
-	        else
-	            temp_table.episodes = 5
-	        end
-
 	        temp_table.id = tostring(get_id())
 	        phrase_table[category][temp_table.id] = temp_table
 		end
     end
 end
-
-
 -- Save
 function save_npc(packet, npc_id)
 	set_save_marker(packet, "save", false, "dialog_manager")
-
 	if(priority_table.hello[npc_id]~=nil) then
         packet:w_bool(true)
+--[[
+		local counter = 0
+		for phrase_id,priority in pairs(priority_table.hello[npc_id]) do
+			counter = counter + 1
+		end
+        packet:w_u16(counter)
+		for phrase_id,priority in pairs(priority_table.hello[npc_id]) do
+            if(phrase_id~="ignore_once") then
+                packet:w_stringZ(tostring(phrase_id))
+                packet:w_u8(priority)
+            else
+                packet:w_stringZ(phrase_id)
+                packet:w_bool(priority)
+            end
+		end
+]]
 	else
         packet:w_bool(false)
 	end
 
 	if(priority_table.information[npc_id]~=nil) then
         packet:w_bool(true)
+--[[
+		local counter = 0
+		for phrase_id,priority in pairs(priority_table.information[npc_id]) do
+			counter = counter + 1
+		end
+        packet:w_u16(counter)
+		for phrase_id,priority in pairs(priority_table.information[npc_id]) do
+            if(phrase_id~="ignore_once") then
+                packet:w_stringZ(tostring(phrase_id))
+                packet:w_u8(priority)
+            else
+                packet:w_stringZ(phrase_id)
+                packet:w_bool(priority)
+            end
+		end
+]]
 	else
         packet:w_bool(false)
 	end
 
 	if(priority_table.occupation[npc_id]~=nil) then
         packet:w_bool(true)
+--[[
+		local counter = 0
+		for phrase_id,priority in pairs(priority_table.occupation[npc_id]) do
+			counter = counter + 1
+		end
+        packet:w_u16(counter)
+		for phrase_id,priority in pairs(priority_table.occupation[npc_id]) do
+            if(phrase_id~="ignore_once") then
+                packet:w_stringZ(tostring(phrase_id))
+                packet:w_u8(priority)
+            else
+                packet:w_stringZ(phrase_id)
+                packet:w_bool(priority)
+            end
+		end
+]]
 	else
         packet:w_bool(false)
 	end
 
 	if(priority_table.place[npc_id]~=nil) then
         packet:w_bool(true)
+--[[
+		local counter = 0
+		for phrase_id,priority in pairs(priority_table.place[npc_id]) do
+			counter = counter + 1
+		end
+        packet:w_u16(counter)
+		for phrase_id,priority in pairs(priority_table.place[npc_id]) do
+            if(phrase_id~="ignore_once") then
+                packet:w_stringZ(tostring(phrase_id))
+                packet:w_u8(priority)
+            else
+                packet:w_stringZ(phrase_id)
+                packet:w_bool(priority)
+            end
+		end
+]]
 	else
         packet:w_bool(false)
 	end
-
-	if(priority_table.ogsm[npc_id]~=nil) then
-        packet:w_bool(true)
-	else
-        packet:w_bool(false)
-	end
-
 	set_save_marker(packet, "save", true, "dialog_manager")
 end
-
-
 -- Load
 function load_npc(reader, npc_id)
 	set_save_marker(reader, "load", false, "dialog_manager")
+    local is_saved = reader:r_bool()
+--[[
+	if(is_saved) then
+        local counter = reader:r_u16()
+		priority_table.hello[npc_id] = {}
+		for i=1,counter do
+			local phrase_id = reader:r_stringZ()
+			if(phrase_id~="ignore_once") then
+				priority_table.hello[npc_id][phrase_id] = reader:r_u8()
+			else
+				priority_table.hello[npc_id][phrase_id] = reader:r_bool()
+			end
+		end
+	end
+]]
+    is_saved = reader:r_bool()
+--[[
+	if(is_saved) then
+        local counter = reader:r_u16()
+		priority_table.information[npc_id] = {}
+		for i=1,counter do
+			local phrase_id = reader:r_stringZ()
+			if(phrase_id~="ignore_once") then
+				priority_table.information[npc_id][phrase_id] = reader:r_u8()
+			else
+				priority_table.information[npc_id][phrase_id] = reader:r_bool()
+			end
+		end
+	end
+]]
 
-	local is_saved = reader:r_bool()
-	is_saved = reader:r_bool()
-	is_saved = reader:r_bool()
-	is_saved = reader:r_bool()
-	is_saved = reader:r_bool()
+    is_saved = reader:r_bool()
+--[[
+	if(is_saved) then
+        local counter = reader:r_u16()
+		priority_table.occupation[npc_id] = {}
+		for i=1,counter do
+			local phrase_id = reader:r_stringZ()
+			if(phrase_id~="ignore_once") then
+				priority_table.occupation[npc_id][phrase_id] = reader:r_u8()
+			else
+				priority_table.occupation[npc_id][phrase_id] = reader:r_bool()
+			end
+		end
+	end
+]]
 
+    is_saved = reader:r_bool()
+--[[
+	if(is_saved) then
+        local counter = reader:r_u16()
+		priority_table.place[npc_id] = {}
+		for i=1,counter do
+			local phrase_id = reader:r_stringZ()
+			if(phrase_id~="ignore_once") then
+				priority_table.place[npc_id][phrase_id] = reader:r_u8()
+			else
+				priority_table.place[npc_id][phrase_id] = reader:r_bool()
+			end
+		end
+	end
+]]
 	set_save_marker(reader, "load", true, "dialog_manager")
 end
-
-
 -- Initialize npc start dialog
 function init_start_dialogs(dialog, str)
-
-    printf(string.format("init_%s_dialogs", str))
+	printf(string.format("init_%s_dialogs", str))
     local phrase = dialog:AddPhrase("", tostring(0), "", -10000)
     phrase = dialog:AddPhrase("", tostring(1), tostring(0), -10000)
     local script = phrase:GetPhraseScript()
     script:AddAction(string.format("dialog_manager.fill_priority_%s_table", str))
     local ph = false
-
-    for k,v in pairs(phrase_table[str]) do
-	  ph = true
-          phrase = dialog:AddPhrase(v.name, tostring(v.id), tostring(1), -10000)
-	  log("--->"..tostring(v.name))
-          if(phrase) then
+	for k,v in pairs(phrase_table[str]) do
+		ph = true
+        phrase = dialog:AddPhrase(v.name, tostring(v.id), tostring(1), -10000)
+		log("--->"..tostring(v.name))
+        if(phrase) then
             script = phrase:GetPhraseScript()
             script:AddPrecondition(string.format("dialog_manager.precondition_%s_dialogs", str))
             script:AddPrecondition("dialog_manager.precondition_not_sim_action_dialog")
@@ -204,41 +269,42 @@ function init_start_dialogs(dialog, str)
 		    script:AddAction("dialog_manager.action_sim_action_dialog")
 			if(v.wounded=="true") then
 				log("--->"..tostring(v.wounded))
-	            		script:AddPrecondition("dialogs.is_wounded")
+	            script:AddPrecondition("dialogs.is_wounded")
+--				local bandage_id = get_id()
 				local medkit_id = get_id()
 				local sorry_id = get_id()
 				local thanks_id = get_id()
-		        	phrase = dialog:AddPhrase("dm_wounded_medkit", tostring(medkit_id), tostring(v.id), -10000)
+--		        phrase = dialog:AddPhrase("dm_wounded_bandage", tostring(bandage_id), tostring(v.id), -10000)
+--	            script = phrase:GetPhraseScript()
+--	            script:AddPrecondition("dialogs.actor_have_bandage")
+--	            script:AddAction("dialogs.transfer_bandage")
+--	            script:AddAction("dialogs.break_dialog")
+--		        phrase = dialog:AddPhrase("dm_wounded_thanks", tostring(thanks_id), tostring(bandage_id), -10000)
 
-        			if(phrase) then
-					log("ok1")
-				end
+		        phrase = dialog:AddPhrase("dm_wounded_medkit", tostring(medkit_id), tostring(v.id), -10000)
+        if(phrase) then
+			log("ok1")
+		end
+	            script = phrase:GetPhraseScript()
+	            script:AddPrecondition("dialogs.actor_have_medkit")
+	            script:AddAction("dialogs.transfer_medkit")
+	            script:AddAction("dialogs.break_dialog")
+		        phrase = dialog:AddPhrase("dm_wounded_thanks", tostring(thanks_id), tostring(medkit_id), -10000)
+        if(phrase) then
+			log("ok2")
+		end
 
-			        script = phrase:GetPhraseScript()
-			        script:AddPrecondition("dialogs.actor_have_medkit")
-			        script:AddAction("dialogs.transfer_medkit")
-			        script:AddAction("dialogs.break_dialog")
-				phrase = dialog:AddPhrase("dm_wounded_thanks", tostring(thanks_id), tostring(medkit_id), -10000)
-
-			        if(phrase) then
-					log("ok2")
-				end
-
-		        	phrase = dialog:AddPhrase("dm_wounded_sorry", tostring(sorry_id), tostring(v.id), -10000)
-
-			        if(phrase) then
-					log("ok3")
-				end
-
-			        script = phrase:GetPhraseScript()
-			        script:AddAction("dialogs.break_dialog")
-
+		        phrase = dialog:AddPhrase("dm_wounded_sorry", tostring(sorry_id), tostring(v.id), -10000)
+        if(phrase) then
+			log("ok3")
+		end
+	            script = phrase:GetPhraseScript()
+	            script:AddAction("dialogs.break_dialog")
 			else
-			        script:AddPrecondition("dialogs.is_not_wounded")
+	            script:AddPrecondition("dialogs.is_not_wounded")
 			end
-           end
+        end
     end
-
     phrase = dialog:AddPhrase("dm_sim_action_attack_point_none", tostring(get_id()), tostring(1), -10000)
     script = phrase:GetPhraseScript()
     script:AddPrecondition("dialog_manager.precondition_sim_action_dialog")
@@ -268,70 +334,20 @@ function init_start_dialogs(dialog, str)
     script:AddPrecondition("dialog_manager.precondition_sim_action_dialog")
     script:AddPrecondition("dialog_manager.precondition_sim_action_stay_point_enemy_near")
     script:AddAction("dialog_manager.action_sim_action_dialog")
-
-    if not(ph) then
+	if not(ph) then
         phrase = dialog:AddPhrase(string.format("dm_%s_general", str), tostring(v.id), tostring(1), -10000)
-    end
-
+	end
 end
-
-
 -- Initialize selected actor dialog
 function init_actor_dialogs(dialog, str)
-
-    printf(string.format("init_%s_dialogs", str))
-
+	printf(string.format("init_%s_dialogs", str))
 -- add actor question
     local phrase = dialog:AddPhrase(string.format("dm_%s_general", str), tostring(0), "", -10000)
     local script = phrase:GetPhraseScript()
 -- set fill priority callback
+--    script:AddPrecondition("dialog_manager.precondition_is_phrase_disabled")
     script:AddAction(string.format("dialog_manager.fill_priority_%s_table", str))
     script:AddAction("dialog_manager.action_disable_phrase")
-
-if str == "ogsm" then
-
-    for k,v in pairs(phrase_table[str]) do
-	local count = 0
-	if string.find(v.name, "story") then
-		-- Ёпизод начальный
-	        phrase = dialog:AddPhrase(v.name.."_tell_start", tostring(v.id), tostring(0), -10000)
-	        if phrase then
-	            script = phrase:GetPhraseScript()
-	            script:AddPrecondition("dialog_manager.need_info_"..tostring(v.name))
-	            script:AddPrecondition("dialog_manager.random_availability")
-	            script:AddPrecondition("dialog_manager.precondition_ogsm_dialogs")
-	            script:AddAction("dialog_manager.action_ogsm_dialogs")
-	        end
-		-- –еакци€ начальна€
-	        phrase = dialog:AddPhrase(v.name.."_reac_start", tostring(v.id).."1", tostring(v.id), -10000)
-		for i=1,v.episodes do
-			-- Ёпизод i
-			phrase = dialog:AddPhrase(v.name.."_tell_"..i, tostring(v.id)..string.rep("1", i+(i-1)+1), tostring(v.id)..string.rep("1", i+(i-1)), -10000)
-			-- –еакци€ i
-			phrase = dialog:AddPhrase(v.name.."_reac_"..i, tostring(v.id)..string.rep("1", i+(i-1)+2), tostring(v.id)..string.rep("1", i+(i-1)+1), -10000)
-			count = count + 1
-		end
-		-- Ёпизод конечный
-		phrase = dialog:AddPhrase(v.name.."_tell_end", tostring(v.id)..string.rep("1", count*2+2), tostring(v.id)..string.rep("1", count*2+1), -10000)
-		-- –еакци€ конечна€
-		phrase = dialog:AddPhrase(v.name.."_reac_end", tostring(v.id)..string.rep("1", count*2+3), tostring(v.id)..string.rep("1", count*2+2), -10000)
-		script = phrase:GetPhraseScript()
-		script:AddGiveInfo(v.name.."_info")
---		script:AddAction("dialogs.break_dialog")
-		count = 0
-	else
-		-- —лучайный ответ
-	        phrase = dialog:AddPhrase(v.name, tostring(v.id), tostring(0), -10000)
-	        if phrase then
-	            script = phrase:GetPhraseScript()
-	            script:AddPrecondition("dialog_manager.precondition_ogsm_dialogs")
-	            script:AddAction("dialog_manager.action_ogsm_dialogs")
-	        end
-	end
-    end
-
-else
-
 -- set default answer (if no avaliable)
     local answer = dialog:AddPhrase(string.format("dm_%s_no_more", str), tostring(1), tostring(0), -10000)
     local script = answer:GetPhraseScript()
@@ -345,12 +361,7 @@ else
             script:AddAction(string.format("dialog_manager.action_%s_dialogs", str))
         end
     end
-
 end
-
-end
-
-
 -- Fill selected priority table
 function fill_priority_table(npc, PT_subtable, PRT_subtable)
     local npc_id = npc:id()
@@ -364,8 +375,6 @@ function fill_priority_table(npc, PT_subtable, PRT_subtable)
 		log("--->phrase ["..phrase.name.."] priority ["..pr.."]")
 	end
 end
-
-
 -- Calculate precondition for default phrase in information dialog
 function precondition_no_more(npc, str)
 	local pr, id = get_highest_priority_phrase(phrase_table[str], priority_table[str], npc)
@@ -378,8 +387,6 @@ function precondition_no_more(npc, str)
         return false
     end
 end
-
-
 -- Calculate phrase's preconditions
 function precondition(npc, PT_subtable, PRT_subtable, phrase_id)
 -- recalculate current phrase priority
@@ -390,83 +397,72 @@ end
 -- Calculate phrase priority
 function calculate_priority(PRT_subtable, PTID_subtable, npc, phrase_id)
 	local priority = -1
-	local npc_id = npc:id()
-
+    local npc_id = npc:id()
 	if(PTID_subtable.npc_community=="not_set") then
-	    	priority = priority + 0
+    	priority = priority + 0
 	elseif(PTID_subtable.npc_community[1]=="all") then
-    		priority = priority + 1
+    	priority = priority + 1
 	else
 		for i=1,#PTID_subtable.npc_community do
 			if(PTID_subtable.npc_community[i]==npc:character_community()) then
-				priority = priority + 3
+		        priority = priority + 3
+--		        priority = priority + 2
 				break
 			end
 		end
-		priority = priority - 2 -- if community hasn't match - then decrease priority
+	    priority = priority - 1 -- if community hasn't match - then decrease priority
 	end
-
 	if(PTID_subtable.level=="not_set") then
-    		priority = priority + 0
+    	priority = priority + 0
 	elseif(PTID_subtable.level[1]=="all") then
-    		priority = priority + 1
+    	priority = priority + 1
 	else
 		for i=1,#PTID_subtable.level do
 			if(PTID_subtable.level[i]==level.name()) then
-				priority = priority + 3
+		        priority = priority + 3
+--		        priority = priority + 2
 				break
 			end
 		end
-		priority = priority - 2 -- if level hasn't match - then decrease priority
+	    priority = priority - 1 -- if level hasn't match - then decrease priority
 	end
-
 	if(PTID_subtable.actor_community=="not_set") then
-	    	priority = priority + 0
+    	priority = priority + 0
 	elseif(PTID_subtable.actor_community=="all") then
-    		priority = priority + 1
+    	priority = priority + 1
 	else
 		for i=1,#PTID_subtable.actor_community do
 			if(PTID_subtable.actor_community[i]==db.actor:character_community()) then
-				priority = priority + 2
+		        priority = priority + 2
 				break
 			end
 		end
 	end
-
-	if(PTID_subtable.wounded=="true") then
-		if not(xr_wounded.is_heavy_wounded_by_id(npc:id())) then
-		        priority = -1
+    if(PTID_subtable.wounded=="true") then
+        if not(xr_wounded.is_heavy_wounded_by_id(npc:id())) then
+	        priority = -1
 		else
-		        priority = priority + 1
-	        end
-	else
-	        if(xr_wounded.is_heavy_wounded_by_id(npc:id())) then
-		        priority = -1
+	        priority = priority + 1
+        end
+    else
+        if(xr_wounded.is_heavy_wounded_by_id(npc:id())) then
+	        priority = -1
 		else
-		        priority = priority + 1
-	        end
-	end
-
-	if(PTID_subtable.episodes ~= nil) then
-		priority = priority + 1
-	end
-
+	        priority = priority + 1
+        end
+    end
 	if(PRT_subtable[npc:id()].ignore_once) then
-		if(PTID_subtable.once=="true") then
-            		priority = -1
+	    if(PTID_subtable.once=="true") then
+            priority = -1
 		end
 	end
-
 	if(PRT_subtable[npc_id][phrase_id]~=nil) and (PRT_subtable[npc_id][phrase_id]==255) then
-	-- if there was set the highest priority for phrase
-        	priority = 255
+-- if there was set the highest priority for phrase
+        priority = 255
 	end
-
-	PRT_subtable[npc_id][phrase_id] = priority
+    PRT_subtable[npc_id][phrase_id] = priority
 	return priority
 end
-
-
 -- Set phrase end action
 function action(PT_subtable, PRT_subtable, cur_phrase_id, npc)
 	if not(PRT_subtable[npc:id()].ignore_once) then
@@ -476,8 +472,6 @@ function action(PT_subtable, PRT_subtable, cur_phrase_id, npc)
         PRT_subtable[npc:id()].ignore_once = true
 	end
 end
-
-
 -- Set the highest priority to selected phrase
 function set_phrase_highest_priority(PRT_subtable, npc_id, phrase_id)
 	if(PRT_subtable[npc_id]~=nil) then
@@ -487,8 +481,6 @@ function set_phrase_highest_priority(PRT_subtable, npc_id, phrase_id)
 		PRT_subtable[npc_id][phrase_id] = 255
 	end
 end
-
-
 -- Reset phrase priority
 function reset_phrase_priority(PT_subtable, PRT_subtable, npc, phrase_id)
 	local npc_id = npc:id()
@@ -501,8 +493,6 @@ function reset_phrase_priority(PT_subtable, PRT_subtable, npc, phrase_id)
 		PRT_subtable[npc_id][phrase_id] = calculate_priority(PRT_subtable, PT_subtable[phrase_id], npc, phrase_id)
 	end
 end
-
-
 -- Is the phrase priority the highest?
 function is_highest_priority_phrase(PT_subtable, PRT_subtable, npc, phrase_id)
 	local npc_id = npc:id()
@@ -525,8 +515,6 @@ function is_highest_priority_phrase(PT_subtable, PRT_subtable, npc, phrase_id)
 		return false
 	end
 end
-
-
 -- Get the phrase with the highest priority
 function get_highest_priority_phrase(PT_subtable, PRT_subtable, npc)
 	local npc_id = npc:id()
@@ -550,131 +538,84 @@ function get_highest_priority_phrase(PT_subtable, PRT_subtable, npc)
 		return -1, 0
 	end
 end
-
-
-
 --------------------------------------------------------------------------------
 -- Initializing, filling priority tables, setting preconditions and actions
 --------------------------------------------------------------------------------
-
 -- Initialize npc hello start dialog
 function init_hello_dialogs(dialog)
 	init_start_dialogs(dialog, "hello")
 end
-
 -- Initialize actor information dialog (like "News", or "What interesting can you say?")
 function init_information_dialogs(dialog)
 	init_actor_dialogs(dialog, "information")
 end
-
 -- Initialize actor occupation dialog (like "What are you doing here?")
 function init_occupation_dialogs(dialog)
 	init_actor_dialogs(dialog, "occupation")
 end
-
 -- Initialize actor place dialog (like "What is this place like?")
 function init_place_dialogs(dialog)
 	init_actor_dialogs(dialog, "place")
 end
-
--- Initialize actor ogsm dialog
-function init_ogsm_dialogs(dialog)
-	init_actor_dialogs(dialog, "ogsm")
-end
-
 -- Fill phrase priority table for hello start dialog
 function fill_priority_hello_table(actor, npc, dialog_name, phrase_id)
 	fill_priority_table(npc, phrase_table.hello, priority_table.hello)
 end
-
 -- Fill phrase priority table for information dialog
 function fill_priority_information_table(actor, npc, dialog_name, phrase_id)
 	fill_priority_table(npc, phrase_table.information, priority_table.information)
 end
-
 -- Fill phrase priority table for occupation dialog
 function fill_priority_occupation_table(actor, npc, dialog_name, phrase_id)
 	fill_priority_table(npc, phrase_table.occupation, priority_table.occupation)
 end
-
 -- Fill phrase priority table for place dialog
 function fill_priority_place_table(actor, npc, dialog_name, phrase_id)
 	fill_priority_table(npc, phrase_table.place, priority_table.place)
 end
-
--- Fill phrase priority table for ogsm dialog
-function fill_priority_ogsm_table(actor, npc, dialog_name, phrase_id)
-	fill_priority_table(npc, phrase_table.ogsm, priority_table.ogsm)
-end
-
 -- Calculate precondition for phrases in hello start dialog
 function precondition_hello_dialogs(npc, actor, dialog_name, parent_id, id)
     return precondition(npc, phrase_table.hello, priority_table.hello, id)
 end
-
 -- Set phrase end action for hello start dialog
 function action_hello_dialogs(npc, actor, dialog_name, id)
     action(phrase_table.hello, priority_table.hello, id, npc)
 end
-
 -- Calculate precondition for default phrase in information dialog
 function precondition_information_dialogs_no_more(npc, actor, dialog_name, parent_id, id)
     return precondition_no_more(npc, "information")
 end
-
 -- Calculate preconditions for phrases in information dialog
 function precondition_information_dialogs(npc, actor, dialog_name, parent_id, id)
-	return precondition(npc, phrase_table.information, priority_table.information, id)
+    return precondition(npc, phrase_table.information, priority_table.information, id)
 end
-
 -- Set phrase end action for information dialog
 function action_information_dialogs(npc, actor, dialog_name, id)
     action(phrase_table.information, priority_table.information, id, npc)
 end
-
 -- Calculate precondition for default phrase in occupation dialog
 function precondition_occupation_dialogs_no_more(npc, actor, dialog_name, parent_id, id)
     return precondition_no_more(npc, "occupation")
 end
-
 -- Calculate preconditions for phrases in occupation dialog
 function precondition_occupation_dialogs(npc, actor, dialog_name, parent_id, id)
-	return precondition(npc, phrase_table.occupation, priority_table.occupation, id)
+    return precondition(npc, phrase_table.occupation, priority_table.occupation, id)
 end
-
 -- Set phrase end action for occupation dialog
 function action_occupation_dialogs(npc, actor, dialog_name, id)
     action(phrase_table.occupation, priority_table.occupation, id, npc)
 end
-
 -- Calculate precondition for default phrase in place dialog
 function precondition_place_dialogs_no_more(npc, actor, dialog_name, parent_id, id)
     return precondition_no_more(npc, "place")
 end
-
 -- Calculate preconditions for phrases in place dialog
 function precondition_place_dialogs(npc, actor, dialog_name, parent_id, id)
-	return precondition(npc, phrase_table.place, priority_table.place, id)
+    return precondition(npc, phrase_table.place, priority_table.place, id)
 end
-
 -- Set phrase end action for place dialog
 function action_place_dialogs(npc, actor, dialog_name, id)
     action(phrase_table.place, priority_table.place, id, npc)
-end
-
--- Calculate precondition for default phrase in ogsm dialog
-function precondition_ogsm_dialogs_no_more(npc, actor, dialog_name, parent_id, id)
-    return precondition_no_more(npc, "ogsm")
-end
-
--- Calculate preconditions for phrases in ogsm dialog
-function precondition_ogsm_dialogs(npc, actor, dialog_name, parent_id, id)
-    return precondition(npc, phrase_table.ogsm, priority_table.ogsm, id)
-end
-
--- Set phrase end action for ogsm dialog
-function action_ogsm_dialogs(npc, actor, dialog_name, id)
-    action(phrase_table.ogsm, priority_table.ogsm, id, npc)
 end
 
 local rnd = 0
@@ -682,7 +623,6 @@ local rnd = 0
 function action_sim_action_dialog(npc, actor, dialog_name, id)
     rnd = 0
 end
-
 -- Precondition for simulation answer
 function precondition_sim_action_dialog(npc, actor, dialog_name)
 	local squad = db.storage[npc:id()].squad_obj
@@ -701,12 +641,10 @@ function precondition_sim_action_dialog(npc, actor, dialog_name)
 	end
 	return false
 end
-
 -- Precondition for simulation answer
 function precondition_not_sim_action_dialog(npc, actor, dialog_name)
     return not(precondition_sim_action_dialog(npc, actor, dialog_name))
 end
-
 -- Precondition for simulation answer
 function precondition_sim_action_attack_point_none(npc, actor, dialog_name)
 	local squad = db.storage[npc:id()].squad_obj
@@ -718,7 +656,6 @@ function precondition_sim_action_attack_point_none(npc, actor, dialog_name)
 	end
 	return false
 end
-
 -- Precondition for simulation answer
 function precondition_sim_action_attack_point_friend(npc, actor, dialog_name)
 	local squad = db.storage[npc:id()].squad_obj
@@ -730,7 +667,6 @@ function precondition_sim_action_attack_point_friend(npc, actor, dialog_name)
 	end
 	return false
 end
-
 -- Precondition for simulation answer
 function precondition_sim_action_attack_point_enemy(npc, actor, dialog_name)
 	local squad = db.storage[npc:id()].squad_obj
@@ -742,7 +678,6 @@ function precondition_sim_action_attack_point_enemy(npc, actor, dialog_name)
 	end
 	return false
 end
-
 -- Precondition for simulation answer
 function precondition_sim_action_stay_point_none_near(npc, actor, dialog_name)
 	local squad = db.storage[npc:id()].squad_obj
@@ -761,7 +696,6 @@ function precondition_sim_action_stay_point_none_near(npc, actor, dialog_name)
 	end
 	return false
 end
-
 -- Precondition for simulation answer
 function precondition_sim_action_stay_point_enemy_near(npc, actor, dialog_name)
 	local squad = db.storage[npc:id()].squad_obj
@@ -780,24 +714,16 @@ function precondition_sim_action_stay_point_enemy_near(npc, actor, dialog_name)
 	end
 	return false
 end
-
 function precondition_is_phrase_disabled(fs,ss,dn,ppi,pi)
 	local npc = dialogs.who_is_npc(fs, ss)
-
 	if(pi=="") then
 		pi = dn
 	end
-
-	if disable_table[pi] == 1 then 
+	if(disabled_phrases[npc:id()]) and (disabled_phrases[npc:id()][pi]) then
 		return false
 	else
-		if(disabled_phrases[npc:id()]) and (disabled_phrases[npc:id()][pi]) then
-			return false
-		else
-			return true
-		end
+		return true
 	end
-
 end
 
 function action_disable_phrase(fs,ss,dn,pi)
@@ -831,10 +757,9 @@ end
 function news_dialog_precondition(fs,ss,dn,pi)
 	local npc = ss
 	if(disabled_phrases[npc:id()]~=nil) then
-		if(disabled_phrases[npc:id()]["dm_information_dialog"]~=nil or disable_table["dm_information_dialog"]==1) and
-		  (disabled_phrases[npc:id()]["dm_occupation_dialog"]~=nil or disable_table["dm_occupation_dialog"]==1) and
-		  (disabled_phrases[npc:id()]["dm_place_dialog"]~=nil or disable_table["dm_place_dialog"]==1) and
-		  (disabled_phrases[npc:id()]["dm_ogsm_dialog"]~=nil or disable_table["dm_ogsm_dialog"]==1) then
+		if(disabled_phrases[npc:id()]["dm_information_dialog"]~=nil) and
+		  (disabled_phrases[npc:id()]["dm_occupation_dialog"]~=nil) and
+		  (disabled_phrases[npc:id()]["dm_place_dialog"]~=nil) then
 			return true
 		end
 	end
@@ -874,76 +799,4 @@ function create_answer_phrase(fs,dn,pi)
 	else
 		return game.translate_string("dm_"..community.."_no_news_4")
 	end
-end
-
-function need_info_dm_ogsm_story_1(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_1_info")
-end
-function need_info_dm_ogsm_story_2(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_2_info")
-end
-function need_info_dm_ogsm_story_3(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_3_info")
-end
-function need_info_dm_ogsm_story_4(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_4_info")
-end
-function need_info_dm_ogsm_story_5(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_5_info")
-end
-function need_info_dm_ogsm_story_6(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_6_info")
-end
-function need_info_dm_ogsm_story_7(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_7_info")
-end
-function need_info_dm_ogsm_story_8(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_8_info")
-end
-function need_info_dm_ogsm_story_9(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_9_info")
-end
-function need_info_dm_ogsm_story_10(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_10_info")
-end
-function need_info_dm_ogsm_story_11(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_11_info")
-end
-function need_info_dm_ogsm_story_12(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_12_info")
-end
-function need_info_dm_ogsm_story_13(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_13_info")
-end
-function need_info_dm_ogsm_story_14(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_14_info")
-end
-function need_info_dm_ogsm_story_15(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_15_info")
-end
-function need_info_dm_ogsm_story_16(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_16_info")
-end
-function need_info_dm_ogsm_story_17(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_17_info")
-end
-function need_info_dm_ogsm_story_18(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_18_info")
-end
-function need_info_dm_ogsm_story_19(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_19_info")
-end
-function need_info_dm_ogsm_story_20(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_20_info")
-end
-function need_info_dm_ogsm_story_21(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_21_info")
-end
-function need_info_dm_ogsm_story_22(npc, actor, dialog_name, parent_id, id)
-    return not has_alife_info("dm_ogsm_story_22_info")
-end
-
-function random_availability(npc, actor, dialog_name, parent_id, id)
-    if math.random()>0.7 then return true
-    else return false end
 end

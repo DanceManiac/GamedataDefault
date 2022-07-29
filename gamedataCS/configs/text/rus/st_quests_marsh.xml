@@ -4,85 +4,85 @@
 		<text>Захватить завод</text>
 	</string>
 	<string id="mar_capture_plant_text">
-		<text>Захватить завод по добыче аномальной субстанции со дна болот.</text>
+		<text>Захватить завод по добыче аномальной субстанции со дна болот</text>
 	</string>
 	<string id="mar_capture_tower">
 		<text>Захватить сторожевую вышку</text>
 	</string>
 	<string id="mar_capture_tower_text">
-		<text>Помочь отряду «Чистого неба» отбить сторожевую вышку у «Ренегатов».</text>
+		<text>Помочь отряду «Чистого неба» отбить сторожевую вышку у бандитов</text>
 	</string>
 	<string id="mar_defend_tower">
-		<text>Отразить нападение «Ренегатов» на вышку</text>
+		<text>Отразить нападение бандитов на вышку</text>
 	</string>
 	<string id="mar_defend_tower_text">
-		<text>Отразить контратаку «Ренегатов» на сторожевую вышку.</text>
+		<text>Отразить контратаку бандитов на сторожевую вышку</text>
 	</string>
 	<string id="mar_story_capture_bandit_base">
-		<text>Захватить механизаторский двор</text>
+		<text>Захватить ферму</text>
 	</string>
 	<string id="mar_story_capture_bandit_base_text">
-		<text>Захватить механизаторский двор на северо-востоке Болот, выбив оттуда «Ренегатов».</text>
+		<text>Захватить ферму на северо-востоке Болот, выбив оттуда бандитов</text>
 	</string>
 	<string id="mar_story_capture_levelchangers">
 		<text>Захватить подходы к тропам</text>
 	</string>
 	<string id="mar_story_capture_levelchangers_text">
-		<text>Обезопасить тропы на Кордон и НИИ «Агропром», захватив позиции возле них.</text>
+		<text>Обезопасить тропы на Кордон и Агропром, захватив позиции возле них</text>
 	</string>
 	<string id="mar_story_empower_csky">
 		<text>Усилить присутствие «Чистого неба» на Болотах</text>
 	</string>
 	<string id="mar_story_empower_csky_text">
-		<text>Укрепить позиции «Чистого неба» на Болотах путём уничтожения сил противника.</text>
+		<text>Укрепить позиции «Чистого неба» на Болотах путём уничтожения сил противника</text>
 	</string>
 	<string id="mar_story_go_to_escape">
 		<text>Отправиться с проводником на Кордон</text>
 	</string>
 	<string id="mar_story_go_to_escape_text">
-		<text>Встретиться с проводником и выйти с ним на Кордон.</text>
+		<text>Встретиться с проводником и выйти с ним на Кордон</text>
 	</string>
 	<string id="mar_story_go_to_marsh">
 		<text>Отправиться с проводником на Болота</text>
 	</string>
 	<string id="mar_story_go_to_marsh_text">
-		<text>Попросить проводника вывести на Болота.</text>
+		<text>Попросить проводника вывести на Болота</text>
 	</string>
 	<string id="mar_story_take_control_over_marsh">
 		<text>Взять Болота под контроль</text>
 	</string>
 	<string id="mar_story_take_control_over_marsh_text">
-		<text>Взять Болота под контроль, чтобы обезопасить пути для проводников.</text>
+		<text>Взять Болота под контроль, чтобы обезопасить пути для проводников</text>
 	</string>
 	<string id="mar_story_talk_with_barman">
 		<text>Пообщаться с барменом</text>
 	</string>
 	<string id="mar_story_talk_with_barman_text">
-		<text>Расспросить бармена про базу «Чистого неба».</text>
+		<text>Расспросить бармена про базу «Чистого неба»</text>
 	</string>
 	<string id="mar_story_talk_with_commander_1">
 		<text>Поговорить с Лебедевым</text>
 	</string>
 	<string id="mar_story_talk_with_commander_1_text">
-		<text>Узнать, чего хотел Лебедев.</text>
+		<text>Узнать, чего хотел Лебедев</text>
 	</string>
 	<string id="mar_story_talk_with_commander_2">
 		<text>Выяснить у Лебедева, что произошло</text>
 	</string>
 	<string id="mar_story_talk_with_commander_2_text">
-		<text>Расспросить Лебедева о том, что произошло после второго выброса.</text>
+		<text>Расспросить Лебедева о том, что произошло после второго выброса</text>
 	</string>
 	<string id="mar_story_talk_with_commander_3">
 		<text>Договориться с Лебедевым о взаимопомощи</text>
 	</string>
 	<string id="mar_story_talk_with_commander_3_text">
-		<text>Договориться с Лебедевым о помощи при выходе с Болот.</text>
+		<text>Договориться с Лебедевым о помощи при выходе с Болот</text>
 	</string>
 	<string id="mar_story_talk_with_guide">
 		<text>Отправиться к форпосту с проводником</text>
 	</string>
 	<string id="mar_story_talk_with_guide_text">
-		<text>Попросить проводника вывести к форпосту.</text>
+		<text>Попросить проводника вывести к форпосту</text>
 	</string>
 	<string id="mar_story_talk_with_sidorovych">
 		<text>Поговорить с Сидоровичем</text>
@@ -94,121 +94,91 @@
 		<text>Взять снаряжение у торговца</text>
 	</string>
 	<string id="mar_story_talk_with_trader_text">
-		<text>Получить комплект снаряжения у торговца.</text>
+		<text>Получить комплект снаряжения у торговца</text>
 	</string>
 	<string id="mar_tutorial_help">
 		<text>Помочь форпосту</text>
 	</string>
 	<string id="mar_tutorial_help_text">
-		<text>Откликнуться на сигнал SOS с форпоста «Чистого неба».</text>
+		<text>Откликнуться на сигнал SOS с форпоста «Чистого неба»</text>
 	</string>
 	<string id="mar_tutorial_kill_boars">
 		<text>Убить кабанов</text>
 	</string>
 	<string id="mar_tutorial_kill_boars_text">
-		<text>Уничтожить кабанов, атакующих форпост «Чистого неба».</text>
+		<text>Уничтожить кабанов, атакующих форпост «Чистого неба»</text>
 	</string>
 	<string id="mar_tutorial_return_to_base">
 		<text>Вернуться на базу «Чистого неба»</text>
 	</string>
 	<string id="mar_tutorial_return_to_base_text">
-		<text>Добраться до укрытия на базе «Чистого неба» до того, как произойдёт выброс.</text>
+		<text>Добраться до укрытия на базе «Чистого неба» до того, как грянет выброс</text>
 	</string>
 	<string id="mar_tutorial_tower_top">
 		<text>Подняться на вышку</text>
 	</string>
 	<string id="mar_tutorial_tower_top_text">
-		<text>Подняться на вышку, чтобы укрыться от мутантов.</text>
+		<text>Подняться на вышку, чтобы укрыться от мутантов</text>
 	</string>
 	<string id="st_bring_item_1_name">
 		<text>Принести гранаты</text>
 	</string>
 	<string id="st_bring_item_1_text">
-		<text>Отряду «Чистого неба» нужны ручные гранаты РГД-5.</text>
+		<text>Отряд «Чистого неба» попросил принести гранаты</text>
 	</string>
 	<string id="st_bring_item_2_name">
 		<text>Принести медикаменты</text>
 	</string>
 	<string id="st_bring_item_2_text">
-		<text>Отряд «Чистого неба» ощущает острую нехватку медикаментов.</text>
+		<text>Отряд «Чистого неба» ощущает острую нехватку медикаментов</text>
 	</string>
 	<string id="st_bring_item_3_name">
 		<text>Принести патроны</text>
 	</string>
 	<string id="st_bring_item_3_text">
-		<text>Отряду «Чистого неба» нужны патроны 12/70 Дробь.</text>
+		<text>Отряду «Чистого неба» нужны патроны для дробовика</text>
 	</string>
 	<string id="st_bring_item_4_name">
 		<text>Принести патроны</text>
 	</string>
 	<string id="st_bring_item_4_text">
-		<text>Отряду «Чистого неба» нужны патроны 9х18 ПМ.</text>
+		<text>Отряду «Чистого неба» нужны пистолетные патроны</text>
 	</string>
 	<string id="st_bring_item_5_name">
 		<text>Принести патроны</text>
 	</string>
 	<string id="st_bring_item_5_text">
-		<text>Отряду «Чистого неба» нужны патроны 5.45x39 7H10.</text>
-	</string>
-	<string id="st_bring_item_6_name">
-		<text>Принести гранаты</text>
-	</string>
-	<string id="st_bring_item_6_text">
-		<text>Отряду «Ренегатов» нужны ручные гранаты РГД-5.</text>
-	</string>
-	<string id="st_bring_item_7_name">
-		<text>Принести медикаменты</text>
-	</string>
-	<string id="st_bring_item_7_text">
-		<text>Отряд «Ренегатов» ощущает острую нехватку медикаментов.</text>
-	</string>
-	<string id="st_bring_item_8_name">
-		<text>Принести патроны</text>
-	</string>
-	<string id="st_bring_item_8_text">
-		<text>Отряду «Ренегатов» нужны патроны 12/70 Дробь.</text>
-	</string>
-	<string id="st_bring_item_9_name">
-		<text>Принести патроны</text>
-	</string>
-	<string id="st_bring_item_9_text">
-		<text>Отряду «Ренегатов» нужны патроны 9х18 ПМ.</text>
-	</string>
-	<string id="st_bring_item_10_name">
-		<text>Принести патроны</text>
-	</string>
-	<string id="st_bring_item_10_text">
-		<text>Отряду «Ренегатов» нужны патроны 5.45x39 7H10.</text>
+		<text>Отряду «Чистого неба» нужны автоматные патроны</text>
 	</string>
 	<string id="st_recover_item_1_name">
-		<text>Вернуть модифицированный ПМ</text>
+		<text>Вернуть ПМм</text>
 	</string>
 	<string id="st_recover_item_1_text">
-		<text>Во время ночной вылазки наш отряд угодил в логово мутантов. Бойцов спасти уже вряд ли удастся. Но командир отряда был вооружён модифицированным Макаровым, а такое оружие ещё может послужить. Нужно его вернуть.</text>
+		<text>Во время ночной вылазки наш отряд угодил в логово кабанов. Бойцов спасти уже вряд ли удастся... Но командир отряда был вооружен модифицированным ПМм, а такое оружие ещё может послужить. Нужно его вернуть.</text>
 	</string>
 	<string id="st_recover_item_2_name">
-		<text>Вернуть АКС-74У</text>
+		<text>Вернуть АКМ-74/2у</text>
 	</string>
 	<string id="st_recover_item_2_text">
-		<text>Несколько дней назад было совершено нападение на наших бойцов, когда они покупали у военных партию оружия. Большинство стволов пропало, однако один образец удалось припрятать. Нужно добыть его.</text>
+		<text>Несколько дней назад было совершено нападение на наших бойцов, когда они покупали у военных партию оружия. Большинство стволов пропало, однако лучший образец удалось припрятать. Нужно добыть его.</text>
 	</string>
 	<string id="st_recover_item_3_name">
 		<text>Достать артефакт</text>
 	</string>
 	<string id="st_recover_item_3_text">
-		<text>Отряд «Чистого неба» поймал сигнал SOS от одного из наших сталкеров. Тот сообщал, что нуждается в срочной медпомощи, так как получил удар током от «электры», когда доставал из аномалии какой-то редкий артефакт. Отряд не успел подойти вовремя — сигнал вскоре пропал. Необходимо добыть артефакт.</text>
+		<text>Отряд «Чистого неба» поймал сигнал SOS от одного из сталкеров. Тот сообщал, что нашел редкий артефакт, однако не знает, как выбраться из аномалии, в которой очутился.. Отряд не успел прийти на помощь - сигнал вскоре пропал. Необходимо добыть артефакт.</text>
 	</string>
 	<string id="st_recover_item_4_name">
 		<text>Вернуть КПК</text>
 	</string>
 	<string id="st_recover_item_4_text">
-		<text>Во время ночной разведки пропал один из наших лучших следопытов. Нужно по крайней мере найти его КПК, чтобы не пропала собранная им информация.</text>
+		<text>Во время ночной разведки пропал один из наших лучших следопытов. Нужно по крайней мере найти его КПК, чтобы не пропала собранная информация.</text>
 	</string>
 	<string id="st_recover_item_5_name">
 		<text>Вернуть комбинезон</text>
 	</string>
 	<string id="st_recover_item_5_text">
-		<text>Недавно мы проводили эксперименты с пропитыванием одежды разными химическими составами. Надо вернуть последний образец куртки, потерянный в суматохе войны с «Ренегатами», чтобы Каланча смог полностью оценить результаты эксперимента.</text>
+		<text>Недавно мы потеряли островок на Болотах, где проводили эксперименты с пропитыванием одежды всякими составами. Надо вернуть последний образец куртки, чтоб Каланча смог полностью оценить результаты эксперимента.</text>
 	</string>
 	<string id="st_sim_sos_name">
 		<text>Прийти на помощь</text>
@@ -217,13 +187,13 @@
 		<text>Найти информацию о кевлавровых бронежилетах</text>
 	</string>
 	<string id="st_mar_find_flesh_up_a_novice_outfit_text">
-		<text>Для улучшения брони Новикову нужна информация о кевларовых бронежилетах.</text>
+		<text>Для улучшения брони Новикову нужна информация о кевлавровых бронежилетах.</text>
 	</string>
 	<string id="st_mar_find_flesh_up_ac_mp5_name">
 		<text>Найти информацию о дульном тормозе</text>
 	</string>
 	<string id="st_mar_find_flesh_up_ac_mp5_text">
-		<text>Новиков хочет смастерить специальный дульный тормоз, но знает о принципе его работы слишком мало. Нужно найти для него соответствующую информацию.</text>
+		<text>Новиков хочет смастерить специальный дульный тормоз, но знает о принципе их работы слишком мало. Нужно найти для него соответствующую информацию.</text>
 	</string>
 	<string id="st_mar_find_flesh_up_bd_mp5_name">
 		<text>Найти информацию о модификации ствола</text>
@@ -232,30 +202,12 @@
 		<text>Новиков может сделать насадку на ствол, которая улучшит баллистические характеристики оружия, но у него не хватает данных.</text>
 	</string>
 	<string id="st_mar_leader_notify_actor">
-		<text>Наёмник, не расслабляйся! Наша задача — взять под контроль Болота. Если не знаешь что делать, открой КПК: там найдёшь активные задания.</text>
+		<text>Наёмник, не расслабляйся! Наша задача - взять под контроль Болота. Если не знаешь что делать, открой КПК: там найдёшь активные задания.</text>
 	</string>
 	<string id="st_mar_quest_scout_pda_desc">
 		<text>КПК с информацией о Болотах, собранная следопытом «Чистого неба».</text>
 	</string>
 	<string id="st_mar_quest_scout_pda_name">
-		<text>КПК разведчика «Чистого неба»</text>
-	</string>
-	<string id="mar_free_gauss_return_talk_with_suslov_name">
-		<text>Спросить Суслова насчёт возврата ЭМ1</text>
-	</string>
-	<string id="mar_free_gauss_return_talk_with_suslov_text">
-		<text>Дело сделано, и теперь мне эта штука без надобности. Попробую сбагрить её торговцу «Чистого неба».</text>
-	</string>
-	<string id="mar_free_gauss_return_talk_with_novikov_name">
-		<text>Спросить Новикова насчёт возврата ЭМ1</text>
-	</string>
-	<string id="mar_free_gauss_return_talk_with_novikov_text">
-		<text>Дело сделано, и теперь мне эта штука без надобности. Попробую сбагрить её механику «Чистого неба». Говорят, он от любой технической новинки в восторг приходит.</text>
-	</string>
-	<string id="mar_take_your_things_name">
-		<text>Взять свои вещи</text>
-	</string>
-	<string id="mar_take_your_things_text">
-		<text>Взять свои вещи из рюкзака.</text>
+		<text>КПК разведчика «ЧН»</text>
 	</string>
 </string_table>

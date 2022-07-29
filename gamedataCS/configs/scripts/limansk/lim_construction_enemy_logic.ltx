@@ -1,7 +1,7 @@
 ;**************** enemy 1 *********************************
 [logic@construction_enemy_work1]
 active = camper@wait_work1
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 100
 
 [camper@wait_work1]
@@ -13,7 +13,6 @@ on_info = {=actor_in_zone(lim_construction_enemy_fire_zone_1)} camper@fire_work1
 on_info2 = {=actor_in_zone(lim_construction_enemy_fire_zone_2)} camper@fire_work1
 on_info3 = {=actor_in_zone(lim_construction_enemy_fire_zone_3)} camper@fire_work1
 on_info4 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work1
-meet = no_meet
 
 [camper@fire_work1]
 out_restr = lim_construction_restr
@@ -23,20 +22,18 @@ radius = 50
 def_state_moving = sneak_run
 on_info = {=actor_out_zone(lim_construction_enemy_fire_zone_1) =actor_out_zone(lim_construction_enemy_fire_zone_2) =actor_out_zone(lim_construction_enemy_fire_zone_3)} camper@wait_work1
 on_info2 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work1
-meet = no_meet
 
 [camper@fire2_work1]
 out_restr = lim_construction_restr
 path_walk = first_floor_1_walk
 path_look = first_floor_1_walk
 def_state_moving = assault
-meet = no_meet
 
 ;**************** enemy 2 *********************************
 
 [logic@construction_enemy_work2]
 active = camper@wait_work2
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 100
 
 [camper@wait_work2]
@@ -48,7 +45,6 @@ on_info = {=actor_in_zone(lim_construction_enemy_fire_zone_1)} camper@fire_work2
 on_info2 = {=actor_in_zone(lim_construction_enemy_fire_zone_2)} camper@fire_work2
 on_info3 = {=actor_in_zone(lim_construction_enemy_fire_zone_3)} camper@fire_work2
 on_info4 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work2
-meet = no_meet
 
 [camper@fire_work2]
 out_restr = lim_construction_restr
@@ -58,21 +54,19 @@ radius = 50
 def_state_moving = sneak_run
 on_info = {=actor_out_zone(lim_construction_enemy_fire_zone_1) =actor_out_zone(lim_construction_enemy_fire_zone_2) =actor_out_zone(lim_construction_enemy_fire_zone_3)} camper@wait_work2
 on_info2 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work2
-meet = no_meet
 
 [camper@fire2_work2]
 out_restr = lim_construction_restr
 path_walk = first_floor_2_walk
 path_look = first_floor_2_walk
 def_state_moving = assault
-meet = no_meet
 
 ;**********************************************************
 ;*********************** enemy 3 **************************
 
 [logic@construction_enemy_work3]
 active = camper@wait_work3
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 100
 
 [camper@wait_work3]
@@ -83,7 +77,6 @@ path_look = wait_3_walk
 on_info = {=actor_in_zone(lim_construction_enemy_fire_zone_2)} camper@fire_work3
 on_info2 = {=actor_in_zone(lim_construction_enemy_fire_zone_3)} camper@fire_work3
 on_info3 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work3
-meet = no_meet
 
 [camper@fire_work3]
 out_restr = lim_construction_restr
@@ -93,21 +86,19 @@ radius = 50
 def_state_moving = sneak_run
 on_info = {=actor_out_zone(lim_construction_enemy_fire_zone_1) =actor_out_zone(lim_construction_enemy_fire_zone_2) =actor_out_zone(lim_construction_enemy_fire_zone_3)} camper@wait_work3
 on_info2 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work3
-meet = no_meet
 
 [camper@fire2_work3]
 out_restr = lim_construction_restr
 path_walk = first_floor_3_walk
 path_look = first_floor_3_walk
 def_state_moving = assault
-meet = no_meet
 
 ;**********************************************************
 ;*********************** enemy 4 **************************
 
 [logic@construction_enemy_work4]
 active = camper@wait_work4
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 100
 
 [camper@wait_work4]
@@ -118,7 +109,6 @@ path_look = wait_4_walk
 on_info = {=actor_in_zone(lim_construction_enemy_fire_zone_2)} camper@fire_work4
 on_info2 = {=actor_in_zone(lim_construction_enemy_fire_zone_3)} camper@fire_work4
 on_info3 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work4
-meet = no_meet
 
 [camper@fire_work4]
 out_restr = lim_construction_restr
@@ -128,21 +118,19 @@ radius = 50
 def_state_moving = sneak_run
 on_info = {=actor_out_zone(lim_construction_enemy_fire_zone_1) =actor_out_zone(lim_construction_enemy_fire_zone_2) =actor_out_zone(lim_construction_enemy_fire_zone_3)} camper@wait_work4
 on_info2 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work4
-meet = no_meet
 
 [camper@fire2_work4]
 out_restr = lim_construction_restr
 path_walk = first_floor_4_walk
 path_look = first_floor_4_walk
 def_state_moving = assault
-meet = no_meet
 
 ;**********************************************************
 ;*********************** enemy 5 **************************
 
 [logic@construction_enemy_work5]
 active = camper@wait_work5
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 100
 
 [camper@wait_work5]
@@ -153,7 +141,6 @@ path_look = wait_5_walk
 on_info = {=actor_in_zone(lim_construction_enemy_fire_zone_2)} camper@fire_work5
 on_info2 = {=actor_in_zone(lim_construction_enemy_fire_zone_3)} camper@fire_work5
 on_info3 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work5
-meet = no_meet
 
 [camper@fire_work5]
 out_restr = lim_construction_restr
@@ -163,21 +150,19 @@ radius = 50
 def_state_moving = sneak_run
 on_info = {=actor_out_zone(lim_construction_enemy_fire_zone_1) =actor_out_zone(lim_construction_enemy_fire_zone_2) =actor_out_zone(lim_construction_enemy_fire_zone_3)} camper@wait_work5
 on_info2 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work5
-meet = no_meet
 
 [camper@fire2_work5]
 out_restr = lim_construction_restr
 path_walk = first_floor_5_walk
 path_look = first_floor_5_walk
 def_state_moving = assault
-meet = no_meet
 
 ;**********************************************************
 ;*********************** enemy 6 **************************
 
 [logic@construction_enemy_work6]
 active = camper@wait_work6
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 100
 
 [camper@wait_work6]
@@ -188,7 +173,6 @@ path_look = wait_6_walk
 on_info = {=actor_in_zone(lim_construction_enemy_fire_zone_2)} camper@fire_work6
 on_info2 = {=actor_in_zone(lim_construction_enemy_fire_zone_3)} camper@fire_work6
 on_info3 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work6
-meet = no_meet
 
 [camper@fire_work6]
 out_restr = lim_construction_restr
@@ -198,81 +182,76 @@ radius = 50
 def_state_moving = sneak_run
 on_info = {=actor_out_zone(lim_construction_enemy_fire_zone_1) =actor_out_zone(lim_construction_enemy_fire_zone_2) =actor_out_zone(lim_construction_enemy_fire_zone_3)} camper@wait_work6
 on_info2 = {=actor_in_zone(lim_smart_terrain_9_attack)} camper@fire2_work6
-meet = no_meet
 
 [camper@fire2_work6]
 out_restr = lim_construction_restr
 path_walk = first_floor_6_walk
 path_look = first_floor_6_walk
 def_state_moving = assault
-meet = no_meet
 
 ;**********************************************************
 ;*********************** enemy 7 construction yard **************************
 
 [logic@construction_enemy_work7]
 active = walker@guard_work7
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 20
 
 [walker@guard_work7]
 out_restr = lim_construction_yard_restr
 path_walk = yard_1_walk
 path_look = yard_1_look
-meet = no_meet
 
 ;**********************************************************
 ;*********************** enemy 8 construction yard **************************
 
 [logic@construction_enemy_work8]
 active = walker@guard_work8
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 20
 
 [walker@guard_work8]
 out_restr = lim_construction_yard_restr
 path_walk = yard_2_walk
 path_look = yard_2_look
-meet = no_meet
 
 ;**********************************************************
 ;*********************** enemy 9 construction yard **************************
 
 [logic@construction_enemy_work9]
 active = walker@guard_work9
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 20
 
 [walker@guard_work9]
 out_restr = lim_construction_yard_restr
 path_walk = yard_3_walk
 path_look = yard_3_look
-meet = no_meet
+
 
 ;**********************************************************
 ;*********************** enemy 10 construction yard **************************
 
 [logic@construction_enemy_work10]
 active = walker@guard_work10
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 20
 
 [walker@guard_work10]
 out_restr = lim_construction_yard_restr
 path_walk = yard_4_walk
 path_look = yard_4_look
-meet = no_meet
+
 
 ;**********************************************************
 ;*********************** enemy 11 construction yard **************************
 
 [logic@construction_enemy_work11]
 active = walker@guard_work11
-suitable = {-lim_construction_passed =npc_community(monolith)} true
+suitable = {-lim_construction_passed} true
 prior = 20
 
 [walker@guard_work11]
 out_restr = lim_construction_yard_restr
 path_walk = yard_5_walk
 path_look = yard_5_look
-meet = no_meet

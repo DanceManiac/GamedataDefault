@@ -9,10 +9,6 @@ agr_blokpost_shout
 agr_hole_attack_0
 agr_hole_wait_0
 agr_hole_wait_1
-agr_hole_wait_2
-agr_squad_snorks_attack_1
-agr_squad_snorks_attack_2
-agr_squad_snorks_attack_3
 agr_main_hole_actor_arrive
 snork_tunnel_coming
 snork_tunnel_distant
@@ -30,24 +26,12 @@ agr_duty_barman_meet
 agr_duty_barman_meet_bye
 agr_duty_leader_meet
 agr_duty_leader_meet_bye
-agr_duty_mechanic_meet
-agr_duty_mechanic_meet_bye
 agr_duty_trader_meet
 agr_duty_trader_meet_bye
-agr_duty_zooman_meet
-agr_duty_zooman_meet_bye
 agr_secret_trader_meet
 agr_secret_trader_meet_bye
-agr_stalker_leader_meet
-agr_stalker_leader_meet_bye
-agr_stalker_mechanic_meet
-agr_stalker_mechanic_meet_bye
-agr_stalker_trader_meet
-agr_stalker_trader_meet_bye
 agr_duty_weaponmaster_meet
 agr_duty_weaponmaster_meet_bye
-
-agr_duty_warning
 
 agr_dolg_expansion_1_up
 agr_dolg_expansion_2_up
@@ -60,11 +44,6 @@ agr_dolg_expansion_5_up
 agr_dolg_expansion_5_down
 agr_dolg_expansion_6_down
 
-agr_prisoner1_guard_hit
-agr_prisoner2_guard_hit
-
-;***********AGROPROM**
-;********************
 
 [agr_duty_barman_meet]
 type = npc
@@ -98,22 +77,6 @@ path = scenario\agroprom\agr_duty_leader_meet_bye_
 shuffle = rnd
 idle = 1,1,100
 
-[agr_duty_mechanic_meet]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_duty_mechanic_meet_
-shuffle = rnd
-idle = 3,5,100
-
-[agr_duty_mechanic_meet_bye]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_duty_mechanic_meet_bye_
-shuffle = rnd
-idle = 3,5,100
-
 [agr_duty_trader_meet]
 type = npc
 actor_stereo = false
@@ -127,22 +90,6 @@ type = npc
 actor_stereo = false
 npc_prefix = false
 path = scenario\agroprom\agr_duty_trader_meet_bye_
-shuffle = rnd
-idle = 3,5,100
-
-[agr_duty_zooman_meet]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_duty_zooman_meet_
-shuffle = rnd
-idle = 3,5,100
-
-[agr_duty_zooman_meet_bye]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_duty_zooman_meet_bye_
 shuffle = rnd
 idle = 3,5,100
 
@@ -162,54 +109,6 @@ path = scenario\agroprom\agr_secret_trader_meet_bye_
 shuffle = rnd
 idle = 3,5,100
 
-[agr_stalker_leader_meet]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_stalker_leader_meet_
-shuffle = rnd
-idle = 3,5,100
-
-[agr_stalker_leader_meet_bye]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_stalker_leader_meet_bye_
-shuffle = rnd
-idle = 3,5,100
-
-[agr_stalker_mechanic_meet]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_stalker_mechanic_meet_
-shuffle = rnd
-idle = 3,5,100
-
-[agr_stalker_mechanic_meet_bye]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_stalker_mechanic_meet_bye_
-shuffle = rnd
-idle = 3,5,100
-
-[agr_stalker_trader_meet]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_stalker_trader_meet_
-shuffle = rnd
-idle = 3,5,100
-
-[agr_stalker_trader_meet_bye]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_stalker_trader_meet_bye_
-shuffle = rnd
-idle = 3,5,100
-
 [agr_duty_weaponmaster_meet]
 type = npc
 actor_stereo = false
@@ -223,14 +122,6 @@ type = npc
 actor_stereo = false
 npc_prefix = false
 path = scenario\agroprom\agr_duty_weaponmaster_meet_bye_
-shuffle = rnd
-idle = 3,5,100
-
-[agr_duty_warning]
-type = actor
-actor_stereo = false
-npc_prefix = true
-path = scenario\agroprom\agr_duty_warning
 shuffle = rnd
 idle = 3,5,100
 
@@ -283,8 +174,9 @@ shuffle = rnd
 idle = 3,5,100
 
 [agr_blokpost_shout]
-type = npc
+type = actor
 actor_stereo = false
+npc_prefix = true
 path = scenario\agroprom\agr_blokpost_shout_
 shuffle = rnd
 idle = 3,5,100
@@ -293,7 +185,7 @@ idle = 3,5,100
 type = npc
 actor_stereo = false
 npc_prefix = false
-path = scenario\agroprom\agr_hole_attack_1
+path = scenario\agroprom\agr_hole_attack_
 shuffle = rnd
 idle = 3,5,100
 
@@ -310,34 +202,6 @@ type = npc
 actor_stereo = false
 npc_prefix = false
 path = scenario\agroprom\agr_hole_wait_2
-
-[agr_hole_wait_2]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_hole_wait_3
-
-[agr_squad_snorks_attack_1]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_squad_snorks_attack_1
-shuffle = rnd
-idle = 3,5,100
-
-[agr_squad_snorks_attack_2]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_squad_snorks_attack_2
-shuffle = rnd
-idle = 3,5,100
-
-[agr_squad_snorks_attack_3]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\agroprom\agr_squad_snorks_attack_3
 shuffle = rnd
 idle = 3,5,100
 
@@ -430,12 +294,13 @@ shuffle = rnd
 idle = 3,5,100
 
 [agr_base_leader_sergant_5]
-type = npc
+type = actor
 actor_stereo = false
-npc_prefix = false
+npc_prefix = true
 path = scenario\agroprom\agr_base_leader_sergant_5
 shuffle = rnd
 idle = 3,5,100
+
 
 
 [agr_dolg_expansion_1_up]
@@ -517,15 +382,3 @@ path = characters_voice\scenario\agroprom\agr_dolg_expansion_5_down
 shuffle = rnd
 idle = 1,1,100
 play_always = true
-
-[agr_prisoner1_guard_hit]
-type = npc
-path = scenario\agroprom\agr_prisoners_guard_hit
-shuffle = seq
-idle = 3,5,100
-
-[agr_prisoner2_guard_hit]
-type = npc
-path = scenario\agroprom\agr_prisoners_guard_hit
-shuffle = seq
-idle = 3,5,100

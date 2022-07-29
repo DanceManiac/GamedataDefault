@@ -1,43 +1,31 @@
 [logic@work1]
 active = walker@binoc
-suitable = {=check_npc_name(agr_dolg_blockpost_commander) +agr_garbage_end} true
+suitable = {=check_npc_name(sim_default_duty_) +agr_garbage_end} true
 prior = 42
 level_spot = quest_npc
-on_death = death
 
 [walker@binoc]
 path_walk = agr_blokpost_leader_1_walk
 path_look = agr_blokpost_leader_1_look
 combat_ignore_cond = always
-on_info = {!black_screen =actor_on_level(agroprom) +agr_garbage_end -agr_blokpost_shout_sound} remark@look_player %=create_item_in_inv(hand_radio:agr_dolg_blockpost_commander)%
+on_info = {=actor_on_level(agroprom) +agr_garbage_end -agr_blokpost_shout_sound} remark@look_player %=play_sound(agr_blokpost_shout:dolg:agr_smart_terrain_7_4)%
 
 [remark@look_player]
-anim = guard_rac
+anim = hello_wpn
 target = actor
-on_info = {=dist_to_actor_le(50)} %=play_sound(agr_blokpost_shout:dolg:agr_serega_name) =disable_level_changer(1028:tips_wait_conversation_finish)%
 meet = no_meet
-on_signal = sound_end | walker@prelook_player %+agr_blokpost_shout_sound =enable_level_changer(1028)%
+on_signal = sound_end | remark@prelook_player %+agr_blokpost_shout_sound%
 combat_ignore_cond = always
 
-[walker@prelook_player]
-path_walk = agr_blokpost_leader_1_walk
-path_look = agr_blokpost_leader_1_look
-on_game_timer = 20 | walker@ready_to_say
+[remark@prelook_player]
+on_actor_dist_le_nvis = 3 | remark@ready_to_say %+agr_actor_inside_2%
+
+[remark@ready_to_say]
+anim = wait
+target = actor
+snd = agr_blokpost_dialog
+on_signal = sound_end  | walker@end %+agr_actor_inside_3%
 meet = no_meet
-combat_ignore_cond = always
-
-[walker@ready_to_say]
-path_walk = agr_blokpost_leader_1_walk
-path_look = agr_blokpost_leader_1_look
-on_info = {+agr_actor_inside_2} walker@ready_to_say_2
-meet = meet@no_break
-combat_ignore_cond = always
-
-[walker@ready_to_say_2]
-path_walk = agr_blokpost_leader_1_walk
-path_look = agr_blokpost_leader_1_look
-on_info = {+agr_blokpost_leader_dialog_info} walker@end %+agr_actor_inside_3%
-meet = meet@no_break
 combat_ignore_cond = always
 
 [walker@end]
@@ -49,22 +37,7 @@ meet = meet@end
 agr_actor_inside_2
 agr_actor_inside_3
 
-[meet@no_break]
-meet_state = 3 | guard@nil
-meet_state_wpn = 3 | guard@nil
-victim = 15 | actor
-victim_wpn = 15 | actor
-use	= true
-use_wpn	= true
-meet_dialog = agr_blokpost_dialog
-allow_break = false
-trade_enable = false
-
 [meet@end]
-meet_state = 3 | guard@nil
-meet_state_wpn = 3 | guard@nil
+meet_state_wpn = 5 | wait@nil
 use	= true
 use_wpn	= true
-
-[death]
-on_info = %+agr_dolg_blockpost_commander_dead%

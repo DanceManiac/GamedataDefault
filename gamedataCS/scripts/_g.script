@@ -1,38 +1,37 @@
--- Kirgudu 
-log_full = false --/ признак необходимости записи расширенного лога
--- Kirgudu
 if (jit == nil) then
 	profiler.setup_hook	()
 end
 
-function empty(container)
+
+function empty	(container)
 	if (type(container) == "function") then
 		for i in container do
-			return (false)
+			return	(false)
 		end
 
-		return (true)
+		return		(true)
 	end
 
-	assert (type(container) == "table")
+	assert			(type(container) == "table")
 	if (container[1] ~= nil) then
-		return (false)
+		return		(false)
 	end
 
 	for i,j in pairs(container) do
-		return (false)
+		return		(false)
 	end
 
-	return (true)
+	return			(true)
 end
 
-schemes = {} -- соответствие схем модулям
-stypes = {} -- типы схем
 
--- загружает схему из файла на диске и активирует в мотиваторе.
--- здесь:
--- filename - имя файла, в котором реализована схема, без расширения
--- scheme - имя схемы
+schemes = {} -- соответствие схем модулям
+stypes = {} -- типv схем
+
+-- іагружает схему из файла на диске и активирует в мотиваторе.
+-- ідесь:
+-- 	filename - имя файла, в котором реализована схема, без расширения
+-- 	scheme - имя схемv
 function load_scheme(filename, scheme, stype)
 	schemes[scheme] = filename
 	stypes[scheme] = stype
@@ -40,56 +39,53 @@ end
 
 ----------------------------------------------------------------------
 dev_debug = false
-mus_vol = 0
-amb_vol = 0
 ----------------------------------------------------------------------
+local scripts_to_print =	{
+															["stalker_generic"] = true,
+															["xr_smartcover"] = true,
+															["xr_logic"] = true,
+															["xr_conditions"] = true,
+															["xr_cover"] = true,
+															["sim_combat"] = true,
+															["xr_motivator"] = true,
+															["xr_walker"] = true,
+															["xr_camper"] = true,
+															["xr_kamp"] = true,
+															["restrictor_manager"] = true,
+															["sim_board"] = true,
+															["sim_faction"] = true,
+															["post_combat_idle"] = true,
+															["xr_death"] = true,
+															["xr_sound"] = true,
+															["utils"] = true,
+															["treasure_manager"] = true,
+															["object_collection"] = true,
+															["minigames_manager"] = true,
+															["minigame_crowkiller"] = true,
+															["minigame_shooting"] = true,
+															["se_actor"] = true,
+															["smart_terrain"] = true,
+															["bind_physic_object"] = true,
+															["bind_heli"] = true,
+															["bind_anomaly_zone"] = true,
+								["bind_stalker"] = true,
+								["state_mgr_animation"] = true,
+								["se_stalker"] = true,
+								["db"] = true,
+								["sim_squad_generic"] = true,
+								["sim_squad_scripted"] = true,
+								["se_smart_cover"] = true,
+								["se_monster"] = true,
+								["xr_use"] = true,
+								["dialog_manager"] = true,
+								["xr_combat_ignore"] = true,
+								["xr_remark"] = true,
+								["cover_manager"] = true,
+								["xr_danger"]	 = true,
+								--["task_manager"] = true,
+								--["task_objects"]	 = true
 
-local scripts_to_print = {
-	["stalker_generic"] = true,
-	["xr_smartcover"] = true,
-	["xr_logic"] = true,
-	["xr_conditions"] = true,
-	["xr_cover"] = true,
-	["sim_combat"] = true,
-	["xr_motivator"] = true,
-	["xr_walker"] = true,
-	["xr_camper"] = true,
-	["xr_kamp"] = true,
-	["restrictor_manager"] = true,
-	["sim_board"] = true,
-	["sim_faction"] = true,
-	["post_combat_idle"] = true,
-	["xr_death"] = true,
-	["xr_sound"] = true,
-	["utils"] = true,
-	["treasure_manager"] = true,
-	["object_collection"] = true,
-	["minigames_manager"] = true,
-	["minigame_crowkiller"] = true,
-	["minigame_shooting"] = true,
-	["se_actor"] = true,
-	["smart_terrain"] = true,
-	["bind_physic_object"] = true,
-	["bind_heli"] = true,
-	["bind_anomaly_zone"] = true,
-	["bind_stalker"] = true,
-	["state_mgr_animation"] = true,
-	["se_stalker"] = true,
-	["db"] = true,
-	["sim_squad_generic"] = true,
-	["sim_squad_scripted"] = true,
-	["se_smart_cover"] = true,
-	["se_monster"] = true,
-	["xr_use"] = true,
-	["dialog_manager"] = true,
-	["xr_combat_ignore"] = true,
-	["xr_remark"] = true,
-	["cover_manager"] = true,
-	["xr_danger"]	 = true
-	--["task_manager"] = true,
-	--["task_objects"] = true
-}
-
+							}
 function printf(fmt,...)
 	local is_g = 0
 	local result = fmt
@@ -109,110 +105,113 @@ function printf(fmt,...)
 end
 
 ----------------------------------------------------------------------
-
 if nil == time_global then
-	time_global = function() return device():time_global() end
+	time_global = function () return device():time_global() end
 end
 
 function wait_game(time_to_wait)
-	verify_if_thread_is_running()
-	if (time_to_wait == nil) then
-		coroutine.yield()
-	else
-		local time_to_stop = game.time() + time_to_wait
-		while game.time() <= time_to_stop do
-			coroutine.yield()
+		verify_if_thread_is_running()
+		if (time_to_wait == nil) then
+				coroutine.yield()
+		else
+				local time_to_stop = game.time() + time_to_wait
+				while game.time() <= time_to_stop do
+						coroutine.yield()
+				end
 		end
-	end
 end
 
 function wait(time_to_wait)
-	verify_if_thread_is_running()
-	if (time_to_wait == nil) then
-		coroutine.yield()
-	else
-		local time_to_stop = time_global() + time_to_wait
-		while time_global() <= time_to_stop do
-			coroutine.yield()
+		verify_if_thread_is_running()
+		if (time_to_wait == nil) then
+				coroutine.yield()
+		else
+				local time_to_stop = time_global() + time_to_wait
+				while time_global() <= time_to_stop do
+						coroutine.yield()
+				end
 		end
-	end
 end
 
 function action(obj,...)
-	local arg = {...}
-	local act = entity_action()
-	local i = 1
-	while true do
-		if (arg[i] ~= nil) then
-			act:set_action(arg[i])
-		else
-			break
+		local arg = {...}
+		local act = entity_action()
+		local i = 1
+		while true do
+				if (arg[i] ~= nil) then
+						act:set_action(arg[i])
+				else
+						break
+				end
+				i = i + 1
 		end
-		i = i + 1
-	end
-	if (obj ~= nil) then
-		obj:command(act,false)
-	end
-	return entity_action(act)
+		if (obj ~= nil) then
+				obj:command(act,false)
+		end
+		return  entity_action(act)
 end
 
 function action_first(obj,...)
-	local arg = {...}
-	local act = entity_action()
-	local i = 1
-	while true do
-		if (arg[i] ~= nil) then
-			act:set_action(arg[i])
-		else
-			break
+		local arg = {...}
+		local act = entity_action()
+		local i = 1
+		while true do
+				if (arg[i] ~= nil) then
+						act:set_action(arg[i])
+				else
+						break
+				end
+				i = i + 1
 		end
-		i = i + 1
-	end
-	if (obj ~= nil) then
-		obj:command(act,true)
-	end
-	return entity_action(act)
+		if (obj ~= nil) then
+				obj:command(act,true)
+		end
+		return  entity_action(act)
 end
 
 function round (value)
-	local min = math.floor (value)
-	local max = min + 1
-	if value - min > max - value then return max end
-	return min
+		local min = math.floor (value)
+		local max = min + 1
+		if value - min > max - value then return max end
+		return min
 end
 
 function debug_get_level_object(obj_name)
-	local res = level.debug_object(obj_name)
-	while res == nil do
-		printf("get_level_object() is waiting for object \"%s\"", obj_name)
+		local res = level.debug_object(obj_name)
+		while res == nil do
 
-		res = level.object(obj_name)
-		wait()
-	end
-	return res
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- !!!!! =+ іLі+іі+=TLіLTLЈT+, L=L++ =+ +L-+T TL-=+ ++L++і ііL іLTTTL=+Tі+ ++-+іT+T !!!!!
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				printf("get_level_object() is waiting for object \"%s\"", obj_name)
+
+				res         = level.object(obj_name)
+				wait        ()
+		end
+		return          res
 end
 
 function debug_get_actor()
-	local res = level.debug_actor()
-	while res == nil do
-		res = level.debug_actor()
-		wait()
-	end
-	return res
+		local res       = level.debug_actor()
+		while res == nil do
+				res         = level.debug_actor()
+				wait        ()
+		end
+		return          res
 end
 
 function distance_between(obj1, obj2)
-	return obj1:position():distance_to(obj2:position())
+		return obj1:position():distance_to(obj2:position())
 end
 
--- если один объект nil, например нет актера, то считаем, что он далеко
+-- +сли один объект nil, например нет актера, то считаем, что он далеко
 function distance_between_safe(obj1, obj2)
-	if(obj1 == nil or obj2 == nil) then return 100000 end
+		if(obj1 == nil or obj2 == nil) then return 100000 end
 	return obj1:position():distance_to(obj2:position())
 end
 
 local aa = nil
--- проверка на инфопоршен, даже если игрока не существует
+--' іроверка на инфопоршнv, даже если игрока не су	ествует
 function has_alife_info(info_id)
 	if aa == nil then
 		return false
@@ -220,34 +219,39 @@ function has_alife_info(info_id)
 	return aa:has_info(0, info_id)
 end
 
+
+
 function reset_action (npc, script_name)
-	if npc:get_script () then
-		npc:script (false, script_name)
-	end
-	npc:script (true, script_name)
+		if npc:get_script () then
+			 npc:script (false, script_name)
+		end
+		npc:script (true, script_name)
 end
 
 class "script_object"
 
 function script_object.__init(self,name,script,...)
-	self.action = action(nil,...)
-	self.object_name = name
-	self.script_name = script
-	self.object = nil
+	self.action         = action(nil,...)
+	self.object_name    = name
+	self.script_name    = script
+	self.object         = nil
 end
 
 function script_object:update()
-	local obj = self.object
-	self.object = level.object(self.object_name)
-	if ((obj == nil) and (self.object ~= nil)) then
-		self.object:script (true,self.script_name)
-		self.object:command (self.action,false)
-	end
+		local                   obj = self.object
+		self.object             = level.object(self.object_name)
+		if ((obj == nil) and (self.object ~= nil)) then
+				self.object:script  (true,self.script_name)
+				self.object:command (self.action,false)
+		end
 end
 
--- передача персонажу информации
+--
+-- іередача персонажу информации
+--
+
 function GiveInfoViaPda(obj_receiver, obj_sender, info_number)
-	obj_receiver:give_info_portion_via_pda(info_number, obj_sender)
+		obj_receiver:give_info_portion_via_pda(info_number, obj_sender)
 end
 
 
@@ -255,22 +259,22 @@ end
 -- Functions and variables added by Zmey
 --------------------------------------------------
 
--- константа, которую использовать в местах, где нужно задать неограниченное время действия
+-- іонстанта, которуі использовать в местах, где нужно задать неограниченное время действия
 time_infinite = 100000000
 
--- название скрипта, которvй в данный момент находится в отладке
--- (в этом скрипте будут срабатывать вызовы функции debug_log)
+-- =азвание скрипта, которvй в даннvй момент находится в отладке
+-- (в этом скрипте будут срабатvвать вvзовv функции debug_log)
 debug_script_name = ""
 
--- выводит в лог строчку, если script_name == debug_script_name
--- используется для отладки сценариев
+-- Tvводит в лог строчку, если script_name == debug_script_name
+-- Lспользуется для отрадки сценариев
 function debug_log(script_name, fmt, ...)
 	if debug_script_name == script_name then
 		log(string.format(fmt, ...))
 	end
 end
 
--- если в данный момент выполняется какое-то действие, прерывает его и отключает скриптовый режим
+-- +сли в даннvй момент вvполняется какое-то действие, прерvвает его и отклічает скриптовvй режим
 function interrupt_action(who, script_name)
 	if who:get_script() then
 		who:script(false, script_name)
@@ -278,18 +282,18 @@ function interrupt_action(who, script_name)
 end
 
 function random_choice(...)
-	local arg = {...}
-	local r = math.random(1, #arg)
-	return arg[r]
+		local arg = {...}
+		local r = math.random(1, #arg)
+		return arg[r]
 end
 
 function new_action(...)
-	local arg = {...}
-	local act = entity_action()
-	for i = 1, #arg do
-		act:set_action(arg[i])
-	end
-	return act;
+		local arg = {...}
+		local act = entity_action()
+		for i = 1, #arg do
+				act:set_action(arg[i])
+		end
+		return act;
 end
 
 obj_last_actions = {};
@@ -306,335 +310,341 @@ function last_action(obj)
 end
 
 function if_then_else(cond, if_true, if_false)
-	if cond then
-		return if_true
-	end
-	return if_false
+		if cond then
+				return if_true
+		end
+		return if_false
 end
 
 function update_action (npc, script, ...)
-	local arg = {...}
-	if npc == nil then return end
-	local act = npc:action ()
-	if arg.n == 0 then return end
+		local arg = {...}
+		if npc == nil then return end
+		local act = npc:action ()
+		if arg.n == 0 then return end
 
-	if act == nil then act = entity_action () end
+		if act == nil then act = entity_action () end
 
-	for a = 1, arg.n, 1 do
-		if arg[a] ~= nil then act:set_action (arg[a]) end
-	end
-	reset_action (npc, script)
-	npc:command (act, false)
+		for a = 1, arg.n, 1 do
+				if arg[a] ~= nil then act:set_action (arg[a]) end
+		end
+		reset_action (npc, script)
+		npc:command (act, false)
 
 end
+
 
 function set_current_time (hour, min, sec)
-	local current_time_factor = level.get_time_factor ()
+		local current_time_factor = level.get_time_factor ()
 
-	printf ("Need time : %d:%d:%d", hour, min, sec)
+		printf ("Need time : %d:%d:%d", hour, min, sec)
 
-	local current_time = game.time ()
-	local c_day = math.floor (current_time / 86400000)
-	local c_time = current_time - c_day * 86400000
-	local n_time = (sec + min * 60 + hour * 3600) * 1000
+		local current_time = game.time ()
+		local c_day = math.floor (current_time / 86400000)
+		local c_time = current_time - c_day * 86400000
+		local n_time = (sec + min * 60 + hour * 3600) * 1000
 
-	if c_time > n_time then c_day = c_day + 1 end
-	n_time = n_time + c_day * 86400000
+		if c_time > n_time then c_day = c_day + 1 end
+		n_time = n_time + c_day * 86400000
 
-	level.set_time_factor (10000)
-	while game.time () < n_time do wait () end
+		level.set_time_factor (10000)
+		while game.time () < n_time do wait () end
 
-	level.set_time_factor (current_time_factor)
+		level.set_time_factor (current_time_factor)
 end
 
+
+
 if (editor() == false) then
-	class "pp_effector" (effector)
+class "pp_effector" (effector)
 
-	function pp_effector:__init(effector_type,start_time,dest_power,life_time) super(effector_type,start_time)
+function pp_effector:__init(effector_type,start_time,dest_power,life_time) super(effector_type,start_time)
 		self.start_time = start_time
-		self.stop_time = start_time + life_time
-		self.max_power = dest_power
-	end
+		self.stop_time  = start_time + life_time
+		self.max_power  = dest_power
+end
 
-	function pp_effector:process(pp)
+function pp_effector:process(pp)
 		effector.process(self,pp)
 
 		local curr_time = time_global()
-		local d = 0.0
+		local d         = 0.0
 
 		if curr_time < self.start_time then
-			d = 0.0
-			else
-			if curr_time < self.stop_time then
-				d = (curr_time - self.start_time) / (self.stop_time - self.start_time)
+				d           = 0.0
+		else
+				if curr_time < self.stop_time then
+						d           = (curr_time - self.start_time) / (self.stop_time - self.start_time)
 				else
-				self.info = self.max_power
-				return true
-			end
+						self.info   = self.max_power
+						return      true
+				end
 		end
 
-		local dual = duality()
-		local noise = noise()
-		local base = color()
-		local gray = color()
-		local add = color()
+		local dual      = duality()
+		local noise     = noise()
+		local base      = color()
+		local gray      = color()
+		local add       = color()
 
-		dual.h = self.max_power.dual.h * d
-		dual.v = self.max_power.dual.v * d
+		dual.h          = self.max_power.dual.h         * d
+		dual.v          = self.max_power.dual.v         * d
 
-		noise.grain = self.max_power.noise.grain * d
-		noise.intensity = self.max_power.noise.intensity * d
-		noise.fps = self.max_power.noise.fps * d
+		noise.grain     = self.max_power.noise.grain        * d
+		noise.intensity     = self.max_power.noise.intensity    * d
+		noise.fps       = self.max_power.noise.fps      * d
 
-		base.r = self.max_power.color_base.r * d
-		base.g = self.max_power.color_base.g * d
-		base.b = self.max_power.color_base.b * d
+		base.r          = self.max_power.color_base.r       * d
+		base.g          = self.max_power.color_base.g       * d
+		base.b          = self.max_power.color_base.b       * d
 
-		gray.r = self.max_power.color_gray.r * d
-		gray.g = self.max_power.color_gray.g * d
-		gray.b = self.max_power.color_gray.b * d
+		gray.r          = self.max_power.color_gray.r       * d
+		gray.g          = self.max_power.color_gray.g       * d
+		gray.b          = self.max_power.color_gray.b       * d
 
-		add.r = self.max_power.color_add.r * d
-		add.g = self.max_power.color_add.g * d
-		add.b = self.max_power.color_add.b * d
+		add.r           = self.max_power.color_add.r        * d
+		add.g           = self.max_power.color_add.g        * d
+		add.b           = self.max_power.color_add.b        * d
 
-		pp.gray = self.max_power.gray * d
-		pp.blur = self.max_power.blur * d
+		pp.gray         = self.max_power.gray           * d
+		pp.blur         = self.max_power.blur           * d
 
-		pp.dual = dual
-		pp.noise = noise
-		pp.color_base = base
-		pp.color_gray = gray
-		pp.color_add = add
+		pp.dual         = dual
+		pp.noise        = noise
+		pp.color_base       = base
+		pp.color_gray       = gray
+		pp.color_add        = add
 
-		self.info = pp
+		self.info       = pp
 
-		return true
-	end
+		return              true
+end
 
-	function pp_effector:finished()
-		return self.stop_time < time_global()
-	end
-
-	-- postprocess for rainbow
-	class "pp_linear_lerp" (effector)
-
-	function pp_linear_lerp:__init(effector_type,start_time,life_time,start_power,dest_power) super(effector_type,start_time)
-		self.start_time = start_time
-		self.stop_time = start_time + life_time
-		self.min_power = start_power
-		self.max_power = dest_power
-	end
-
-	function pp_linear_lerp:process(pp)
-		effector.process(self,pp)
-
-		local curr_time = time_global()
-		local d = 0.0
-
-		if curr_time < self.start_time then
-			d = 0.0
-			else
-			if curr_time < self.stop_time then
-				d = (curr_time - self.start_time) / (self.stop_time - self.start_time)
-				else
-				self.info = self.max_power
-				return true
-			end
-		end
-
-		local dual = duality()
-		local noise = noise()
-		local base = color()
-		local gray = color()
-		local add = color()
-
-		dual.h = self.min_power.dual.h + (self.max_power.dual.h - self.min_power.dual.h ) * d
-		dual.v = self.min_power.dual.v + (self.max_power.dual.v - self.min_power.dual.v ) * d
-
-		noise.grain = self.min_power.noise.grain + (self.max_power.noise.grain - self.min_power.noise.grain ) * d
-		noise.intensity = self.min_power.noise.intensity + (self.max_power.noise.intensity - self.min_power.noise.intensity) * d
-		noise.fps = self.min_power.noise.fps + (self.max_power.noise.fps - self.min_power.noise.fps ) * d
-
-		base.r = self.min_power.color_base.r + (self.max_power.color_base.r - self.min_power.color_base.r ) * d
-		base.g = self.min_power.color_base.g + (self.max_power.color_base.g - self.min_power.color_base.g ) * d
-		base.b = self.min_power.color_base.b + (self.max_power.color_base.b - self.min_power.color_base.b ) * d
-
-		gray.r = self.min_power.color_gray.r + (self.max_power.color_gray.r - self.min_power.color_gray.r ) * d
-		gray.g = self.min_power.color_gray.g + (self.max_power.color_gray.g - self.min_power.color_gray.g ) * d
-		gray.b = self.min_power.color_gray.b + (self.max_power.color_gray.b - self.min_power.color_gray.b ) * d
-
-		add.r = self.min_power.color_add.r + (self.max_power.color_add.r - self.min_power.color_add.r ) * d
-		add.g = self.min_power.color_add.g + (self.max_power.color_add.g - self.min_power.color_add.g ) * d
-		add.b = self.min_power.color_add.b + (self.max_power.color_add.b - self.min_power.color_add.b ) * d
-
-		pp.gray = self.min_power.gray + (self.max_power.gray - self.min_power.gray ) * d
-		pp.blur = self.min_power.blur + (self.max_power.blur - self.min_power.blur ) * d
-
-		pp.dual = dual
-		pp.noise = noise
-		pp.color_base = base
-		pp.color_gray = gray
-		pp.color_add = add
-
-		self.info = pp
-
-		return true
-	end
-
-	function pp_linear_lerp:finished()
+function pp_effector:finished()
 		return          self.stop_time < time_global()
-	end
-	-- end of postprocess for rainbow
+end
 
-	----------------------------------------------------------------------------------------------------------------------
-	-- Evaluators
-	----------------------------------------------------------------------------------------------------------------------
-	-- зарезервированы id с номерами от 0 до 256 для создания стандартных эвалуаторов.
+--
+-- postprocess for rainbow
+--
+class "pp_linear_lerp" (effector)
 
-	--Constant evaluator
-	class "const_evaluator" (property_evaluator)
+function pp_linear_lerp:__init(effector_type,start_time,life_time,start_power,dest_power) super(effector_type,start_time)
+		self.start_time = start_time
+		self.stop_time  = start_time + life_time
+		self.min_power  = start_power
+		self.max_power  = dest_power
+end
 
-	function const_evaluator:__init (name, value) super (nil, name)
+function pp_linear_lerp:process(pp)
+		effector.process(self,pp)
+
+		local curr_time = time_global()
+		local d         = 0.0
+
+		if curr_time < self.start_time then
+				d           = 0.0
+		else
+				if curr_time < self.stop_time then
+						d           = (curr_time - self.start_time) / (self.stop_time - self.start_time)
+				else
+						self.info   = self.max_power
+						return      true
+				end
+		end
+
+		local dual      = duality()
+		local noise     = noise()
+		local base      = color()
+		local gray      = color()
+		local add       = color()
+
+		dual.h          = self.min_power.dual.h         + (self.max_power.dual.h        - self.min_power.dual.h     )   * d
+		dual.v          = self.min_power.dual.v         + (self.max_power.dual.v        - self.min_power.dual.v     )   * d
+
+		noise.grain     = self.min_power.noise.grain        + (self.max_power.noise.grain       - self.min_power.noise.grain    )   * d
+		noise.intensity     = self.min_power.noise.intensity    + (self.max_power.noise.intensity   - self.min_power.noise.intensity)   * d
+		noise.fps       = self.min_power.noise.fps      + (self.max_power.noise.fps         - self.min_power.noise.fps  )   * d
+
+		base.r          = self.min_power.color_base.r       + (self.max_power.color_base.r      - self.min_power.color_base.r   )   * d
+		base.g          = self.min_power.color_base.g       + (self.max_power.color_base.g      - self.min_power.color_base.g   )   * d
+		base.b          = self.min_power.color_base.b       + (self.max_power.color_base.b      - self.min_power.color_base.b   )   * d
+
+		gray.r          = self.min_power.color_gray.r       + (self.max_power.color_gray.r      - self.min_power.color_gray.r   )   * d
+		gray.g          = self.min_power.color_gray.g       + (self.max_power.color_gray.g      - self.min_power.color_gray.g   )   * d
+		gray.b          = self.min_power.color_gray.b       + (self.max_power.color_gray.b      - self.min_power.color_gray.b   )   * d
+
+		add.r           = self.min_power.color_add.r        + (self.max_power.color_add.r       - self.min_power.color_add.r    )   * d
+		add.g           = self.min_power.color_add.g        + (self.max_power.color_add.g       - self.min_power.color_add.g    )   * d
+		add.b           = self.min_power.color_add.b        + (self.max_power.color_add.b       - self.min_power.color_add.b    )   * d
+
+		pp.gray         = self.min_power.gray           + (self.max_power.gray          - self.min_power.gray       )   * d
+		pp.blur         = self.min_power.blur           + (self.max_power.blur          - self.min_power.blur       )   * d
+
+		pp.dual         = dual
+		pp.noise        = noise
+		pp.color_base       = base
+		pp.color_gray       = gray
+		pp.color_add        = add
+
+		self.info       = pp
+
+		return          true
+end
+
+function pp_linear_lerp:finished()
+		return          self.stop_time < time_global()
+end
+--
+-- end of postprocess for rainbow
+--
+
+----------------------------------------------------------------------------------------------------------------------
+-- Evaluators
+----------------------------------------------------------------------------------------------------------------------
+-- зарезервированv id с номерами от 0 до 256 для создания стандартнvх эвалуаторов.
+
+--Constant evaluator
+class "const_evaluator" (property_evaluator)
+
+function const_evaluator:__init (name, value) super (nil, name)
 		self.value = value
-	end
+end
 
-	function const_evaluator:evaluate()
-		return self.value
-	end
+function const_evaluator:evaluate()
+		return          self.value
+end
 
-	--Wait evaluator
-	class "wait_evaluator" (property_evaluator)
+--Wait evaluator
+class "wait_evaluator" (property_evaluator)
 
-	function wait_evaluator:__init (wait_time) super ()
+function wait_evaluator:__init (wait_time) super ()
 		self.wait_time = wait_time
 		self.first_call = true
 		self.current_time = 0
-	end
+end
 
-	function wait_evaluator:evaluate ()
+function wait_evaluator:evaluate ()
 		if self.first_call == true then
-			self.first_call = false
-			self.current_time = device ():time_global ()
-			return false
+			 self.first_call = false
+			 self.current_time = device ():time_global ()
+			 return false
 		end
 
 		local t = device():time_global () - self.current_time;
 		if t > self.wait_time then return true end
 		return false
-	end
+end
+--------------------------------------------------------------------------------
+class "enabled_evaluator" (property_evaluator)
 
-	--------------------------------------------------------------------------------
-
-	class "enabled_evaluator" (property_evaluator)
-
-	function enabled_evaluator:__init (name, storage) super ()
+function enabled_evaluator:__init (name, storage) super ()
 		self.a = storage
-	end
+end
 
-	function enabled_evaluator:evaluate()
-		return self.a.enabled
-	end
+function enabled_evaluator:evaluate()
+		return  self.a.enabled
+end
 
 end -- end of editor() == false
 
 
 function str_split (str)
 
-	local strlen = string.len (str)
+		local strlen = string.len (str)
 
-	local parts = {{}, {}, {}, {}}
-	local cpart = 1
+		local parts = {{}, {}, {}, {}}
+		local cpart = 1
 
-	for a = 1, strlen, 1 do
-		local char = string.byte (str, a)
-		if char ~= 95 then
-			table.insert (parts[cpart], char)
-			else
-			cpart = cpart + 1
-			if cpart > 4 then break end
+		for a = 1, strlen, 1 do
+				local char = string.byte (str, a)
+				if char ~= 95 then
+					 table.insert (parts[cpart], char)
+				else
+					 cpart = cpart + 1
+					 if cpart > 4 then break end
+				end
 		end
-	end
 
-	if cpart ~= 4 then return "unknown", "stalker", 0, 0 end
+		if cpart ~= 4 then return "unknown", "stalker", 0, 0 end
 
-	local str1 = string.char ()
-	local str2 = string.char ()
-	local str3 = string.char ()
-	local str4 = string.char ()
+		local str1 = string.char ()
+		local str2 = string.char ()
+		local str3 = string.char ()
+		local str4 = string.char ()
 
-	local ref = parts[1]
-	for a = 1, #ref, 1 do
-		str1 = string.format ("%s%c", str1, ref[a])
-	end
+		local ref = parts[1]
+		for a = 1, #ref, 1 do
+				str1 = string.format ("%s%c", str1, ref[a])
+		end
 
-	ref = parts[2]
-	for a = 1, #ref, 1 do
-		str2 = string.format ("%s%c", str2, ref[a])
-	end
+		ref = parts[2]
+		for a = 1, #ref, 1 do
+				str2 = string.format ("%s%c", str2, ref[a])
+		end
 
-	ref = parts[3]
-	for a = 1, #ref, 1 do
-		str3 = string.format ("%s%c", str3, ref[a])
-	end
+		ref = parts[3]
+		for a = 1, #ref, 1 do
+				str3 = string.format ("%s%c", str3, ref[a])
+		end
 
-	ref = parts[4]
-	for a = 1, #ref, 1 do
-		str4 = string.format ("%s%c", str4, ref[a])
-	end
+		ref = parts[4]
+		for a = 1, #ref, 1 do
+				str4 = string.format ("%s%c", str4, ref[a])
+		end
 
-	printf ("%s %s %d %d", str1, str2, str3, str4)
-	return str1, str2, (str3 + 1) - 1, (str4 + 1) - 1
+		printf ("%s %s %d %d", str1, str2, str3, str4)
+		return str1, str2, (str3 + 1) - 1, (str4 + 1) - 1
 end
 
 function random_number (min_value, max_value)
-	math.randomseed (device ():time_global ())
-	if min_value == nil and max_value == nil then
-		return math.random ()
+		math.randomseed (device ():time_global ())
+		if min_value == nil and max_value == nil then
+			return math.random ()
 		else
-		return math.random (min_value, max_value)
-	end
+			return math.random (min_value, max_value)
+		end
 end
 
--- время суток в мс
--- Чугай
+-- ‚аҐ¬п бгв®Є ў ¬б
+-- —гЈ ©
 local ms_per_day = 24 * 60 * 60 * 1000
 function day_time()
-	return math.mod( game.time(), ms_per_day )
+		return math.mod( game.time(), ms_per_day )
 end
 
 --Time in hours
 function local_hours()
-	return math.floor( math.mod( game.time()/1000, 86400 )/ 3600 )
+		return math.floor( math.mod( game.time()/1000, 86400 )/ 3600 )
 end
 
--- парсит строку вида "ааа, ббб, ввв..." в таблицу {"ааа", "ббб", "ввв", ...}
--- Чугай
+-- Ї абЁв бва®Єг ўЁ¤  "   , ЎЎЎ, ўўў..." ў в Ў«Ёжг { "   ", "ЎЎЎ", "ўўў", ... }
+-- —гЈ ©
 function parse_names( s )
-	local t = {}
-	for name in string.gfind( s, "([%w_\\]+)%p*" ) do
+		local t = {}
+		for name in string.gfind( s, "([%w_\\]+)%p*" ) do
 		--for name in string.gfind( s, "%s*([^%,]+)%s*" ) do
-		table.insert( t, name )
-	end
+				table.insert( t, name )
+		end
 
-	return t
+		return t
 end
+
 
 function parse_key_value( s )
-	local t = {}
+		local t = {}
 	if s == nil then
 		return nil
 	end
-	local key, nam = nil, nil
-	for name in string.gfind( s, "([%w_\\]+)%p*" ) do
+		local key, nam = nil, nil
+		for name in string.gfind( s, "([%w_\\]+)%p*" ) do
 		if key == nil then
 			key = name
 		else
 			t[key] = name
 			key = nil
 		end
-	end
-	return t
+		end
+		return t
 end
 
 function empty (container)
@@ -642,30 +652,30 @@ function empty (container)
 		for i in container do
 			return (false)
 		end
-		return (true)
+		return  (true)
 	end
 	if (container[1] ~= nil) then
 		return  (false)
 	end
 	for i,j in pairs(container) do
-		return (false)
+		return  (false)
 	end
-	return (true)
+	return   (true)
 end
 
--- парсит строку вида "n1, n2, n3..." в таблицу { n1, n2, n3, ... } где n1, n2, n3... - целые числа
--- Чугай
+-- Ї абЁв бва®Єг ўЁ¤  "n1, n2, n3..." ў в Ў«Ёжг { n1, n2, n3, ... } Ј¤Ґ n1, n2, n3... - жҐ«лҐ зЁб« 
+-- —гЈ ©
 --[[function parse_nums( s )
-	local t = {}
+		local t = {}
 
-	for entry in string.gfind( s, "([%w_\\]+)%p*" ) do
-	table.insert( t, tonumber( entry ) )
-	end
+		for entry in string.gfind( s, "([%w_\\]+)%p*" ) do
+				table.insert( t, tonumber( entry ) )
+		end
 
-	return t
+		return t
 end]]
 
--- парсит строку вида "n1, n2, n3..." в таблицу { n1, n2, n3, ... } где n1, n2, n3... - дробные числа
+-- Ї абЁв бва®Єг ўЁ¤  "n1, n2, n3..." ў в Ў«Ёжг { n1, n2, n3, ... } Ј¤Ґ n1, n2, n3... - ¤а®Ў­лҐ зЁб« 
 function parse_nums( s )
 	local t = {}
 
@@ -676,69 +686,70 @@ function parse_nums( s )
 	return t
 end
 
--- проверяет, есть ли объект в онлайне
+-- Їа®ўҐапҐв, Ґбвм «Ё ®ЎкҐЄв ў ®­« ©­Ґ
 function is_object_online(obj_id)
 	return level.object_by_id(obj_id) ~= nil
 end
 
 function get_clsid(npc)
-	if npc == nil then return nil end
+		if npc == nil then return nil end
+
 	return npc:clsid()
 
-	-- if is_object_online(npc:id()) then
-	--	 return npc:clsid()
-	-- else
-	--	 return nil
-	-- end
+--    if is_object_online(npc:id()) then
+--      return npc:clsid()
+--    else
+--        return nil
+--    end
 end
 
---вычисляет yaw в радианах
+--Tvчисляет yaw в радианах
 function yaw( v1, v2 )
-	return math.acos( ( (v1.x*v2.x) + (v1.z*v2.z ) ) / ( math.sqrt(v1.x*v1.x + v1.z*v1.z ) * math.sqrt(v2.x*v2.x + v2.z*v2.z ) ) )
+		return  math.acos( ( (v1.x*v2.x) + (v1.z*v2.z ) ) / ( math.sqrt(v1.x*v1.x + v1.z*v1.z ) * math.sqrt(v2.x*v2.x + v2.z*v2.z ) ) )
 end
 
 function yaw_degree( v1, v2 )
-	return (math.acos( ( (v1.x*v2.x) + (v1.z*v2.z ) ) / ( math.sqrt(v1.x*v1.x + v1.z*v1.z ) * math.sqrt(v2.x*v2.x + v2.z*v2.z ) ) ) * 57.2957)
+		return  (math.acos( ( (v1.x*v2.x) + (v1.z*v2.z ) ) / ( math.sqrt(v1.x*v1.x + v1.z*v1.z ) * math.sqrt(v2.x*v2.x + v2.z*v2.z ) ) ) * 57.2957)
 end
 function yaw_degree3d( v1, v2 )
-	return (math.acos((v1.x*v2.x + v1.y*v2.y + v1.z*v2.z)/(math.sqrt(v1.x*v1.x + v1.y*v1.y + v1.z*v1.z )*math.sqrt(v2.x*v2.x + v2.y*v2.y + v2.z*v2.z)))*57.2957)
+		return  (math.acos((v1.x*v2.x + v1.y*v2.y + v1.z*v2.z)/(math.sqrt(v1.x*v1.x + v1.y*v1.y + v1.z*v1.z )*math.sqrt(v2.x*v2.x + v2.y*v2.y + v2.z*v2.z)))*57.2957)
 end
 
 function vector_cross(v1, v2)
-	return vector():set(v1.y  * v2.z  - v1.z  * v2.y, v1.z  * v2.x  - v1.x  * v2.z, v1.x  * v2.y  - v1.y  * v2.x)
+		return vector():set(v1.y  * v2.z  - v1.z  * v2.y, v1.z  * v2.x  - v1.x  * v2.z, v1.x  * v2.y  - v1.y  * v2.x)
 end
 
---вращает вектор вокруг оси y против часовой стрелки
+--Tра	ает вектор вокруг оси y против часовой стрелки
 
 function vector_rotate_y(v, angle)
-	angle = angle * 0.017453292519943295769236907684886
-	local c = math.cos (angle)
-	local s = math.sin (angle)
-	return vector ():set (v.x * c - v.z * s, v.y, v.x * s + v.z * c)
+		angle = angle * 0.017453292519943295769236907684886
+		local c = math.cos (angle)
+		local s = math.sin (angle)
+		return vector ():set (v.x * c - v.z * s, v.y, v.x * s + v.z * c)
 end
 
--- очистка таблицы
+-- очистка таблицv
 function clear_table (t)
-	while #t > 0 do
-		table.remove (t, #t)
-	end
+		while #t > 0 do
+					table.remove (t, #t)
+		end
 end
 
--- Использует для монстров. Выбор точки, куда идти в некотором радиусе и чтоб точка была дальше на расстоянии
--- min_radius от текущей позиции (если это получится). center_id - центр позиции, вокруг которой живем,
--- position_id - тукущая позиция, radius - в каком радиусе выбирать точку, min_radius - минимальное расстояние, от текущей позиции до новой точки.
+--€бЇ®«м§гҐв ¤«п ¬®­бва®ў. ‚лЎ®а в®зЄЁ, Єг¤  Ё¤вЁ ў ­ҐЄ®в®а®¬ а ¤ЁгбҐ Ё зв®Ў в®зЄ  Ўл«  ¤ «миҐ ­  а ббв®п­ЁЁ
+-- min_radius ®в вҐЄгйҐ© Ї®§ЁжЁЁ(Ґб«Ё нв® Ї®«гзЁвбп). center_id - жҐ­ва Ї®§ЁжЁЁ, ў®ЄагЈ Є®в®а®© ¦ЁўҐ¬,
+-- position_id - вгЄгй п Ї®§ЁжЁп, radius - ў Є Є®¬ а ¤ЁгбҐ ўлЎЁа вм в®зЄг, min_radius - ¬Ё­Ё¬ «м­®Ґ а ббв®п­ЁҐ, ®в вҐЄгйҐ© Ї®§ЁжЁЁ ¤® ­®ў®© в®зЄЁ.
 function new_point(center_id, position_id,radius, min_radius)
-	local dir = vector():set(math.random(-1000, 1000)/1000.0, 0.0001, math.random(-1000, 1000)/1000.0)
-	local pos = level.vertex_in_direction(center_id, dir, radius)
-	local i = 1
+		local dir = vector():set(math.random(-1000, 1000)/1000.0, 0.0001, math.random(-1000, 1000)/1000.0)
+		local pos = level.vertex_in_direction(center_id, dir, radius)
+		local i   = 1
 	printf("vertex_position")
-	while(level.vertex_position(position_id):distance_to(level.vertex_position(pos) ) < min_radius and i < 20) do
-		dir = vector():set(math.random(-1000, 1000)/1000.0, 0.0001, math.random(-1000, 1000)/1000.0)
-		pos = level.vertex_in_direction(center_id, dir, radius)
-		i = i + 1
-	end
+		while(level.vertex_position(position_id):distance_to(level.vertex_position(pos) ) < min_radius and i < 20) do
+				dir = vector():set(math.random(-1000, 1000)/1000.0, 0.0001, math.random(-1000, 1000)/1000.0)
+				pos = level.vertex_in_direction(center_id, dir, radius)
+				i   = i + 1
+		end
 
-	return (level.vertex_position(pos))
+		return (level.vertex_position(pos))
 end
 
 function stop_play_sound(obj)
@@ -748,90 +759,86 @@ function stop_play_sound(obj)
 	end
 end
 
--- возвращает произвольную точку пути у которой установлен бит
--- old_point - индекс точки, которую не надо выбирать,
--- параметр не обязательный (например текущей точки)
-function point_with_bit(patrol_path, bit, old_point)
-	local points = {}
+--ў®§ўа й Ґв Їа®Ё§ў®«м­го в®зЄг ЇгвЁ г Є®в®а®© гбв ­®ў«Ґ­ ЎЁв
+function point_with_bit(patrol_path, bit, old_point)      -- old_point - Ё­¤ҐЄб в®зЄЁ, Є®в®аго ­Ґ ­ ¤® ўлЎЁа вм,
+	local points = {}                                       -- Ї а ¬Ґва ­Ґ ®Ўп§ вҐ«м­л©( ­ ЇаЁ¬Ґа вҐЄгйҐ© в®зЄЁ )
 
-	for i = 0, patrol_path:count()-1 do
-		--Добавляем в таблицу точки с нужным битом
-		if( patrol_path:flag(i, bit)) then
-			--Добавляем точку если old_point == nil или новая точка не совпадает с old_point
-			if(old_point == nil) then
-				table.insert(points, patrol_path:point(i))
-			elseif(old_point ~= i) then
-				table.insert(points, patrol_path:point(i))
-			end
+		for i = 0, patrol_path:count()-1 do
+			--„®Ў®ў«пҐ¬ ў в Ў«Ёжг в®зЄЁ б ­г¦­л¬ ЎЁв®¬
+			if( patrol_path:flag(i, bit)) then
+						--„®Ў ў«пҐ¬ в®зЄг Ґб«Ё old_point == nil Ё«Ё ­®ў п в®зЄ  ­Ґ б®ўЇ ¤ Ґв б old_point
+						if(old_point == nil) then
+								table.insert(points, patrol_path:point(i))
+						elseif(old_point ~= i) then
+								table.insert(points, patrol_path:point(i))
+						end
+				end
 		end
-	end
 
-	local number_point = #points
+		local number_point = #points
 
-	if(number_point == 0) then
-		return nil
-	elseif(number_point == 1) then
-		return points[1]
-	else
-		return points[math.random(1, number_point)]
-	end
+		if(number_point == 0) then
+				return nil
+		elseif(number_point == 1) then
+				return points[1]
+		else
+				return points[math.random(1, number_point)]
+		end
 end
 
---возвращает произвольную точку пути у которой установлен бит
--- old_point - индекс точки, которую не надо выбирать,
--- параметр не обязательный (например текущей точки)
-function point_with_bit_id(patrol_path, bit, old_point)
-	local points = {}
+--ў®§ўа й Ґв Їа®Ё§ў®«м­го в®зЄг ЇгвЁ г Є®в®а®© гбв ­®ў«Ґ­ ЎЁв
+function point_with_bit_id(patrol_path, bit, old_point)        -- old_point - Ё­¤ҐЄб в®зЄЁ, Є®в®аго ­Ґ ­ ¤® ўлЎЁа вм,
+		local points = {}                                          -- Ї а ¬Ґва ­Ґ ®Ўп§ вҐ«м­л©( ­ ЇаЁ¬Ґа вҐЄгйҐ© в®зЄЁ )
 
-	for i = 0, patrol_path:count()-1 do
-		--Добавляем в таблицу точки с нужным битом
-		if( patrol_path:flag(i, bit)) then
-			--Добавляем точку если old_point == nil или новая точка не совпадает с old_point
-			if(old_point == nil) then
-				table.insert(points, i)
-				elseif(old_point ~= i) then
-				table.insert(points, i)
-			end
+		for i = 0, patrol_path:count()-1 do
+			--„®Ў®ў«пҐ¬ ў в Ў«Ёжг в®зЄЁ б ­г¦­л¬ ЎЁв®¬
+			if( patrol_path:flag(i, bit)) then
+						--„®Ў ў«пҐ¬ в®зЄг Ґб«Ё old_point == nil Ё«Ё ­®ў п в®зЄ  ­Ґ б®ўЇ ¤ Ґв б old_point
+						if(old_point == nil) then
+								table.insert(points, i)
+						elseif(old_point ~= i) then
+								table.insert(points, i)
+						end
+				end
 		end
-	end
 
-	local number_point = #points
+		local number_point = #points
 
-	if(number_point == 0) then
-		return nil
-	elseif(number_point == 1) then
-		return patrol_path:level_vertex_id(points[1])
-	else
-		return patrol_path:level_vertex_id(points[math.random(1, number_point)])
-	end
+		if(number_point == 0) then
+				return nil
+		elseif(number_point == 1) then
+				return patrol_path:level_vertex_id(points[1])
+		else
+				return patrol_path:level_vertex_id(points[math.random(1, number_point)])
+		end
 end
 
---Возвращает индекс самой ближней точки пути с заданым битом, от текущей точки
+--‚®§ўа й Ґв Ё­¤ҐЄб б ¬®© Ў«Ё¦­Ґ© в®зЄЁ ЇгвЁ б § ¤ ­л¬ ЎЁв®¬, ®в вҐЄгйҐ© в®зЄЁ
 function near_point_with_bit(point, patrol_path, bit)
-	local new_point = nil
-	local index = nil
-	local dist = 1000.0
+		local new_point = nil
+		local index     = nil
+		local dist      = 1000.0
 
-	for i = 0, patrol_path:count()-1 do
-		if( patrol_path:flag(i, bit) ) then
-			if(new_point == nil or patrol_path:point(i):distance_to(point) < dist) then
-				--Если эта точка первая из нашедшихся, либо от нее путь ближе, то запоминаем ее
-				new_point = patrol_path:point(i)
-				index = i
-				dist = new_point:distance_to(point)
-			end
+		for i = 0, patrol_path:count()-1 do
+				if( patrol_path:flag(i, bit) ) then
+						if(new_point == nil or patrol_path:point(i):distance_to(point) < dist) then
+								--…б«Ё нв  в®зЄ  ЇҐаў п Ё§ ­ иҐ¤иЁебп, «ЁЎ® ®в ­ҐҐ Їгвм Ў«Ё¦Ґ, в® § Ї®¬Ё­ Ґ¬ ҐҐ
+								new_point   = patrol_path:point(i)
+								index       = i
+								dist        = new_point:distance_to(point)
+						 end
+				end
 		end
-	end
 
-	return index
+		return index
 end
 
--- Рекурсивная распечатка таблицы
+-- ђҐЄгабЁў­ п а бЇҐз вЄ  в Ў«Ёжл
 function print_table(table, subs)
 	local sub
 	if subs ~= nil then
 		sub = subs
-		else
+	else
 		sub = ""
 	end
 	for k,v in pairs(table) do
@@ -843,11 +850,11 @@ function print_table(table, subs)
 		elseif type(v) == "userdata" then
 			printf(sub.."%s:userdata", tostring(k))
 		elseif type(v) == "boolean" then
-			if v == true then
-				printf(sub.."%s:true", tostring(k))
-			else
-				printf(sub.."%s:false", tostring(k))
-			end
+	if v == true then
+		printf(sub.."%s:true", tostring(k))
+	else
+		printf(sub.."%s:false", tostring(k))
+	end
 		else
 			if v ~= nil then
 				printf(sub.."%s:%s", tostring(k),v)
@@ -857,6 +864,7 @@ function print_table(table, subs)
 		end
 	end
 end
+
 
 function store_table(table, subs)
 	local sub
@@ -872,8 +880,8 @@ function store_table(table, subs)
 			store_table(v, sub.."    ")
 		elseif type(v) == "function" then
 			printf(sub.."%s = \"func\",", tostring(k))
-		elseif type(v) == "userdata" then
-			printf(sub.."%s = \"userdata\",", tostring(k))
+			elseif type(v) == "userdata" then
+					printf(sub.."%s = \"userdata\",", tostring(k))
 		elseif type(v) == "string" then
 			printf(sub.."%s = \"%s\",", tostring(k), tostring(v))
 		else
@@ -884,75 +892,55 @@ function store_table(table, subs)
 end
 
 -------------------------------------------------------------------------------------------
-
 function switch_online (id)
-	if id == -1 then return end
-	local sim = alife ()
-	if sim ~= nil then
-		sim:set_switch_online(id, true)
-		sim:set_switch_offline(id, false)
-	end
+		if id == -1 then return end
+		local sim = alife ()
+		if sim ~= nil then
+			 sim:set_switch_online  (id, true)
+			 sim:set_switch_offline (id, false)
+		end
 end
-
 -------------------------------------------------------------------------------------------
-
 function switch_offline (npc)
-	if npc == nil or npc:alive () == false then return end
-	local sim = alife ()
-	if sim ~= nil then
-		sim:set_switch_online(npc:id (), false)
-		sim:set_switch_offline(npc:id (), true)
-	end
+		if npc == nil or npc:alive () == false then return end
+		local sim = alife ()
+		if sim ~= nil then
+			 sim:set_switch_online  (npc:id (), false)
+			 sim:set_switch_offline (npc:id (), true)
+		end
 end
-
 -------------------------------------------------------------------------------------------
-
 function get_actor_id()
 	if(level.actor() == nil) then return -1 end
 	return level.actor():id()
 end
-
 -------------------------------------------------------------------------------------------
-
 local monster_classes = {}
 local stalker_classes = {}
-local trader_classes = {}
 local weapon_classes = {}
-local weapon_only_classes = {}
 local artefact_classes = {}
 
 function IsMonster (object, class_id)
-	local id = class_id or get_clsid(object)
-	return monster_classes[id] == true
+		local id = class_id or get_clsid(object)
+		return monster_classes[id] == true
 end
-
 function IsStalker (object, class_id)
-	local id = class_id or get_clsid(object)
-	return stalker_classes[id] == true
+		local id = class_id or get_clsid(object)
+		return stalker_classes[id] == true
 end
 
 function isWeapon(object, class_id)
-	local id = class_id or get_clsid(object)
+		local id = class_id or get_clsid(object)
 	return weapon_classes[id] == true
 end
 
-function isWeaponOnly(object, class_id)
-	local id = class_id or get_clsid(object)
-	return weapon_only_classes[id] == true
-end
-
 function isArtefact(object, class_id)
-	local id = class_id or get_clsid(object)
+		local id = class_id or get_clsid(object)
 	return artefact_classes[id] == true
 end
 
-function IsTrader(object, class_id)
-	local id = class_id or get_clsid(object)
-	return trader_classes[id] == true
-end
 
 -------------------------------------------------------------------------------------------
-
 function level_object_by_sid( sid )
 	local sim = alife()
 
@@ -979,19 +967,17 @@ function id_by_sid( sid )
 	return nil
 end
 
--- крешнуть игру (после вывода сообщения об ошибке в лог)
+-- ірешнуть игру (после вvвода сооб	ения об ошибке в лог)
 function abort(fmt, ...)
 	local reason = string.format(fmt, ...)
 	assert("ERROR: " .. reason)
 	error_log("ERROR: " .. reason)
-	dbglog(fmt, ...)
 	log(string.format("%s",nil))
 end
 
 function set_postprocess(name_ini_file)
 	bind_stalker.post_process = postprocess.PostProcess(ini_file(name_ini_file))
 end
-
 function remove_postprocess()
 	bind_stalker.post_process = nil
 end
@@ -1001,8 +987,7 @@ function set_inactivate_input_time(delta)
 	db.storage[db.actor:id()].disable_input_idle = delta
 	level.disable_input()
 end
-
--- принимает: позицию положения, позицию куда смотреть, время сна в минутах.
+-- іринимает: позициі положения, позициі куда смотреть, время сна в минутах.
 function set_sleep_relocate(point, look, timeout)
 	db.storage[db.actor:id()].sleep_relocate_time = game.get_game_time()
 	db.storage[db.actor:id()].sleep_relocate_idle = timeout*60
@@ -1013,13 +998,13 @@ function set_sleep_relocate(point, look, timeout)
 	--db.actor:actor_sleep(0, timeout)
 end
 
--- проверяет целую часть числа на нечётность
-function odd(x)
+-- проверяет целуі часть числа на нечїтность
+function odd( x )
 	return math.floor( x * 0.5 ) * 2 == math.floor( x )
 end
 
 
---' находится ли NPC во фруструме игрока
+--' =аходится ли =іT во фруструме игрока
 function npc_in_actor_frustrum(npc)
 	local actor_dir = device().cam_dir
 	--local actor_dir = db.actor:direction()
@@ -1031,30 +1016,35 @@ function npc_in_actor_frustrum(npc)
 	return yaw < 35
 end
 
---' усталость
+--' Lсталость
 function on_actor_critical_power()
+
 end
 
 function on_actor_critical_max_power()
 end
 
---' кровотечение
+--' іровотечение
 function on_actor_bleeding()
+
 end
 
 function on_actor_satiety()
 end
 
---' радиация
+--' іадиация
 function on_actor_radiation()
+
 end
 
---' заклинило оружие
+--' іаклинило оружие
 function on_actor_weapon_jammed()
+
 end
 
---' не может ходить из-за веса
+--' не может ходить изза веса
 function on_actor_cant_walk_weight()
+
 end
 
 --' пси воздействие
@@ -1085,119 +1075,86 @@ function get_texture_info(id_name, id_default)
 end
 
 function start_game_callback()
-    ngsm.main_timer()
-	ngsm_marauder.initialize()
 	aa = alife()
 
-	monster_classes = {
-		[clsid.bloodsucker_s] = true,
-		[clsid.boar_s] = true,
-		[clsid.dog_s] = true,
-		[clsid.flesh_s] = true,
-		[clsid.pseudodog_s] = true,
-		[clsid.burer_s] = true,
-		[clsid.cat_s] = true,
-		[clsid.chimera_s] = true,
-		[clsid.controller_s] = true,
-		[clsid.fracture_s] = true,
-		[clsid.poltergeist_s] = true,
-		[clsid.gigant_s] = true,
-		[clsid.zombie_s] = true,
-		[clsid.snork_s] = true,
-		[clsid.tushkano_s] = true,
-		[clsid.psy_dog_s] = true,
-		[clsid.psy_dog_phantom_s] = true
-	}
+monster_classes = {
+	[clsid.bloodsucker_s] 			= true,
+	[clsid.boar_s] 					= true,
+	[clsid.dog_s] 					= true,
+	[clsid.flesh_s] 				= true,
+	[clsid.pseudodog_s] 			= true,
+	[clsid.burer_s] 				= true,
+	[clsid.cat_s] 					= true,
+	[clsid.chimera_s] 				= true,
+	[clsid.controller_s] 			= true,
+	[clsid.fracture_s] 				= true,
+	[clsid.poltergeist_s] 			= true,
+	[clsid.gigant_s] 				= true,
+	[clsid.zombie_s] 				= true,
+	[clsid.snork_s] 				= true,
+	[clsid.tushkano_s] 				= true,
+	[clsid.psy_dog_s] 				= true,
+	[clsid.psy_dog_phantom_s] 		= true}
 
-	stalker_classes = {
-		[clsid.script_actor] = true,
-		[clsid.script_stalker] = true
-	}
+stalker_classes = {
+	[clsid.script_actor] 			= true,
+	[clsid.script_stalker] 			= true}
 
-	trader_classes = {
-		[clsid.trader] = true,
-		[clsid.script_trader] = true
-	}
+weapon_classes = {
+	[clsid.wpn_vintorez_s] 			= true,
+		[clsid.wpn_ak74_s] 				= true,
+		[clsid.wpn_lr300_s] 			= true,
+		[clsid.wpn_hpsa_s] 				= true,
+		[clsid.wpn_pm_s] 				= true,
+		[clsid.wpn_shotgun_s] 			= true,
+		[clsid.wpn_bm16_s] 				= true,
+		[clsid.wpn_svd_s] 				= true,
+		[clsid.wpn_svu_s] 				= true,
+		[clsid.wpn_rpg7_s] 				= true,
+		[clsid.wpn_val_s] 				= true,
+		[clsid.wpn_walther_s] 			= true,
+		[clsid.wpn_usp45_s] 			= true,
+		[clsid.wpn_groza_s] 			= true,
+		[clsid.wpn_knife_s] 			= true,
+		[clsid.wpn_grenade_launcher] 	= true,
+		[clsid.wpn_grenade_f1] 			= true,
+		[clsid.wpn_grenade_rpg7] 		= true,
+		[clsid.wpn_grenade_rgd5] 		= true,
+		[clsid.wpn_grenade_fake] 		= true}
 
-	weapon_classes = {
-		[clsid.wpn_vintorez_s] = true,
-		[clsid.wpn_ak74_s] = true,
-		[clsid.wpn_lr300_s] = true,
-		[clsid.wpn_hpsa_s] = true,
-		[clsid.wpn_pm_s] = true,
-		[clsid.wpn_shotgun_s] = true,
-		[clsid.wpn_bm16_s] = true,
-		[clsid.wpn_svd_s] = true,
-		[clsid.wpn_svu_s] = true,
-		[clsid.wpn_rpg7_s] = true,
-		[clsid.wpn_val_s] = true,
-		[clsid.wpn_walther_s] = true,
-		[clsid.wpn_usp45_s] = true,
-		[clsid.wpn_groza_s] = true,
-		[clsid.wpn_knife_s] = true,
-		[clsid.wpn_grenade_launcher] = true,
-		[clsid.wpn_grenade_f1] = true,
-		[clsid.wpn_grenade_rpg7] = true,
-		[clsid.wpn_grenade_rgd5] = true,
-		[clsid.wpn_grenade_fake] = true,
-		[clsid.wpn_rg6_s] = true
-	}
+artefact_classes = {
+		[clsid.art_bast_artefact] 		= true,
+		[clsid.art_black_drops] 		= true,
+		[clsid.art_dummy] 				= true,
+		[clsid.art_electric_ball] 		= true,
+		[clsid.art_faded_ball] 			= true,
+		[clsid.art_galantine] 			= true,
+		[clsid.art_gravi] 				= true,
+		[clsid.art_gravi_black] 		= true,
+		[clsid.art_mercury_ball] 		= true,
+		[clsid.art_needles] 			= true,
+		[clsid.art_rusty_hair] 			= true,
+		[clsid.art_thorn] 				= true,
+		[clsid.art_zuda] 				= true,
+		[clsid.artefact] 				= true,
+		[clsid.artefact_s] 				= true}
 
-	weapon_only_classes = {
-		[clsid.wpn_vintorez_s] = true,
-		[clsid.wpn_ak74_s] = true,
-		[clsid.wpn_lr300_s] = true,
-		[clsid.wpn_hpsa_s] = true,
-		[clsid.wpn_pm_s] = true,
-		[clsid.wpn_shotgun_s] = true,
-		[clsid.wpn_bm16_s] = true,
-		[clsid.wpn_svd_s] = true,
-		[clsid.wpn_svu_s] = true,
-		[clsid.wpn_rpg7_s] = true,
-		[clsid.wpn_val_s] = true,
-		[clsid.wpn_walther_s] = true,
-		[clsid.wpn_usp45_s] = true,
-		[clsid.wpn_groza_s] = true,
-		[clsid.wpn_rg6_s] = true
-	}
 
-	artefact_classes = {
-		[clsid.art_bast_artefact] = true,
-		[clsid.art_black_drops] = true,
-		[clsid.art_dummy] = true,
-		[clsid.art_electric_ball] = true,
-		[clsid.art_faded_ball] = true,
-		[clsid.art_galantine] = true,
-		[clsid.art_gravi] = true,
-		[clsid.art_gravi_black] = true,
-		[clsid.art_mercury_ball] = true,
-		[clsid.art_needles] = true,
-		[clsid.art_rusty_hair] = true,
-		[clsid.art_thorn] = true,
-		[clsid.art_zuda] = true,
-		[clsid.artefact] = true,
-		[clsid.artefact_s] = true
-	}
-
-	printf("start_game_callback called")
+	printf	("start_game_callback called")
 	smart_names.init_smart_names_table()
 	task_manager.clear_task_manager()
 	treasure_manager.load_treasures()
 
-	sound_theme.load_sound()
-	xr_sound.start_game_callback()
+		sound_theme.load_sound()
+		xr_sound.start_game_callback()
 
 	dialog_manager.fill_phrase_table()
 	xr_s.init()                              --' Distemper 03.2008 --
 	sim_objects.clear()
 	sim_board.clear()
 
-	sr_light.clean_up ()
+		sr_light.clean_up ()
 
-	Set_Game_StartTime() --/ set game time
-
-	m_netpk.attach()
-	se_stor.attach() -- инициализация модуля se_stor
 
 	-- Tестирование оптимизации
 	--local test_object = test_object.test_object_class()
@@ -1209,39 +1166,30 @@ function gi (info)
 end
 
 ammo_section = {}
-ammo_section["ammo_9x18_fmj"] = true
-ammo_section["ammo_9x18_pbp"] = true
-ammo_section["ammo_9x18_pmm"] = true
-ammo_section["ammo_9x19_fmj"] = true
-ammo_section["ammo_9x19_pbp"] = true
-ammo_section["ammo_5.45x39_fmj"] = true
-ammo_section["ammo_5.45x39_ap"] = true
-ammo_section["ammo_5.56x45_ss190"] = true
-ammo_section["ammo_5.56x45_ap"] = true
-ammo_section["ammo_5.7x28_fmj"] = true
-ammo_section["ammo_5.7x28_ap"] = true
-ammo_section["ammo_7.62x54_7h1"] = true
-ammo_section["ammo_7.62x54_ap"] = true
-ammo_section["ammo_7.62x54_7h14"] = true
-ammo_section["ammo_9x39_pab9"] = true
-ammo_section["ammo_gauss"] = true
-ammo_section["ammo_9x39_ap"] = true
-ammo_section["ammo_9x39_sp5"] = true
-ammo_section["ammo_11.43x23_fmj"] = true
-ammo_section["ammo_11.43x23_hydro"] = true
-ammo_section["ammo_12x70_buck"] = true
-ammo_section["ammo_12x76_dart"] = true
-ammo_section["ammo_12x76_zhekan"] = true
-ammo_section["ammo_pkm_100"] = true
-ammo_section["ammo_7.62x39_fmj"] = true
-ammo_section["ammo_7.62x39_ap"] = true
-ammo_section["ammo_7.62x25_fmj"] = true
-ammo_section["ammo_7.62x25_ap"] = true
-ammo_section["ammo_10.9x32.5"] = true
-ammo_section["ammo_og-7b"] = true
-ammo_section["ammo_vog-25p"] = true
-ammo_section["ammo_vog-25"] = true
-ammo_section["ammo_m209"] = true
+ammo_section["ammo_9x18_fmj"]		= true
+ammo_section["ammo_9x18_pbp"]		= true
+ammo_section["ammo_9x18_pmm"]		= true
+ammo_section["ammo_9x19_fmj"]		= true
+ammo_section["ammo_9x19_pbp"]		= true
+ammo_section["ammo_5.45x39_fmj"]	= true
+ammo_section["ammo_5.45x39_ap"]		= true
+ammo_section["ammo_5.56x45_ss190"]	= true
+ammo_section["ammo_5.56x45_ap"]		= true
+ammo_section["ammo_5.7x28_fmj"]		= true
+ammo_section["ammo_5.7x28_ap"]		= true
+ammo_section["ammo_7.62x54_7h1"]	= true
+ammo_section["ammo_7.62x54_ap"]		= true
+ammo_section["ammo_7.62x54_7h14"]	= true
+ammo_section["ammo_9x39_pab9"]		= true
+ammo_section["ammo_gauss"]			= true
+ammo_section["ammo_9x39_ap"]		= true
+ammo_section["ammo_9x39_sp5"]		= true
+ammo_section["ammo_11.43x23_fmj"]	= true
+ammo_section["ammo_11.43x23_hydro"]	= true
+ammo_section["ammo_12x70_buck"]		= true
+ammo_section["ammo_12x76_dart"]		= true
+ammo_section["ammo_12x76_zhekan"]	= true
+ammo_section["ammo_pkm_100"]	= true
 
 quest_section = {}
 
@@ -1258,21 +1206,21 @@ end
 
 local save_markers = {}
 
--- функции для проверки корректности сейв лоад
+-- Lункции для проверки корректности сейв лоад
 function set_save_marker(p, mode, check, prefix)
 
-	-- определяем ключ маркера.
+	-- +пределяем кліч маркера.
 	local result = ""
-	--	if debug ~= nil then
-	--		local info_table = debug.getinfo(2)
-	--		local script_name = string.gsub(info_table.short_src, "%.script", "")
-	--		script_name = string.gsub(script_name, "gamedata\\scripts\\", "")
-	--		result = script_name
-	--	end
+--	if debug ~= nil then
+--		local info_table = debug.getinfo(2)
+--		local script_name = string.gsub(info_table.short_src, "%.script", "")
+--		script_name = string.gsub(script_name, "gamedata\\scripts\\", "")
+--		result = script_name
+--	end
 
-	--	if prefix ~= nil then
-	result = result .. "_" .. prefix
-	--	end
+--	if prefix ~= nil then
+		result = result .. "_" .. prefix
+--	end
 
 	if check == true then
 		if save_markers[result] == nil then
@@ -1292,11 +1240,11 @@ function set_save_marker(p, mode, check, prefix)
 		else
 			local c_dif = p:r_tell() - save_markers[result]
 			local dif = p:r_u16()
-			if dif ~= c_dif then
+			 if dif ~= c_dif then
 			 	abort("INCORRECT LOAD [%s].[%s][%s]", result, dif, c_dif)
-			else
-				printf(result..": LOAD DIF: %s", dif)
-			end
+			 else
+			 	printf(result..": LOAD DIF: %s", dif)
+			 end
 		end
 		return
 	end
@@ -1307,7 +1255,7 @@ function set_save_marker(p, mode, check, prefix)
 		if p:w_tell() > 16000 then
 			abort("You are saving too much")
 		end
-		else
+	else
 		printf(result..": set load marker: %s", p:r_tell())
 		save_markers[result] = p:r_tell()
 	end
@@ -1337,733 +1285,3 @@ function change_team_sqaud_group(se_obj, team, squad, group)
 	--printf("_G:TSG: [%s][%s][%s]", tostring(se_obj.team), tostring(se_obj.squad), tostring(se_obj.group))
 end
 
-----------
--- вывод информации в лог
-function dbglog(fmt,...)
-	local msg = string.format(fmt, ...)
-	get_console():execute("load ~~~ " .. msg)
-end
-
-----------
--- вывод таблицы в лог
-function dbglog_table(table, subs)
-  local sub
-  if subs ~= nil then
-    sub = subs
-		else
-    sub = ""
-	end
-  for k,v in pairs(table) do
-    if type(v) == "table" then
-      dbglog(sub.."%s:", tostring(k))
-      dbglog_table(v, sub.."    ")
-			elseif type(v) == "function" then
-      dbglog(sub.."%s:function", tostring(k))
-			elseif type(v) == "userdata" then
-      dbglog(sub.."%s:userdata", tostring(k))
-			elseif type(v) == "boolean" then
-			if v == true then
-				dbglog(sub.."%s:true", tostring(k))
-				else
-				dbglog(sub.."%s:false", tostring(k))
-			end
-			else
-      if v ~= nil then
-        dbglog(sub.."%s:%s", tostring(k),v)
-				else
-        dbglog(sub.."%s:nil", tostring(k),v)
-			end
-		end
-	end
-end
-
-----------
--- Функции времени
--- По материалам: Artos, Garry_Galler
--- Доработка: Kirgudu
-----------
-
--- Получение строки с датой/временем
--- Авторы оригинала: Artos, Garry_Galler
--- Доработка: Kirgudu
--- В случае отсутствия второго параметра типа CType берёт текущее игровое время
-function Get_StringOnTimeOrDate(sType, dateTime) --/ передаем аргументы из числа "Y", "M", "D", h"", "m", "s", "ms" - по одной штуке - смотря какое значение текущего игрового времени или даты хотим получить - по умолчанию функция возвращает секунды.
-	if not dateTime then dateTime = game.get_game_time() end
-	if sType then
-		local tTime = {
-			["Y"]  = game.CTime.DateToYear,    --/ 2012
-			["M"]  = game.CTime.DateToToMonth, --/ 01/2012
-			["D"]  = game.CTime.DateToDay,     --/ 01/01/2012
-			["h"]  = game.CTime.TimeToHours,   --/ 23
-			["m"]  = game.CTime.TimeToMinutes, --/ 23:59
-			["s"]  = game.CTime.TimeToSeconds, --/ 23:59:59
-			["ms"] = game.CTime.TimeToMilisecs --/ 23:59:59:999
-		}
-		if sType == string.lower(sType) then --/ аргумент в нижнем регистре
-			return dateTime:timeToString(tTime[sType] or 0) --/> время
-		end
-		return dateTime:dateToString(tTime[sType] or 0) --/> дата
-	end
-	return dateTime:timeToString(game.CTime.TimeToSeconds) --/> по дефолту 23:59:59
-end
-
-local oCTime_Start    = nil --/ объект счетчика времени в Зоне с момента 'даты старта'
-local sini            = system_ini()
-
---/ Установка 'базового' счетчика игрового времени на дату из 'alife.ltx'
-function Set_Game_StartTime()
-	local ParseStr = function(str,divider)
-		local tbl,pattern = {},'[^%s*%'..(divider or ',')..']+'
-		for s in str:gmatch(pattern) do
-			table.insert(tbl, tonumber(s) or 0)
-		end
-		return tbl --/>
-	end
-	local tT = ParseStr(sini:r_string("alife", "start_time"), ":") --/ 05:30:00
-	local tD = ParseStr(sini:r_string("alife", "start_date"), ".") --/ 01.05.2012
-	--/ Установка игрового времени. Формат установки: (Y,M,D, h,m,s, ms)
-	oCTime_Start = game.CTime() --/ 'нулевое' игровое время (объект класса 'CTime')
-	oCTime_Start:set(tD[3],tD[2],tD[1], tT[3],tT[2],tT[1], 0) --/< 2011,09,10, 06,10,00, 0
-end
-
---/ установка счетчика игрового времени на iSeconds
-function set_seconds2ctime(iSeconds, oCTime)
-	if not oCTime then oCTime = game.CTime() end --/ если счетчик не задан - берем 'нулевой'
-	local s,ms = math.modf(iSeconds or 0)
-	if ms < 0.001 then
-		oCTime:setHMS(0,0,s)
-	else
-		oCTime:setHMSms(0,0,s, math.floor(ms*1000))
-	end
-	return oCTime --/>
-end
-
---/ установка счетчика текущего игрового времени на iSeconds
-function Set_Rest_GameSeconds(iSeconds, oCTime)
-	oCTime = set_seconds2ctime(iSeconds, oCTime)
-	oCTime:add(game.get_game_time())
-	return oCTime --/>
-end
-
---/ доустановка счетчика игрового времени на iSeconds
-function Add_Rest_GameSeconds(iSeconds, oCTime)
-	if oCTime then
-		oCTime_Add = set_seconds2ctime(iSeconds)
-		oCTime:add(oCTime_Add)
-	else
-		oCTime = Set_Rest_GameSeconds(iSeconds)
-	end
-	return oCTime --/>
-end
-
---/ оставшееся время в игровых секундах от заданного 'oCTime' (или от момента начала игры)
-function Get_Rest_GameSeconds(oCTime)
-	local iDiffSec = (oCTime or oCTime_Start):diffSec( game.get_game_time() )
-	-- if oCTime and iDiffSec < -10^8 then --/#?#  for debug CTime
-		-- log("%s:Get_Rest_GameSeconds:DiffSec=[%s]:(%s):<%s>", sModule, iDiffSec, type(oCTime), "Warning!") --/#~#
-		-- print("Get_Rest_GameSeconds:DiffSec=["..iDiffSec.."]:("..type(oCTime).."):<Warning!>") --/#~#
-	-- end
-	return iDiffSec --/> game-seconds (float)
-end
-
---/ прошедшее время в игровых секундах (с момента начала игры или от заданного)
-function Get_Past_GameSeconds(oCTime)
-	local iDiffSec = game.get_game_time():diffSec(oCTime or oCTime_Start)
-	-- if oCTime and iDiffSec > 10^8 then --/#?# for debug CTime
-		-- log("%s:Get_Past_GameSeconds:DiffSec=[%s]:(%s):<%s>", sModule, iDiffSec, type(oCTime), "Warning!") --/#~#
-		-- print("Get_Past_GameSeconds:DiffSec=["..iDiffSec.."]:("..type(oCTime).."):<Warning!>") --/#~#
-	-- end
-	return iDiffSec --/> game-seconds (float)
-end
-
---/ прошедшее время в игровых минутах (с момента начала игры или от заданного)
-function Get_Past_GameMinutes(oCTime)
-	return math.floor(Get_Past_GameSeconds(oCTime)/60) --/> game-minutes
-end
-
---/ прошедшее время в игровых часах (с момента начала игры или от заданного)
-function Get_Past_GameHours(oCTime)
-	return math.floor(Get_Past_GameSeconds(oCTime)/3600) --/> game-hours
-end
-
-----------
--- Вспомогательные функции
--- Kirgudu (по материалам http://lua-users.org/wiki/)
-----------
-
--- выборка из таблицы с сортировкой по key
-function __gen_index_ordered(t)
-	local index_ordered = {}
-	for key in pairs(t) do
-		table.insert(index_ordered, key)
-	end
-	table.sort(index_ordered)
-	return index_ordered
-end
-function next_ordered(t, state)
-	if state == nil then
-		t.__index_ordered = __gen_index_ordered(t)
-		key = t.__index_ordered[1]
-		return key, t[key]
-	end
-
-	key = nil
-	for i = 1,table.getn(t.__index_ordered) do
-		if t.__index_ordered[i] == state then
-			key = t.__index_ordered[i+1]
-		end
-	end
-
-	if key then
-		return key, t[key]
-	end
-
-	t.__index_ordered = nil
-	return
-end
-function pairs_ordered(t)
-	return next_ordered, t, nil
-end
-
--- Глубокое копирование любого объекта по значению
-function deepcopy(object)
-	local lookup_table = {}
-	local function _copy(object)
-		if type(object) ~= "table" then
-			return object
-			elseif lookup_table[object] then
-			return lookup_table[object]
-		end
-		local new_table = {}
-		lookup_table[object] = new_table
-		for index, value in pairs(object) do
-			new_table[_copy(index)] = _copy(value)
-		end
-		return setmetatable(new_table, getmetatable(object))
-	end
-	return _copy(object)
-end
-
--- Случайная выборка из простого массива
-function randomlist(source, count)
-	math.randomseed(time_global())
-	local newlist = {}
-	if not count then
-		count = 0
-	else
-		count = #source - count
-	end
-	while #source > count do
-		local idx = math.random(1, #source)
-		newlist[#newlist + 1] = source[idx]
-		table.remove(source, idx)
-	end
-	return newlist
-end
-
--- Очистка строки от начальных и конечных пробелов
-local match = string.match
-function string:trim()
-	return match(self,'^()%s*$') and '' or match(self,'^%s*(.*%S)')
-end
-
--- Разбивка строки по разделителю sep, вывод в виде списка строк
-function string:split(sep)
-	local sep, t = sep or ":", {}
-	local pattern = string.format("([^%s]+)", sep)
-	self:gsub(pattern, function(c) t[#t + 1] = c:trim() end)
-	return t
-end
-
--- Разбивка строки по разделителю "(\r)\n", вывод в виде списка строк
-function string:lines()
-	local t = {}
-	local function helper(line) table.insert(t, line) return "" end
-	helper((self:gsub("(.-)\r?\n", helper)))
-	return t
-end
-
--- Разбивка строки по максимальной длине, вывод в виде одной строки с разделителем "\n"
--- limit - максимальная длина строки
--- indent - отступ первой строки после разбивки (строка)
--- indent1 - отступ второй и последующих строк после разбивки (строка)
-function string:wrap(limit, indent, indent1)
-	indent = indent or ""
-	indent1 = indent1 or indent
-	limit = limit or 72
-	local here = 1 - #indent1
-	return indent1..self:gsub("(%s+)()(%S+)()",
-		function(sp, st, word, fi)
-			if fi-here > limit then
-				here = st - #indent
-				return "\n"..indent..word
-			end
-		end)
-end
-
--- Полная разбивка строки по разделителю и максимальной длине, вывод в виде списка строк
--- separator - разделитель (строка)
--- limit - максимальная длина строки
--- indent - отступ первой строки после разбивки (строка)
--- indent1 - отступ второй и последующих строк после разбивки (строка)
-function string:wrap_full(separator, limit, indent, indent1)
-	local t, ar = {}, self:split(separator)
-	for k,v in pairs(ar) do
-		v = v:wrap(limit, indent, indent1):lines()
-		for kk,vv in pairs(v) do
-			table.insert(t, vv)
-		end
-	end
-	return t
-end
-
-local tMarkers = { --/ служебная таблица маркеров упаковки
-	dec = {string.char(1), 1}, --/ 0x1 (SOH) - 'number' (dec)
-	str = {string.char(2), 2}, --/ 0x2 (STX) - 'string'
-	bln = {string.char(3), 3}, --/ 0x3 (ETX) - 'boolean'
-	tbl = {string.char(4), 4}, --/ 0x4 (EOT) - 'table'
-	tbe = {string.char(5), 5}, --/ 0x5 (ENQ) - table-end
-	tbi = {string.char(6), 6}, --/ 0x6 (ACK) - table-list
-	hex = {string.char(7), 7}, --/ 0x7 (BEL) - number-hex
-	vec = {string.char(8), 8}, --/ 0x8 (BS)  - 'vector'
-	ctm = {string.char(9), 9}  --/ 0x9 (...) - 'ctime'
-}
-local tTypeToMarker = { ['nil']=0,['boolean']=1,['number']=2,['string']=3,['table']=4 }
-
---/--------------------------------------------------------
---/ упаковка таблицы (списка) 'tTbl' в строку 'sStr'
---/--------------------------------------------------------
-function fTbl_Compress(tTbl,recur) --/< table [,(nil|true|false)]
-	if type(tTbl) ~= 'table' then
-		if type(tTbl) == 'userdata' then --/ if 'vector' or 'ctime'?
-			if type(tTbl.getP) == 'function' and tonumber(tTbl.x) and tonumber(tTbl.y) and tonumber(tTbl.z) then --/ 'vector'
-				-- if db.is_dbg1 then log("fTbl_Compress:vec_marker(%d)=[%s]", tMarkers.vec[2], tMarkers.vec[1], "") end --/#~# 'vector'
-				return tMarkers.vec[1] .. fTbl_Compress({tTbl.x,tTbl.y,tTbl.z},recur or {}) .. tMarkers.tbe[1] --/> рекурсивный вызов
-			elseif type(tTbl.setHMSms) == 'function' then --/ 'ctime'
-				-- if db.is_dbg1 then log("fTbl_Compress:ctm_marker(%d)=[%s]", tMarkers.ctm[2], tMarkers.ctm[1], "") end --/#~# 'ctime'
-				local Y,M,D,h,m,s,ms = tTbl:get(0,0,0,0,0,0,0)
-				return tMarkers.ctm[1] .. fTbl_Compress({Y,M,D,h,m,s,ms},recur or {}) .. tMarkers.tbe[1] --/> рекурсивный вызов
-			end
-		end
-		-- to_log("fTbl_Compress:Not_Table=["..type(tTbl).."]:<Warning!>")
-		return "",true --/> zero-string & error (не таблица!)
-	elseif getmetatable(tTbl) then --/ can not serialize a table that has a metatable associated with it.
-		-- to_log("fTbl_Compress:metatable:<%s>", "Warning!")
-		return "",true --/> zero-string & error (не таблица!)
-	elseif not next(tTbl) then --/ --/>? (отсутствует 1-й элемент таблицы)
-		return "",false --/> zero-string (таблица пуста)
-	end
-	recur = recur or {}
-	--/-------------------
-	--/ локальная функция: проверка типа таблицы:'список' или нет?
-	--/-------------------
-	local fIs_List = function(tTbl)
-		local bList = false
-		local iCntIdx = #tTbl --/ длина индексированной части таблицы
-		if iCntIdx > 0 then --/ есть элементы списка?
-			--/ индексы начинаются с 1 и за 'списком' отсутствует хеш-элемент
-			if next(tTbl) == 1 and not next(tTbl,iCntIdx) then
-				for i=2,iCntIdx-1 do --/ цикл перепроверки: 'отсутствуют пустые элементы?'
-					if tTbl[i] == nil then --/ пустышка?
-						return false --/> не список
-					end
-				end
-				bList = true --/ флаг: это список!
-			end
-		end
-		return bList --/> флаг: список или ... (true|nil)
-	end
-	--/-------------------
-	--/ локальная функция: упаковка (+конвертер) числа (number) в 'dec' или 'hex' строку (string)
-	--/-------------------
-	local fPack_Num2Str = function(iNum)
-		if iNum == math.modf(iNum) then --/ целочисленное? (отсутствует дробная часть)
-			local iAbs = math.abs(iNum) --/ модуль числа
-			if iAbs > 9 then --/ число 2-x и более разрядное?
-				local iLv = math.floor(math.log10(iAbs+1)) --/ степень ближайшего к модулю бОльшего числа кратного 10-ти
-				if iAbs >= 10^iLv and iAbs < 2^(4*iLv) then --/ разрядность 'dec' > 'hex'?
-					if iNum >= 0 then --/ не отрицательное?
-						return tMarkers.hex[1] .. string.format('%X', iAbs) --/> 'hex'-строка
-					end
-					--/ отрицательное - упаковываем со знаком
-					return tMarkers.hex[1] .. "-" .. string.format('%X', iAbs) --/> 'hex'-строка со знаком
-				end
-			end
-		end
-		return tMarkers.dec[1] .. iNum --/> 'dec'-строка
-	end
-	--/-------------------
-	--/ локальная функция: упаковка ключа (индекса) элемента таблицы
-	--/-------------------
-	local fPack_Key = function(key)
-		local marker = tTypeToMarker[type(key)] or -1 --/ 0...4
-		if     marker == 2 then --/ 'number'
-			return fPack_Num2Str(key) --/> 'dec|hex'-строка
-		elseif marker == 3 then --/ 'string'
-			return tMarkers.str[1] .. key --/> строка
-		end
-		--table.print(tTbl,sModule..":PackTbl|Key")
-		--abort("fTbl_Compress:fPack_Key:Type(%s)=[%s]~UnSupported:<%s>", key, type(key), "Error!")
-		-- to_log("fTbl_Compress:fPack_Key:Type("..tostring(key)..")=["..type(key).."]~unsupported:<Warning!>")
-		return nil,true --/> nil & error
-	end
-	--/-------------------
-	--/ локальная функция: упаковка значения элемента таблицы
-	--/-------------------
-	local fPack_Value = function(value)
-		local marker = tTypeToMarker[type(value)] or -1 --/ 0...4
-		if     marker == 2 then --/ 'number'
-			return fPack_Num2Str(value) --/> 'dec|hex'-строка
-		elseif marker == 3 then --/ 'string'
-			return tMarkers.str[1] .. value --/> строка
-		elseif marker == 1 then --/ 'boolean'
-			return tMarkers.bln[1] .. ((value and "1") or "0") --/> 'bool'-строка ('0'|'1')
-		elseif getmetatable(value) then
-			--/ can not serialize a table
-		elseif marker == 4 then --/ 'table'
-			--[[
-			if recur[tTbl] then --/ can not serialize recursive tables
-				return nil, true --/> nil & error #???#
-			end
-			--]]
-			recur[tTbl] = true
-			return tMarkers.tbl[1] .. fTbl_Compress(value,recur) .. tMarkers.tbe[1] --/> рекурсивный вызов
-		end
-		--table.print(tTbl,sModule..":PackTbl|Value")
-		--abort("fTbl_Compress:fPack_Value:Type(%s)=[%s]~UnSupported:List=[%s]:<%s>", value, type(value), bList, "Error!")
-		-- to_log("fTbl_Compress:fPack_Value:Type=["..type(value).."]~unsupported:bList=["..tostring(bList).."]:<Warning!>")
-		return nil,true --/> nil & error
-	end
-	--/ -------------------------------------------
-	--/ тело основной функции: all pack
-	--/-------------------
-	local tPackStr = {} --/ временная таблица для частей общей строки
-	local key,val,err
-	if fIs_List(tTbl) then --/ упаковывается список?
-		table.insert( tPackStr, tMarkers.tbi[1] ) --/< маркер 'list' (список)
-		for i=1,#tTbl do
-			val,err = fPack_Value(tTbl[i],recur)
-			if err then
-				-- to_log(string.exformat("fTbl_Compress:val(%s)=[%s]=>[%s]~wrong_pack:list:<%s>", type(tTbl[i]), tTbl[i], val, "Warning!"))
-				return "",true --/> zero-string & error (can not serialize)
-			end
-			table.insert(tPackStr, val)
-		end
-	else --/ полная упаковка (ключ и значение)
-		for k,v in pairs(tTbl) do
-			key,err = fPack_Key(k,recur)
-			if err then
-				-- to_log(string.exformat("fTbl_Compress:key(%s)=[%s]=>[%s]~wrong_pack:<%s>", k, type(k), key, "Warning!"))
-				return "",true --/>  zero-string & error (can not serialize)
-			end
-			table.insert(tPackStr, key)
-			val,err = fPack_Value(v,recur)
-			if err then
-				-- to_log(string.exformat("fTbl_Compress:val(%s)=[%s]=>[%s]~wrong_pack:<%s>", v, type(v), val, "Warning!"))
-				return "",true --/>  zero-string & error (can not serialize)
-			end
-			table.insert(tPackStr, val)
-		end
-	end
-	return table.concat(tPackStr) --/> строка
-end
-
---/--------------------------------------------------------
---/ Pаспаковка строки 'sString' в таблицу
---/--------------------------------------------------------
-function fTbl_deCompress(sString)
-	local iLen = sString:len() --/ длина строки
-	--/-------------------
-	--/ локальная функция: по-символьный парсер строки 'sString' от iSym-го до 1-го 'управляющего' символа
-	--/-------------------
-	local fGet_Str = function(iSym) --/< текущий индекс символа в строке
-		for i=iSym,iLen do
-			local iByte = string.byte(sString:sub(i,i)) --/ код i-го символа строки
-			if iByte < 32 then --/ 'управляющий' символ?
-				if iByte > 9 then --/ запрещенный 'управляющий' символ?
-					abort(script_name()..":fTbl_deCompress:fGet_Str:Symbol("..tostring(i)..")=["..tostring(iByte).."] < 32:<Error!>")
-				elseif i == iSym then --/ текущий символ такой же как и начальный управляющий символ?
-					if i > 0 and iByte ~= tMarkers.str[2] and iByte == string.byte(sString:sub(i-1,i-1)) then --/ исключаем пустые строки
-						-- to_log("fTbl_deCompress:fGet_Str:string= "..tostring(sString))
-						abort(script_name()..":fTbl_deCompress:fGet_Str:Symbol("..tostring(i)..")=["..tostring(iByte).."]:<Error!>")
-					else
-						-- to_log("fTbl_deCompress:fGet_Str: symbol=["..tostring(i).."] <~ zero string") --/#~#
-					end
-				end
-				return sString:sub(iSym,i-1),i --/> sStr,iNext (субстрока и индекс начального упр.символа)
-			end
-		end
-		return sString:sub(iSym,iLen) --/> sStr (субстрока до конца строки)
-	end
-	--/-------------------
-	--/ локальная функция: конвертер субстроки (sStr) в десятичное число
-	--/-------------------
-	local fGet_Num = function(sStr,bHex) --/< bHex - флаг 'hex'-строки
-		local iNum = nil
-		if not bHex then --/ распаковки 'dec'-строки?
-			iNum = tonumber(sStr) --/ перевод 'dec'-строки в десятичное число
-		else --/ распаковка 'hex'-строки
-			if sStr:sub(1,1) ~= "-" then --/ отсутствует символ '-' (минус)?
-				iNum = tonumber(sStr,16) --/ перевод 'hex'-строки в десятичное число ('0x'..sStr)
-			else --/ для отрицательного - отрезаем 1-й символ
-				iNum = tonumber(sStr:sub(2,-1),16) *(-1) --/ перевод 'hex'-строки в отрицательное десятичное число
-			end
-		end
-		if not iNum then --/ ошибка распаковки числа?
-			abort(script_name()..":fTbl_deCompress:fGet_Num:Str=["..tostring(sStr).."],Hex=["..tostring(bHex).."]:<Error!>")
-		end
-		return iNum --/> number
-	end
-	--/ -------------------------------------------
-	--/ тело основной функции: parse all
-	--/-------------------
-	fParse = function(iSym) --/< парсинг строки 'sString' с iSym-го символа
-		-- log("fTbl_deCompress:fParse:at=[%s],Len=[%s],String=[%s]", iSym, iLen, sString, '') --/#~#
-		local bVector,bCTime = nil,nil --/ if 'vector' or 'CTime'
-		--/ проверка: упакована таблица типа 'список' (table-list)?
-		local iByte = string.byte(sString:sub(iSym,iSym)) --/ код iSym-го символа в строке
-		iSym = iSym+1 --/ переходим к следующему символу
-		local bList = iByte == tMarkers.tbi[2] --/ флаг: 'начало списка' (table-list)
-		if bList then --/ проверка: 'список'?
-			iByte,iSym = string.byte(sString:sub(iSym,iSym)), iSym+1--/ пропускаем маркер списка и переходим к следующему символу
-		else
-			bVector,bCTime = iByte == tMarkers.vec[2], iByte == tMarkers.ctm[2]
-			if bVector or bCTime then --/ if 'vector' or 'CTime'
-				bList = string.byte(sString:sub(iSym,iSym)) == tMarkers.tbi[2] --/ флаг: 'начало списка' (table-list)
-				if not bList then --/ проверка: 'список'?
-					abort("fTbl_deCompress:fParse:(%d)=[%s],at=(%d)=[%s],String=[%s]~wrong!:<%s>", iByte, string.char(iByte), iSym, string.char(iSym), sString, "Warning!")
-				end
-			end
-		end
-		local tTbl,key,value = {},nil,nil
-		--/ цикл парсинга строки с iSym-го символа
-		while iSym <= iLen do --/ (суб)строка не закончилась?
-			if iByte == tMarkers.tbe[2] then --/ проверка: маркер конца субтаблицы (table-end)?
-				return tTbl,iSym --/> субстрока субтаблицы закончилась - выход из функции
-			end
-			if not bList then --/ проверка: не 'список'? -> режим 'общей' таблицы
-				key,iSym = fGet_Str(iSym) --/ парсинг 'key'
-				if iByte == tMarkers.dec[2] then --/ 'number' (dec)?
-					key = fGet_Num(key, false) --/< распаковка 'dec'-строки
-				elseif iByte == tMarkers.hex[2] then --/ 'number-hex'?
-					key = fGet_Num(key, true) --/< 'true' - флаг распаковка 'hex'-строки
-				elseif iByte ~= tMarkers.str[2] then --/ не 'string'? -> ошибка формата упаковки
-					abort("fTbl_deCompress:fParse:at=(%d):UnSupported_TypeKey(%s)=[%d],String=[%s]", iSym, key, iByte, sString)
-				end
-				iByte,iSym = string.byte(sString:sub(iSym,iSym)), iSym+1 --/ код следующего символа строки
-			end
-			--/ проверка 'value'
-			if iByte == tMarkers.tbl[2] then --/ 'table'?
-				value,iSym = fParse(iSym) --/> рекурсивный вызов для 'табличных субстрок'
-			elseif bVector then --/ 'vector'?
-				value,iSym = fParse(iSym) --/> рекурсивный вызов для 'табличных субстрок'
-				if value[3] then
-					value = vector():set(unpack(value)) --/ 'vector'
-				else
-					-- to_log(string.exformat("fTbl_deCompress:fParse:(%d),at=(%d),key(%s):Wrong_DataVector=[%d],String=[%s]", iByte, iSym, #value or -1, sString))
-					value = vector():set(0,0,0) --/> 'zero_vector'
-				end
-			elseif bCTime then --/ 'ctime'?
-				value,iSym = fParse(iSym) --/> рекурсивный вызов для 'табличных субстрок'
-				local ctime = game.CTime()
-				if value[7] then
-					value = ctime:set(unpack(value)) --/> 'CTime'
-				else
-					-- to_log(string.exformat("fTbl_deCompress:fParse:(%d),at=(%d):Wrong_DataCTime=[%d],String=[%s]", iByte, iSym, #value or -1, sString))
-					value = ctime --/> 'zero_oCTime'
-				end
-			else --/ парсинг 'value'
-				value,iSym = fGet_Str(iSym) --/ парсинг 'value'
-				if     iByte == tMarkers.dec[2] then --/ 'number' (dec)?
-					value = fGet_Num(value, false) --/< распаковка 'dec'-строки
-				elseif iByte == tMarkers.hex[2] then --/ 'number-hex'?
-					value = fGet_Num(value, true) --/< 'true' - флаг распаковка 'hex'-строки
-				elseif iByte == tMarkers.bln[2] then --/ 'boolean'?
-					value = value == "1"
-				elseif iByte ~= tMarkers.str[2] then --/ не 'string'? - ошибка формата упаковки
-					abort("fTbl_deCompress:fParse:at=(%d):UnSupported_TypeValue(%s)=[%d],Key=[%s],List=[%s],String=[%s]", iSym, type(value), iByte, tostring(key), tostring(bList), sString)
-				end
-			end
-			--/ запоминаем элемент в таблицу
-			-- log("fParse:key=[%s],value=[%s]:[%s]", key, value, "<") --/#~#
-			if bList then --/ элемент списка?
-				--if not iSym and (bVector or bCTime) then --/#?# конец строки и 'vector' or 'CTime'?
-					--return value --/#?#> выход из цикла
-				if bVector or bCTime then --/#?# конец строки и 'vector' or 'CTime'?
-					tTbl = value
-					return tTbl --/#?#> выход из цикла
-				end
-				table.insert(tTbl, value) --/ добавляем в таблицу типа 'список' (table-list)
-			else --/ элементы 'общей' таблицы
-				tTbl[key] = value
-			end
-			if not iSym then --/ конец строки?
-				return tTbl --/> выход из цикла
-			end
-			iByte,iSym = string.byte(sString:sub(iSym,iSym)), iSym+1 --/ код следующего символа строки
-		end
-		return tTbl,iSym --/> (sub)table or 'vector' or 'CTime'
-	end
-	--/----------------------------------------------------------------
-	--/ парсинг строки 'sString' (с 1-го символа)
-	-- log("fTbl_deCompress:Len=[%s],String=[%s]", iLen, sString, '') --/#~#
-	return fParse(1) or {} --/> table
-end
-
-if not table.compress then --/clench|shrink
-	table.compress = fTbl_Compress
-end
-if not table.decompress then
-	table.decompress = fTbl_deCompress
-end
-
-----------
--- Вспомогательные функции
--- Kirgudu (по материалам http://lua-users.org/wiki/)
-----------
-
---/----------------------------------------------
---/ конвертер строки для 'printf'
---/ Автор: Artos
---/----------------------------------------------
-function FormatToString(fmt,...)
-	--/ локальная функция: перевод аргумента в стринг
-	local to_str = function(val,typ)
-		if typ == 'boolean' then
-			return tostring(val) --/>
-		elseif typ == 'table' or typ == 'userdata' then
-			if tonumber(val.x) and tonumber(val.y) and tonumber(val.z) then
-				if typ == 'table' then
-					return string.format('tab{x=%.3f:y=%.3f:z=%.3f}',val.x,val.y,val.z) --/>
-				end
-				return string.format('vec(x=%.3f:y=%.3f:z=%.3f)',val.x,val.y,val.z) --/>
-			end
-		elseif typ == 'number' then
-			return tostring(val) --/>
-		elseif typ == 'string' then
-			return val --/>
-		end
-		return "<"..typ..">" --/>
-	end
-	--/ основное тело функции: парсинг исходной строки
-	if type(fmt) == 'string' then
-		if fmt:match('%\%[s|d]') then --/ есть патерн(ы)
-			if next({...}) then --/ есть аргумент(ы)?
-				local arg,val,typ,i = {...},nil,nil,nil
-				for i=1,#arg do
-					val = arg[i] --/ значение текущего аргумента
-					typ = type(val) --/ тип текущего аргумента
-					if typ == 'string' then
-						fmt = fmt:gsub('%\%s',val,1)
-					elseif typ == 'number' then
-						if fmt:match('%\%d') then
-							fmt = fmt:gsub('%\%d',val,1)
-						else
-							fmt = fmt:gsub('%\%s',val,1)
-						end
-					else
-						fmt = fmt:gsub('%\%s',to_str(val,typ),1)
-					end
-				end
-			end
-			fmt = fmt:gsub('%\%[s|d]',"<NOT_arg!>") --/ заглушка от отсутствия аргументов
-		end
-	else
-		fmt = to_str(fmt,type(fmt))
-	end
-	--/ с заменой обычных пробелов (sym_space='\032') на печатные ('\160')
-	return fmt:gsub('%s','\160') --/>
-end
-
---/------------------------------------------------------------------
---/ Functions for Print-Log
---/ Автор: Artos
---/ Адаптация: Kirgudu
---/------------------------------------------------------------------
-local console --/ переменная, кеширующая функцию консоли
-
-function printf_log(fmt,...) --/ вспогательная функция для непосредственно вывода в лог
-	if not console then console = get_console() end
-	if next({...}) then
-		fmt = string.sub(FormatToString(fmt,...),1,250)
-		console:execute("load :>"..fmt)
-	else
-		console:execute("load :>"..string.sub(tostring(fmt),1,250))
-	end
-end
-
-function printf_p(fmt,...)
-	if not console then console = get_console() end
-	if debug == nil then
-		printf_log(fmt,...)
-		return
-	end
-	local is_g = 0
-	local result = fmt
-	local info_table = debug.getinfo(2)
-	local script_name = string.gsub(info_table.short_src, "%.script", "")
-	script_name = string.gsub(script_name, "gamedata\\scripts\\", "")
-	if scripts_to_print[script_name] == true then return end
-	script_name,is_g = string.gsub(script_name, "_g", "")
-	if is_g == 0 then
-		result = script_name..":("..info_table.currentline.."):"..fmt
-	end
-	printf_log(result,...)
-end
-
---/----------------------------------------------
---/ вывод в буфер лога
---/ незначительно нагружает игру, но при фатальных ошибках информация из буфера лога может быть утеряна
---/----------------------------------------------
-function printf(fmt,...) --/ в зависимости от настройки hwm_options.full_log
-	if not log_full then return end
-	printf_p(fmt,...)
-end
-function printff(fmt,...) --/ всегда (forced)
-	printf_p(fmt,...)
-end
-
---/----------------------------------------------
---/ вывод в лог-файл
---/ сохраняет каждую строку в лог-файл в реальном времени, но в циклах и апдейтах может значительно тормозить игру.
---/----------------------------------------------
-function print_f(fmt,...) --/ в зависимости от настройки hwm_options.full_log
-	if not log_full then return end
-	printf_p(fmt,...)
-	console:execute("flush")
-end
-function print_ff(fmt,...) --/ всегда (forced)
-	printf_p(fmt,...)
-	console:execute("flush")
-end
-
---/-------------------------------------------------------------------
---/#+# initialize extension modules
---/-------------------------------------------------------------------
-prefetch("lua_extension") --/#+# подключение модуля расширений Lua
-prefetch("lua_helper") --/#+# подключение модуля 'общих' хелп-функций
-
---/ ------------------------------------------------------------------
---/ print-log (вывод отладочной информации)
---/-------------------------------------------------------------------
-local console
---/ функция вывода сообщения в игровую консоль
-to_log = debug_print or logf or log1 or function(fmt,...)
-	if not log_full then return end
-	if not console then console = get_console() end
-	console:execute("load ~:"..string.exformat(fmt,...))
-end
---/-------------------------------------------------------------------
---/ Принудительное прерывание игры при фатальных ошибках
---/-------------------------------------------------------------------
-abort = function(fmt,...)
-	to_log(string.rep("~",86))
-	assert("[error]ABORT CALLED:\n" .. string.exformat(fmt, ...))
-	to_log("[error]ABORT CALLED:")
-	to_log(string.exformat(fmt, ...))
-	to_log("ATTENTION! Game is interrupted! The information in lines above.")
-	to_log(string.rep("~",86))
-	get_console():execute('flush')
-	exit() --/#!# interrupt game in case of fatal errors
-end
---/ ------------------------------------------------------------------

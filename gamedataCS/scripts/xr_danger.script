@@ -35,17 +35,15 @@ function evaluator_danger:evaluate()
 	end
 
 	local best_danger = self.object:best_danger()
-	local stor = db.storage[self.object:id()]
-	stor.danger_flag = false
 
 	--' проверка на денжер.
 	if best_danger == nil then
---		printf("DANGER [%s] [FALSE] no danger", self.object:name())
+		printf("DANGER [%s] [FALSE] no danger", self.object:name())
 		self.danger_time = nil
 		return false
 	end
 
-	local active_scheme = stor.active_scheme	
+	local active_scheme = db.storage[self.object:id()].active_scheme	
 	local best_danger_object = best_danger:object()
 	local bd_type = best_danger:type()	
 	
@@ -56,17 +54,17 @@ function evaluator_danger:evaluate()
 
 	--' Проверяем наличие объекта денжера.
 	if best_danger_object == nil then
---		printf("DANGER [%s] [FALSE] no object", self.object:name())
+		printf("DANGER [%s] [FALSE] no object", self.object:name())
 		return false
 	end
 	
 	local best_danger_name = best_danger_object:name()
---	printf("best_danger_name = ["..best_danger_name.."]")
+	printf("best_danger_name = ["..best_danger_name.."]")
 	local best_danger_section_name = best_danger_object:section()
 
 	--' проверка не находится ли денжер в списке вечнозапрещенных.(БТР, Вертолеты и тд)
 	if always_ignore_danger_from[best_danger_section_name] == "true" then
---		printf("DANGER [%s] [FALSE] forbidded", self.object:name())
+		printf("DANGER [%s] [FALSE] forbidded", self.object:name())
 		return false
 	end
 
@@ -80,7 +78,7 @@ function evaluator_danger:evaluate()
 		if self.object:best_enemy() == nil and
 		   self.object:relation(db.actor) ~= game_object.enemy 
 		then
---			printf("DANGER [%s] [FALSE] actor_danger", self.object:name())
+			printf("DANGER [%s] [FALSE] actor_danger", self.object:name())
 			return false
 		end	
 	end
@@ -88,51 +86,44 @@ function evaluator_danger:evaluate()
 	--' Игнорим денжеры от своих.
 	if best_danger_object:character_community() == self.object:character_community()  then
 		if not (best_danger_object:id() == db.actor:id() and self.object:relation(db.actor) == game_object.enemy) then 
---			printf("DANGER [%s] [FALSE] my_community", self.object:name())
+			printf("DANGER [%s] [FALSE] my_community", self.object:name())
 			return false
 		end
 	end
-   -- добавлено 22.05.2020 (Rulix aka bak)
-	-- фикс агра на звуки от трупов
-	if best_danger_object ~= nil and best_danger_object:alive() == false and bd_type ~= danger_object.entity_death and bd_type ~= danger_object.grenade then
-		return false
-	end
-   -- добавлено 22.05.2020 (Rulix aka bak)
+
 	--' Проверка, не находится ли данжер в списке запрещенных.
 	if bd_type == danger_object.grenade then
 		if self.object:character_community() == "zombied" then
---			printf("DANGER [%s] [FALSE] ignore grenade for community [zombied]", self.object:name())
+			printf("DANGER [%s] [FALSE] ignore grenade for community [zombied]", self.object:name())
 			return false
 		end
 		if self.a.ignore_types["grenade"] == true then
---			printf("DANGER [%s] [FALSE] ignore grenade", self.object:name())
+			printf("DANGER [%s] [FALSE] ignore grenade", self.object:name())
 			return false		
 		end
 	elseif bd_type == danger_object.entity_corpse then
 		--'if self.a.ignore_types["corpse"] == true then
---			printf("DANGER [%s] [FALSE] ignore corpse", self.object:name())
+			printf("DANGER [%s] [FALSE] ignore corpse", self.object:name())
 			return false
 		--'end
 	elseif bd_type == danger_object.entity_attacked or
 		   bd_type == danger_object.attacked then
 		if self.a.ignore_types["hit"] == true then
---			printf("DANGER [%s] [FALSE] ignore hit", self.object:name())
+			printf("DANGER [%s] [FALSE] ignore hit", self.object:name())
 			return false
 		end	
 	elseif bd_type == danger_object.enemy_sound or
 	       bd_type == danger_object.attack_sound or
 	       bd_type == danger_object.entity_death then
 		if self.a.ignore_types["sound"] == true then
---			printf("DANGER [%s] [FALSE] ignore sound", self.object:name())
-			return false
-		elseif bd_type == danger_object.enemy_sound and not best_danger_object:alive() then
+			printf("DANGER [%s] [FALSE] ignore sound", self.object:name())
 			return false
 		end	
 	end
 
 	--' отсеиваем по настройке combat_ignore/danger
-	if xr_combat_ignore.is_ignored(self.object,best_danger_object) then
---	    printf("DANGER [%s]->[%s] [FALSE] ignore_danger", self.object:name(), best_danger_name)
+	if not xr_combat_ignore.is_enemy(self.object, best_danger_object, db.storage[self.object:id()].combat_ignore, true) then
+	    printf("DANGER [%s]->[%s] [FALSE] ignore_danger", self.object:name(), best_danger_name)
 	    return false
     end
 
@@ -140,18 +131,11 @@ function evaluator_danger:evaluate()
 	if self.danger_time then
 		self.danger_time = best_danger:time()
 		local passed_time = time_global() - self.danger_time
-   -- добавлено 22.05.2020 (Rulix aka bak)
-		-- и еще небольшой фикс
-		if passed_time < 0 and bd_type == danger_object.entity_death then
-			return false
-		end
-   -- добавлено 22.05.2020 (Rulix aka bak)
 		if check_danger_inertion_time(self.object, best_danger, passed_time) == true then
---			printf("DANGER [%s]: [%s] [TRUE] inertion time [%s]", self.object:name(), passed_time, bd_type)
-			stor.danger_flag = true
+			printf("DANGER [%s]: [%s] [TRUE] inertion time [%s]", self.object:name(), passed_time, bd_type)
 			return true
 		else
---			printf("DANGER [%s]: [%s] [FALSE] expiration time [%s]", self.object:name(), passed_time, bd_type)
+			printf("DANGER [%s]: [%s] [FALSE] expiration time [%s]", self.object:name(), passed_time, bd_type)
 			return false
 		end		
 	end
@@ -159,55 +143,46 @@ function evaluator_danger:evaluate()
 			
 	-- Отсеиваем по дистанции
 	if check_danger_distance(self.object, best_danger) == false then
---		printf("DANGER [%s]->[%s] [FALSE] danger_distance", self.object:name(), best_danger_name)
+		printf("DANGER [%s]->[%s] [FALSE] danger_distance", self.object:name(), best_danger_name)
 		return false
 	end
 
 	--' Отсеиваем по зоне
-	local active_sector = stor.active_sector
+	local active_sector = db.storage[self.object:id()].active_sector
 	if active_sector ~= nil then
 		if sr_danger.check_danger_position(best_danger:position(), active_sector) == false then
---			printf("DANGER [%s]->[%s] [FALSE] information sector", self.object:name(), best_danger_name)
+			printf("DANGER [%s]->[%s] [FALSE] information sector", self.object:name(), best_danger_name)
 			return false
 		end
 	end
 
 	-- Отсеиваем по информационным рестрикторам
 	if xr_gulag.is_info_restricted(self.object:id(), best_danger:position()) then
---		printf("DANGER [%s]->[%s] [FALSE] info restrictor", self.object:name(), best_danger_name)
+		printf("DANGER [%s]->[%s] [FALSE] info restrictor", self.object:name(), best_danger_name)
 		return false
 	end
 
 	-- Отсеиваем тяжелораненых
 	if xr_wounded.is_heavy_wounded_by_id(self.object:id()) then
---		printf("DANGER [%s]->[%s] [FALSE] heavy_wounded", self.object:name(), best_danger_name)
+		printf("DANGER [%s]->[%s] [FALSE] heavy_wounded", self.object:name(), best_danger_name)
 		return false
 	end
-
-	-- Отсеиваем психораненых   -- добавлено 22.05.2020 (Rulix aka bak)
-	if xr_wounded.is_psy_wounded_by_id(self.object:id()) then
-		printf("DANGER [%s]->[%s] [FALSE] psy_wounded", self.object:name(), best_danger_name)
-		return false
-	end
-
 
 	-- Денжер для снайпера
 	if active_scheme == "camper" then
 		if best_danger:type() == danger_object.grenade then
---			printf("DANGER [%s]->[%s] [TRUE] camper, type [%s]", self.object:name(), best_danger_name, tostring(bd_type))
+			printf("DANGER [%s]->[%s] [TRUE] camper, type [%s]", self.object:name(), best_danger_name, tostring(bd_type))
 			self.danger_time = best_danger:time()
-			stor.danger_flag = true
 			return true
 		end
 		return false
 	else
---		printf("DANGER [%s]->[%s] [TRUE] general, type [%s]", self.object:name(), best_danger_name, tostring(bd_type))
+		printf("DANGER [%s]->[%s] [TRUE] general, type [%s]", self.object:name(), best_danger_name, tostring(bd_type))
 		self.danger_time = best_danger:time()
-		stor.danger_flag = true
 		return true
 	end
 
---	printf("DANGER [%s]->[%s] [FALSE] default", self.object:name(), best_danger_name)
+	printf("DANGER [%s]->[%s] [FALSE] default", self.object:name(), best_danger_name)
 	return false
 end
 
@@ -276,14 +251,6 @@ function check_danger_inertion_time(npc, danger, passed_time)
 			if danger_settings.danger_inertion_time_hit <= passed_time then
 				return false
 			end	
-			-- хоть немного фиксануть этот тупой баг
-			if passed_time < 0 or danger_settings.danger_inertion_time_hit <= passed_time*2 then
-				local obj = danger:object()
-				if obj and obj:alive() and npc:relation(obj) ~= game_object.enemy then
-					return false
-				end
-			end
-			--
 		elseif bd_type == danger_object.enemy_sound or
 			bd_type == danger_object.attack_sound or
 	        bd_type == danger_object.entity_death then
@@ -329,7 +296,7 @@ function check_danger_distance(npc, danger)
 	local bd_type = danger:type()
 	local danger_distance_sqr = danger:position():distance_to_sqr(npc:position())	
 	
---	printf("DANGER_DIST [%s] [%s]", npc:name(), tostring(danger_distance_sqr))
+	printf("DANGER_DIST [%s] [%s]", npc:name(), tostring(danger_distance_sqr))
 
 	if danger_settings ~= nil then
 		if danger_distance_sqr >= danger_settings.ignore_distance then

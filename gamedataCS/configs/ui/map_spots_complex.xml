@@ -18,25 +18,6 @@
 		</static_border>
     </secondary_task_complex_spot>
 
-	<secondary_task_location_complex_storyline>
-		<complex_spot spot="secondary_task_complex_storyline_spot" pointer="quest_pointer2"/>
-		<mini_map     spot="secondary_task_spot_mini" pointer="quest_pointer2"/>
-    </secondary_task_location_complex_storyline>
-    <secondary_task_complex_storyline_spot x="0"  y="0"  width="30" height="27" stretch="0" alignment="c" location_level="5" scale="0" scale_min="2.5" scale_max="5.1">
-	    <left_icon   x="0"  y="0"  width="0"  height="0"  stretch="1" />
-        <right_icon  x="0"  y="0"  width="0"  height="0"  stretch="1" />
-        <top_icon    x="6"  y="5.5"  width="19" height="19" stretch="1" >
-			<texture  r="242" g="231" b="11">ui_pda2_secondary_task2</texture>
-		</top_icon>
-        <timer       x="0"  y="25" width="30" height="10" >
-			<text font="letterica18" color="ui_4" align="c" stretch="1"/>
-            <texture></texture>
-        </timer>
-		<static_border x="2.5" y="2.5" width="25" height="25" stretch="0" light_anim="ui_slow_blinking_alpha" la_cyclic="1" la_texture="1" la_text="0" la_alpha="1">
-			<texture r="242" g="231" b="11">ui_pda2_stask_last_02a</texture>
-		</static_border>
-    </secondary_task_complex_storyline_spot>
-
 	<secondary_task_location_complex_timer>
 		<complex_spot spot="secondary_task_complex_spot_timer" pointer="quest_pointer2"/>
 		<mini_map     spot="secondary_task_complex_spot_mini_timer" pointer="quest_pointer2"/>
@@ -128,7 +109,12 @@
 	<secondary_task_location_complex_defend_smart_delay>
 		<complex_spot spot="secondary_task_complex_spot_timer" pointer="quest_pointer2"/>
 		<mini_map     spot="secondary_task_complex_spot_mini_timer" pointer="quest_pointer2"/>
+<!--
+		<complex_spot spot="secondary_task_defend_smart_delay_complex_spot" pointer="quest_pointer2"/>
+		<mini_map     spot="secondary_task_spot_mini" pointer="quest_pointer2"/>
+-->
     </secondary_task_location_complex_defend_smart_delay>
+<!--
     <secondary_task_defend_smart_delay_complex_spot x="0"  y="0"  width="30" height="27" stretch="0" alignment="c" location_level="5" scale="0" scale_min="2.5" scale_max="5.1">
 	    <left_icon   x="0"  y="0"  width="0"  height="0"  stretch="1" />
         <right_icon  x="0"  y="0"  width="0"  height="0"  stretch="1" />
@@ -140,7 +126,7 @@
             <texture></texture>
         </timer>
     </secondary_task_defend_smart_delay_complex_spot>
-
+-->
    	<secondary_task_location_complex_bring_item>
 		<complex_spot spot="secondary_task_bring_item_complex_spot" pointer="quest_pointer2"/>
 		<mini_map     spot="secondary_task_spot_mini" pointer="quest_pointer2"/>
@@ -216,25 +202,6 @@
 			<texture r="242" g="231" b="11">ui_pda2_stask_last_02a</texture>
 		</static_border>
     </secondary_task_eliminate_squad_complex_spot>
-
-	<secondary_task_location_complex_eliminate_mutant_squad>
-		<complex_spot spot="secondary_task_eliminate_mutant_squad_complex_spot" pointer="quest_pointer2"/>
-		<mini_map     spot="secondary_task_spot_mini" pointer="quest_pointer2"/>
-    </secondary_task_location_complex_eliminate_mutant_squad>
-    <secondary_task_eliminate_mutant_squad_complex_spot x="0"  y="0"  width="30" height="27" stretch="0" alignment="c" location_level="5" scale="0" scale_min="2.5" scale_max="5.1">
-	    <left_icon   x="0"  y="0"  width="0"  height="0"  stretch="1" />
-        <right_icon  x="0"  y="0"  width="0"  height="0"  stretch="1" />
-        <top_icon    x="6"  y="5.5"  width="19" height="19" stretch="1" >
-			<texture  r="242" g="231" b="11">ui_pda2_mutant2</texture>
-		</top_icon>
-        <timer       x="0"  y="25" width="30" height="10" >
-			<text font="letterica18" color="ui_4" align="c" stretch="1"/>
-            <texture></texture>
-        </timer>
-		<static_border x="2.5" y="2.5" width="25" height="25" stretch="0" light_anim="ui_slow_blinking_alpha" la_cyclic="1" la_texture="1" la_text="0" la_alpha="1">
-			<texture r="242" g="231" b="11">ui_pda2_stask_last_02a</texture>
-		</static_border>
-    </secondary_task_eliminate_mutant_squad_complex_spot>
 
 	<secondary_task_location_complex_take_reward>
 		<complex_spot spot="secondary_task_take_reward_complex_spot" pointer="quest_pointer2"/>

@@ -7,42 +7,22 @@ prior = 42
 
 [remark@work3]
 path_walk = bar
-anim = wait
 on_info = smartcover@3
-on_info2 = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy3 %+agr_bar_actor_enemy%
-
-[remark@enemy3]
-anim = threat
-target = actor
-meet = no_meet
-on_info = {!is_smart_in_combat(agr_smart_terrain_1_6)} remark@work3
-combat_ignore_cond = {!is_enemy_actor}
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+anim = wait
 
 [smartcover@3]
 cover_name = agr_duty_bar_anim_cover_1
 loophole_name = lead_stand_lean_on_bar
 cover_state = idle_fire
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy3
-on_info2 = {+start_surge_info} smartcover@3_surge
-combat_ignore_cond = {!is_enemy_actor}
 meet = meet@3
-
-[smartcover@3_surge]
-cover_name = agr_duty_bar_anim_cover_1
-loophole_name = lead_stand_lean_on_bar
-cover_state = idle_fire
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy3
-on_info2 = {+surge_finished_info} smartcover@3
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@3
+on_info = {=actor_enemy} smartcover@3 %+agr_bar_actor_enemy%
 
 [meet@3]
-meet_state        = 2| wait@nil
-meet_state_wpn        = 2| wait@nil
-victim                 = 2| actor
-victim_wpn                 = 2| actor
+meet_state        = 0| nil@nil
+victim                 = 0| nil
 use                = true
-use_wpn = true
 abuse                = false
 
 ;Bar client 2
@@ -54,44 +34,21 @@ prior = 42
 
 [remark@work4]
 path_walk = bar
-anim = wait
 on_info = smartcover@4
-on_info2 = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy4 %+agr_bar_actor_enemy%
-
-[remark@enemy4]
-anim = threat
-target = actor
-meet = no_meet
-on_info = {!is_smart_in_combat(agr_smart_terrain_1_6)} remark@work4
-combat_ignore_cond = {!is_enemy_actor}
+anim = wait
 
 [smartcover@4]
 cover_name = agr_duty_bar_anim_cover_2
 loophole_name = lead_stand_lean_on_bar
 cover_state = fire_no_lookout_fire
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy4
-on_info2 = {+start_surge_info} smartcover@4_surge
-combat_ignore_cond = {!is_enemy_actor}
 meet = meet@4
-
-[smartcover@4_surge]
-cover_name = agr_duty_bar_anim_cover_2
-loophole_name = lead_stand_lean_on_bar
-cover_state = idle_fire
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy4
-on_info2 = {+surge_finished_info} smartcover@4
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@4
+on_info = {=actor_enemy} smartcover@3 %+agr_bar_actor_enemy%
 
 [meet@4]
-meet_state        = 2| wait@nil
-meet_state_wpn        = 2| wait@nil
-victim                 = 2| actor
-victim_wpn                 = 2| actor
+meet_state        = 0| nil@nil
+victim                 = 0| nil
 use                = true
-use_wpn = true
 abuse                = false
-
 ;Bar client 3
 
 [logic@bar_stalker_3]
@@ -101,42 +58,20 @@ prior = 42
 
 [remark@work5]
 path_walk = bar
-anim = wait
 on_info = smartcover@5
-on_info2 = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy5 %+agr_bar_actor_enemy%
-
-[remark@enemy5]
-anim = threat
-target = actor
-meet = no_meet
-on_info = {!is_smart_in_combat(agr_smart_terrain_1_6)} remark@work5
-combat_ignore_cond = {!is_enemy_actor}
+anim = wait
 
 [smartcover@5]
 cover_name = agr_duty_bar_anim_cover_3
 loophole_name = lead_stand_lean_on_bar
 cover_state = idle_fire_no_lookout
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy5
-on_info2 = {+start_surge_info} smartcover@5_surge
-combat_ignore_cond = {!is_enemy_actor}
 meet = meet@5
-
-[smartcover@5_surge]
-cover_name = agr_duty_bar_anim_cover_3
-loophole_name = lead_stand_lean_on_bar
-cover_state = idle_fire
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy5
-on_info2 = {+surge_finished_info} smartcover@5
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@5
+on_info = {=actor_enemy} smartcover@3 %+agr_bar_actor_enemy%
 
 [meet@5]
-meet_state        = 2| wait@nil
-meet_state_wpn        = 2| wait@nil
-victim                 = 2| actor
-victim_wpn                 = 2| actor
+meet_state        = 0| nil@nil
+victim                 = 0| nil
 use                = true
-use_wpn = true
 abuse                = false
 
 ;Bar client 4
@@ -148,87 +83,18 @@ prior = 42
 
 [remark@work6]
 path_walk = bar
-anim = wait
 on_info = smartcover@6
-on_info2 = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy6 %+agr_bar_actor_enemy%
-
-[remark@enemy6]
-anim = threat
-target = actor
-meet = no_meet
-on_info = {!is_smart_in_combat(agr_smart_terrain_1_6)} remark@work6
-combat_ignore_cond = {!is_enemy_actor}
+anim = wait
 
 [smartcover@6]
 cover_name = agr_duty_bar_anim_cover_4
 loophole_name = lead_stand_lean_on_bar
 cover_state = idle_fire_no_lookout
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy6
-on_info2 = {+start_surge_info} smartcover@6_surge
-combat_ignore_cond = {!is_enemy_actor}
 meet = meet@6
-
-[smartcover@6_surge]
-cover_name = agr_duty_bar_anim_cover_4
-loophole_name = lead_stand_lean_on_bar
-cover_state = idle_fire
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy6
-on_info2 = {+surge_finished_info} smartcover@6
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@6
+on_info = {=actor_enemy} smartcover@3 %+agr_bar_actor_enemy%
 
 [meet@6]
-meet_state        = 2| wait@nil
-meet_state_wpn        = 2| wait@nil
-victim                 = 2| actor
-victim_wpn                 = 2| actor
+meet_state        = 0| nil@nil
+victim                 = 0| nil
 use                = true
-use_wpn = true
-abuse                = false
-
-;Bar client 5
-
-[logic@bar_stalker_5]
-active = remark@work7
-suitable = {=check_npc_name(agr_bar_stalker_5) -agr_bar_actor_enemy} true
-prior = 42
-
-[remark@work7]
-path_walk = bar
-anim = wait
-on_info = smartcover@7
-on_info2 = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy7 %+agr_bar_actor_enemy%
-
-[remark@enemy7]
-anim = threat
-target = actor
-meet = no_meet
-on_info = {!is_smart_in_combat(agr_smart_terrain_1_6)} remark@work7
-combat_ignore_cond = {!is_enemy_actor}
-
-[smartcover@7]
-cover_name = agr_duty_bar_anim_cover_5
-loophole_name = lead_stand_lean_on_bar
-cover_state = idle_fire_no_lookout
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy7
-on_info2 = {+start_surge_info} smartcover@7_surge
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@7
-
-[smartcover@7_surge]
-cover_name = agr_duty_bar_anim_cover_5
-loophole_name = lead_stand_lean_on_bar
-cover_state = idle_fire
-on_info = {=is_smart_in_combat(agr_smart_terrain_1_6)} remark@enemy7
-on_info2 = {+surge_finished_info} smartcover@7
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@7
-
-[meet@7]
-meet_state        = 2| wait@nil
-meet_state_wpn        = 2| wait@nil
-victim                 = 2| actor
-victim_wpn                 = 2| actor
-use                = true
-use_wpn = true
 abuse                = false

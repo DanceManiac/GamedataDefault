@@ -2,7 +2,7 @@
 lim_treasure_1
 lim_treasure_2
 lim_treasure_3
-lim_treasure_4
+;lim_treasure_4
 lim_treasure_5
 lim_treasure_6
 lim_treasure_7
@@ -13,124 +13,115 @@ lim_treasure_11
 lim_treasure_12
 lim_treasure_13
 lim_treasure_14
-lim_treasure_15
 
 [lim_treasure_1] ;Труба в контейнере
 target = lim_treasure_1
 name = st_lim_pipe_02_2
 description = st_lim_pipe_02_2_descr
-items = medkit_army, 4, antirad, 2, bandage, 8
-community = renegade, stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = medkit_army, 1, ammo_5.45x39_ap, 60
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_2] ;Рюкзак под забором
 target = lim_treasure_2
 name = st_lim_rucksack_02_1
 description = st_lim_rucksack_02_1_descr
-items = vegetables, 6, sardines, 4
-community = stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = ammo_5.56x45_ap, 60, ammo_m209, 3
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_3] ;Труба в канализации
 target = lim_treasure_3
 name = st_lim_electric_box_01
 description = st_lim_electric_box_01_descr
-items = af_ice, 1, af_vyvert, 1, af_mincer_meat, 1
-community = stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = ammo_m209, 4, ammo_vog-25, 6, ammo_5.56x45_ap, 120, medkit_scientic, 2
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
-[lim_treasure_4] ;Электрощит у тоннеля
-target = lim_treasure_4
-name = st_lim_electric_box_01_2
-description = st_lim_electric_box_01_2_descr
-items = wpn_ak74, 1, ammo_5.45x39_ap, 360
-community = stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+;[lim_treasure_4] ;Электрощит на "Радиоволне"
+;target = lim_treasure_4
+;name = st_lim_electric_box_01_2
+;description = st_lim_electric_box_01_2_descr
+;items = wpn_ak74u,ammo_5.45x39_ap,ammo_5.45x39_ap,ammo_5.45x39_ap
+;community = bandit, dolg, freedom, monolith, killer
+;condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_5] ;Саквояж на чердаке
 target = lim_treasure_5
 name = st_lim_instrument_case_01_1
 description = st_lim_instrument_case_01_1_descr
-items = ammo_7.62x54_ap, 150, grenade_rgd5, 2
-community = stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = medkit_army, 1, medkit_scientic, 1, ammo_pkm_100, 100, ammo_7.62x54_7h1, 10
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_6] ;Саквояж в нише
 target = lim_treasure_6
 name = st_lim_instrument_case_01
 description = st_lim_instrument_case_01_descr
-items = medkit_scientic, 6, bandage, 9
-community = renegade, stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = ammo_5.56x45_ap, 120, ammo_5.45x39_ap, 120, ammo_9x39_ap, 120, antirad, 1
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_7] ;Труба под УАЗиком
 target = lim_treasure_7
 name = st_lim_pipe_02
 description = st_lim_pipe_02_descr
-items = wpn_pm, 15
-community = stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = antirad, 2, medkit, 1, ammo_5.56x45_ap, 180, ammo_m209, 3
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_8] ;За гаражами
 target = lim_treasure_8
 name = st_lim_pipe_02_01
 description = st_lim_pipe_02_01_descr
-items = military_extra_outfit, 1
-community = stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = medkit_scientic, 2
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_9] ;Рюкзак под бардачком
 target = lim_treasure_9
 name = st_lim_rucksack_01
 description = st_lim_rucksack_01_descr
-items = vodka, 4
-community = renegade, stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = ammo_9x39_ap, 180, ammo_vog-25, 4
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_10] ;Рюкзак убитого
 target = lim_treasure_10
 name = st_lim_rucksack_02_2
 description = st_lim_rucksack_02_2_descr
-items = wpn_g36, 1, wpn_sig550, 1, ammo_5.56x45_ap, 360
-community = stalker, stalker_enemy, dolg
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = ammo_5.56x45_ap, 180, medkit_scientic, 1
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_11] ;Сейф в гараже
 target = lim_treasure_11
 name = st_lim_seif_03
 description = st_lim_seif_03_descr
-items = military_outfit, 1, specops_outfit, 1
-community = stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = ammo_vog-25, 5, medkit_army, 3
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
 [lim_treasure_12] ;Прикопанное бревно
 target = lim_treasure_12
 name = st_lim_trees_log_01
 description = st_lim_trees_log_01_descr
-items = mutant_psevdodog_tail, 9
-community = renegade, stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = wpn_val, 1, ammo_9x39_ap, 180
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
-[lim_treasure_13] ;Свёрток в пне
+[lim_treasure_13] ;Сверток в пне
 target = lim_treasure_13
 name = st_lim_trees_stump_01_1
 description = st_lim_trees_stump_01_1_descr
-items = ammo_9x39_sp5, 300, ammo_vog-25p, 4, ammo_5.56x45_ap, 360
-community = stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = antirad, 3, ammo_pkm_100, 200
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false
 
-[lim_treasure_14] ;Вещи убитого
+[lim_treasure_14] ;Вещи раненого
 target = lim_treasure_14
 name = st_lim_rucksack_02_12
 description = st_lim_rucksack_02_12_descr
-items = wpn_vintorez, 1
-community = renegade, stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
-
-[lim_treasure_15] ;Рюкзак в «Москвиче»
-target = lim_treasure_15
-name = st_lim_rucksack_02_3
-description = st_lim_rucksack_02_3_descr
-items = wpn_abakan, 1, ammo_5.45x39_ap, 360
-community = stalker, stalker_enemy, dolg, freedom
-condlist = {=actor_on_level(red_forest:limansk:hospital)} true, false
+items = medkit_scientic, 1, ammo_7.62x54_7h1, 20
+community = bandit, dolg, freedom, monolith, killer
+condlist = {=actor_on_level(red_forest:limansk)} true, false

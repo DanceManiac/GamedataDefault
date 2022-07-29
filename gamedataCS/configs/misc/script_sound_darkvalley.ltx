@@ -12,9 +12,9 @@ val_freedom_blockpost_reply_sos_1
 val_freedom_blockpost_reply_sos_done
 val_freedom_base_enter
 val_freedom_dead_squad
-val_actor_pd_kill
 val_comendant_come_back
 val_freedom_leader_help
+;val_freedom_leader_come_back
 val_freedom_leader_pda_come_back
 val_killer_trep
 val_antenna_control
@@ -43,8 +43,6 @@ val_freedom_fixer_meet
 val_freedom_fixer_meet_bye
 val_freedom_comendant_meet
 val_freedom_comendant_meet_bye
-val_freedombase_guardgate_voise
-
 val_quest_finish
 
 val_freedom_expansion_1_up
@@ -59,9 +57,6 @@ val_freedom_expansion_5_down
 val_freedom_expansion_6_down
 
 val_leader_join_freedom
-
-;***********DARKVALLEY**
-;********************
 
 [val_freedom_barmen_meet]
 type = npc
@@ -143,26 +138,20 @@ path = scenario\darkvalley\val_freedom_comendant_meet_bye_
 shuffle = rnd
 idle = 1,1,100
 
-[val_freedombase_guardgate_voise]
-type = npc
-path = scenario\darkvalley\val_freedombase_guardgate_voise
-shuffle = rnd
-idle = 3,5,100
-
 ;Блокпост
 [val_freedom_blockpost_enter]
 type = actor
 actor_stereo = false
 npc_prefix = false
 path = characters_voice\scenario\darkvalley\val_freedom_blockpost_enter
-shuffle = rnd
-idle = 15,30,100
+shuffle = seq
+idle = 3,5,100
 
 [val_freedom_blockpost_wait]
-type = actor
+type = npc
 actor_stereo = false
 npc_prefix = false
-path = characters_voice\scenario\darkvalley\val_freedom_blockpost_wait_
+path = scenario\darkvalley\val_freedom_blockpost_wait_
 shuffle = rnd
 idle = 3,5,100
 
@@ -171,8 +160,8 @@ type = npc
 actor_stereo = false
 npc_prefix = false
 path = scenario\darkvalley\val_freedom_blockpost_robbery_stand_still
-shuffle = rnd
-idle = 30,50,100
+shuffle = seq
+idle = 1,1,100
 
 [val_freedom_blockpost_robbery_after_pay]
 type = npc
@@ -211,8 +200,8 @@ type = npc
 actor_stereo = false
 npc_prefix = false
 path = scenario\darkvalley\val_freedom_blockpost_robbery_stop
-shuffle = rnd
-idle = 15,30,100
+shuffle = seq
+idle = 1,1,100
 
 [val_freedom_blockpost_reply_sos]
 type = npc
@@ -241,11 +230,12 @@ idle = 3,5,100
 
 ;зашли на базу свободы
 [val_freedom_base_enter]
-type = npc
-actor_stereo = true
-path = scenario\darkvalley\val_freedom_base_enter
-shuffle = seq
-idle = 1,1,100
+type = actor
+actor_stereo = false
+npc_prefix = false
+path = characters_voice\scenario\darkvalley\val_freedom_base_enter
+shuffle = rnd
+idle = 0,0,100
 
 
 ;Первый мертвый блокпост
@@ -257,13 +247,7 @@ path = characters_voice\scenario\darkvalley\val_freedom_dead_squad_
 shuffle = rnd
 idle = 3,5,100
 
-[val_actor_pd_kill]
-type = actor
-actor_stereo = false
-path = characters_voice\scenario\darkvalley\val_actor_pd_kill
-shuffle = seq
-idle = 0,0,100
-
+;
 [val_comendant_come_back]
 type = actor
 actor_stereo = false
@@ -277,6 +261,14 @@ type = actor
 actor_stereo = false
 npc_prefix = false
 path = characters_voice\scenario\darkvalley\val_freedom_leader_help
+shuffle = rnd
+idle = 3,5,100
+
+[val_freedom_leader_come_back]
+type = actor
+actor_stereo = false
+npc_prefix = false
+path = characters_voice\scenario\darkvalley\val_freedom_leader_come_back
 shuffle = rnd
 idle = 3,5,100
 
@@ -304,6 +296,7 @@ npc_prefix = false
 path = characters_voice\scenario\darkvalley\val_freedom_attack_help
 shuffle = rnd
 idle = 3,5,100
+
 
 ;антенна
 [val_antenna_control]
@@ -349,10 +342,10 @@ shuffle = rnd
 idle = 3,5,100
 
 [val_zavod_task]
-type = npc
+type = actor
 actor_stereo = false
 npc_prefix = false
-path = scenario\darkvalley\val_zavod_task
+path = characters_voice\scenario\darkvalley\val_zavod_task
 shuffle = seq
 idle = 3,5,100
 

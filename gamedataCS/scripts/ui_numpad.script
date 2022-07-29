@@ -2,7 +2,7 @@
 -- Description:		Numpad for password input
 -- Created:		23.02.2005
 -- Author:		Serge Vynnychenko
--- Adaptation for Clear sky: Aleks(aleksn09) 5.10.2013
+--
 -- Copyright 2004 GSC Game World
 
 
@@ -25,52 +25,37 @@ end
 
 function numpad:InitControls()
 
-	self:SetWndRect(Frect():set(0,0,1024,768))   --Установка стандартных размеров файла  	  
-    local xml, ctrl = CScriptXmlInit(), CUIWindow() 
+	self:Init(342,199,339,369)			  
+    local xml = CScriptXmlInit()
     xml:ParseFile("ui_numpad_wnd.xml")
 	
 	local t;
      
-	self.background = xml:InitStatic("background", self)    --Регистрируем само окно 
-	xml:InitStatic ("background:edit_box",self.background)      --Регистрация текста: цистамин 
-	t = xml:InitStatic("background:edit_box",self.background)
+	xml:InitStatic("background", self)
+	t = xml:InitStatic("edit_box", self)
 	t:SetWindowName("edit_window")
-	self.btn_0 = xml:Init3tButton ("background:btn_0",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_0, "btn_0")
-	self.btn_1 = xml:Init3tButton ("background:btn_1",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_1, "btn_1") 
-	self.btn_2 = xml:Init3tButton ("background:btn_2",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_2, "btn_2")	
-	self.btn_3 = xml:Init3tButton ("background:btn_3",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_3, "btn_3")	
-	self.btn_4 = xml:Init3tButton ("background:btn_4",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_4, "btn_4")	
-	self.btn_5 = xml:Init3tButton ("background:btn_5",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_5, "btn_5")	
-	self.btn_6 = xml:Init3tButton ("background:btn_6",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_6, "btn_6")	
-	self.btn_7 = xml:Init3tButton ("background:btn_7",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_7, "btn_7")	
-	self.btn_8 = xml:Init3tButton ("background:btn_8",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_8, "btn_8")	
-	self.btn_9 = xml:Init3tButton ("background:btn_9",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_9, "btn_9")		
-
-	self.btn_c = xml:Init3tButton ("background:btn_c",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_c, "btn_c")		
-	self.btn_backspase = xml:Init3tButton ("background:btn_backspase",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_backspase, "btn_backspase")	
-	self.btn_enter = xml:Init3tButton ("background:btn_enter",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_enter, "btn_enter")	
-	self.btn_cancel = xml:Init3tButton ("background:btn_cancel",self.background)          --Регистрация кнопки: цистамин 
-	self:Register (self.btn_cancel, "btn_cancel")	
+	self:Register(xml:Init3tButton("btn_0", self),"btn_0")
+	self:Register(xml:Init3tButton("btn_1", self),"btn_1")
+	self:Register(xml:Init3tButton("btn_2", self),"btn_2")
+	self:Register(xml:Init3tButton("btn_3", self),"btn_3")
+	self:Register(xml:Init3tButton("btn_4", self),"btn_4")
+	self:Register(xml:Init3tButton("btn_5", self),"btn_5")
+	self:Register(xml:Init3tButton("btn_6", self),"btn_6")
+	self:Register(xml:Init3tButton("btn_7", self),"btn_7")
+	self:Register(xml:Init3tButton("btn_8", self),"btn_8")
+	self:Register(xml:Init3tButton("btn_9", self),"btn_9")	
+	
+	self:Register(xml:Init3tButton("btn_c",			self),	"btn_c")
+	self:Register(xml:Init3tButton("btn_backspase",	self),	"btn_backspase")
+	self:Register(xml:Init3tButton("btn_enter",		self),	"btn_enter")
+	self:Register(xml:Init3tButton("btn_cancel",	self),	"btn_cancel")
 end
 
 
 function numpad:InitCallBacks()
 	-- new game
-	self:AddCallback("btn_enter",	ui_events.BUTTON_CLICKED,	self.OnButton_OK_clicked,		self)  --Коллбек кнопки взятия цистамина
-	self:AddCallback("btn_cancel",	ui_events.BUTTON_CLICKED,	self.OnButton_CANCEL_clicked,	self)  --Коллбек кнопки взятия цистамина
+	self:AddCallback("btn_enter",	ui_events.BUTTON_CLICKED,	self.OnButton_OK_clicked,		self)
+	self:AddCallback("btn_cancel",	ui_events.BUTTON_CLICKED,	self.OnButton_CANCEL_clicked,	self)
 	
 	self:AddCallback("btn_0",		ui_events.BUTTON_CLICKED,	self.OnButton_0_clicked,		self)
 	self:AddCallback("btn_1",		ui_events.BUTTON_CLICKED,	self.OnButton_1_clicked,		self)
@@ -167,11 +152,8 @@ function numpad:OnButton_9_clicked()
 end
 
 function numpad:OnButton_CANCEL_clicked()
-	self:on_quit()
-end
-
-function numpad:on_quit()
-	self:GetHolder():start_stop_menu (self,true)
+	self.owner:OnNumberReceive("")
+	self:GetHolder():start_stop_menu(self, true)
 end
 
 function numpad:OnButton_OK_clicked()

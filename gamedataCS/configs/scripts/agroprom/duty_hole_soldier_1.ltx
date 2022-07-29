@@ -2,33 +2,14 @@
 active = walker
 on_death = death
 suitable = {=check_npc_name(agr_holeman) -agru_leader_dolg_task_complete} true
-level_spot = quest_npc
 prior = 42
 
 [walker]
 path_walk = agr_duty_hole_soldier_1_walk
 path_look = agr_duty_hole_soldier_1_look
-on_info = {=dist_to_actor_le(40) -agr_holeman_dialog} walker@1 %=play_sound(agr_hole_wait_0:dolg:agr_holeman_name)%
+on_info = {+snork} camper@def
 combat_ignore_cond = always
 out_restr = agr_out_restr_hole
-meet = no_meet
-
-[walker@1]
-path_walk = agr_duty_hole_soldier_1_walk
-path_look = agr_duty_hole_soldier_1_look
-on_info = {+snork} camper 
-combat_ignore_cond = always
-out_restr = agr_out_restr_hole
-meet = no_meet
-
-[camper]
-path_walk = agr_duty_hole_soldier_1_walk
-path_look = agr_duty_hole_soldier_1_look
-out_restr = agr_out_restr_hole
-def_state_campering = threat_na
-def_state_campering_fire = threat_na
-on_info = {+sattack -agr_snork_shout_sound} camper@def %=play_sound(agr_hole_attack_0:dolg:agr_holeman_name)%
-meet = no_meet
 
 [camper@def]
 path_walk = agr_duty_hole_soldier_1_walk
@@ -36,34 +17,23 @@ path_look = agr_duty_hole_soldier_1_look
 out_restr = agr_out_restr_hole
 def_state_campering = threat_na
 def_state_campering_fire = threat_na
-on_game_timer = 30 | camper@def1 %=play_sound(agr_squad_snorks_attack_3:dolg:agr_holeman_name)%
-meet = no_meet
-
-[camper@def1]
-path_walk = agr_duty_hole_soldier_1_walk
-path_look = agr_duty_hole_soldier_1_look
-out_restr = agr_out_restr_hole
-def_state_campering = threat_na
-def_state_campering_fire = threat_na
-on_info = {+death_1 +death_2 +death_3 +death_4 +death_5 +death_6 +death_7 +death_8 +death_9 +death_6_bl -agr_snork_dialog_shout_sound} remark@predialog %=play_sound(agr_hole_wait_1:dolg:agr_holeman_name)%
-meet = no_meet
+on_info = {+death_1 +death_2 +death_3 +death_4 +death_5 +death_6 +death_7 +death_8 +death_9 -agr_snork_dialog_shout_sound} remark@predialog
 
 [remark@predialog]
-on_actor_in_zone = agr_out_restr_hole | remark@dialogwait
-meet = no_meet
+on_actor_in_zone  = agr_out_restr_hole | remark@dialogwait
 
 [remark@dialogwait]
 anim = guard
 target = actor
 meet = no_meet
 combat_ignore_cond = always
-on_info = %+agr_snork_shout_sound%
-on_game_timer = 40 | remark@dialog %=play_sound(agr_main_hole_actor_arrive:dolg:agr_holeman_name)%
+on_game_timer = 40 | remark@dialog
 
 [remark@dialog]
 anim = guard
 target = actor
-on_signal = sound_end | camper@def2 %+agr_holeman_dialog%
+snd = agr_main_hole_actor_arrive
+on_signal = sound_end | %+agr_holeman_dialog% camper@def2
 meet = no_meet
 combat_ignore_cond = always
 
@@ -74,16 +44,6 @@ on_info = %+agr_snork_dialog_shout_sound%
 out_restr = agr_out_restr_hole
 def_state_campering = threat_na
 def_state_campering_fire = threat_na
-meet = meet
-
-[meet]
-meet_state            = 3| guard@nil
-meet_state_wpn = 3|guard@nil
-victim                = 3| actor
-victim_wpn = 3|actor
-use                   = true
-use_wpn = true
-abuse                 = false
 
 [death]
 on_info = %+agr_hole_leader_death%

@@ -2,40 +2,6 @@
 xStream 02.2008
 ]]
 
-if cop_dyn_music and ogsm_options.music_type == 2 then
-themes={
-	    {
-	        files={
-	                "music\\combat\\theme1_part_1",
-	                "music\\combat\\theme1_part_2",
-	                "music\\combat\\theme1_part_3"
-	              },
-	    },
-	    {
-	        files={
-	                "music\\combat\\theme2_part_1",
-	                "music\\combat\\theme2_part_2",
-	                "music\\combat\\theme2_part_3"
-	              },
-	    },
-	    {
-	        files={
-	                "music\\combat\\theme3_part_1",
-	                "music\\combat\\theme3_part_2",
-	                "music\\combat\\theme3_part_3"
-	              },
-	    },
-	    {
-	        files={
-	                "music\\combat\\theme4_part_1",
-	                "music\\combat\\theme4_part_2",
-	                "music\\combat\\theme4_part_3"
-	              }
-	    }
-       }
-
-
-else
 themes={
 	{
 		maps = "stancia_2",
@@ -56,7 +22,7 @@ themes={
 		}
 	},
 	{
-		maps = "garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital, jupiter_underground",
+		maps = "garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital",
 		files={
 			intro = "music\\combat\\theme1_intro",
 			intro_2 = "music\\combat\\theme1_intro_2",
@@ -139,7 +105,7 @@ themes={
 		}
 	},
 	{
-		maps = "marsh, escape, garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital, jupiter_underground",
+		maps = "marsh, escape, garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital",
 		files={
 			intro_1 = "music\\combat\\theme2_intro_1",
 			intro_2 = "music\\combat\\theme2_intro_2",
@@ -305,7 +271,7 @@ themes={
 		}
 	},
 	{
-		maps = "marsh, escape, garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital, jupiter_underground",
+		maps = "marsh, escape, garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital",
 		files={
 			intro_1 = "music\\combat\\theme2_intro_1",
 			intro_2 = "music\\combat\\theme2_intro_2",
@@ -471,7 +437,7 @@ themes={
 		}
 	},
 	{
-		maps = "marsh, escape, garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital, jupiter_underground",
+		maps = "marsh, escape, garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital",
 		files={
 			intro_1 = "music\\combat\\theme3_intro_1",
 --			intro_2a = "music\\combat\\theme3_intro_2a",
@@ -582,7 +548,7 @@ themes={
 		}
 	},
 	{
-		maps = "marsh, escape, garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital, jupiter_underground",
+		maps = "marsh, escape, garbage, darkvalley, agroprom, agroprom_u, yantar, red_forest, military, limansk, hospital",
 		files={
 --			intro_1 = "music\\combat\\theme3_intro_1",
 			intro_2a = "music\\combat\\theme3_intro_2a",
@@ -698,4 +664,3 @@ themes={
 		}
 	}
 }
-end

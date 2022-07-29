@@ -53,7 +53,7 @@ function action_zombie_shoot:initialize()
 
 	self.st.cur_act = act_shoot
 
-	xr_sound.set_sound_play(self.object:id(), "fight_enemy")
+--	xr_sound.set_sound_play(self.object:id(), "fight_enemy")
 end
 
 function action_zombie_shoot:set_state( state, be, pos )
@@ -68,8 +68,6 @@ function action_zombie_shoot:set_state( state, be, pos )
 	state_mgr.set_state( self.object, state, nil, nil, self.t )
 
 	self.last_state = state
-
-	xr_sound.set_sound_play(self.object:id(), "fight_attack")
 end
 
 function action_zombie_shoot:execute()

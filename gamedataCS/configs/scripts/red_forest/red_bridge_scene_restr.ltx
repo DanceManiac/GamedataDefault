@@ -2,7 +2,7 @@
 active = sr_idle@stop_sim
 
 [sr_idle@stop_sim]
-on_info = {+mil_actor_go_to_limansk +mil_sound_thanks} sr_idle@start_sim %=stop_sim =clear_smart_terrain(red_smart_terrain_bridge)%
+on_info = {+red_bridge_scene_begin} sr_idle@start_sim %=stop_sim =clear_smart_terrain(red_smart_terrain_bridge)%
 
 [sr_idle@start_sim]
 on_info = {+red_bridge_down_done} sr_idle@nil %=start_sim%

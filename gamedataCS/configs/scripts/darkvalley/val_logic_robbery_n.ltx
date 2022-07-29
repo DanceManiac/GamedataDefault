@@ -1,22 +1,14 @@
 [logic]
-active = sr_idle@temp
-
-[sr_idle@temp]
-on_info = {!black_screen} sr_robbery
+active = sr_robbery
 
 [sr_robbery]
 smart_name = val_smart_terrain_5_7
-commander_job = work1, work2, work3, guard_1_walk, guard_2_walk
+commander_job = blockpost_leader_walker_1_walk, blockpost_guard_walker_2_walk, blockpost_guard_walker_1_walk
 pda_sound = val_freedom_blockpost_enter
 pda_return_sound = val_freedom_blockpost_wait
 after_pay_snd = val_freedom_blockpost_robbery_after_pay
 stop_snd = val_freedom_blockpost_robbery_stop
 stand_still_snd = val_freedom_blockpost_robbery_stand_still
-;after_reject_snd = val_freedom_blockpost_robbery_return
-kill_actor_snd = val_freedom_blockpost_robbery_kill_actor
 dialog = val_freedom_blockpost_robbery_dialog
 money = 0
-on_info = {-gar_story_got_info_from_digger +val_talked_to_blockpost_leader_early} sr_idle, {+gar_story_got_info_from_digger +val_talked_to_blockpost_leader_complete} nil
-
-[sr_idle]
-on_info = {+gar_story_got_info_from_digger -val_talked_to_blockpost_leader_complete} sr_robbery
+on_info = {+val_talked_to_blockpost_leader_complete} nil

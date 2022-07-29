@@ -611,13 +611,7 @@ function CCombat_manager:update_squad(id, data)
 						end
 
 						local attack_squad_obj = self.board.squads[attack_squad]
--- Kirgudu
-						if attack_squad_obj
-							and attack_squad_obj.squad_power >= squad.squad_power
-							and not game_relations.check_all_squad_members(id, "enemy")
-							and not game_relations.is_factions_enemies(squad.player_id, alife():actor():community())
-						then
--- Kirgudu
+						if attack_squad_obj.squad_power >= squad.squad_power then
 							local player = self.board.players[squad.player_id]
 							local task = task_manager.get_task_manager():select_task("defend_smart", self.smart, player.player_name)
 
@@ -700,11 +694,7 @@ function CCombat_manager:update_squad(id, data)
 			for kk,vv in pairs(self.squads) do
 				if vv._stage == "combat" then
 					local enemy_squad = self.board.squads[kk]
--- Kirgudu
-					-- уменьшаем силу только в том случае, если оба отряда находятся в оффлайне
-					--if enemy_squad.player_id ~= squad.player_id then
-					if enemy_squad.player_id ~= squad.player_id and not enemy_squad.squad_online then
--- Kirgudu
+					if enemy_squad.player_id ~= squad.player_id then
 						--printf("OCS: squad %s hit %s by %s", squad.squad_id, enemy_squad.squad_id, casualities)
 						vv._squad_power = math.max(0, vv._squad_power - casualities)
 					end
@@ -936,9 +926,6 @@ end
 --' Вызывается на хит колбеках сталкеров и монстров. Нужен для начала атаки.
 function hit_callback(victim_id, attacker_id)
 		--' берем комбат менеджер получившего хит
-
-		if victim_id == nil or db.storage[victim_id] == nil then return end
-
 		local my_squad = db.storage[victim_id].squad_obj
 
 		if my_squad == nil then

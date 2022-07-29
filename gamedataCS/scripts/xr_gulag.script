@@ -173,9 +173,6 @@ end
 --' Найти замену сталкеру на работе GUARD по истечению времени работы.
 function find_stalker_for_job(obj, need_job)
 	local smart = get_npc_smart(obj)
-	if( smart == nil ) then--clp
-		return--clp
-	end--clp
 
 	-- Тут мы типа выбираем чувака на какой то работе.
 	for k,v in pairs(smart.npc_info) do
@@ -193,9 +190,7 @@ end
 function switch_to_desired_job(npc)
 	-- Переключает чувака на работу, которую он хочет (need_job). Работа выбирается отдельно.
 	local smart = get_npc_smart(npc)
-	if smart ~= nil then --clp
-		smart:switch_to_desired_job(npc)
-	end --clp
+	smart:switch_to_desired_job(npc)
 end
 
 

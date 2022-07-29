@@ -3,27 +3,7 @@
 #include "ui\map_spots_mp.xml"
 #include "ui\map_spots_relations.xml"
 #include "ui\map_spots_complex.xml"
-#include "ui\map_spots_complex_16.xml"
-#include "ui\map_spots_find_upgrade.xml"
-#include "ui\map_spots_find_upgrade_16.xml"
-
-        <smart_name>
-                <level_map spot="smart_spot" pointer="quest_pointer"/>
-        </smart_name>
-        <smart_spot x="0" y="0" width="80" height="80" stretch="1" alignment="c">
-        </smart_spot>
-
-	<ogsm_hide_spot>
-		<level_map spot="ogsm_hide_spot_level" pointer="quest_pointer"/>
-		<mini_map spot="ogsm_hide_spot_map" pointer="quest_pointer"/>
-	</ogsm_hide_spot>
-	<ogsm_hide_spot_level x="0" y="0" width="25" height="25" alignment="c" scale="0" stretch = "1">
-		<texture x="858" y="392" width="62" height="62">ui\ui_common</texture>
-	</ogsm_hide_spot_level>
-	<ogsm_hide_spot_map x="0" y="0" width="25" height="25" alignment="c" scale="0" stretch = "1">
-		<texture x="858" y="392" width="62" height="62">ui\ui_common</texture>
-	</ogsm_hide_spot_map>
-
+#include "ui\map_spots_find_upgrade.xml
 
         <quest_pointer x="0" y="0" width="11" height="24" heading="1" alignment="c">
                 <texture a="255" r="255" g="240" b="0">ui_hud_map_arrow</texture>
@@ -100,97 +80,6 @@
         </red_mini_spot>
 
 
-	<eliminate_lager_location>
-		<level_map spot="eliminate_lager_spot"		pointer="quest_pointer"/>
-		<mini_map spot="eliminate_lager_spot_mini"	pointer="quest_pointer"/>
-	</eliminate_lager_location>
-	<eliminate_lager_spot x="0" y="0" width="32" height="32" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_mapQuest_camp_destroy</texture>
-	</eliminate_lager_spot>
-	<eliminate_lager_spot_mini  x="0" y="0" width="11" height="11" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_sm_mapQuest_camp_destroy</texture>
-		<texture_below r="0" g="255" b="0">ui_mini_sn_spot_below</texture_below>
-		<texture_above r="0" g="255" b="0">ui_mini_sn_spot_above</texture_above>
-	</eliminate_lager_spot_mini>
-
-	<eliminate_lair_location>
-		<level_map spot="eliminate_lair_spot"		pointer="quest_pointer"/>
-		<mini_map spot="eliminate_lair_spot_mini"	pointer="quest_pointer"/>
-	</eliminate_lair_location>
-	<eliminate_lair_spot x="0" y="0" width="32" height="32" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_mapQuest_lair_destroy</texture>
-	</eliminate_lair_spot>
-	<eliminate_lair_spot_mini  x="0" y="0" width="11" height="11" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_sm_mapQuest_lair_destroy</texture>
-		<texture_below r="0" g="255" b="0">ui_mini_sn_spot_below</texture_below>
-		<texture_above r="0" g="255" b="0">ui_mini_sn_spot_above</texture_above>
-	</eliminate_lair_spot_mini>
-
-	<defend_lager_location>
-		<level_map spot="defend_lager_spot"		pointer="quest_pointer"/>
-		<mini_map spot="defend_lager_spot_mini"	pointer="quest_pointer"/>
-	</defend_lager_location>
-	<defend_lager_spot  x="0" y="0" width="32" height="32" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_mapQuest_camp_defend</texture>
-	</defend_lager_spot>
-	<defend_lager_spot_mini  x="0" y="0" width="11" height="11" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_sm_mapQuest_camp_defend</texture>
-		<texture_below r="0" g="255" b="0">ui_mini_sn_spot_below</texture_below>
-		<texture_above r="0" g="255" b="0">ui_mini_sn_spot_above</texture_above>
-	</defend_lager_spot_mini>
-
-	<artefact_location>
-		<level_map spot="artefact_spot"		pointer="quest_pointer"/>
-		<mini_map spot="artefact_spot_mini"	pointer="quest_pointer"/>
-	</artefact_location>
-	<artefact_spot  x="0" y="0" width="32" height="32" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_mapQuest_artefact</texture>
-	</artefact_spot>
-	<artefact_spot_mini  x="0" y="0" width="11" height="11" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_sm_mapQuest_artefact</texture>
-		<texture_below r="0" g="255" b="0">ui_mini_sn_spot_below</texture_below>
-		<texture_above r="0" g="255" b="0">ui_mini_sn_spot_above</texture_above>
-	</artefact_spot_mini>
-
-	<kill_stalker_location>
-		<level_map spot="kill_stalker_spot"		pointer="quest_pointer"/>
-		<mini_map spot="kill_stalker_spot_mini"	pointer="quest_pointer"/>
-	</kill_stalker_location>
-	<kill_stalker_spot  x="0" y="0" width="32" height="32" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_mapQuest_stalker_destroy</texture>
-	</kill_stalker_spot>
-	<kill_stalker_spot_mini  x="0" y="0" width="11" height="11" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_sm_mapQuest_stalker_destroy</texture>
-		<texture_below r="0" g="255" b="0">ui_mini_sn_spot_below</texture_below>
-		<texture_above r="0" g="255" b="0">ui_mini_sn_spot_above</texture_above>
-	</kill_stalker_spot_mini>
-
-	<monster_part_location>
-		<level_map spot="monster_part_spot"		pointer="quest_pointer"/>
-		<mini_map spot="monster_part_spot_mini"	pointer="quest_pointer"/>
-	</monster_part_location>
-	<monster_part_spot  x="0" y="0" width="32" height="32" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_mapQuest_monster_find</texture>
-	</monster_part_spot>
-	<monster_part_spot_mini  x="0" y="0" width="11" height="11" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_sm_mapQuest_monster_find</texture>
-		<texture_below r="0" g="255" b="0">ui_mini_sn_spot_below</texture_below>
-		<texture_above r="0" g="255" b="0">ui_mini_sn_spot_above</texture_above>
-	</monster_part_spot_mini>
-
-	<find_item_location>
-		<level_map spot="find_item_spot"		pointer="quest_pointer"/>
-		<mini_map spot="find_item_spot_mini"	pointer="quest_pointer"/>
-	</find_item_location>
-	<find_item_spot  x="0" y="0" width="32" height="32" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_mapQuest_item</texture>
-	</find_item_spot>
-	<find_item_spot_mini  x="0" y="0" width="11" height="11" stretch="1" alignment="c" xform_anim="map_spot_new_xform" xform_anim_cyclic="0">
-		<texture>ui_sm_mapQuest_item</texture>
-		<texture_below r="0" g="255" b="0">ui_mini_sn_spot_below</texture_below>
-		<texture_above r="0" g="255" b="0">ui_mini_sn_spot_above</texture_above>
-	</find_item_spot_mini>
-
         <level_map_spot_border x="0" y="0" width="37" height="37" alignment="c" stretch="1" xform_anim="map_spot_border_xform" xform_anim_cyclic="1">
             <texture a="0">ui_pda2_hl_quest_base</texture>
         </level_map_spot_border>
@@ -204,7 +93,7 @@
         </complex_map_spot_border>
 
 
-    	<actor_location hint="st_actor_name">
+    	<actor_location hint="disable_hint">
                 <level_map spot="actor_level_spot"/>
         </actor_location>
         <actor_level_spot x="0" y="0" width="25" height="25" alignment="c" location_level="-1">
@@ -218,72 +107,58 @@
                 <texture>ui_icons_newPDA_manArrow</texture>
         </actor_level_spot_p>
 
-	<level_changer_spot  x="0" y="0" width="12" height="12" alignment="c" stretch="1" scale="0">
-		<texture x="728" y="577" width="50" height="50">ui\ui_common</texture>
-	</level_changer_spot>
-	<level_changer_spot_mini x="0" y="0" width="12" height="12" alignment="c" stretch="1" scale="0">
-		<texture x="728" y="577" width="50" height="50">ui\ui_common</texture>
-	</level_changer_spot_mini>
 
         <level_changer_up>
-                <level_map spot="level_changer_spot" pointer="quest_pointer"/>
-                <mini_map spot="level_changer_spot_mini" pointer="quest_pointer"/>
+                <level_map spot="level_changer_up_spot" pointer="quest_pointer"/>
         </level_changer_up>
         <level_changer_up_spot x="0" y="0" width="19" height="21" alignment="c" location_level="1" heading_angle="1">
                 <texture r="10" g="250" b="250">ui_pda2_exit_point</texture>
         </level_changer_up_spot>
 
         <level_changer_up_right>
-                <level_map spot="level_changer_spot" pointer="quest_pointer"/>
-                <mini_map spot="level_changer_spot_mini" pointer="quest_pointer"/>
+                <level_map spot="level_changer_up_right_spot" pointer="quest_pointer"/>
         </level_changer_up_right>
         <level_changer_up_right_spot x="0" y="0" width="19" height="21" alignment="c" location_level="1" heading_angle="-45">
                 <texture r="10" g="250" b="250">ui_pda2_exit_point</texture>
         </level_changer_up_right_spot>
 
         <level_changer_right>
-                <level_map spot="level_changer_spot" pointer="quest_pointer"/>
-                <mini_map spot="level_changer_spot_mini" pointer="quest_pointer"/>
+                <level_map spot="level_changer_right_spot" pointer="quest_pointer"/>
         </level_changer_right>
         <level_changer_right_spot x="0" y="0" width="19" height="21" alignment="c" location_level="1" heading_angle="-90">
                 <texture r="10" g="250" b="250">ui_pda2_exit_point</texture>
         </level_changer_right_spot>
 
         <level_changer_right_down>
-                <level_map spot="level_changer_spot" pointer="quest_pointer"/>
-                <mini_map spot="level_changer_spot_mini" pointer="quest_pointer"/>
+                <level_map spot="level_changer_right_down_spot" pointer="quest_pointer"/>
         </level_changer_right_down>
         <level_changer_right_down_spot x="0" y="0" width="19" height="21" alignment="c" location_level="1" heading_angle="-135">
                 <texture r="10" g="250" b="250">ui_pda2_exit_point</texture>
         </level_changer_right_down_spot>
 
         <level_changer_down>
-                <level_map spot="level_changer_spot" pointer="quest_pointer"/>
-                <mini_map spot="level_changer_spot_mini" pointer="quest_pointer"/>
+                <level_map spot="level_changer_down_spot" pointer="quest_pointer"/>
         </level_changer_down>
         <level_changer_down_spot x="0" y="0" width="19" height="21" alignment="c" location_level="1" heading_angle="180">
                 <texture r="10" g="250" b="250">ui_pda2_exit_point</texture>
         </level_changer_down_spot>
 
         <level_changer_down_left>
-                <level_map spot="level_changer_spot" pointer="quest_pointer"/>
-                <mini_map spot="level_changer_spot_mini" pointer="quest_pointer"/>
+                <level_map spot="level_changer_down_left_spot" pointer="quest_pointer"/>
         </level_changer_down_left>
         <level_changer_down_left_spot x="0" y="0" width="19" height="21" alignment="c" location_level="1" heading_angle="135">
                 <texture r="10" g="250" b="250">ui_pda2_exit_point</texture>
         </level_changer_down_left_spot>
 
         <level_changer_left>
-                <level_map spot="level_changer_spot" pointer="quest_pointer"/>
-                <mini_map spot="level_changer_spot_mini" pointer="quest_pointer"/>
+                <level_map spot="level_changer_left_spot" pointer="quest_pointer"/>
         </level_changer_left>
         <level_changer_left_spot x="0" y="0" width="19" height="21" alignment="c" location_level="1" heading_angle="90">
                 <texture r="10" g="250" b="250">ui_pda2_exit_point</texture>
         </level_changer_left_spot>
 
         <level_changer_left_up>
-                <level_map spot="level_changer_spot" pointer="quest_pointer"/>
-                <mini_map spot="level_changer_spot_mini" pointer="quest_pointer"/>
+                <level_map spot="level_changer_left_up_spot" pointer="quest_pointer"/>
         </level_changer_left_up>
         <level_changer_left_up_spot x="0" y="0" width="19" height="21" alignment="c" location_level="1" heading_angle="45">
                 <texture r="10" g="250" b="250">ui_pda2_exit_point</texture>
@@ -300,29 +175,7 @@
         <treasure_spot_mini  x="0" y="0" width="13" height="13" alignment="c" stretch="0" scale="1" scale_min="1.1" scale_max="3.1">
                 <texture>ui_sm_mapQuest_gold</texture>
         </treasure_spot_mini>
-		
-        <my_treasure>
-                <level_map spot="my_treasure_spot" pointer="quest_pointer"/>
-                <mini_map  spot="my_treasure_spot_mini"/>
-        </my_treasure>
-        <my_treasure_spot  x="0" y="0" width="19" height="19" alignment="c" stretch="1" scale="1" scale_min="1.1" scale_max="3.1" light_anim="map_spot_secrets" la_cyclic="0" la_texture="1" la_text="0" la_alpha="1">
-                <texture>ui_rucksuck</texture>
-        </my_treasure_spot>
-        <my_treasure_spot_mini  x="0" y="0" width="13" height="13" alignment="c" stretch="0" scale="1" scale_min="1.1" scale_max="3.1">
-                <texture>ui_sm_rucksuck</texture>
-        </my_treasure_spot_mini>
-		
-        <spec_treasure>
-                <level_map spot="spec_treasure_spot" pointer="quest_pointer"/>
-                <mini_map  spot="spec_treasure_spot_mini"/>
-        </spec_treasure>
-        <spec_treasure_spot  x="0" y="0" width="19" height="19" alignment="c" stretch="1" scale="1" scale_min="1.1" scale_max="3.1" light_anim="map_spot_secrets" la_cyclic="0" la_texture="1" la_text="0" la_alpha="1">
-                <texture>ui_mapQuest_spec</texture>
-        </spec_treasure_spot>
-        <spec_treasure_spot_mini  x="0" y="0" width="13" height="13" alignment="c" stretch="0" scale="1" scale_min="1.1" scale_max="3.1">
-                <texture>ui_sm_mapQuest_spec</texture>
-        </spec_treasure_spot_mini>
-		
+
 
         <alife_combat_fight>
                 <level_map spot="alife_combat_fight_spot" pointer="combat_pointer"/>
@@ -378,14 +231,6 @@
 
 
 <!-- Группировки -->
-
-  <alife_presentation_faction_ecolog>
-    <level_map spot="alife_presentation_faction_ecolog_spot"/>
-  </alife_presentation_faction_ecolog>
-  <alife_presentation_faction_ecolog_spot x="0" y="0" width="27" height="27" alignment="c" stretch="1" scale_min="1" scale_max="3" scale="1">
-    <texture x="720" y="630" width="128" height="128" r="0" g="0" b="255">ui\ui_common</texture>
-  </alife_presentation_faction_ecolog_spot>
-
   <alife_presentation_faction_duty>
     <level_map spot="alife_presentation_faction_duty_spot"/>
   </alife_presentation_faction_duty>
@@ -472,11 +317,9 @@
 
 
   <alife_presentation_faction_monolith>
-    <level_map spot="alife_presentation_faction_monolith_spot"/>
+    <level_map spot="alife_presentation_faction_digger_spot"/>
   </alife_presentation_faction_monolith>
-  <alife_presentation_faction_monolith_spot x="0" y="0" width="27" height="27" alignment="c" stretch="1" scale_min="1" scale_max="3" scale="1">
-    <texture x="720" y="630" width="128" height="128" r="255" g="128" b="255">ui\ui_common</texture>
-  </alife_presentation_faction_monolith_spot>
+
 
 
   <!-- Смарттеррейны -->
@@ -666,7 +509,7 @@
 
   <alife_presentation_squad_enemy>
     <level_map spot="alife_presentation_squad_enemy_spot"/>
-    <mini_map spot="alife_presentation_squad_enemy_spot_mini"/>
+    <!-- <mini_map spot="alife_presentation_squad_enemy_spot_mini"/> -->
   </alife_presentation_squad_enemy>
   <alife_presentation_squad_enemy_spot x="0" y="0" width="11" height="11" alignment="c" stretch="1" location_level="10" scale_min="3.0" scale_max="5.1" scale="0">
     <texture r="237" g="28" b="36">ui_pda2_squad_leader</texture>
@@ -738,9 +581,9 @@
         <secondary_task_spot x="0" y="0" width="15" height="15" stretch="1" alignment="c" location_level="5">
                 <texture r="242" g="231" b="11">ui_pda2_secondary_task</texture>
         </secondary_task_spot>
-        <secondary_task_spot_mini  x="0" y="0" width="15" height="15" stretch="1" alignment="c" location_level="5">
+        <secondary_task_spot_mini  x="0" y="0" width="11" height="11" stretch="1" alignment="c" location_level="5">
                 <texture r="242" g="231" b="11">ui_mmap_secondary_task</texture>
-				<static_border x="-1" y="-1" width="17" height="17" stretch="0" light_anim="ui_slow_blinking_alpha" la_cyclic="1" la_texture="1" la_text="0" la_alpha="1">
+				<static_border x="-3" y="-3" width="17" height="17" stretch="0" light_anim="ui_slow_blinking_alpha" la_cyclic="1" la_texture="1" la_text="0" la_alpha="1">
 					<texture r="242" g="231" b="11">ui_mmap_stask_last_02</texture>
 				</static_border>
                 <texture_below r="242" g="231" b="11">ui_mini_sn_spot_below</texture_below>
@@ -769,7 +612,7 @@
         <primary_task_spot x="0" y="0" width="21" height="21" stretch="1" alignment="c" location_level="5">
                 <texture r="242" g="15" b="11">ui_pda2_quest</texture>
         </primary_task_spot>
-        <primary_task_spot_mini  x="0" y="0" width="21" height="21" stretch="1" alignment="c" location_level="5">
+        <primary_task_spot_mini  x="0" y="0" width="15" height="15" stretch="1" alignment="c" location_level="5">
                 <texture r="242" g="15" b="11">ui_mmap_quest</texture>
                 <texture_below r="242" g="15" b="11">ui_mini_sn_spot_below</texture_below>
                 <texture_above r="242" g="15" b="11">ui_mini_sn_spot_above</texture_above>
@@ -905,8 +748,8 @@
         <ui_pda2_mechanic_location_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
                 <texture r="11" g="178" b="248">ui_pda2_mechanic</texture>
         </ui_pda2_mechanic_location_spot>
-        <ui_pda2_mechanic_location_mini_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
-                <texture color="pda_blue">ui_pda2_mechanic</texture>
+        <ui_pda2_mechanic_location_mini_spot x="0" y="0" width="9" height="9" stretch="1" alignment="c" location_level="-1">
+                <texture r="11" g="178" b="248">ui_pda2_mechanic</texture>
         </ui_pda2_mechanic_location_mini_spot>
 
         <ui_pda2_trader_location hint="st_ui_pda_legend_trader">
@@ -916,8 +759,8 @@
         <ui_pda2_trader_location_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
                 <texture r="11" g="178" b="248">ui_pda2_trader</texture>
         </ui_pda2_trader_location_spot>
-        <ui_pda2_trader_location_mini_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
-                <texture color="pda_blue">ui_pda2_trader</texture>
+        <ui_pda2_trader_location_mini_spot x="0" y="0" width="9" height="9" stretch="1" alignment="c" location_level="-1">
+                <texture r="11" g="178" b="248">ui_pda2_trader</texture>
         </ui_pda2_trader_location_mini_spot>
 
         <ui_pda2_scout_location hint="st_ui_pda_legend_scout">
@@ -927,8 +770,8 @@
         <ui_pda2_scout_location_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
                 <texture r="11" g="178" b="248">ui_pda2_guide</texture>
         </ui_pda2_scout_location_spot>
-        <ui_pda2_scout_location_mini_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
-                <texture color="pda_blue">ui_pda2_guide</texture>
+        <ui_pda2_scout_location_mini_spot x="0" y="0" width="9" height="9" stretch="1" alignment="c" location_level="-1">
+                <texture r="11" g="178" b="248">ui_pda2_guide</texture>
         </ui_pda2_scout_location_mini_spot>
 
         <ui_pda2_quest_npc_location hint="st_ui_pda_legend_vip">
@@ -938,8 +781,8 @@
         <ui_pda2_quest_npc_location_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
                 <texture r="11" g="178" b="248">ui_pda2_important2</texture>
         </ui_pda2_quest_npc_location_spot>
-        <ui_pda2_quest_npc_location_mini_spot x="0" y="0" width="13" height="13" stretch="1" alignment="c" location_level="-1">
-                <texture color="pda_blue">ui_pda2_important2</texture>
+        <ui_pda2_quest_npc_location_mini_spot x="0" y="0" width="9" height="9" stretch="1" alignment="c" location_level="-1">
+                <texture r="11" g="178" b="248">ui_pda2_important2</texture>
         </ui_pda2_quest_npc_location_mini_spot>
 
 		<!--task_highlight -->
@@ -957,3 +800,16 @@
 
 
 </map_spots>
+
+
+
+
+
+
+
+
+
+
+
+
+

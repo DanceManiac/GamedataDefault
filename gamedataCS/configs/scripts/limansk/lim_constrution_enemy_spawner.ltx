@@ -9,9 +9,8 @@ on_info = {!squad_exist(lim_enemy_stalker_smart_9_squad_1)} sr_idle@pause %=crea
 on_info2 = {!squad_exist(lim_enemy_stalker_smart_9_squad_2)} sr_idle@pause %=create_squad(lim_enemy_stalker_smart_9_squad_2:lim_smart_terrain_9)%
 on_info3 = {!squad_exist(lim_enemy_stalker_smart_9_squad_3)} sr_idle@pause %=create_squad(lim_enemy_stalker_smart_9_squad_3:lim_smart_terrain_9)%
 on_info4 = {!squad_exist(lim_enemy_stalker_smart_9_squad_4)} sr_idle@pause %=create_squad(lim_enemy_stalker_smart_9_squad_4:lim_smart_terrain_9)%
-on_info5 = {!squad_exist(lim_stalker_killer_squad_1) +lim_military_minigun_out -lim_stalker_killer_squad_spawned} sr_idle@pause %=create_squad(lim_stalker_killer_squad_1:lim_smart_terrain_7) +lim_stalker_killer_squad_spawned%
-on_info6 = {=actor_in_zone(lim_smart_terrain_9_attack)} nil
+on_info5 = {=actor_in_zone(lim_smart_terrain_9_attack)} nil
 
 [sr_idle@pause]
-on_game_timer = 200 | sr_idle@spawn
+on_game_timer = 100 | sr_idle@spawn
 on_info = {=actor_in_zone(lim_smart_terrain_9_attack)} nil

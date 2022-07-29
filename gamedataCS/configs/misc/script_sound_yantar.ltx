@@ -45,36 +45,10 @@ yan_alarm_hangar
 yan_psy_reduced_reply
 yan_squad_assemble
 yan_squad_diary
-yan_levsha_take_position
 
 yan_sakharov_meet
 yan_sakharov_meet_bye
 yan_psy_high_level
-
-yan_tech_ecologbase_meet
-yan_tech_ecologbase_meet_bye
-
-yan_help_base_sci
-yan_scientist_start_frase
-
-;***********YANTAR**
-;********************
-
-[yan_tech_ecologbase_meet]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\yantar\yan_tech_ecologbase_meet_
-shuffle = rnd
-idle = 1,1,100
-
-[yan_tech_ecologbase_meet_bye]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\yantar\yan_tech_ecologbase_meet_bye_
-shuffle = rnd
-idle = 3,5,100
 
 [yan_sakharov_meet]
 type = npc
@@ -359,10 +333,10 @@ shuffle = rnd
 idle = 3,5,100
 
 [yan_squad_assemble]
-type = npc
+type = actor
 actor_stereo = false
 npc_prefix = false
-path = scenario\yantar\yan_squad_assemble
+path = characters_voice\scenario\yantar\yan_squad_assemble
 shuffle = rnd
 idle = 3,5,100
 
@@ -402,10 +376,12 @@ shuffle = seq
 idle = 3,5,100
 
 [yan_levsha_reply_switcher]
-type = npc
-path = scenario\yantar\yan_levsha_reply_switcher
+type = actor
+actor_stereo = false
+npc_prefix = false
+path = characters_voice\scenario\yantar\yan_levsha_reply_switcher
 shuffle = seq
-idle = 1,1,100
+idle = 3,5,100
 
 [yan_professor_start_operation]
 type = actor
@@ -438,14 +414,6 @@ path = characters_voice\scenario\yantar\yan_squad_diary
 shuffle = seq
 idle = 3,5,100
 
-[yan_levsha_take_position]
-type = actor
-actor_stereo = false
-npc_prefix = false
-path = characters_voice\scenario\yantar\yan_levsha_take_position
-shuffle = rnd
-idle = 3,5,100
-
 [yan_psy_high_level]
 type = actor
 actor_stereo = false
@@ -453,18 +421,3 @@ path = characters_voice\scenario\yantar\yan_levsha_check_actor_position_2
 shuffle = seq
 idle = 3,5,100
 
-[yan_help_base_sci]
-type = actor
-actor_stereo = false
-npc_prefix = false
-path = characters_voice\scenario\yantar\yan_help_base_sci
-shuffle = rnd
-idle = 3,5,100
-
-[yan_scientist_start_frase]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\yantar\yan_scientist_start_frase_
-shuffle = seq
-idle = 3,5,100

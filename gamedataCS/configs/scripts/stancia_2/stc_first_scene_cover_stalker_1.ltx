@@ -6,7 +6,6 @@ cover_name 		= stc_first_scene_smart_cover
 loophole_name 	= lh_6
 cover_state 	= default_behaviour 
 on_info = {+stc_scene_start} walker@to_battle
-on_info2 = {+freeplay} %=kill_npc%
 use_in_combat = true
 idle_min_time = 4
 idle_max_time = 5
@@ -17,5 +16,5 @@ combat_ignore_keep_when_attacked = true
 
 [walker@to_battle]
 path_walk = stc_battle_walk
-on_info = {+freeplay} %=kill_npc%
+ 
 

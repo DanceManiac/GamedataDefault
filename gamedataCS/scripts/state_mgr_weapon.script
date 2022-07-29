@@ -15,11 +15,11 @@ function eva_state_mgr_weapon:evaluate()
 		return true
 	end
 	
-	local bestweapon = rx_utils.get_weapon(self.object)	--self.object:best_weapon()
-	if not isWeapon(bestweapon) then
+	if not isWeapon(self.object:best_weapon()) then
 --		printf("isWeapon = false")
 		return true
 	end
+	local bestweapon = self.object:best_weapon()
 	local activeitem = self.object:active_item()
 	if (weapon == "strapped" and
 	   ((strappable_weapon(bestweapon) and self.object:weapon_strapped()) or
@@ -76,13 +76,12 @@ class "eva_state_mgr_weapon_strapped_now" (property_evaluator)
 function eva_state_mgr_weapon_strapped_now:__init(name) super (nil, name)
 end
 function eva_state_mgr_weapon_strapped_now:evaluate()
-	local wpn = rx_utils.get_weapon(self.object)	-- self.object:best_weapon()
-	if not isWeapon(wpn) then
+	if not isWeapon(self.object:best_weapon()) then
 		return true
 	end
 
 	return self.object:weapon_strapped() or 
-		   (not strappable_weapon(wpn) and self.object:active_item() == nil)
+		   (not strappable_weapon(self.object:best_weapon()) and self.object:active_item() == nil)
 end
 
 --' Необходимо ли держать оружие в руках
@@ -100,11 +99,10 @@ class "eva_state_mgr_weapon_unstrapped_now" (property_evaluator)
 function eva_state_mgr_weapon_unstrapped_now:__init(name) super (nil, name)
 end
 function eva_state_mgr_weapon_unstrapped_now:evaluate()
-	local wpn = rx_utils.get_weapon(self.object)	-- self.object:best_weapon()
 	return 	self.object:weapon_unstrapped() and		
 			self.object:active_item() ~= nil and		
-			wpn ~= nil and
-			self.object:active_item():id() == wpn:id()
+			self.object:best_weapon() ~= nil and
+			self.object:active_item():id() == self.object:best_weapon():id()
 end
 
 
@@ -151,29 +149,12 @@ function act_state_mgr_weapon_unstrapp:__init(name, st) super (nil, name)
 end
 function act_state_mgr_weapon_unstrapp:initialize()
 	action_base.initialize(self)
-	self.fix_time = time_global()+4500
+	self.object:set_item(get_idle_state(self.st.target_state), get_weapon(self.object, self.st.target_state))
 end
 function act_state_mgr_weapon_unstrapp:execute()
 	action_base.execute(self)
-	-- фикс зависания оружия
-	if self.fix_time < time_global() then
-		if self.fix_time+1500 < time_global() then
-			self.fix_time = time_global()+5000
-		else
-			self.object:set_item(object.idle, nil)
-		end
-		return
-	end
-	-- обработка случая смены оружия во время экшена
-	local wpn = get_weapon(self.object, self.st.target_state)
-	if self.weapon ~= (wpn and wpn:id()) then
-		self.object:set_item(get_idle_state(self.st.target_state), wpn)
-		self.weapon = wpn and wpn:id()
-	end
 end
 function act_state_mgr_weapon_unstrapp:finalize()
-	self.weapon = nil
-	self.fix_time = nil
 	action_base.finalize(self)
 end
 
@@ -184,21 +165,18 @@ function act_state_mgr_weapon_strapp:__init(name, st) super (nil, name)
 end
 function act_state_mgr_weapon_strapp:initialize()
 	action_base.initialize(self)
+	local weap = get_weapon(self.object, self.st.target_state)
+	--' printf("weapon is: %s movement type is: %s", tostring(weap), tostring(self.object:movement_type()))
+	if strappable_weapon(weap) then
+		self.object:set_item(object.strap, weap)
+	else
+		self.object:set_item(object.idle, nil)
+	end
 end
 function act_state_mgr_weapon_strapp:execute()	
 	action_base.execute(self)
-	local wpn = get_weapon(self.object, self.st.target_state)
-	if self.weapon ~= (wpn and wpn:id()) then
-		if strappable_weapon(wpn) then
-			self.object:set_item(object.strap, wpn)
-		else
-			self.object:set_item(object.idle, nil)
-		end
-		self.weapon = wpn and wpn:id()
-	end
 end
 function act_state_mgr_weapon_strapp:finalize()
-	self.weapon = nil
 	action_base.finalize(self)
 end
 
@@ -225,30 +203,17 @@ function act_state_mgr_weapon_drop:__init(name, st) super (nil, name)
 end
 function act_state_mgr_weapon_drop:initialize()
 	action_base.initialize(self)
-	local weap = self.object:active_item()	--get_weapon(self.object, self.st.target_state)
+	local weap = get_weapon(self.object, self.st.target_state)
 	if strappable_weapon(weap) then
 		self.object:set_item(object.drop, weap)
 	else
 		self.object:set_item(object.idle, nil)
 	end
-	self.fix_time = time_global()+3500
-	if weap and xr_corpse_detection and xr_wounded.is_wounded(self.object) then
-		xr_corpse_detection.restricted_add(weap:id(),rx_ai.get_storage(self.object:id()).hit_by_anomaly and 'anomaly' or self.object:id())
-	end
 end
 function act_state_mgr_weapon_drop:execute()
 	action_base.execute(self)
-	-- фикс зависания оружия
-	if self.fix_time < time_global() then
-		local weap = self.object:active_item()
-		if weap then
-			self.object:drop_item(weap)
-		end
-		self.fix_time = time_global()+5000
-	end
 end
 function act_state_mgr_weapon_drop:finalize()
-	self.fix_time = nil
 	action_base.finalize(self)
 end
 
@@ -265,12 +230,8 @@ end
 
 function get_weapon(obj, target_state)
 	if state_lib.states[target_state].weapon_slot == nil then
-		return rx_utils.get_weapon(obj)	-- obj:best_weapon()
+		return obj:best_weapon()
 	else
-		local wm = obj:get_wm(true)	--(rx_utils.script)
-		if wm then
-			return wm:get_weapon_by_slot(state_lib.states[target_state].weapon_slot)
-		end
 		return obj:item_in_slot(state_lib.states[target_state].weapon_slot)
 	end
 end
@@ -305,23 +266,23 @@ local state_queue_params = {
 
 function get_queue_params(npc, target, st)
 	local a = state_queue_params[st.animation]
-	local wpn = rx_utils.get_weapon(npc)	-- npc:best_weapon()
 	if a ~= nil then
 		if a[3] ~= nil then
-			local old_aim_time = npc:aim_time(wpn)
+			local weap = npc:best_weapon()
+			local old_aim_time = npc:aim_time(weap)
 			if old_aim_time ~= a[3] then
 				db.storage[npc:id()].old_aim_time = old_aim_time
-				npc:aim_time(wpn, a[3])
+				npc:aim_time(weap, a[3])
 			end
 		end
 		if db.storage[npc:id()].old_aim_time ~= nil then
-			npc:aim_time(wpn, db.storage[npc:id()].old_aim_time)
+			npc:aim_time(npc:best_weapon(), db.storage[npc:id()].old_aim_time)
 			db.storage[npc:id()].old_aim_time = nil
 		end
 		return a[1], a[2]
 	end
 	if db.storage[npc:id()].old_aim_time ~= nil then
-		npc:aim_time(wpn, db.storage[npc:id()].old_aim_time)
+		npc:aim_time(npc:best_weapon(), db.storage[npc:id()].old_aim_time)
 		db.storage[npc:id()].old_aim_time = nil
 	end
 	return 3, 1000

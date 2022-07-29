@@ -1,113 +1,125 @@
-; Модификация затвора. Технологическая доработка затвора позволяет увеличить темп стрельбы.
 [up_sect_a_sig550]
-cost		      		= 1750
+cost		      		= 2500
 value					= +15
-rpm                     = 105
+rpm                     = 100
 
-; Модификация затвора. Точная подгонка затвора уменьшает разброс пуль при стрельбе.
 [up_sect_b_sig550]
-cost		      		= 1750
+cost		      		= 2500
 value					= +10
-fire_dispersion_base	= -0.09
+fire_dispersion_base	= -0.07 ;0.7
 
-; Модификация газового поршня. Установка компенсатора газового поршня позволяет уменьшить отдачу.
 [up_sect_c_sig550]
-cost		      		= 1750
-value					= -10
-cam_dispersion              = -0.14
-cam_dispersion_inc         	= -0.14
-cam_step_angle_horz        	= -0.14
-zoom_cam_dispersion          = -0.08
-zoom_cam_dispersion_inc      = -0.08
-zoom_cam_step_angle_horz     = -0.08
+cost		      		= 2500
+value					= -30
 
-; Модификация газового поршня. Снижение массы газового поршня замедляет темп стрельбы, но уменьшает отдачу.
+cam_dispersion              = -0.15		;0.5
+cam_dispersion_inc         	= -0.15		;0.5
+cam_step_angle_horz        	= -0.3		;1.0
+
+zoom_cam_dispersion          = -0.12	;0.4
+zoom_cam_dispersion_inc      = -0.12	;0.4
+zoom_cam_step_angle_horz     = -0.21	;0.7
+
 [up_sect_d_sig550]
-cost		      		= 1750
-value					= -20
+cost		      		= 2500
+value					= -50
 value2					= st_upgr_rpm_lowered
-rpm                     = -140
-cam_dispersion              = -0.28
-cam_dispersion_inc         	= -0.28
-cam_step_angle_horz        	= -0.28
-zoom_cam_dispersion          = -0.16
-zoom_cam_dispersion_inc      = -0.16
-zoom_cam_step_angle_horz     = -0.16
+rpm                     = -200
 
-; Крепление подствольника. Позволяет устанавливать на оружие подствольный гранатомёт.
+cam_dispersion              = -0.25		;0.5
+cam_dispersion_inc         	= -0.25		;0.5
+cam_step_angle_horz        	= -0.5		;1.0
+
+zoom_cam_dispersion          = -0.2		;0.4
+zoom_cam_dispersion_inc      = -0.2		;0.4
+zoom_cam_step_angle_horz     = -0.35		;0.7
+
 [up_sect_e_sig550]
-cost		      		= 1750
+cost		      		= 2500
 grenade_launcher_status = 2
 grenade_launcher_name   = wpn_addon_grenade_launcher_m203
-grenade_launcher_x      = 117
-grenade_launcher_y      = 24
+grenade_launcher_x      = 128
+grenade_launcher_y      = 28
 
-; Модификация ствола. Насадка, увеличивающая длину ствола и, как следствие, начальную скорость пули.
 [up_sect_f_sig550]
-cost		      		= 1750
-value					= +10
-bullet_speed			= 68
+cost		      		= 2500
+value					= +50
+bullet_speed			= 200
+hit_power				= 0.5, 0.5, 0.5, 0.5
 
-; Облегчённый приклад. Замена стандартного приклада на более лёгкий аналог.
 [up_sect_g_sig550]
-cost	      	     	= 1750
-value					= -0.41  ;-10
-inv_weight				= -0.41
-control_inertion_factor	= -0.15
+cost	      	     	= 2500
+value					= +10
+control_inertion_factor	= -0.5
+inv_weight				= -0.3
 
-; Пневмоприклад. Особая конструкция приклада позволяет существенно уменьшить отдачу.
 [up_sect_h_sig550]
-cost		      		= 1750
-value					= -10
-cam_dispersion              = -0.14
-cam_dispersion_inc         	= -0.14
-cam_step_angle_horz        	= -0.14
-zoom_cam_dispersion          = -0.08
-zoom_cam_dispersion_inc      = -0.08
-zoom_cam_step_angle_horz     = -0.08
-
-; Сбалансированная автоматика. Более точная балансировка подвижных частей оружия значительно увеличит темп стрельбы.
-[up_sect_ac_sig550]
-cost		      		= 3500
-value					= +20
-rpm						= 140
-
-; Замена ствола. Ствол из прочной стали не подвергается деформации даже при интенсивной стрельбе, в результате чего точность боя оружия повышается.
-[up_sect_bd_sig550]
-cost		      		= 3500
-value					= +15
-bullet_speed			= 102
-
-; Модификация ствола. Установка дульного тормоза существенно уменьшает отдачу.
-[up_sect_eg_sig550]
-cost		      		= 3500
+cost		      		= 2500
 value					= -20
-cam_dispersion              = -0.28
-cam_dispersion_inc         	= -0.28
-cam_step_angle_horz        	= -0.28
-zoom_cam_dispersion          = -0.16
-zoom_cam_dispersion_inc      = -0.16
-zoom_cam_step_angle_horz     = -0.16
 
-; Мягкий спуск. Плавный спусковой механизм позволяет повысить точность боя.
-[up_sect_fh_sig550]
-cost					= 3500
+cam_dispersion              = -0.1		;0.5
+cam_dispersion_inc         	= -0.1		;0.5
+cam_step_angle_horz        	= -0.2		;1.0
+
+zoom_cam_dispersion          = -0.1		;0.5
+zoom_cam_dispersion_inc      = -0.1		;0.5
+zoom_cam_step_angle_horz     = -0.2		;1.0
+
+[up_sect_i_sig550]
+cost		      		= 2500
 value					= +15
-fire_dispersion_base    = -0.135
+ammo_mag_size           = 15
 
-; Охлаждение ствола. Система охлаждения ствола позволяет повысить темп стрельбы без риска деформации ствола.
-[up_sect_aceg_sig550]
-cost		      		= 5250
+[up_sect_j_sig550]
+cost		      		= 2500
+value					= "x1.6"
+scope_status            = 2
+scope_name              = wpn_addon_scope_susat
+scope_x                 = 78
+scope_y                 = 0
+
+[up_sect_k_sig550]
+cost		      		= 2500
+value					= "5.45x39"
+ammo_class          	= ammo_5.45x39_fmj, ammo_5.45x39_ap
+
+[up_sect_ac_sig550]
+cost		      		= 3750
 value					= +25
-rpm						= 175
+rpm						= 150
 
-; Электронная стабилизация. Автоматическая корректировка импульса пули. Значительно повышает точность стрельбы.
-[up_sect_bdfh_sig550]
-cost		      		= 5250
+[up_sect_bd_sig550]
+cost		      		= 3750
+value					= +50
+bullet_speed			= 200
+hit_power				= 0.55, 0.55, 0.55, 0.55
+
+[up_sect_eg_sig550]
+cost		      		= 3750
+value					= -20
+
+cam_dispersion              = -0.1		;0.5
+cam_dispersion_inc         	= -0.1		;0.5
+cam_step_angle_horz        	= -0.2		;1.0
+
+zoom_cam_dispersion          = -0.1		;0.5
+zoom_cam_dispersion_inc      = -0.1		;0.5
+zoom_cam_step_angle_horz     = -0.2		;1.0
+
+[up_sect_fh_sig550]
+cost					= 3750
 value					= +20
-fire_dispersion_base    = -0.18
+fire_dispersion_base    = -0.14 ;0.7
 
+[up_sect_aceg_sig550]
+cost		      		= 6250
+value					= +40
+rpm						= 300
 
+[up_sect_bdfh_sig550]
+cost		      		= 6250
+value					= +30
+fire_dispersion_base    = -0.21 ;0.7
 
 [up_a_sig550]
 scheme_index            = 0, 0
@@ -116,12 +128,14 @@ effects                 = up_gr_ac_sig550
 section                 = up_sect_a_sig550
 property                = prop_rpm
 
+
 precondition_functor    = inventory_upgrades.precondition_functor_a
 precondition_parameter  = a & b
 
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = on_weapon_upgrade_something_here
 
+; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
@@ -129,7 +143,7 @@ name                    = st_upg_zatvor_rpm
 description             = st_upg_zatvor_rpm_descr
 icon                    = ui_wp_upgrade_30
 
-
+;;...
 [up_b_sig550]
 scheme_index            = 0, 1
 known                   = 1
@@ -143,13 +157,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
+; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_zatvor_recoil
 description             = st_upg_zatvor_recoil_descr
 icon                    = ui_wp_upgrade_31
-
 
 [up_c_sig550]
 scheme_index            = 0, 2
@@ -171,7 +185,6 @@ name                    = st_upg_porsh_recoil
 description             = st_upg_porsh_recoil_descr
 icon                    = ui_wp_upgrade_41
 
-
 [up_d_sig550]
 scheme_index            = 0, 3
 known                   = 1
@@ -185,13 +198,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
+; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_porsh_rpm
 description             = st_upg_porsh_rpm_descr
 icon                    = ui_wp_upgrade_42
-
 
 [up_e_sig550]
 scheme_index            = 0, 4
@@ -206,13 +219,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
+; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = up_e_sig550
 name                    = st_upg_bind_grenade
 description             = st_upg_bind_grenade_descr
 icon                    = ui_wp_upgrade_35
-
 
 [up_f_sig550]
 scheme_index            = 0, 5
@@ -234,13 +247,12 @@ name                    = st_upg_barrel_curved
 description             = st_upg_barrel_curved_descr
 icon                    = ui_wp_upgrade_25
 
-
 [up_g_sig550]
 scheme_index            = 0, 6
 known                   = 1
 effects                 = up_gr_eg_sig550
 section                 = up_sect_g_sig550
-property                = prop_weight
+property                = prop_inertion
 
 precondition_functor    = inventory_upgrades.precondition_functor_a
 precondition_parameter  = a & b
@@ -248,13 +260,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
+; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = up_g_sig550
 name                    = st_upg_butt_recoil3
 description             = st_upg_butt_recoil3_descr
 icon                    = ui_wp_upgrade_15
-
 
 [up_h_sig550]
 scheme_index            = 0, 7
@@ -276,6 +288,66 @@ name                    = st_upg_butt_recoil4
 description             = st_upg_butt_recoil4_descr
 icon                    = ui_wp_upgrade_16
 
+[up_i_sig550]
+scheme_index            = 0, 8
+known                   = 1
+effects                 = 
+section                 = up_sect_i_sig550
+property                = prop_ammo_size
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = up_i_sig550
+name                    = st_upg_charger_big
+description             = st_upg_charger_big_descr
+icon                    = ui_wp_upgrade_19
+
+[up_j_sig550]
+scheme_index            = 1, 4
+known                   = 1
+effects                 = 
+section                 = up_sect_j_sig550
+property                = prop_scope_1.6x
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = up_j_sig550
+name                    = st_upg_bind_optic
+description             = st_upg_bind_optic_descr
+icon                    = ui_wp_upgrade_29
+
+[up_k_sig550]
+scheme_index            = 2, 2
+effects                 = 
+section                 = up_sect_k_sig550
+property                = prop_calibre    
+
+known                   = 1
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = true
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = up_k_sig550
+name                    = st_upg_calibre_5_45
+description             = st_upg_calibre_5_45_descr
+icon                    = ui_wp_upgrade_21
 
 [up_ac_sig550]
 scheme_index            = 1, 0
@@ -290,13 +362,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
+; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_auto_rpm
 description             = st_upg_auto_rpm_descr
 icon                    = ui_wp_upgrade_38
-
 
 [up_bd_sig550]
 scheme_index            = 1, 1
@@ -311,13 +383,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
+; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = up_bd_sig550
 name                    = st_upg_hard_barrel_curved
 description             = st_upg_hard_barrel_curved_descr
-icon                    = ui_wp_upgrade_12
-
+icon                    = ui_wp_upgrade_23
 
 [up_eg_sig550]
 scheme_index            = 1, 2
@@ -339,13 +411,14 @@ name                    = st_upg_barrel_recoil
 description             = st_upg_barrel_recoil_descr
 icon                    = ui_wp_upgrade_24
 
-
 [up_fh_sig550]
 scheme_index            = 1, 3
 known                   = 1
 effects                 = up_gr_bdfh_sig550
 section                 = up_sect_fh_sig550
 property                = prop_dispersion
+
+known                   = 1
 
 precondition_functor    = inventory_upgrades.precondition_functor_a
 precondition_parameter  = a & b
@@ -359,7 +432,6 @@ prereq_params           = up_fh_abakan
 name                    = st_upg_trigger_accur
 description             = st_upg_trigger_accur_descr
 icon                    = ui_wp_upgrade_34
-
 
 [up_aceg_sig550]
 scheme_index            = 2, 0
@@ -381,12 +453,12 @@ name                    = st_upg_barrel_rpm
 description             = st_upg_barrel_rpm_descr
 icon                    = ui_wp_upgrade_27
 
-
 [up_bdfh_sig550]
 scheme_index            = 2, 1
 known                   = 1
 effects                 =
 section                 = up_sect_bdfh_sig550
+
 property                = prop_dispersion
 
 precondition_functor    = inventory_upgrades.precondition_functor_a
@@ -402,7 +474,6 @@ description             = st_upg_electro_accur_descr
 icon                    = ui_wp_upgrade_33
 
 
-
 [up_gr_ab_sig550]
 elements                = up_a_sig550, up_b_sig550
 
@@ -414,6 +485,15 @@ elements                = up_e_sig550, up_f_sig550
 
 [up_gr_gh_sig550]
 elements                = up_g_sig550, up_h_sig550
+
+[up_gr_i_sig550]
+elements                = up_i_sig550
+
+[up_gr_j_sig550]
+elements                = up_j_sig550
+
+[up_gr_k_sig550]
+elements                = up_k_sig550
 
 [up_gr_ac_sig550]
 elements                = up_ac_sig550

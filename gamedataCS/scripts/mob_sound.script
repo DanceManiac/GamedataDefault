@@ -93,9 +93,6 @@ local snd = {
 	},
 
 	trader_bye = {
-        [[characters_voice\scenario\escape\esc_trader_bye_1]],
-        [[characters_voice\scenario\escape\esc_trader_bye_2]],
-        [[characters_voice\scenario\escape\esc_trader_bye_3]]
 	},
 
 	trader_exchanged = {
@@ -120,8 +117,7 @@ local snd = {
 	red_forester_meet = {
 		[[characters_voice\scenario\red_forest\red_forester_meet_hello_0]],
 		[[characters_voice\scenario\red_forest\red_forester_meet_hello_1]],
-		[[characters_voice\scenario\red_forest\red_forester_meet_hello_2]],
-		[[characters_voice\scenario\red_forest\red_forester_greet_1]]
+		[[characters_voice\scenario\red_forest\red_forester_meet_hello_2]]
 	},
 	red_forester_meet_bye = {
 		[[characters_voice\scenario\red_forest\red_forester_hello_bye_0]],

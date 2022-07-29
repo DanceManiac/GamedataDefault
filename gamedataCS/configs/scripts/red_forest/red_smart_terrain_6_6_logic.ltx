@@ -1,6 +1,7 @@
 [logic@work1]
 active = walker@wait_actor_work1
-suitable = {=npc_is_squad_leader -red_artefact_hunters_go !is_smart_defending(red_smart_terrain_6_6)}
+;suitable = {=check_npc_name(red_stalker_artefact_hunter) -red_artefact_hunters_go !is_smart_defending(red_smart_terrain_6_6)}
+suitable = {=check_npc_squad(red_stalker_artefact_hunters_1) -red_artefact_hunters_go !is_smart_defending(red_smart_terrain_6_6)}
 prior = 100
 level_spot = quest_npc
 
@@ -16,10 +17,11 @@ target = actor
 meet = meet
 
 [meet]
-meet_state = 10 | guard@meet_comander_wait 
-meet_state_wpn = 10 | threat@meet_weapon_wait
+meet_state = 10 | talk_default@nil 
+;meet_state_wpn = 10 | backoff@meet_weapon_wait 
 victim = 15 | actor
 victim_wpn = 15 | actor
+;zone = name| state@sound
 use	= true
 use_wpn	= false
 meet_dialog = red_artefact_hunters

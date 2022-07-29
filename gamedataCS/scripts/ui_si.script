@@ -1,112 +1,77 @@
 local items_table = {
-	                                        "wpn_addon_scope",
+	                    "wpn_addon_scope",
 						"wpn_addon_scope_4x",
-	                                        "wpn_addon_scope_acog",
-	                                        "wpn_addon_scope_susat",
-	                                        "wpn_addon_silencer",
+	                    "wpn_addon_scope_susat",
+	                    "wpn_addon_silencer",
 						"wpn_addon_grenade_launcher",
-	                                        "wpn_addon_grenade_launcher_m203",
-						"cs_light_outfit",
-						"cs_light_extra_outfit",
-						"cs_standart_outfit",
-						"cs_heavy_outfit",
-						"cs_heavy_extra_outfit",
-						"novice_outfit",
-						"novice_outfit_white",
-						"stalker_light_outfit",
-						"stalker_outfit",
-						"stalker_heavy_outfit",
-						"scientific_outfit",
-						"exo_outfit",
-						"bandit_outfit",
-						"bandit_veteran_outfit",
-						"bandit_master_outfit",
-						"bandit_heavy_outfit",
-						"soldier_outfit_green",
-						"soldier_outfit_grey",
-						"soldier_outfit_brown",
-						"specops_outfit",
-						"military_outfit",
-						"military_extra_outfit",
-						"svoboda_light_outfit",
-						"svoboda_light2_outfit",
-						"svoboda_heavy_outfit",
-						"svoboda_heavy_extra_outfit",
-						"svoboda_scientific_outfit",
-						"svoboda_exo_outfit",
-						"dolg_outfit",
-						"dolg_scientific_outfit",
-						"dolg_heavy_outfit",
-						"dolg_heavy_extra_outfit",
-						"dolg_heavy_extra2_outfit",
-						"dolg_exo_outfit",
-						"killer_outfit",
-						"killer_outfit_dark",
-						"killer_light2_outfit",
-						"killer_scientific_outfit",
-						"killer_exo_outfit",
-						"monolith_light_outfit",
-						"monolith_outfit",
-						"monolith_scientific_outfit",
-						"monolith_heavy_outfit",
-						"monolith_exo_outfit",
-						"red_ecolog_outfit",
-						"green_ecolog_outfit",
-						"digger_novice_outfit",
-						"wpn_bm16",
-						"wpn_bm16_full",
-						"wpn_toz34",
-						"wpn_toz34_obrez",
-						"wpn_wincheaster1300",
-						"wpn_spas12",
-						"wpn_pm",
-						"wpn_pb",
-						"wpn_pb_short",
-						"wpn_fort",
-						"wpn_hpsa",
-						"wpn_beretta",
-						"wpn_walther",
-						"wpn_colt1911",
-						"wpn_sig220",
-						"wpn_usp",
-						"wpn_desert_eagle",
-						"wpn_mp5",
-						"wpn_ak74u",
-						"wpn_ak74",
-						"wpn_abakan",
-						"wpn_l85",
-						"wpn_lr300",
-						"wpn_sig550",
-						"wpn_sig552",
-						"wpn_g36",
-						"wpn_fn2000",
-						"wpn_groza",
-						"wpn_val",
-						"wpn_vintorez",
-						"wpn_pkm",
-						"wpn_svd",
-						"wpn_svu",
-						"wpn_rg-6",
-						"wpn_rpg7",
-						"wpn_gauss",
-						"wpn_gauss_aes",
-						"wpn_binoc",
-						"wpn_knife",
-                                                "grenade_f1",
+	                    "wpn_addon_grenade_launcher_m203",
+						"novice_outfit", 		-- 1
+						"bandit_outfit", 		-- 2
+						"stalker_outfit", 		-- 3
+						"cs_light_outfit",		-- 4
+						"svoboda_light_outfit",	-- 5
+						"scientific_outfit",	-- 6
+						"cs_heavy_outfit",		-- 7
+						"dolg_outfit",			-- 8
+						"svoboda_heavy_outfit",	-- 9
+						"specops_outfit",		-- 10
+						"exo_outfit",			-- 11
+						"dolg_heavy_outfit",	-- 12
+						"svoboda_exo_outfit",	-- 13
+						"military_outfit",		-- 14
+						"wpn_pm",				-- 15
+						"wpn_pb",				-- 16
+						"wpn_fort",				-- 17
+						"wpn_hpsa",				-- 18
+						"wpn_beretta",			-- 19
+						"wpn_walther",			-- 20
+						"wpn_sig220",			-- 21
+						"wpn_colt1911",			-- 22
+						"wpn_usp",				-- 23
+						"wpn_desert_eagle",		-- 24
+						"wpn_bm16",				-- 25
+						"wpn_toz34",			-- 26
+						"wpn_wincheaster1300",	-- 27
+						"wpn_spas12",			-- 28
+						"wpn_ak74u",			-- 29
+						"wpn_mp5",				-- 30
+						"wpn_ak74",				-- 31
+						"wpn_abakan",			-- 32
+						"wpn_l85",				-- 33
+						"wpn_lr300",			-- 34
+						"wpn_sig550",			-- 35
+						"wpn_groza",			-- 36
+						"wpn_val",				-- 37
+						"wpn_vintorez",			-- 38
+						"wpn_svu",				-- 39
+						"wpn_svd",				-- 40
+						"wpn_rg-6",				-- 41
+						"wpn_rpg7",				-- 42
+						"wpn_g36",				-- 43
+						"wpn_fn2000",			-- 45
+						"wpn_pkm",				-- 46
+						"wpn_gauss",			-- 47
+						"wpn_knife",			-- 48
+                        "grenade_f1",
 						"grenade_rgd5",
 						"grenade_gd-05",
+						"wpn_ak74_up",
+						"wpn_ak74_up2",
 						"wpn_ak74_minigame",
 						"wpn_ak74u_minigame",
 						"wpn_beretta_minigame",
+						"wpn_binoc",
+						"wpn_desert_eagle_up",
+						"wpn_gauss_aes",
 						"wpn_lr300_minigame",
+						"wpn_lr300_up2",
 						"wpn_mp5_minigame",
 						"wpn_pm_minigame",
+						"wpn_pm_up",
+						"wpn_pm_9x19",
 						"wpn_sig550_minigame",
 						"wpn_val_minigame",
-						"nuts",
-						"olives",
-						"cheese",
-						"sardines",
+						"wpn_vintorez_up",
 						"bread",
 						"kolbasa",
 						"conserva",
@@ -119,25 +84,6 @@ local items_table = {
 						"bandage",
 						"device_pda",
 						"device_torch",
-						"hand_radio",
-						"guitar_a",
-						"harmonica_a",
-						"explosive_dinamit",
-						"mutant_dog_tail",
-						"mutant_flesh_eye",
-						"mutant_boar_leg",
-						"mutant_zombie_hand",
-						"mutant_izlom_hand",
-						"mutant_snork_leg",
-						"mutant_cat_tail",
-						"mutant_psevdodog_tail",
-						"mutant_poltergeist_hand",
-						"mutant_burer_hand",
-						"mutant_krovosos_jaw",
-						"mutant_chimera_nail",
-						"mutant_controller_hand",
-						"mutant_pseudogigant_nail",
-						"mutant_tushkano_face",
 						"af_medusa",
 						"af_cristall_flower",
 						"af_night_star",
@@ -162,7 +108,6 @@ local items_table = {
 						"af_dummy_dummy",
 						"af_ice",
 						"af_compass",
-						"af_dummy_pellicle",
 						"detector_simple",
 						"detector_advanced",
 						"detector_elite",
@@ -180,78 +125,40 @@ local items_table = {
 						"mar_quest_af_cristall_flower_1",
 						"mar_quest_scout_pda",
 						"mar_quest_novice_outfit_1",
-						"mil_quest_af_mincer_meat_1",
-						"mil_quest_af_fire_1",
+						"mil_quest_af_fuzz_kolobok",
 						"mil_device_pda_lost_squard",
 						"esc_device_pda_driver",
 						"agr_pda_for_secret_trader",
-						"agr_quest_af_dummy_battery_1",
-						"agr_quest_af_fuzz_kolobok_1",
 						"agr_map_animals",
-						"agr_mechanic_pda",
-						"yan_quest_ammo_sleep",
-						"yan_quest_granade",
-						"yan_quest_scarlet_flower",
-						"red_quest_tank_minigun",
-						"red_quest_prototipe_device",
 						"red_forest_pda_map",
 						"red_forest_pda_map_2",
-						"flesh_up_ac_mp5",
-						"flesh_up_bd_mp5",
-						"flesh_up_a_novice_outfit",
-						"flesh_up_ac_wincheaster1300",
-						"flesh_up_bd_wincheaster1300",
-						"flesh_up_ac_ak74u",
-						"flesh_up_fh_scientific_outfit",
-						"flesh_up_aceg_scientific_outfit",
-						"flesh_up_bdfh_scientific_outfit",
-						"flesh_up_ab_svu",
-						"flesh_up_cd_svu",
-						"flesh_up_abcd_svu",
-						"flesh_up_ab_pkm",
-						"flesh_up_cd_pkm",
-						"flesh_up_abcd_pkm",
-						"flesh_up_ac_desert_eagle",
-						"flesh_up_bd_desert_eagle",
-						"flesh_up_ac_spas12"
 					}
 local ammo_table = {
-						"ammo_minigame",
 						"ammo_9x18_fmj",
 						"ammo_9x18_pmm",
-						"ammo_9x18_pbp",
-						"ammo_9x19_pbp",
 						"ammo_9x19_fmj",
-						"ammo_11.43x23_hydro",
+						"ammo_9x19_pbp",
 						"ammo_11.43x23_fmj",
+						"ammo_11.43x23_hydro",
+						"ammo_5.45x39_fmj",
+						"ammo_5.45x39_ap",
+						"ammo_5.56x45_ss190",
+						"ammo_5.56x45_ap",
+						"ammo_pkm_100",
+						"ammo_7.62x54_7h14",
+						"ammo_223_fmj",
+						"ammo_gauss",
+						"ammo_9x39_pab9",
+						"ammo_9x39_ap",
 						"ammo_12x70_buck",
 						"ammo_12x76_dart",
 						"ammo_12x76_zhekan",
-						"ammo_5.45x39_ap",
-						"ammo_5.45x39_fmj",
-						"ammo_9x39_sp5",
-						"ammo_9x39_ap",
-						"ammo_9x39_pab9",
-						"ammo_5.56x45_ss190",
-						"ammo_5.56x45_ap",
-						"ammo_7.62x54_7h14",
-						"ammo_7.62x54_7h1",
-						"ammo_7.62x54_ap",
-						"ammo_7.62x39_fmj",
-						"ammo_7.62x39_ap",
-						"ammo_7.62x25_fmj",
-						"ammo_7.62x25_ap",
-						"ammo_10.9x32.5",
-						"ammo_5.7x28_fmj",
-						"ammo_5.7x28_ap",
 						"ammo_og-7b",
 						"ammo_vog-25p",
 						"ammo_vog-25",
 						"ammo_m209",
-						"ammo_pkm_100",
-						"ammo_223_fmj",
-						"ammo_gauss",
-						"ammo_gauss_aes"
+						"ammo_minigame",
+	"flesh_up_ac_spas12"
 					}
 
 class "spawn_item" (CUIListItemEx)

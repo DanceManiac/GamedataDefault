@@ -13,10 +13,10 @@
 		<text>прикрепить прицел к винтовке</text>
 	</string>
 	<string id="st_attach_silencer_to_pistol">
-		<text>прикрепить «глушитель» к пистолету</text>
+		<text>прикрепить глушитель к пистолету</text>
 	</string>
 	<string id="st_attach_silencer_to_rifle">
-		<text>прикрепить «глушитель» к винтовке</text>
+		<text>прикрепить глушитель к винтовке</text>
 	</string>
 	<string id="st_base_cost">
 		<text>Цена</text>
@@ -34,7 +34,7 @@
 		<text>отсоединить прицел</text>
 	</string>
 	<string id="st_detach_silencer">
-		<text>отсоединить «глушитель»</text>
+		<text>отсоединить глушитель</text>
 	</string>
 	<string id="st_dress_outfit">
 		<text>надеть костюм</text>
@@ -76,7 +76,7 @@
 		<text>Здоровье</text>
 	</string>
 	<string id="st_ui_main_sensor">
-		<text>Радиационное заражение</text>
+		<text>Радиоактивное заражение</text>
 	</string>
 	<string id="st_ui_psi_sensor">
 		<text>Защита от пси-воздействия</text>
@@ -130,7 +130,7 @@
 		<text>Ограничение по количеству</text>
 	</string>
 	<string id="ui_inv_damage">
-		<text>Убойность</text>
+		<text>Повреждение</text>
 	</string>
 	<string id="ui_inv_default(F5)">
 		<text>Стартовый (F5)</text>
@@ -157,13 +157,13 @@
 		<text>Купить гранаты для подствольника (E)</text>
 	</string>
 	<string id="ui_inv_handling">
-		<text>Отдача</text>
+		<text>Приёмистость</text>
 	</string>
 	<string id="ui_inv_has">
 		<text>Сейчас</text>
 	</string>
 	<string id="ui_inv_health">
-		<text>Здоровье:</text>
+		<text>Здоровье</text>
 	</string>
 	<string id="ui_inv_heavy_weapons">
 		<text>Тяжёлое</text>
@@ -178,16 +178,13 @@
 		<text>Предыдущий (F4)</text>
 	</string>
 	<string id="ui_inv_money">
-		<text>Деньги:</text>
+		<text>Деньги</text>
 	</string>
 	<string id="ui_inv_need">
 		<text>Необходимо</text>
 	</string>
 	<string id="ui_inv_not_enought_money">
 		<text>Недостаточно денег</text>
-	</string>
-	<string id="ui_inv_bad_cond">
-		<text>Эта вещь уже не подлежит ремонту</text>
 	</string>
 	<string id="ui_inv_ok">
 		<text>OK</text>
@@ -214,10 +211,10 @@
 		<text>Электрошок</text>
 	</string>
 	<string id="ui_inv_outfit_strike_protection">
-		<text>Электрошок</text>
+		<text>Удар</text>
 	</string>
 	<string id="ui_inv_outfit_telepatic_protection">
-		<text>Пси-воздействие</text>
+		<text>Телепат.</text>
 	</string>
 	<string id="ui_inv_outfit_wound_protection">
 		<text>Разрыв</text>
@@ -253,7 +250,7 @@
 		<text>Ограничение по рангу</text>
 	</string>
 	<string id="ui_inv_rate_of_fire">
-		<text>Скорострельность</text>
+		<text>Темп стрельбы</text>
 	</string>
 	<string id="ui_inv_reset_items(C)">
 		<text>Очистить (C)</text>
@@ -301,7 +298,7 @@
 		<text>Уже есть</text>
 	</string>
 	<string id="ui_st_err_gs_not_available">
-		<text>Онлайн-услуги S.T.A.L.K.E.R. недоступны.</text>
+		<text>Онлайн услуги S.T.A.L.K.E.R. недоступны.</text>
 	</string>
 	<string id="ui_st_err_sb_master_server_conn_fail">
 		<text>Невозможно соединиться с мастер-сервером</text>
@@ -327,20 +324,4 @@
 	<string id="ui_inv_outfit_additional_weight">
 		<text>Макс. вес</text>
 	</string>
-	<string id="st_upgr_inability_repair">
-		<text>Данный механик не может это отремонтировать</text>
-	</string>
-
-<!-- HARDWARMOD SECTIONS -->
-
-	<string id="ui_st_take_backpack_caption">
-		<text>Рюкзак пуст, поднять?</text>
-	</string>
-	<string id="ui_st_backpack_my_stash">
-		<text>Мой тайник</text>
-	</string>
-	<string id="ui_st_backpack_stash_laid">
-		<text>Тайник заложен.</text>
-	</string>
-
 </string_table>

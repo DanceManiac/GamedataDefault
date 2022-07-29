@@ -60,7 +60,7 @@ function action_remark_activity:get_target()
 	--' Если таргет не проинициализирован, то запускаем инициализатор.
 	if self.st.target_init == false then
 		self.st.target_position, self.st.target_id, self.st.target_init = initialize_gulag_target(self.object, self.st.target)
-		if self.st.target_init == false then
+		if st.target_init == false then
 			--printf("target_is_ni!!!l")
 			return nil
 		end

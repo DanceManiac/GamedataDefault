@@ -36,7 +36,6 @@ def_state_campering_fire = hide_sniper_fire
 ;on_timer = 5000 | {!see_actor} remark@search
 ;on_game_timer = 70 | camper@wait
 on_info = {=health_le(0.5)} camper@wait
-on_info2 = {+lim_military_minigun_out !actor_see_npc} %=destroy_object%, {+freeplay} %=destroy_object%
 wounded = wounded@work1
 sniper = true
 
@@ -47,7 +46,6 @@ combat_ignore_keep_when_attacked = true
 anim = hide_na
 target = actor
 on_info = {=see_actor} camper@fire
-on_info2 = {+lim_military_minigun_out !actor_see_npc} %=destroy_object%, {+freeplay} %=destroy_object%
 on_game_timer = 50 | camper@fire
 wounded = wounded@work1
 
@@ -59,7 +57,7 @@ path_look = lim_roof_sniper_1_wait_way
 radius = 0
 def_state_moving = sneak_run
 on_game_timer = 70 | camper@go_to_fire_point %=restore_health%
-on_info = {+lim_military_minigun_out !actor_see_npc} %=destroy_object%, {+freeplay} %=destroy_object%
+on_info = {+lim_military_minigun_out !actor_see_npc} %=destroy_object%
 wounded = wounded@work1
 
 [wounded@work1]

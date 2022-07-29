@@ -1,8 +1,7 @@
 [logic]
 active = smartcover@intro_3
 trade = misc\trade\trade_barmen_all.ltx
-level_spot = barman
-on_death = death
+level_spot = quest_npc
 
 [smartcover@intro_3]
 path_walk = mar_smart_terrain_csky_base_barman_walk
@@ -10,12 +9,10 @@ cover_name = mar_smart_cover_csky_barman_lead_stand_lean_on_bar
 loophole_name = lead_stand_lean_on_bar
 cover_state = idle_target
 on_info = {+mar_intro_talk_with_commander_1_done} smartcover@main_idle, {+mar_intro_talk_with_commander_1_started} smartcover@intro_3_no_meet %=play_sound(mar_csky_barman_reply_0:csky:mar_csky_barman_name)%
-combat_ignore_cond = {!is_enemy_actor}
+combat_ignore_cond = true
 meet = meet@no_break
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-csky_barman_meet_info !is_faction_enemy_to_actor(csky) !npc_talking} %=play_sound(mar_csky_barman_meet) +csky_barman_meet_info%
-on_actor_dist_ge_nvis = 4 | {+csky_barman_meet_info !is_faction_enemy_to_actor(csky) !npc_talking} %=play_sound(mar_csky_barman_meet_bye) -csky_barman_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
+;target_path = mar_smart_terrain_csky_base_barman_look
+;target_enemy = actor
 def_state_moving = walk
 
 [smartcover@intro_3_no_meet]
@@ -24,8 +21,9 @@ cover_name = mar_smart_cover_csky_barman_lead_stand_lean_on_bar
 loophole_name = lead_stand_lean_on_bar
 cover_state = idle_target
 on_signal = sound_end | smartcover@main_idle
-combat_ignore_cond = {!is_enemy_actor}
+combat_ignore_cond = true
 meet = no_meet
+;target_path = mar_smart_terrain_csky_base_barman_look
 def_state_moving = walk
 
 ;-----------------------------------------------------------------------------
@@ -36,25 +34,10 @@ cover_name = mar_smart_cover_csky_barman_lead_stand_lean_on_bar
 loophole_name = lead_stand_lean_on_bar
 cover_state = idle_target
 on_timer = 15000 | {~50 !talking} smartcover@main_lookout, {!talking} smartcover@main_fire_no_lookout
-on_info = {+mar_tutorial_returned_to_base} smartcover@main_final
-on_info2 = {+mar_intro_talk_with_commander_1_done -mar_tutorial_returned_to_base} smartcover@main_lookout_sos
-combat_ignore_cond = {!is_enemy_actor}
+combat_ignore_cond = true
 meet = meet@main
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-csky_barman_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_barman_meet) +csky_barman_meet_info%
-on_actor_dist_ge_nvis = 4 | {+csky_barman_meet_info !is_faction_enemy_to_actor(csky)} %-csky_barman_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
-def_state_moving = walk
-
-[smartcover@main_final]
-path_walk = mar_smart_terrain_csky_base_barman_walk
-cover_name = mar_smart_cover_csky_barman_lead_stand_lean_on_bar
-loophole_name = lead_stand_lean_on_bar
-cover_state = idle_target
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@main
-on_actor_dist_le_nvis = 2 | {-csky_barman_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_barman_meet) +csky_barman_meet_info%
-on_actor_dist_ge_nvis = 4 | {+csky_barman_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_barman_meet_bye) -csky_barman_meet_info%
+;target_path = mar_smart_terrain_csky_base_barman_look
+;target_enemy = actor
 def_state_moving = walk
 
 [smartcover@main_lookout]
@@ -64,13 +47,10 @@ loophole_name = lead_stand_lean_on_bar
 cover_state = lookout_target
 on_timer = 15000 | {~50} smartcover@main_fire_no_lookout, smartcover@main_idle
 on_info = {=talking} smartcover@main_idle
-on_info2 = {+mar_intro_talk_with_commander_1_done -mar_tutorial_returned_to_base} smartcover@main_fire_no_lookout_sos
-combat_ignore_cond = {!is_enemy_actor}
+combat_ignore_cond = true
 meet = meet@main
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-csky_barman_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_barman_meet) +csky_barman_meet_info%
-on_actor_dist_ge_nvis = 4 | {+csky_barman_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_barman_meet_bye) -csky_barman_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
+;target_path = mar_smart_terrain_csky_base_barman_look
+;target_enemy = actor
 def_state_moving = walk
 
 [smartcover@main_fire_no_lookout]
@@ -80,50 +60,10 @@ loophole_name = lead_stand_lean_on_bar
 cover_state = fire_no_lookout_target
 on_timer = 15000 | {~50} smartcover@main_idle, smartcover@main_lookout
 on_info = {=talking} smartcover@main_idle
-on_info2 = {+mar_intro_talk_with_commander_1_done -mar_tutorial_returned_to_base} smartcover@main_idle_sos
-combat_ignore_cond = {!is_enemy_actor}
+combat_ignore_cond = true
 meet = meet@main
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-csky_barman_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_barman_meet) +csky_barman_meet_info%
-on_actor_dist_ge_nvis = 4 | {+csky_barman_meet_info !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_barman_meet_bye) -csky_barman_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
-def_state_moving = walk
-
-;-----------------------------------------------------------------------------
-
-[smartcover@main_idle_sos]
-path_walk = mar_smart_terrain_csky_base_barman_walk
-cover_name = mar_smart_cover_csky_barman_lead_stand_lean_on_bar
-loophole_name = lead_stand_lean_on_bar
-cover_state = idle_target
-on_timer = 15000 | {~50 !talking} smartcover@main_lookout_sos, {!talking} smartcover@main_fire_no_lookout_sos
-on_info = {+mar_tutorial_returned_to_base} smartcover@main_idle
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@sos
-def_state_moving = walk
-
-[smartcover@main_lookout_sos]
-path_walk = mar_smart_terrain_csky_base_barman_walk
-cover_name = mar_smart_cover_csky_barman_lead_stand_lean_on_bar
-loophole_name = lead_stand_lean_on_bar
-cover_state = lookout_target
-on_timer = 15000 | {~50} smartcover@main_fire_no_lookout_sos, smartcover@main_idle_sos
-on_info = {=talking} smartcover@main_idle_sos
-on_info2 = {+mar_tutorial_returned_to_base} smartcover@main_idle
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@sos
-def_state_moving = walk
-
-[smartcover@main_fire_no_lookout_sos]
-path_walk = mar_smart_terrain_csky_base_barman_walk
-cover_name = mar_smart_cover_csky_barman_lead_stand_lean_on_bar
-loophole_name = lead_stand_lean_on_bar
-cover_state = fire_no_lookout_target
-on_timer = 15000 | {~50} smartcover@main_idle_sos, smartcover@main_lookout_sos
-on_info = {=talking} smartcover@main_idle_sos
-on_info2 = {+mar_tutorial_returned_to_base} smartcover@main_idle
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@sos
+;target_path = mar_smart_terrain_csky_base_barman_look
+;target_enemy = actor
 def_state_moving = walk
 
 ;-----------------------------------------------------------------------------
@@ -139,11 +79,9 @@ precond = visibility
 meet_dialog	= mar_csky_barman_intro_dialog
 allow_break = false
 trade_enable = false
-;-- Edited: Jurok --ON-------------------------------------------------------
-;sound_start = mar_csky_barman_meet
-;sound_stop = mar_csky_barman_meet_bye
-;-- Edited: Jurok --OFF------------------------------------------------------
-;quest_npc = true
+sound_start 	= mar_csky_barman_meet
+;sound_stop 		= mar_csky_barman_meet_bye
+quest_npc = true
 
 [meet@main]
 meet_state = 3| nil@nil
@@ -153,21 +91,6 @@ victim_wpn = 0|actor
 use = true
 use_wpn = true
 precond = visibility
-;-- Edited: Jurok --ON-------------------------------------------------------
-;sound_start = mar_csky_barman_meet
-;sound_stop = mar_csky_barman_meet_bye
-;-- Edited: Jurok --OFF------------------------------------------------------
-;quest_npc = true
-
-[meet@sos]
-meet_state = 3| nil@nil
-meet_state_wpn = 3| nil@nil
-victim = 0| actor
-victim_wpn = 0| actor
-use = true
-use_wpn = true
-trade_enable = false
-allow_break = false
-
-[death]
-on_info = %+mar_csky_barman_dead =set_faction_community_to_actor(csky:enemy)%
+sound_start 	= mar_csky_barman_meet
+sound_stop 		= mar_csky_barman_meet_bye
+quest_npc = true

@@ -1,23 +1,23 @@
 -- Andrey "Bandicoot" Zakoliukin --
 
-local money_for_relation = 10000
+local money_for_relation = 1000
 
 function transfer_money_for_relation(first_speaker, second_speaker)
 	dialogs.relocate_money(second_speaker, money_for_relation, "out")
 end
 
 function has_money_for_relation(first_speaker, second_speaker)
-	return (first_speaker:money() >= money_for_relation)
+	return (first_speaker:money()>=money_for_relation)
 end
 
 function not_has_money_for_relation(first_speaker, second_speaker)
-	return (first_speaker:money() < money_for_relation)
+	return (first_speaker:money()<money_for_relation)
 end
 
 function show_money_for_relation(first_speaker, second_speaker)
 	local news_caption = game.translate_string("st_upgr_cost")..": "
 	local news_text = tostring(money_for_relation).." "..game.translate_string("st_rubles")
-	db.actor:give_talk_message2(news_caption, news_text, "ui_iconsTotal_found_money", "iconed_answer_item")
+		db.actor:give_talk_message2(news_caption, news_text, "ui_iconsTotal_found_money", "iconed_answer_item")
 end
 
 
@@ -33,11 +33,11 @@ end
 -- stalker trader functions
 
 function is_smart_captured_by_bandits()
-	return xr_conditions.smart_captured_by_faction(nil,nil,{"esc_smart_terrain_6_6","bandit_enemy"})
+	return xr_conditions.smart_captured_by_faction(nil,nil,{"esc_smart_terrain_6_6","bandit"})
 end
 
 function is_smart_not_captured_by_bandits()
-	return not xr_conditions.smart_captured_by_faction(nil,nil,{"esc_smart_terrain_6_6","bandit_enemy"})
+	return not xr_conditions.smart_captured_by_faction(nil,nil,{"esc_smart_terrain_6_6","bandit"})
 end
 
 
@@ -69,7 +69,6 @@ end
 
 function transfer_leader_pda(first_speaker, second_speaker)
 		dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "device_pda_military")
-		dialogs.relocate_money(first_speaker, 1000, "in")
 end
 
 function actor_has_general_pda(first_speaker, second_speaker)
@@ -92,10 +91,6 @@ function transfer_prisoner_gun(first_speaker, second_speaker)
 		dialogs.transfer_any_gun_from_actor(first_speaker, second_speaker)
 end
 
-function transfer_prisoner_snipergun(first_speaker, second_speaker)
-		dialogs.transfer_any_snipergun_from_actor(first_speaker, second_speaker)
-end
-
 function transfer_device_pda_driver(first_speaker, second_speaker)
 		dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "esc_device_pda_driver")
 end
@@ -108,25 +103,10 @@ function actor_hasnt_device_pda_driver(first_speaker, second_speaker)
 		return not actor_has_device_pda_driver(first_speaker, second_speaker)
 end
 
-local money_for_support = 500
-
-function transfer_money_for_support(first_speaker, second_speaker)
-	dialogs.relocate_money(second_speaker, money_for_support, "out")
+function give_money_for_support(first_speaker, second_speaker)
+		dialogs.relocate_money(first_speaker, 500, "out")
 end
 
-function has_money_for_support(first_speaker, second_speaker)
-	return db.actor:money() >= 500
-end
-
-function not_has_money_for_support(first_speaker, second_speaker)
-	return db.actor:money() < 500
-end
-
-function show_money_for_support(first_speaker, second_speaker)
-	local news_caption = game.translate_string("st_upgr_cost")..": "
-	local news_text = tostring(money_for_support).." "..game.translate_string("st_rubles")
-	db.actor:give_talk_message2(news_caption, news_text, "ui_iconsTotal_found_money", "iconed_answer_item")
-end
 
 
 -- rewards functions
@@ -151,104 +131,10 @@ end
 
 -- transfer functions "relocate_item"
 
-function transfer_flash_card_to_mechanic(first_speaker, second_speaker)
-	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "esc_mechanic_flash_card")
-	dialogs.relocate_money(first_speaker, 1000, "in")
+function transfer_military_pda_to_military(first_speaker, second_speaker)
+	dialogs.relocate_item_section(second_speaker, "esc_mechanic_flash_card_1", "in", 1)
 end
 
 function transfer_military_pda_to_stalker(first_speaker, second_speaker)
 	dialogs.relocate_item_section(second_speaker, "esc_mechanic_flash_card_3", "in", 1)
-end
-
--- ----------------------------------
-function army_controls_vehicle_station()
-	return xr_conditions.smart_captured_by_faction(nil, nil, {"esc_smart_terrain_7_11", "army"})
-end
-
-function give_svejak_pda(first_speaker, second_speaker)
-	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "gar_digger_dead_pda")
-	dialogs.relocate_money(first_speaker, 100, "in")
-end
-
-function actor_has_svejak_pda(first_speaker, second_speaker)
-		return first_speaker:object("gar_digger_dead_pda") ~= nil 	
-end
-
-function give_vasyan_pda(first_speaker, second_speaker)
-	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "gar_digger_messenger_pda")
-	dialogs.relocate_money(first_speaker, 100, "in")
-end
-
-function actor_has_vasyan_pda(first_speaker, second_speaker)
-		return first_speaker:object("gar_digger_messenger_pda") ~= nil 	
-end
-
--- Ransom for Zarek... Oh, what am I talking about? For the Dog, for the Dog ransom!
-
-function esc_proverka_wpn(first_speaker, second_speaker)
-	local table = {
-			"wpn_desert_eagle",
-			"wpn_sigsg550sniper",
-			"wpn_g36",
-			"wpn_g36_ogsm_accuracy_1",
-			"wpn_g36_ogsm_burst_1",
-			"wpn_fn2000",
-			"wpn_groza",
-			"wpn_groza_ogsm_tier_1",
-			"wpn_groza_ogsm_tier_2",
-			"wpn_val",
-			"wpn_val_ogsm_tier_1",
-			"wpn_val_ogsm_tier_2",
-			"wpn_vintorez",
-			"wpn_vintorez_ogsm_tier_1",
-			"wpn_vintorez_ogsm_tier_2",
-			"wpn_svd",
-			"wpn_svd_ogsm_tier_1",
-			"wpn_svd_ogsm_tier_2",
-			"wpn_svu",
-			"wpn_svu_ogsm_tier_1",
-			"wpn_svu_ogsm_tier_2",
-			"wpn_pkm",
-			"wpn_spas12",
-			"wpn_spas12_ogsm_accuracy_1",
-			"wpn_spas12_ogsm_burst_1",
-			"wpn_gauss_aes",
-			"wpn_rpk",
-			"wpn_rpg7",
-			"wpn_rg-6",
-			}
-	for k,v in pairs(table) do
-		if db.actor:item_in_slot(2) ~= nil and db.actor:item_in_slot(2):section() == v then
-			return true
-		elseif db.actor:item_in_slot(3) ~= nil and db.actor:item_in_slot(3):section() == v then
-			return true
-		end
-	end
-	return false
-end
-
-function esc_proverka_wpn_false(first_speaker, second_speaker)
-	return not esc_proverka_wpn(first_speaker, second_speaker)
-end
-
-function esc_actor_has_money(first_speaker, second_speaker)
-	if has_alife_info("esc_debt_wo_percent") then
-		return db.actor:money() >= 5000
-	else
-		return db.actor:money() >= 7000
-	end
-end
-
-function esc_actor_has_not_money(first_speaker, second_speaker)
-	return not esc_actor_has_money(first_speaker, second_speaker)
-end
-
-function esc_actor_give_money(first_speaker, second_speaker)
-	if has_alife_info("esc_debt_wo_percent") then
-		dialogs.relocate_money_from_actor(first_speaker, second_speaker, 5000)
-		db.actor:give_info_portion("esc_bandit_take_money")
-	else
-		dialogs.relocate_money_from_actor(first_speaker, second_speaker, 7000)
-		db.actor:give_info_portion("esc_bandit_take_all_money")
-	end
 end

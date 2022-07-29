@@ -3,24 +3,7 @@
 Чугай Александр
 --------------------------------------------------------------------------------------------------------------------]]
 function printf()
-end
-
--- bak  - информация для скриптов: включено ли игнорирование врага
-function is_ignored(obj,enemy)
-	local st = db.storage[obj:id()].combat_ignore
-	if st and st.enabled then
-		if st.ignore.timer < time_global() then
-			st.ignore = {timer = time_global()+5800}
-		end
-		local ignored = st.ignore[enemy:id()]
-		if ignored == nil then
-			ignored = not is_enemy(obj,enemy,st,true)
-			st.ignore[enemy:id()] = ignored
-		end
-		return ignored == true
-	end
-	return false
-end
+end	
 
 function is_enemy(obj, enemy, st, not_check_sim)
 	if not obj:alive() then
@@ -50,19 +33,19 @@ function is_enemy(obj, enemy, st, not_check_sim)
 			return false
 		end
 	end	
---	printf("checking combat_ignore for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
+	printf("checking combat_ignore for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
 	--' Если есть оверрайды, то работаем по ним. 
 	if overrides and
 	   overrides.combat_ignore
 	then
 		if xr_logic.pick_section_from_condlist( enemy, obj, overrides.combat_ignore.condlist ) ~= nil then
---			printf("pl:Disabling_memory_object[1] for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
+			printf("pl:Disabling_memory_object[1] for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
 			obj:enable_memory_object( enemy, false )
 			return false
 		end
 		return true
 	else
---		printf("!!! %s -> %s", obj:name(), enemy:name())
+		printf("!!! %s -> %s", obj:name(), enemy:name())		
 		local se_obj = alife():object(obj_id)
 	
 		if se_obj == nil then
@@ -81,7 +64,7 @@ function is_enemy(obj, enemy, st, not_check_sim)
 		if my_squad.smart_id ~= nil then
 			my_squad_src_smart = my_squad.smart_id
 		else 
---			printf("pl:Disabling_memory_object[2]for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
+			printf("pl:Disabling_memory_object[2]for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
 			obj:enable_memory_object( enemy, false )
 			return false
 		end
@@ -103,7 +86,7 @@ function is_enemy(obj, enemy, st, not_check_sim)
 			abort("COMBAT_IGNORE. Enemy ID is nil")
 		end
 		if alife():object(enemy:id()) == nil then
---			printf("pl:Disabling_memory_object[3]for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
+			printf("pl:Disabling_memory_object[3]for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
 			obj:enable_memory_object( enemy, false )
 			return false
 		end
@@ -111,12 +94,12 @@ function is_enemy(obj, enemy, st, not_check_sim)
 		--' Для НПС и для ИГРОКА разные логики.
 		if enemy:id() == db.actor:id() then			
 			local combat_smart_manager = board.smarts[my_squad_dest_smart or my_squad_src_smart].smrt.combat_manager
---			printf("pl:1")
+			printf("pl:1")
 			if not_check_sim ~= true then
---				printf("pl:2")
+				printf("pl:2")
 				combat_smart_manager:enemy_actor_callback(my_squad)
 				if combat_smart_manager:get_squad_stage(my_squad) ~= "combat" then			
---					printf("pl:Disabling_memory_object[4] stage [%s] for stalker[%s] enemy name [%s] in section[%s]", combat_smart_manager:get_squad_stage(my_squad),obj:name(), enemy:name(),storage.active_section)
+					printf("pl:Disabling_memory_object[4] stage [%s] for stalker[%s] enemy name [%s] in section[%s]", combat_smart_manager:get_squad_stage(my_squad),obj:name(), enemy:name(),storage.active_section)
 					obj:enable_memory_object( enemy, false )
 					return false				
 				end
@@ -133,7 +116,7 @@ function is_enemy(obj, enemy, st, not_check_sim)
 		if enemy_squad.smart_id ~= nil then
 			enemy_squad_src_smart = enemy_squad.smart_id
 		else 
---			printf("pl:Disabling_memory_object[5]for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
+			printf("pl:Disabling_memory_object[5]for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
 			obj:enable_memory_object( enemy, false )
 			return false
 		end
@@ -164,8 +147,8 @@ function is_enemy(obj, enemy, st, not_check_sim)
 			--' Мы каким то образом оказались в одном и том же смарте
 --			printf("COMBAT %s -> %s BOTH STAY", obj:name(), enemy:name())
 			return true
-		end
-
+		end			
+				
 		if combat_smart == nil then
 --			printf("COMBAT %s -> %s smart NIL", obj:name(), enemy:name())
 			printf("pl:Disabling_memory_object[6]for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
@@ -178,7 +161,7 @@ function is_enemy(obj, enemy, st, not_check_sim)
 		
 --		printf("COMBAT %s -> %s smart %s stage %s ", obj:name(), enemy:name(), sim_board.get_sim_board().smarts[combat_smart].smrt:name(), combat_smart_manager:get_attack_stage())
 		if combat_smart_manager:get_squad_stage(my_squad) ~= "combat" then
---			printf("pl:Disabling_memory_object[7]for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
+			printf("pl:Disabling_memory_object[7]for stalker[%s] enemy name [%s] in section[%s]",obj:name(), enemy:name(),storage.active_section)
 			obj:enable_memory_object( enemy, false )
 			return false	
 		end
@@ -200,10 +183,8 @@ function action_process_enemy:enemy_callback( obj, enemy )
 --'	printf("FOUND ENEMY [%s](%s,%s,%s) -> [%s](%s,%s,%s)", self.object:name(), obj_pos.x, obj_pos.y, obj_pos.z,
 --'														   enemy:name(), ene_pos.x, ene_pos.y, ene_pos.z)
 
-	local is_obj_enemy = is_enemy( obj, enemy, self.st, false )
-	self.st.ignore[enemy:id()] = not is_obj_enemy	-- сохранение результата проверки врага на игнор
 
-	return is_obj_enemy
+	return is_enemy( obj, enemy, self.st, false )
 end
 
 function action_process_enemy:hit_callback(obj, amount, local_direction, who, bone_index)
@@ -248,7 +229,6 @@ function reset_combat_ignore_checker(npc, scheme, st, section)
 
 	storage.overrides = xr_logic.generic_scheme_overrides(npc)
 
-	storage.ignore = {timer = time_global()+math.random(8000,9000)}
 	storage.enabled = true
 end
 
@@ -261,8 +241,6 @@ function disable_scheme( npc, scheme )
 	-- схем, в котором нет перехвата боя, продолжится вызываться callback в старом подписанном action-е.
 	local st = db.storage[npc:id()][scheme]
 	if st then
-		st.enabled = false		-- нужно убирать за собой
-		st.ignore = nil
 		xr_logic.unsubscribe_action_from_events(npc, st, st.action)
 	end
 end

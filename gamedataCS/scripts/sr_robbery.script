@@ -67,35 +67,23 @@ function action_robbery:disable_reaction_final()
 	self:reset_scheme()
 end
 function action_robbery:abuse_gulag ()
-	self.gulag_abused = true
-
--- Kirgudu
--- дополнительное ухудшение отношени€ к Ўраму отр€дов на блокпостах в случае игнорировани€ их приказов
-	local sim_board = sim_board.get_sim_board()
-	local smart = sim_board.smarts_by_names[self.st.gulag]
-	local squads = sim_board.smarts[smart.id].squads
-	for k,v in pairs(squads) do
-		v:set_squad_relation("enemy")
-		v:set_squad_sympathy(0)
-	end
--- Kirgudu
-
-	local gulag = xr_gulag.get_gulag_by_name(self.st.gulag)
-	for k,v in pairs(gulag.npc_info) do
-		if db.storage[v.se_obj.id] ~= nil then
-			local object = db.storage[v.se_obj.id].object
-			local h = hit()
-			h.power = 0.0
-			h.direction = object:direction()
-			h.draftsman = db.actor
-			h.impulse = 0
-			h.type = hit.wound
-			object:hit(h)
-		end
-	end
-	-- self:disable_reaction_final()
-	-- db.storage[self.object:id()].robbery_manager:set_danger_dist_check(false)
-	-- db.storage[self.object:id()].robbery_manager  = nil
+			self.gulag_abused = true
+			local gulag = xr_gulag.get_gulag_by_name(self.st.gulag)
+			for k,v in pairs(gulag.npc_info) do
+				if db.storage[v.se_obj.id] ~= nil then
+					local object = 	db.storage[v.se_obj.id].object
+					local h = hit()
+					h.power = 0.0
+					h.direction = object:direction()
+					h.draftsman = db.actor
+					h.impulse = 0
+					h.type = hit.wound
+					object:hit(h)
+				end
+			end
+			-- self:disable_reaction_final()
+			-- db.storage[self.object:id()].robbery_manager:set_danger_dist_check(false)
+			-- db.storage[self.object:id()].robbery_manager  = nil
 end
 
 function is_gulag_enemy(gulag_name)
@@ -199,10 +187,7 @@ function action_robbery:update( delta )
 				return
 			end
 		end
--- Kirgudu
---		if (manager.robbery_end ~= true and self.attack_zone:inside( db.actor:position() )) or self.actor_enemy then
-		if (manager.robbery_end ~= true and (self.attack_zone:inside( db.actor:position() ) or manager.refuse)) or self.actor_enemy then
--- Kirgudu
+		if (manager.robbery_end ~= true and self.attack_zone:inside( db.actor:position() )) or self.actor_enemy then
 			if self.commander_obj:alive() == true then
 				self.commander_obj:set_sound_mask(-1)
 				self.commander_obj:set_sound_mask(0)
@@ -399,16 +384,12 @@ function robbery_manager:__init ( obj, sr_robbery)
 	self.npc_squad = self.scene_manager.squad
 	self.npc_position = {}
 	self.actor_direction = vector():sub(self.commander_npc:position(),db.actor:position())
-	self.refuse = false
 
-	--db.actor:set_actor_direction(-self.actor_direction:getH())
-	 --level.disable_input())
-	 --db.actor:hide_weapon())
+	--db.actor:set_actor_direction(-self.actor_direction:getH())	 --level.disable_input())	 --db.actor:hide_weapon())
 	-- считаем отклонение направлени€ командира от оси ’
 	self.yaw = yaw_degree( self.actor_direction,vector():set(0, 0, 1))
 	local vvv = vector_cross(self.actor_direction, vector():set(0, 0, 1))
-		if vvv.y < 0 then
-			 self.yaw = -self.yaw
+		if vvv.y < 0 then			 self.yaw = -self.yaw
 		end
 	-- поворачиваем направлени€ дл€ поиска доступных точек на угол yaw
 	self.position = {
@@ -515,20 +496,6 @@ function robbery_end(first_speaker, second_speaker)
 	end
 end
 
--- Kirgudu
-function robbery_manager:set_refuse_check()
-	printf("check_refuse!!!")
-	self.refuse = true
-end
-
-function actor_refuses(first_speaker, second_speaker)
-	second_speaker:disable_talk()
-	second_speaker:restore_default_start_dialog()
-	if db.storage[db.storage[second_speaker:id()].robbery_zone_id].robbery_manager ~= nil then
-		db.storage[db.storage[second_speaker:id()].robbery_zone_id].robbery_manager:set_refuse_check()
-	end
-end
--- Kirgudu
 
 function actor_dont_pay(first_speaker, second_speaker)
 	--db.actor:restore_weapon()
@@ -550,14 +517,6 @@ local function get_actor_inv(release_item)
 	actor_inventory[release_item:id()] = release_item
 end
 
-function actor_has_money(first_speaker, second_speaker)
-	return db.actor:money() > 0
-end
-
-function actor_has_no_money(first_speaker, second_speaker)
-	return db.actor:money() <= 0
-end
-
 --local manager_st = nil
 --local commander = nil
 function actor_give_money(first_speaker, second_speaker)
@@ -571,10 +530,6 @@ function actor_give_money(first_speaker, second_speaker)
 	local money = 0
 	if manager_st.money == "all" then
 		money = db.actor:money()
--- Kirgudu
--- отнимаем половину денег
-		money = round(money / 2)
--- Kirgudu
 	else
 		money = tonumber(manager_st.money)
 		if db.actor:money() < money then
@@ -582,8 +537,7 @@ function actor_give_money(first_speaker, second_speaker)
 		end
 	end
 	db.actor:give_money(-money)
-	news_manager.relocate_money(db.actor, "out", money)
-	 --[[  db.actor:inventory_for_each(get_actor_inv))
+	news_manager.relocate_money(db.actor, "out", money)	 --[[  db.actor:inventory_for_each(get_actor_inv))
 	local cost = 0
 	local most_expensive_pistol_id = nil
 	local most_expensive_pistol_section = nil

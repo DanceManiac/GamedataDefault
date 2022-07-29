@@ -70,9 +70,6 @@ function motivator_binder:net_spawn(sobject)
 	printf("motivator_binder:net_spawn(): self.object:name()='%s'", self.object:name())
 	local ppos = self.object:position()
 	--printf("position [%s][%s][%s]", ppos.x, ppos.y, ppos.z)
-
-	if cop_dyn_music and ogsm_options.music_type == 2 then cop_dyn_music.npc_table[self.object:id()] = self.object:id() end
-
 	xrs_dyn_music.npc_table[self.object:id()] = self.object
 	--memusage.collect_info(self.object, "netspawn_start")
 	if not object_binder.net_spawn(self, sobject) then
@@ -94,16 +91,13 @@ function motivator_binder:net_spawn(sobject)
 	self.object:set_callback(callback.hit, motivator_binder.hit_callback, self)
 	self.object:set_callback(callback.death, motivator_binder.death_callback, self)
 	self.object:set_callback(callback.use_object, motivator_binder.use_callback, self)
-	-- callbacks for AI Additions
-	self.object:set_callback(callback.on_item_drop, self.on_item_drop, self)
-	self.object:set_callback(callback.on_item_take, self.on_item_take, self)
 	--memusage.collect_info(self.object, "after__callback")
 
 	--self.object:set_callback(callback.sound, motivator_binder.hear_callback, self)
 
 	-- ставим дефолтное расстояние входа в смарткаверы
 
-	self.object:apply_loophole_direction_distance(1.6)
+	self.object:apply_loophole_direction_distance(1.0)
 
 		--' Загрузка историй для лагеря.
 	if self.loaded == false then
@@ -125,7 +119,6 @@ function motivator_binder:net_spawn(sobject)
 	end
 
 	if not self.object:alive() then
-		if rx_ai then rx_ai.corpse_net_spawn(self.object,self.loaded) end
 		return true
 	end
 -- setting npc relation and sympathy from storage
@@ -167,6 +160,8 @@ function motivator_binder:net_spawn(sobject)
 		post_combat_idle.add_post_combat_idle(self.object)
 	end
 
+
+
 	self.object:group_throw_time_interval(2000)
 
 	if self.object:profile_name() == "stc_strelok" then
@@ -174,16 +169,11 @@ function motivator_binder:net_spawn(sobject)
 		stc_strelok_health_manager.cs_strelok_health(self.object)
 	end
 
-	if rx_ai then rx_ai.npc_net_spawn(self.object) end
 	return true
 end
 
 function motivator_binder:net_destroy()
-	if rx_ai then rx_ai.npc_net_destroy(self.object) end
 	--printf("motivator_binder:net_destroy(): self.object:name()='%s'", self.object:name())
-
-	if cop_dyn_music and ogsm_options.music_type == 2 then cop_dyn_music.npc_table[self.object:id()] = nil end
-
 	xrs_dyn_music.npc_table[self.object:id()] = nil
 	xrs_dyn_music.stop_combat(self.object:id())
 		xr_sound.stop_sounds_by_id(self.object:id())
@@ -193,8 +183,6 @@ function motivator_binder:net_destroy()
 	end
 
 	db.del_obj(self.object)
-	
-    ngsm_callbacks.on_npc_offline(self.object) --' NGSM
 
 	db.storage[self.object:id()] = nil
 
@@ -242,53 +230,21 @@ function motivator_binder:hit_callback(obj, amount, local_direction, who, bone_i
 		xr_wounded.hit_callback(self.object:id())
 			 sim_combat.hit_callback(self.object:id(),who:id())
 	end
-
--- Music
-	if ogsm_music and ogsm_options.music_type == 1 and db.actor and who and who:id()==db.actor:id() and amount>0 then
-		ogsm_music.calc_adrenaline("actor_hit_enemy",self.object,"npc")
-	end
--- Music
-
-	if rx_ai then rx_ai.npc_hit(obj,amount,local_direction,who,bone_index) end
-	
-	--// NGSM
-    ngsm_callbacks.on_npc_hit(obj, amount, local_direction, who, bone_index)
-    --// NGSM
-	
 end
 
 function motivator_binder:death_callback(victim, who)
 	callstack()
-	if rx_ai then rx_ai.npc_death(self.object,who) end
-
-	if cop_dyn_music and ogsm_options.music_type == 2 then cop_dyn_music.npc_table[self.object:id()] = nil end
-
 	--' Distemper 03.2008 --
-	xrs_dyn_music.npc_table[self.object:id()] = nil
 	xrs_dyn_music.stop_combat(self.object:id())
 	--' Если игрок был с квестом от механика - фейлить его
 	local st = db.storage[self.object:id()]
 	local npc = self.object
 	stalker_generic.remove_level_spot(npc, st)
-	
-	--// NGSM
-	if not string.find(self.object:name(), "neutral_bodies") then
-		ngsm_callbacks.on_npc_death(self.object, who)
-	end
-	--// NGSM
-	
 	--' end  --
 	if who:id() == db.actor:id() then
 		xr_statistic.addKillCount(self.object)
 		xr_statistic.inc_killed_stalkers_counter()
 	end
-
-	--' DEXXX
-	ogsm.dbglog("death of "..self.object:name())
-	if ogsm_options.enable_marauder and ogsm_marauder and not string.find(self.object:name(), "neutral_bodies") then
-		--ogsm_marauder.main(self.object) --'NGSM
-	end
-	--' end
 
 	--' Загрузка историй для лагеря.
 	local known_info = utils.cfg_get_string(st.ini,st.section_logic , "known_info", self.object, false, "", nil)
@@ -307,7 +263,6 @@ function motivator_binder:death_callback(victim, who)
 	sr_light.check_light(self.object)
 
 	death_manager.drop_manager(self.object):create_release_item()
-	if rx_wmgr then death_manager.reset_wm_weapons() end
 
 		db.delete_enemy( self.e_index )
 
@@ -327,8 +282,6 @@ function motivator_binder:death_callback(victim, who)
 
 	end
 	release_body_manager.get_release_body_manager():moving_dead_body(self.object) --' Distemper 11.02.2008
-
-
 end
 
 function motivator_binder:use_callback(obj, who)
@@ -348,68 +301,20 @@ function motivator_binder:use_callback(obj, who)
 	end
 end
 
-function motivator_binder:on_item_drop(obj)
-	local snpc = alife():object(self.object:id())
-	if not (snpc and snpc.online) then
-		return		-- уходит в оффлайн
-	end
-	if rx_ai then
-		rx_ai.npc_item_drop(self.object,obj)
-	end
---	local sobj = alife():object(obj:id())
---	if not sobj then
---		return		-- предмет удалён
---	end
-end
-
-function motivator_binder:on_item_take(obj)
---	local sobj = alife():object(obj:id())
---	if not sobj then
---		return		-- предмет удалён
---	end
-	if rx_ai then
-		rx_ai.npc_item_take(self.object,obj)
-	end
-end
-
 function motivator_binder:update(delta)
 	object_binder.update(self, delta)
-
 	if bind_stalker.to_delayed_alife_release_objects[self.object:id()] == true then
 		printf("releasing object ["..self.object:name().."]")
-		ogsm.dbglog("xr_motivator_release_"..self.object:name())
 		alife():release(alife():object(self.object:id()),true)
 		return
 	end
-
--- Music
-	if ogsm_music and ogsm_options.music_type == 1 and ogsm.get_npc_relation(self.object,db.actor)=="enemy" and self.object:alive() and self.object.health>0.01 
-	and self.object:name() ~= "komandir_military" and self.object:name() ~= "esc_driver" and self.object:name() ~= "esc_military_secret_trader" then 
-			if self.object:see(db.actor) then 
-				ogsm_music.calc_adrenaline("enemy_see_actor", self.object,"npc") 
-			end
-			if db.actor:see(self.object) then
-				ogsm_music.calc_adrenaline("actor_see_enemy", self.object,"npc") 
-			end
-	end
-
-	local wpn = utils.wpn_info_get(self.object)
-	if wpn["ammo"]~=nil then
-		local enemy = self.object:best_enemy()
-		if ogsm_music and ogsm_options.music_type == 1 and enemy and enemy:id()==db.actor:id() and self.object:see(db.actor) and self.prev_ammo>wpn["ammo"] then
-			ogsm_music.calc_adrenaline("enemy_hit_actor",self.object,"npc")
-		end
-	end
-	
-	self.prev_ammo = wpn["ammo"] or 0
--- Music
 
 	local object_alive = self.object:alive()
 	local object = self.object
 	local actor = db.actor
 	local st = db.storage[object:id()]
 	local st_combat = st.combat
-	if not self.strelok_particles_added and object:profile_name() == "stc_strelok" and not ogsm_options.hide_electra then
+	if not self.strelok_particles_added and object:profile_name() == "stc_strelok" then
 		object:start_particles("monsters\\polter_idle","bip01_head")
 		self.strelok_particles_added = true
 	end
@@ -502,9 +407,7 @@ function motivator_binder:update(delta)
 		end
 	end
 
-	--// NGSM
-    ngsm_callbacks.stalker_binder(object, object_alive, self)
-	--// NGSM
+
 
 --	object:info_clear()
 	if object_alive then
@@ -541,7 +444,6 @@ function motivator_binder:update(delta)
 		object:set_tip_text_default()
 	end
 
-	if rx_ai and object_alive then rx_ai.npc_update(object,self.st) end
 end
 
 function motivator_binder:reload(section)
@@ -653,27 +555,11 @@ end
 
 -- Эвалюаторы, которые имеют высший приоритет, и, соответственно, перебивают остальные скрипты собой
 function addCommonPrecondition(action)
+	--action:add_precondition (world_property(xr_evaluators_id.reaction,false))
 	action:add_precondition (world_property(xr_evaluators_id.stohe_meet_base + 1,false))
 	action:add_precondition (world_property(xr_evaluators_id.sidor_wounded_base + 0,  false))
+	--'action:add_precondition (world_property(xr_evaluators_id.chugai_heli_hunter_base, false))
 	action:add_precondition (world_property(xr_evaluators_id.abuse_base, false))
-	if ogsm_hideout then
-		action:add_precondition(world_property(ogsm_hideout.property_blowout, false))
-		action:add_precondition(world_property(ogsm_hideout.property_hideout_lost, false))
-		action:add_precondition(world_property(ogsm_hideout.property_inhide, false))
-	end
-	if rx_ai then rx_ai.addCommonPrecondition(action) end
-	
-	--// NGSM
-	if ngsm_options.new_ai_modules == true then
-		if ngsm_xr_detour then
-	        action:add_precondition (world_property(ngsm_xr_detour.evid_detour_anomaly, false)) --'Обход аномалий
-		end
-	    if ngsm_xr_hider then
-	        action:add_precondition (world_property(ngsm_xr_hider.evid_surge_hider, false)) --'Поиск укрытий
-	    end
-	end
-	--// NGSM
-	
 end
 function register_bloodsucker_restr(obj)
 		printf("registering blood restr!!!")

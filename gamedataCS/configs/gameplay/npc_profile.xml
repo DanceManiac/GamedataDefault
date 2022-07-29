@@ -1,7 +1,7 @@
 ﻿<?xml version='1.0' encoding="UTF-8"?>
 
 <xml>
-
+	<!-- НОВЫЕ ПРОФИЛЯ -->
 	<character id="actor">
 		<class>Actor</class>
 		<specific_character>actor</specific_character>
@@ -25,77 +25,9 @@
 	<character id="default_bandit">
 		<class>Stalker_bandit</class>
 	</character>
-
-	<!-------------------------------------------------->
-	<!-------------------- FACTIONS -------------------->
-	<!-------------------------------------------------->
-
-	<character id="sim_default_csky_0">
-		<class>sim_default_csky_0</class>
-	</character>
-	<character id="sim_default_csky_1">
-		<class>sim_default_csky_1</class>
-	</character>
-	<character id="sim_default_csky_2">
-		<class>sim_default_csky_2</class>
-	</character>
-	<character id="sim_default_csky_3">
-		<class>sim_default_csky_3</class>
-	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="sim_default_renegade_0">
-		<class>sim_default_renegade_0</class>
-	</character>
-	<character id="sim_default_renegade_1">
-		<class>sim_default_renegade_1</class>
-	</character>
-	<character id="sim_default_renegade_2">
-		<class>sim_default_renegade_2</class>
-	</character>
-	<character id="sim_default_renegade_3">
-		<class>sim_default_renegade_3</class>
-	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="sim_default_stalker_0">
-		<class>sim_default_stalker_0</class>
-	</character>
-	<character id="sim_default_stalker_1">
-		<class>sim_default_stalker_1</class>
-	</character>
-	<character id="sim_default_stalker_2">
-		<class>sim_default_stalker_2</class>
-	</character>
-	<character id="sim_default_stalker_3">
-		<class>sim_default_stalker_3</class>
-	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="sim_default_bandit_0">
-		<class>sim_default_bandit_0</class>
-	</character>
-	<character id="sim_default_bandit_1">
-		<class>sim_default_bandit_1</class>
-	</character>
-	<character id="sim_default_bandit_2">
-		<class>sim_default_bandit_2</class>
-	</character>
-	<character id="sim_default_bandit_3">
-		<class>sim_default_bandit_3</class>
-	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="sim_default_digger_0">
-		<class>sim_default_digger_0</class>
-	</character>
-
-	<!-------------------------------------------------->
-
+	
+		<!-- sim profiles -->
+		<!-- sim duty -->
 	<character id="sim_default_duty_0">
 		<class>sim_default_duty_0</class>
 	</character>
@@ -108,39 +40,10 @@
 	<character id="sim_default_duty_3">
 		<class>sim_default_duty_3</class>
 	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="sim_default_freedom_0">
-		<class>sim_default_freedom_0</class>
+	<character id="sim_default_duty_4">
+		<class>sim_default_duty_4</class>
 	</character>
-	<character id="sim_default_freedom_1">
-		<class>sim_default_freedom_1</class>
-	</character>
-	<character id="sim_default_freedom_2">
-		<class>sim_default_freedom_2</class>
-	</character>
-	<character id="sim_default_freedom_3">
-		<class>sim_default_freedom_3</class>
-	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="sim_default_killer_0">
-		<class>sim_default_killer_0</class>
-	</character>
-	<character id="sim_default_killer_1">
-		<class>sim_default_killer_1</class>
-	</character>
-	<character id="sim_default_killer_2">
-		<class>sim_default_killer_2</class>
-	</character>
-	<character id="sim_default_killer_3">
-		<class>sim_default_killer_3</class>
-	</character>
-
-	<!-------------------------------------------------->
-
+		<!-- sim monolith -->
 	<character id="sim_default_monolith_0">
 		<class>sim_default_monolith_0</class>
 	</character>
@@ -153,9 +56,89 @@
 	<character id="sim_default_monolith_3">
 		<class>sim_default_monolith_3</class>
 	</character>
-
-	<!-------------------------------------------------->
-
+	<character id="sim_default_monolith_4">
+		<class>sim_default_monolith_4</class>
+	</character>
+	
+		<!-- sim freedom -->
+	<character id="sim_default_freedom_0">
+		<class>sim_default_freedom_0</class>
+	</character>
+	<character id="sim_default_freedom_1">
+		<class>sim_default_freedom_1</class>
+	</character>
+	<character id="sim_default_freedom_2">
+		<class>sim_default_freedom_2</class>
+	</character>
+	<character id="sim_default_freedom_3">
+		<class>sim_default_freedom_3</class>
+	</character>
+	<character id="sim_default_freedom_4">
+		<class>sim_default_freedom_4</class>
+	</character>
+	
+		<!-- sim bandit -->
+	<character id="sim_default_bandit_0">
+		<class>sim_default_bandit_0</class>
+	</character>
+	<character id="sim_default_bandit_1">
+		<class>sim_default_bandit_1</class>
+	</character>
+	<character id="sim_default_bandit_2">
+		<class>sim_default_bandit_2</class>
+	</character>
+	<character id="sim_default_bandit_3">
+		<class>sim_default_bandit_3</class>
+	</character>
+	<character id="sim_default_bandit_4">
+		<class>sim_default_bandit_4</class>
+	</character>
+	
+		<!-- sim renegade -->
+	<character id="sim_default_renegade_0">
+		<class>sim_default_renegade_0</class>
+	</character>
+	<character id="sim_default_renegade_1">
+		<class>sim_default_renegade_1</class>
+	</character>
+	<character id="sim_default_renegade_2">
+		<class>sim_default_renegade_2</class>
+	</character>
+	
+		<!-- sim csky -->
+	<character id="sim_default_csky_0">
+		<class>sim_default_csky_0</class>
+	</character>
+	<character id="sim_default_csky_1">
+		<class>sim_default_csky_1</class>
+	</character>
+	<character id="sim_default_csky_2">
+		<class>sim_default_csky_2</class>
+	</character>
+	<character id="sim_default_csky_3">
+		<class>sim_default_csky_3</class>
+	</character>
+	<character id="sim_default_csky_4">
+		<class>sim_default_csky_4</class>
+	</character>
+		<!-- sim stalker -->
+	<character id="sim_default_stalker_0">
+		<class>sim_default_stalker_0</class>
+	</character>
+	<character id="sim_default_stalker_1">
+		<class>sim_default_stalker_1</class>
+	</character>
+	<character id="sim_default_stalker_2">
+		<class>sim_default_stalker_2</class>
+	</character>
+	<character id="sim_default_stalker_3">
+		<class>sim_default_stalker_3</class>
+	</character>
+	<character id="sim_default_stalker_4">
+		<class>sim_default_stalker_4</class>
+	</character>
+		
+		<!-- sim military -->
 	<character id="sim_default_military_0">
 		<class>sim_default_military_0</class>
 	</character>
@@ -168,12 +151,48 @@
 	<character id="sim_default_military_3">
 		<class>sim_default_military_3</class>
 	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="sim_default_zombied_0">
-		<class>sim_default_zombied_0</class>
+	<character id="sim_default_military_3_sniper">
+		<class>sim_default_military_3_sniper</class>
 	</character>
+	<character id="sim_default_military_4">
+		<class>sim_default_military_4</class>
+	</character>
+		
+		<!-- mercenery -->
+	<character id="sim_default_killer_0">
+		<class>sim_default_killer_0</class>
+	</character>
+	<character id="sim_default_killer_1">
+		<class>sim_default_killer_1</class>
+	</character>
+	<character id="sim_default_killer_2">
+		<class>sim_default_killer_2</class>
+	</character>
+	<character id="sim_default_killer_3">
+		<class>sim_default_killer_3</class>
+	</character>
+	<character id="sim_default_killer_4">
+		<class>sim_default_killer_4</class>
+	</character>
+		
+		<!-- sim digger -->
+	<character id="sim_default_digger_0">
+		<class>sim_default_digger_0</class>
+	</character>
+	<character id="sim_default_digger_1">
+		<class>sim_default_digger_1</class>
+	</character>
+	<character id="sim_default_digger_2">
+		<class>sim_default_digger_2</class>
+	</character>
+	<character id="sim_default_digger_3">
+		<class>sim_default_digger_3</class>
+	</character>
+	<character id="sim_default_digger_4">
+		<class>sim_default_digger_4</class>
+	</character>
+	
+	<!-- sim zombied -->
 	<character id="sim_default_zombied_1">
 		<class>sim_default_zombied_1</class>
 	</character>
@@ -183,11 +202,24 @@
 	<character id="sim_default_zombied_3">
 		<class>sim_default_zombied_3</class>
 	</character>
+	<character id="sim_default_zombied_4">
+		<class>sim_default_zombied_4</class>
+	</character>
+	
+	
+  
+		<!-- specifed profiles -->
+  <character id="escape_trader">
+	<class>Trader</class>
+	<specific_character>escape_trader</specific_character>
+  </character>
+  <character id="red_forester">
+	<class>red_forester</class>
+	<specific_character>red_forester_tech</specific_character>
+  </character>
 
-	<!-------------------------------------------------->
-	<!-------------------- SPECIAL --------------------->
-	<!-------------------------------------------------->
-
+  
+		<!--- Marsh-->
 	<character id="mar_intro_lebedev">
 		<class>mar_intro_lebedev</class>
 	</character>
@@ -221,13 +253,8 @@
 	<character id="mar_tutorial_man">
 		<class>mar_tutorial_man</class>
 	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="escape_trader">
-		<class>Trader</class>
-		<specific_character>escape_trader</specific_character>
-	</character>
+	
+			<!-- Escape -->
 	<character id="esc_leader_stalkerbase">
 		<class>esc_leader_stalkerbase</class>
 	</character>
@@ -252,17 +279,11 @@
 	<character id="esc_military_secret_trader">
 		<class>esc_military_secret_trader</class>
 	</character>
-	<character id="esc_sniper_stalker_1">
-		<class>esc_sniper_stalker_1</class>
+	<character id="esc_default_stalker_1_sniper">
+		<class>esc_default_stalker_1_sniper</class>
 	</character>
-	<character id="esc_sniper_stalker_2">
-		<class>esc_sniper_stalker_2</class>
-	</character>
-	<character id="esc_sniper_stalker_3">
-		<class>esc_sniper_stalker_3</class>
-	</character>
-	<character id="esc_sniper_stalker_4">
-		<class>esc_sniper_stalker_4</class>
+	<character id="esc_default_stalker_2_sniper">
+		<class>esc_default_stalker_2_sniper</class>
 	</character>
 	<character id="esc_military_general">
 		<class>esc_military_general</class>
@@ -279,9 +300,7 @@
 	<character id="esc_flashman">
 		<class>esc_flashman</class>
 	</character>
-
-	<!-------------------------------------------------->
-
+		<!-- Garbage -->
 	<character id="gar_digger_messenger_man">
 		<class>gar_digger_messenger_man</class>
 	</character>
@@ -297,29 +316,14 @@
 	<character id="gar_bandit_trader">
 		<class>gar_bandit_trader</class>
 	</character>
-	<character id="gar_bandit_ambush_0">
-		<class>gar_bandit_ambush_0</class>
-	</character>
 	<character id="gar_bandit_ambush_1">
 		<class>gar_bandit_ambush_1</class>
 	</character>
 	<character id="gar_bandit_ambush_2">
 		<class>gar_bandit_ambush_2</class>
 	</character>
-	<character id="gar_digger_captive_1">
-		<class>gar_digger_captive_1</class>
-	</character>
-	<character id="gar_digger_captive_2">
-		<class>gar_digger_captive_2</class>
-	</character>
-	<character id="gar_digger_captive_3">
-		<class>gar_digger_captive_3</class>
-	</character>
-	<character id="gar_digger_captive_4">
-		<class>gar_digger_captive_4</class>
-	</character>
-	<character id="gar_digger_captive_5">
-		<class>gar_digger_captive_5</class>
+	<character id="gar_digger_captive">
+		<class>gar_digger_captive</class>
 	</character>
 	<character id="gar_digger_fighter_1">
 		<class>gar_digger_fighter_1</class>
@@ -351,9 +355,6 @@
 	<character id="gar_digger_smuggler">
 		<class>gar_digger_smuggler</class>
 	</character>
-	<character id="gar_digger_leader_dead">
-		<class>gar_digger_leader_dead</class>
-	</character>
 	<character id="gar_bandit_minigame">
 		<class>gar_bandit_minigame</class>
 	</character>
@@ -363,9 +364,8 @@
 	<character id="gar_bandit_senya">
 		<class>gar_bandit_senya</class>
 	</character>
-
-	<!-------------------------------------------------->
-
+	
+		<!-- Darkvalley -->
 	<character id="val_freedom_leader">
 		<class>val_freedom_leader</class>
 	</character>
@@ -390,23 +390,20 @@
 	<character id="val_freedom_blockpost_guard">
 		<class>val_freedom_blockpost_guard</class>
 	</character>
-	<character id="val_freedom_blockpost_guard_1">
-		<class>val_freedom_blockpost_guard_1</class>
+	<character id="val_freedom_deadblockpost_guard">
+		<class>val_freedom_blockpost_guard</class>
 	</character>
-	<character id="val_freedom_blockpost_guard_2">
-		<class>val_freedom_blockpost_guard_2</class>
+	<character id="val_freedom_base_sniper">
+		<class>val_freedom_base_sniper</class>
 	</character>
-	<character id="val_freedom_blockpost_guard_3">
-		<class>val_freedom_blockpost_guard_3</class>
+	<character id="val_killer_sniper">
+		<class>val_killer_sniper</class>
 	</character>
-	<character id="val_freedom_blockpost_guard_4">
-		<class>val_freedom_blockpost_guard_4</class>
+	<character id="val_killer">
+		<class>val_killer</class>
 	</character>
-	<character id="val_freedom_deadblockpost_guard_pda">
-		<class>val_freedom_deadblockpost_guard_pda</class>
-	</character>
-	<character id="val_default_freedom_sniper">
-		<class>val_default_freedom_sniper</class>
+	<character id="val_freedom_attack">
+		<class>val_freedom_attack</class>
 	</character>
 	<character id="val_bandit_spy">
 		<class>val_bandit_spy</class>
@@ -414,9 +411,17 @@
 	<character id="val_bandit_spy_pda">
 		<class>val_bandit_spy_pda</class>
 	</character>
+	<character id="val_freedom_attack_commander">
+		<class>val_freedom_attack_commander</class>
+	</character>
+	<character id="val_freedom_deadblockpost_guard_pda">
+		<class>val_freedom_deadblockpost_guard_pda</class>
+	</character>
+	<character id="val_default_freedom_sniper">
+		<class>val_default_freedom_sniper</class>
+	</character>
 
-	<!-------------------------------------------------->
-
+		<!-- Agroprom -->
 	<character id="agr_duty_base_commander">
 		<class>agr_duty_base_commander</class>
 	</character>
@@ -425,36 +430,6 @@
 	</character>
 	<character id="agr_duty_base_mechanic">
 		<class>agr_duty_base_mechanic</class>
-	</character>
-	<character id="agr_barman">
-		<class>agr_barman</class>
-	</character>
-	<character id="agr_weaponmaster">
-		<class>agr_weaponmaster</class>
-	</character>	
-	<character id="agr_bar_stalker_1">
-		<class>agr_bar_stalker_1</class>
-	</character>
-	<character id="agr_bar_stalker_2">
-		<class>agr_bar_stalker_2</class>
-	</character>
-	<character id="agr_bar_stalker_3">
-		<class>agr_bar_stalker_3</class>
-	</character>
-	<character id="agr_bar_stalker_4">
-		<class>agr_bar_stalker_4</class>
-	</character>
-	<character id="agr_bar_stalker_5">
-		<class>agr_bar_stalker_5</class>
-	</character>
-	<character id="agr_hourman">
-		<class>agr_hourman</class>
-	</character>
-	<character id="agr_zooman">
-		<class>agr_zooman</class>
-	</character>
-	<character id="agr_holeman">
-		<class>agr_holeman</class>
 	</character>
 	<character id="agr_stalker_base_leader">
 		<class>agr_stalker_base_leader</class>
@@ -471,8 +446,50 @@
 	<character id="agr_prisoner_2">
 		<class>agr_prisoner_2</class>
 	</character>
-	<character id="agr_secret_trader">
+	<character id="agr_storylineperson">
+		<class>agr_storylineperson</class>
+	</character>
+	<character id="agr_weaponmaster">
+		<class>agr_weaponmaster</class>
+	</character>
+	<character id="agr_hourman">
+		<class>agr_hourman</class>
+	</character>
+	<character id="agr_zooman">
+		<class>agr_zooman</class>
+	</character>
+	<character id="agr_holeman">
+		<class>agr_holeman</class>
+	</character>
+	<character id="agr_gotoman">
+		<class>agr_gotoman</class>
+	</character>
+	<character id="agr_gotoman2">
+		<class>agr_gotoman2</class>
+	</character>
+	<character id="agr_barman">
+		<class>agr_barman</class>
+	</character>
+		<character id="agr_secret_trader">
 		<class>agr_secret_trader</class>
+	</character>
+	<character id="agr_stalker_zombied">
+		<class>agr_stalker_zombied</class>
+	</character>
+	<character id="agr_bar_stalker_1">
+		<class>agr_bar_stalker_1</class>
+	</character>
+	<character id="agr_bar_stalker_2">
+		<class>agr_bar_stalker_2</class>
+	</character>
+	<character id="agr_bar_stalker_3">
+		<class>agr_bar_stalker_3</class>
+	</character>
+	<character id="agr_bar_stalker_4">
+		<class>agr_bar_stalker_4</class>
+	</character>
+	<character id="agr_bar_stalker_5">
+		<class>agr_bar_stalker_5</class>
 	</character>
 	<character id="agr_stalker_pda">
 		<class>agr_stalker_pda</class>
@@ -483,46 +500,34 @@
 	<character id="agr_stalker_map_animals">
 		<class>agr_stalker_map_animals</class>
 	</character>
-	<character id="agr_stalker_zombied">
-		<class>agr_stalker_zombied</class>
+	<character id="agr_stalker_scientist">
+		<class>agr_stalker_scientist</class>
 	</character>
 	<character id="agr_dolg_blockpost_commander">
 		<class>agr_dolg_blockpost_commander</class>
 	</character>
-	<character id="agr_dolg_blockpost_soldier_1">
-		<class>agr_dolg_blockpost_soldier_1</class>
-	</character>
-	<character id="agr_dolg_blockpost_soldier_2">
-		<class>agr_dolg_blockpost_soldier_2</class>
-	</character>
-	<character id="agr_dolg_blockpost_soldier_3">
-		<class>agr_dolg_blockpost_soldier_3</class>
-	</character>
-	<character id="agr_dolg_blockpost_soldier_4">
-		<class>agr_dolg_blockpost_soldier_4</class>
-	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="yan_stalker_sakharov">
-		<class>yan_stalker_sakharov</class>
-	</character>
+	
+		<!-- Yantar -->
 	<character id="yan_stalker_zombied">
 		<class>yan_stalker_zombied</class>
 	</character>
-	<character id="yan_default_stalker">
-		<class>yan_default_stalker</class>
+	<character id="yan_stalker_sakharov">
+		<class>yan_stalker_sakharov</class>
 	</character>
 	<character id="yan_stalker_levsha">
 		<class>yan_stalker_levsha</class>
 	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="red_forester">
-		<class>red_forester</class>
-		<specific_character>red_forester_tech</specific_character>
+	<character id="yan_stalker_sci_base">
+		<class>yan_stalker_sci_base</class>
 	</character>
+	<character id="yan_default_stalker_2">
+		<class>yan_default_stalker_2</class>
+	</character>
+	<character id="yan_default_stalker_1">
+		<class>yan_default_stalker_1</class>
+	</character>
+
+		<!-- Red forest -->
 	<character id="red_bridge_bandit_sniper">
 		<class>red_bridge_bandit_sniper</class>
 	</character>
@@ -550,20 +555,28 @@
 	<character id="red_bounty_hunter">
 		<class>red_bounty_hunter</class>
 	</character>
+	<character id="gen_stalker_zombied">
+		<class>gen_stalker_zombied</class>
+	</character>
+	<character id="gen_stalker_uno">
+		<class>gen_stalker_uno</class>
+	</character>
+	<character id="gen_stalker_uno_leader">
+		<class>gen_stalker_uno_leader</class>
+	</character>
+	<character id="gen_stalker_dummy_actor">
+		<class>gen_stalker_dummy_actor</class>
+	</character>
 	<character id="red_strong_merc">
 		<class>red_strong_merc</class>
 	</character>
-	<character id="red_forest_pda_stalker">
-		<class>red_forest_pda_stalker</class>
-	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="mil_hog">
-		<class>mil_hog</class>
-	</character>
+	
+		<!-- Military -->
 	<character id="mil_freedom_speaker">
 		<class>mil_freedom_speaker</class>
+	</character>
+	<character id="mil_hog">
+		<class>mil_hog</class>
 	</character>
 	<character id="mil_kostiuk">
 		<class>mil_kostiuk</class>
@@ -571,12 +584,8 @@
 	<character id="mil_questman">
 		<class>mil_questman</class>
 	</character>
-	<character id="mil_soldier_sniper_0">
-		<class>mil_soldier_sniper_0</class>
-	</character>
 
-	<!-------------------------------------------------->
-
+		<!--- Limansk -->
 	<character id="lim_enemy_sniper_stalker">
 		<class>lim_enemy_sniper_stalker</class>
 	</character>
@@ -592,18 +601,8 @@
 	<character id="lim_cs_commander">
 		<class>lim_cs_commander</class>
 	</character>
-	<character id="lim_cs_commander_1">
-		<class>lim_cs_commander_1</class>
-	</character>
-	<character id="lim_cs_commander_2">
-		<class>lim_cs_commander_2</class>
-	</character>
-	<character id="lim_cs_soldier_2">
-		<class>lim_cs_soldier_2</class>
-	</character>
 
-	<!-------------------------------------------------->
-
+		<!-- Hospital -->
 	<character id="kat_cs_commander">
 		<class>kat_cs_commander</class>
 	</character>
@@ -626,8 +625,7 @@
 		<class>kat_enemy_sniper_strong</class>
 	</character>
 
-	<!-------------------------------------------------->
-
+		<!-- stancia -->
 	<character id="stc_strelok">
 		<class>stc_strelok</class>
 	</character>
@@ -640,297 +638,6 @@
 	<character id="stc_csky_leader">
 		<class>stc_csky_leader</class>
 	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="duty_rewarder">
-		<class>duty_rewarder</class>
-	</character>
-
-	<!-------------------------------------------------->
-	<!-------------------- OGSM CS --------------------->
-	<!-------------------------------------------------->
-
-	<character id="stalker_petrenko">
-		<class>stalker_petrenko</class>
-		<specific_character>stalker_petrenko</specific_character>
-	</character>
-
-	<character id="marsh_dead_ecolog">
-		<class>marsh_dead_ecolog</class>
-		<specific_character>marsh_dead_ecolog</specific_character>
-	</character>
-
-	<character id="yantar_dead_ecolog1">
-		<class>yantar_dead_ecolog1</class>
-		<specific_character>yantar_dead_ecolog1</specific_character>
-	</character>
-	<character id="yantar_dead_ecolog2">
-		<class>yantar_dead_ecolog2</class>
-		<specific_character>yantar_dead_ecolog2</specific_character>
-	</character>
-	<character id="yantar_dead_ecolog3">
-		<class>yantar_dead_ecolog3</class>
-		<specific_character>yantar_dead_ecolog3</specific_character>
-	</character>
-
-	<character id="dead_cs_scout1">
-		<class>dead_cs_scout1</class>
-		<specific_character>dead_cs_scout1</specific_character>
-	</character>
-	<character id="dead_cs_scout2">
-		<class>dead_cs_scout2</class>
-		<specific_character>dead_cs_scout2</specific_character>
-	</character>
-	<character id="dead_cs_scout3">
-		<class>dead_cs_scout3</class>
-		<specific_character>dead_cs_scout3</specific_character>
-	</character>
-
-	<character id="dead_freedom_scout1">
-		<class>dead_freedom_scout1</class>
-		<specific_character>dead_freedom_scout1</specific_character>
-	</character>
-	<character id="dead_freedom_scout2">
-		<class>dead_freedom_scout2</class>
-		<specific_character>dead_freedom_scout2</specific_character>
-	</character>
-	<character id="dead_freedom_scout3">
-		<class>dead_freedom_scout3</class>
-		<specific_character>dead_freedom_scout3</specific_character>
-	</character>
-
-	<character id="dead_duty_scout1">
-		<class>dead_duty_scout1</class>
-		<specific_character>dead_duty_scout1</specific_character>
-	</character>
-	<character id="dead_duty_scout2">
-		<class>dead_duty_scout2</class>
-		<specific_character>dead_duty_scout2</specific_character>
-	</character>
-	<character id="dead_duty_scout3">
-		<class>dead_duty_scout3</class>
-		<specific_character>dead_duty_scout3</specific_character>
-	</character>
-
-	<character id="dead_quest_bandit1">
-		<class>dead_quest_bandit1</class>
-		<specific_character>dead_quest_bandit1</specific_character>
-	</character>
-	<character id="dead_quest_bandit2">
-		<class>dead_quest_bandit2</class>
-		<specific_character>dead_quest_bandit2</specific_character>
-	</character>
-	<character id="dead_quest_bandit3">
-		<class>dead_quest_bandit3</class>
-		<specific_character>dead_quest_bandit3</specific_character>
-	</character>
-	<character id="dead_quest_bandit4">
-		<class>dead_quest_bandit4</class>
-		<specific_character>dead_quest_bandit4</specific_character>
-	</character>
-
-	<character id="neutral_bodies">
-		<class>neutral_bodies</class>
-	</character>
-
-	<character id="agru_zombied">
-		<class>agru_zombied</class>
-	</character>
-
-	<character id="lim_wounded_bandit">
-		<class>lim_wounded_bandit</class>
-	</character>
-
-	<character id="lim_enemy_bandit">
-		<class>lim_enemy_bandit</class>
-	</character>
-
-	<character id="sim_default_ecolog_0">
-		<class>sim_default_ecolog_0</class>
-	</character>
-	<character id="sim_default_ecolog_1">
-		<class>sim_default_ecolog_1</class>
-	</character>
-
-	<character id="marsh_dead_ecolog_1">
-		<class>marsh_dead_ecolog_1</class>
-		<specific_character>marsh_dead_ecolog_1</specific_character>
-	</character>
-	<character id="mar_renegade_boss">
-		<class>mar_renegade_boss</class>
-	</character>
-	<character id="mar_bar_stalker_1">
-		<class>mar_bar_stalker_1</class>
-	</character>
-	<character id="mar_bar_stalker_2">
-		<class>mar_bar_stalker_2</class>
-	</character>
-	<character id="esc_scout_stalker">
-		<class>esc_scout_stalker</class>
-	</character>
-	<character id="esc_stalker_tonnel_guard">
-		<class>esc_stalker_tonnel_guard</class>
-	</character>
-	<character id="esc_stalker_guard_1">
-		<class>esc_stalker_guard_1</class>
-	</character>
-	<character id="esc_stalker_guard_2">
-		<class>esc_stalker_guard_2</class>
-	</character>
-	<character id="esc_stalker_guard_3">
-		<class>esc_stalker_guard_3</class>
-	</character>
-	<character id="hello_guard_stalker">
-		<class>hello_guard_stalker</class>
-	</character>
-	<character id="prisoner_guard_stalker">
-		<class>prisoner_guard_stalker</class>
-	</character>
-	<character id="esc_bandit_commander">
-		<class>esc_bandit_commander</class>
-	</character>
-	<character id="esc_stalker_guard_east_bridge">
-		<class>esc_stalker_guard_east_bridge</class>
-	</character>
-	<character id="esc_stalker_guard_west_bridge">
-		<class>esc_stalker_guard_west_bridge</class>
-	</character>
-	<character id="esc_military_blockpost_commander">
-		<class>esc_military_blockpost_commander</class>
-	</character>
-	<character id="esc_military_squad_1_commander">
-		<class>esc_military_squad_1_commander</class>
-	</character>
-	<character id="esc_military_squad_2_commander">
-		<class>esc_military_squad_2_commander</class>
-	</character>
-	<character id="esc_st_patrol_lead">
-		<class>esc_st_patrol_lead</class>
-	</character>
-	<character id="esc_stalker_puzo">
-		<class>esc_stalker_puzo</class>
-	</character>
-	<character id="gar_conc_camp_bandit_1">
-		<class>gar_conc_camp_bandit_1</class>
-	</character>
-	<character id="gar_digger_night_trader">
-		<class>gar_digger_night_trader</class>
-	</character>
-	<character id="gar_digger_24h_trader">
-		<class>gar_digger_24h_trader</class>
-	</character>
-	<character id="gar_stalker_trader">
-		<class>gar_stalker_trader</class>
-	</character>
-	<character id="gar_stalker_barman">
-		<class>gar_stalker_barman</class>
-	</character>
-	<character id="val_freedombase_guardgate">
-		<class>val_freedombase_guardgate</class>
-	</character>
-	<character id="val_freedom_attack_commander">
-		<class>val_freedom_attack_commander</class>
-	</character>
-	<character id="agr_stalker_scientist">
-		<class>agr_stalker_scientist</class>
-	</character>
-	<character id="yan_tech_ecologbase">
-		<class>yan_tech_ecologbase</class>
-	</character>
-	<character id="yan_ivan_zombied">
-		<class>yan_ivan_zombied</class>
-	</character>
-	<character id="yan_scene_6_stalker_1">
-		<class>yan_scene_6_stalker_1</class>
-	</character>
-	<character id="yan_scene_6_stalker_2">
-		<class>yan_scene_6_stalker_2</class>
-	</character>
-	<character id="yan_scene_6_stalker_3">
-		<class>yan_scene_6_stalker_3</class>
-	</character>
-	<character id="yan_scene_6_stalker_4">
-		<class>yan_scene_6_stalker_4</class>
-	</character>
-	<character id="yan_scene_6_stalker_6">
-		<class>yan_scene_6_stalker_6</class>
-	</character>
-	<character id="yan_scene_6_stalker_7">
-		<class>yan_scene_6_stalker_7</class>
-	</character>
-	<character id="red_bridge_ally_stalker_1">
-		<class>red_bridge_ally_stalker_1</class>
-	</character>
-	<character id="red_bridge_ally_stalker_2">
-		<class>red_bridge_ally_stalker_2</class>
-	</character>
-	<character id="red_bridge_ally_stalker_3">
-		<class>red_bridge_ally_stalker_3</class>
-	</character>
-	<character id="red_bridge_ally_stalker_4">
-		<class>red_bridge_ally_stalker_4</class>
-	</character>
-	<character id="mil_dead_killer">
-		<class>mil_dead_killer</class>
-	</character>
-	<character id="mil_stalker_fang">
-		<class>mil_stalker_fang</class>
-	</character>
-	<character id="mil_stalker_killer_1">
-		<class>mil_stalker_killer_1</class>
-	</character>
-	<character id="mil_stalker_killer_2">
-		<class>mil_stalker_killer_2</class>
-	</character>
-	<character id="lim_merc_helper">
-		<class>lim_merc_helper</class>
-	</character>
-	<character id="hosp_clear_sky_suicide">
-		<class>hosp_clear_sky_suicide</class>
-	</character>
-	<character id="kat_hosp_z1_floor2_enemy_2">
-		<class>kat_hosp_z1_floor2_enemy_2</class>
-	</character>
-	<character id="kat_hosp_z1_sniper">
-		<class>kat_hosp_z1_sniper</class>
-	</character>
-	<character id="pri_dead_stalker">
-		<class>pri_dead_stalker</class>
-		<specific_character>pri_dead_stalker</specific_character>
-	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="sim_default_stalker_enemy_0">
-		<class>sim_default_stalker_enemy_0</class>
-	</character>
-	<character id="sim_default_stalker_enemy_1">
-		<class>sim_default_stalker_enemy_1</class>
-	</character>
-	<character id="sim_default_stalker_enemy_2">
-		<class>sim_default_stalker_enemy_2</class>
-	</character>
-	<character id="sim_default_stalker_enemy_3">
-		<class>sim_default_stalker_enemy_3</class>
-	</character>
-
-	<!-------------------------------------------------->
-
-	<character id="sim_default_bandit_enemy_0">
-		<class>sim_default_bandit_enemy_0</class>
-	</character>
-	<character id="sim_default_bandit_enemy_1">
-		<class>sim_default_bandit_enemy_1</class>
-	</character>
-	<character id="sim_default_bandit_enemy_2">
-		<class>sim_default_bandit_enemy_2</class>
-	</character>
-	<character id="sim_default_bandit_enemy_3">
-		<class>sim_default_bandit_enemy_3</class>
-	</character>
-
-	<!-------------------------------------------------->
 
 		<!-- Arena -->
 	<character id="arena_first_battle_stalker">
@@ -955,4 +662,162 @@
 		<class>arena_fifth_battle_stalker</class>
 	</character>
 
+		<!--- TEST PROFILES -->
+	<character id="duty_rewarder">
+		<class>duty_rewarder</class>
+	</character>
+	<character id="test_npc_1">
+		<class>test_npc_1</class>
+	</character>
+	<character id="test_npc_2">
+		<class>test_npc_2</class>
+	</character>
+	<character id="test_npc_3">
+		<class>test_npc_3</class>
+	</character>
+	<character id="test_npc_4">
+		<class>test_npc_4</class>
+	</character>
+	<character id="test_npc_5">
+		<class>test_npc_5</class>
+	</character>
+	<character id="test_npc_6">
+		<class>test_npc_6</class>
+	</character>
+	<character id="test_npc_7">
+		<class>test_npc_7</class>
+	</character>
+	<character id="test_npc_8">
+		<class>test_npc_8</class>
+	</character>
+	<character id="test_npc_9">
+		<class>test_npc_9</class>
+	</character>
+	<character id="test_npc_10">
+		<class>test_npc_10</class>
+	</character>
+	<character id="test_npc_11">
+		<class>test_npc_11</class>
+	</character>
+	<character id="test_npc_12">
+		<class>test_npc_12</class>
+	</character>
+	<character id="test_npc_13">
+		<class>test_npc_13</class>
+	</character>
+	<character id="test_npc_14">
+		<class>test_npc_14</class>
+	</character>
+	<character id="test_npc_15">
+		<class>test_npc_15</class>
+	</character>
+	<character id="test_npc_16">
+		<class>test_npc_16</class>
+	</character>
+	<character id="test_npc_17">
+		<class>test_npc_17</class>
+	</character>
+	<character id="test_npc_18">
+		<class>test_npc_18</class>
+	</character>
+	<character id="test_npc_19">
+		<class>test_npc_19</class>
+	</character>
+	<character id="test_npc_20">
+		<class>test_npc_20</class>
+	</character>
+	<character id="test_npc_21">
+		<class>test_npc_21</class>
+	</character>
+	<character id="test_npc_22">
+		<class>test_npc_22</class>
+	</character>
+	<character id="test_npc_23">
+		<class>test_npc_23</class>
+	</character>
+	<character id="test_npc_24">
+		<class>test_npc_24</class>
+	</character>
+	<character id="test_npc_25">
+		<class>test_npc_25</class>
+	</character>
+	<character id="test_npc_26">
+		<class>test_npc_26</class>
+	</character>
+	<character id="test_npc_27">
+		<class>test_npc_27</class>
+	</character>
+	<character id="test_npc_28">
+		<class>test_npc_28</class>
+	</character>
+	<character id="test_npc_29">
+		<class>test_npc_29</class>
+	</character>
+	<character id="test_npc_30">
+		<class>test_npc_30</class>
+	</character>
+	<character id="test_npc_31">
+		<class>test_npc_31</class>
+	</character>
+	<character id="test_npc_32">
+		<class>test_npc_32</class>
+	</character>
+	<character id="test_npc_33">
+		<class>test_npc_33</class>
+	</character>
+	<character id="test_npc_34">
+		<class>test_npc_34</class>
+	</character>
+	<character id="test_npc_35">
+		<class>test_npc_35</class>
+	</character>
+	<character id="test_npc_36">
+		<class>test_npc_36</class>
+	</character>
+	<character id="test_npc_37">
+		<class>test_npc_37</class>
+	</character>
+	<character id="test_npc_38">
+		<class>test_npc_38</class>
+	</character>
+	<character id="test_npc_39">
+		<class>test_npc_39</class>
+	</character>
+	<character id="test_npc_40">
+		<class>test_npc_40</class>
+	</character>
+	<character id="test_npc_41">
+		<class>test_npc_41</class>
+	</character>
+	<character id="test_npc_42">
+		<class>test_npc_42</class>
+	</character>
+	<character id="test_npc_43">
+		<class>test_npc_43</class>
+	</character>
+	<character id="test_npc_44">
+		<class>test_npc_44</class>
+	</character>
+	<character id="test_npc_45">
+		<class>test_npc_45</class>
+	</character>
+	<character id="test_npc_46">
+		<class>test_npc_46</class>
+	</character>
+	<character id="test_npc_47">
+		<class>test_npc_47</class>
+	</character>
+	<character id="test_npc_48">
+		<class>test_npc_48</class>
+	</character>
+	<character id="test_npc_49">
+		<class>test_npc_49</class>
+	</character>
+	<character id="test_npc_50">
+		<class>test_npc_50</class>
+	</character>
+	<character id="test_stalker_dual_weapon">
+		<class>test_stalker_dual_weapon</class>
+	</character>	
+	
 </xml>

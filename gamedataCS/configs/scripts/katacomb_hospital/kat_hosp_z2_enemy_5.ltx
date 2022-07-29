@@ -20,7 +20,6 @@ combat_ignore_cond = true
 path_walk = z2_enemy_hide_5_walk
 path_look = z2_enemy_look
 on_info = {+hospital_z2_enter} walker@nw
-on_info2 = {+hospital_heli_start_attack !hit_by_actor =health_le(0.95)} remark@helicopter_fire
 group = 2
 
 [walker@sw]
@@ -34,7 +33,6 @@ def_state_moving3 = assault
 on_info = {+hospital_z2_actor_se} walker@se
 on_info2 = {+hospital_z2_actor_ne} walker@ne
 on_info3 = {+hospital_z2_actor_nw} walker@nw
-on_info4 = {+hospital_heli_start_attack !hit_by_actor =health_le(0.95)} remark@helicopter_fire
 group = 2
 
 [walker@se]
@@ -48,7 +46,6 @@ def_state_moving3 = assault
 on_info = {+hospital_z2_actor_sw} walker@sw
 on_info2 = {+hospital_z2_actor_ne} walker@ne
 on_info3 = {+hospital_z2_actor_nw} walker@nw
-on_info4 = {+hospital_heli_start_attack !hit_by_actor =health_le(0.95)} remark@helicopter_fire
 group = 2
 
 [walker@nw]
@@ -62,7 +59,6 @@ def_state_moving3 = assault
 on_info = {+hospital_z2_actor_se} walker@se
 on_info2 = {+hospital_z2_actor_ne} walker@ne
 on_info3 = {+hospital_z2_actor_sw} walker@sw
-on_info4 = {+hospital_heli_start_attack !hit_by_actor =health_le(0.95)} remark@helicopter_fire
 group = 2
 
 [walker@ne]
@@ -76,12 +72,4 @@ def_state_moving3 = assault
 on_info = {+hospital_z2_actor_se} walker@se
 on_info2 = {+hospital_z2_actor_nw} walker@nw
 on_info3 = {+hospital_z2_actor_sw} walker@sw
-on_info4 = {+hospital_heli_start_attack !hit_by_actor =health_le(0.95)} remark@helicopter_fire
 group = 2
-
-[remark@helicopter_fire]
-anim = threat_fire
-target = 209
-on_info = {+hospital_z2_actor_se +hospital_z2_heli_crash} walker@se
-on_info2 = {+hospital_z2_actor_ne +hospital_z2_heli_crash} walker@ne
-on_info3 = {+hospital_z2_actor_sw +hospital_z2_heli_crash} walker@sw

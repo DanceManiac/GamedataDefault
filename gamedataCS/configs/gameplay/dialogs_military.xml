@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
     <dialog id="mil_killer_about_around">
-        <dont_has_info>mil_killer_about_around_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -10,13 +9,11 @@
             <phrase id="0">
                 <text>mil_killer_about_around_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
-                <give_info>mil_killer_about_around_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="mil_killer_about_last_time">
-        <dont_has_info>mil_killer_about_last_time_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -25,13 +22,11 @@
             <phrase id="0">
                 <text>mil_killer_about_last_time_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
-                <give_info>mil_killer_about_last_time_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="mil_killer_about_what_is_you_doing">
-        <dont_has_info>mil_killer_about_what_is_you_doing_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -40,13 +35,11 @@
             <phrase id="0">
                 <text>mil_killer_about_what_is_you_doing_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
-                <give_info>mil_killer_about_what_is_you_doing_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="hello_mil_freedom">
-        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="22">
                 <text>hello_mil_freedom_22</text>
@@ -62,14 +55,6 @@
             </phrase>
             <phrase id="333">
                 <text>hello_mil_freedom_333</text>
-                <next>8</next>
-            </phrase>
-            <phrase id="8">
-                <text>hello_mil_freedom_8</text>
-                <next>88</next>
-           </phrase>
-            <phrase id="88">
-                <text>hello_mil_freedom_88</text>
                 <next>44</next>
             </phrase>
             <phrase id="77">
@@ -102,24 +87,6 @@
                 <has_info>mil_f0_t1</has_info>
                 <next>77</next>
             </phrase>
-            <phrase id="9">
-                <text></text>
-                <dont_has_info>mil_freedom_speaker_info</dont_has_info>
-                <has_info>mil_actor_go_to_limansk</has_info>
-                <next>99</next>
-            </phrase>
-            <phrase id="99">
-                <text>hello_mil_freedom_99</text>
-                <next>999</next>
-            </phrase>
-            <phrase id="999">
-                <text>hello_mil_freedom_999</text>
-                <next>9999</next>
-            </phrase>
-            <phrase id="9999">
-                <give_info>mil_freedom_speaker_info</give_info>
-                <text>hello_mil_freedom_9999</text>
-            </phrase>
             <phrase id="6">
                 <text></text>
                 <dont_has_info>mil_f0_t1</dont_has_info>
@@ -136,11 +103,6 @@
             </phrase>
             <phrase id="6666">
                 <text>hello_mil_freedom_6666</text>
-                <next>66666</next>
-            </phrase>
-            <phrase id="66666">
-                <text>hello_mil_freedom_66666</text>
-                <action>dialogs.break_dialog</action>
                 <give_info>mil_f0_t1</give_info>
             </phrase>
             <phrase id="222">
@@ -168,12 +130,10 @@
                 <next>5</next>
                 <next>6</next>
                 <next>7</next>
-                <next>9</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="hello_mil_killer">
-        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="1111">
                 <text>hello_mil_killer_1111</text>
@@ -184,7 +144,6 @@
                 <dont_has_info>forester_telled_coordinates</dont_has_info>
                 <has_info>mil_merc_talked</has_info>
                 <next>22</next>
-                <next>23</next>
             </phrase>
             <phrase id="4">
                 <text></text>
@@ -198,20 +157,10 @@
             </phrase>
             <phrase id="11111112">
                 <text>hello_mil_killer_11111112</text>
-                <!-- action>dialogs.break_dialog</action -->
-                <dont_has_info>forester_telled_coordinates</dont_has_info>
-                <!-- give_info>mil_merc_talked</give_info -->
-                <has_info>mil_bs_dead</has_info>
-                <next>111111122</next>
-            </phrase>
-            <phrase id="111111122">
-                <text>hello_mil_killer_111111122</text>
-                <next>1111111222</next>
-            </phrase>
-            <phrase id="1111111222">
-                <text>hello_mil_killer_1111111222</text>
                 <action>dialogs.break_dialog</action>
+                <dont_has_info>forester_telled_coordinates</dont_has_info>
                 <give_info>mil_merc_talked</give_info>
+                <has_info>mil_bs_dead</has_info>
             </phrase>
             <phrase id="11">
                 <text>hello_mil_killer_11</text>
@@ -262,21 +211,11 @@
                 <text>hello_mil_killer_444</text>
             </phrase>
             <phrase id="22">
-                <has_info>mil_bs_dead</has_info>
                 <text>hello_mil_killer_22</text>
                 <next>222</next>
             </phrase>
             <phrase id="222">
                 <text>hello_mil_killer_222</text>
-            </phrase>
-            <phrase id="23">
-                <dont_has_info>mil_bs_dead</dont_has_info>
-                <text>hello_mil_killer_23</text>
-                <next>233</next>
-            </phrase>
-            <phrase id="233">
-                <action>dialogs.break_dialog</action>
-                <text>hello_mil_killer_233</text>
             </phrase>
             <phrase id="0">
                 <text></text>

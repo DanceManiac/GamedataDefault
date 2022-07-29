@@ -2,31 +2,6 @@
   <file name="ui\ui_icon_equipment">
 	<texture id="ui_upgrade_arrow1" x="15" y="2012" width="22" height="22" />
 	<texture id="ui_upgrade_arrow2" x="71" y="2017" width="16" height="16" />
-
-	<texture id="ui_af_medusa" x="450" y="200" width="50" height="50" />
-	<texture id="ui_af_cristall_flower" x="550" y="200" width="50" height="50" />
-	<texture id="ui_af_night_star" x="500" y="200" width="50" height="50" />
-	<texture id="ui_af_vyvert" x="700" y="0" width="50" height="50" />
-	<texture id="ui_af_gravi" x="750" y="0" width="50" height="50" />
-	<texture id="ui_af_gold_fish" x="800" y="0" width="50" height="50" />
-	<texture id="ui_af_cristall" x="700" y="200" width="50" height="50" />
-	<texture id="ui_af_fireball" x="650" y="200" width="50" height="50" />
-	<texture id="ui_af_dummy_glassbeads" x="800" y="50" width="50" height="50" />
-	<texture id="ui_af_eye" x="600" y="200" width="50" height="50" />
-	<texture id="ui_af_fire" x="550" y="1200" width="50" height="50" />
-	<texture id="ui_af_blood" x="850" y="0" width="50" height="50" />
-	<texture id="ui_af_mincer_meat" x="900" y="800" width="50" height="50" />
-	<texture id="ui_af_soul" x="950" y="800" width="50" height="50" />
-	<texture id="ui_af_fuzz_kolobok" x="850" y="50" width="50" height="50" />
-	<texture id="ui_af_baloon" x="600" y="1150" width="50" height="50" />
-	<texture id="ui_af_glass" x="650" y="1150" width="50" height="50" />
-	<texture id="ui_af_electra_sparkler" x="400" y="550" width="50" height="50" />
-	<texture id="ui_af_electra_flash" x="200" y="400" width="50" height="50" />
-	<texture id="ui_af_electra_moonlight" x="500" y="500" width="50" height="50" />
-	<texture id="ui_af_dummy_battery" x="400" y="200" width="50" height="50" />
-	<texture id="ui_af_dummy_dummy" x="950" y="300" width="50" height="50" />
-	<texture id="ui_af_ice" x="700" y="1150" width="50" height="50" />
-	<texture id="ui_af_compass" x="750" y="1150" width="50" height="50" />
 		
   </file>
 </w>

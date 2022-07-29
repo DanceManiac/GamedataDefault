@@ -7,7 +7,6 @@ red_bridge_assault_start
 red_bridge_bandits
 red_bridge_clear_path
 red_bridge_finished
-red_bridge_task_for_player
 red_bridge_go_lever
 red_bridge_start_lower
 red_bridge_leshiy_reply
@@ -36,23 +35,16 @@ red_pursuit_camfly_2
 red_pursuit_camfly_3
 red_pursuit_camfly_4
 red_pursuit_camfly_5
-red_pursuit_defend_tunel_1
-red_pursuit_defend_tunel_2
-red_pursuit_defend_tunel_3
+red_pursuit_defend_tunel
 red_pursuit_dont_shoot
 red_pursuit_locate_strelok
 red_pursuit_strelok_spich
 red_pursuit_strelok_threat
 red_bloodsucker_hidden
 red_bloodsucker_growl
-red_forester_greet
+;red_forester_greet
 red_stalker_sos
-red_guardbridge_no
-red_teleport_work
-red_actor_say_bridge_sound
 
-;***********RED FOREST**
-;********************
 
 [red_bloodsucker_hidden]
 type = 3d
@@ -127,14 +119,6 @@ type = npc
 actor_stereo = false
 npc_prefix = false
 path = scenario\red_forest\red_bridge_finished
-shuffle = rnd
-idle = 3,5,100
-
-[red_bridge_task_for_player]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\red_forest\red_bridge_task_for_player
 shuffle = rnd
 idle = 3,5,100
 
@@ -350,27 +334,11 @@ path = characters_voice\scenario\red_forest\red_pursuit_camfly_5
 shuffle = rnd
 idle = 3,5,100
 
-[red_pursuit_defend_tunel_1]
+[red_pursuit_defend_tunel]
 type = npc
 actor_stereo = false
 npc_prefix = false
-path = scenario\red_forest\red_pursuit_defend_tunel_1
-shuffle = rnd
-idle = 15,25,100
-
-[red_pursuit_defend_tunel_2]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\red_forest\red_pursuit_defend_tunel_2
-shuffle = rnd
-idle = 15,25,100
-
-[red_pursuit_defend_tunel_3]
-type = npc
-actor_stereo = false
-npc_prefix = false
-path = scenario\red_forest\red_pursuit_defend_tunel_3
+path = scenario\red_forest\red_pursuit_defend_tunel_
 shuffle = rnd
 idle = 15,25,100
 
@@ -378,9 +346,9 @@ idle = 15,25,100
 type = npc
 actor_stereo = false
 npc_prefix = false
-path = scenario\red_forest\red_pursuit_dont_shoot
+path = human_01\stalker\states\panic_human\panic_human_7
 shuffle = rnd
-idle = 15,25,100
+idle = 10,20,100
 
 [red_pursuit_locate_strelok]
 type = actor
@@ -410,7 +378,7 @@ idle = 3,5,100
 type = npc
 actor_stereo = false
 npc_prefix = false
-path = scenario\red_forest\red_forester_greet_1
+path = scenario\red_forest\red_forester_greet
 shuffle = rnd
 idle = 3,5,100
 
@@ -418,28 +386,6 @@ idle = 3,5,100
 type = actor
 actor_stereo = false
 npc_prefix = false
-path = characters_voice\scenario\red_forest\red_stalker_sos
-shuffle = rnd
-idle = 3,5,100
-
-[red_guardbridge_no]
-type = actor
-actor_stereo = false
-npc_prefix = false
-path = characters_voice\scenario\red_forest\red_guardbridge_no
-shuffle = rnd
-idle = 3,5,100
-
-[red_teleport_work]
-type = 3d
-path = anomaly\teleport_work_2
-shuffle = loop
-idle = 0,0,100
-
-[red_actor_say_bridge_sound]
-type = actor
-actor_stereo = false
-npc_prefix = false
-path = characters_voice\scenario\red_forest\red_actor_say_bridge_sound
+path = characters_voice\human_01\stalker\alife\defence\wait_help_2_pda
 shuffle = rnd
 idle = 3,5,100

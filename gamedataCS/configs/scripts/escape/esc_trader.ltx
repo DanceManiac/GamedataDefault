@@ -212,7 +212,7 @@ on_actor_dist_ge_nvis2 = 11 | mob_trader@new_wait
 [mob_trader@new_talking]
 anim_global = chair_hack_talk
 anim_head = normal
-on_info = {=dist_to_actor_le(3) !talking} mob_trader@new_idle3 %+esc_skip_angry%
+on_info = {!talking} mob_trader@new_idle3 %+esc_skip_angry%
 
 ;--------------------------------------
 ;------------ Торговля ----------------
@@ -277,7 +277,7 @@ on_signal = animation_end | mob_trader@new_idle2
 on_actor_dist_ge_nvis = 11| mob_trader@new_wait
 anim_global = hello
 anim_head = normal
-sound_phrase = trader_bye
+;sound_phrase = trader_bye
 on_signal = animation_end | mob_trader@new_idle2
 
 [mob_trader@bye_search]

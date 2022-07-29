@@ -1,8 +1,16 @@
+[meet]
+meet_state 		= 3|nil@nil
+sound_start 	= gar_bandit_tech_meet
+sound_stop 		= gar_bandit_tech_meet_bye
+use_wpn	= true
+use = true
+quest_npc = true
+
 [logic]
 active = walker@fixer
+;suitable = {=check_npc_name(gar_bandit_fixer)}
+;prior = 130
 level_spot = mechanic
-enable_torch = false
-on_death = death
 
 [walker@fixer]
 path_walk = gar_smart_terrain_3_5_bandit_fixer_walk
@@ -10,11 +18,6 @@ path_look = gar_smart_terrain_3_5_bandit_fixer_look
 on_signal = turn_end | smartcover@sleep_mechanic_idle_fixer
 def_state_standing = ward_noweap
 out_restr = gar_space_restrictor_bandit_fixer_in
-combat_ignore_cond = {!is_enemy_actor}
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-bandit_fixer_meet_info !is_faction_enemy_to_actor(bandit)} %=play_sound(gar_bandit_tech_meet) +bandit_fixer_meet_info%
-on_actor_dist_ge_nvis = 4 | {+bandit_fixer_meet_info !is_faction_enemy_to_actor(bandit)} %=play_sound(gar_bandit_tech_meet_bye) -bandit_fixer_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
 
 [smartcover@sleep_mechanic_idle_fixer]
@@ -23,12 +26,8 @@ loophole_name = lead_sit_sleep_mechanic
 cover_state = idle_target
 on_timer = 15000 | smartcover@sleep_mechanic_fire_fixer
 out_restr = gar_space_restrictor_bandit_fixer_in
-combat_ignore_cond = {!is_enemy_actor}
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-bandit_fixer_meet_info !is_faction_enemy_to_actor(bandit)} %=play_sound(gar_bandit_tech_meet) +bandit_fixer_meet_info%
-on_actor_dist_ge_nvis = 4 | {+bandit_fixer_meet_info !is_faction_enemy_to_actor(bandit)} %=play_sound(gar_bandit_tech_meet_bye) -bandit_fixer_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
+;target_path = gar_smart_terrain_3_5_bandit_fixer_look
 
 [smartcover@sleep_mechanic_fire_fixer]
 cover_name = gar_smart_cover_bandit_fixer_lead_sit_sleep_mechanic
@@ -36,23 +35,5 @@ loophole_name = lead_sit_sleep_mechanic
 cover_state = lookout_target
 on_timer = 15000 | smartcover@sleep_mechanic_idle_fixer
 out_restr = gar_space_restrictor_bandit_fixer_in
-combat_ignore_cond = {!is_enemy_actor}
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-bandit_fixer_meet_info !is_faction_enemy_to_actor(bandit)} %=play_sound(gar_bandit_tech_meet) +bandit_fixer_meet_info%
-on_actor_dist_ge_nvis = 4 | {+bandit_fixer_meet_info !is_faction_enemy_to_actor(bandit)} %=play_sound(gar_bandit_tech_meet_bye) -bandit_fixer_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
-
-[meet]
-meet_state 		= 3|nil@nil
-meet_state_wpn 		= 3|nil@nil
-;-- Edited: Jurok --ON-------------------------------------------------------
-;sound_start = gar_bandit_tech_meet
-;sound_stop = gar_bandit_tech_meet_bye
-;-- Edited: Jurok --OFF------------------------------------------------------
-use_wpn	= true
-use = true
-;quest_npc = true
-
-[death]
-on_info = %+gar_bandit_fixer_dead =set_faction_community_to_actor(bandit:enemy)%
+;target_path = gar_smart_terrain_3_5_bandit_fixer_look

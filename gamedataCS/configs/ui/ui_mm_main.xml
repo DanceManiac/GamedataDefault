@@ -31,9 +31,9 @@
 
   <shniaga_wnd x="40" y="425" width="392" height="280">
     <buttons_region	x="105" y="-4" width="200" height="280" always_show_scroll="false" vert_interval="9"/>
-
+		
 		<shniaga x="68" y="0" width="278" height="40">
-			<texture>ui_menu2_move_e</texture>
+			<texture>ui_menu2_move_e</texture>			
 			<magnifire x="37" y="8" width="207" height="24">
 				<texture>ui_magnifier2</texture>
         <y_offset>-3</y_offset>
@@ -41,21 +41,20 @@
       <auto_static x="38" y="8" width="206" height="24">
         <texture shader="hud\add-alpha" a="100">ui_menu2_highlight_one</texture>
       </auto_static>
-    </shniaga>
+    </shniaga>		
 	</shniaga_wnd>
-
+  
   <button h="25"/>
-
+  
 	<menu_main btn_height="34" font="graffiti22" color="ui_mm_font">
-    		<btn name="btn_new_game"	caption="ui_mm_newgame" />
+    <btn name="btn_new_game"	caption="ui_mm_newgame" />
 		<btn name="btn_load"		caption="ui_mm_load_game" />
 		<btn name="btn_multiplayer"	caption="ui_mm_multiplayer_n" />
-<!--   		<btn name="btn_arena_game"	caption="ui_mm_arenagame" /> -->
 		<btn name="btn_options"		caption="ui_mm_options_n" />
 		<btn name="btn_credits"		caption="ui_mm_credits" />
 		<btn name="btn_quit"		caption="ui_mm_quit2windows" />
 	</menu_main>
-
+	
 	<menu_main_last_save btn_height="34" font="graffiti22" color="ui_mm_font">
 		<btn name="btn_new_game"	caption="ui_mm_newgame" />
 		<btn name="btn_load"		caption="ui_mm_load_game" />
@@ -65,17 +64,17 @@
 		<btn name="btn_credits"		caption="ui_mm_credits" />
 		<btn name="btn_quit"		caption="ui_mm_quit2windows" />
 	</menu_main_last_save>
-
+	
 	<menu_new_game btn_height="34" font="graffiti22" color="ui_mm_font">
-   		<btn name="btn_novice"		caption="ui_mm_novice" />
+    <btn name="btn_novice"		caption="ui_mm_novice" />
 		<btn name="btn_stalker"		caption="ui_mm_stalker" />
 		<btn name="btn_veteran"		caption="ui_mm_veteran" />
 		<btn name="btn_master"		caption="ui_mm_master" />
 		<btn name="btn_new_back"	caption="ui_mm_back" />
 	</menu_new_game>
-
+	
 	<menu_main_single btn_height="34" font="graffiti22" color="ui_mm_font">
-    		<btn name="btn_ret"		caption="ui_mm_return_game" />
+    <btn name="btn_ret"			caption="ui_mm_return_game" />
 		<btn name="btn_lastsave"	caption="ui_mm_last_save" />
 		<btn name="btn_load"		caption="ui_mm_load_game" />
 		<btn name="btn_save"		caption="ui_mm_save_game" />
@@ -84,40 +83,31 @@
 		<btn name="btn_quit_to_mm"	caption="ui_mm_quit_game" />
 		<btn name="btn_quit"		caption="ui_mm_quit2windows" />
 	</menu_main_single>
-
+	
 	<menu_main_single_dead btn_height="34" font="graffiti22" color="ui_mm_font">
-    		<btn name="btn_lastsave"	caption="ui_mm_last_save" />
+    <btn name="btn_lastsave"	caption="ui_mm_last_save" />
 		<btn name="btn_load"		caption="ui_mm_load_game" />
 		<btn name="btn_options"		caption="ui_mm_options_n" />
 		<btn name="btn_credits"		caption="ui_mm_credits" />
 		<btn name="btn_quit_to_mm"	caption="ui_mm_quit_game" />
 		<btn name="btn_quit"		caption="ui_mm_quit2windows" />
 	</menu_main_single_dead>
-
+	
 	<menu_main_mm btn_height="34" font="graffiti22" color="ui_mm_font">
-    		<btn name="btn_ret"		caption="ui_mm_return_game" />
+    <btn name="btn_ret"			caption="ui_mm_return_game" />
 		<btn name="btn_options"		caption="ui_mm_options_n" />
-   		<btn name="btn_multiplayer"	caption="ui_mm_multiplayer_n" />
-   		<btn name="btn_credits"		caption="ui_mm_credits" />
+    <btn name="btn_multiplayer"	caption="ui_mm_multiplayer_n" />
+    <btn name="btn_credits"		caption="ui_mm_credits" />
 		<btn name="btn_quit_to_mm"	caption="ui_mm_disconnect" />
 		<btn name="btn_quit"		caption="ui_mm_quit2windows" />
 	</menu_main_mm>
-
-	<menu_sound random="1" >
-		<menu_music>music\wasteland2</menu_music>
-		<menu_music>music\hospital</menu_music>
-	</menu_sound>
-
-	<static_version x="5" y="740" width="100" height="30">
-		<text align="l" font="letterica16" r="135" g="123" b="116" complex_mode="0"/>
-	</static_version>
-
-	<ogsm_version x="5" y="720" width="100" height="30">
-		<text align="l" font="letterica16" r="255" g="80" b="80" complex_mode="0"/>
-	</ogsm_version>
 	
-	<ngsm_version x="5" y="700" width="100" height="30">
-		<text align="l" font="letterica16" r="80" g="255" b="80" complex_mode="0"/>
-	</ngsm_version>
+	<menu_sound random="0" >
+		<menu_music>music\wasteland2</menu_music>
+  </menu_sound>
 
+	<static_version x="15" y="740" width="100" height="30">
+		<text align="l" font="graffiti19" r="135" g="123" b="116" complex_mode="0"/>
+	</static_version>
+	
 </w>

@@ -22,7 +22,7 @@
 		<texture>ui_menu_options_dlg</texture>
     
     <caption x="65" y="10" width="500" height="25" complex_mode="0">
-		  <text font="graffiti22" r="215" g="195" b="170">ui_mm_load_game</text>
+		  <text font="graffiti22" r="184" g="168" b="131">ui_mm_load_game</text>
 	  </caption>
   		
 	  <picture x="105" y="71" width="128" height="128">
@@ -35,11 +35,11 @@
       </auto_static>
     </file_info>
   		
-	  <file_caption x="299" y="109" width="240" height="40" complex_mode="1">
+	  <file_caption x="299" y="109" width="240" height="20">
 		  <text font="letterica18" r="238" g="155" b="23"/>
 	  </file_caption>
   		
-	  <file_data x="299" y="149" width="240" height="50" complex_mode="1">
+	  <file_data x="299" y="129" width="240" height="50" complex_mode="1">
 		  <text font="letterica18" r="216" g="186" b="140"/>
 	  </file_data>
   		

@@ -1,20 +1,16 @@
 	<enemy_location hint="enemy" no_offline="1">
-		<level_map spot="enemy_mini_spot"/>
 		<mini_map  spot="enemy_mini_spot"/>
 	</enemy_location>
 
 	<neutral_location hint="neutral">
-		<level_map spot="neutral_mini_spot"/>
 		<mini_map  spot="neutral_mini_spot"/>
 	</neutral_location>
 
 	<friend_location hint="friend">
-		<level_map spot="friend_mini_spot"/>
 		<mini_map  spot="friend_mini_spot"/>
 	</friend_location>
 
 	<deadbody_location hint="deadbody">
-		<level_map spot="deadbody_mini_spot"/>
 		<mini_map  spot="deadbody_mini_spot"/>
 	</deadbody_location>
 
@@ -46,15 +42,3 @@
 
 
 -->
-
-<!-- ai additions -->
-        <rx_gl_alarm ttl="5">
-                <mini_map spot="rx_gl_alarm_spot"/>
-        </rx_gl_alarm>
-        <rx_gl_alarm_spot width="32" height="32" alignment="c" stretch="1" xform_anim="map_spot_new_xform" xform_anim_cyclic="1">
-		<texture r="248" g="173" b="0">ui_frame_error_sign_red</texture>
-        </rx_gl_alarm_spot>
-	<rx_gl_hit_sector ttl="5" pos_to_actor="1">
-		<mini_map  spot="mp_hit_sector_mini_spot"/>
-	</rx_gl_hit_sector>
-<!-- ai additions -->	

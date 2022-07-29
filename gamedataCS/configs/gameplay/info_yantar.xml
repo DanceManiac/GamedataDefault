@@ -35,11 +35,7 @@
   <info_portion id="start_surge"/> ;-- сигнал на старт спауна зомби(выброс)
   <info_portion id="yan_second_visit"/> ;--диалоговый сигнал
   <info_portion id="yan_quest_digger_doc"/> ;--диалоговый сигнал
-
-  <info_portion id="yan_squad_stalker_base_death"/> - ;--сигнал на смерть сквада помощи сталкеров базе учЄных
-
-  <info_portion id="yan_kak_proiti_za_strelkom"></info_portion>
-
+  <info_portion id="yan_kak_proiti_za_strelkom"/> ;--диалоговый сигнал
   <info_portion id="yan_vida4a_quest_doc"/> ;--сигнал на выдачу квеста с документами(+минимапа)
   <info_portion id="yan_sdal_quest_doc"/>
   <info_portion id="yan_proriv_k_ystanovke"/>
@@ -52,7 +48,7 @@
   <info_portion id="yan_questions_scientists"/> 
   <info_portion id="yan_soglasie_quest_doc"/>
   <info_portion id="yan_vzyal_quest_doc"/>
-  <info_portion id="yan_quest_doc"><article>private_20_note</article></info_portion>
+  <info_portion id="yan_quest_doc"/>
   <info_portion id="yan_otnesti_doc_saharavy"/> ;--инфопоршен на задание "ќтнести документы —ахарову"
   <info_portion id="yan_quest_levsha"/>
   <info_portion id="yan_stop"/> ;--проверочный
@@ -136,10 +132,8 @@
   <info_portion id="yan_destroy_wave3_1"/> ;--сигнал на смерть зомби
   <info_portion id="yan_destroy_wave3_2"/> ;--сигнал на смерть зомби
   <info_portion id="yan_destroy_wave3_3"/> ;--сигнал на смерть зомби 
-
-  <info_portion id="yan_end_quest_line"/>
-
-  <info_portion id="yan_go_to_red_forest_cut6"><article>private_21_note</article></info_portion>
+  <info_portion id="yan_end_quest_line"/>  ;--сиганл на конец квестовой части на янтаре
+  <info_portion id="yan_go_to_red_forest_cut6"/>
   <info_portion id="yan_zombied_on_krisha_cut6"/>
   <info_portion id="yan_zombied_in_angar_cut6"/>
   <info_portion id="yan_professor_cut6"/>

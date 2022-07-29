@@ -81,8 +81,6 @@ gar_bandit_expansion_4_up
 gar_bandit_expansion_4_down
 gar_bandit_expansion_5_down
 
-;***********GARBAGE**
-;********************
 
 [gar_bandit_barman_meet]
 type = npc
@@ -398,7 +396,7 @@ idle = 1,1,100
 
 [gar_bandit_leader_kill_digger_traitor_call]
 type = npc
-actor_stereo = true
+actor_stereo = false
 path = scenario\garbage\gar_bandit_leader_kill_digger_traitor_call
 shuffle = seq
 idle = 1,1,100
@@ -456,8 +454,9 @@ shuffle = seq
 idle = 1,1,100
 
 [gar_bandit_conc_camp_go_away]
-type = npc
-path = scenario\garbage\gar_bandit_conc_camp_go_away
+type = actor
+actor_stereo = false
+path = characters_voice\scenario\garbage\gar_bandit_conc_camp_go_away
 shuffle = seq
 idle = 1,1,100
 

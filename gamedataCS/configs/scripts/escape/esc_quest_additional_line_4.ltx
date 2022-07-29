@@ -5,10 +5,6 @@ active = sr_idle@1
 on_info = {+esc_mechanic_flash_card_1} sr_idle@2 %=give_inited_task(storyline:esc_additional_quest_7a:stalker)%
 
 [sr_idle@2]
-on_info = {-esc_dogs_lair_8_6_death} sr_idle@3
-on_info2 = {+esc_dogs_lair_8_6_death} sr_idle@3 %=create_squad(esc_dogs_lair_8_6:esc_smart_terrain_8_6)%
+on_info = {=actor_has_item(esc_mechanic_flash_card)} sr_idle@3 %+esc_mechanic_flash_card_2 =give_inited_task(storyline:esc_additional_quest_7b:stalker)%
 
 [sr_idle@3]
-on_info = {=actor_has_item(esc_mechanic_flash_card)} sr_idle@4 %+esc_mechanic_flash_card_2 =give_inited_task(storyline:esc_additional_quest_7b:stalker)%
-
-[sr_idle@4]

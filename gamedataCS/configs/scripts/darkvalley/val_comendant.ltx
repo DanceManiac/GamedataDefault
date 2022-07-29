@@ -1,69 +1,18 @@
 [dont_spawn_character_supplies]
 
 [logic]
-active = walker@pre
-level_spot = quest_npc
-
-[walker@pre]
-danger = danger_condition
-combat_ignore_cond = {!is_enemy_actor}
-path_walk = val_smart_terrain_freedom_comendant_walker_1_walk
-path_look = val_smart_terrain_freedom_comendant_walker_1_look
-faction = freedom
-def_state_standing = wait
-out_restr = val_out_restrictor_comendant
-on_info = {+val_temp_start_quest_complete} walker
-meet = no_meet
+active = walker
 
 [walker]
 danger = danger_condition
-combat_ignore_cond = {!is_enemy_actor}
-path_walk = val_smart_terrain_freedom_comendant_walker_1_walk
-path_look = val_smart_terrain_freedom_comendant_walker_1_look
-faction = freedom
-def_state_standing = wait
-out_restr = val_out_restrictor_comendant
-on_actor_dist_le_nvis = 80 | {+val_talked_to_blockpost_leader_complete} remark@pre %=create_item_in_inv(hand_radio:val_freedom_comendant)%
-on_info = {+val_freedom_base_enter_sound_end_info} walker@1
-on_info2 = {+val_find_pda_done} %=destroy_object%
-meet = meet@1
-
-[remark@pre]
-combat_ignore_cond = {!is_enemy_actor}
-target = val_smart_terrain_freedom_comendant_walker_1_look,0
-anim = wait_rac
-on_info = {+val_come_to_freedom_base_complete} remark@voise
-meet = no_meet
-
-[remark@voise]
-combat_ignore_cond = {!is_enemy_actor}
-target = val_smart_terrain_freedom_comendant_walker_1_look,0
-anim = wait_rac
-snd = val_freedom_base_enter
-on_signal = sound_end | walker@1 %+val_freedom_base_enter_sound_end_info%
-meet = no_meet
-
-[walker@1]
-danger = danger_condition
-combat_ignore_cond = {!is_enemy_actor}
-path_walk = val_smart_terrain_freedom_comendant_walker_1_walk
-path_look = val_smart_terrain_freedom_comendant_walker_1_look
-faction = freedom
-def_state_standing = wait
-out_restr = val_out_restrictor_comendant
-on_info = {+val_check_blockpost_complete} walker@2
-meet = meet@1
-
-[walker@2]
-danger = danger_condition
-combat_ignore_cond = {!is_enemy_actor}
+combat_ignore_cond = true
 path_walk = val_smart_terrain_freedom_comendant_walker_1_walk
 path_look = val_smart_terrain_freedom_comendant_walker_1_look
 faction = freedom
 def_state_standing = wait
 out_restr = val_out_restrictor_comendant
 on_info = {+val_find_pda_done} %=destroy_object%
-meet = no_meet
+meet = meet@1
 
 [danger_condition]
 ignore_distance_corpse = 0
@@ -81,4 +30,3 @@ victim_wpn = 10 | actor
 sound_start = val_freedom_comendant_meet
 sound_stop 	= val_freedom_comendant_meet_bye
 quest_npc = true
-trade_enable = false

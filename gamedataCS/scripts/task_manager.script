@@ -132,7 +132,7 @@ function CRandomTask:save(packet)
 		packet:w_u16(task_id_by_type[v.type])
 		self.inited_tasks[k]:save(packet)
 	end
-	fixme.tm_save_id_generator(self, packet)
+	self.id_generator:save(packet)
 
 	-- Сохранение списка наград
 	n = 0
@@ -202,25 +202,25 @@ function CRandomTask:load(reader)
 		if t == "storyline" then
 			obj = task_objects.CStorylineTask(self.task_ini, base_id, t)
 		elseif t == "eliminate_smart" then
-			obj = task_objects.CEliminateSmartTask(self.task_ini, base_id, t, "secondary_task_location_complex_eliminate_smart")
+			obj = task_objects.CEliminateSmartTask(self.task_ini, base_id, t)
 		elseif t == "capture_smart" then
-			obj = task_objects.CCaptureSmartTask(self.task_ini, base_id, t, "secondary_task_location_complex_capture_smart")
+			obj = task_objects.CCaptureSmartTask(self.task_ini, base_id, t)
 		elseif t == "defend_smart" then
-			obj = task_objects.CDefendSmartTask(self.task_ini, base_id, t, "secondary_task_location_complex_defend_smart")
+			obj = task_objects.CDefendSmartTask(self.task_ini, base_id, t)
 		elseif t == "defend_smart_delay" then
-			obj = task_objects.CDefendSmartTaskDelay(self.task_ini, base_id, t, "secondary_task_location_complex_defend_smart_delay")
+			obj = task_objects.CDefendSmartTaskDelay(self.task_ini, base_id, t)
 		elseif t == "take_reward" then
-			obj = task_objects.CGetRewardTask(self.task_ini, base_id, t, "secondary_task_location_complex_take_reward")
+			obj = task_objects.CGetRewardTask(self.task_ini, base_id, t)
 		elseif t == "bring_item" then
-			obj = task_objects.CBringItemTask(self.task_ini, base_id, t, "secondary_task_location_complex_bring_item")
+			obj = task_objects.CBringItemTask(self.task_ini, base_id, t)
 		elseif t == "recover_item" then
-			obj = task_objects.CRecoverItemTask(self.task_ini, base_id, t, "secondary_task_location_complex_recover_item")
+			obj = task_objects.CRecoverItemTask(self.task_ini, base_id, t)
 		elseif t == "find_upgrade" then
-			obj = task_objects.CFindUpgradeTask(self.task_ini, base_id, t, "secondary_task_location_complex_find_upgrade")
+			obj = task_objects.CFindUpgradeTask(self.task_ini, base_id, t)
 		elseif t == "hide_from_surge" then
-			obj = task_objects.CHideFromSurgeTask(self.task_ini, base_id, t, "secondary_task_location_complex_hide_from_surge")
+			obj = task_objects.CHideFromSurgeTask(self.task_ini, base_id, t)
 		elseif t == "eliminate_squad" then
-			obj = task_objects.CEliminateSquadTask(self.task_ini, base_id, t, "secondary_task_location_complex_eliminate_squad")
+			obj = task_objects.CEliminateSquadTask(self.task_ini, base_id, t)
 		end
 		if(obj~=nil) then
 			obj:load(reader)
@@ -234,7 +234,7 @@ function CRandomTask:load(reader)
 			end
 		end
 	end
-	fixme.tm_load_id_generator(self, reader)
+	self.id_generator:load(reader)
 
 	-- Загрузка списка наград
 	n = reader:r_u8()
@@ -415,7 +415,7 @@ function CRandomTask:select_task(type, obj, faction)
 		key = tostring(faction).."_bring_item_"..obj
 	elseif type == "recover_item" then
 		task_table = self.recover_item_tasks
-		key = "recover_item_"..level.name()		-- SRP_v1.1.0
+		key = "recover_item"
 --		key = tostring(faction).."_recover_item_"..obj
 	elseif type == "find_upgrade" then
 		task_table = self.find_upgrade_tasks
@@ -519,7 +519,7 @@ function CRandomTask:get_task_by_key(type, obj, faction)
 	elseif type == "bring_item" then
 		key = tostring(faction).."_bring_item_"..obj
 	elseif type == "recover_item" then
-		key = "recover_item_"..level.name()			-- SRP_v1.1.0
+		key = "recover_item"
 --		key = tostring(faction).."_recover_item_"..obj
 	elseif type == "find_upgrade" then
 		key = tostring(faction).."_find_upgrade_"..obj

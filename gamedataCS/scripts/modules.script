@@ -33,22 +33,6 @@ load_scheme("xr_combat_ignore",                 "combat_ignore",stype_stalker)
 load_scheme("xr_patrol",                        "patrol",       stype_stalker)
 load_scheme("xr_smartcover",                    "smartcover",   stype_stalker)
 load_scheme("xr_surge_hide",                    "surge_hide",   stype_stalker)
-if ogsm_hideout then
-	load_scheme("ogsm_hideout",    "ogsm_hideout",      stype_stalker)
-end
-if rx_ai then rx_ai.load_schemes() end
-
---// NGSM
-if ngsm_options.new_ai_modules == true then
-	if ngsm_xr_detour then
-	    load_scheme("ngsm_xr_detour", "detour_anomaly", stype_stalker) --'Обход аномалий
-	end
-	if ngsm_xr_hider then
-	    load_scheme("ngsm_xr_hider", "surge_hider", stype_stalker) --'Поиск укрытий
-	end
-end
---// NGSM
-
 ----------------------------------------------------------------------
 -- Загрузка модулей монстров:
 ----------------------------------------------------------------------
@@ -58,7 +42,6 @@ load_scheme("mob_combat",   "mob_combat",   stype_mobile)
 load_scheme("mob_death",    "mob_death",    stype_mobile)
 load_scheme("mob_jump",     "mob_jump",     stype_mobile)
 load_scheme("mob_home",     "mob_home",     stype_mobile)
-load_scheme("mob_fake_death", "mob_fake_death", stype_mobile)
 ----------------------------------------------------------------------
 -- Загрузка модулей Торговца
 ----------------------------------------------------------------------
@@ -68,7 +51,7 @@ load_scheme("mob_trade",    "mob_trade",    stype_mobile)
 -- Загрузка модулей физических объектов:
 ----------------------------------------------------------------------
 load_scheme("ph_door",        "ph_door",     stype_item)
-load_scheme("ph_gate",        "ph_gate",     stype_item)
+--'load_scheme("ph_gate",        "ph_gate",     stype_item)
 load_scheme("ph_idle",        "ph_idle",     stype_item)
 load_scheme("ph_hit",         "ph_hit",      stype_item)
 load_scheme("ph_on_hit",      "ph_on_hit",   stype_item)

@@ -4,7 +4,7 @@
 		<text>Уничтожить противника на перекрёстке</text>
 	</string>
 	<string id="lim_destroy_ambush_2_text">
-		<text>Уничтожить засаду на перекрёстке.</text>
+		<text>Уничтожить засаду на перекрёстке</text>
 	</string>
 	<string id="lim_destroy_bandit_minigun_name">
 		<text>Уничтожить пулемётную точку</text>
@@ -46,13 +46,13 @@
 		<text>Уничтожить засаду</text>
 	</string>
 	<string id="lim_destroy_ambush_1_text">
-		<text>Уничтожить засаду.</text>
+		<text>Уничтожить засаду</text>
 	</string>
 	<string id="lim_electro_fence_actor_come_back_name">
 		<text>Вернуться к командиру отряда</text>
 	</string>
 	<string id="lim_electro_fence_actor_come_back_text">
-		<text>Необходимо вернуться к командиру отряда «Чистого неба».</text>
+		<text>Необходимо вернуться к командиру отряда</text>
 	</string>
 	<string id="lim_electro_fence_cs_soldier_cover_name">
 		<text>Помочь бойцу подобраться к снайперу</text>
@@ -70,12 +70,12 @@
 		<text>Уничтожить снайпера</text>
 	</string>
 	<string id="lim_electro_fence_sniper_text">
-		<text>Отключить генератор мешает снайпер на башне. Нужно подойти ближе и уничтожить снайпера.</text>
+		<text>Заграждения обесточены. Теперь нужно подойти ближе и уничтожить снайпера.</text>
 	</string>
 	<string id="lim_find_bridge_squad_comander_name">
 		<text>Найти командира отряда</text>
 	</string>
 	<string id="lim_find_bridge_squad_comander_text">
-		<text>Найти командира отряда «Чистого неба».</text>
+		<text>Найти командира отряда</text>
 	</string>
 </string_table>

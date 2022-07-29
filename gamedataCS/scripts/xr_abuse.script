@@ -32,7 +32,7 @@ function action_abuse_hit:initialize()
 	self.object:set_desired_direction()
 
 	state_mgr.set_state(self.object, "punch", nil, nil, {look_object = db.actor}, {animation = true})
-	xr_sound.set_sound_play(self.object:id(), "use_abuse")
+--	xr_sound.set_sound_play(self.object:id(), "use_abuse")
 	self.hit_done = true			--' xStream 02.2008
 end
 function action_abuse_hit:execute ()
@@ -120,19 +120,15 @@ function add_to_binder(object, char_ini, scheme, section, st)
 	
 	-- Actions
 	local action = action_abuse_hit(object:name(),"action_abuse_hit", st, char_ini)
-	action:add_precondition(world_property(stalker_ids.property_alive, true))
-	action:add_precondition(world_property(stalker_ids.property_danger,false))
-	action:add_precondition(world_property(properties["wounded"], false))
-	if xr_medic then
-		action:add_precondition(world_property(xr_medic.evid_medic, false))
-		action:add_precondition(world_property(xr_medic.evid_self_medic, false))
-	end
-	action:add_precondition(world_property(properties["abuse"], true))
+	action:add_precondition		(world_property(stalker_ids.property_alive, true))
+	action:add_precondition		(world_property(stalker_ids.property_danger,false))
+	action:add_precondition		(world_property(properties["wounded"], 		false))
+	action:add_precondition		(world_property(properties["abuse"],		true))
 	action:add_effect (world_property(properties["abuse"], false))
 	manager:add_action (operators["abuse"], action)
 
-	action = manager:action(xr_actions_id.alife)	
-	action:add_precondition(world_property(properties["abuse"], false))
+	action = manager:action (xr_actions_id.alife)	
+	action:add_precondition		(world_property(properties["abuse"],		false))
 	
 	st.abuse_manager = CAbuseManager(object, st)
 end

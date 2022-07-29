@@ -645,7 +645,7 @@ function mechanic_proposition_answer_phrase(npc, dialog_name, phrase_id)
 		if db.actor:object(flash_card_table[i].item) ~= nil then
 			local name = game.translate_string(system_ini():r_string(flash_card_table[i].item, "inv_name"))
 			local price = flash_card_table[i].price
-			string = name.."/"..price.." "..game.translate_string("rubles")
+			string = name.."/"..price.." RU"
 		end
 	end
 	return string

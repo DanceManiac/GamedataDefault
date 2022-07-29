@@ -14,45 +14,44 @@ meet = meet
 cover_name = esc_smart_cover_mechanic_1
 loophole_name = lead_sit_sleep_mechanic
 cover_state = lookout_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 on_timer = 4000 | smartcover@2
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-stalker_fixer_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(esc_stalker_mechanic_meet) +stalker_fixer_meet_info%
-on_actor_dist_ge_nvis = 4 | {+stalker_fixer_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(esc_stalker_mechanic_meet_bye) -stalker_fixer_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
 
 [smartcover@2]
 cover_name = esc_smart_cover_mechanic_1
 loophole_name = lead_sit_sleep_mechanic
 cover_state = fire_no_lookout_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 on_timer = 12670 | smartcover@1
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-stalker_fixer_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(esc_stalker_mechanic_meet) +stalker_fixer_meet_info%
-on_actor_dist_ge_nvis = 4 | {+stalker_fixer_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(esc_stalker_mechanic_meet_bye) -stalker_fixer_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
 
+;[smartcover@3]
+;cover_name = esc_smart_cover_mechanic_1
+;loophole_name = lead_sit_sleep_mechanic
+;cover_state = idle_target
+;combat_ignore_cond = true
+;combat_ignore_keep_when_attacked = true
+;invulnerable = true
+;out_restr = esc_space_restrictor_in_restr_1
+;on_timer = 16670 | smartcover@1
+
+
 [death]
-on_info = %+esc_stalker_mechanic_dead =set_faction_community_to_actor(stalker:enemy)%
+on_info = %+esc_stalker_mechanic_dead%
 
 [meet]
 meet_state		= 3|nil@nil
-meet_state_wpn	= 3|nil@nil
 victim			= 3|actor
-victim_wpn		= 3|actor
-;-- Edited: Jurok --ON-------------------------------------------------------
-;sound_start = esc_stalker_mechanic_meet
-;sound_stop = esc_stalker_mechanic_meet_bye
-;-- Edited: Jurok --OFF------------------------------------------------------
+sound_start 	= esc_stalker_mechanic_meet
+sound_stop 		= esc_stalker_mechanic_meet_bye
 use				= {!actor_enemy} true, false
 use_wpn			= {!actor_enemy} true, false
 abuse			= false
-;quest_npc = true
+quest_npc = true

@@ -1,9 +1,7 @@
 [logic@stalker3]
 active = walker@snork_appear
-suitable = {=check_npc_name(yan_scene_6_stalker_3) -yan_stop_spawn_cut6} true
-prior = 95
+suitable = {-yan_stop_spawn_cut6} true
 post_combat_time = 0,0
-on_death = death
 
 [walker@snork_appear]
 path_walk = stalker3_cut5_walk
@@ -29,7 +27,7 @@ invulnerable = true
 radius = 0
 combat_ignore_cond = true
 meet = no_meet
-on_info = {+yan_proriv_k_ystanovke} camper@to_zabor
+on_info = {+yan_destroy_zombi23_cut5} camper@to_zabor
 danger = danger_ignore
 
 [camper@to_zabor]
@@ -37,7 +35,6 @@ path_walk = zabor_walk
 path_look = zabor_look
 meet = no_meet
 invulnerable = true
-def_state_moving = assault
 combat_ignore_cond = true
 on_signal = ready_to_jump | remark@zabor 
 danger = danger_ignore
@@ -117,11 +114,10 @@ on_info = {+typoi +yan_levsha_ready_cut6} remark@1
 [remark@1]
 on_timer = 3000 | {-yan_zabor_2_already_jumping} camper@to_zabor_2 %+yan_zabor_2_already_jumping%
 invulnerable = true
-target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_7_walk, 0
+target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_7_walk,0
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 anim = wait_na
-meet = no_meet
 
 [camper@to_zabor_2]
 path_walk = zabor_2_walk
@@ -136,10 +132,10 @@ invulnerable = true
 anim = yan_zabor_1
 meet = no_meet
 invulnerable = true
+;target = yan_smart_terrain_for_squad_levsha_zabor_2_look,0
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 on_signal = anim_end | camper@wait_cut6
-
 ;-- сцена 6 "Ремонт Установки"
 
 [camper@wait_cut6]
@@ -155,11 +151,11 @@ on_signal = turn_end | remark@wait_cut6_temp
 [remark@wait_cut6_temp]
 anim = guard
 combat_ignore_cond = always
-target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_8_walk, 0
+target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_8_walk, 00
 danger = danger_condition
 meet = no_meet
 on_info = {+yan_ready_actor_cut6} camper@fire
-invulnerable = true
+
 
 
 [camper@fire]
@@ -179,8 +175,8 @@ out_restr = yan_space_restrictor_cut6_for_group2
 path_walk = yan_per_1_walk
 path_look = yan_per_1_look
 radius = 3
-;invulnerable = true
-on_info = {+yan_stalker_3_kaput} camper@fire2_not_inv
+invulnerable = true
+on_info =  {+yan_stalker_3_kaput} camper@fire2_not_inv
 combat_ignore_cond = {+yan_stalker_3_kaput} true, {=fighting_dist_ge(10)} true 
 meet = no_meet
 
@@ -200,6 +196,3 @@ hp_state_see    = 0|wounded_heavy@help_heavy
 hp_victim       = 0|nil
 hp_fight        = 0|false
 hp_cover        = 0|false
-
-[death]
-on_info = %+yan_scene_6_stalker_3_dead%

@@ -1,11 +1,6 @@
 --'******************************************************
 --'*  Биндер объекта зоны аномалий .
 --'******************************************************
-
-min_respawn_time = 60*24*2		--2 days
-max_respawn_time = 60*24*4		--4 days
-time_factor = 60000				--game minutes are multiplied by this factor when used with game.time()
-
 function printf()
 end
 artefact_ways_by_id					= {}
@@ -20,12 +15,8 @@ function anomaly_zone_binder:__init(obj) super(obj)
 	local ini				= obj:spawn_ini()
 	local path				= utils.cfg_get_string(ini, "anomal_zone", "artefact_ways", nil, true, "", nil)	
 	local artefacts			= utils.cfg_get_string(ini, "anomal_zone", "artefacts", nil, true, "", nil)
-	ogsm.dbglog(string.format("Anomaly [%s] artifacts = %s", obj:name(), artefacts))
 	self.artefact_count		= utils.cfg_get_number(ini, "anomal_zone", "artefact_count", nil, false, 1)
-
-	local respawn_time		= min_respawn_time + math.random( max_respawn_time - min_respawn_time )
-	self.idle_time			= utils.cfg_get_number(ini, "anomal_zone", "idle_time", nil, false, respawn_time) * time_factor	-- in-game minutes * time_factor
-
+	self.idle_time			= utils.cfg_get_number(ini, "anomal_zone", "idle_time", nil, false, 14400) * 1000
 	self.applying_force_xz	= utils.cfg_get_number(ini, "anomal_zone", "applying_force_xz", nil, false, 200)
 	self.applying_force_y	= utils.cfg_get_number(ini, "anomal_zone", "applying_force_y", nil, false, 400)
 	if path == nil then 
@@ -61,21 +52,20 @@ function anomaly_zone_binder:net_spawn(server_object)
 		return false
 	end
 	-- пускаем цикл по количеству артефактов artefact_count.
-	if(self.spawned_count<self.artefact_count) and (self.idle_time_end<game.time()) then
+	if(self.spawned_count<self.artefact_count) and (self.idle_time_end<time_global()) then
 		for i=1,self.artefact_count-self.spawned_count do 
 			self:spawn_artefact_randomly()
 		end	
 	end
 	printf("spawned artefact!!!")
-	if ogsm.dbgset then level.map_add_object_spot_ser(server_object.id, "artefact_location", "ANOMALY_ZONE: "..self.object:name()) end
+	
 	
 	return true
 end
 
 function anomaly_zone_binder:update(delta)
 	object_binder.update(self, delta)
--- Kirgudu
---[[	for k,v in pairs(artefact_ways_by_id) do
+	for k,v in pairs(artefact_ways_by_id) do
 		local cl_pos = (db.storage[k] and db.storage[k].object and db.storage[k].object:position())
 		
 		local art = alife():object(k)
@@ -84,17 +74,16 @@ function anomaly_zone_binder:update(delta)
 		else
 			printf("pl:art [%s] se_pos %s", art:name(), vec_to_str(art.position))
 		end
-	end]]-- 
--- Kirgudu
-	if self.spawned_count <  self.artefact_count and self.idle_time_end < game.time() then
+	end
+	if self.spawned_count <  self.artefact_count and self.idle_time_end < time_global() then
 		self:spawn_artefact_randomly()
-		self.idle_time_end = game.time() + self.idle_time
+		self.idle_time_end = time_global() + self.idle_time
 	end
 end
   
 function anomaly_zone_binder:on_artefact_take()
 	self.spawned_count = self.spawned_count - 1
-	self.idle_time_end = game.time() + self.idle_time
+	self.idle_time_end = time_global() + self.idle_time
 end
 
 -- Standart function for save
@@ -108,29 +97,20 @@ function anomaly_zone_binder:save(thread)
 
 	local count = 0
 	for k,v in pairs(artefact_ways_by_id) do
-		 if parent_zones_by_artefact_id[k] ~= nil then
-		 	if rawequal(parent_zones_by_artefact_id[k], self) then		-- only count artefacts that belong to this anomal zone
-				count = count + 1
-		 	end
-		 end
+		count = count + 1
 	end
-	
 	thread:w_u16(count)
 	for k,v in pairs(artefact_ways_by_id) do
-		 if parent_zones_by_artefact_id[k] ~= nil then
-		 	if rawequal(parent_zones_by_artefact_id[k], self) then	-- only store artefacts that belong to this anomal zone
-			
-				thread:w_u16(k)
-				thread:w_stringZ(v)
-		 	end
-		 end
-		
+		thread:w_u16(k)
+		thread:w_stringZ(v)
 	end
 	thread:w_u8(self.spawned_count)
-
-	-- save time to respawn
-	local respawn_time = self.idle_time_end / time_factor		--saved in game minutes, will be multiplied by time_factor on loading again
-	thread:w_u32(respawn_time)
+	local time_diff = self.idle_time_end-time_global()
+	if(time_diff<=0) then
+		thread:w_u32(0)
+	else
+		thread:w_u32(time_diff)
+	end
 
 	set_save_marker(thread, "save", true, "anomaly_zone_binder")
 end
@@ -146,17 +126,9 @@ function anomaly_zone_binder:load(thread)
 		parent_zones_by_artefact_id[art_id] = self
 	end
 	self.spawned_count = thread:r_u8()
-
-	-- load time to respawn
-	local respawn_time = thread:r_u32()
-	
-	printf(respawn_time)
-	self.idle_time_end = respawn_time * time_factor		--was saved in game minutes, must be multiplied by time_factor to comply with game.time() format
-	
-	-- fix for OGSM CS Build 140209
-	if ( self.idle_time_end - game.time() ) > ( max_respawn_time * time_factor ) then	-- will respawn in more than max_respawn_time game minutes
-		self.idle_time_end = game.time() + min_respawn_time * time_factor	-- use min value, don't make anyone wait too long in case artefact was taken days ago
-	end
+	local time_diff = thread:r_u32()
+	printf(time_diff)
+	self.idle_time_end = time_global()+time_diff
 
 	set_save_marker(thread, "load", true, "anomaly_zone_binder")
 end

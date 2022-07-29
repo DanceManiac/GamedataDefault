@@ -32,7 +32,7 @@ target_path = lim_smart_3_to_2_cover_1_fire
 cover_state = fire_target
 on_info = {+lim_barricade_attack} walker@fire_work1, {+lim_bandit_house_go} walker@fire2_work1 %=make_actor_visible_to_npc%
 on_info2 = {=actor_in_zone(lim_bandit_fire)} walker@fire_work1
-on_info3 = {=hit_by_actor} walker@fire_work1
+on_info3 = {=hit_by_actor()} walker@fire_work1
 
 [walker@fire_work1]
 out_restr = lim_smart_2_3_bufer_zone
@@ -80,7 +80,7 @@ target_path = lim_smart_3_to_2_cover_2_fire
 cover_state = fire_target
 on_info = {+lim_barricade_attack} walker@fire_work2, {+lim_bandit_house_go} walker@fire_work2 %=make_actor_visible_to_npc%
 on_info2 = {=actor_in_zone(lim_bandit_fire)} walker@fire_work2
-on_info3 = {=hit_by_actor} walker@fire_work2
+on_info3 = {=hit_by_actor()} walker@fire_work2
 
 [walker@fire_work2]
 out_restr = lim_smart_2_3_bufer_zone
@@ -128,7 +128,7 @@ target_path = lim_smart_3_to_2_cover_3_fire
 cover_state = fire_target
 on_info = {+lim_barricade_attack} walker@fire_work3, {+lim_bandit_house_go} walker@fire_work3 %=make_actor_visible_to_npc%
 on_info2 = {=actor_in_zone(lim_bandit_fire)} walker@fire_work3
-on_info3 = {=hit_by_actor} walker@fire_work3
+on_info3 = {=hit_by_actor()} walker@fire_work3
 
 [walker@fire_work3]
 out_restr = lim_smart_2_3_bufer_zone
@@ -141,7 +141,6 @@ on_info = {+lim_bandit_house_go} walker@fire2_work3 %=make_actor_visible_to_npc%
 out_restr = lim_smart_2_3_bufer_zone
 path_walk = to_2_walk_3
 path_look = to_2_walk_3
-
 ;***********************************
 
 [logic@enemy_work4]
@@ -176,7 +175,7 @@ target_path = lim_smart_3_to_2_cover_4_fire
 cover_state = fire_target
 on_info = {+lim_barricade_attack} walker@fire_work4, {+lim_bandit_house_go} walker@fire_work4 %=make_actor_visible_to_npc%
 on_info2 = {=actor_in_zone(lim_bandit_fire)} walker@fire_work4
-on_info3 = {=hit_by_actor} walker@fire_work4
+on_info3 = {=hit_by_actor()} walker@fire_work4
 
 [walker@fire_work4]
 out_restr = lim_smart_2_3_bufer_zone
@@ -224,7 +223,7 @@ target_path = lim_smart_3_to_2_cover_5_fire
 cover_state = fire_target
 on_info = {+lim_barricade_attack} walker@fire_work5, {+lim_bandit_house_go} walker@fire_work5 %=make_actor_visible_to_npc%
 on_info2 = {=actor_in_zone(lim_bandit_fire)} walker@fire_work5
-on_info3 = {=hit_by_actor} walker@fire_work5
+on_info3 = {=hit_by_actor()} walker@fire_work5
 
 [walker@fire_work5]
 out_restr = lim_smart_2_3_bufer_zone

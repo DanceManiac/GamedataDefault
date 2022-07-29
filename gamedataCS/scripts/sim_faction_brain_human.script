@@ -20,15 +20,6 @@ function faction_brain_human:__init(faction)
 		self.use_counter_attack = true
 	end
 end
-
-local faction_leader_tbl = {
-	["csky"]	= "mar_csky_commander_name",
-	["stalker"]	= "esc_leader_stalkerbase_name",
-	["bandit"]	= "gar_bandit_leader_name",
-	["dolg"]	= "agr_duty_base_commander_name",
-	["freedom"]	= "val_freedom_leader_name"
-	}
-
 -- Рассчет текущей экспансии
 function faction_brain_human:calculate_current_expansion()
 	local faction = self.faction
@@ -50,7 +41,7 @@ function faction_brain_human:calculate_current_expansion()
 				--printf("LEVEL DOWN %s %s %s %s", self.faction.player_name, tostring(cond_valid), tostring(power_valid), tostring(advance_valid))
 				if faction.community_player == true then
 					if db.actor ~= nil and faction.expansion_level[faction.current_expansion_level].level_down_snd ~= nil then
-						xr_sound.set_sound_play(faction.id, faction.expansion_level[faction.current_expansion_level].level_down_snd, faction.player_name, faction_leader_tbl[faction.player_name])
+						xr_sound.set_sound_play(faction.id, faction.expansion_level[faction.current_expansion_level].level_down_snd, faction.player_name)
 					end
 				end
 				faction.current_expansion_level = k
@@ -76,7 +67,7 @@ function faction_brain_human:calculate_current_expansion()
 			if faction.community_player == true then				
 				local old_exp = faction.expansion_level[faction.current_expansion_level]
 				if db.actor ~= nil and old_exp.level_up_snd ~= nil then
-					xr_sound.set_sound_play(faction.id, old_exp.level_up_snd, faction.player_name, faction_leader_tbl[faction.player_name])
+					xr_sound.set_sound_play(faction.id, old_exp.level_up_snd, faction.player_name)
 				end
 			end
 			
@@ -110,10 +101,8 @@ function faction_brain_human:calculate_expansion_targets()
 
 	-- Добавляем просто важные точки
 	for k,v in pairs(self.faction.secondary_targets) do
-		if v and xr_logic.pick_section_from_condlist(db.actor, db.actor, v) == "true" then
-			local smart_obj = self.faction.board.smarts_by_names[k]
-			self:register_target_point(smart_obj, false, false, true)
-		end
+		local smart_obj = self.faction.board.smarts_by_names[k]
+		self:register_target_point(smart_obj, false, false, true)
 	end
 
 	

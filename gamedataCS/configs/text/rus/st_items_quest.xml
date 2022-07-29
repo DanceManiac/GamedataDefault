@@ -1,282 +1,286 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <string_table>
-	<string id="st_flash_name">
-		<text>Флешка</text>
+	<string id="agr_duty_bar_secret_1_descr">
+		<text>Секрет 1 описание</text>
 	</string>
-	<string id="st_flash_descr">
-		<text>Флеш-диск — удобное устройство для переноса и хранения информации.</text>
+	<string id="agr_duty_bar_secret_1_name">
+		<text>Секрет 1</text>
 	</string>
-	<string id="st_pda_name">
-		<text>КПК</text>
+	<string id="agr_duty_bar_secret_2_descr">
+		<text>Секрет 2 описание</text>
 	</string>
-	<string id="st_pda_descr">
-		<text>Карманный персональный компьютер. Незаменимое устройство в Зоне.</text>
+	<string id="agr_duty_bar_secret_2_name">
+		<text>Секрет 2</text>
 	</string>
-	<string id="st_esc_trader_habar_short">
-		<text>Кейс</text>
+	<string id="agr_duty_bar_secret_3_descr">
+		<text>Секрет 3 описание</text>
 	</string>
-	<string id="st_esc_trader_habar_name">
-		<text>Кейс с кодовым замком</text>
+	<string id="agr_duty_bar_secret_3_name">
+		<text>Секрет 3</text>
 	</string>
-	<string id="st_esc_trader_habar_descr">
-		<text>Представляет исключительную ценность для Сидоровича.</text>
+	<string id="agr_duty_bar_secret_4_descr">
+		<text>Секрет 4 описание</text>
+	</string>
+	<string id="agr_duty_bar_secret_4_name">
+		<text>Секрет 4</text>
+	</string>
+	<string id="agr_duty_bar_secret_5_descr">
+		<text>Секрет 5 описание</text>
+	</string>
+	<string id="agr_duty_bar_secret_5_name">
+		<text>Секрет 5</text>
+	</string>
+	<string id="agr_duty_trader_secret_1_descr">
+		<text>Секрет 6 описание</text>
+	</string>
+	<string id="agr_duty_trader_secret_1_name">
+		<text>Секрет 6</text>
+	</string>
+	<string id="device_pda_old">
+		<text>Старый КПК Свежака</text>
+	</string>
+	<string id="esc_treasure_novice_stalker_descr">
+		<text>Здесь у меня припрятаны вещи на чёрный день. Если наступит звиздец, мне непременно пригодятся эти запасы.</text>
+	</string>
+	<string id="esc_treasure_novice_stalker_name">
+		<text>Тайник новичка</text>
+	</string>
+	<string id="esc_treasure_weapon_box_descr">
+		<text>Оружие и патроны пригодятся в борьбе против военных и бандитов</text>
+	</string>
+	<string id="esc_treasure_weapon_box_name">
+		<text>Ящик с оружием и патронами</text>
+	</string>
+	<string id="st_agr_map_animals">
+		<text>КПК с картой миграции</text>
+	</string>
+	<string id="st_agr_map_animals_descr">
+		<text>Карта миграции помогает обнаружить редкие виды монстров и использовать их в научных целях.</text>
+	</string>
+	<string id="st_agr_mechanic_pda">
+		<text>КПК с данными модификаций оружия</text>
+	</string>
+	<string id="st_agr_mechanic_pda_descr">
+		<text>Электронные чертежи помогут усовершенствовать оружие.</text>
+	</string>
+	<string id="st_agr_pda_for_secret_trader">
+		<text>КПК с ценной информацией</text>
+	</string>
+	<string id="st_agr_pda_for_secret_trader_descr">
+		<text>Нет данных</text>
 	</string>
 	<string id="st_device_pda_fang">
 		<text>КПК Клыка</text>
 	</string>
 	<string id="st_device_pda_fang_descr">
-		<text>Доступ к основному объёму информации заблокирован паролем, но некоторые данные можно свободно считывать. Особую ценность представляют собой несколько аудиозаписей, содержание которых напрямую соприкасается с деятельностью некой небольшой группы единомышленников, действующих под предводительством сталкера по кличке Стрелок.</text>
+		<text>КПК Клыка</text>
 	</string>
-	<string id="st_device_pda_strelok">
-		<text>КПК Стрелка</text>
+	<string id="st_device_pda_lost_squard_descr">
+		<text>Секретная информация о действиях военных на территории складов</text>
 	</string>
-	<string id="st_device_pda_strelok_descr">
-		<text>КПК Стрелка — вожака таинственной группы сталкеров, которые смогли пройти к центру Зоны. Данный КПК явно использовался только как аудионоситель, хотя опытный технарь может что и смог бы извлечь из него ценного.</text>
+	<string id="st_device_pda_lost_squard_fang">
+		<text>КПК командира отряда сталкеров</text>
 	</string>
 	<string id="st_device_pda_military">
-		<text>КПК Соколова</text>
+		<text>КПК Генерала</text>
 	</string>
 	<string id="st_device_pda_military_descr">
-		<text>Содержит информацию о запланированной на самое ближайшее время спецоперации по зачистке окрестностей Кордона от нежелательных элементов и последующей организации патрулей в районе железнодорожного моста, а также северного блокпоста.</text>
+		<text>КПК содержит секретную информацию о ближайших планах военных на Кордоне</text>
 	</string>
-	<string id="st_device_pda_old">
-		<text>Старый КПК Свежака</text>
+	<string id="st_esc_device_pda_driver">
+		<text>КПК друга водителя</text>
 	</string>
-	<string id="st_device_pda_old_descr">
-		<text>Содержит самую разнообразную информацию личного характера, текстовые заметки, множество аудиозаписей и видеофайлы. Потребуются недели, чтобы вычленить нечто полезное для постороннего человека.</text>
+	<string id="st_esc_device_pda_driver_descr">
+		<text>КПК друга водителя.</text>
 	</string>
-	<string id="st_device_pda_garbage_traitor">
-		<text>КПК Контрабандиста</text>
+	<string id="st_esc_mechanic_flash_card">
+		<text>Информация об усовершенствовании оружия</text>
 	</string>
-	<string id="st_device_pda_garbage_traitor_descr">
-		<text>Доступ ко всей информации заблокирован паролем. Необходимо специализированное оборудование для взлома. Но в органайзере есть описание координат какого-то тайника.</text>
+	<string id="st_esc_mechanic_flash_card_descr">
+		<text>Информация об усовершенствовании оружия</text>
 	</string>
-	<string id="st_device_pda_comendant_name">
-		<text>КПК Щукина</text>
+	<string id="st_esc_military_documentation">
+		<text>Секретные данные военных</text>
 	</string>
-	<string id="st_device_pda_comendant_descr">
-		<text>Доступ к основному объёму информации заблокирован паролем. Исключение составляют только файлы органайзера, в котором периодически упоминается некий Яблочный. Судя по записям, Щукин регулярно выходил с ним на связь, выполнял разные его поручения и получал солидные вознаграждения.</text>
-	</string>
-	<string id="st_device_pda_freedom">
-		<text>КПК сталкера «Свободы»</text>
-	</string>
-	<string id="st_device_pda_freedom_descr">
-		<text>Содержит самую разнообразную информацию личного характера, а также аудиозапись разговора неизвестных, атаковавших патруль. Похоже, что перед смертью сталкер успел активировать диктофон.</text>
-	</string>
-	<string id="st_device_pda_bloodsucker_name">
-		<text>Флешка друга дядьки Яра</text>
-	</string>
-	<string id="st_device_pda_bloodsucker_descr">
-		<text>Содержит ряд чертежей по усовершенствованию оружия.</text>
-	</string>
-	<string id="st_device_pda_digger_name">
-		<text>Папка с документами</text>
-	</string>
-	<string id="st_device_pda_digger_descr">
-		<text>Содержит техническую документацию, в которой описывается некая автономная охлаждающая установка в заводском комплексе, поддерживающая требуемую температуру оборудования. В схемах сможет разобраться только специалист.</text>
+	<string id="st_esc_military_documentation_descr">
+		<text>Секретные данные</text>
 	</string>
 	<string id="st_mil_device_pda_lost_squard">
-		<text>КПК командира сталкеров</text>
+		<text>КПК командира</text>
 	</string>
 	<string id="st_mil_device_pda_lost_squard_descr">
 		<text>КПК командира отряда сталкеров содержит ценную информацию о планах захвата бандитами территорий военных складов.</text>
 	</string>
 	<string id="st_red_forest_pda_map">
-		<text>КПК Клеща</text>
+		<text>КПК с картой Рыжего леса</text>
 	</string>
 	<string id="st_red_forest_pda_map_descr">
-		<text>Содержит карту Рыжего леса с отметкой в одном единственном месте. Всплывающее описание гласит, что в этом районе зафиксирована пространственная аномалия.</text>
+		<text>В этом КПК есть карта Рыжего леса. Среди прочего на ней отмечена пространственная аномалия; судя по всему, последняя может перенести к месту обитания Лесника.</text>
 	</string>
-	<string id="st_esc_device_pda_driver">
-		<text>КПК рядового Пупина</text>
+	<string id="device_pda_digger_descr">
+		<text>На этом КПК находится техническая документация, которая может помочь учёным разобраться в причине появления столь сильного пси-излучения на Янтаре</text>
 	</string>
-	<string id="st_esc_device_pda_driver_descr">
-		<text>Содержит самую разнообразную информацию личного характера, фотографии сослуживцев и местных достопримечательностей, а также список тайников, использующихся военными для взаимообмена товарами с местными торговцами. Доступ непосредственно к координатам тайников заблокирован паролем.</text>
+	<string id="device_pda_digger_name">
+		<text>КПК пропавшей экспедиции</text>
 	</string>
-	<string id="st_esc_mechanic_flash_card">
-		<text>Флеш-карта</text>
+	<string id="device_pda_garbage_traitor">
+		<text>КПК Контрабандиста</text>
 	</string>
-	<string id="st_esc_mechanic_flash_card_descr">
-		<text>Флешка с информацией об усовершенствовании оружия.</text>
+	<string id="device_pda_garbage_traitor_descr">
+		<text>КПК Контрабандиста, найденый среди вещей Авоськи</text>
 	</string>
-	<string id="st_agr_map_animals">
-		<text>КПК Зверовода</text>
+	<string id="device_pda_old_descr">
+		<text>Старый КПК, найденый под фальшивым дном ящика с инструменами в лагере Свежака</text>
 	</string>
-	<string id="st_agr_map_animals_descr">
-		<text>Содержит множество фотоматериалов и текстовых записей о жизнедеятельности травоядных видов мутантов, а также подробную карту с отметками лежбищ и миграционными маршрутами. Бросается в глаза, что хотя и проделано много исследовательской работы, однако явно на любительском уровне, без должной систематизации и фильтрации собранных данных.</text>
+	<string id="flesh_up_a_novice_outfit_name">
+		<text>Флешка с данными о сверхлёгких кевларовых бронежилетах</text>
 	</string>
-	<string id="st_agr_pda_for_secret_trader">
-		<text>КПК Чумного</text>
+	<string id="flesh_up_ab_pkm_name">
+		<text>Флешка с данными о балансировке автоматики пулемёта</text>
 	</string>
-	<string id="st_agr_pda_for_secret_trader_descr">
-		<text>Содержит беспорядочный набор записей сталкера о сомнительных экспериментах. Понятно только, что сталкер добровольно подвергал себя воздействию ряда аномалий, предварительно вкалывая себе разнообразные миксы из медикаментов. Особенно много записей о химикатах.</text>
+	<string id="flesh_up_ab_svu_name">
+		<text>Флешка с данными о стволах для снайперских винтовок</text>
 	</string>
-	<string id="st_agr_mechanic_pda">
-		<text>КПК Амита</text>
+	<string id="flesh_up_abcd_pkm_name">
+		<text>Флешка с данными о модификации газоотвода для пулемёта</text>
 	</string>
-	<string id="st_agr_mechanic_pda_descr">
-		<text>Последняя запись в КПК: «Решили организовать передовую точку наблюдения за ж/д тоннелем. А то бандиты уже достали своими внезапными вылазками. Рядом с тоннелем есть старая смотровая вышка, вполне можно обустроить наблюдательный пост. Завтра пойду гляну, какой с неё обзор. Жаль, Айдара не предупредил об этом срочном выходе, брат беспокоиться будет.»</text>
+	<string id="flesh_up_abcd_svu_name">
+		<text>Флешка с данными о электронном стабилизаторе для снайперских винтовок</text>
 	</string>
-	<string id="st_compass">
-		<text>«Компас»</text>
+	<string id="flesh_up_ac_ak74u_name">
+		<text>Флешка с данными о балансировке автоматики</text>
 	</string>
-	<string id="st_compass_descr">
-		<text>Редкий артефакт. Отрицательные свойства отсутствуют. Оказывает благоприятное воздействие на мышечные ткани обладателя. Помимо этого считается, что артефакт обладает способностью показывать разрывы в аномальных полях, то есть с его помощью можно пройти поле с самыми опасными аномалиями без малейшего риска.</text>
+	<string id="flesh_up_ac_desert_eagle_name">
+		<text>Флешка с данными о дульном тормозе для пистолета</text>
 	</string>
-	<string id="st_scout_cs_pda_name">
-		<text>КПК разведчика «Чистого неба»</text>
+	<string id="flesh_up_ac_mp5_name">
+		<text>Флешка с данными о дульном тормозе для пистолетов-пулемётов</text>
 	</string>
-	<string id="st_scout_cs_pda_descr">
-		<text>Доступ к основному объёму информации заблокирован паролем, но некоторые данные можно свободно считывать, после ознакомления с которыми становится очевидным, что погибший сталкер был разведчиком «Чистого неба». Можно предположить, что информация заинтересует лидера группировки.</text>
+	<string id="flesh_up_ac_spas12_name">
+		<text>Флешка с данными о помповых механизмах для боевых дробовиков</text>
 	</string>
-	<string id="st_scout_freedom_pda_name">
-		<text>КПК разведчика «Свободы»</text>
+	<string id="flesh_up_ac_wincheaster1300_name">
+		<text>Флешка с данными о помповых механизмах для дробовиков</text>
 	</string>
-	<string id="st_scout_freedom_pda_descr">
-		<text>Доступ к основному объёму информации заблокирован паролем, но некоторые данные можно свободно считывать, после ознакомления с которыми становится очевидным, что погибший сталкер был разведчиком «Свободы». Можно предположить, что информация заинтересует как лидера «Свободы», так и лидера враждебной группировки «Долг».</text>
+	<string id="flesh_up_aceg_scientific_outfit_name">
+		<text>Флешка с данными об усиленном армейском бронежилете</text>
 	</string>
-	<string id="st_scout_duty_pda_name">
-		<text>КПК разведчика «Долга»</text>
+	<string id="flesh_up_bd_desert_eagle_name">
+		<text>Флешка с данными о модификации ствола для пистолетов</text>
 	</string>
-	<string id="st_scout_duty_pda_descr">
-		<text>Доступ к основному объёму информации заблокирован паролем, но некоторые данные можно свободно считывать, после ознакомления с которыми становится очевидным, что погибший сталкер был разведчиком «Долга». Можно предположить, что информация заинтересует, как лидера «Долга», так и лидера враждебной группировки «Свобода».</text>
+	<string id="flesh_up_bd_mp5_name">
+		<text>Флешка с данными о модификации ствола для пистолетов-пулемётов</text>
 	</string>
-	<string id="st_experimental_device">
-		<text>Экспериментальное устройство</text>
+	<string id="flesh_up_bd_wincheaster1300_name">
+		<text>Флешка с данными о системах электронной стабилизации для дробовиков</text>
 	</string>
-	<string id="st_experimental_device_descr">
-		<text>Немного напоминает обычные детекторы, но явно с более тонкой настройкой, а также не совсем понятно, что именно устройство детектирует. Также вызывает интерес флеш-накопитель, вставленный в соответствующий паз, то есть похоже, что устройство не только детектировало, но ещё и записывало данные на этот накопитель. Можно предположить, что само устройство или сохранившиеся данные заинтересуют учёных.</text>
+	<string id="flesh_up_bdfh_scientific_outfit_name">
+		<text>Флешка с данными о системе защиты от пси-излучения</text>
 	</string>
-	<string id="st_quest_item_cup">
-		<text>Семейная кружка</text>
+	<string id="flesh_up_cd_pkm_name">
+		<text>Флешка с данными о дульном тормозе для пулемёта</text>
 	</string>
-	<string id="st_quest_item_cup_descr">
-		<text>Детская кружка с изображением медведя. Владелец явно категорически не хотел с ней расставаться. Кружка вся исцарапанная, с отколами, надтреснутая в нескольких местах.</text>
+	<string id="flesh_up_cd_svu_name">
+		<text>Флешка с данными о дульном тормозе для снайперских винтовок</text>
 	</string>
-	<string id="st_quest_item_lighter">
-		<text>Самодельная зажигалка</text>
+	<string id="flesh_up_fh_scientific_outfit_name">
+		<text>Флешка с данными о замкнутой системе дыхания</text>
 	</string>
-	<string id="st_quest_item_lighter_descr">
-		<text>Самодельная зажигалка, сделанная из старого патрона. Странно, что кто-то пользуется такими вещами.</text>
+	<string id="st_device_pda_bloodsucker_desc">
+		<text>КПК с чертежами, разобраться в которых, похоже, сможет только настоящий гений.</text>
 	</string>
-	<string id="st_quest_item_handclock">
-		<text>Наручные часы</text>
+	<string id="st_device_pda_bloodsucker_name">
+		<text>КПК друга дядьки Яра</text>
 	</string>
-	<string id="st_quest_item_handclock_descr">
-		<text>Старинные наручные часы. Сильно потёртые, с поцарапанным стеклом, но на ходу.</text>
+	<string id="st_device_pda_comendant_desc">
+		<text>Личный КПК Коменданта. Помимо прочего, содержит информацию о сотрудничестве с наёмниками.</text>
 	</string>
-	<string id="st_quest_item_poolball">
-		<text>Бильярдный шар</text>
+	<string id="st_device_pda_comendant_name">
+		<text>КПК Щукина</text>
 	</string>
-	<string id="st_quest_item_poolball_descr">
-		<text>Ничем не выделяющийся красный бильярдный шар. Непонятно, зачем он может понадобиться в Зоне, разве что владелец считал его своим талисманом и таскал с собой на счастье.</text>
+	<string id="st_device_pda_freedom">
+		<text>КПК сталкера «Свободы»</text>
 	</string>
-
-	<string id="st_af_container_short">
-		<text>Контейнер с артефактом</text>
+	<string id="st_device_pda_freedom_desc">
+		<text>КПК одного из бойцов «Свободы» с записью разговора тех, кто внезапно атаковал отряд.</text>
 	</string>
-	<string id="st_af_container_name">
-		<text>Контейнер с артефактом</text>
+	<string id="st_esc_trader_habar_desc">
+		<text>Чемоданчик с кодовым замком. Представляет исключительную ценность для Сидоровича.</text>
 	</string>
-	<string id="st_af_container_descr">
-		<text>Контейнер с артефактом.</text>
+	<string id="st_esc_trader_habar_name">
+		<text>Хабар</text>
 	</string>
-
-	<string id="st_ammo_package_short">
-		<text>Рюкзак с боеприпасами</text>
+	<string id="st_pda_descr">
+		<text>Нет данных.</text>
 	</string>
-	<string id="st_ammo_package_name">
-		<text>Рюкзак с боеприпасами</text>
+	<string id="st_pda_name">
+		<text>КПК</text>
 	</string>
-	<string id="st_ammo_package_descr">
-		<text>Рюкзак, под завязку набитый патронами разного калибра. Крайне необходим отряду бойцов, пытающихся выжить в нелёгких условиях Зоны.</text>
-	</string>
-
-	<string id="st_products_package_short">
-		<text>Рюкзак с продуктами</text>
-	</string>
-	<string id="st_products_package_name">
-		<text>Рюкзак с продуктами</text>
-	</string>
-	<string id="st_products_package_descr">
-		<text>Рюкзак, под завязку набитый разного рода продуктами. Хватит, чтобы прокормить целую базу сталкеров.</text>
-	</string>
-
-	<string id="st_pda_for_quests_name">
-		<text>КПК пропавшего сталкера</text>
-	</string>
-	<string id="st_pda_for_quests_short">
-		<text>КПК пропавшего сталкера</text>
-	</string>
-	<string id="st_pda_for_quests_descr">
-		<text>Доступ ко всей информации заблокирован паролем. Необходимо специализированное оборудование для взлома.</text>
-	</string>
-
 	<string id="st_agr_quest_duty_abakan">
-		<text>Автомат «долговца»</text>
+		<text>Автомат долговца</text>
 	</string>
 	<string id="st_agr_quest_duty_abakan_descr">
-		<text>На автомате белой краской аккуратно выведен инвентарный номер. Такая предусмотрительность говорит о том, что он принадлежит солдату из «Долга».</text>
+		<text>На автомате белой краской аккуратно выведен инвентарный номер. Такая предусмотрительность говорит о том, что он принадлежит солдату из Долга.</text>
 	</string>
 	<string id="st_agr_quest_duty_case">
-		<text>Кейс «долговца»</text>
+		<text>Кейс долговца</text>
 	</string>
 	<string id="st_agr_quest_duty_case_descr">
-		<text>Кейс закрыт на кодовый замок. Судя по звуку, внутри несколько предметов. На крышке фломастером выведена надпись, в которой владелец кейса указывает свой позывной в группировке «Долг».</text>
+		<text>Кейс закрыт на кодовый замок. Судя по звуку внутри несколько предметов. На крышке фломастером выведена надпись, в которой владелец кейса, указывает свой позывной в группировке Долг.</text>
 	</string>
 	<string id="st_agr_quest_duty_secret_pda">
 		<text>КПК с секретной информацией</text>
 	</string>
 	<string id="st_agr_quest_duty_secret_pda_descr">
-		<text>На КПК есть несколько записей, из которых понятно, что он принадлежал «долговцу». Вся остальная информация хорошо зашифрована.</text>
+		<text>На КПК есть несколько записей, из которых понятно, что он принадлежал долговцу. Вся остальная информация хорошо зашифрована.</text>
 	</string>
 	<string id="st_agr_quest_wpn_spas12">
 		<text>Дробовик «Потрошитель»</text>
 	</string>
 	<string id="st_agr_quest_wpn_spas12_descr">
-		<text>Судя по виду, это оружие долго втаптывали в землю. Заводская надпись на прикладе гласит, что это дробовик из ограниченной партии, отличающейся более качественным воронением и устрашающим названием «Потрошитель».</text>
+		<text>Судя по виду, это оружие долго втаптывали в землю. Заводская надпись на прикладе, гласит, что это дробовик из ограниченной партии, отличающейся более качественным воронением и устрашающим названием «Потрошитель».</text>
 	</string>
 	<string id="st_esc_quest_akm47">
-		<text>Трофейный АКМ</text>
+		<text>Трофейный АКМ-47/2</text>
 	</string>
 	<string id="st_esc_quest_akm47_descr">
-		<text>Старый потёртый автомат со следами чьих-то когтей на прикладе. Оружие, про которое ходят легенды.</text>
+		<text>Старый потертый автомат, со следами чьих-то когтей на прикладе. Оружие, про которое ходят легенды.</text>
 	</string>
 	<string id="st_esc_quest_luky_detector">
 		<text>«Счастливый» детектор</text>
 	</string>
 	<string id="st_esc_quest_luky_detector_descr">
-		<text>Старый детектор, с наклейками от жевательной резинки и бананов. На вид — обычный детектор, странно, что кто-то считает его особенным.</text>
+		<text>Старый детектор, с наклейками от жевательной резинки и бананов. На вид - обычный детектор, странно, что кто-то считает его особенным.</text>
 	</string>
 	<string id="st_esc_quest_magic_vodka">
 		<text>«Волшебная» водка</text>
 	</string>
 	<string id="st_esc_quest_magic_vodka_descr">
-		<text>Мутноватая жидкость с резким запахом спирта. Судя по запаху, в ней градусов 80-90. Вряд ли это стоит пить.</text>
+		<text>Мутноватая жидкость с резким запахом спирта. Судя по запаху, в ней градусов 80 - 90. Вряд ли это стоит пить.</text>
 	</string>
 	<string id="st_esc_quest_spec_medkit">
-		<text>Спецаптечка НПРП</text>
+		<text>Спец-аптечка НПР-21п</text>
 	</string>
 	<string id="st_esc_quest_spec_medkit_descr">
-		<text>На аптечке написано: «НПРП». НПРП (набор противорадиационных препаратов полевой) — это тестовый образец препаратов лечения от последствий радиации, проходящий тестирование в войсковых частях, охраняющих периметр ЧЗО. Прилагаемая к образцу инструкция по применению содержит огромный список малоприятных побочных действий.</text>
+		<text>На аптечке написано - «набор противорадиационных препаратов НПР-21п (тестовый образец)». Инструкция по применению содержит огромный список, малоприятных, побочных действий.</text>
 	</string>
 	<string id="st_gar_quest_novice_outfit">
 		<text>Прочная кожаная куртка</text>
 	</string>
 	<string id="st_gar_quest_novice_outfit_descr">
-		<text>Похоже, что предыдущего владельца этой куртки разорвало в аномалии. Странно, но куртка при этом выглядит абсолютно целой.</text>
+		<text>Похоже, что предыдущего владельца этой куртки разорвало в аномалии, странно, но куртка при этом выглядит абсолютно целой.</text>
 	</string>
 	<string id="st_gar_quest_vodka_2">
 		<text>Водка «Казаки 2»</text>
 	</string>
 	<string id="st_gar_quest_vodka_2_descr">
-		<text>Судя по криво наклеенной этикетке и непонятному осадку на дне бутылки, эта водка явно «палёная».</text>
+		<text>Судя по криво наклеенной этикетке и непонятному осадку на дне бутылки, это водка палёная.</text>
 	</string>
 	<string id="st_gar_quest_wpn_desert_eagle">
 		<text>Модифицированный ствол</text>
 	</string>
 	<string id="st_gar_quest_wpn_desert_eagle_descr">
-		<text>Оружие для настоящего плохого парня. Над этим пистолетом поработал техник, знающий своё дело. Начальные характеристики существенно улучшены.</text>
+		<text>Оружие для настоящего плохого парня. Над этим пистолетом поработал техник, знающий свое дело, начальные характеристики существенно улучшены.</text>
 	</string>
 	<string id="st_gar_quest_wpn_pm">
 		<text>Именной пистолет</text>
@@ -285,7 +289,7 @@
 		<text>На рукоятке пистолета выгравирована надпись. Разобрать можно только «За отличн... сл..бу..» и чьи-то инициалы «А.С.».</text>
 	</string>
 	<string id="st_gar_quest_wpn_wincheaster1300">
-		<text>Бандитский «Mossberg»</text>
+		<text>Бандитский «Чейзер-13»</text>
 	</string>
 	<string id="st_gar_quest_wpn_wincheaster1300_descr">
 		<text>На стволе дробовика нацарапаны несколько каракулей, очевидно изображающих убитых сталкеров.</text>
@@ -294,19 +298,19 @@
 		<text>КПК с картой Рыжего леса</text>
 	</string>
 	<string id="st_red_forest_pda_map_2_descr">
-		<text>В этом КПК есть карта Рыжего леса с отметками. Бывший владелец отметил множество мест с повышенной радиацией, аномалиями и логова мутантов. Последняя запись сделана в 23:15: «Надо было переночевать возле моста, ночью мы из этого леса не выберемся».</text>
+		<text>В этом КПК есть карта Рыжего леса с отметками. Бывший владелец отметил множестве мест с повышенной радиацией. Последняя запись сделана в 23:15: «Надо было переночевать возле моста, ночью мы из этого леса не выберемся».</text>
 	</string>
 	<string id="st_red_quest_prototipe_device">
 		<text>Экспериментальное устройство</text>
 	</string>
 	<string id="st_red_quest_prototipe_device_descr">
-		<text>Прибор с множеством переключателей и индикаторов. На нём нет надписей, по которым можно понять его предназначение.</text>
+		<text>Прибор с множеством переключателей и индикаторов. На нем нет надписей, по которым можно понять его предназначение.</text>
 	</string>
 	<string id="st_red_quest_tank_minigun">
-		<text>Танковый пулемёт</text>
+		<text>Танковый пулемет</text>
 	</string>
 	<string id="st_red_quest_tank_minigun_descr">
-		<text>Этот пулемёт был предназначен для установки на башне танка, но вполне пригоден для использования в качестве ручного пулемёта.</text>
+		<text>Этот пулемет был предназначен для установки на башне танка, но вполне пригоден для использования в качестве ручного пулемета.</text>
 	</string>
 	<string id="st_val_quest_flash_movies">
 		<text>Флешка с фильмами</text>
@@ -324,66 +328,18 @@
 		<text>8-кратный оптический прицел</text>
 	</string>
 	<string id="st_val_quest_scope_x8_descr">
-		<text>Отличная оптика со специальным креплением. Скорее всего её можно установить только на какое-то особое охотничье ружьё.</text>
+		<text>Отличная оптика со специальным креплением. Скорее всего её можно поставить только на охотничье ружье.</text>
 	</string>
 	<string id="st_yan_quest_granade">
 		<text>Граната-сувенир</text>
 	</string>
 	<string id="st_yan_quest_granade_descr">
-		<text>Учебная граната. К кольцу предохранителя приделана цепочка и брелок для ключей в виде белого кролика.</text>
+		<text>Учебная граната. К кольцу предохранителя, приделана цепочка и брелок для ключей в виде белого кролика.</text>
 	</string>
 	<string id="st_yan_quest_scarlet_flower">
 		<text>«Аленький цветочек»</text>
 	</string>
 	<string id="st_yan_quest_scarlet_flower_descr">
 		<text>Загадочный артефакт неизвестного происхождения. Не выделяет практически никакого излучения. Достоверно известно только о его магическом влиянии на женщин.</text>
-	</string>
-	<string id="st_yan_quest_ammo_sleep">
-		<text>Пачка снотворных патронов</text>
-	</string>
-	<string id="st_yan_quest_ammo_sleep_descr">
-		<text>Снотворные патроны, применяемые учёными для усыпления животных.</text>
-	</string>
-	<string id="st_mar_quest_wpn_pm_1">
-		<text>Модифицированный ПМ</text>
-	</string>
-	<string id="st_mar_quest_wpn_pm_1_descr">
-		<text>Над этим пистолетом поработал техник, знающий своё дело. Начальные характеристики улучшены.</text>
-	</string>
-	<string id="st_mar_quest_novice_outfit_1">
-		<text>Куртка с пропиткой</text>
-	</string>
-	<string id="st_mar_quest_novice_outfit_1_descr">
-		<text>С виду обычная куртка, но благодаря спецсоставу профессора Каланчи, защита от химических ожогов у неё лучше, чем у комбинезона «Заря».</text>
-	</string>
-	<string id="st_gar_digger_dead_pda">
-		<text>КПК Свежака</text>
-	</string>
-	<string id="st_gar_digger_dead_pda_descr">
-		<text>КПК диггера Свежака. КПК новый и почти пустой, кроме установочных данных сталкера какая-либо информация личного или делового плана практически отсутствует.</text>
-	</string>
-	<string id="st_gar_digger_messenger_pda">
-		<text>КПК Васяна</text>
-	</string>
-	<string id="st_gar_digger_messenger_pda_descr">
-		<text>КПК диггера Васяна. Ничего примечательного, кроме последней записи: «Эта стая собак... в общем, они меня от Клыка отрезали. Думаю, он двинулся на восток, в сторону Тёмной долины.»</text>
-	</string>
-	<string id="st_val_bandit_spy_quest_pda">
-		<text>КПК бандита</text>
-	</string>
-	<string id="st_val_bandit_spy_quest_pda_descr">
-		<text>КПК лидера группы бандитов, посланных в Тёмную долину Йогой для наблюдения за базой «Свободы» и сбора дополнительной информации.</text>
-	</string>
-	<string id="st_yan_stalker_dead_pda">
-		<text>КПК погибшего сталкера</text>
-	</string>
-	<string id="st_yan_stalker_dead_pda_descr">
-		<text>КПК лидера группы сталкеров, посланных Сахаровым на завод «Янтарь» за секретными документами. Содержит множественые заметки об артефактах и аномалиях.</text>
-	</string>
-	<string id="st_item_electro_charge">
-		<text>Плата с набором разных микросхем</text>
-	</string>
-	<string id="st_item_electro_charge_descr">
-		<text>Плата с набором разных микросхем. Применяется для ремонта мобильной радиостанции.</text>
 	</string>
 </string_table>

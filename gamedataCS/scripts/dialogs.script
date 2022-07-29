@@ -17,65 +17,6 @@ function allow_break_dialog(first_speaker, second_speaker, id)
 	return true
 end
 
--- Kirgudu
--- Проверка, что в инвентаре присутствует amount предметов
--- есть возможность осуществить подсчёт полностью одинаковых предметов или произвольного набора предметов:
--- section = "секция" - подсчёт количества только одной секции
--- section = {"секция_1", "секция_2", "секция_n"} - подсчёт суммарного количества набора секций (например, разных видов аптечек)
-function check_item_section_amount(npc, section, amount)
-	if not npc or not section then return false end
-	local mode = type(section)
-	if mode ~= 'table' and mode ~= 'string' then return false end
-	local sections = (mode == 'table' and section) or {section}
-
-	amount = amount or 1
-	local counter = 0
-
-	local function count_item(item)
-		for _,v in ipairs(sections) do
-			if item:section() == v then counter = counter + 1 end
-		end
-	end
-	npc:inventory_for_each(count_item)
-
-	return counter >= amount
-end
-
--- Перенос нескольких предметов от ГГ к НПС за один приём.
--- аналогично подсчёту, есть возможность осуществить перенос полностью одинаковых предметов или произвольного набора предметов:
--- section = "секция" - перенос количества только одной секции
--- section = {"секция_1", "секция_2", "секция_n"} - перенос суммарного количества набора секций (например, разных видов аптечек)
--- приоритет учитывается, то есть сначала переносятся предметы, секция которых указана в таблице раньше
-function relocate_item_section_from_actor_amount(first_speaker, second_speaker, section, amount)
-	if not section then return false end
-	local mode = type(section)
-	if mode ~= 'table' and mode ~= 'string' then return false end
-	local sections = (mode == 'table' and section) or {section}
-
-	amount = amount or 1
-	local counter, counter_partial, section_to_find = 0, 0, ''
-	local npc = who_is_npc(first_speaker, second_speaker)
-
-	local function transfer_object_item(item)
-		if counter < amount and item:section() == section_to_find then
-			db.actor:transfer_item(item, npc)
-			counter = counter + 1
-			counter_partial = counter_partial + 1
-		end
-	end
-
-	for _,v in ipairs(sections) do
-		if counter < amount then
-			section_to_find = v
-			counter_partial = 0
-			db.actor:inventory_for_each(transfer_object_item)
-			news_manager.relocate_item(db.actor, "out", section_to_find, counter_partial)
-		else
-			break
-		end
-	end
-end
--- Kirgudu
 
 function break_dialog(first_speaker, second_speaker, id)
 	first_speaker:stop_talk()
@@ -114,40 +55,11 @@ function is_opp_wounded(first_speaker, second_speaker, dialog_id)
 		then
 				return false
 		end
-	return xr_wounded.is_wounded(second_speaker)
+	return	xr_wounded.is_wounded(second_speaker)
 end
 function is_not_wounded(first_speaker, second_speaker, dn)
 	return not this.is_wounded(first_speaker, second_speaker, dn)
 end
-
-function actor_have_medkit_2(first_speaker, second_speaker)
-	local actor = who_is_actor(first_speaker, second_speaker)
-	return check_item_section_amount(actor, {"medkit", "medkit_army", "medkit_scientic"}, 1)
-end
-function actor_hasnt_medkit_2(first_speaker, second_speaker)
-	return actor_have_medkit_2(first_speaker, second_speaker) == false
-end
-function actor_have_bandage_2(first_speaker, second_speaker)
-	return check_item_section_amount(actor, {"bandage"}, 1)
-end
-function transfer_medkit_2(first_speaker, second_speaker)-----отдать аптечку---
-	relocate_item_section_from_actor_amount(first_speaker, second_speaker, {"medkit", "medkit_army", "medkit_scientic"}, 1)
-	use_medkit(who_is_npc(first_speaker, second_speaker))
-end
--- вспомогательная функция использования аптечки после передачи её от актора к НПС
-function use_medkit(npc)
-	if npc:object("medkit") ~= nil then
-		npc:eat(npc:object("medkit"))
-	elseif npc:object("medkit_army") ~= nil then
-		npc:eat(npc:object("medkit_army"))
-	elseif npc:object("medkit_scientic") ~= nil then
-		npc:eat(npc:object("medkit_scientic"))
-	end
-
-	local snd = sound_object(npc:sound_voice_prefix().."help\\wounded_thanx\\thanx_"..math.random(1,5))
-	if snd then snd:play_at_pos(npc, npc:position(), 1, sound_object.s3d) end
-end
-
 function actor_have_medkit(first_speaker, second_speaker)
 	return first_speaker:object("medkit") ~= nil or
 			 first_speaker:object("medkit_army") ~= nil or
@@ -174,10 +86,7 @@ function transfer_medkit(first_speaker, second_speaker)
 	if second_speaker:relation(first_speaker) ~= game_object.enemy then
 		second_speaker:set_relation(game_object.friend, first_speaker)
 	end
-	first_speaker:change_character_reputation(70)
-        -- Повышение отношения группировок к ГГ (SGM CS 3.10)
-        npc_community = second_speaker:character_community()
-        relation_registry.change_community_goodwill(npc_community,db.actor:id(),tonumber(100))
+	first_speaker:change_character_reputation(10);
 end
 function transfer_bandage(first_speaker, second_speaker)
 	dialogs.relocate_item_section(second_speaker, "bandage", "out")
@@ -200,7 +109,7 @@ function relocate_item_section(victim, section, type, amount)
 					victim:transfer_item(victim:object(section), db.actor)
 				else
 					alife():create(section,
-							db.actor:position(),
+								db.actor:position(),
 							db.actor:level_vertex_id(),
 							db.actor:game_vertex_id(),
 							db.actor:id())
@@ -422,31 +331,6 @@ function actor_set_stalker(actor, npc)
 end
 
 
-function actor_in_csky(actor, npc)
-	for k,v in pairs(sim_board.get_sim_board().players) do
-		if v.community_player == true and v.player_name == "csky" then
-			return true
-		end
-	end
-	return false
-end
-
-function actor_not_in_csky(actor, npc)
-	for k,v in pairs(sim_board.get_sim_board().players) do
-		if v.community_player == true and v.player_name == "csky" then
-			return false
-		end
-	end
-	return true
-end
-
-function actor_set_csky(actor, npc)
-	printf("ACTOR NOW IN [CSKY] COMMUNITY")
-	sim_board.get_sim_board():set_actor_community("csky")
-	return true
-end
-
-
 function actor_clear_community(actor, npc)
 	printf("ACTOR NOW IN [NEUTRAL] COMMUNITY")
 	sim_board.get_sim_board():set_actor_community("none")
@@ -467,7 +351,7 @@ end
 function trade_init(seller, buyer)
 	db.storage[seller:id()].meet.begin_wait_to_see.begin = time_global()/1000
 	xr_position.setPosition(db.storage[seller:id()].meet.Seller,
-	db.storage[seller:id()].meet.Seller:level_vertex_id())
+							db.storage[seller:id()].meet.Seller:level_vertex_id())
 	db.storage[seller:id()].meet.Buyer = buyer
 end
 
@@ -515,26 +399,6 @@ function relocate_item_section_to_actor(first_speaker, second_speaker, section, 
 	news_manager.relocate_item(db.actor, "in", section, amount)
 end
 
--- functions S.T.A.L.K.E.R. CoP --------------------------------------------------
-function relocate_money_to_actor(first_speaker, second_speaker, num)
-	db.actor:give_money(num)
-	game_stats.money_quest_update (num)
-	xr_statistic.inc_recieved_money_counter(num)
-	news_manager.relocate_money(db.actor, "in", num)
-end
-
-function relocate_money_from_actor(first_speaker, second_speaker, num)
-	local victim = who_is_npc(first_speaker, second_speaker)
-	if victim == nil then
-		abort("Couldn't relocate money to NULL")
-	end
-	db.actor:transfer_money(num, victim)
-	game_stats.money_quest_update(-num)
-	xr_statistic.inc_spent_money_counter(num)
-	news_manager.relocate_money(db.actor, "out", num)
-end
--- functions S.T.A.L.K.E.R. CoP --------------------------------------------------
-
 function relocate_item_section_from_actor(first_speaker, second_speaker, section)
 	local npc = who_is_npc(first_speaker, second_speaker)
 	db.actor:transfer_item(db.actor:object(section), npc)
@@ -553,85 +417,53 @@ end
 function who_is_npc(first_speaker, second_speaker)
 	local npc = second_speaker
 	if db.actor:id() == npc:id() then
-		npc = first_speaker
+		npc	= first_speaker
 	end
 	return npc
 end
 
-function who_is_actor(first_speaker, second_speaker)
-	local actor = second_speaker
-	if db.actor:id() ~= actor:id() then
-		actor = first_speaker
-	end
-	return actor
-end
-
 --------------------------------------------------------------------------------
---function transfer_any_pistol_from_actor_old(first_speaker, second_speaker)
---	local npc = who_is_npc(first_speaker, second_speaker)
---	db.actor.pistol = nil
---	db.actor:iterate_inventory(is_pistol, npc)
---	if db.actor.pistol ~= nil then
---		db.actor:transfer_item(db.actor:object(db.actor.pistol), npc)
---		news_manager.relocate_item(db.actor, "out", db.actor.pistol)
---		db.actor.pistol = nil
---	end
---end
-
--- Передача НПС пистолета сначала из слота, затем, если его там нет, из инвентаря
 function transfer_any_pistol_from_actor(first_speaker, second_speaker)
 	local npc = who_is_npc(first_speaker, second_speaker)
-	db.actor.pistol = nil
-	local pistol = db.actor:item_in_slot(1)
-	if pistol ~= nil then
-		db.actor.pistol = pistol
-	else
 		db.actor:iterate_inventory(is_pistol, npc)
-	end
-	if db.actor.pistol ~= nil then
-		db.actor:transfer_item(db.actor.pistol, npc)
-		news_manager.relocate_item(db.actor, "out", db.actor.pistol:section())
+	if(db.actor.pistol~=nil) then
+			db.actor:transfer_item(db.actor:object(db.actor.pistol), npc)
+		news_manager.relocate_item(db.actor, "out", db.actor.pistol)
 		db.actor.pistol = nil
 	end
 end
 
 function is_pistol(npc, item)
 	local section = item:section()
-	if not db.actor.pistol
-	and((section=="wpn_beretta")
+	if(section=="wpn_beretta")
 	or(section=="wpn_colt1911")
-	or(section=="wpn_aps")
 	or(section=="wpn_desert_eagle")
 	or(section=="wpn_fort")
-	or(section=="wpn_glock17")
 	or(section=="wpn_hpsa")
-	or(section=="wpn_tt33")
 	or(section=="wpn_pb")
-	or(section=="wpn_pb_short")
 	or(section=="wpn_pm")
-	or(section=="wpn_gsh18")
-	or(section=="wpn_sig220")
 	or(section=="wpn_usp")
-	or(section=="wpn_walther")
-	or(section=="wpn_fn57")) then
-		db.actor.pistol = item
+	or(section=="wpn_walther") then
+		db.actor.pistol = section
 	end
 end
 
 function have_actor_any_pistol(first_speaker, second_speaker)
 	local npc = who_is_npc(first_speaker, second_speaker)
-	db.actor.pistol = nil
-	db.actor:iterate_inventory(is_pistol, npc)
-	return db.actor.pistol ~= nil
+		db.actor:iterate_inventory(is_pistol, npc)
+	if(db.actor.pistol~=nil) then
+		return true
+	else
+		return false
+	end
 end
 
 --------------------------------------------------------------------------------
 function transfer_any_gun_from_actor(first_speaker, second_speaker)
 	local npc = who_is_npc(first_speaker, second_speaker)
-	db.actor.gun = nil
 		db.actor:iterate_inventory(is_gun, npc)
-	if db.actor.gun ~= nil then
-		db.actor:transfer_item(db.actor:object(db.actor.gun), npc)
+	if(db.actor.gun~=nil) then
+			db.actor:transfer_item(db.actor:object(db.actor.gun), npc)
 		news_manager.relocate_item(db.actor, "out", db.actor.gun)
 		db.actor.gun = nil
 	end
@@ -639,78 +471,32 @@ end
 
 function is_gun(npc, item)
 	local section = item:section()
-	if(section=="wpn_9a91")
-	or(section=="wpn_9a91_ogsm_accuracy_1")
-	or(section=="wpn_9a91_ogsm_burst_1")
-	or(section=="wpn_abakan")
-	or(section=="wpn_abakan_ogsm_accuracy_1")
-	or(section=="wpn_abakan_ogsm_burst_1")
+	if(section=="wpn_abakan")
 	or(section=="wpn_ak74")
-	or(section=="wpn_ak74_ogsm_accuracy_1")
-	or(section=="wpn_ak74_ogsm_burst_1")
-	or(section=="wpn_ak74_priklad")
-	or(section=="wpn_ak74_priklad_ogsm_accuracy_1")
-	or(section=="wpn_ak74_priklad_ogsm_burst_1")
-	or(section=="wpn_ak101")
-	or(section=="wpn_ak104")
-	or(section=="wpn_ak108")
-	or(section=="wpn_akm")
-	or(section=="wpn_rpk")
 	or(section=="wpn_ak74u")
-	or(section=="wpn_ak74u_ogsm_accuracy_1")
-	or(section=="wpn_ak74u_ogsm_burst_1")
-	or(section=="wpn_fn2000")
-	or(section=="wpn_g36")
-	or(section=="wpn_g36_ogsm_accuracy_1")
-	or(section=="wpn_g36_ogsm_burst_1")
-	or(section=="wpn_g36c")
-	or(section=="wpn_g36c_ogsm_accuracy_1")
-	or(section=="wpn_g36c_ogsm_burst_1")
 	or(section=="wpn_groza")
-	or(section=="wpn_groza_ogsm_tier_1")
-	or(section=="wpn_groza_ogsm_tier_2")
-	or(section=="wpn_l85")
-	or(section=="wpn_l85_ogsm_accuracy_1")
-	or(section=="wpn_l85_ogsm_burst_1")
-	or(section=="wpn_lr300")
-	or(section=="wpn_lr300_ogsm_accuracy_1")
-	or(section=="wpn_lr300_ogsm_burst_1")
-	or(section=="wpn_mp5")
-	or(section=="wpn_mp5_ogsm_accuracy_1")
-	or(section=="wpn_mp5_ogsm_burst_1")
-	or(section=="wpn_ump45")
-	or(section=="wpn_pkm")
-	or(section=="wpn_p90")
 	or(section=="wpn_sig550")
-	or(section=="wpn_sig550_ogsm_accuracy_1")
-	or(section=="wpn_sig550_ogsm_burst_1")
-	or(section=="wpn_sig552")
-	or(section=="wpn_sig552_ogsm_accuracy_1")
-	or(section=="wpn_sig552_ogsm_burst_1")
-	or(section=="wpn_val")
-	or(section=="wpn_val_ogsm_tier_1")
-	or(section=="wpn_val_ogsm_tier_2")
-	or(section=="wpn_vihr")
-	or(section=="wpn_vihr_ogsm_accuracy_1")
-	or(section=="wpn_vihr_ogsm_burst_1") then
+	or(section=="wpn_vintorez") then
 		db.actor.gun = section
 	end
 end
 
 function have_actor_any_gun(first_speaker, second_speaker)
 	local npc = who_is_npc(first_speaker, second_speaker)
-	db.actor.gun = nil
-	db.actor:iterate_inventory(is_gun, npc)
-	return db.actor.gun ~= nil
+		db.actor:iterate_inventory(is_gun, npc)
+	if(db.actor.gun~=nil) then
+		return true
+	else
+		return false
+	end
 end
 
 --------------------------------------------------------------------------------
 function transfer_any_shootgun_from_actor(first_speaker, second_speaker)
 	local npc = who_is_npc(first_speaker, second_speaker)
-	db.actor.shootgun = nil
 		db.actor:iterate_inventory(is_shootgun, npc)
-	if db.actor.shootgun ~= nil then
-		db.actor:transfer_item(db.actor:object(db.actor.shootgun), npc)
+	if(db.actor.shootgun~=nil) then
+			db.actor:transfer_item(db.actor:object(db.actor.shootgun), npc)
 		news_manager.relocate_item(db.actor, "out", db.actor.shootgun)
 		db.actor.shootgun = nil
 	end
@@ -719,64 +505,22 @@ end
 function is_shootgun(npc, item)
 	local section = item:section()
 	if(section=="wpn_bm16")
-	or(section=="wpn_bm16_full")
 	or(section=="wpn_toz34")
-	or(section=="wpn_toz34_obrez")
 	or(section=="wpn_wincheaster1300")
-	or(section=="wpn_wincheaster1300_ogsm_accuracy_1")
-	or(section=="wpn_wincheaster1300_ogsm_burst_1")
-	or(section=="wpn_saiga")
-	or(section=="wpn_saiga_ogsm_accuracy_1")
-	or(section=="wpn_saiga_ogsm_burst_1")
-	or(section=="wpn_spas12")
-	or(section=="wpn_spas12_ogsm_accuracy_1")
-	or(section=="wpn_spas12_ogsm_burst_1") then
+	or(section=="wpn_spas12") then
 		db.actor.shootgun = section
 	end
 end
 
 function have_actor_any_shootgun(first_speaker, second_speaker)
 	local npc = who_is_npc(first_speaker, second_speaker)
-	db.actor.shootgun = nil
-	db.actor:iterate_inventory(is_shootgun, npc)
-	return db.actor.shootgun ~= nil
-end
-
---------------------------------------------------------------------------------
-function transfer_any_snipergun_from_actor(first_speaker, second_speaker)
-	local npc = who_is_npc(first_speaker, second_speaker)
-	db.actor.snipergun = nil
-		db.actor:iterate_inventory(is_snipergun, npc)
-	if db.actor.snipergun ~= nil then
-		db.actor:transfer_item(db.actor:object(db.actor.snipergun), npc)
-		news_manager.relocate_item(db.actor, "out", db.actor.snipergun)
-		db.actor.snipergun = nil
+		db.actor:iterate_inventory(is_shootgun, npc)
+	if(db.actor.shootgun~=nil) then
+		return true
+	else
+		return false
 	end
 end
-
-function is_snipergun(npc, item)
-	local section = item:section()
-	if(section=="wpn_sig550sniper")
-	or(section=="wpn_svd")
-	or(section=="wpn_svd_ogsm_tier_1")
-	or(section=="wpn_svd_ogsm_tier_2")
-	or(section=="wpn_svu")
-	or(section=="wpn_svu_ogsm_tier_1")
-	or(section=="wpn_svu_ogsm_tier_2")
-	or(section=="wpn_vintorez") 
-	or(section=="wpn_vintorez_ogsm_tier_1")
-	or(section=="wpn_vintorez_ogsm_tier_2") then
-		db.actor.snipergun = section
-	end
-end
-
-function have_actor_any_snipergun(first_speaker, second_speaker)
-	local npc = who_is_npc(first_speaker, second_speaker)
-	db.actor.snipergun = nil
-	db.actor:iterate_inventory(is_snipergun, npc)
-	return db.actor.snipergun ~= nil
-end
-
 --------------------------------------------------------------------------------
 --			ALIFE SUPPORT
 --------------------------------------------------------------------------------
@@ -791,32 +535,4 @@ function is_csky_at_expansion_2(first_speaker, second_speaker)
 end
 function is_csky_at_expansion_3_or_higher(first_speaker, second_speaker)
 	return (sim_faction.get_current_expansion("csky") ~= "expansion_0") and (sim_faction.get_current_expansion("csky") ~= "expansion_1") and (sim_faction.get_current_expansion("csky") ~= "expansion_2")
-end
-function precond_inv(first_speaker, second_speaker)
-	local iw = 0
-	local ini=system_ini()
-		db.actor:iterate_inventory(function(dummy,item)
-		iw = iw + ini:r_float(item:section(), "inv_weight")
-	end)
-	if iw>200 then
-		db.actor:kill(db.actor)
-		news_manager.send_tip(db.actor, "%c[25,240,25,25]Снизьте переносимый вес", nil, "ogsm", 1000)
-		--news_manager.send_tip(db.actor, game.translate_string("surge_finished"), nil, nil, 5000)
-		return false
-	end
-	return true
-end
-function check_info_merchant()
-	local actor = db.actor
-	if actor then
-		if has_alife_info("question_to_the_merchant_1") and has_alife_info("question_to_the_merchant_2") and has_alife_info("question_to_the_merchant_3") and has_alife_info("question_to_the_merchant_4") and has_alife_info("question_to_the_merchant_5") and has_alife_info("question_to_the_merchant_6") and has_alife_info("question_to_the_merchant_7") and has_alife_info("question_to_the_merchant_8") then
-			actor:give_info_portion("all_questions_to_the_merchant")
-		end
-	end
-end
-function info_call(info_id)
-	if not db.actor or not info_id or string.sub(info_id, 1, 3) == "ui_" or string.sub(info_id, 1, 4) == "aem_" then
-		return
-	end
-	log("инфо_лог","[info_call]: получен инфопоршень: %s",info_id)
 end

@@ -127,7 +127,7 @@ function load_dialog:InitCallBacks()
 end
 
 function file_exist(fname)
-	local f = getFS()
+	local f = getFS();
 	local flist = f:file_list_open_ex("$game_saves$",bit_or(FS.FS_ListFiles,FS.FS_RootOnly) , fname)
 	local f_cnt = flist:Size()
 	
@@ -165,7 +165,7 @@ function AddTimeDigit(str, dig)
 end
 
 function file_data(fname)
-	local f = getFS()
+	local f = getFS();
 	local flist = f:file_list_open_ex("$game_saves$",bit_or(FS.FS_ListFiles,FS.FS_RootOnly) , fname .. ".sav")
 	local f_cnt = flist:Size()
 	
@@ -212,14 +212,12 @@ function load_dialog:OnListItemClicked()
 	if item == nil then
 		self.file_caption:SetText	("")
 		self.file_data:SetText		("")
-		local r				= picture:GetOriginalRect()
 		picture:InitTexture			("ui\\ui_noise")
-		picture:SetOriginalRect		(Frect():set(r.x1, r.y1, r.x2, r.y2))
 		return
 	end
 	
 	local item_text				= item.fn:GetText()
-	self.file_caption:SetText	(table.concat(item_text:wrap_full("\\n", 32), "\\n"))
+	self.file_caption:SetText	(item_text)
 	self.file_caption:SetElipsis(2,2)
 	self.file_data:SetText		(file_data(item_text))
 	
@@ -296,11 +294,6 @@ function load_dialog:OnButton_load_clicked()
 	end
 
 	local item		= self.list_box:GetItem(index)
-
-	if item == nil then
-		return
-	end
-
 	local fname		= item.fn:GetText()
 
 	if ( not valid_saved_game(fname) ) then
@@ -338,11 +331,9 @@ function load_dialog:OnButton_del_clicked()
 	if index == -1 then return end
 	
 	self.msgbox_id = 1
-	local save_game = self.list_box:GetItem(index)
-	if save_game then
-		self.message_box:InitMessageBox("message_box_delete_file_name")		
-		self:GetHolder():start_stop_menu(self.message_box, true)
-	end
+	
+	self.message_box:InitMessageBox("message_box_delete_file_name")		
+	self:GetHolder():start_stop_menu(self.message_box, true)
 end
 
 function load_dialog:OnKeyboard(dik, keyboard_action)  --virtual function

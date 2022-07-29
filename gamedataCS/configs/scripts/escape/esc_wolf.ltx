@@ -8,78 +8,31 @@ level_spot = quest_npc
 path_walk = esc_wolf_way
 path_look = esc_wolf_look
 on_info = {+mar_story_go_to_escape_done} walker@wait
-on_info2 = {+esc_wolf_brother_1} walker@ready
-on_info3 = {=is_dark_night} kamp@wolf_no_meet
 meet = no_meet
 
 [walker@wait]
 path_walk = esc_wolf_way
 path_look = esc_wolf_look
-on_actor_dist_le_nvis = 10 | {-esc_wolf_brother_1 =see_actor} remark@hello %=play_sound(esc_wolf_call)%
-on_info = {+esc_wolf_brother_1} walker@ready
-on_info2 = {=is_dark_night} kamp@wolf
-on_info3 = {=actor_in_bandit} %=destroy_object%
-meet = meet@wolf
+on_actor_dist_le_nvis = 8 | {-esc_wolf_call_sound} remark@hello %=play_sound(esc_wolf_call) +esc_wolf_call_sound%
+meet = meet
 
 [remark@hello]
 anim = hello_wpn
 target = actor
-on_actor_dist_le = 3 | {-esc_wolf_brother_1} walker@ready
-on_actor_dist_ge_nvis = 15 | {-esc_wolf_brother_1} walker@wait
-meet = meet@wolf
+on_actor_dist_le = 3 | walker@ready
+on_actor_dist_ge_nvis = 8 | walker@wait
 
 [walker@ready]
 path_walk = esc_wolf_way
 path_look = esc_wolf_look
-on_actor_dist_ge_nvis = 15 | {-esc_wolf_brother_1} walker@wait
-on_info = {=is_dark_night} kamp@wolf
-on_info2 = {=actor_in_bandit} %=destroy_object%
-meet = meet@wolf
 
 [death]
-on_info = %+esc_wolf_dead =set_faction_community_to_actor(stalker:enemy)%
+on_info = %+esc_wolf_dead%
 
-[meet@wolf]
-meet_state = 15| guard@nil | 5| ward@nil
-meet_state_wpn = 15| guard@nil | 5| ward@nil
+[meet]
+meet_state = 15| wait@esc_wolf_call | 5| ward@nil
 victim = 15| actor
 victim_wpn = 15| actor
 use        = true
-use_wpn        = true
-abuse = false
-
-;-------------------------------------------
-
-[logic@work1]
-active = kamp
-suitable = {=is_dark_night !smart_population_le(esc_smart_terrain_2_12:5) !npc_is_squad_leader !is_smart_in_combat(esc_smart_terrain_2_12)}
-
-[logic@work2]
-active = kamp
-suitable = {=is_dark_night !smart_population_le(esc_smart_terrain_2_12:5) !npc_is_squad_leader !is_smart_in_combat(esc_smart_terrain_2_12)}
-
-[logic@work3]
-active = kamp
-suitable = {=is_day !smart_population_le(esc_smart_terrain_2_12:5) !npc_is_squad_leader !is_smart_in_combat(esc_smart_terrain_2_12)}
-
-[logic@work4]
-active = kamp
-suitable = {=is_day !smart_population_le(esc_smart_terrain_2_12:5) !npc_is_squad_leader !is_smart_in_combat(esc_smart_terrain_2_12)}
-
-[kamp]
-center_point = kamp_1
-path_walk = kamp_1_task
-def_state_moving = patrol
-
-[kamp@wolf_no_meet]
-center_point = kamp_1
-path_walk = kamp_1_task
-def_state_moving = patrol
-on_info = {=is_day} walker@no_meet
-meet = no_meet
-
-[kamp@wolf]
-center_point = kamp_1
-path_walk = kamp_1_task
-def_state_moving = patrol
-on_info = {=is_day} walker@wait
+use_wpn        = false
+abuse = true

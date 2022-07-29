@@ -12,29 +12,35 @@ meet = no_meet
 invulnerable = true
 combat_ignore_cond = true
 cover_name = red_bridge_east_smartcover_2
+;cover_state = idle_target
+;target_path = red_bridge_csky_smart_soldier_2_f1_fire_look
 on_info = {+red_bridge_clear_path -red_bridge_bandit_time_out} smartcover@clear_path_fire
 on_info2 = {+red_bridge_allyes_skirmish2} smartcover@soldier_2_cover2
-on_info3 = {+red_bridge_down_done +red_bridge_sniper_task_complete} walker@bridge_walk_work2
+on_info3 = {+red_bridge_down_done} walker@bridge_walk_work2
 
 [smartcover@clear_path_fire]
 use_in_combat = true
 meet = no_meet
 invulnerable = true
+;combat_ignore_cond = true
 cover_name = red_bridge_east_smartcover_2
 cover_state = fire_target
 target_path = red_bridge_csky_smart_soldier_2_f1_fire_look
 on_info = {+red_bridge_allyes_skirmish2} smartcover@soldier_2_cover2
 on_info2 = {=has_enemy_in_current_loopholes_fov()} smartcover@clear_path_fire2 
-on_info3 = {+red_bridge_down_done +red_bridge_sniper_task_complete} walker@bridge_walk_work2
+on_info3 = {+red_bridge_down_done} walker@bridge_walk_work2
 
 [smartcover@clear_path_fire2]
 use_in_combat = true
 meet = no_meet
 invulnerable = true
+;combat_ignore_cond = true
 cover_name = red_bridge_east_smartcover_2
+;cover_state = fire_target
+;target_path = red_bridge_csky_smart_soldier_2_f1_fire_look
 on_info = {+red_bridge_allyes_skirmish2} smartcover@soldier_2_cover2
 on_info2 = {!has_enemy_in_current_loopholes_fov()} smartcover@clear_path_fire
-on_info3 = {+red_bridge_down_done +red_bridge_sniper_task_complete} walker@bridge_walk_work2
+on_info3 = {+red_bridge_down_done} walker@bridge_walk_work2
 
 [smartcover@soldier_2_cover2]
 use_in_combat = true
@@ -42,19 +48,21 @@ meet = no_meet
 invulnerable = true
 combat_ignore_cond = true
 cover_name = red_bridge_east_smartcover_2
-on_info = {+red_bridge_down_done +red_bridge_sniper_task_complete} walker@bridge_walk_work2
+on_info = {+red_bridge_down_done} walker@bridge_walk_work2
 on_game_timer = 100 | {-red_bridge_bandit_time_out} smartcover@soldier_2_cover2_fire
 
 [smartcover@soldier_2_cover2_fire]
 use_in_combat = true
 meet = no_meet
 invulnerable = true
+;combat_ignore_cond = true
 cover_name = red_bridge_east_smartcover_2
 target_path = red_bridge_csky_smart_soldier_2_f1_fire_look
-on_info = {+red_bridge_down_done +red_bridge_sniper_task_complete} walker@bridge_walk_work2
+on_info = {+red_bridge_down_done} walker@bridge_walk_work2
 on_game_timer = 100 | smartcover@soldier_2_cover2
 
 [walker@bridge_walk_work2]
+;out_restr = red_bridge_csky_restr
 invulnerable = true
 combat_ignore_cond = always
 path_walk = red_bridge_csky_smart_bridge_walk
@@ -124,15 +132,5 @@ meet = no_meet
 out_restr = red_bridge_bandit_restr
 path_walk = red_bridge_csky_smart_soldier_2_guard_walk
 path_look = red_bridge_csky_smart_soldier_2_guard_look
-meet = meet
-on_info = {+freeplay} %=destroy_object%
-on_info2 = {+start_surge_info} walker@surge_hide
-combat_ignore_cond = always
-combat_ignore_keep_when_attacked = true
-
-[walker@surge_hide]
-path_walk = red_bridge_bandit_smart_surge_hide_1
-combat_ignore_cond = always
-combat_ignore_keep_when_attacked = true
-on_info = {-start_surge_info} walker@bridge_guard_work2
 meet = no_meet
+;on_info = {=dist_to_actor_ge(150) !actor_see_npc} %=destroy_object%

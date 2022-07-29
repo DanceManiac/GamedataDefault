@@ -2,13 +2,13 @@
 active = sr_idle
 
 [sr_idle]
-on_info = {-agru_teleport_complete =actor_on_level(agroprom_underground)} sr_psy_antenna@active
+on_info = {+agru_door_1_closed} sr_psy_antenna@active %=give_inited_task(storyline:agru_destroy_monsters_task:dolg)%
 
 [sr_psy_antenna@active]
 eff_intensity = 200
 hit_intensity = 20
-phantom_prob = 50
+phantom_prob = 100
 mute_sound_threshold = 0
-on_info = {+agru_go_out_end_task_complete} sr_idle@end, {=actor_dead} sr_idle@end
+on_info = {+agru_controller_death} sr_idle@end
 
 [sr_idle@end]

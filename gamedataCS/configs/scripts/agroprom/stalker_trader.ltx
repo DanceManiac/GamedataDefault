@@ -11,153 +11,112 @@ anim = hands_up
 target = actor
 meet = no_meet
 on_info = {!is_smart_in_combat(agr_smart_terrain_4_4)} remark@wait
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 
 [remark@wait]
 path_walk = agr_stalker_trader_walk
 path_look = agr_stalker_trader_look
 out_restr = agr_in_restr_stalker_trader
 anim = wait_trade
-on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
-on_info2 = {!actor_in_zone(agr_stalker_trader_tradezone)} smartcover@near_table
+on_info2 = smartcover@near_table
 meet = meet
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-on_actor_dist_le_nvis = 2 | {-agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet) +agr_stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet_bye) -agr_stalker_trader_meet_info%
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
 
 [smartcover@near_table]
 cover_name = agr_smart_cover_stalker_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = idle_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 out_restr = agr_in_restr_stalker_trader
 on_timer = 13330 | smartcover@near_table2
 def_state_moving = walk
 on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
 on_info2 = {=actor_in_zone(agr_stalker_trader_tradezone)} smartcover@trade
 meet = meet
-on_actor_dist_le_nvis = 2 | {-agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet) +agr_stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet_bye) -agr_stalker_trader_meet_info%
 
 [smartcover@near_table2]
 cover_name = agr_smart_cover_stalker_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = lookout_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 out_restr = agr_in_restr_stalker_trader
 on_timer = 15000 | smartcover@near_table3
 def_state_moving = walk
 on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
 on_info2 = {=actor_in_zone(agr_stalker_trader_tradezone)} smartcover@trade
 meet = meet
-on_actor_dist_le_nvis = 2 | {-agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet) +agr_stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet_bye) -agr_stalker_trader_meet_info%
 
 [smartcover@near_table3]
 cover_name = agr_smart_cover_stalker_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = fire_no_lookout_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 out_restr = agr_in_restr_stalker_trader
 on_timer = 4500 | smartcover@near_table4
 def_state_moving = walk
 on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
 on_info2 = {=actor_in_zone(agr_stalker_trader_tradezone)} smartcover@trade
 meet = meet
-on_actor_dist_le_nvis = 2 | {-agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet) +agr_stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet_bye) -agr_stalker_trader_meet_info%
 
 [smartcover@near_table4]
 cover_name = agr_smart_cover_stalker_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = fire_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 out_restr = agr_in_restr_stalker_trader
 on_timer = 6500 | smartcover@near_table
 def_state_moving = walk
 on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
 on_info2 = {=actor_in_zone(agr_stalker_trader_tradezone)} smartcover@trade
 meet = meet
-on_actor_dist_le_nvis = 2 | {-agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet) +agr_stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet_bye) -agr_stalker_trader_meet_info%
 
 [smartcover@look_up]
 cover_name = agr_smart_cover_stalker_trader_2
 loophole_name = lead_stand_look_down_2
 cover_state = lookout_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 out_restr = agr_in_restr_stalker_trader
 on_timer = 15000 | smartcover@look_up2
 def_state_moving = walk
 on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
 on_info2 = {=actor_in_zone(agr_stalker_trader_tradezone)} smartcover@trade
 meet = meet
-on_actor_dist_le_nvis = 2 | {-agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet) +agr_stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet_bye) -agr_stalker_trader_meet_info%
 
 [smartcover@look_up2]
 cover_name = agr_smart_cover_stalker_trader_2
 loophole_name = lead_stand_look_down_2
 cover_state = fire_no_lookout_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 out_restr = agr_in_restr_stalker_trader
 on_timer = 15000 | smartcover@near_table
 def_state_moving = walk
 on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
 on_info2 = {=actor_in_zone(agr_stalker_trader_tradezone)} smartcover@trade
 meet = meet
-on_actor_dist_le_nvis = 2 | {-agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet) +agr_stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet_bye) -agr_stalker_trader_meet_info%
 
 [smartcover@trade]
 cover_name = agr_smart_cover_stalker_trader_1
-;loophole_name = lead_stand_look_at_table
-;cover_state = idle_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
+loophole_name = lead_stand_look_at_table
+cover_state = idle_target
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 out_restr = agr_in_restr_stalker_trader
-;def_state_moving = walk
-meet = meet@trade
+def_state_moving = walk
+meet = meet
 on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
 on_info2 = {!actor_in_zone(agr_stalker_trader_tradezone)} smartcover@near_table
-on_actor_dist_le_nvis = 2 | {-agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet) +agr_stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet_bye) -agr_stalker_trader_meet_info%
-
-[walker@trade]
-path_walk = agr_stalker_trader_walk
-path_look = agr_stalker_trader_look
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-out_restr = agr_in_restr_stalker_trader
-def_state_standing = wait_trade
-meet = meet@trade
-on_info = {=is_smart_in_combat(agr_smart_terrain_4_4)} remark@enemy
-on_info2 = {!actor_in_zone(agr_stalker_trader_tradezone)} smartcover@near_table
-on_actor_dist_le_nvis = 2 | {-agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet) +agr_stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+agr_stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(agr_stalker_trader_meet_bye) -agr_stalker_trader_meet_info%
-
-[meet@trade]
-meet_state =            5| ward_noweap@nil
-meet_state_wpn = 5 |ward_noweap@nil
-victim =                5| actor
-victim_wpn = 5|actor
-use                   = {!actor_enemy} true, false
-use_wpn = {!actor_enemy} true, false
-abuse                 = false
 
 [meet]
 meet_state            = 0| nil@nil
-meet_state_wpn = 0|nil@nil
 victim                = 0| nil
-victim_wpn = 0|nil
-use                   = {!actor_enemy} true, false
-use_wpn = {!actor_enemy} true, false
+use                   = true
 abuse                 = false

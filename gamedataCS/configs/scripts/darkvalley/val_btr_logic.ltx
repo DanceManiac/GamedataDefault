@@ -1,36 +1,36 @@
 [logic]
 active = ph_idle@1
 
-[ph_idle@1] ;-- ждёт
+[ph_idle@1]
 auto_fire = false
-on_info = {-val_come_to_freedom_base_complete} ph_minigun@1
-on_info2 = {+val_come_to_freedom_base_complete} ph_idle 
+on_info = {+val_come_to_freedom_base_complete} ph_minigun@1
 
-[ph_minigun@1] ;-- ведёт огонь на поражение
+
+[ph_minigun@1]
 auto_fire = true
 invulnerable = false
 fire_range = 22
-track_target = true
+fire_track_target = true
 fire_angle = 360
 target = actor
 shoot_only_on_visible = true
 on_info = {+val_deliver_ammo_complete} ph_idle
 
 
-[ph_idle] ;-- ждёт
+[ph_idle] ;-- пережидает огонь на прикрытие
 auto_fire = false
-on_info = {=gulag_enemy_actor(val_smart_terrain_7_3:val_smart_terrain_7_4:val_smart_terrain_7_5)} ph_minigun@actor
+on_info = {+val_base_alarm} ph_minigun@actor
 
-[ph_minigun@actor] ;-- ведёт огонь на поражение
+[ph_minigun@actor]
 auto_fire = true
 invulnerable = false
-track_target = true
+fire_track_target = true
 fire_range = 22
 fire_angle = 360
 target = actor
 shoot_only_on_visible = true
-on_info = {+val_brake_btr} ph_idle@2
+on_info = {+val_brake_btr} ph_idle2
 
 
-[ph_idle@2] ;-- выключен
+[ph_idle2] ;-- выключен
 auto_fire = false

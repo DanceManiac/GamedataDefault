@@ -2,8 +2,4 @@
 active = sr_idle
 
 [sr_idle]
-on_info = {+yan_actor_start_to_go} sr_idle@end
-
-[sr_idle@end]
 on_actor_inside = %+yan_ready_actor_position_cut6% nil
-on_info = {+yan_start_remove} nil %+yan_ready_actor_position_cut6%

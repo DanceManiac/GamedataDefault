@@ -11,7 +11,7 @@ $npc               = on             ; option for Level Editor
 visual             = monsters\krovosos\krovosos
 corpse_visual        = monsters\krovosos\krovosos_dead
 icon             = ui_npc_monster_krovosos
-MaxHealthValue         = 200              ; range [0..200]
+MaxHealthValue         = 2.0              ; range [0..200]
 
 
 ef_creature_type       = 13             ; option for evaluation functions
@@ -28,15 +28,18 @@ bone_head          = bip01_head         ; bone name
 bone_fire          = bip01_head
 weapon_usage         = 0              ; boolean
 
+Spawn_Inventory_Item_Section = ;mutant_krovosos_jaw
+Spawn_Inventory_Item_Probability = 0.0
+
 ;------------------------------------------------------------------------
 ; Offline Alife
 ;------------------------------------------------------------------------
 Scheduled            = on             ; option for ALife Simulator
 Human              = off              ; option for ALife Simulator
 Health               = 400              ; option for ALife Simulator
-MinSpeed             = 2.3  ;1.0          ; option for ALife Simulator
-MaxSpeed             = 4.8  ;1.5          ; option for ALife Simulator
-going_speed              = 3.2  ;1.0                    ; option for ALife Simulator
+MinSpeed             = 2.0  ;1.0          ; option for ALife Simulator
+MaxSpeed             = 4.5  ;1.5          ; option for ALife Simulator
+going_speed              = 3.0  ;1.0                    ; option for ALife Simulator
 current_level_going_speed   = 3.0;2         ; option for ALife Simulator
 search_speed             = .5                         ; option for ALife Simulator
 smart_terrain_choose_interval = 00:15:00
@@ -71,7 +74,6 @@ ph_skel_shot_up_factor        = 0.25
 ; Movement::Velocities & Acceleration
 ;----------------------------------------------------------------------------
 ; speed factors       linear | angular_real | angular_path | min   |  max
-;----------------------------------------------------------------------------
 Velocity_Stand     		= 0,      3.05,          3.05,        1,       1
 Velocity_WalkFwdNormal  = 2.15,   3.5,           3.5,         0.2,     2.0
 Velocity_WalkFwdDamaged = 1.4,    4.0,           4.0,         0.2,     2.0
@@ -105,7 +107,7 @@ jump_max_height       = 3.5
 ;--------------------------------------------------------------------------
 ; Attack parameters
 ;--------------------------------------------------------------------------
-MinAttackDist       = 2.4 ;2.4
+MinAttackDist       = 2.3 ;2.4
 MaxAttackDist       = 2.8 ;3.8
 EffectDistance      = 20.0
 hit_type            = wound         ; type of attack
@@ -155,18 +157,18 @@ min_wound_size      = 0.01
 DamagedThreshold    = 0.1
 
 ;Sleep settings
-sleep_health        = 1.0   ;1.5      ;коэффициенты скоростей изменения параметров во время сна
+sleep_health        = 1.0   ;1.5      ;ъю¤ЇЇшЎшхэЄv ёъюЁюёЄхщ шчьхэхэш  ярЁрьхЄЁют тю тЁхь  ёэр
 sleep_power         = 1.0   ;1.5
 sleep_satiety       = 1.0   ;0.8
 sleep_radiation     = 1.0 ;1.1
 sleep_psy_health    = 1.0
 
 ; Eat settings
-eat_freq          	= 5.0           ; частота укусов в сек
-eat_slice         	= 0.05            ; увеличение сытости при 1 укусе
-eat_slice_weight    = 10.0            ; уменьшение еды у трупа
+eat_freq          	= 5.0           ; ўрёЄюЄр єъєёют т ёхъ
+eat_slice         	= 0.05            ; єтхышўхэшх ёvЄюёЄш яЁш 1 єъєёх
+eat_slice_weight    = 10.0            ; єьхэ№°хэшх хфv є ЄЁєяр
 
-satiety_threshold   = 0.2           ; ниже этого значения монстр считается голодным
+satiety_threshold   = 0.2           ; below this value monster fill hunger
 
 ;---------------------------------------------------------
 ; Sounds and sound parameters
@@ -220,7 +222,7 @@ time_quant          = 0.001
 decrease_value        = 0.01        ; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
 velocity_factor         = 0.5
 luminocity_factor     = 0.5         ; фактор освещения (только для Актёра)
-transparency_threshold    = 0.25				; видимость через камыши и кустарники
+transparency_threshold    = 0.25
 
 ;-------------------------------------------------------------------------
 ; Morale
@@ -253,11 +255,11 @@ critical_wound_bones_legs = bloodsucker_critical_wound_bones_legs
 ;-------------------------------------------------------------------------
 ; Other Stuff (refactoring needed)
 ;-------------------------------------------------------------------------
-DayTime_Begin         = 6     ;6      ; начало дня для монстра
-DayTime_End           = 23          ; конец дня для монстра
-Min_Satiety           = 0.000055  ;0.06   ; мин. норма сытости (меньше - уже голодный)
-Max_Satiety           = 1.0 ;0.9      ; макс. норма сытости (больше - очень сытый)
-distance_to_corpse        = 0.8         ; дист. до трупа, при которой он переходит в состояние еды
+DayTime_Begin         = 6     ;6      ; эрўрыр фэ  фы  ьюэёЄЁр
+DayTime_End           = 23          ; ъюэхЎ фэ  фы  ьюэёЄЁр
+Min_Satiety           = 0.000055  ;0.06   ; ьшэ. эюЁьр ёvЄюёЄш (ьхэ№°х - єцх уюыюфэvщ)
+Max_Satiety           = 1.0 ;0.9      ; ьръё. эюЁьр ёvЄюёЄш (сюы№°х - юўхэ№ ёvЄvщ)
+distance_to_corpse        = 0.8         ; фшёЄ. фю ЄЁєяр, яЁш ъюЄюЁющ юэ яхЁхїюфшЄ т ёюёЄю эшх хфv
 
 ; spin spin sugar
 bone_spin           = bip01_spine1
@@ -316,13 +318,13 @@ Predator_Visual = monsters\krovosos\krovosos_xray
 ;<hit_scale>  - коэфф. изменения хита (уменьшения здоровья)
 ;<wound_scale>  - коэфф. изменения величины открытой раны
 
-default       = 0.5, -1, 0.5
-bip01_spine     = 0.5, -1, 0.5
-bip01_spine1    = 0.5, -1, 0.5
-bip01_spine2    = 0.5, -1, 0.5
-bip01_spine3    = 0.5, -1, 0.5
-bip01_neck      = 0.7, -1, 1.5
-bip01_head      = 1, -1, 0.5
+default       = 1.0, -1, 0.5
+bip01_spine     = 1.0, -1, 0.5
+bip01_spine1    = 1.0, -1, 0.5
+bip01_spine2    = 1.0, -1, 0.5
+bip01_spine3    = 1.0, -1, 0.5
+bip01_neck      = 1.0, -1, 1.5
+bip01_head      = 2.0, -1, 0.5
 
 
 [bloodsucker_critical_wound_bones_head]
@@ -452,7 +454,7 @@ radiation_immunity     	= 0.0
 telepatic_immunity     	= 0.0
 chemical_burn_immunity 	= 0.1
 explosion_immunity      = 0.1
-fire_wound_immunity     = 0.06
+fire_wound_immunity     = 0.1
 
 ;===========================================================================
 ; SPECIAL EFFECTORS
@@ -512,12 +514,12 @@ invisibility_activate_delay = 5000
 burn_immunity   		= 0.1
 strike_immunity 		= 0.1
 shock_immunity  		= 0.1
-wound_immunity  		= 0.1
+wound_immunity  		= 0.6
 radiation_immunity		= 0.0
 telepatic_immunity  	= 0.0
 chemical_burn_immunity  = 0.1
 explosion_immunity    	= 0.6
-fire_wound_immunity   	= 0.16
+fire_wound_immunity   	= 0.6
 
 ;*********************************************************************************
 ; WEAK PROFILE
@@ -559,12 +561,12 @@ invisibility_activate_delay = 3500
 burn_immunity     		= 0.1
 strike_immunity     	= 0.1
 shock_immunity      	= 0.1
-wound_immunity      	= 0.1
+wound_immunity      	= 0.5
 radiation_immunity   	= 0.0
 telepatic_immunity    	= 0.0
 chemical_burn_immunity  = 0.1
 explosion_immunity    	= 0.5
-fire_wound_immunity   	= 0.11
+fire_wound_immunity   	= 0.5
 
 ;*********************************************************************************
 ; NORMAL PROFILE
@@ -591,7 +593,8 @@ value2      = 0.60,   0.4,        30,        0.0, 0.5, 3.00,     -1.2, 1.2, -1.2
 
 [bloodsucker_strong]:m_bloodsucker_e
 $spawn        = "monsters\bloodsuckers\bloodsucker_03_strong"
-visual        = monsters\krovosos\krovosos_strong
+;visual        = monsters\krovosos\krovosos_strong
+visual        = monsters\krovosos\krovosos
 icon        = ui_npc_monster_krovosos_strong
 Predator_Visual   = monsters\krovosos\krovosos_strong_xray
 panic_threshold   = 0.05
@@ -606,12 +609,12 @@ invisibility_activate_delay = 1500
 burn_immunity     		= 0.05
 strike_immunity    	 	= 0.05
 shock_immunity      	= 0.05
-wound_immunity      	= 0.1
+wound_immunity      	= 0.3
 radiation_immunity    	= 0.0
 telepatic_immunity    	= 0.0
 chemical_burn_immunity  = 0.05
 explosion_immunity    	= 0.2
-fire_wound_immunity  	= 0.08
+fire_wound_immunity  	= 0.2
 
 ;*********************************************************************************
 ; STRONG PROFILE
@@ -646,9 +649,8 @@ value2      = 0.60,   0.8,        40,        0.0, 0.5, 4.50,     -1.2, 1.2, -1.2
 ;-------------------------------------------------------------------------------------------
 [bloodsucker_arena]:bloodsucker_strong
 $spawn        	= "monsters\bloodsuckers\arena\bloodsucker_arena"
-visual        = monsters\krovosos\krovosos_strong
-icon        = ui_npc_monster_krovosos_strong
-Predator_Visual   = monsters\krovosos\krovosos_strong_xray
+visual        	= monsters\krovosos\krovosos
+icon        	= ui_npc_monster_krovosos
 panic_threshold = 0.05
 species       	= arena_monstr
 
@@ -659,23 +661,24 @@ Spawn_Inventory_Item_Probability = 100.0
 
 [bloodsucker_mil]:bloodsucker_strong
 $spawn        	= "monsters\military\bloodsucker_mil"
-visual        = monsters\krovosos\krovosos_strong
-icon        = ui_npc_monster_krovosos_strong
-Predator_Visual   = monsters\krovosos\krovosos_strong_xray
+visual        	= monsters\krovosos\krovosos
+icon        	= ui_npc_monster_krovosos
 panic_threshold = 0.05
 
 [bloodsucker_jumper_deadly]:bloodsucker_normal
 $spawn        	= "monsters\military\bloodsucker_jumper_deadly"
 visual        	= monsters\krovosos\krovosos_green
-icon        	= ui_npc_monster_bloodsucker_marsh
+icon        	= ui_npc_monster_krovosos
 panic_threshold = 0.00
 Velocity_Invisible_Linear = 8.0
 Velocity_Invisible_Angular = 4.62
 Velocity_RunFwdNormal = 8.0,   4.0,    4.0,      0.5,  1
-
+is_friendly
 immunities_sect   = bloodsucker_immunities_jumper
 ph_collision_damage_factor    = 0.0
 ph_mass             = 1000;120
+is_no_fx
+
 
 [bloodsucker_immunities_jumper]
 burn_immunity     		= 0.2
@@ -686,17 +689,14 @@ radiation_immunity      = 0.0 ;0.5
 telepatic_immunity      = 0.0
 chemical_burn_immunity	= 0.2
 explosion_immunity      = 0.2
-fire_wound_immunity     = 0.15
+fire_wound_immunity     = 0.2
 
 [bloodsucker_jumper]:bloodsucker_jumper_deadly
 $spawn        = "monsters\military\bloodsucker_jumper"
-visual        	= monsters\krovosos\krovosos_green
-icon        	= ui_npc_monster_bloodsucker_marsh
+
 
 [bloodsucker_fast]:bloodsucker_jumper_deadly
 $spawn        = "monsters\military\bloodsucker_fast"
-visual        	= monsters\krovosos\krovosos_green
-icon        	= ui_npc_monster_bloodsucker_marsh
 Velocity_Invisible_Linear   = 8.0
 Velocity_Invisible_Angular    = 4.62
 Velocity_RunFwdNormal = 8.0,   4.0,    4.0,      0.5,  1
@@ -704,9 +704,9 @@ Velocity_RunFwdNormal = 8.0,   4.0,    4.0,      0.5,  1
 
 [bloodsucker_redforest]:bloodsucker_strong
 $spawn        	= "monsters\bloodsuckers\bloodsucker_redforest"
-visual        = monsters\krovosos\krovosos_strong
-icon        = ui_npc_monster_krovosos_strong
-Predator_Visual   = monsters\krovosos\krovosos_strong_xray
+visual        	= monsters\krovosos\krovosos
+Predator_Visual = monsters\krovosos\krovosos_strong_xray
+icon        	= ui_npc_monster_krovosos_strong
 panic_threshold = 0.05
 immunities_sect = bloodsucker_immunities_red
 attack_params   = bloodsucker_attack_params_strong
@@ -745,7 +745,7 @@ radiation_immunity    	= 0.0
 telepatic_immunity    	= 0.0
 chemical_burn_immunity  = 0.05
 explosion_immunity    	= 0.05
-fire_wound_immunity  	= 0.08
+fire_wound_immunity  	= 0.2
 
 [bloodsucker_redhunter]:bloodsucker_redforest
 $spawn        = "monsters\bloodsuckers\bloodsucker_redhunter"
@@ -774,9 +774,8 @@ radiation_immunity    	= 0.0
 telepatic_immunity    	= 0.0
 chemical_burn_immunity  = 0.01
 explosion_immunity    	= 0.01
-fire_wound_immunity   	= 0.08
+fire_wound_immunity   	= 0.2
 
 [bloodsucker_marsh]:bloodsucker_weak
 $spawn        	= "monsters\bloodsuckers\bloodsucker_marsh"
 visual        	= monsters\krovosos\krovosos_green
-icon        = ui_npc_monster_bloodsucker_marsh

@@ -9,30 +9,26 @@ anim = wait_trade
 on_signal = anim_end | smartcover@near_table
 ;on_game_timer = 20 | smartcover@near_table
 meet = no_meet
-;invulnerable = true
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
+invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
 
 [smartcover@near_table]
 cover_name = esc_smart_cover_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = idle_target
-combat_ignore_cond = {!is_enemy_actor}
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
 out_restr = esc_space_restrictor_in_restr_1
 def_state_standing = wait_trade
 def_state_moving = walk_noweap
 def_state_moving1 = walk_noweap
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(esc_stalker_trader_meet) +stalker_trader_meet_info%
-on_actor_dist_ge_nvis = 4 | {+stalker_trader_meet_info !is_faction_enemy_to_actor(stalker)} %=play_sound(esc_stalker_trader_meet_bye) -stalker_trader_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet@trader
 
 
 [death]
-on_info = %+esc_stalker_trader_dead =set_faction_community_to_actor(stalker:enemy)%
+on_info = %+esc_stalker_trader_dead%
 
 [meet@trader]
 meet_state		= 3|nil@nil
@@ -40,13 +36,11 @@ meet_state_wpn	= 3|nil@nil
 victim			= 3|actor
 victim_wpn		= 3|actor
 precond 		= usability
-;-- Edited: Jurok --ON-------------------------------------------------------
-;sound_start = esc_stalker_trader_meet
-;sound_stop = esc_stalker_trader_meet_bye
-;-- Edited: Jurok --OFF------------------------------------------------------
+sound_start 	= esc_stalker_trader_meet
+sound_stop 		= esc_stalker_trader_meet_bye
 use				= {!actor_enemy} true, false
 use_wpn			= {!actor_enemy} true, false
 ;use				= true
 ;use_wpn				= true
 abuse			= false
-;quest_npc = true
+quest_npc = true

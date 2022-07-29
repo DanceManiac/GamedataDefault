@@ -19,23 +19,20 @@ out_restr = esc_space_restrictor_minigun
 def_state_moving1 = assault
 def_state_moving2 = assault
 def_state_moving3 = assault
-meet = no_meet
 
 [walker@gun_fire]
-path_walk = wlkr_walk
-path_look = wlkr_look
 combat_ignore_cond = true
 out_restr = esc_space_restrictor_minigun
+path_walk = wlkr_walk
+path_look = wlkr_look
 on_info = {=actor_in_zone(esc_minigunner_actor)} walker@stop_gun %-esc_minigunner%
 on_info2 = {!in_zone(esc_space_restrictor_minigun)} walker@gun %-esc_minigunner%
-meet = no_meet
 
 [walker@stop_gun]
 path_walk = wlkr_walk_1
 path_look = wlkr_look_1
 on_info = {!actor_in_zone(esc_minigunner_actor)} walker@gun
 out_restr = esc_space_restrictor_minigun
-meet = no_meet
 
 
 ;fake camper
@@ -43,39 +40,28 @@ meet = no_meet
 [logic@work2]
 active = camper@mil_work2
 suitable = {=check_npc_name(sim_default_military_)} true
-on_combat = combat@work2
-prior = 100
+prior = 42
 
 [camper@mil_work2]
 path_walk = grd_4_walk
 path_look = grd_4_look
 def_state_campering = threat_na
 sniper = true
-on_info = {+start_surge_info} kamp@mil_work2surge
-meet = no_meet
-
-[kamp@mil_work2surge]
-center_point = kamp_4
-path_walk = kamp_4_task
-on_info = {+surge_finished_info} camper@mil_work2
-meet = no_meet
+on_combat = combat@work2
 
 [combat@work2]
 on_info = %+esc_mil_defense%
 
 
-;blockpost commander
-
 [logic@work3]
 active = walker@work3
-suitable = {=check_npc_name(esc_military_blockpost_commander)} true
-on_combat = combat@work3
-prior = 100
+suitable = {=check_npc_name(sim_default_military_)} true
+prior = 41
 
 [walker@work3]
 path_walk = wlkr_walk_2
 path_look = wlkr_look_2
-meet = no_meet
+on_combat = combat@work3
 
 [combat@work3]
 on_info = %+esc_mil_defense%
@@ -86,39 +72,15 @@ on_info = %+esc_mil_defense%
 [logic@work4]
 active = walker@work4
 suitable = {=check_npc_name(sim_default_military_) +esc_mil_patrol} true
-on_combat = combat@work4
-prior = 100
+prior = 50
 
 [walker@work4]
 path_walk = pat_1_walk
 path_look = pat_1_look
-def_state_moving = assault
+on_combat = combat@work4
 combat_ignore_cond = {!is_enemy_actor}
-danger = danger_condition
-on_info = {+esc_mil_minigun_hide_info} walker@work4_1
-meet = no_meet
-
-[walker@work4_1]
-path_walk = pat_1_walk
-path_look = pat_1_look
-def_state_moving = assault
-combat_ignore_cond = {!is_enemy_actor}
-danger = danger_condition
-on_game_timer = 1500 | kamp@work4 %+esc_mil_patrol_gone%
-meet = no_meet
-
-[kamp@work4]
-center_point = kamp_4
-path_walk = kamp_4_task
-def_state_moving = run
-on_info = {+start_surge_info} kamp@work4surge
-meet = no_meet
-
-[kamp@work4surge]
-center_point = kamp_4
-path_walk = kamp_4_task
-on_info = {+surge_finished_info} kamp@work4
-meet = no_meet
+on_signal = finish | %+esc_mil_patrol%
+on_info = %+esc_mil_patrol_gone%
 
 [combat@work4]
 on_info = %+esc_mil_defense%
@@ -126,39 +88,16 @@ on_info = %+esc_mil_defense%
 [logic@work5]
 active = walker@work5
 suitable = {=check_npc_name(sim_default_military_) +esc_mil_patrol} true
-on_combat = combat@work5
-prior = 100
+prior = 50
 
 [walker@work5]
 path_walk = pat_2_walk
 path_look = pat_2_look
 def_state_moving = assault
+on_combat = combat@work5
 combat_ignore_cond = {!is_enemy_actor}
-danger = danger_condition
-on_info = {+esc_mil_minigun_hide_info} walker@work5_1
-meet = no_meet
-
-[walker@work5_1]
-path_walk = pat_2_walk
-path_look = pat_2_look
-def_state_moving = assault
-combat_ignore_cond = {!is_enemy_actor}
-danger = danger_condition
-on_game_timer = 1500 | kamp@work5 %+esc_mil_patrol_gone%
-meet = no_meet
-
-[kamp@work5]
-center_point = kamp_4
-path_walk = kamp_4_task
-on_info = {+start_surge_info} kamp@work5surge
-meet = no_meet
-
-[kamp@work5surge]
-center_point = kamp_4
-path_walk = kamp_4_task
-def_state_moving = run
-on_info = {+surge_finished_info} kamp@work5
-meet = no_meet
+on_signal = finish | %+esc_mil_patrol%
+on_info = %+esc_mil_patrol_gone%
 
 [combat@work5]
 on_info = %+esc_mil_defense%
@@ -166,39 +105,17 @@ on_info = %+esc_mil_defense%
 [logic@work6]
 active = walker@work6
 suitable = {=check_npc_name(sim_default_military_) +esc_mil_patrol} true
-on_combat = combat@work6
-prior = 100
+prior = 50
 
 [walker@work6]
 path_walk = pat_3_walk
 path_look = pat_3_look
 def_state_moving = assault
+on_combat = combat@work6
 combat_ignore_cond = {!is_enemy_actor}
+on_signal = finish | %+esc_mil_patrol%
 danger = danger_condition
-on_info = {+esc_mil_minigun_hide_info} walker@work6_1
-meet = no_meet
-
-[walker@work6_1]
-path_walk = pat_3_walk
-path_look = pat_3_look
-def_state_moving = assault
-combat_ignore_cond = {!is_enemy_actor}
-danger = danger_condition
-on_game_timer = 1500 | kamp@work6 %+esc_mil_patrol_gone%
-meet = no_meet
-
-[kamp@work6]
-center_point = kamp_4
-path_walk = kamp_4_task
-on_info = {+start_surge_info} kamp@work6surge
-meet = no_meet
-
-[kamp@work6surge]
-center_point = kamp_4
-path_walk = kamp_4_task
-def_state_moving = run
-on_info = {+surge_finished_info} kamp@work6
-meet = no_meet
+on_info = %+esc_mil_patrol_gone%
 
 [combat@work6]
 on_info = %+esc_mil_defense%
@@ -207,82 +124,35 @@ on_info = %+esc_mil_defense%
 ignore_distance = 0
 
 
+
 ;road patrol
 
 [logic@work7]
 active = patrol@work7
 suitable = {=check_npc_name(sim_default_military_)} true
-prior = 100
+prior = 41
 
 [patrol@work7]
 path_walk = grd_5_walk
 path_look = grd_5_look
 formation = around
-on_info = {+start_surge_info} kamp@work7surge
-meet = no_meet
-
-[kamp@work7surge]
-center_point = kamp_4
-path_walk = kamp_4_task
-def_state_moving = run
-on_info = {+surge_finished_info} patrol@work7
-meet = no_meet
 
 [logic@work8]
 active = patrol@work8
 suitable = {=check_npc_name(sim_default_military_)} true
-prior = 100
+prior = 41
 
 [patrol@work8]
 path_walk = grd_5_walk
 path_look = grd_5_look
 formation = around
-on_info = {+start_surge_info} kamp@work8surge
-meet = no_meet
-
-[kamp@work8surge]
-center_point = kamp_4
-path_walk = kamp_4_task
-def_state_moving = run
-on_info = {+surge_finished_info} patrol@work8
-meet = no_meet
 
 [logic@work9]
 active = patrol@work9
 suitable = {=check_npc_name(sim_default_military_)} true
-prior = 100
+prior = 41
 
 [patrol@work9]
 path_walk = grd_5_walk
 path_look = grd_5_look
 formation = around
-on_info = {+start_surge_info} kamp@work9surge
-meet = no_meet
-
-[kamp@work9surge]
-center_point = kamp_4
-path_walk = kamp_4_task
-def_state_moving = run
-on_info = {+surge_finished_info} patrol@work9
-meet = no_meet
-
-
-;area patrol
-
-[logic@work10]
-active = walker@work10
-suitable = {=check_npc_name(sim_default_military_) +esc_mil_patrol_gone} true
-prior = 100
-
-[walker@work10]
-path_walk = ptrl_1_walk
-path_look = ptrl_1_look
-on_info = {+start_surge_info} kamp@work10surge
-meet = no_meet
-
-[kamp@work10surge]
-center_point = kamp_4
-path_walk = kamp_4_task
-def_state_moving = run
-on_info = {+surge_finished_info} walker@work10
-meet = no_meet

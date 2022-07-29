@@ -64,7 +64,7 @@ end
 
 function action_no_weapon:zone_enter()
 	self.state = state_inside
-	if not ogsm_options.dont_hide_weapon then bind_stalker.hide_weapon(self.object:id()) end
+	bind_stalker.hide_weapon(self.object:id())
 end
 
 function action_no_weapon:zone_leave()

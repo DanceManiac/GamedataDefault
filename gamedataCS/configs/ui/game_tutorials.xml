@@ -51,10 +51,10 @@
 	<!----------------------------------------------------------------------------------->
 
 
-	<part_3_jump><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_3_jump><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!--Äëÿ òîãî ÷òîáû ïåðåïðûãíóòü íåâûñîêîå ïðåïÿòñòâèå - íàæìèòå êëàâèøó "ïðîáåë" $$ACTION_JUMP$$-->
+		<item><!--Ð”Ð»Ñ Ñ‚Ð¾Ð³Ð¾ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿ÐµÑ€ÐµÐ¿Ñ€Ñ‹Ð³Ð½ÑƒÑ‚ÑŒ Ð½ÐµÐ²Ñ‹ÑÐ¾ÐºÐ¾Ðµ Ð¿Ñ€ÐµÐ¿ÑÑ‚ÑÑ‚Ð²Ð¸Ðµ - Ð½Ð°Ð¶Ð¼Ð¸Ñ‚Ðµ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ "Ð¿Ñ€Ð¾Ð±ÐµÐ»" $$ACTION_JUMP$$-->
 			<length_sec>5</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -72,10 +72,10 @@
 		</item>
 	</part_3_jump>
 
-	<part_4_crouch><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_4_crouch><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- Äëÿ òîãî ÷òîáû ïðîéòè ïîä íåâûñîêèì ïðåïÿòñòâèåì - íàæìèòå êëàâèøó "ctrl" $$ACTION_CROUCH$$-->
+		<item><!-- Ð”Ð»Ñ Ñ‚Ð¾Ð³Ð¾ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð¹Ñ‚Ð¸ Ð¿Ð¾Ð´ Ð½ÐµÐ²Ñ‹ÑÐ¾ÐºÐ¸Ð¼ Ð¿Ñ€ÐµÐ¿ÑÑ‚ÑÑ‚Ð²Ð¸ÐµÐ¼ - Ð½Ð°Ð¶Ð¼Ð¸Ñ‚Ðµ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ "ctrl" $$ACTION_CROUCH$$-->
 			<length_sec>5</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -94,10 +94,10 @@
 
 	</part_4_crouch>
 
-	<part_5_crouch_down><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_5_crouch_down><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- Äëÿ òîãî ÷òîáû ïðîéòè ïîä íèçêèì ïðåïÿòñòâèåì - íàæìèòå êëàâèøó "ctrl+shift" $$ACTION_CROUCH_DOWN$$-->
+		<item><!-- Ð”Ð»Ñ Ñ‚Ð¾Ð³Ð¾ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð¹Ñ‚Ð¸ Ð¿Ð¾Ð´ Ð½Ð¸Ð·ÐºÐ¸Ð¼ Ð¿Ñ€ÐµÐ¿ÑÑ‚ÑÑ‚Ð²Ð¸ÐµÐ¼ - Ð½Ð°Ð¶Ð¼Ð¸Ñ‚Ðµ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ "ctrl+shift" $$ACTION_CROUCH_DOWN$$-->
 			<length_sec>5</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -115,10 +115,10 @@
 		</item>
 	</part_5_crouch_down>
 
-	<part_6_radiation><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_6_radiation><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- Ðàäèàöèÿ -->
+		<item><!-- Ð Ð°Ð´Ð¸Ð°Ñ†Ð¸Ñ -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -136,10 +136,10 @@
 		</item>
 	</part_6_radiation>
 
-	<part_7_psy><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_7_psy><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- Ðàäèàöèÿ -->
+		<item><!-- Ð Ð°Ð´Ð¸Ð°Ñ†Ð¸Ñ -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -157,10 +157,10 @@
 		</item>
 	</part_7_psy>
 
-	<part_8_wound><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_8_wound><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- Êðîâîòå÷åíèÿ -->
+		<item><!-- ÐšÑ€Ð¾Ð²Ð¾Ñ‚ÐµÑ‡ÐµÐ½Ð¸Ñ -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -178,10 +178,10 @@
 		</item>
 	</part_8_wound>
 
-	<part_9_weapon><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_9_weapon><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- Ïîëîìêà îðóæèÿ -->
+		<item><!-- ÐŸÐ¾Ð»Ð¾Ð¼ÐºÐ° Ð¾Ñ€ÑƒÐ¶Ð¸Ñ -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -199,10 +199,10 @@
 		</item>
 	</part_9_weapon>
 
-	<part_10_sprint><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_10_sprint><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- Áåã â ñïðèíòå -->
+		<item><!-- Ð‘ÐµÐ³ Ð² ÑÐ¿Ñ€Ð¸Ð½Ñ‚Ðµ -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -220,10 +220,10 @@
 		</item>
 	</part_10_sprint>
 
-	<part_11_weakness><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_11_weakness><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- Óñòàëîñòü -->
+		<item><!-- Ð£ÑÑ‚Ð°Ð»Ð¾ÑÑ‚ÑŒ -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -241,10 +241,10 @@
 		</item>
 	</part_11_weakness>
 
-	<part_12_relations><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_12_relations><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- îòíîøåíèå ïåðñîíàæåé -->
+		<item><!-- Ð¾Ñ‚Ð½Ð¾ÑˆÐµÐ½Ð¸Ðµ Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð¶ÐµÐ¹ -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -262,10 +262,10 @@
 		</item>
 	</part_12_relations>
 
-	<part_14_overload><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_14_overload><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- ïåðåãðóçêà -->
+		<item><!-- Ð¿ÐµÑ€ÐµÐ³Ñ€ÑƒÐ·ÐºÐ° -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -283,10 +283,10 @@
 		</item>
 	</part_14_overload>
 
-	<part_15_hide_weapon><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_15_hide_weapon><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- ñïðÿòàòü/äîñòàòü îðóæèå -->
+		<item><!-- ÑÐ¿Ñ€ÑÑ‚Ð°Ñ‚ÑŒ/Ð´Ð¾ÑÑ‚Ð°Ñ‚ÑŒ Ð¾Ñ€ÑƒÐ¶Ð¸Ðµ -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -304,10 +304,10 @@
 		</item>
 	</part_15_hide_weapon>
 
-	<part_pda_diary><!--äåëàþ íîâûé òóòîðèàë-->
+	<part_pda_diary><!--Ð´ÐµÐ»Ð°ÑŽ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚ÑƒÑ‚Ð¾Ñ€Ð¸Ð°Ð»-->
 		<global_wnd/>
 
-		<item><!-- ñïðÿòàòü/äîñòàòü îðóæèå -->
+		<item><!-- ÑÐ¿Ñ€ÑÑ‚Ð°Ñ‚ÑŒ/Ð´Ð¾ÑÑ‚Ð°Ñ‚ÑŒ Ð¾Ñ€ÑƒÐ¶Ð¸Ðµ -->
 			<length_sec>10</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key/>
@@ -547,29 +547,29 @@
   </fifth_battle_tutorial>
 
 	<game_over>
-		<global_wnd>
-			<_auto_static x="0" y="0" width="1024" height="768" stretch="1">
-				<window_name>back</window_name>
-				<texture>intro\intro_back</texture>
-			</_auto_static>
-		</global_wnd>
+	    <global_wnd>
+	        <_auto_static x="0" y="0" width="1024" height="768" stretch="1">
+	            <window_name>back</window_name>
+		        <texture>intro\intro_back</texture>
+	        </_auto_static>
+	    </global_wnd>
 
 		<item>
 			<length_sec>4</length_sec>
 			<pause_state>off</pause_state>
 			<guard_key>jump</guard_key>
 			<function_on_stop>xr_effects.on_tutor_gameover_stop</function_on_stop>
-			<action id="quick_load" finalize="1">xr_effects.on_tutor_gameover_quickload</action>
+      <action id="quick_load" finalize="1">xr_effects.on_tutor_gameover_quickload</action>
 			<sound/>
 			<cursor_pos/>
 			<pda_section/>
-			<grab_input>0</grab_input>
+			<grab_input>1</grab_input>
 			<main_wnd>
-				<auto_static start_time="0" length_sec="10000" x="512" y="360" width="300" height="60" alignment="c" stretch="1">  <!-- SRP_v1.1.2 -->
+				<auto_static start_time="0" length_sec="10000" x="350" y="360" width="300" height="60">
 					<window_name>w1</window_name>
 					<text font="graffiti50"  r="255" g="0" b="0" a="255" align="c">st_game_over</text>
 				</auto_static>
-				<auto_static start_time="3" length_sec="10000" x="512" y="660" width="300" height="60" light_anim="ui_pda_contacts" la_cyclic="1" la_text="1" la_alpha="1" alignment="c" stretch="1">  <!-- SRP_v1.1.2 -->
+				<auto_static start_time="3" length_sec="10000" x="350" y="660" width="300" height="60" light_anim="ui_pda_contacts" la_cyclic="1" la_text="1" la_alpha="1">
 					<window_name>w2</window_name>
 					<text font="graffiti22"  r="255" g="0" b="0" a="255" align="c">st_game_over_press_jump</text>
 				</auto_static>

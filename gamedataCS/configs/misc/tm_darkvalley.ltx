@@ -18,13 +18,11 @@ val_capture_smart_7_8
 val_capture_smart_4_0
 val_capture_smart_1_1
 val_destroy_boar_guard_9_2
-val_kill_boars
 val_check_blockpost
 val_find_pda
 val_bandit_spy
 val_bandit_spy_kill
 val_bandit_spy_return
-val_bandit_pda_return_freedom_leader
 val_night_bloodsucker
 val_night_bloodsucker_reward
 val_join_freedom
@@ -33,18 +31,6 @@ val_recover_item_1
 val_recover_item_2
 val_recover_item_3
 
-val_bring_item_1
-val_bring_item_2
-val_bring_item_3
-val_bring_item_4
-val_bring_item_5
-val_bring_item_6
-
-;-----------------------------------------------------
-;------------------ Storyline Quests -----------------
-;-----------------------------------------------------
-
-; Отправиться за Клыком в Тёмную долину
 [val_temp_start_quest]
 type = storyline
 task_type = storyline
@@ -57,7 +43,7 @@ on_complete = %+val_temp_start_quest_done%
 condlist_0 = {+val_temp_start_quest_complete} complete
 target_story_ids = 1199
 
-; Поговорить со «свободовцами» на блокпосту
+; Подойти к блокпосту свободы
 [val_come_to_freedom_blokpost]
 type = storyline
 task_type = storyline
@@ -68,11 +54,10 @@ name = val_come_to_freedom_blokpost_name
 text = val_come_to_freedom_blokpost_text
 on_complete = %+val_come_to_freedom_blockpost_done%
 condlist_0 = {+val_talked_to_blockpost_leader_complete} complete
-condlist_1 = {+val_blockpost_ns_dead} fail, {+val_come_to_freedom_base_complete} fail, {=gulag_enemy_actor(val_smart_terrain_5_7)} fail
+condlist_1 = {+val_blockpost_ns_dead} fail, {+val_come_to_freedom_base_complete} fail 
 target_story_ids = 1100
-community_relation_delta_fail = -5000
 
-; Найти базу «Свободы»
+; Прийти в лагерь свободы
 [val_come_to_freedom_base]
 type = storyline
 task_type = storyline
@@ -82,11 +67,10 @@ prior = 10
 name = val_come_to_freedom_base_name
 text = val_come_to_freedom_base_text
 on_complete = %+val_come_to_freedom_base_done%
-condlist_0 = {+val_talked_to_blockpost_leader_complete +val_come_to_freedom_base_complete} complete
-condlist_1 = {-val_talked_to_blockpost_leader_complete} fail
+condlist_0 = {+val_come_to_freedom_base_complete} complete
 target_story_ids = 1101
 
-; Ответить на сигнал SOS
+; Ответить на призыв помощи
 [val_reply_to_sos]
 type = storyline
 task_type = additional
@@ -98,10 +82,10 @@ text = val_reply_to_sos_text
 on_complete = %+val_reply_to_sos_done%
 condlist_0 = {+val_reply_to_sos_complete} complete
 condlist_1 = {+val_come_to_freedom_base_complete} fail
-reward_money = 200
+;reward_money = 200
 target_story_ids = 1102
 
-; Поговорить с комендантом
+;Прийти к коменданту
 [val_come_to_comendant]
 type = storyline
 task_type = storyline
@@ -114,7 +98,7 @@ on_complete = %+val_come_to_comendant_done%
 condlist_0 = {+val_come_to_comendant_complete} complete
 target_story_ids = 1103
 
-; Убить пси-собаку
+;Убить плотей
 [val_eliminate_smart_6_4]
 type = eliminate_smart
 task_type = storyline
@@ -130,7 +114,7 @@ target_story_ids = 1109
 play_regard = nil
 auto_faction = true
 
-; Получить указания от коменданта
+;Вернуться к коменданту за наградой
 [val_come_back_comendant_to_revard]
 type = storyline
 task_type = storyline
@@ -143,7 +127,7 @@ on_complete = %+val_come_back_comendant_to_revard_done%
 condlist_0 = {+val_come_back_comendant_to_revard} complete
 target_story_ids = 1110
 
-; Получить боеприпасы у Ашота
+;Прийти к торговцу
 [val_go_to_trader]
 type = storyline
 task_type = storyline
@@ -156,7 +140,7 @@ on_complete = %+val_go_to_trader_done%
 condlist_0 = {+val_go_to_trader_complete} complete
 target_story_ids = 1104
 
-; Доставить боеприпасы на форпост
+;Отнести боеприпасы на блокпост
 [val_deliver_ammo]
 type = storyline
 task_type = storyline
@@ -165,37 +149,11 @@ target_cond = true
 prior = 10
 name = val_deliver_ammo_name
 text = val_deliver_ammo_text
-on_reversed = %+val_deliver_ammo_done%
-condlist_0 = {+val_deliver_ammo_complete} reversed
+on_complete = %+val_deliver_ammo_done%
+condlist_0 = {+val_deliver_ammo_complete} complete
 target_story_ids = 1105
 
-; Узнать, что произошло на блокпосте
-[val_check_blockpost]
-type = storyline
-task_type = storyline
-icon = ui_mt_image_attack_tower
-target_cond = true
-prior = 10
-name = val_check_blockpost_name
-text = val_check_blockpost_text
-on_complete = %+val_check_blockpost_done%
-condlist_0 = {+val_check_blockpost_complete} complete
-target_story_ids = 1118
-
-; Найти активный КПК
-[val_find_pda]
-type = storyline
-task_type = storyline
-icon = ui_mt_image_attack_tower
-target_cond = true
-prior = 10
-name = val_find_pda_name
-text = val_find_pda_text
-on_complete = %+val_find_pda_done%
-condlist_0 = {+val_find_pda_complete} complete
-target_story_ids = 1119
-
-; Принести КПК Чехову
+;Прийти к лидеру свобоы
 [val_go_to_freedom_leader]
 type = storyline
 task_type = storyline
@@ -208,7 +166,7 @@ on_complete = %+val_go_to_freedom_leader_done%
 condlist_0 = {+val_go_to_freedom_leader_complete} complete
 target_story_ids = 1106
 
-; Найти коменданта Щукина
+
 [val_pursuit_comendant]
 type = storyline
 task_type = storyline
@@ -221,7 +179,6 @@ on_complete = %+val_pursuit_comendant_done%
 condlist_0 = {+val_pursuit_comendant_complete} complete
 target_story_ids = 1107
 
-; Помочь «Свободе» уничтожить наёмников
 [val_help_freedom]
 type = eliminate_smart
 task_type = storyline
@@ -238,7 +195,7 @@ target_story_ids = 1108
 play_regard = nil
 auto_faction = true
 
-; Взять КПК коменданта Щукина
+;взять пда с трупа
 [val_take_pda]
 type = storyline
 task_type = storyline
@@ -251,7 +208,7 @@ on_complete = %+val_take_pda_done%
 condlist_0 = {+val_take_pda_complete} complete
 target_story_ids = 1111
 
-; Доставить КПК коменданта Чехову
+;принести pda
 [val_deliver_pda]
 type = storyline
 task_type = storyline
@@ -264,7 +221,7 @@ on_complete = %+val_deliver_pda_done%
 condlist_0 = {+val_deliver_pda_complete} complete
 target_story_ids = 1112
 
-; Следовать за сигналом КПК Клыка
+;догнать клыка
 [val_bring_to_fang]
 type = storyline
 task_type = storyline
@@ -277,11 +234,6 @@ on_complete = %+val_bring_to_fang_done%
 condlist_0 = {+val_bring_to_fang_complete} complete
 target_story_ids = 1113
 
-;-----------------------------------------------------
-;------------------ Secondary Quests -----------------
-;-----------------------------------------------------
-
-; Захватить антенну на болоте
 [val_capture_smart_7_8]
 type = capture_smart
 task_type = additional
@@ -294,7 +246,6 @@ play_regard = nil
 wait_time = -1
 auto_faction = false
 
-; Захватить антенну на ферме
 [val_capture_smart_4_0]
 type = capture_smart
 task_type = additional
@@ -307,7 +258,6 @@ play_regard = nil
 wait_time = -1
 auto_faction = false
 
-; Уничтожить наёмников
 [val_capture_smart_1_1]
 type = eliminate_smart
 task_type = additional
@@ -318,14 +268,11 @@ name = val_destroy_killer_base_name
 text = val_destroy_killer_base_text
 on_complete = %+val_destroy_killer_base_done +val_strike_antenna_done%
 on_reversed = %+val_killer_base_is_no_more%
-community_relation_delta_complete = 700
+community_relation_delta_complete = 5000
 reward_money = 1000
 play_regard = nil
 auto_faction = true
 
-;Additional quests
-
-; Уничтожить логово кабанов
 [val_destroy_boar_guard_9_2]
 type = storyline
 task_type = additional
@@ -334,28 +281,35 @@ target_cond = true
 prior = 11
 name = val_destroy_boar_guard_9_2_name
 text = val_destroy_boar_guard_9_2_text
-condlist_0 = {+val_destroy_boar_guard_9_2_done} complete
-target_story_ids = 1117
-auto_name = false
-auto_faction = true
-community_relation_delta_complete = 50
-
-; Вернуться за наградой
-[val_kill_boars]
-type = storyline
-task_type = additional
-prior = 11
-icon = ui_mt_image_attack_tower
-;spot = mar_defend_tower_location
-target_cond = true
-name = val_kill_boars_name
-text = val_kill_boars_text
 condlist_0 = {+val_destroy_boar_guard_9_2_complete} complete
-target_story_ids = 1129
-auto_name = false
-auto_faction = true
+on_complete = %+val_destroy_boar_guard_9_2_done%
+reward_money = 1500
+target_story_ids = 1117
 
-; Устранить предполагаемую опасность на заправке
+[val_check_blockpost]
+type = storyline
+task_type = storyline
+icon = ui_mt_image_attack_tower
+target_cond = true
+prior = 10
+name = val_check_blockpost_name
+text = val_check_blockpost_text
+on_complete = %+val_check_blockpost_done%
+condlist_0 = {+val_check_blockpost_complete} complete
+target_story_ids = 1118
+
+[val_find_pda]
+type = storyline
+task_type = storyline
+icon = ui_mt_image_attack_tower
+target_cond = true
+prior = 10
+name = val_find_pda_name
+text = val_find_pda_text
+on_complete = %+val_find_pda_done%
+condlist_0 = {+val_find_pda_complete} complete
+target_story_ids = 1119
+
 [val_bandit_spy]
 type = storyline
 task_type = additional
@@ -365,21 +319,20 @@ prior = 11
 name = val_bandit_spy_name
 text = val_bandit_spy_text
 condlist_0 = {+val_bandit_spy_die} complete
+condlist_1 = {+val_bandit_spy_found} reversed
 target_story_ids = 1121
 
-; Обыскать тела бандитов
 [val_bandit_spy_kill]
 type = storyline
 task_type = additional
 icon = ui_mt_image_attack_tower
 target_cond = true
-condlist_0 = {+val_bandit_spy_found} complete
+condlist_0 = {+val_bandit_spy_die} complete
 prior = 11
 name = st_val_bandit_spy_kill_name
 text = st_val_bandit_spy_kill_text
 target_story_ids = 1121
 
-; Вернуться за наградой
 [val_bandit_spy_return]
 type = storyline
 task_type = additional
@@ -391,20 +344,7 @@ name = st_val_bandit_spy_return_name
 text = st_val_bandit_spy_return_text
 target_story_ids = 1125
 
-; Отнести КПК бандита Чехову
-[val_bandit_pda_return_freedom_leader]
-type = storyline
-task_type = additional
-icon = ui_mt_image_attack_tower
-target_cond = true
-condlist_0 = {+val_bandit_pda_return_freedom_leader_complete} complete
-prior = 11
-name = st_val_bandit_pda_return_freedom_leader_name
-text = st_val_bandit_pda_return_freedom_leader_text
-target_story_ids = 1106
-community_relation_delta_complete = 50
 
-; Найти друга техника
 [val_night_bloodsucker]
 type = storyline
 task_type = additional
@@ -413,11 +353,11 @@ target_cond = true
 prior = 11
 name = val_night_bloodsucker_name
 text = val_night_bloodsucker_text
+;on_complete = %+val_night_bloodsucker_done%
 condlist_0 = {+val_night_bloodsucker_complete} complete
 condlist_1 = {+val_night_bloodsucker_fail} fail
 target_story_ids = 1122
 
-; Принести флешку технику
 [val_night_bloodsucker_reward]
 type = storyline
 task_type = additional
@@ -426,13 +366,11 @@ target_cond = true
 prior = 11
 name = val_night_bloodsucker_reward_name
 text = val_night_bloodsucker_reward_text
+;on_complete = %+val_night_bloodsucker_reward_done%
 condlist_0 = {+val_night_bloodsucker_reward_complete} complete
 reward_money = 2000
 target_story_ids = 1123
-immediate_reward = true
-community_relation_delta_complete = 50
 
-; Вступить в «Свободу»
 [val_join_freedom]
 type = storyline
 task_type = additional
@@ -445,6 +383,7 @@ on_complete = %+val_join_freedom_done%
 condlist_0 = {=is_actor_in_freedom} complete
 condlist_1 = {=is_actor_in_dolg} fail
 target_story_ids = 1124
+
 
 ;Recover Items
 
@@ -460,11 +399,9 @@ faction = freedom
 target_cond = {=actor_on_level(darkvalley) -val_recover_item_1_done} true, false
 on_init = %+val_recover_item_1_done%
 requested_items = val_quest_scope_x8
-community_relation_delta_fail=-50
-community_relation_delta_complete =+50
+community_relation_delta_complete = 100
 reward_money = 2000
 auto_faction = true
-immediate_reward = true
 
 [val_recover_item_2]   ;Вернуть флешку с фильмом
 type = recover_item
@@ -478,124 +415,22 @@ faction = freedom
 target_cond = {=actor_on_level(darkvalley) -val_recover_item_2_done} true, false
 on_init = %+val_recover_item_2_done%
 requested_items = val_quest_flash_movies
-community_relation_delta_fail=-50
-community_relation_delta_complete =+50
+community_relation_delta_complete = 100
 reward_money = 1500
 auto_faction = true
-immediate_reward = true
 
 [val_recover_item_3]   ;Вернуть гитару Сереги
 type = recover_item
 task_type = additional
 name = val_recover_item_3_name
 text = val_recover_item_3_text
-target_npc_or_box_name = val_recover_item_3_spawn
+target_npc_or_box_name = dark_valley_treasure_15
 distanse = 100
 prior = 2
 faction = freedom
 target_cond = {=actor_on_level(darkvalley) -val_recover_item_3_done} true, false
 on_init = %+val_recover_item_3_done%
 requested_items = val_quest_guitar_serg
-community_relation_delta_fail=-50
-community_relation_delta_complete =+50
+community_relation_delta_complete = 100
 reward_money = 500
 auto_faction = true
-immediate_reward = true
-
-;Bring Items
-
-[val_bring_item_1]
-auto_name = false
-type = bring_item
-task_type = additional
-name = val_bring_item_1_name
-text = val_bring_item_1_text
-target_cond = {~20 =actor_on_level(darkvalley)} true
-prior = 2
-faction = freedom
-requested_items = grenade_f1, grenade_f1, grenade_f1
-community_relation_delta_fail=-50
-community_relation_delta_complete =+50
-reward_money = {~50} 1000, {~50} 1500, 500
-auto_faction = true
-immediate_reward = true
-
-[val_bring_item_2]
-auto_name = false
-type = bring_item
-task_type = additional
-name = val_bring_item_2_name
-text = val_bring_item_2_text
-target_cond = {~20 =actor_on_level(darkvalley)} true
-prior = 2
-faction = freedom
-requested_items = medkit_scientic, medkit_scientic
-community_relation_delta_fail=-50
-community_relation_delta_complete =+50
-reward_money = {~50} 1000, {~50} 1500, 500
-auto_faction = true
-immediate_reward = true
-
-[val_bring_item_3]
-auto_name = false
-type = bring_item
-task_type = additional
-name = val_bring_item_3_name
-text = val_bring_item_3_text
-target_cond = {~20 =actor_on_level(darkvalley)} true
-prior = 2
-faction = freedom
-requested_items = wpn_g36, ammo_5.56x45_ss190, ammo_5.56x45_ss190
-community_relation_delta_fail=-50
-community_relation_delta_complete =+50
-reward_money = {~50} 1000, {~50} 1500, 500
-auto_faction = true
-immediate_reward = true
-
-[val_bring_item_4]
-auto_name = false
-type = bring_item
-task_type = additional
-name = val_bring_item_4_name
-text = val_bring_item_4_text
-target_cond = {~20 =actor_on_level(darkvalley)} true
-prior = 2
-faction = freedom
-requested_items = wpn_vintorez
-community_relation_delta_fail=-50
-community_relation_delta_complete =+50
-reward_money = {~50} 1000, {~50} 1500, 500
-auto_faction = true
-immediate_reward = true
-
-[val_bring_item_5]
-auto_name = false
-type = bring_item
-task_type = additional
-name = val_bring_item_5_name
-text = val_bring_item_5_text
-target_cond = {~20 =actor_on_level(darkvalley)} true
-prior = 2
-faction = freedom
-requested_items = ammo_5.56x45_ap, ammo_5.56x45_ap, ammo_5.56x45_ap
-community_relation_delta_fail=-50
-community_relation_delta_complete =+50
-reward_money = {~50} 1000, {~50} 1500, 500
-auto_faction = true
-immediate_reward = true
-
-[val_bring_item_6]
-auto_name = false
-type = bring_item
-task_type = additional
-name = val_bring_item_6_name
-text = val_bring_item_6_text
-target_cond = {~20 =actor_on_level(darkvalley)} true
-prior = 2
-faction = freedom
-requested_items = wpn_spas12, ammo_12x76_dart, ammo_12x76_dart
-community_relation_delta_fail=-50
-community_relation_delta_complete =+50
-reward_money = {~50} 1000, {~50} 1500, 500
-auto_faction = true
-immediate_reward = true

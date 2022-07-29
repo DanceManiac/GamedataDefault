@@ -174,7 +174,7 @@ function cfg_get_string(char_ini, section, field, object, mandatory, gulag_name,
 		return default_val
 	end
 	local err = "'Attempt to read a non-existant string field '" ..
-		field .. "' in section '" .. section .. "' in object '" .. object:name() .. "'";
+		field .. "' in section '" .. section .. "'";
 	abort("%s", err)
 end
 

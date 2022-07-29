@@ -1,8 +1,6 @@
 [logic]
 active = smartcover@fire
 level_spot = mechanic
-on_death = death
-enable_torch = false
 
 [smartcover@idle]
 path_walk = mar_smart_terrain_csky_base_tech_walk
@@ -10,13 +8,8 @@ cover_name = mar_smart_cover_csky_tech_lead_sit_sleep_mechanic
 loophole_name = lead_sit_sleep_mechanic
 cover_state = idle_target
 on_timer = 14000 | smartcover@fire
-on_info = {+mar_intro_talk_with_commander_1_done -mar_tutorial_returned_to_base} smartcover@fire_sos
-combat_ignore_cond = {!is_enemy_actor}
+combat_ignore_cond = true
 meet = meet
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-csky_fixer_meet_info !npc_talking =actor_see_npc !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_tech_meet) +csky_fixer_meet_info%
-on_actor_dist_ge_nvis = 4 | {+csky_fixer_meet_info =actor_see_npc !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_tech_meet_bye) -csky_fixer_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
 ;target_path = mar_smart_terrain_csky_base_tech_look
 ;target_enemy = actor
 def_state_moving = walk
@@ -27,38 +20,9 @@ cover_name = mar_smart_cover_csky_tech_lead_sit_sleep_mechanic
 loophole_name = lead_sit_sleep_mechanic
 cover_state = lookout_target
 on_timer = 14000 | smartcover@idle
-on_info = {+mar_intro_talk_with_commander_1_done -mar_tutorial_returned_to_base} smartcover@idle_sos
-combat_ignore_cond = {!is_enemy_actor}
+combat_ignore_cond = true
 meet = meet
-;-- Edited: Jurok --ON-------------------------------------------------------
-on_actor_dist_le_nvis = 2 | {-csky_fixer_meet_info !npc_talking =actor_see_npc !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_tech_meet) +csky_fixer_meet_info%
-on_actor_dist_ge_nvis = 4 | {+csky_fixer_meet_info =actor_see_npc !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_tech_meet_bye) -csky_fixer_meet_info%
-;-- Edited: Jurok --OFF------------------------------------------------------
 ;target_path = mar_smart_terrain_csky_base_tech_look
-def_state_moving = walk
-
-;-----------------------------------------------------------------------------
-
-[smartcover@idle_sos]
-path_walk = mar_smart_terrain_csky_base_tech_walk
-cover_name = mar_smart_cover_csky_tech_lead_sit_sleep_mechanic
-loophole_name = lead_sit_sleep_mechanic
-cover_state = idle_target
-on_timer = 14000 | smartcover@fire_sos
-on_info = {+mar_tutorial_returned_to_base} smartcover@fire
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@sos
-def_state_moving = walk
-
-[smartcover@fire_sos]
-path_walk = mar_smart_terrain_csky_base_tech_walk
-cover_name = mar_smart_cover_csky_tech_lead_sit_sleep_mechanic
-loophole_name = lead_sit_sleep_mechanic
-cover_state = lookout_target
-on_timer = 14000 | smartcover@idle_sos
-on_info = {+mar_tutorial_returned_to_base} smartcover@idle
-combat_ignore_cond = {!is_enemy_actor}
-meet = meet@sos
 def_state_moving = walk
 
 ;-----------------------------------------------------------------------------
@@ -71,21 +35,6 @@ victim_wpn = 0 | actor
 use = true
 use_wpn = true
 precond = visibility
-;-- Edited: Jurok --ON-------------------------------------------------------
-;sound_start = mar_csky_tech_meet
-;sound_stop = mar_csky_tech_meet_bye
-;-- Edited: Jurok --OFF------------------------------------------------------
-;quest_npc = true
-
-[meet@sos]
-meet_state = 3 | nil@nil
-meet_state_wpn = 3 | nil@nil
-victim = 0 | actor
-victim_wpn = 0 | actor
-use = true
-use_wpn = true
-trade_enable = false
-allow_break = false
-
-[death]
-on_info = %+mar_csky_tech_dead =set_faction_community_to_actor(csky:enemy)%
+sound_start 	= mar_csky_tech_meet
+sound_stop 		= mar_csky_tech_meet_bye
+quest_npc = true

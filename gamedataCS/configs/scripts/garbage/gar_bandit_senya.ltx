@@ -1,14 +1,13 @@
 [logic]
 active = walker@senya
-enable_torch = false
+;suitable = {=check_npc_name(gar_bandit_senya)}
+;prior = 130
 
 [walker@senya]
 path_walk = gar_smart_terrain_3_5_bandit_senya_walk
 path_look = gar_smart_terrain_3_5_bandit_senya_look
-combat_ignore_cond = {!is_enemy_actor}
 meet = meet@senya
 
 [meet@senya]
 use_wpn	= false
 use = false
-abuse = false

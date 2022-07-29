@@ -43,7 +43,7 @@
 		<text>Вниз</text>
 	</string>
 	<string id="kb_drop">
-		<text>Выбросить</text>
+		<text>Выложить</text>
 	</string>
 	<string id="kb_fire">
 		<text>Огонь</text>
@@ -209,14 +209,5 @@
 	</string>
 	<string id="kb_detector">
 		<text>Детектор</text>
-	</string>
-	<string id="kb_cam_1">
-		<text>Вид от 1-го лица</text>
-	</string>
-	<string id="kb_cam_2">
-		<text>Вид от 3-го лица (фикс. камера)</text>
-	</string>
-	<string id="kb_cam_3">
-		<text>Вид от 3-го лица (вращ. камера)</text>
 	</string>
 </string_table>

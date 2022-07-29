@@ -1,5 +1,5 @@
 ;=========================================================================================
-; GIANT
+; Base Definition
 ;=========================================================================================
 [m_gigant_e]:monster_base
 GroupControlSection	= spawn_group
@@ -18,7 +18,7 @@ search_speed         = 1.5                       ; option for ALife Simulator
 visual				 = monsters\psevdogigant\psevdogigant
 corpse_visual	     = monsters\psevdogigant\psevdogigant_dead
 icon				 = ui_npc_monster_psevdogigant
-MaxHealthValue		     = 300			; range [0..200]
+MaxHealthValue		     = 200			; range [0..200]
 DynamicObjectsCount	 = 32
 smart_terrain_choose_interval	= 00:15:00
 
@@ -32,7 +32,7 @@ class                = SM_GIANT					; AI class
 
 script_binding  	= bind_monster.bind
 
-bone_torso			 = bip01_spine 				; bone name
+bone_torso			 = bip01_spine1 			; bone name
 bone_head			 = bip01_head				; bone name
 bone_fire			 = bip01_head				; bone name
 weapon_usage		 = 0						; boolean
@@ -66,7 +66,6 @@ ph_skel_shot_up_factor        = 0.25
 ; Movement::Velocities & Acceleration
 ;----------------------------------------------------------------------------
 ; speed factors			linear | angular_real | angular_path | min |  max
-;----------------------------------------------------------------------------
 Velocity_Stand			= 0,		6.0,			6.0,		1,		1
 Velocity_WalkFwdNormal	= 4.2,		4.0,			4.0,		0.1,	2.5
 Velocity_RunFwdNormal	= 11.0,		4.0,			4.0,		0.2,	1	
@@ -101,12 +100,12 @@ Run_Attack_Delay		= 3000,		6000
 
 ;-----------------------------------------------------------------------
 
-DayTime_Begin		= 0			; начала дня для монстра
-DayTime_End			= 21		; конец дня для монстра
-Min_Satiety			= 0.6		; мин. норма сытости (меньше - уже голодный)
-Max_Satiety			= 0.9		; макс. норма сытости (больше - очень сытый)
+DayTime_Begin		= 0			; 
+DayTime_End			= 21		; 
+Min_Satiety			= 0.6		; 
+Max_Satiety			= 0.9		; 
 
-distance_to_corpse	= 1.2		; дист. до трупа, при которой он переходит в состояние еды
+distance_to_corpse	= 1.2		; 
 
 selector_approach		= 20.0,1.0,1000.0,0.0,0.0, 1000.0,	10000.0,      
 
@@ -142,7 +141,7 @@ sleep_radiation 		= 1.0	;1.1
 sleep_psy_health = 1.0
 
 
-satiety_threshold		= 0.5							; ниже этого значения монстр считается голодным
+satiety_threshold		= 0.5							; below this value monster fill hunger
 
 ;----------------------------------------------------------------------------------------
 
@@ -164,23 +163,23 @@ Morale_Despondent_Threashold	= 0.5
 ;----------------------------------------------------------------------------------------
 ; Sounds
 ;----------------------------------------------------------------------------------------
-sound_idle				= monsters\giant\giant_idle_
-sound_eat				= monsters\giant\giant_eat_
+sound_idle				= monsters\giant\giant_breath_   ; giant_idle_
+sound_eat				= monsters\boar\boar_eat_
 sound_aggressive		= monsters\giant\giant_aggressive_
 sound_attack_hit		= monsters\giant\giant_attack_
 sound_take_damage		= monsters\giant\giant_hurt_
 sound_die				= monsters\giant\giant_death_
-sound_bkgnd				= monsters\giant\giant_underground_
-sound_threaten			= monsters\giant\giant_threaten_
+sound_bkgnd				= monsters\biting\def_
+sound_threaten			= monsters\giant\giant_threaten_   ; boar\threaten_
 sound_landing			= monsters\boar\landing_
 sound_steal				= monsters\biting\def_
 sound_panic				= monsters\biting\def_
-sound_growling			= monsters\giant\giant_breath_
+sound_growling			= monsters\biting\def_
 sound_die_in_anomaly	= monsters\giant\giant_death_
 
 sound_threaten_hit		= device\door_stop
 sound_threaten_start	= monsters\giant\giant_attack_0
-;---------------------------------------------------------------------------
+---------------------------------------------------------------------------
 SoundThreshold		 = 0.1             ; range [0..1]
 max_hear_dist		 = 50
 
@@ -198,7 +197,7 @@ time_quant					= 0.001
 decrease_value				= 0.01				; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
 velocity_factor		     	= 0.5
 luminocity_factor			= 0.5 				; фактор освещения (только для Актёра)
-transparency_threshold		= 0.25				; видимость через камыши и кустарники
+transparency_threshold		= 0.25
 
 
 killer_clsids			= Z_MINCER,Z_GALANT,ZS_BFUZZ,ZS_MBALD,ZS_GALAN,ZS_MINCE
@@ -258,9 +257,9 @@ jump_max_angle				= 0.3
 Anomaly_Detect_Radius			= 15.0
 Anomaly_Detect_Time_Remember	= 10000
 
-HugeKick_Damage				= 1.5
+HugeKick_Damage				= 1.2
 HugeKick_Particles			= monsters\gigant_wave
-HugeKick_MinMaxDist			= 15,30	;10, 20
+HugeKick_MinMaxDist			= 5,20	;10, 20
 HugeKick_MinMaxDelay		= 13000, 22000 ;10000, 30000
 HugeKick_Time_SlowDown		= 4000
 
@@ -390,6 +389,7 @@ fire_wound_immunity  	= 0.009
 ;---------------------------
 [m_gigant_normal]:m_gigant_e
 $spawn				= "monsters\old\gigant_normal_old"
+;---------------------------
 rank				= 401
 spec_rank			= normal
 community			= pseudo_gigant
@@ -405,7 +405,7 @@ community			= pseudo_gigant
 [gigant_strong]:m_gigant_e
 $spawn				= "monsters\gigants\gigant_strong"
 visual				= monsters\psevdogigant\psevdogigant_strong
-icon				= ui_npc_monster_psevdogigant_strong
+icon				= ui_npc_monster_psevdogigant
 rank				= 801
 spec_rank			= strong
 community			= pseudo_gigant

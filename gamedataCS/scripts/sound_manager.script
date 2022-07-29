@@ -131,14 +131,14 @@ function sound_manager:update()
 		local npc_id = nil
 		for k,v in pairs(self.npc) do
 			if v.npc_id ~= self.storyteller then
-				xr_sound.set_sound_play(v.npc_id, next_phrase.theme)
+				xr_sound.set_sound_play(v.npc_id, next_phrase.theme)		
 				npc_id = v.npc_id
 			end
 		end
-
+	
 		self.last_playing_npc = npc_id
 		self.phrase_timeout = nil
-		self.phrase_idle = next_phrase.timeout * 1000
+		self.phrase_idle = next_phrase.timeout * 1000		
 		return
 	else
 		--' Фраза кого угодно.
@@ -193,24 +193,6 @@ function sound_manager:is_finished()
 end
 --' Установить какую историю менеджер должен отыграть
 function sound_manager:set_story(story_id)
-	-- перед началом истории удаляем из рассказчиков мёртвых НПС
-	local cnt, index = #self.npc, 1
-	while index <= cnt do
-		local item = self.npc[index]
-		if item then
-			local npc_id = item.npc_id
-			local npc = alife():object(npc_id)
-			if not npc or (npc.alive and not npc:alive()) then
-				if self.storyteller == npc_id then self.storyteller = nil end
-				table.remove(self.npc, index)
-			else
-				index = index + 1
-			end
-		else
-			index = index + 1
-		end
-	end
-
 	self.story = CStory(story_id)
 	--printf("Set story sm [%s] = [%s]", self.id, story_id)
 end

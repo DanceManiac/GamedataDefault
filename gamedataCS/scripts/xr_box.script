@@ -14,7 +14,7 @@ class "ph_item_box"
 
 function ph_item_box:__init(obj)
 	self.obj = obj
-	local community_list = { "def_box", "small_box_generic", "small_box_ussr", "small_box_nato", "small_box_army", "small_box_science", "big_box_generic", "big_box_dungeons", "big_box_arsenal", "wooden_box", "metal_box"}
+	local community_list = { "def_box", "small_box_generic", "small_box_ussr", "small_box_nato", "small_box_army", "small_box_science", "big_box_generic", "big_box_dungeons", "big_box_arsenal"}
 
 	for k,v in pairs(community_list) do
         --' Необходимо заполнить таблицу

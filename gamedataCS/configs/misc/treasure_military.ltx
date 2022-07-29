@@ -21,8 +21,6 @@ mil_treasure_18
 mil_treasure_19
 mil_treasure_20
 mil_treasure_21
-mil_treasure_22
-mil_treasure_23
 mil_quest_treasure_1
 mil_quest_treasure_2
 mil_quest_treasure_3
@@ -34,11 +32,11 @@ mil_quest_treasure_8
 mil_quest_treasure_9
 mil_quest_treasure_10
 
-[mil_treasure_weapon_box] ;Ящик с оружием
+[mil_treasure_weapon_box]
 target = mil_treasure_weapon_box
 name = mil_treasure_weapon_box_name
 description = mil_treasure_weapon_box_descr
-items = wpn_rpg7, 1, ammo_og-7b, 2
+items = wpn_rpg7, 1
 community = freedom
 condlist = false
 
@@ -46,281 +44,248 @@ condlist = false
 target = mil_treasure_1
 name = st_mil_instrument_case_01
 description = st_mil_instrument_case_01_descr
-items = ammo_7.62x54_ap, 28
-community = stalker, stalker_enemy
+items = medkit, 3
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_2] ;Рюкзак возле трубы
 target = mil_treasure_2
 name = st_mil_rucksack_01
 description = st_mil_rucksack_01_descr
-items = medkit_scientic, 2, bandage, 3
-community = stalker, stalker_enemy
+items = ammo_m209, 3
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_3] ;Рюкзак под прицепом
 target = mil_treasure_3
 name = st_mil_rucksack_02
 description = st_mil_rucksack_02_descr
-items = wpn_g36, 1, ammo_5.56x45_ap, 360
-community = stalker, stalker_enemy
+items = medkit_scientic, 2, ammo_7.62x54_7h1, 10
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_4] ;Тайник под мостом
 target = mil_treasure_4
 name = st_mil_rucksack_02_0000
 description = st_mil_rucksack_02_0000_descr
-items = sardines, 3, conserva, 2, vodka, 1, medkit, 4, bandage, 5
-community = stalker, stalker_enemy
+items = ammo_vog-25, 3
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_5] ;Расщелина в тоннеле
 target = mil_treasure_5
 name = st_mil_rucksack_02_0001
 description = st_mil_rucksack_02_0001_descr
-items = harmonica_a, 1
-community = stalker, stalker_enemy
+items = ammo_9x39_ap, 60
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_6] ;Тайник в туалете
 target = mil_treasure_6
 name = st_mil_rucksack_02_0002
 description = st_mil_rucksack_02_0002_descr
-items = medkit_scientic, 4, bandage, 6, antirad, 2
-community = stalker, stalker_enemy
+items = conserva, 10
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_7] ;Схрон у забора
 target = mil_treasure_7
 name = st_mil_rucksack_02_0003
 description = st_mil_rucksack_02_0003_descr
-items = af_dummy_dummy, 1, af_mincer_meat, 2, af_cristall, 1
-community = stalker, stalker_enemy
+items = ammo_5.45x39_ap, 60
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_8] ;Рюкзак под деревом
 target = mil_treasure_8
 name = st_mil_rucksack_02_0004
 description = st_mil_rucksack_02_0004_descr
-items = grenade_f1, 7, grenade_rgd5, 9
-community = stalker, stalker_enemy
+items = ammo_5.56x45_ap, 60
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_9] ;Треснувшее бревно
 target = mil_treasure_9
 name = st_mil_trees_log_01
 description = st_mil_trees_log_01_descr
-items = detector_elite, 1
-community = dolg
+items = wpn_sig550, 1, ammo_5.56x45_ap, 30
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_10] ;Пень за плитами
 target = mil_treasure_10
 name = st_mil_trees_stump_01
 description = st_mil_trees_stump_01_descr
-items = wpn_groza, 1, ammo_9x39_pab9, 300, ammo_vog-25p, 5
-community = dolg
+items = antirad, 5
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_11] ;Тайник в могиле
 target = mil_treasure_11
 name = st_mil_cross_1
 description = st_mil_cross_1_descr
-items = vodka, 1, sardines, 2
-community = dolg
+items = medkit_scientic, 2
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_12] ;Крест у дерева
 target = mil_treasure_12
 name = st_mil_cross_2
 description = st_mil_cross_2_descr
-items = monolith_outfit, 1
-community = dolg
+items = ammo_pkm_100, 100
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_13] ;Труба у входа на базу
 target = mil_treasure_13
 name = st_mil_pipe_02
 description = st_mil_pipe_02_descr
-items = mutant_dog_tail, 2, mutant_psevdodog_tail, 1, mutant_krovosos_jaw, 1
-community = dolg
+items = antirad, 4
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_14] ;Заначка в "Москвиче"
 target = mil_treasure_14
 name = st_mil_rucksack_01_0000
 description = st_mil_rucksack_01_0000_descr
-items = wpn_addon_grenade_launcher_m203, 1, ammo_m209, 7
-community = freedom
+items = medkit_army, 1, antirad, 3, ammo_vog-25, 1
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_15] ;Рюкзак в подвале
 target = mil_treasure_15
 name = st_mil_rucksack_02_0005
 description = st_mil_rucksack_02_0005_descr
-items = vodka, 4, sardines, 3, conserva, 5, vegetables, 2
-community = freedom
+items = medkit_scientic, 2, medkit_army, 3
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_16] ;Забытый рюкзак
 target = mil_treasure_16
 name = st_mil_rucksack_02_0006
 description = st_mil_rucksack_02_0006_descr
-items = ammo_og-7b, 3
-community = freedom
+items = ammo_m209, 3, ammo_vog-25, 4
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_17] ;Схрон на кухне
 target = mil_treasure_17
 name = st_mil_rucksack_02_0007
 description = st_mil_rucksack_02_0007_descr
-items = af_medusa, 2, af_eye, 1
-community = freedom
+items = af_fireball, 1
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_18] ;Тайник под валуном
 target = mil_treasure_18
 name = st_mil_rucksack_02_0008
 description = st_mil_rucksack_02_0008_descr
-items = detector_elite, 2, detector_advanced, 2, detector_simple, 3
-community = freedom
+items = medkit_scientic, 1, ammo_pkm_100, 100, ammo_7.62x54_7h1, 10
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_19] ;Тайник в дровнях
 target = mil_treasure_19
 name = st_mil_trees_log_01_0000
 description = st_mil_trees_log_01_0000_descr
-items = mutant_zombie_hand, 4, mutant_snork_leg, 2, mutant_psevdodog_tail, 1, mutant_dog_tail, 3, mutant_boar_leg, 2, mutant_krovosos_jaw, 1
-community = freedom
+items = wpn_groza, 1, ammo_9x39_ap, 60
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_20] ;Бревно под валунами
 target = mil_treasure_20
 name = st_mil_trees_log_01_0001
 description = st_mil_trees_log_01_0001_descr
-items = conserva, 2
-community = freedom
+items = wpn_val, 1, ammo_9x39_ap, 60
 condlist = {=actor_on_level(red_forest:military)} true, false
 
 [mil_treasure_21] ;Пень у забора
 target = mil_treasure_21
 name = st_mil_trees_stump_01_0000
 description = st_mil_trees_stump_01_0000_descr
-items = ammo_7.62x54_7h14, 150, ammo_7.62x54_7h1, 100, ammo_9x39_sp5, 200, ammo_11.43x23_hydro, 200, ammo_11.43x23_fmj, 200
-community = freedom
+items = medkit_army, 3
 condlist = {=actor_on_level(red_forest:military)} true, false
 
-[mil_treasure_22] ;Тайник высотника
-target = mil_treasure_22
-name = st_mil_rucksack_02_0009
-description = st_mil_rucksack_02_0009_descr
-items = wpn_vintorez, 1, ammo_9x39_sp5, 60
-community = dolg
-condlist = {=actor_on_level(red_forest:military)} true, false
 
-[mil_treasure_23] ;Нычка для разборок
-target = mil_treasure_23
-name = st_mil_equipment_box_01_0000
-description = st_mil_equipment_box_01_0000_descr
-items = wpn_g36, 1, ammo_5.56x45_ap, 60, wpn_addon_grenade_launcher_m203, 1, ammo_m209, 5
-community = dolg
-condlist = {=actor_on_level(red_forest:military)} true, false
+;Quest items
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;Quest treasure
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[mil_quest_treasure_1] ;Рюкзак под трупом
+[mil_quest_treasure_1] ;Мощный лечебный набор
 target = mil_q1_t_l
 name = st_mil_q1_t_l
 description = st_mil_q1_t_l_descr
-items = monolith_scientific_outfit, 1
-condlist = {=check_npc_name(mil_hog) +mil_actor_go_to_limansk} true, false
-community = killer
-treasure_cost = 6200
+items = medkit_army, 4, antirad, 2, vodka, 1
+condlist = {=actor_on_level(military) =check_npc_name(mil_hog)} true, false
+treasure_cost = 1700
 say_item_name = false
+community = killer
 
-[mil_quest_treasure_2] ;Схрон под выворотнем
+[mil_quest_treasure_2] ;Патронтаж
 target = mil_q2_n
 name = st_mil_q2_n
 description = st_mil_q2_n_descr
-items = hand_radio, 1
-condlist = {=check_npc_name(mil_hog)} true, false
-community = killer
-treasure_cost = 2400
+items = ammo_9x39_ap, 120
+condlist = {=actor_on_level(military) =check_npc_name(mil_hog)} true, false
+treasure_cost = 1000
 say_item_name = false
+community = killer
 
-[mil_quest_treasure_3] ;Бабушкин сейф
+[mil_quest_treasure_3] ;Патронтаж Долговца
 target = mil_q3_n
 name = st_mil_q3_n
 description = st_mil_q3_n_descr
-items = explosive_dinamit, 2
-condlist = {=check_npc_name(mil_hog)} true, false
-community = killer
-treasure_cost = 2800
+items = ammo_pkm_100, 200
+condlist = {=actor_on_level(military) =check_npc_name(mil_hog) +mil_actor_inside_wtower} true, false
+treasure_cost = 1500
 say_item_name = false
+community = killer
 
-[mil_quest_treasure_4] ;Могильный тайник
+[mil_quest_treasure_4] ;Патронтаж и sig550
 target = mil_q4_n
 name = st_mil_q4_n
 description = st_mil_q4_n_descr
 items =  ammo_9x39_ap, 180, ammo_vog-25, 3
-condlist = {=check_npc_name(mil_hog) +mil_actor_inside_wtower} true, false
-community = killer
-treasure_cost = 2600
+condlist = {=actor_on_level(military) =check_npc_name(mil_hog) +mil_start_after_red_forest} true, false
+treasure_cost = 2000
 say_item_name = false
+community = killer
 
-[mil_quest_treasure_5] ;Ящик на армейской базе
+[mil_quest_treasure_5] ;Патронтаж
 target = mil_q5_n
 name = st_mil_q5_n
 description = st_mil_q5_n_descr
-items = ammo_vog-25p, 9
-condlist = {=check_npc_name(mil_hog) +mil_actor_inside_wtower} true, false
+items = wpn_sig550, 1, ammo_5.56x45_ap, 120
+condlist = {=actor_on_level(military) =check_npc_name(mil_hog) +mil_start_after_red_forest} true, false
+treasure_cost = 3000
+say_item_name = true
 community = killer
-treasure_cost = 3800
-say_item_name = false
 
-[mil_quest_treasure_6] ;Сейф в каморке
+[mil_quest_treasure_6] ;Патронтаж
 target = mil_q6_n_a
 name = st_mil_q6_n_a
 description = st_mil_q6_n_a_descr
-items = conserva, 21
-condlist = {=check_npc_name(mil_freedom_speaker)} true, false
-treasure_cost = 1800
-say_item_name = false
+items = ammo_og-7b, 1
+condlist = {=actor_on_level(military) =check_npc_name(mil_freedom_speaker)} true, false
+treasure_cost = 500
+say_item_name = true
+community = freedom
 
-[mil_quest_treasure_7] ;Маленький сейф
+[mil_quest_treasure_7] ;Патронтаж Долговца
 target = mil_q7_n_a
 name = st_mil_q7_n_a
 description = st_mil_q7_n_a_descr
-items = wpn_vihr, 1
-condlist = {=check_npc_name(mil_freedom_speaker)} true, false
-treasure_cost = 1600
+items = ammo_vog-25, 6, medkit_scientic, 2
+condlist = {=actor_on_level(military) =check_npc_name(mil_freedom_speaker) +mil_actor_inside_wtower} true, false
+treasure_cost = 3500
 say_item_name = false
+community = freedom
 
-[mil_quest_treasure_8] ;Гора мусора
+[mil_quest_treasure_8] ;Аккамуляторы
 target = mil_q8_n_a
 name = st_mil_q8_n_a
 description = st_mil_q8_n_a_descr
-items = monolith_heavy_outfit, 1
-condlist = {=check_npc_name(mil_freedom_speaker) +mil_actor_go_to_limansk} true, false
-treasure_cost = 3200
-say_item_name = false
+items = ammo_7.62x54_7h1, 30, antirad, 2
+condlist = {=actor_on_level(military) =check_npc_name(mil_freedom_speaker) +mil_actor_inside_wtower} true, false
+treasure_cost = 1200
+say_item_name = true
+community = freedom
 
-[mil_quest_treasure_9] ;Ящик с секретом
+[mil_quest_treasure_9] ;Аптечки
 target = mil_q9_n_a
 name = st_mil_q9_n_a
 description = st_mil_q9_n_a_descr
-items = medkit_army, 3, bandage, 4, antirad, 2
-condlist = {=check_npc_name(mil_freedom_speaker)} true, false
-treasure_cost = 1400
+items = medkit_scientic, 3
+condlist = {=actor_on_level(military) =check_npc_name(mil_freedom_speaker) +mil_start_after_red_forest} true, false
+treasure_cost = 4500
 say_item_name = false
+community = freedom
 
-[mil_quest_treasure_10] ;Тайник в лесу
+[mil_quest_treasure_10] ;На войну!
 target = mil_q10_n
 name = st_mil_q10_n
 description = st_mil_q10_n_descr
-items = guitar_a, 1
-condlist = {=check_npc_name(mil_freedom_speaker)} true, false
-treasure_cost = 1200
+items = ammo_pkm_100, 200, antirad, 3
+condlist = {=actor_on_level(military) =check_npc_name(mil_freedom_speaker) +mil_actor_go_to_limansk} true, false
+treasure_cost = 2000
 say_item_name = false
+community = freedom
