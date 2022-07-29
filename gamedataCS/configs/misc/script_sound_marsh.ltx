@@ -37,6 +37,7 @@ mar_csky_pathfinder_go_in
 mar_csky_pathfinder_go_out
 mar_csky_arrive_on_open_marsh
 mar_intro_getting_up
+mar_intro_laugh
 ;-------------------------------------------------------------------------------
 mar_csky_barman_meet
 mar_csky_barman_meet_bye
@@ -48,6 +49,11 @@ mar_csky_tech_meet
 mar_csky_tech_meet_bye
 mar_csky_trader_meet
 mar_csky_trader_meet_bye
+mar_csky_tactic_meet
+mar_csky_tactic_meet_bye
+
+;***********MARSH**
+;********************
 
 [mar_csky_barman_meet]
 type = npc
@@ -126,6 +132,22 @@ type = npc
 actor_stereo = false
 npc_prefix = false
 path = scenario\marsh\mar_csky_trader_meet_bye_
+shuffle = rnd
+idle = 1,1,100
+
+[mar_csky_tactic_meet]
+type = npc
+actor_stereo = false
+npc_prefix = false
+path = scenario\marsh\mar_csky_tactic_meet_
+shuffle = rnd
+idle = 3,5,100
+
+[mar_csky_tactic_meet_bye]
+type = npc
+actor_stereo = false
+npc_prefix = false
+path = scenario\marsh\mar_csky_tactic_meet_bye_
 shuffle = rnd
 idle = 1,1,100
 ;-------------------------------------------------------------------------------
@@ -218,6 +240,13 @@ idle = 1,1,100
 type = actor
 actor_stereo = false
 path = device\bed_getup_1
+shuffle = seq
+idle = 1,1,100
+
+[mar_intro_laugh]
+type = actor
+actor_stereo = false
+path = characters_voice\scenario\marsh\mar_intro_laugh
 shuffle = seq
 idle = 1,1,100
 
@@ -381,7 +410,7 @@ type = actor
 actor_stereo = false
 path = characters_voice\scenario\marsh\mar_csky_pathfinder_go_out_1
 shuffle = rnd
-idle = 1,1,100
+idle = 5,10,100
 
 [mar_csky_arrive_on_open_marsh]
 type = actor

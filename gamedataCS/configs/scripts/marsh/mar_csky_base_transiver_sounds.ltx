@@ -1,0 +1,9 @@
+[logic]
+active = ph_idle@wait
+
+[ph_idle@wait]
+on_info = {+mar_intro_talk_with_commander_1_break} %=play_sound(radio_call)%
+on_info2 = {+mar_intro_talk_with_commander_1_radio_played} ph_idle@off
+on_signal = sound_end | ph_idle@off
+
+[ph_idle@off]

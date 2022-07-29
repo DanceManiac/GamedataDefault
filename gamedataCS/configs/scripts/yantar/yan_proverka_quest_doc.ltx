@@ -2,4 +2,5 @@
 active = sr_idle
 
 [sr_idle]
-on_info = {=actor_has_item(device_pda_digger) +yan_quest_doc} nil %+yan_otnesti_doc_saharavy -yan_questions_scientists -yan_vida4a_quest_doc =play_sound(yan_squad_diary:stalker)%
+on_info = {+yan_stalker_searched_body} %=play_sound(yan_squad_diary:recording)%
+on_info2 = {=actor_has_item(device_pda_digger) +yan_quest_doc} nil %+yan_otnesti_doc_saharavy -yan_questions_scientists -yan_vida4a_quest_doc%

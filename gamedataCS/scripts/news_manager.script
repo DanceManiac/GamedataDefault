@@ -22,44 +22,99 @@ tips_icons = {
 }
 ]]
 tips_icons = {
-	bandit 		= "ui_npc_small_bandit_1",
-	csky     	= "ui_npc_small_nebo_1",
-	dolg		= "ui_npc_small_dolg_1",
-	ecolog   	= "ui_iconsNpc_ecolog",
-	freedom		= "ui_npc_small_freedom_1",
-	killer		= "ui_npc_small_merc_2",
-	army 		= "ui_npc_small_soldier_2",
-	monolith	= "ui_npc_small_monolith_1",
-    stalker		= "ui_npc_small_neutral_1",
-	trader   	= "ui_iconsNpc_trader",
-	zombied		= "ui_npc_small_zombied_1",
-    renegade 	= "ui_npc_small_bandit_1",
+	bandit 		= "icon_stalker_yoga",
+	bandit_1 	= "icon_stalker_bandit_3",
+	bandit_2 	= "icon_stalker_bandit_4",
+	bandit_enemy 	= "icon_stalker_bandit_4",
+	csky     	= "icon_stalker_lebedev",
+	csky_1     	= "icon_stalker_nebo_7_6",
+	dolg		= "icon_stalker_krilov",
+	dolg_1		= "icon_stalker_dolg_2_4",
+	ecolog   	= "icon_stalker_scientist_red",
+	freedom		= "icon_stalker_chehov",
+	freedom_1	= "icon_stalker_freedom_3",
+	freedom_2	= "icon_stalker_freedom_2_4",
+	killer		= "icon_stalker_merc_3",
+	army 		= "icon_stalker_chuguykin",
+	army_1 		= "icon_stalker_soldier_2",
+	army_2 		= "icon_stalker_soldier_4_1",
+	monolith	= "icon_stalker_monolith_2_4",
+	monolith_1	= "icon_stalker_monolith_4",
+	stalker		= "icon_stalker_otec",
+	stalker_1	= "icon_stalker_neutral_2_4",
+	stalker_2	= "icon_stalker_neutral_2_5",
+	stalker_3	= "icon_stalker_neutral_2_3",
+	stalker_4	= "icon_stalker_neutral_2_1",
+	stalker_enemy	= "icon_stalker_neutral_2_3",
+	trader   	= "icon_stalker_sidorovich",
+	zombied		= "icon_stalker_zombied_2_2",
+	renegade 	= "icon_stalker_bandit_3",
 
-	mar_csky_commander_name 		= "ui_npc_small_nebo_2_face_1",
-	mar_csky_scientist_name 		= "ui_npc_small_nebo_2_face_2",
-	mar_csky_tech_name				= "ui_npc_small_nebo_2_face_3",
-	mar_csky_barman					= "ui_npc_small_nebo_2_face_4",
+	mar_csky_commander_name 		= "icon_stalker_lebedev",
+	mar_csky_scientist_name 		= "icon_stalker_kalancha",
+	mar_csky_tech_name			= "icon_stalker_novikov",
+	mar_csky_barman				= "icon_stalker_holod",
+        mar_csky_trader_name     	        = "icon_stalker_suslov",
+        mar_csky_guide_name     	        = "icon_stalker_tropnik",
+        mar_tutorial_man_name     	        = "icon_stalker_vetrov",
 
-	escape_trader_name				= "ui_npc_small_trader_1",
-	esc_leader_stalkerbase_name		= "ui_npc_small_neutral_2_face_2",
-	esc_driver_name					= "ui_npc_small_soldier_1",
-	esc_zak_stalkerbase_name		= "ui_npc_small_soldier_2_face_1",
+	escape_trader_name			= "icon_stalker_sidorovich",
+	esc_leader_stalkerbase_name		= "icon_stalker_otec",
+	esc_driver_name				= "icon_stalker_ovechko",
+	esc_zak_stalkerbase_name		= "icon_stalker_zak",
+	esc_stalker_assemble_4_name		= "icon_stalker_goblin",
+	esc_stalker_guard_1_name		= "stalker_neutral_otter",
+	esc_wolf_brother_name		        = "icon_stalker_dog",
+	esc_bandit_commander		        = "icon_stalker_john",
+	esc_military_blockpost_commander_name	= "icon_stalker_chuguykin",
 
-	gar_bandit_leader_name			= "ui_npc_small_bandit_3_face_1",
-	gar_bandit_barman_name			= "ui_npc_small_bandit_3_face_2",
-	gar_digger_quester_name			= "ui_npc_small_neutral_2_face_1",
+	gar_bandit_leader_name			= "icon_stalker_yoga",
+	gar_bandit_barman_name			= "icon_stalker_borov",
+	gar_conc_camp_bandit_1_name		= "icon_stalker_lucky",
+	gar_digger_quester_name			= "icon_stalker_napr",
+        gar_digger_leader_dead_name		= "icon_stalker_svejak",
 
-	agr_duty_base_commander_name 	= "ui_npc_small_dolg_2_face_1",
-	agr_weaponmaster_name			= "ui_npc_small_dolg_2_mask",
-    agr_barman_name					= "ui_npc_u_dolg_2_face_2",
+	agr_duty_base_commander_name 		= "icon_stalker_krilov",
+	agr_barman_name				= "icon_stalker_kolobok",
+	agr_weaponmaster_name			= "icon_stalker_zvyagintsev",
+	agr_serega_name				= "icon_stalker_serega",
+	agr_holeman_name			= "icon_stalker_nalyvayko",
+	agr_stalker_base_leader_name 		= "icon_stalker_orest",
 
---	val_freedom_trader_name			= "ui_npc_small_freedom_2_face_1",
-	val_freedom_leader_name			= "ui_npc_small_freedom_2_face_2",
-	val_freedom_trader_name			= "ui_npc_small_freedom_2_mask",
+	val_freedom_leader_name			= "icon_stalker_chehov",
+	val_freedom_trader_name			= "icon_stalker_ashot",
+	val_freedom_comendant_name		= "icon_stalker_shchukin",
+	val_freedom_attack_commander_name	= "icon_stalker_kapets",
+	val_freedom_blockpost_guard_leader_north_name	= "icon_stalker_manowar",
 
-	red_forester_name				= "ui_npc_small_lesnik_1",
+	red_forester_name			= "icon_stalker_lesnik",
+	red_ally_leshiy_name			= "icon_stalker_leshiy",
+	red_forest_pda_stalker_name		= "icon_stalker_neutral_3",
+	red_csky_commander_name 		= "icon_stalker_lebedev_red_forest",
 
-	yan_st_sakharov_name			= "ui_npc_small_ucheniy_1",
+        mil_kostiuk_name		        = "icon_stalker_kostiuk",
+        mil_hog_name		                = "icon_stalker_merc_4",
+
+	yan_st_sakharov_name			= "icon_stalker_saharov",
+	yan_st_levsha_name			= "icon_stalker_levsha",
+
+	lim_merc_helper_name			= "icon_stalker_colt",
+	lim_csky_storm_troops2     	        = "icon_stalker_nebo_7_6",
+	st_ui_pda_legend_squad			= "icon_stalker_nebo_7_8",
+
+	kat_cs_grenadier_name			= "icon_stalker_nebo_4",
+	hosp_clear_sky_suicide_name		= "icon_stalker_nebo_7_2",
+
+	sim_strelok_name			= "icon_stalker_strelok",
+
+	aes_csky_commander_name 		= "icon_stalker_lebedev_stancia_2",
+        aes_petrenko_name			= "icon_stalker_nebo_2",
+        lname_bandit_101			= "icon_stalker_nebo_3",
+
+	ogsm					= "ui_iconsTotal_obituary",
+        unknown					= "ui_iconsTotal_no_data",
+	recording				= "ui_iconsTotal_recording",
+        st_actor_name				= "ui_npc_u_actor"
 }
 
 
@@ -95,7 +150,7 @@ function send_tip(actor, news_id, timeout, sender, showtime, sender_id)
     xr_sound.set_sound_play(actor:id(), "pda_tips")
 
 
-    local texture = "ui_iconsTotal_grouping"
+    local texture = "ui_iconsTotal_common_channel"
     if sender ~= nil then
 		if type(sender) == "string" then
 	        if tips_icons[sender] then
@@ -148,7 +203,7 @@ function send_sound(npc, faction, point, str, str2)
 		--' »граем дефолтный звук
 --	    xr_sound.set_sound_play(db.actor:id(), "pda_tips")
 
-	    local texture = "ui_iconsTotal_grouping"
+	    local texture = "ui_iconsTotal_common_channel"
 		if npc ~= nil and is_npc_stalker(npc:clsid()) then
             texture = npc:character_icon()
 		else
@@ -169,7 +224,7 @@ function send_sound(npc, faction, point, str, str2)
 
 
 --		db.actor:give_game_news(news_caption, news_text, texture, 1000, 5000)
-		db.actor:give_game_news(news_caption, news_text, texture, 1000, 5000, 1)
+		if not ogsm_options.hide_subs then db.actor:give_game_news(news_caption, news_text, texture, 1000, 5000, 1) end
 
 		return true
 
@@ -197,25 +252,49 @@ function send_task(actor, type, task)
 	if db.actor == nil then
 		return false
 	end
-    xr_sound.set_sound_play(db.actor:id(), "pda_task")
+	xr_sound.set_sound_play(db.actor:id(), "pda_task")
+	local task_title = game.translate_string(task:get_title())
 	local news_caption = game.translate_string(action_descr_by_type[type])
-	local news_text = game.translate_string(task:get_title())
+	local news_caption_2 = action_descr_by_type[type]
+	local news_text = "%c[155,150,150,180]"..task_title
 	local task_type = task_manager.get_task_manager():get_task_by_entity_id(tonumber(task:get_id())).type
-    db.actor:give_game_news(news_caption, news_text, "ui_iconsTotal_"..task_type, 0, 15000)
---[[
-	if db.actor:is_talking() then
-        db.actor:give_talk_message2(news_caption, news_text, "ui_iconsTotal_"..task_type, "iconed_answer_item")
+	if news_caption_2 == "general_reverse_task" or news_caption_2 == "general_complete_task" or news_caption_2 == "general_fail_task" then
+		db.actor:give_game_news(news_caption, news_text, "ui_iconsTotal_"..task_type, 0, 5000)
 	else
-	    db.actor:give_game_news(news_caption, news_text, "ui_iconsTotal_"..task_type, 0, 15000)
+		db.actor:give_game_news(news_caption, news_text, "ui_iconsTotal_"..task_type, 0, 15000)
 	end
-]]
+	-- автосэйв (при наличии соответствующей глобальной настройки в ogsm_options.script)
+	if (ogsm_options.autosave == 2 or ogsm_options.autosave == 3) then
+		if type == "new" then
+			ogsm.start_autosave(task_title)
+		elseif type == "complete" then
+			ogsm.start_autosave(task_title.." Ч завершено")
+		end
+	end
 end
 
-function send_treasure(name)
-	local news_caption = game.translate_string("st_found_new_treasure")
-	local news_text = game.translate_string(name)
+function send_treasure(name, descr)
+	local pda_news = sound_object([[device\pda\pda_news]])
+	pda_news:play(db.actor, 0, sound_object.s2d)
 
-	db.actor:give_game_news(news_caption, news_text, "ui_iconsTotal_found_thing", 0, 3000)
+	local location
+	if string.find(name,"esc_") then location = game.translate_string("escape")
+	elseif string.find(name,"gar_") then location = game.translate_string("garbage")
+	elseif string.find(name,"agru_") then location = game.translate_string("agroprom_underground")
+	elseif string.find(name,"agr_") then location = game.translate_string("agroprom")
+	elseif string.find(name,"val_") then location = game.translate_string("darkvalley")
+	elseif string.find(name,"mil_") then location = game.translate_string("military")
+	elseif string.find(name,"yan_") then location = game.translate_string("yantar")
+	elseif string.find(name,"hos_") then location = game.translate_string("hospital")
+	elseif string.find(name,"lim_") then location = game.translate_string("limansk")
+	elseif string.find(name,"mar_") then location = game.translate_string("marsh")
+	elseif string.find(name,"red_") then location = game.translate_string("red_forest")
+	else location = "" end
+	
+	local news_caption = game.translate_string("st_found_new_treasure")
+	local news_text = "%c[255,255,255,255]"..location..": ".."%c[50,255,165,0]"..game.translate_string(name)
+
+	db.actor:give_game_news(news_caption, news_text, "ui_iconsTotal_polucheni_koordinaty_taynika", 0, 10000, 1)
 end
 
 function get_inv_name(section)
@@ -233,23 +312,23 @@ function relocate_item(actor, type, item, amount)
 	if type == "in" then
 		if amount == 1 then
 			news_caption = game.translate_string("general_in_item")
-			news_text = game.translate_string(get_inv_name(item))
+			news_text = "%c[0,0,255,25]"..game.translate_string(get_inv_name(item))
 		else
 			news_caption = game.translate_string("general_in_item")
-			news_text = game.translate_string(get_inv_name(item)).." x"..amount
+			news_text = "%c[0,0,255,25]"..game.translate_string(get_inv_name(item)).." x"..amount
 		end
 		if db.actor:is_talking() then
 	        db.actor:give_talk_message2(news_caption, news_text, "ui_iconsTotal_found_thing", "iconed_answer_item")
 		else
-            db.actor:give_game_news(news_caption, news_text, "ui_iconsTotal_found_thing", 0, 3000)
+			db.actor:give_game_news(news_caption, news_text, "ui_iconsTotal_found_thing", 0, 3000)
 		end
 	elseif type == "out" then
 		if amount == 1 then
 			news_caption = game.translate_string("general_out_item")
-			news_text = game.translate_string(get_inv_name(item))
+			news_text = "%c[25,240,25,25]"..game.translate_string(get_inv_name(item))
 		else
 			news_caption = game.translate_string("general_out_item")
-			news_text = game.translate_string(get_inv_name(item)).." x"..amount
+			news_text = "%c[25,240,25,25]"..game.translate_string(get_inv_name(item)).." x"..amount
 		end
 		if db.actor:is_talking() then
 	        db.actor:give_talk_message2(news_caption, news_text, "ui_iconsTotal_lost_thing", "iconed_answer_item")
@@ -264,7 +343,7 @@ function relocate_money(actor, type, amount)
 	--' »граем дефолтный звук
 	if type == "in" then
 		local news_caption = game.translate_string("general_in_money")
-		local news_text = game.translate_string(tostring(amount))
+		local news_text = "%c[0,0,255,25]"..game.translate_string(tostring(amount)).." ".."%c[255,255,255,255]"..game.translate_string("rubles")
 
 		if db.actor:is_talking() then
 	        db.actor:give_talk_message2(news_caption, news_text, "ui_iconsTotal_found_money", "iconed_answer_item")
@@ -273,7 +352,7 @@ function relocate_money(actor, type, amount)
 		end
 	elseif type == "out" then
 		local news_caption = game.translate_string("general_out_money")
-		local news_text = game.translate_string(tostring(amount))
+		local news_text = "%c[25,240,25,25]"..game.translate_string(tostring(amount)).." ".."%c[255,255,255,255]"..game.translate_string("rubles")
 
 		if db.actor:is_talking() then
 	        db.actor:give_talk_message2(news_caption, news_text, "ui_iconsTotal_lost_money", "iconed_answer_item")

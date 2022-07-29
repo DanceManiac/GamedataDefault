@@ -1,0 +1,18 @@
+[logic]
+active = remark
+on_death = death
+
+[remark]
+anim = sit_ass
+combat_ignore_cond = {!is_enemy_actor}
+on_info = {+val_talked_to_blockpost_leader_complete =dist_to_actor_le(80)} %=kill_npc()%
+meet = meet
+
+[meet]
+meet_state = 3 | guard@nil
+meet_state_wpn = 3 | threat@meet_weapon_wait
+victim = 3 | actor
+victim_wpn = 3 | actor
+
+[death]
+on_info = %+val_freedom_dead_blockpost_1_dead%

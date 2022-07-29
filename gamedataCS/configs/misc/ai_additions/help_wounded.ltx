@@ -1,0 +1,93 @@
+;--------------------------------------
+; Rulix aka Bak
+; Настройки помощи раненым
+;--------------------------------------
+
+[main]
+help_distance		= 45	; максимальное расстояние помощи
+help_distance_story	= 20	; если есть story_id
+excluded_communities	= zombied ;названия группировок, которым будет запрещено помогать раненым (character_community)
+
+
+[forbidden_patients];имена НПС, запрещённых к лечению (name)
+lim_stalker_0004
+prisoner_guard_stalker
+esc_zak_stalkerbase
+
+[excluded_npcs];имена, профили НПС, которым будет запрещено помогать раненым (name,profile_name)
+mar_csky_commander
+mar_csky_trader
+mar_csky_tech
+mar_csky_barman
+mar_csky_scientist
+mar_intro_guide
+mar_csky_tactic
+mar_tutorial_man
+esc_leader_stalkerbase
+esc_trader_stalkerbase
+esc_tech_stalkerbase
+esc_zak_stalkerbase
+esc_driver
+esc_military_secret_trader
+esc_wolf_brother
+hello_guard_stalker
+prisoner_guard_stalker
+gar_bandit_leader
+gar_bandit_trader
+gar_bandit_fixer
+gar_bandit_barman
+gar_bandit_minigame
+gar_bandit_senya
+gar_digger_quester
+gar_digger_fixer
+gar_digger_messenger_man
+gar_digger_traitor
+gar_bandit_digger_traitor
+gar_digger_night_trader
+gar_digger_24h_trader
+gar_bandit_ambush_1
+gar_bandit_ambush_2
+val_freedom_leader
+val_freedom_trader
+val_freedom_fixer
+val_freedom_barmen
+val_freedom_comendant
+val_freedom_attack_commander
+val_killer_sniper
+agr_duty_base_commander
+agr_duty_base_trader
+agr_duty_base_mechanic
+agr_barman
+agr_weaponmaster
+agr_stalker_base_leader
+agr_stalker_base_trader
+agr_stalker_base_mechanic
+agr_prisoner_1
+agr_prisoner_2
+agr_secret_trader
+agr_dolg_blockpost_commander
+yan_stalker_sakharov
+yan_stalker_levsha
+yan_tech_ecologbase
+red_forester_tech
+red_pursuit_strelok
+red_csky_commander
+red_bridge_stalker_leshiy
+mil_hog
+mil_kostiuk
+mil_freedom_speaker
+mil_questman
+lim_cs_commander
+kat_cs_commander
+kat_cs_grenadier
+stc_csky_leader
+
+[attach_sections]
+medkit
+medkit_army
+medkit_scientic
+bandage
+
+; управление из логики:
+; not_for_help = true в секции wounded
+; help_wounded_enabled = false в секции схемы или в секции логики

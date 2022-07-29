@@ -1,0 +1,107 @@
+class "cheat" (CUIScriptWnd)
+
+function cheat:__init(owner) super()
+	self.owner = owner
+	self:InitControls()
+	self:InitCallBacks()
+end
+
+function cheat:__finalize() end
+
+function cheat:InitControls()
+	-- здесь определ€ем координаты левого верхнего угла и ширину-высоту
+	self:SetWndRect(Frect():set(50,50,550,450))
+	-- файл-описатель наших элементов
+	local xml = CScriptXmlInit()
+	xml:ParseFile("ui_cheat_wnd.xml")
+	-- рамка
+	xml:InitStatic("background", self)
+	-- рамка 2
+	xml:InitFrame("list_frame", self)
+	-- кнопки выбора продолжительности сна
+	self:Register(xml:Init3tButton("caption", self),"caption")
+	self:Register(xml:Init3tButton("btn_1", self),"btn_1")
+	self:Register(xml:Init3tButton("btn_2", self),"btn_2")
+	self:Register(xml:Init3tButton("btn_3", self),"btn_3")
+	self:Register(xml:Init3tButton("btn_4", self),"btn_4")
+	-- кнопка выхода
+	self:Register(xml:Init3tButton("btn_quit", self),"btn_quit")
+end
+
+function cheat:InitCallBacks()
+	-- тут интерактивные элементы, при определенном действии выполн€етс€ заданна€ ф-и€
+	self:AddCallback("btn_1", ui_events.BUTTON_CLICKED, self.cheat1, self)
+	self:AddCallback("btn_2", ui_events.BUTTON_CLICKED, self.cheat2, self)
+	self:AddCallback("btn_3", ui_events.BUTTON_CLICKED, self.cheat3, self)
+	self:AddCallback("btn_4", ui_events.BUTTON_CLICKED, self.cheat4, self)
+	self:AddCallback("btn_quit", ui_events.BUTTON_CLICKED, self.on_quit, self)
+end
+
+-- сразу создадим ф-ию дл€ выхода
+function cheat:on_quit()
+	self:GetHolder():start_stop_menu (self.owner, true)
+	self:GetHolder():start_stop_menu (self,true)
+	self.owner:Show	(true)
+	-- если мы вызывались из игры, то убираем главное меню
+	if level.present() and (db.actor ~= nil) and db.actor:alive() then
+		local console = get_console()
+		console:execute("main_menu off")
+	end
+end
+
+function cheat:OnKeyboard(dik, keyboard_action)
+	CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		-- на выход повесим Esc
+		if dik == DIK_keys.DIK_ESCAPE then
+			self:on_quit()
+		end
+		if dik == DIK_keys.DIK_NUMPAD1 then
+			self:cheat1()
+		end
+		if dik == DIK_keys.DIK_NUMPAD2 then
+			self:cheat2()
+		end
+		if dik == DIK_keys.DIK_NUMPAD3 then
+			self:cheat3()
+		end
+		if dik == DIK_keys.DIK_NUMPAD4 then
+			self:cheat4()
+		end
+	end
+	return true
+end
+
+function cheat:cheat1()
+	ogsm_sleep.sleep_one_hour()
+	self:on_quit()
+	get_hud():HideActorMenu()
+end
+function cheat:cheat2()
+	ogsm_sleep.sleep_three_hours()
+	self:on_quit()
+	get_hud():HideActorMenu()
+end
+function cheat:cheat3()
+	ogsm_sleep.sleep_nine_hours()
+	self:on_quit()
+	get_hud():HideActorMenu()
+end
+function cheat:cheat4()
+	ogsm_sleep.sleep_until_mourning()
+	self:on_quit()
+	get_hud():HideActorMenu()
+end
+
+function cheat:check_game()
+	-- возвращает true если запущена игра
+	local check = false
+	if level.present() and (db.actor ~= nil) and db.actor:alive() then
+		check = true
+	end
+	return check
+end
+
+function cheat:on_quit()
+	self:GetHolder():start_stop_menu (self,true)
+end

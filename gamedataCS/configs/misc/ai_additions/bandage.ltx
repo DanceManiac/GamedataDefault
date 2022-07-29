@@ -1,0 +1,84 @@
+;--------------------------------------
+; Rulix aka Bak
+; Настройки модуля rx_bandage
+;--------------------------------------
+
+[main]
+medkit_health = 75		; использовать аптечку если здоровье меньше, %
+bandage_bleeding = 0.07		; использовать бинт, если кровотечение больше
+
+spawn_medkits_time = 70		; сек; время спавна аптечек, 0 - отключить спавн
+spawn_bandages_time = 20	; сек; время спавна бинтов, 0 - отключить спавн
+
+forbidden_factions = zombied	; группировки, для которых схема будет отключена (community)
+
+[forbidden_npcs];имена, профили НПС, для которых схема будет отключена (name,profile_name)
+prisoner_guard_stalker
+
+[medkits]; аптечки или то чем можно лечиться
+medkit
+medkit_army
+medkit_scientic
+yadulin
+
+[bandages]; список бинтов, предметы, останавливающие кровотечение
+bandage
+
+[animation]; анимация, используемая для предмета (medkit,bandage,pills,drink)
+medkit = medkit
+medkit_army = medkit
+medkit_scientic = medkit
+bandage = bandage
+yadulin = drink
+
+
+; Profiles
+;---------------------------------------
+; по умолчанию читается профиль группировки
+
+[default]
+enabled 	= true		; лечиться разрешено
+infinite	= false		; неограниченный запас
+spawn_medkits	= medkit,medkit_army,medkit_scientic	; секции спавна при необходимости лечения
+spawn_bandages	= bandage	; секции спавна при необходимости перевязки
+
+[stalker]:default
+spawn_medkits	= medkit
+
+[stalker_enemy]:stalker
+
+[bandit]:default
+spawn_medkits	= medkit
+
+[bandit_enemy]:bandit
+
+[freedom]:default
+spawn_medkits	= medkit,medkit_army
+
+[dolg]:default
+spawn_medkits	= medkit,medkit_army
+
+[killer]:default
+spawn_medkits	= medkit_scientic
+
+[ecolog]:default
+spawn_medkits	= medkit_scientic
+infinite	= true
+
+[military]:default
+spawn_medkits	= medkit_army
+
+[monolith]:default
+spawn_medkits	= medkit,medkit_scientic
+
+[renegade]:bandit
+
+[csky]:default
+spawn_medkits	= medkit,medkit,medkit,medkit_scientic
+
+; custom
+
+[disabled]
+enabled 	= false
+infinite	= false
+

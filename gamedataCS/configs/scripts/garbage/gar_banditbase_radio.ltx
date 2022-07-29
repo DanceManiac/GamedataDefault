@@ -1,0 +1,19 @@
+[logic]
+active = ph_idle@wait
+
+[ph_idle@wait]
+hit_on_bone = 0| nil
+on_info = {+gar_banditbase_radio_off} ph_idle@off
+on_info2 = {=actor_in_zone(gar_space_restrictor_bandit_base_no_weapon)} ph_idle@play %=play_sound(gar_banditbase_radio_sound)%
+
+[ph_idle@play]
+hit_on_bone = 0| nil %=stop_sound +gar_banditbase_radio_off%
+on_info = {!actor_in_zone(gar_space_restrictor_bandit_base_no_weapon)} ph_idle@wait %=stop_sound%
+on_info2 = {!is_playing_sound} ph_idle@wait
+tips = radio_off
+on_use = ph_idle@off %+gar_banditbase_radio_off =stop_sound%
+
+[ph_idle@off]
+hit_on_bone = 0| nil
+tips = radio_on
+on_use = ph_idle@play %-gar_banditbase_radio_off =play_sound(gar_banditbase_radio_sound)%

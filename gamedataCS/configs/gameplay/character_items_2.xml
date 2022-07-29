@@ -1,0 +1,36 @@
+guitar_a = 1, prob=1 \n
+harmonica_a = 1, prob=0.1 \n
+hand_radio = 1, prob=0.1 \n
+wpn_binoc = 1, prob=1 \n
+detector_simple = 1, prob=1 \n
+device_torch = 1, prob=1 \n
+
+mutant_dog_tail = 1, prob=0.03 \n
+mutant_flesh_eye = 1, prob=0.03 \n
+mutant_boar_leg = 1, prob=0.03 \n
+mutant_zombie_hand = 1, prob=0.03 \n
+mutant_izlom_hand = 1, prob=0.03 \n
+mutant_tushkano_face = 1, prob=0.03 \n
+mutant_snork_leg = 1, prob=0.02 \n
+mutant_cat_tail = 1, prob=0.02 \n
+mutant_psevdodog_tail = 1, prob=0.02 \n
+mutant_poltergeist_hand = 1, prob=0.02 \n
+
+af_medusa = 1, prob=0.005 \n
+af_vyvert = 1, prob=0.003 \n
+af_night_star = 1, prob=0.005 \n
+af_gravi = 1, prob=0.003 \n
+af_mica = 1, prob=0.005 \n
+af_slug = 1, prob=0.003 \n
+af_thorn = 1, prob=0.005 \n
+af_cristall = 1, prob=0.003 \n
+af_dummy_glassbeads = 1, prob=0.005 \n
+af_eye = 1, prob=0.003 \n
+af_blood = 1, prob=0.005 \n
+af_mincer_meat = 1, prob=0.003 \n
+af_soul = 1, prob=0.005 \n
+af_fuzz_kolobok = 1, prob=0.003 \n
+af_electra_sparkler = 1, prob=0.005 \n
+af_electra_flash = 1, prob=0.003 \n
+af_dummy_battery = 1, prob=0.005 \n
+af_dummy_dummy = 1, prob=0.003 \n

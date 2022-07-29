@@ -2,6 +2,18 @@
 active = sr_idle@start
 
 [sr_idle@start]
-on_actor_in_zone = agr_duty_megafon_zone | sr_idle@end %+agr_duty_megafon_start%
+on_actor_in_zone = agr_duty_megafon_zone | sr_idle@start_1 %+agr_duty_megafon_start%
+
+[sr_idle@start_1]
+on_game_timer = 1 | sr_idle@start_2 %=play_sound(pda_news)%
+
+[sr_idle@start_2]
+on_signal = sound_end | sr_idle@start_3
+
+[sr_idle@start_3]
+on_game_timer = 1 | {-agr_duty_warning_info} sr_idle@start_4 %=play_sound(agr_duty_warning:dolg_1:agr_smart_terrain_1_6_near_2)%
+
+[sr_idle@start_4]
+on_signal = sound_end | sr_idle@end %+agr_duty_warning_info%
 
 [sr_idle@end]

@@ -42,6 +42,7 @@ out_restr = lim_smart_terrain_2_defence
 in_restr = lim_bandit_house_zone_1
 path_walk = csky_attack_2_walk
 path_look = csky_attack_2_walk
+
 ;***********************************
 
 [logic@csky_work3]
@@ -55,7 +56,7 @@ combat_ignore_cond = true
 path_walk = csky_3_walk
 path_look = csky_3_walk
 radius = 0
-on_info = {+lim_bandit_house_go} walker@fire_work3 %=request_current_squad_stage(prepare) =play_sound(lim_cs_storm_troop_leader_clear_street)%
+on_info = {+lim_bandit_house_go} walker@fire_work3 %=request_current_squad_stage(prepare)%
 
 [walker@fire_work3]
 combat_ignore_cond = {!enemy_in_zone(lim_smart_terrain_2_attack)}
@@ -63,6 +64,7 @@ out_restr = lim_smart_terrain_2_defence
 in_restr = lim_bandit_house_zone_1
 path_walk = csky_attack_3_walk
 path_look = csky_attack_3_walk
+
 ;***********************************
 
 [logic@csky_work4]
@@ -84,14 +86,13 @@ out_restr = lim_smart_terrain_2_defence
 in_restr = lim_bandit_house_zone_1
 path_walk = csky_attack_4_walk
 path_look = csky_attack_4_walk
+
 ;***********************************
 
 [logic@csky_work5]
 active = camper@wait_work5
 suitable = {=is_gulag_attacking_target(lim_smart_terrain_2) -lim_bandit_house_attackers} true
-;suitable = {-lim_bandit_house_go} true
 prior = 70
-on_combat = combat
 
 [camper@wait_work5]
 in_restr = lim_bandit_house_zone_1

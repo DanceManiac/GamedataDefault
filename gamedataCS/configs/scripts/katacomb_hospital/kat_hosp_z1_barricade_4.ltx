@@ -79,13 +79,14 @@ on_signal = d | remark@dynamite
 meet = no_meet
 invulnerable = true
 
+;-- закладывает взрывчатку перед закрытым дверным проёмом
 [remark@dynamite]
 out_restr = kat_hosp_z1_cs_rush_restr
 combat_ignore_cond = always
 danger = danger_condition@2
 anim = dynamite
 target = barricade_rush_3_look,1
-on_game_timer = 50 | camper@rush2
+on_game_timer = 50 | camper@rush2 %+kat_door_dynamite%
 meet = no_meet
 invulnerable = true
 
@@ -114,7 +115,7 @@ on_game_timer = 15 | camper@final
 meet = no_meet
 invulnerable = true
 
-;-- вырубает пулемет и занимает финальную точку перед проломом
+;-- вырубает пулемёт и занимает финальную точку перед проломом
 [camper@final]
 out_restr = kat_hosp_z1_cs_final_restr
 danger = danger_condition
@@ -125,7 +126,7 @@ radius = 5
 no_retreat = true
 def_state_moving = sneak_run
 meet = no_meet
-on_signal = minigun | {-minigun_off} remark %=play_sound(clear_sky_kill_gunner:csky)%, camper@final3
+on_signal = minigun | {-minigun_off} remark %=play_sound(clear_sky_kill_gunner:csky:kat_cs_grenadier_name)%, camper@final3
 invulnerable = true
 
 [remark]
@@ -135,7 +136,7 @@ danger = danger_condition
 anim = search
 target = barricade_final_4_look,0
 on_info = {+minigun_off} camper@final2
-on_game_timer = 40 | %+minigun_off%
+on_game_timer = 40 | %+minigun_off =barrel_explode(208)%
 on_game_timer2 = 50 | camper@final2 %=barrel_explode(208) +lim_z1_minigun_off_2%
 meet = no_meet
 invulnerable = true
@@ -149,7 +150,7 @@ radius = 0
 no_retreat = true
 meet = no_meet
 invulnerable = true
-on_game_timer = 20 | camper@final3 %=play_sound(clear_sky_gunner_killed:csky:st_ui_pda_legend_squad)%
+on_game_timer = 20 | camper@final3
 
 [camper@final3]
 out_restr = kat_hosp_z1_cs_final_restr
@@ -167,8 +168,8 @@ ignore_distance_hit = 0
 ignore_distance_sound = 0
 ignore_distance_grenade = 0
 
-[danger_condition@rush]
-ignore_distance_corpse = 0
+;[danger_condition@rush]
+;ignore_distance_corpse = 0
 
 [danger_condition@2]
 ignore_distance = 0

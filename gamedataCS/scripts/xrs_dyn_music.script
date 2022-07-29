@@ -135,66 +135,72 @@ function prepare_tracks()
 end
 
 function interactive_music(number)
-	if IsDynamicMusic() then
-		
-		if music_init==-1 then return end
-		
-		if music_init==0 then
-			prepare_tracks()
-			if xrs_dynamic_music_themes and xrs_dynamic_music_themes.themes and #xrs_dynamic_music_themes.themes>0 then
-				ambient_vol = get_console():get_float('snd_volume_music')
-				music_init=1
-			else
-				music_init=-1
-				return
-			end
-		end
-		
-		if not music then
-			if time_global() - last_update > inert then
-				music_select_section(number)
-				last_update = time_global()
-			end
-		end
-		
-		if not music and music_previous_section=="" and music_section~="" then
-			music_start(music_section)			
-		end	
-		
-		if music and music_previous_section~="" and music_section=="" then
-			music_previous_section=""
-		end	
-		
-		if music then
-			music_obj:update(ambient_vol)		
-			if time_global() > music_next_section_start_time then
-				music_select_section(number)
-				if music_section~="" then
-					music_change(music_section)
+
+	if (ogsm_music==nil and cop_dyn_music==nil) or ogsm_options.music_type == 0  then
+	
+		if IsDynamicMusic() then
+			
+			if music_init==-1 then return end
+			
+			if music_init==0 then
+				prepare_tracks()
+				if xrs_dynamic_music_themes and xrs_dynamic_music_themes.themes and #xrs_dynamic_music_themes.themes>0 then
+					ambient_vol = get_console():get_float('snd_volume_music')
+					music_init=1
 				else
-					music=false
+					music_init=-1
+					return
 				end
 			end
+			
+			if not music then
+				if time_global() - last_update > inert then
+					music_select_section(number)
+					last_update = time_global()
+				end
+			end
+			
+			if not music and music_previous_section=="" and music_section~="" then
+				music_start(music_section)			
+			end	
+			
+			if music and music_previous_section~="" and music_section=="" then
+				music_previous_section=""
+			end	
+			
+			if music then
+				music_obj:update(ambient_vol)		
+				if time_global() > music_next_section_start_time then
+					music_select_section(number)
+					if music_section~="" then
+						music_change(music_section)
+					else
+						music=false
+					end
+				end
+			end
+		else
+			if music_obj and music_obj:playing() then			
+				music_obj:stop()
+				combat_table={}
+				suspence_table = {}			
+				play_combat=0
+				suspence_enemy_update=0
+				last_update=0		
+				music_section=""
+				music_previous_section=""
+				music_next_section_start_time=0
+				music=false
+				music_init=0
+				music_obj=nil		
+				music_graph={}		
+				last_max_update = 0
+				last_min_update = 0
+			end
 		end
-	else
-		if music_obj and music_obj:playing() then			
-			music_obj:stop()
-			combat_table={}
-			suspence_table = {}			
-			play_combat=0
-			suspence_enemy_update=0
-			last_update=0		
-			music_section=""
-			music_previous_section=""
-			music_next_section_start_time=0
-			music=false
-			music_init=0
-			music_obj=nil		
-			music_graph={}		
-			last_max_update = 0
-			last_min_update = 0
-		end
-	end	
+	
+	end
+
 end
 
 function music_select_section(number)	

@@ -1,6 +1,8 @@
 [logic]
 active = smartcover@main_2
 level_spot = quest_npc
+on_death = death
+enable_torch = false
 
 [smartcover@main_1]
 path_walk = mar_smart_terrain_csky_base_tactic_walk
@@ -8,10 +10,8 @@ cover_name = mar_smart_cover_csky_tactic_lead_sit_sleep_mechanic
 loophole_name = lead_sit_sleep_mechanic
 cover_state = idle_target
 on_info = {!talking} smartcover@main_2
-combat_ignore_cond = true
+combat_ignore_cond = {!is_enemy_actor}
 meet = meet@main_tactic
-;target_path = mar_smart_terrain_csky_base_tactic_look
-;target_enemy = actor
 def_state_moving = walk
 
 [smartcover@main_2]
@@ -21,9 +21,9 @@ loophole_name = lead_sit_sleep_mechanic
 cover_state = lookout_target
 on_info = {=talking} smartcover@main_1
 on_info2 = {+mar_intro_talk_with_commander_3_control -mar_intro_talk_with_tactic_done =actor_in_zone(mar_space_restrictor_tactic)} smartcover@main_autouse_1
-combat_ignore_cond = true
+on_info3 = {+mar_intro_talk_with_tactic_done} smartcover@main_3
+combat_ignore_cond = {!is_enemy_actor}
 meet = meet@main_tactic
-;target_path = mar_smart_terrain_csky_base_tactic_look
 def_state_moving = walk
 
 [smartcover@main_autouse_1]
@@ -32,10 +32,8 @@ cover_name = mar_smart_cover_csky_tactic_lead_sit_sleep_mechanic
 loophole_name = lead_sit_sleep_mechanic
 cover_state = idle_target
 on_info = {=talking} smartcover@main_autouse_2
-combat_ignore_cond = true
+combat_ignore_cond = {!is_enemy_actor}
 meet = meet@autouse_tactic
-;target_path = mar_smart_terrain_csky_base_tactic_look
-;target_enemy = actor
 def_state_moving = walk
 
 [smartcover@main_autouse_2]
@@ -44,10 +42,20 @@ cover_name = mar_smart_cover_csky_tactic_lead_sit_sleep_mechanic
 loophole_name = lead_sit_sleep_mechanic
 cover_state = idle_target
 on_info = {!talking} smartcover@main_2
-combat_ignore_cond = true
+combat_ignore_cond = {!is_enemy_actor}
 meet = meet@autouse_tactic
-;target_path = mar_smart_terrain_csky_base_tactic_look
-;target_enemy = actor
+def_state_moving = walk
+
+[smartcover@main_3]
+path_walk = mar_smart_terrain_csky_base_tactic_walk
+cover_name = mar_smart_cover_csky_tactic_lead_sit_sleep_mechanic
+loophole_name = lead_sit_sleep_mechanic
+cover_state = idle_target
+on_info = {+lim_visited_level} %=destroy_object%
+on_actor_dist_le_nvis = 2 | {-mar_csky_tactic_meet_info =actor_see_npc !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_tactic_meet) +mar_csky_tactic_meet_info%
+on_actor_dist_ge_nvis = 4 | {+mar_csky_tactic_meet_info =actor_see_npc !is_faction_enemy_to_actor(csky)} %=play_sound(mar_csky_tactic_meet_bye) -mar_csky_tactic_meet_info%
+combat_ignore_cond = {!is_enemy_actor}
+meet = meet@main_tactic
 def_state_moving = walk
 
 ;-----------------------------------------------------------------------------
@@ -71,3 +79,6 @@ victim = 0 | actor
 victim_wpn = 0 | actor
 trade_enable = false
 precond = usability
+
+[death]
+on_info = %+mar_csky_tactic_dead =set_faction_community_to_actor(csky:enemy)%

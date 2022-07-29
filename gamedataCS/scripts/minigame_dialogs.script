@@ -293,26 +293,32 @@ function set_shooting_weapon(fs, ss, dn, pi)
 	local p = tonumber(pi) - 11111111110
 	if(p==1) then
 	    manager:set_minigame_param(shooting, "wpn_type", "wpn_pm_minigame")
+	    manager:set_minigame_param(shooting, "wpn_ammo_type", "ammo_pm_minigame")
 	    manager:set_minigame_param(shooting, "distance", 1)
 	    manager:set_minigame_param(shooting, "win", shooting_money_table[gt]["wpn_pm_minigame"].distance[1])
 	elseif(p==2) then
 	    manager:set_minigame_param(shooting, "wpn_type", "wpn_beretta_minigame")
+	    manager:set_minigame_param(shooting, "wpn_ammo_type", "ammo_beretta_minigame")
 	    manager:set_minigame_param(shooting, "distance", 1)
 	    manager:set_minigame_param(shooting, "win", shooting_money_table[gt]["wpn_beretta_minigame"].distance[1])
 	elseif(p==3) then
 	    manager:set_minigame_param(shooting, "wpn_type", "wpn_ak74u_minigame")
+	    manager:set_minigame_param(shooting, "wpn_ammo_type", "ammo_ak74_minigame")
 	    manager:set_minigame_param(shooting, "distance", 2)
 	    manager:set_minigame_param(shooting, "win", shooting_money_table[gt]["wpn_ak74u_minigame"].distance[2])
 	elseif(p==4) then
 	    manager:set_minigame_param(shooting, "wpn_type", "wpn_mp5_minigame")
+	    manager:set_minigame_param(shooting, "wpn_ammo_type", "ammo_beretta_minigame")
 	    manager:set_minigame_param(shooting, "distance", 2)
 	    manager:set_minigame_param(shooting, "win", shooting_money_table[gt]["wpn_mp5_minigame"].distance[2])
 	elseif(p==5) then
 	    manager:set_minigame_param(shooting, "wpn_type", "wpn_sig550_minigame")
+	    manager:set_minigame_param(shooting, "wpn_ammo_type", "ammo_sig550_minigame")
 	    manager:set_minigame_param(shooting, "distance", 3)
 	    manager:set_minigame_param(shooting, "win", shooting_money_table[gt]["wpn_sig550_minigame"].distance[3])
 	elseif(p==6) then
 	    manager:set_minigame_param(shooting, "wpn_type", "wpn_val_minigame")
+	    manager:set_minigame_param(shooting, "wpn_ammo_type", "ammo_val_minigame")
 	    manager:set_minigame_param(shooting, "distance", 3)
 	    manager:set_minigame_param(shooting, "win", shooting_money_table[gt]["wpn_val_minigame"].distance[3])
 	end

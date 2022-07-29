@@ -17,12 +17,12 @@ on_info = sr_idle@test_death_in_forest %=create_squad(gar_killer_pseudodogs_in_f
 on_info = sr_idle@test_death_by_garbage %=create_squad(gar_killer_pseudodogs_by_garbage:gar_smart_terrain_5_6)%
 
 [sr_idle@test_death_on_smart]
-on_info = {!squad_exist(gar_killer_pseudodogs_on_smart)} sr_idle@end_section %+gar_quest_killer_pseudodogs_done%
+on_info = {!squad_exist(gar_killer_pseudodogs_on_smart)} sr_idle@end_section %+gar_quest_killer_pseudodogs_done =give_inited_task(storyline:gar_kill_pseudodogs:stalker)%
 
 [sr_idle@test_death_in_forest]
-on_info = {!squad_exist(gar_killer_pseudodogs_in_forest)} sr_idle@end_section %+gar_quest_killer_pseudodogs_done%
+on_info = {!squad_exist(gar_killer_pseudodogs_in_forest)} sr_idle@end_section %+gar_quest_killer_pseudodogs_done =give_inited_task(storyline:gar_kill_pseudodogs:stalker)%
 
 [sr_idle@test_death_by_garbage]
-on_info = {!squad_exist(gar_killer_pseudodogs_by_garbage)} sr_idle@end_section %+gar_quest_killer_pseudodogs_done%
+on_info = {!squad_exist(gar_killer_pseudodogs_by_garbage)} sr_idle@end_section %+gar_quest_killer_pseudodogs_done =give_inited_task(storyline:gar_kill_pseudodogs:stalker)%
 
 [sr_idle@end_section]

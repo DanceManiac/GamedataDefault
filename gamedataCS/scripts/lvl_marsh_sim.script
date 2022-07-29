@@ -132,7 +132,7 @@ elseif level.name()== "garbage" then
 elseif level.name()== "darkvalley" then
 		db.actor:give_money(15000)
 				table.insert(spawn_items, "wpn_wincheaster1300")
-				table.insert(spawn_items, "wpn_ak74_up")
+				table.insert(spawn_items, "wpn_ak74")
 				table.insert(spawn_items, "wpn_colt1911")
 				table.insert(spawn_items, "stalker_outfit")
 				table.insert(spawn_items, "detector_simple")
@@ -156,7 +156,7 @@ elseif level.name()== "darkvalley" then
 				end
 elseif level.name()== "agroprom" then
 				table.insert(spawn_items, "wpn_wincheaster1300")
-				table.insert(spawn_items, "wpn_lr300_up2")
+				table.insert(spawn_items, "wpn_lr300")
 				table.insert(spawn_items, "wpn_colt1911")
 				table.insert(spawn_items, "stalker_outfit")
 				table.insert(spawn_items, "detector_simple")
@@ -170,7 +170,7 @@ elseif level.name()== "agroprom" then
 					table.insert(spawn_items, "ammo_11.43x23_fmj")
 				end		
 				for i = 1,4 do
-					table.insert(spawn_items, "ammo_5.45x39_fmj")
+					table.insert(spawn_items, "ammo_5.56x45_ss190")
 				end		
 				for i = 1,3 do
 					table.insert(spawn_items, "medkit")
@@ -180,8 +180,8 @@ elseif level.name()== "agroprom" then
 				end
 elseif level.name()== "yantar" then
 				table.insert(spawn_items, "wpn_wincheaster1300")
-				table.insert(spawn_items, "wpn_abakan_up2")
-				table.insert(spawn_items, "wpn_colt1911_up2")
+				table.insert(spawn_items, "wpn_abakan")
+				table.insert(spawn_items, "wpn_colt1911")
 				table.insert(spawn_items, "scientific_outfit")
 				table.insert(spawn_items, "detector_simple")
 				for i = 1,5 do
@@ -204,9 +204,9 @@ elseif level.name()== "yantar" then
 				end																		
 elseif level.name()== "red_forest" then
 		table.insert(spawn_items, "wpn_groza")
-		table.insert(spawn_items, "wpn_vintorez_up")
+		table.insert(spawn_items, "wpn_vintorez")
 		table.insert(spawn_items, "wpn_addon_scope")
-		table.insert(spawn_items, "wpn_colt1911_up2")
+		table.insert(spawn_items, "wpn_colt1911")
 		table.insert(spawn_items, "military_outfit")
 		table.insert(spawn_items, "detector_elite")
 		for i = 1,5 do
@@ -232,9 +232,9 @@ elseif level.name()== "red_forest" then
 		end				
 elseif level.name()== "military" then
 		table.insert(spawn_items, "wpn_groza")
-		table.insert(spawn_items, "wpn_vintorez_up")
+		table.insert(spawn_items, "wpn_vintorez")
 		table.insert(spawn_items, "wpn_addon_scope")
-		table.insert(spawn_items, "wpn_colt1911_up2")
+		table.insert(spawn_items, "wpn_colt1911")
 		table.insert(spawn_items, "military_outfit")
 		table.insert(spawn_items, "detector_elite")
 		for i = 1,5 do
@@ -259,10 +259,10 @@ elseif level.name()== "military" then
 			table.insert(spawn_items, "bandage")
 		end	
 elseif level.name()== "limansk" then
-		table.insert(spawn_items, "wpn_ak74_up2")
+		table.insert(spawn_items, "wpn_ak74")
 		table.insert(spawn_items, "wpn_addon_scope")
 		table.insert(spawn_items, "wpn_addon_grenade_launcher")
-		table.insert(spawn_items, "wpn_desert_eagle_up")
+		table.insert(spawn_items, "wpn_colt1911")
 		table.insert(spawn_items, "military_outfit")
 		table.insert(spawn_items, "detector_elite")
 		for i = 1,5 do
@@ -273,6 +273,9 @@ elseif level.name()== "limansk" then
 		end
 		for i = 1,2 do
 			table.insert(spawn_items, "ammo_11.43x23_fmj")
+		end
+		for i = 1,10 do
+			table.insert(spawn_items, "ammo_vog-25")
 		end		
 		for i = 1,2 do
 			table.insert(spawn_items, "medkit_scientic")
@@ -285,9 +288,9 @@ elseif level.name()== "limansk" then
 		end	
 elseif level.name()== "hospital" then
 		table.insert(spawn_items, "wpn_groza")
-		table.insert(spawn_items, "wpn_vintorez_up")
+		table.insert(spawn_items, "wpn_vintorez")
 		table.insert(spawn_items, "wpn_addon_scope")
-		table.insert(spawn_items, "wpn_colt1911_up2")
+		table.insert(spawn_items, "wpn_colt1911")
 		table.insert(spawn_items, "exo_outfit")
 		table.insert(spawn_items, "detector_elite")
 		table.insert(spawn_items, "wpn_addon_silencer")

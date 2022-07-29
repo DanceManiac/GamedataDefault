@@ -1,55 +1,61 @@
+; Накладка на приклад. Обычная резиновая накладка. Позволяет точно подогнать длину приклада под рост стрелка и частично компенсировать отдачу.
 [up_sect_a_svd]
-cost		      		= 2500
-value					= -10
+cost		      		= 2750
+value					= -15
+cam_dispersion          = -0.405
+cam_dispersion_inc      = --0.405
+cam_step_angle_horz     = -0.105
+zoom_cam_dispersion         = -0.27
+zoom_cam_dispersion_inc     = -0.27
+zoom_cam_step_angle_horz    = -0.0675
 
-zoom_cam_dispersion         = -0.3		;1.8
-zoom_cam_dispersion_inc     = -0.3		;1.8
-zoom_cam_step_angle_horz    = -0.05		;0.25
-
+; Модификация газового поршня. Установка компенсатора газового поршня позволяет уменьшить отдачу.
 [up_sect_b_svd]
-cost		      		= 2500
-value					= -10
+cost		      		= 2750
+value					= -15
+cam_dispersion          = -0.405
+cam_dispersion_inc      = --0.405
+cam_step_angle_horz     = -0.105
+zoom_cam_dispersion         = -0.27
+zoom_cam_dispersion_inc     = -0.27
+zoom_cam_step_angle_horz    = -0.0675
 
-zoom_cam_dispersion         = -0.2		;1.8
-zoom_cam_dispersion_inc     = -0.2		;1.8
-zoom_cam_step_angle_horz    = -0.02		;0.25
-
+; Пневмоприклад. Особая конструкция приклада позволяет существенно уменьшить отдачу.
 [up_sect_c_svd]
-cost		      		= 2500
-value					= -10
+cost		      		= 2750
+value					= -15
+cam_dispersion          = -0.405
+cam_dispersion_inc      = --0.405
+cam_step_angle_horz     = -0.105
+zoom_cam_dispersion         = -0.27
+zoom_cam_dispersion_inc     = -0.27
+zoom_cam_step_angle_horz    = -0.0675
 
-zoom_cam_dispersion         = -0.2		;1.8
-zoom_cam_dispersion_inc     = -0.2		;1.8
-zoom_cam_step_angle_horz    = -0.02		;0.25
-
+; Мягкий спуск. Плавный спусковой механизм позволяет повысить точность боя.
 [up_sect_d_svd]
-cost		      		= 2500
-value					= +50
-fire_dispersion_base    = -0.05  	;0.15
+cost		      		= 2750
+value					= +10
+fire_dispersion_base    = -0.01
 
-[up_sect_e_svd]
-cost		      		= 2500
-value					= +5
-ammo_mag_size           = 5
-
+; Магнитный ускоритель. Увеличение скорости полёта пули при помощи переменного магнитного поля.
 [up_sect_ab_svd]
-cost		      		= 3750
-value					= +50
-bullet_speed			= 250
-hit_power           	= 1.2, 1.2, 1.2, 1.2
+cost		      		= 5500
+value					= +20
+bullet_speed			= 180
 
+; Полимерные детали. Использование полимерных деталей существенно снижает массу оружия.
 [up_sect_cd_svd]
-cost		      		= 3750
-value					= -25
+cost		      		= 5500
+value					= -0.86  ;-20
+inv_weight				= -0.86
+control_inertion_factor	= -0.40
 
-zoom_cam_dispersion         = -0.35		;1.8
-zoom_cam_dispersion_inc     = -0.35		;1.8
-zoom_cam_step_angle_horz    = -0.05		;0.25
-
+; Электронная стабилизация. Автоматическая корректировка импульса пули. Значительно повышает точность стрельбы.
 [up_sect_abcd_svd]
-cost		      		= 6250
+cost		      		= 8250
 value					= +30
-fire_dispersion_base	= -0.05
+fire_dispersion_base	= -0.03
+
 
 
 [up_a_svd]
@@ -65,13 +71,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = on_weapon_upgrade_something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
-name                    = st_upg_zatvor_recoil
-description             = st_upg_zatvor_recoil_descr
-icon                    = ui_wp_upgrade_41
+name                    = st_upg_butt_recoil
+description             = st_upg_butt_recoil_descr
+icon                    = ui_wp_upgrade_43
+
 
 [up_b_svd]
 scheme_index            = 0, 1
@@ -86,13 +92,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_porsh_recoil
 description             = st_upg_porsh_recoil_descr
 icon                    = ui_wp_upgrade_42
+
 
 [up_c_svd]
 scheme_index            = 0, 2
@@ -114,6 +120,7 @@ name                    = st_upg_butt_recoil4
 description             = st_upg_butt_recoil4_descr
 icon                    = ui_wp_upgrade_43
 
+
 [up_d_svd]
 scheme_index            = 0, 3
 known                   = 1
@@ -127,41 +134,20 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_trigger_accur
 description             = st_upg_trigger_accur_descr
-icon                    = ui_wp_upgrade_14
+icon                    = ui_wp_upgrade_34
 
-[up_e_svd]
-scheme_index            = 0, 4
-known                   = 1
-effects                 = 
-section                 = up_sect_e_svd
-property                = prop_ammo_size
-
-precondition_functor    = inventory_upgrades.precondition_functor_a
-precondition_parameter  = a & b
-
-effect_functor          = inventory_upgrades.effect_functor_a
-effect_parameter        = something_here
-
-; ui
-prereq_functor          = inventory_upgrades.prereq_functor_a
-prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
-prereq_params           = money(1000), item(habar)
-name                    = st_upg_charger_big
-description             = st_upg_charger_big_descr
-icon                    = ui_wp_upgrade_45
 
 [up_ab_svd]
 scheme_index            = 1, 0
 known                   = 1
 effects                 = up_gr_abcd_svd
 section                 = up_sect_ab_svd
-property                = prop_dispersion
+property                = prop_bullet_speed
 
 precondition_functor    = inventory_upgrades.precondition_functor_a
 precondition_parameter  = a & b
@@ -172,16 +158,17 @@ effect_parameter        = something_here
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
-name                    = st_upg_hard_barrel_curved
-description             = st_upg_hard_barrel_curved_descr
-icon                    = ui_wp_upgrade_48
+name                    = st_upg_accel_curved2
+description             = st_upg_accel_curved2_descr
+icon                    = ui_wp_upgrade_46
+
 
 [up_cd_svd]
 scheme_index            = 1, 1
 known                   = 1
 effects                 = up_gr_abcd_svd
 section                 = up_sect_cd_svd
-property                = prop_recoil
+property                = prop_weight
 
 precondition_functor    = inventory_upgrades.precondition_functor_a
 precondition_parameter  = a & b
@@ -189,13 +176,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
-name                    = st_upg_barrel_recoil
-description             = st_upg_barrel_recoil_descr
+name                    = st_upg_poly_weight
+description             = st_upg_poly_weight_descr
 icon                    = ui_wp_upgrade_47
+
 
 [up_abcd_svd]
 scheme_index            = 2, 0
@@ -210,7 +197,6 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
@@ -232,16 +218,11 @@ elements                = up_c_svd
 [up_gr_d_svd]
 elements                = up_d_svd
 
-[up_gr_e_svd]
-elements                = up_e_svd
-
-
 [up_gr_ab_svd]
 elements                = up_ab_svd
 
 [up_gr_cd_svd]
 elements                = up_cd_svd
-
 
 [up_gr_abcd_svd]
 elements                = up_abcd_svd

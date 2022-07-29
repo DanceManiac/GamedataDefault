@@ -50,11 +50,12 @@ end
 
 function inventory_wnd_closed()
 	printf("---:>Inventory closed")
+	ogsm_icons.on_wnd_close() -- + событие закрытия окна ящика\трупа (здесь на всякий случай)
 end
 
 function trade_wnd_opened()
-	xr_meet_dialog_closed = false
 	printf("---:>Trade opened")
+	xr_meet_dialog_closed = false
 end
 
 function trade_wnd_closed()
@@ -63,8 +64,8 @@ function trade_wnd_closed()
 end
 
 function upgrade_wnd_opened()
-	xr_meet_dialog_closed = false
 	printf("---:>Upgrade opened")
+	xr_meet_dialog_closed = false
 end
 
 function upgrade_wnd_closed()
@@ -78,6 +79,7 @@ end
 
 function dead_body_search_wnd_closed()
 	printf("---:>DeadBodySearch closed")
+	ogsm_icons.on_wnd_close() -- + событие закрытия окна ящика\трупа
 end
 
 function dialog_wnd_showed()
@@ -89,3 +91,10 @@ function dialog_wnd_closed()
 	xr_meet_dialog_closed = true
 end
 
+function get_menu_mode()
+	return last_mode
+end
+
+function trade_wnd_active() -- Rulix aka Bak
+	return last_mode == 2
+end

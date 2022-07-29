@@ -7,23 +7,23 @@ local MG_manager = nil
 class "CMinigames"
 -- Class constructor
 function CMinigames:__init()
-    self.minigames =    {
---                          minigame name       |        minigame's class (minigame's profile)        | current minigame's state
-                            test_crowkiller     = {game_profile = minigame_crowkiller.CMGCrowKiller(),    state = "valiable"},
-                            test_shooting       = {game_profile = minigame_shooting.CMGShooting(),        state = "valiable"},
-                        }
-    self.minigames_params = {
---                              minigame name   |   parameters list
-                                test_crowkiller = {
-												   highscore = 0, timer = 60, win = false, crows_to_kill={0,0,0,0},
-								 				   money_multiplier=10, champion_multiplier=100, selected=0, game_type=""
-												  },
-                                test_shooting   = {
-												   wpn_type = "", game_type = "", obj_name = nil, win = 0,
-												   distance = 0, ammo = 0, targets = {}, target_counter = 0
-												  },
-                            }
--- minigame profiles
+	self.minigames =    {
+		-- minigame name       |        minigame's class (minigame's profile)        | current minigame's state
+		test_crowkiller = {game_profile = minigame_crowkiller.CMGCrowKiller(),    state = "valiable"},
+		test_shooting   = {game_profile = minigame_shooting.CMGShooting(),        state = "valiable"},
+	}
+	self.minigames_params = {
+		-- minigame name   |   parameters list
+		test_crowkiller = {
+			highscore = 0, timer = 60, win = false, crows_to_kill={0,0,0,0},
+			money_multiplier=10, champion_multiplier=100, selected=0, game_type=""
+		},
+		test_shooting   = {
+			wpn_type = "", wpn_ammo_type = "", game_type = "", obj_name = nil, win = 0,
+			distance = 0, ammo = 0, targets = {}, target_counter = 0
+		},
+	}
+	-- minigame profiles
 	self.shooting = ""
 	self.crowkiller = ""
 end

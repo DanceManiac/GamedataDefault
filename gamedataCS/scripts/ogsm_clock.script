@@ -1,0 +1,38 @@
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------
+---------------------------------- Вывод часов на HUD ---------------------------------
+local need_upd	 = false
+local tg_upd	 = 0
+
+function show_time()
+ if tg_upd < time_global() then
+  refresh()
+  tg_upd = time_global() + 500
+ end
+end
+
+function refresh()
+    local hud = get_hud()
+    local time_h = sr_timer.time2str(level.get_time_hours())
+    local time_m = sr_timer.time2str(level.get_time_minutes())
+    if db.actor:alive() and need_upd==false then
+	    if hud:GetCustomStatic("hud_time_tex") == nil then
+		    hud:AddCustomStatic("hud_time_tex", true)
+		    hud:GetCustomStatic("hud_time_tex"):wnd():SetTextST(time_h.." "..time_m)
+		    hud:AddCustomStatic("hud_timer_text2", true)
+		    hud:GetCustomStatic("hud_timer_text2"):wnd():SetTextST(":")
+	    else
+		    hud:GetCustomStatic("hud_time_tex"):wnd():SetTextST(time_h.." "..time_m)
+	    end
+    else
+	    if hud:GetCustomStatic("hud_time_tex") then get_hud():RemoveCustomStatic("hud_time_tex") end
+	    if hud:GetCustomStatic("hud_timer_text2") then get_hud():RemoveCustomStatic("hud_timer_text2") end
+		need_upd = false
+    end
+end
+
+--' Обновляем часы при смене худа костюма
+function update_hud()
+ need_upd = true
+end
+---------------------------------- Вывод часов на HUD ---------------------------------
+------------------------------ Copyright 2007-2010 DEXXX ------------------------------

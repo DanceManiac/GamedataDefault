@@ -3,6 +3,7 @@ active = camper@wait_cut5
 suitable = {=check_npc_name(yan_stalker_levsha) -yan_stop_spawn_cut6} true
 prior = 100
 post_combat_time = 0,0
+on_death = death
 
 ;--сцена 5 "Прорыв к Установке"
 [camper@wait_cut5]
@@ -11,13 +12,52 @@ path_look = stalker5_cut5_1_look
 invulnerable = true
 radius = 0
 post_combat_time = 0,0
-combat_ignore_cond = {-yan_space_restrictor_actor_ready_cut5} true, {+yan_scene_6_snork_dead} true
-on_info = {+yan_scene_6_snork_dead} camper@timer_fire1_cut5 
+combat_ignore_cond = always
+combat_ignore_keep_when_attacked = true
+on_info = {+yan_professor_about_switcher_sound_info} remark@talk_professor %=create_item_in_inv(hand_radio:yan_stalker_levsha)%
+on_info2 = {+yan_levsha_reply_switcher_sound_info} camper@wait_cut5_1
 danger = danger_ignore
+meet = no_meet
+
+[remark@talk_professor]
+anim = guard_rac
+target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_1_look,0
+on_game_timer = 360 | remark@talk_professor_1 %=play_sound(yan_levsha_reply_switcher:stalker:yan_st_levsha_name)%
+on_info = {+yan_levsha_reply_switcher_sound_info} camper@wait_cut5_1
+wounded = wounded
+invulnerable = true
+danger = danger_ignore
+combat_ignore_cond = always
+combat_ignore_keep_when_attacked = true
+meet = no_meet
+
+[remark@talk_professor_1]
+anim = guard_rac
+target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_1_look,0
+on_signal = sound_end | camper@wait_cut5_1 %+yan_levsha_reply_switcher_sound_info%
+on_info = {+yan_levsha_reply_switcher_sound_info} camper@wait_cut5_1
+wounded = wounded
+invulnerable = true
+danger = danger_ignore
+combat_ignore_cond = always
+combat_ignore_keep_when_attacked = true
+meet = no_meet
 
 [danger_ignore]
 ignore_distance = 0
 ignore_types = sound
+
+[camper@wait_cut5_1]
+path_walk = stalker5_cut5_1_walk
+path_look = stalker5_cut5_1_look
+wounded = wounded
+invulnerable = true
+radius = 0
+danger = danger_ignore
+combat_ignore_cond = always
+combat_ignore_keep_when_attacked = true
+on_info = {=dist_to_actor_le(1) +yan_scene_6_snork_dead} camper@timer_fire1_cut5
+meet = no_meet
 
 [camper@timer_fire1_cut5]
 path_walk = stalker5_cut5_1_walk
@@ -54,13 +94,13 @@ combat_ignore_cond = always
 on_signal = sound_end | camper@fire1_cut5_temp %=play_sound(yan_squad_assemble:stalker:yan_st_levsha_name) +yan_proriv_k_ystanovke%
 
 [meet@1]
-meet_state = 30 | hello_wpn@yan_levsha_hello_actor | 10 | guard@yan_levsha_hello_actor 
-meet_state_wpn = 15 | backoff@meet_weapon_wait
-use_wpn = false
+meet_state = 5 | guard@yan_levsha_hello_actor
+meet_state_wpn = 5 | guard@yan_levsha_hello_actor
+trade_enable = false
 sound_start = yan_levsha_hello_actor
-sound_start_wpn = meet_weapon_wait
-victim = 30 | actor
-victim_wpn = 30 | actor
+sound_start_wpn = yan_levsha_hello_actor
+victim = 5 | actor
+victim_wpn = 5 | actor
 use	= true
 use_wpn	= true
 meet_dialog = yan_levsha_hello_dialog 
@@ -112,7 +152,7 @@ path_look = stalker5_cut5_2_look
 def_state_moving = assault
 radius = 3
 meet = no_meet
-on_info = {+yan_destroy_zombi20 _cut5 +yan_destroy_zombi21_cut5 +yan_space_restrictor_actor_go_cut5} camper@fire2_cut5
+on_info = {+yan_destroy_zombi20_cut5 +yan_destroy_zombi21_cut5 +yan_space_restrictor_actor_go_cut5} camper@fire2_cut5
 
 [camper@fire2_cut5]
 invulnerable = true
@@ -167,7 +207,7 @@ on_signal = on_position | {+yan_levsha_ready_cut6 =squad_in_zone_all(yan_stalker
 [remark@wait]
 on_timer = 22000 | {-yan_zabor_2_already_jumping} camper@to_zabor_2 %+yan_zabor_2_already_jumping%
 invulnerable = true
-target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_7_look,0
+target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_7_look, 0
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 anim = wait_na
@@ -185,7 +225,6 @@ invulnerable = true
 [remark@zabor_2]
 anim = yan_zabor_2
 meet = no_meet
-;target = yan_smart_terrain_for_squad_levsha_zabor_2_look,0
 invulnerable = true
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
@@ -200,8 +239,7 @@ invulnerable = true
 radius = 0
 danger = danger_condition
 combat_ignore_cond = always
-meet =  no_meet
-combat_ignore_cond = {-hit_cut6_stalker_1 -hit_cut6_stalker_2 -hit_cut6_stalker_3 -hit_cut6_stalker_4 -hit_cut6_stalker_5}
+meet = no_meet
 on_actor_dist_le_nvis = 6 | {+yan_actor_ready_cut6_ok} remark@yan_give_orders %=play_sound(yan_give_orders:stalker:yan_st_levsha_name)%
 
 [remark@yan_give_orders]
@@ -209,7 +247,7 @@ invulnerable = true
 danger = danger_condition
 combat_ignore_cond = always
 anim = guard
-target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_8_look, 00
+target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_8_look, 0
 meet = no_meet
 on_signal = sound_end | remark@yan_give_orders_2 
 
@@ -222,12 +260,11 @@ anim = guard
 target = actor
 on_info = %=play_sound(yan_give_orders:stalker:yan_st_levsha_name)%
 on_signal = theme_end | camper@fire %+yan_ready_actor_cut6%
-;on_actor_dist_ge_nvis = 7 | camper@fire
 meet = no_meet
 
 [camper@fire]
 out_restr = yan_space_restrictor_cut6_for_group2
-on_signal = yan_ready_perekl_cut6 | %+yan_start_remove +yan_ready_perekl_cut6 -yan_ready_vikl_cut6% camper@fire1 
+on_signal = yan_ready_perekl_cut6 | camper@fire1 %+yan_start_remove +yan_ready_perekl_cut6 -yan_ready_vikl_cut6% 
 path_walk = yan_per_3_walk
 path_look = yan_per_3_look
 def_state_moving = assault
@@ -245,7 +282,7 @@ def_state_moving = assault
 invulnerable = true
 combat_ignore_cond = always
 danger = danger_condition
-on_info = {+yan_stalker_3_kaput +yan_stalker_4_kaput} camper@fire_not_inv
+on_info = {+yan_stalker_5_kaput} camper@fire_not_inv
 meet = no_meet
 
 [camper@fire_not_inv]
@@ -266,4 +303,5 @@ hp_victim       = 0|nil
 hp_fight        = 0|false
 hp_cover        = 0|false
 
-
+[death]
+on_info = %+yan_levsha_dead%

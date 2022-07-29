@@ -288,21 +288,21 @@
 				</text_static>
 			</item>
 
-			<!--item x="0" y="0" width="275" height="26"><!-- 3 >
-				<image x="9" y="-2" width="21" height="21">
-					<texture>ui_pda2_base</texture>
+			<item x="0" y="0" width="275" height="26"><!-- 3 -->
+				<image x="13" y="2" width="13" height="13">
+					<texture>ui_sm_rucksuck</texture>
 				</image>
 				<text_static x="40" y="2" width="230" height="16" complex_mode="1">
-					<text align="l" font="letterica16" color="ui_3">st_ui_pda_legend_base</text>
+					<text align="l" font="letterica16" color="ui_3">st_ui_pda_legend_gg_secrets</text>
 				</text_static>
-			</item-->
+			</item>
 
 			<item x="0" y="0" width="275" height="26"><!-- 4 -->
-				<image x="14" y="3" width="11" height="11">
-					<texture>ui_pda2_squad_leader</texture>
+				<image x="13" y="2" width="13" height="13">
+					<texture>ui_sm_mapQuest_spec</texture>
 				</image>
 				<text_static x="40" y="2" width="230" height="16" complex_mode="1">
-					<text align="l" font="letterica16" color="ui_3">st_ui_pda_legend_squad</text>
+					<text align="l" font="letterica16" color="ui_3">st_ui_pda_legend_vip_secrets</text>
 				</text_static>
 			</item>
 
@@ -315,7 +315,7 @@
 				</text_static>
 			</item>
 
-			<item x="0" y="0" width="275" height="26"><!--6 -->
+			<item x="0" y="0" width="275" height="26"><!-- 6 -->
 				<image x="10" y="-2" width="19" height="21">
 					<texture r="10" g="250" b="250">ui_pda2_exit_point</texture>
 				</image>
@@ -329,11 +329,20 @@
 					<texture color="pda_blue">ui_pda2_important1</texture>
 				</image>
 				<text_static x="40" y="2" width="230" height="16" complex_mode="1">
-					<text align="l" font="letterica16" color="ui_3">st_ui_pda_legend_vip</text>
+					<text align="l" font="letterica16" color="ui_3">st_ui_pda_legend_leader</text>
 				</text_static>
 			</item>
 
 			<item x="0" y="0" width="275" height="26"><!-- 8 -->
+				<image x="13" y="1" width="13" height="13">
+					<texture color="pda_blue">ui_pda2_important2</texture>
+				</image>
+				<text_static x="40" y="2" width="230" height="16" complex_mode="1">
+					<text align="l" font="letterica16" color="ui_3">st_ui_pda_legend_vip</text>
+				</text_static>
+			</item>
+
+			<item x="0" y="0" width="275" height="26"><!-- 9 -->
 				<image x="13" y="1" width="13" height="13">
 					<texture color="pda_blue">ui_pda2_trader</texture>
 				</image>
@@ -342,7 +351,7 @@
 				</text_static>
 			</item>
 
-			<item x="0" y="0" width="275" height="26"><!-- 9 -->
+			<item x="0" y="0" width="275" height="26"><!-- 10 -->
 				<image x="13" y="1" width="13" height="13">
 					<texture color="pda_blue">ui_pda2_guide</texture>
 				</image>
@@ -351,7 +360,7 @@
 				</text_static>
 			</item>
 
-			<item x="0" y="0" width="275" height="26"><!-- 10 -->
+			<item x="0" y="0" width="275" height="26"><!-- 11 -->
 				<image x="13" y="1" width="13" height="13">
 					<texture color="pda_blue">ui_pda2_mechanic</texture>
 				</image>
@@ -360,7 +369,7 @@
 				</text_static>
 			</item>
 
-			<item x="0" y="0" width="275" height="26"><!-- 11 -->
+			<item x="0" y="0" width="275" height="26"><!-- 12 -->
 				<image x="13" y="2" width="12" height="12">
 					<texture r="30" g="215" b="30">ui_minimap_point</texture>
 				</image>
@@ -369,7 +378,7 @@
 				</text_static>
 			</item>
 
-			<item x="0" y="0" width="275" height="26"><!-- 12 -->
+			<item x="0" y="0" width="275" height="26"><!-- 13 -->
 				<image x="13" y="2" width="12" height="12">
 					<texture r="215" g="215" b="10">ui_minimap_point</texture>
 				</image>
@@ -378,12 +387,21 @@
 				</text_static>
 			</item>
 
-			<item x="0" y="0" width="275" height="26"><!-- 13 -->
+			<item x="0" y="0" width="275" height="26"><!-- 14 -->
 				<image x="13" y="2" width="12" height="12">
 					<texture r="215" g="30" b="30">ui_minimap_point</texture>
 				</image>
 				<text_static x="40" y="2" width="230" height="16" complex_mode="1">
 					<text align="l" font="letterica16" color="ui_3">st_ui_pda_legend_enemies</text>
+				</text_static>
+			</item>
+
+			<item x="0" y="0" width="275" height="26"><!-- 15 -->
+				<image x="13" y="1" width="13" height="13">
+					<texture color="pda_blue">ui_pda2_barman</texture>
+				</image>
+				<text_static x="40" y="2" width="230" height="16" complex_mode="1">
+					<text align="l" font="letterica16" color="ui_3">st_ui_pda_legend_barman</text>
 				</text_static>
 			</item>
 

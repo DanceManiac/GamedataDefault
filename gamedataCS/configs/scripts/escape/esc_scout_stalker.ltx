@@ -1,0 +1,39 @@
+[logic]
+active = walker@1
+on_death = death
+enable_torch = false
+
+[walker@1]
+path_walk = esc_scout_stalker_walk_1
+path_look = esc_scout_stalker_look_1
+combat_ignore_cond = {!is_enemy_actor}
+def_state_moving = assault
+meet = meet
+on_info = {+esc_bring_habar_complete} walker@2
+
+[walker@2]
+path_walk = esc_scout_stalker_walk_2
+path_look = esc_scout_stalker_look_2
+out_restr = esc_space_restrictor_in_restr_4
+combat_ignore_cond = {!is_enemy_actor}
+def_state_moving = assault
+meet = meet
+on_info = {=is_dark_night} walker@work1
+
+[walker@work1]
+path_walk = esc_scout_stalker_sleeping_walk
+path_look = esc_scout_stalker_sleeping_look
+out_restr = esc_space_restrictor_in_restr_4
+combat_ignore_cond = {!is_enemy_actor}
+meet = no_meet
+on_info = {!is_dark_night} walker@2
+
+[meet]
+meet_state = 3 | guard@nil
+meet_state_wpn = 3 | threat@meet_weapon_wait
+victim = 3 | actor
+victim_wpn = 3 | actor
+meet_dialog = {!is_dark_night +esc_bring_habar_complete} esc_scout_stalker_dialog
+
+[death]
+on_info = %+esc_scout_stalker_dead%

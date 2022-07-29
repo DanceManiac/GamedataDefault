@@ -9,132 +9,109 @@ path_look = agr_duty_trader_look
 out_restr = agr_in_restr_trader
 anim = wait_trade
 on_info = smartcover@near_table
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet) +duty_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet_bye) -duty_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-invulnerable = true
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+;invulnerable = true
 
 [smartcover@near_table]
 cover_name = agr_smart_cover_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = idle_target
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-invulnerable = true
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+;invulnerable = true
 out_restr = agr_in_restr_trader
 on_timer = 13330 | smartcover@near_table2
 def_state_moving = walk
 on_info = {=actor_in_zone(agr_trader_tradezone)} smartcover@trade
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet) +duty_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet_bye) -duty_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
 
 [smartcover@near_table2]
 cover_name = agr_smart_cover_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = lookout_target
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-invulnerable = true
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+;invulnerable = true
 out_restr = agr_in_restr_trader
 on_timer = 15000 | smartcover@near_table3
 def_state_moving = walk
 on_info = {=actor_in_zone(agr_trader_tradezone)} smartcover@trade
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet) +duty_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet_bye) -duty_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
 
 [smartcover@near_table3]
 cover_name = agr_smart_cover_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = fire_no_lookout_target
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-invulnerable = true
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+;invulnerable = true
 out_restr = agr_in_restr_trader
 on_timer = 4500 | smartcover@near_table4
 def_state_moving = walk
 on_info = {=actor_in_zone(agr_trader_tradezone)} smartcover@trade
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet) +duty_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet_bye) -duty_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
 
 [smartcover@near_table4]
 cover_name = agr_smart_cover_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = fire_target
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-invulnerable = true
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+;invulnerable = true
 out_restr = agr_in_restr_trader
 on_timer = 6500 | smartcover@near_table
 def_state_moving = walk
 on_info = {=actor_in_zone(agr_trader_tradezone)} smartcover@trade
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet) +duty_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet_bye) -duty_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 meet = meet
-
-;[smartcover@look_up]
-;cover_name = agr_smart_cover_trader_2
-;loophole_name = lead_stand_look_up
-;cover_state = idle_target
-;combat_ignore_cond = true
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
-;out_restr = agr_in_restr_trader
-;on_timer = 15000 | smartcover@look_up2
-;def_state_moving = walk
-;on_info = {=actor_in_zone(agr_trader_tradezone)} smartcover@trade
-;meet = meet
-;
-;[smartcover@look_up2]
-;cover_name = agr_smart_cover_trader_2
-;loophole_name = lead_stand_look_up
-;cover_state = fire_no_lookout_target
-;combat_ignore_cond = true
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
-;out_restr = agr_in_restr_trader
-;on_timer = 15000 | smartcover@write
-;def_state_moving = walk
-;on_info = {=actor_in_zone(agr_trader_tradezone)} smartcover@trade
-;meet = meet
-;
-;[smartcover@write]
-;cover_name = agr_smart_cover_trader_3
-;loophole_name = lead_sit_sleep_write
-;cover_state = idle_target
-;combat_ignore_cond = true
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
-;out_restr = agr_in_restr_trader
-;on_timer = 16670 | smartcover@write2
-;def_state_moving = walk
-;on_info = {=actor_in_zone(agr_trader_tradezone)} smartcover@trade
-;meet = meet
-;
-;[smartcover@write2]
-;cover_name = agr_smart_cover_trader_3
-;loophole_name = lead_sit_sleep_write
-;cover_state = lookout_target
-;combat_ignore_cond = true
-;combat_ignore_keep_when_attacked = true
-;invulnerable = true
-;out_restr = agr_in_restr_trader
-;on_timer = 16670 | smartcover@near_table
-;def_state_moving = walk
-;on_info = {=actor_in_zone(agr_trader_tradezone)} smartcover@trade
-;meet = meet
 
 [smartcover@trade]
 cover_name = agr_smart_cover_trader_1
 loophole_name = lead_stand_look_at_table
 cover_state = idle_target
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-invulnerable = true
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+;invulnerable = true
 out_restr = agr_in_restr_trader
 def_state_moving = walk
 meet = meet
+;-- Edited: Jurok --ON-------------------------------------------------------
+on_actor_dist_le_nvis = 2 | {-duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet) +duty_trader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+duty_trader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_trader_meet_bye) -duty_trader_meet_info%
+;-- Edited: Jurok --OFF------------------------------------------------------
 on_info = {!actor_in_zone(agr_trader_tradezone)} smartcover@near_table
 
 [meet]
 meet_state 		= 3|nil@nil
+meet_state_wpn = 3|nil@nil
 victim			= 0|nil
+victim_wpn = 0|nil
 use				= true
+use_wpn = true
 abuse			= false
-sound_start 	= agr_duty_trader_meet
-sound_stop 		= agr_duty_trader_meet_bye
-quest_npc 		= true
+;-- Edited: Jurok --ON-------------------------------------------------------
+;sound_start = agr_duty_trader_meet
+;sound_stop = agr_duty_trader_meet_bye
+;-- Edited: Jurok --OFF------------------------------------------------------
+;quest_npc 		= true

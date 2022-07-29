@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<cheat>
+	<background x="0" y="0" width="400" height="360" stretch="1">
+		<texture>ui_menu_options_dlg</texture>
+	</background>
+
+        <list_frame x="40" y="60" width="340" height="274">
+		<texture>ui_tablist_textbox</texture>
+        </list_frame>
+
+	<caption x="145" y="70" width="50" height="35">
+		<text font="graffiti22" align="l">ui_st_take_backpack_caption</text>
+	</caption>
+
+	<btn_ok x="50" y="130" width="117" height="29">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+		<text>ui_inv_ok</text>
+	</btn_ok>
+
+	<btn_quit x="250" y="130" width="117" height="29">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+		<text>ui_inv_cancel</text>
+	</btn_quit>
+</cheat>

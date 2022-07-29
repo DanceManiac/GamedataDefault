@@ -5,9 +5,10 @@ on_death = death
 on_hit = hit
 post_combat_time = 0, 0
 job_online = true
+level_spot = quest_npc
 
 [death]
-on_info = {=actor_enemy} %+gar_story_digger_killed_or_hostile%
+on_info = %+gar_story_digger_killed_or_hostile%
 
 [hit]
 on_info = {=actor_enemy} %+gar_story_digger_killed_or_hostile%
@@ -16,6 +17,7 @@ on_info = {=actor_enemy} %+gar_story_digger_killed_or_hostile%
 path_walk = digger_messenger_safe_place_walk
 path_look = digger_messenger_safe_place_shoot
 combat_ignore_cond = true
+on_info = {+gar_story_messenger_dogs_dead} remark@no_dogs
 on_actor_dist_le_nvis = 40 | walker@start
 meet = no_meet
 out_restr = gar_space_restrictor_messenger_block
@@ -25,7 +27,7 @@ wounded = wounded
 path_walk = digger_messenger_safe_place_walk
 path_look = digger_messenger_safe_place_look
 combat_ignore_cond = true
-on_actor_dist_le_nvis = 15 | {-gar_story_digger_killed_or_hostile} %=play_sound(gar_digger_messenger_warning:stalker:gar_digger_messenger_man_name) +gar_story_spawn_messenger_dogs%, walker@time %+gar_story_spawn_messenger_dogs%%
+on_actor_dist_le_nvis = 15 | {-gar_story_digger_killed_or_hostile} %=play_sound(gar_digger_messenger_warning:stalker:gar_digger_messenger_man_name) +gar_story_spawn_messenger_dogs%, walker@time %+gar_story_spawn_messenger_dogs%
 on_signal = sound_end | walker@time
 meet = no_meet
 out_restr = gar_space_restrictor_messenger_block
@@ -36,6 +38,7 @@ path_walk = digger_messenger_safe_place_walk
 path_look = digger_messenger_safe_place_look
 combat_ignore_cond = true
 on_timer = 25000 | walker@dogs
+on_info = {+gar_story_messenger_dogs_dead} walker@catch_sound
 meet = no_meet
 out_restr = gar_space_restrictor_messenger_block
 wounded = wounded
@@ -44,7 +47,9 @@ wounded = wounded
 path_walk = digger_messenger_safe_place_walk
 path_look = digger_messenger_safe_place_look
 on_info = {+gar_story_messenger_dogs_dead} walker@catch_sound
-on_info2 = %=play_sound(gar_digger_messenger_shout:stalker:gar_digger_messenger_man_name)%
+on_info2 = {!squad_exist(gar_digger_messenger_dogs)} walker@catch_sound %+gar_story_messenger_dogs_dead%
+on_info3 = %=play_sound(gar_digger_messenger_shout:stalker:gar_digger_messenger_man_name)%
+combat_ignore_cond = true
 meet = no_meet
 out_restr = gar_space_restrictor_messenger_block
 wounded = wounded
@@ -53,6 +58,7 @@ wounded = wounded
 path_walk = digger_messenger_safe_place_walk
 path_look = digger_messenger_safe_place_jump
 on_info = {!is_playing_sound} walker@jump
+combat_ignore_cond = true
 meet = no_meet
 out_restr = gar_space_restrictor_messenger_block
 wounded = wounded
@@ -74,12 +80,11 @@ meet = no_meet
 wounded = wounded
 
 [remark@no_dogs]
-;path_walk = digger_messenger_no_dogs_walk
-;path_look = digger_messenger_no_dogs_look
 target = actor
 anim = wait
-on_info = {-gar_story_digger_killed_or_hostile} %=play_sound(gar_digger_messenger_thanks:stalker:gar_digger_messenger_man_name)%, walker@no_dogs_stay
+on_actor_dist_le_nvis = 4 | {-gar_story_digger_killed_or_hostile} %=play_sound(gar_digger_messenger_thanks:stalker:gar_digger_messenger_man_name)%, walker@no_dogs_stay
 on_signal = sound_end | walker@no_dogs_stay %+gar_story_got_info_from_digger%
+combat_ignore_cond = true
 meet = no_meet
 wounded = wounded
 
@@ -87,7 +92,9 @@ wounded = wounded
 path_walk = digger_messenger_no_dogs_walk
 path_look = digger_messenger_no_dogs_look
 on_info = {!actor_enemy +gar_story_digger_killed_or_hostile} %=actor_enemy%
+combat_ignore_cond = true
 wounded = wounded
+meet = meet
 
 [known_info]
 gar_story_searched_messenger_body

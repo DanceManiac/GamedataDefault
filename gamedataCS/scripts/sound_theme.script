@@ -4,6 +4,12 @@
 --'--------------------------------------------------------------------------------------------------------------------
 nstl = 64
 theme = {}
+ph_snd_themes = {}
+ph_snd_themes["mar_transiver_sounds"] = {
+                                          "ambient\\special\\mar_transiver_sound_1",
+                                          "ambient\\special\\mar_transiver_sound_2"
+}
+
 local sounds_base = stalker_ids.sound_script + 10000
 
 function id()
@@ -41,7 +47,7 @@ function npc_sound:__init(snd_ini, section)
 	self.msg = utils.cfg_get_string(snd_ini, section, "message", nil, false, "", "")
 
 
-	local avail_communities = parse_names(utils.cfg_get_string(snd_ini, section, "avail_communities", nil, false, "", "csky, stalker, ecolog, bandit, dolg, freedom, army, zombied, monolith, killer"))
+	local avail_communities = parse_names(utils.cfg_get_string(snd_ini, section, "avail_communities", nil, false, "", "csky, stalker, stalker_enemy, ecolog, bandit, bandit_enemy, renegade, dolg, freedom, army, zombied, monolith, killer"))
 	self.avail_communities = {}
 	for k,v in pairs(avail_communities) do
  		self.avail_communities[v] = true

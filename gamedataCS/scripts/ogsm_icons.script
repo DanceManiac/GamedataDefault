@@ -1,0 +1,141 @@
+---------------------- Copyright 2007-2019 Charsi, monk, Kirgudu ----------------------
+----------------------------------- Диалоговые иконки ---------------------------------
+--------------------------------- Last edit: 05.06.2019 -------------------------------
+
+
+-- цвета фона иконок в зависимости от типа диалога
+local bg_colors = {
+	["body"] = GetARGB(255,255,160,160),
+	["box"]  = GetARGB(255,255,255,255)
+}
+-- иконки ящиков в зависимости от визуала
+local box_icons = {
+	["equipment_box_01_case"] = "icon_equipment_box_01_case",
+	["equipment_box_02_case"] = "icon_equipment_box_02_case",
+	["equipment_box_03_case"] = "icon_equipment_box_03_case",
+	["equipment_box_04_case"] = "icon_equipment_box_04_case",
+	["equipment_bush_01_case"] = "icon_equipment_bush_01_case",
+	["equipment_cross_1_case"] = "icon_equipment_cross_1_case",
+	["equipment_cross_2_case"] = "icon_equipment_cross_2_case",
+	["equipment_cross_3_case"] = "icon_equipment_cross_3_case",
+	["equipment_electric_box_01_case"] = "icon_equipment_electric_box_01_case",
+	["equipment_electric_box_02_case"] = "icon_equipment_electric_box_02_case",
+	["equipment_electric_box_03_case"] = "icon_equipment_electric_box_03_case",
+	["equipment_hatch_01_case"] = "icon_equipment_hatch_01_case",
+	["equipment_hatch_02_case"] = "icon_equipment_hatch_02_case",
+	["equipment_hatch_03_case"] = "icon_equipment_hatch_03_case",
+	["equipment_hole_01_case"] = "icon_equipment_hole_01_case",
+	["equipment_instrument_case_01_case"] = "icon_equipment_instrument_case_01_case",
+	["equipment_pipe_01_case"] = "icon_equipment_pipe_01_case",
+	["equipment_pipe_02_case"] = "icon_equipment_pipe_02_case",
+	["equipment_pipe_valve_01_case"] = "icon_equipment_pipe_valve_01_case",
+	["equipment_refrigerator_01_case"] = "icon_equipment_refrigerator_01_case",
+	["equipment_rucksack_01_case"] = "icon_equipment_rucksack_01_case",
+	["equipment_rucksack_02_case"] = "icon_equipment_rucksack_02_case",
+	["equipment_seif_01_case"] = "icon_equipment_seif_01_case",
+	["equipment_seif_02_case"] = "icon_equipment_seif_02_case",
+	["equipment_seif_03_case"] = "icon_equipment_seif_03_case",
+	["equipment_skaf_01_case"] = "icon_equipment_skaf_01_case",
+	["equipment_trees_log_01_case"] = "icon_equipment_trees_log_01_case",
+	["equipment_trees_stump_01_case"] = "icon_equipment_trees_stump_01_case",
+	["equipment_zaz968_case"] = "icon_equipment_zaz968_case"
+}
+-- иконка ящика по умолчанию (например, если не удалось определить визуал)
+local default_box_icon = "icon_equipment_rucksack_02_case"
+-- служебные переменные
+local menu, icon, icon_border = nil, nil, nil
+
+-- вызывается при использовании трупика монстра
+-- в bind_monster generic_object_binder:use_callback
+function on_use_dead_body(obj)
+	-- инициализация
+	init_icon("body")
+	-- читаем идентификатор текстуры иконки из секции объекта
+	local texture_id = utils.cfg_get_string(system_ini(), obj:section(), "icon", obj, true, "", "")
+	icon:InitTexture(texture_id)
+	icon:SetStretchTexture(true)
+	-- прикрепляем иконку к диалогу
+	attach_icon()
+end
+
+-- вызывается при использовании тайника
+-- в bind_physic_object generic_physics_binder:use_callback
+function on_use_inventory_box(obj)
+	-- инициализация
+	init_icon("box")
+	-- определяем идентификатор текстуры иконки в зависимости от объекта
+	local texture_id = get_icon_texture(obj)
+	icon:InitTexture(texture_id)
+	icon:SetStretchTexture(true)
+	-- прикрепляем иконку к диалогу
+	attach_icon()
+end
+
+-- вызывается из actor_menu.dead_body_search_wnd_closed
+-- и на всякий случай из actor_menu.inventory_wnd_closed для инвентарных ящиков
+-- при закрытии окна удаляем иконку
+function on_wnd_close()
+	if menu then
+		menu:DetachChild(icon)
+		menu:DetachChild(icon_border)
+		menu = nil
+	end
+end
+
+-- вспомогательные функции
+
+function get_icon_texture(obj)
+	local pk = get_netpk(obj, 1)
+	if not pk:isOk() then return default_box_icon end
+	local data = pk:get()
+	local visual_name = (data and data.visual_name or ""):match(".*\\(%S+)$")
+	return box_icons[visual_name] or default_box_icon
+end
+
+function init_icon(mode)
+	if not icon_border then
+		-- рамка
+		icon_border = CUIStatic()
+		-- положение и размеры
+		local x, y, w, h = 159, 8, 165, 110
+		-- коррекция по ш\ф
+		if device().width/device().height > 1.34 then x, w = 132, 138 end
+		icon_border:SetWndRect(Frect():set(x, y, x+w, y+h))
+		icon_border:InitTexture("ui_inGame2_character_border")
+		icon_border:SetStretchTexture(true)
+	end
+	if not icon then
+		-- иконка
+		icon = CUIStatic()
+		-- положение и размеры
+		local x, y, w, h = 159, 8, 165, 110
+		-- коррекция по ш\ф
+		if device().width/device().height > 1.34 then x, w = 132, 138 end
+		icon:SetWndRect(Frect():set(x, y, x+w, y+h))
+	end
+	-- можно настроить цвет (берём из таблицы по переданному параметру)
+	icon:SetColor(bg_colors[mode])
+end
+
+function attach_icon()
+	local x = 5
+	level.add_call(
+		-- иногда при юзании окно не открывается, поэтому ждем не больше 5 апдейтов.
+		function()
+			x = x - 1
+			return (x == 0) or (level.main_input_receiver() ~= nil)
+		end,
+		-- аттачим иконку
+		function()
+			menu = level.main_input_receiver()
+			if menu then
+				menu:AttachChild(icon)
+				menu:AttachChild(icon_border)
+			end
+		end
+	)
+end
+
+
+---------------------- Copyright 2007-2019 Charsi, monk, Kirgudu ----------------------
+----------------------------------- Диалоговые иконки ---------------------------------

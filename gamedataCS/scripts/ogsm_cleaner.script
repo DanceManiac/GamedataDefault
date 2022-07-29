@@ -1,0 +1,184 @@
+---------------------------- Copyright 2010-2011 Minister -----------------------------
+-------------------- Уборщик бесхозного оружия и залежалых трупов ---------------------
+------------------------- Last edit (by Kirgudu): 27.06.2017 --------------------------
+
+function clean()
+	local sim, gmg = alife(), game_graph()
+	local actor_loc = gmg:vertex(sim:actor().m_game_vertex_id):level_id()
+	for i = 1, 65534 do
+		obj = sim:object(i)
+		if obj then
+			local obj_loc = gmg:vertex(obj.m_game_vertex_id):level_id()
+			if obj_loc ~= actor_loc then
+				-- if ((IsMonster(obj) and obj.alive and not obj:alive()) or
+				if (isWeapon(obj) and obj.parent_id == 65535 and try_to_release(obj))
+				or (IsStalker(obj) and try_to_release_special_npc(obj))
+				then
+					ogsm.dbglog("ogsm_cleaner_release_"..obj:name())
+					sim:release(obj, true)
+				end
+			end
+		end
+	end
+end
+
+local holy_objects = {
+	"^wpn_desert_eagle",
+	"^wpn_fn2000",
+	"^wpn_aps",
+	"^wpn_gsh18",
+	"^wpn_tt33",
+	"^wpn_fn57",
+	"^wpn_akm",
+	"^wpn_rpk",
+	"^wpn_ak101",
+	"^wpn_ak104",
+	"^wpn_ak108",
+	"^wpn_ump45",
+	"^wpn_sigsg550sniper",
+	"^wpn_p90",
+	"^wpn_pmm",
+	"^mar_wpn_mp5",
+	"^mar_wpn_ak74",
+	"^mar_wpn_ak74u",
+	"^mar_wpn_ak74u_0000",
+	"^mar_wpn_ak74u_0001",
+	"^mar_boar_weak",
+	"^mar_boar_weak_0000",
+	"^mar_boar_weak_0001",
+	"^mar_boar_weak_0002",
+	"^mar_boar_strong",
+	"^mar_wpn_vintorez",
+	"^gar_dog_normal_messenger_dead_1",
+	"^gar_dog_normal_messenger_dead_2",
+	"^gar_dog_normal_messenger_dead_3",
+	"^gar_dog_normal_messenger_dead_4",
+	"^gar_wpn_pm",
+	"^esc_wpn_ak74u",
+	"^esc_grenade_rgd5",
+	"^esc_grenade_rgd5_0000",
+	"^esc_grenade_rgd5_0001",
+	"^esc_grenade_rgd5_0002",
+	"^esc_grenade_rgd5_0003",
+	"^esc_grenade_rgd5_0004",
+	"^esc_dog_weak",
+	"^esc_dog_weak_0000",
+	"^esc_dog_normal",
+	"^esc_dog_normal_0000",
+	"^esc_dog_normal_0001",
+	"^esc_dog_strong",
+	"^esc_dog_strong_0000",
+	"^esc_wpn_toz34",
+	"^esc_wpn_fort",
+	"^esc_medkit",
+	"^agr_bloodsucker_normal_0000",
+	"^agr_dog_weak",
+	"^agr_dog_weak_0000",
+	"^agr_dog_weak_0001",
+	"^agr_dog_weak_0002",
+	"^agr_dog_weak_0003",
+	"^agr_dog_weak_0004",
+	"^agr_dog_weak_0005",
+	"^agr_dog_normal",
+	"^agr_dog_normal_0000",
+	"^agr_dog_normal_0001",
+	"^agr_dog_normal_0002",
+	"^agr_dog_normal_0003",
+	"^agr_dog_normal_0004",
+	"^agr_dog_normal_0005",
+	"^agr_dog_strong",
+	"^agr_dog_strong_0000",
+	"^agr_dog_strong_0001",
+	"^agr_dog_strong_0002",
+	"^agr_dog_strong_0003",
+	"^agr_dog_strong_0004",
+	"^agr_dog_strong_0005",
+	"^agr_dog_strong_0007",
+	"^agr_dog_strong_0008",
+	"^agr_tushkano_normal",
+	"^agr_tushkano_normal_0000",
+	"^agr_tushkano_normal_0001",
+	"^agr_tushkano_normal_0002",
+	"^agr_tushkano_normal_0004",
+	"^agr_tushkano_normal_0006",
+	"^agr_tushkano_normal_0007",
+	"^agr_wpn_walther",
+	"^agr_grenade_rgd5",
+	"^mil_bloodsucker_strong",
+	"^mil_wpn_ak74_priklad",
+	"^mil_wpn_ak74_priklad_0000",
+	"^mil_wpn_ak74_priklad_0001",
+	"^mil_wpn_ak74_priklad_0002",
+	"^mil_grenade_f1",
+	"^mil_grenade_f1_0000",
+	"^mil_grenade_f1_0001",
+	"^mil_wpn_abakan",
+	"^mil_wpn_abakan_0000",
+	"^mil_wpn_abakan_0001",
+	"^mil_wpn_abakan_0002",
+	"^red_wpn_rg%-6",
+	"^lim_wpn_rg%-6"
+}
+
+function try_to_release(obj)
+	local obj_name = obj:name()
+	for i = 1, #holy_objects do
+		if string.find(obj_name, holy_objects[i]) then return false end
+	end
+	return true
+end
+
+-- при отсутствии info уборка будет произведена при первой же загрузке на другой локации
+-- при указании info - при загрузке на другой локации, если выдана соотв. инфопорция
+local special_npcs_to_release = {
+	-- экологи на Болотах после первого перехода на Кордон
+	{obj_name = "^marsh_dead_ecolog"},
+	-- бойцы ЧН на Болотах после посещения Кордона
+	{obj_name = "^mar_tutorial_man"},
+	{obj_name = "^mar_stalker", info = "esc_visited_level"},
+	-- бандиты на Кордоне после финального диалога с Халецким (про пистолет)
+	{obj_name = "^esc_bandit_dead", info = "esc_prisoner_complete_dialog"},
+	-- сталкеры на Свалке после перехода в Тёмную долину
+	{obj_name = "^gar_stalker_corpse", info = "val_talked_to_blockpost_leader_complete"},
+	{obj_name = "^gar_sim_default_digger", info = "val_talked_to_blockpost_leader_complete"},
+	-- собаки атаковавшие Васяна
+	{obj_name = "^gar_digger_messenger_dogs", info = "val_bring_to_fang_done"},
+	-- бойцы Свободы в Тёмной долине после перехода на Агропром
+	{obj_name = "^val_freedom_dead_blockpost", info = "agr_garbage_end"},
+	{obj_name = "^val_stalker_corpse", info = "agr_garbage_end"},
+	-- сталкеры на Агропроме после подземелий Агропрома
+	{obj_name = "^agr_stalker_corpse", info = "agr_actor_inside_9"},
+	-- сталкеры на Янтаре после погони в Рыжем лесу
+	{obj_name = "^yan_stalker", info = "red_pursuit_scene_begin"},
+	-- сталкер в Рыжем лесу после телепорта к копру
+	{obj_name = "^red_stalker_0001", info = "red_actor_find_teleport"},
+	-- военные на Складах после опускания моста в Рыжем лесу
+	{obj_name = "^mil_sim_default_military", info = "red_bridge_csky_go_limansk"},
+	-- бойцы всех группировок в Лиманске после перехода в Госпиталь
+	{obj_name = "^lim_stalker", info = "lim_go_to_hospital"},
+	-- боец ЧН в Госпитале, Клык и его убийцы на Складах во фриплее
+	{obj_name = "^kat_hosp_stalker", info = "freeplay"},
+	{obj_name = "^mil_stalker_fang", info = "freeplay"},
+	{obj_name = "^mil_stalker_killer", info = "freeplay"}
+}
+
+local holy_special_objects = {
+	"^yan_stalker_sakharov",
+	"^yan_stalker_zombied_13"
+}
+
+function try_to_release_special_npc(obj)
+	local obj_name = obj:name()
+	for _,v in ipairs(special_npcs_to_release) do
+		if (v.info == nil or has_alife_info(v.info)) and string.find(obj_name, v.obj_name) then
+			for i = 1, #holy_special_objects do
+				if string.find(obj_name, holy_special_objects[i]) then return false end
+			end
+			return true
+		end
+	end
+	return false
+end
+
+-------------------- Уборщик бесхозного оружия и залежалых трупов ---------------------
+---------------------------- Copyright 2010-2011 Minister -----------------------------

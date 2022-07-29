@@ -2,14 +2,14 @@
 wpn_rpg7
 ammo_og-7b
 device_torch
-wpn_colt1911
-ammo_11.43x23_fmj
+wpn_fort
+ammo_9x18_fmj
 
 [dont_spawn_character_supplies]
 
 
 [logic]
-active = camper
+active = {-freeplay} camper, camper@final
 
 [camper]
 combat_ignore_cond = always
@@ -52,10 +52,10 @@ path_look = z3_cs_grenadier_fire
 radius = 1
 def_state_moving = sneak_run
 invulnerable = true
-on_info = {+hospital_z3_cs_fire_2} camper2
-on_game_timer = 150 | camper2
+on_info = {+hospital_z3_cs_fire_2} camper@2
+on_game_timer = 150 | camper@2
 
-[camper2]
+[camper@2]
 post_combat_time = 0,0
 combat_ignore_cond = always
 out_restr = kat_hosp_z3_cs_floor_restr
@@ -73,7 +73,7 @@ out_restr = kat_hosp_z3_cs_floor_restr
 combat_ignore_cond = always
 anim = threat_fire
 target = z3_cs_grenadier_fire, 1
-on_game_timer = 30 | camper@wait3 %-hospital_z3_spawn_3_on -hospital_z3_spawn_4_on =play_sound(clear_sky_block_2)%
+on_game_timer = 30 | camper@wait3 %-hospital_z3_spawn_3_on -hospital_z3_spawn_4_on =play_sound(clear_sky_block_2:csky:st_ui_pda_legend_squad)%
 invulnerable = true
 
 [camper@wait3]
@@ -85,9 +85,9 @@ path_look = z3_cs_grenadier_fire
 radius = 0
 def_state_moving = sneak_run
 invulnerable = true
-on_game_timer = 50 | camper3 %=play_sound(clear_sky_kill_dot:csky:st_ui_pda_legend_squad)%
+on_game_timer = 50 | camper@3 %=play_sound(clear_sky_kill_dot:csky:st_ui_pda_legend_squad)%
 
-[camper3]
+[camper@3]
 post_combat_time = 0,0
 combat_ignore_cond = always
 out_restr = kat_hosp_z3_cs_floor_restr
@@ -96,7 +96,7 @@ path_look = z3_cs_grenadier_fire
 radius = 0
 def_state_moving = sneak_run
 invulnerable = true
-on_signal = fire | remark@fire3 ;%+hospital_z3_minigun_off%
+on_signal = fire | remark@fire3
 
 [remark@fire3]
 post_combat_time = 0,0
@@ -116,3 +116,4 @@ path_walk = z3_cs_grenadier_final_walk
 path_look = z3_cs_grenadier_look
 radius = 0
 def_state_moving = sneak_run
+on_info = {+freeplay} %=destroy_object%

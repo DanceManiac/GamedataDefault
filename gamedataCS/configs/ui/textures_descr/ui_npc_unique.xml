@@ -61,8 +61,55 @@
     <texture id="ui_npc_u_zombied_3" x="165" y="864" width="165" height="108" />
     <texture id="ui_npc_u_zombied_4" x="330" y="864" width="165" height="108" />
     <texture id="ui_npc_u_zombied_2" x="495" y="864" width="165" height="108" />
+    <texture id="ui_npc_stalker_neutral_5" x="495" y="966" width="165" height="108" />
+    <texture id="ui_npc_stalker_soldier_1" x="330" y="966" width="165" height="108" />
+    <texture id="ui_npc_stalker_soldier_2" x="330" y="1086" width="165" height="108" />
+    <texture id="ui_npc_stalker_soldier_3" x="165" y="1086" width="165" height="108" />
+    <texture id="ui_npc_stalker_soldier_4" x="820" y="1086" width="165" height="108" />
+    <texture id="ui_npc_u_freedom_6" x="820" y="1186" width="165" height="108" />
+    <texture id="ui_npc_u_freedom_7" x="820" y="1286" width="165" height="108" />
+    <texture id="ui_npc_stalker_neutral_6" x="165" y="966" width="165" height="108" />
+    <texture id="ui_npc_u_freedom_5"       x="0"   y="1086" width="165" height="108" />
+    <texture id="ui_npc_stalker_neutral_7" x="0" y="966" width="165" height="108" />
+    <texture id="ui_npc_stalker_neutral_8" x="165" y="1616" width="165" height="108" />
+    <texture id="ui_npc_stalker_neutral_9" x="330" y="1616" width="165" height="108" />
+    <texture id="ui_npc_bandit_novice_1" x="495" y="1085" width="165" height="108" />
+    <texture id="ui_npc_bandit_novice_2" x="495" y="1186" width="165" height="108" />
+    <texture id="ui_npc_stalker_bandit_5" x="495" y="1616" width="165" height="108" />
+    <texture id="ui_npc_stalker_bandit_6" x="660" y="1616" width="165" height="108" />
     <texture id="ui_npc_u_dolg_2_face_2" x="660" y="864" width="165" height="108" />
+    <texture id="ui_npc_green_stalker_1" x="820" y="864" width="165" height="108" />
+    <texture id="ui_npc_green_stalker_2" x="820" y="965" width="165" height="108" />
+    <texture id="ui_npc_green_stalker_3" x="660" y="965" width="165" height="108" />
+    <texture id="ui_npc_green_stalker_4" x="660" y="1084" width="165" height="108" />
+    <texture id="ui_npc_bandit_novice_3" x="660" y="1184" width="165" height="108" />
+    <texture id="ui_npc_stalker_merc_5" x="165" y="1186" width="165" height="108" />
+    <texture id="ui_npc_stalker_merc_6" x="330" y="1186" width="165" height="108" />
+    <texture id="ui_npc_stalker_merc_7" x="0"   y="1186" width="165" height="108" />
+    <texture id="ui_npc_stalker_dolg_5" x="165" y="1288" width="165" height="108" />
+    <texture id="ui_npc_stalker_dolg_6" x="0"   y="1288" width="165" height="108" />
+    <texture id="ui_npc_stalker_dolg_7" x="0"   y="1616" width="165" height="108" />
+    <texture id="ui_npc_stalker_monolith_5" x="330" y="1289" width="165" height="108" />
+    <texture id="ui_npc_stalker_monolith_6" x="495" y="1289" width="165" height="108" />
+    <texture id="ui_npc_stalker_nebo_5" x="660" y="1290" width="165" height="108" />
+    <texture id="ui_npc_stalker_nebo_4" x="660" y="1399" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_12" x="820" y="1399" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_7" x="660" y="1508" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_6" x="495" y="1399" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_11" x="495" y="1508" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_10" x="330" y="1399" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_8" x="330" y="1508" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_13" x="165" y="1399" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_14" x="165" y="1508" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_9" x="0"   y="1399" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_5" x="0"   y="1508" width="165" height="108" />
+    <texture id="ui_npc_stalker_zombied_15" x="820" y="1508" width="165" height="108" />
 
+    <texture id="ui_npc_science_green" x="825" y="1616" width="165" height="108" />
+    <texture id="ui_npc_science_red" x="0" y="1724" width="165" height="108" />
+
+    <texture id="ui_npc_u_neutral_wolf" x="165" y="1724" width="165" height="108" />
+    <texture id="ui_npc_u_freedom_mechanic" x="330" y="1724" width="165" height="108" />
 
     <texture id="ui_npc_small_nebo_2_face_1" x="10" y="4" width="145" height="82" />
     <texture id="ui_npc_small_nebo_2_face_2" x="175" y="4" width="145" height="82" />
@@ -125,6 +172,166 @@
     <texture id="ui_npc_small_zombied_4" x="340" y="868" width="145" height="82" />
     <texture id="ui_npc_small_zombied_2" x="505" y="868" width="145" height="82" />
     <texture id="ui_npc_small_dolg_2_face_2" x="670" y="868" width="145" height="82" />
+
+	<!-------------------------------------------------->
+	<!-------------------- OGSM CS --------------------->
+	<!-------------------------------------------------->
+
+    <texture id="icon_stalker_nebo_6_1" x="0" y="0" width="165" height="108" />
+    <texture id="icon_stalker_nebo_6_2" x="165" y="0" width="165" height="108" />
+    <texture id="icon_stalker_nebo_6_3" x="330" y="0" width="165" height="108" />
+    <texture id="icon_stalker_nebo_6_4" x="495" y="0" width="165" height="108" />
+    <texture id="icon_stalker_nebo_6_5" x="660" y="0" width="165" height="108" />
+    <texture id="icon_stalker_nebo_1" x="825" y="0" width="165" height="108" />
+    <texture id="icon_stalker_nebo_5" x="990" y="0" width="165" height="108" />
+    <texture id="icon_stalker_nebo_3" x="1155" y="0" width="165" height="108" />
+    <texture id="icon_stalker_nebo_2" x="1320" y="0" width="165" height="108" />
+    <texture id="icon_stalker_nebo_4" x="1485" y="0" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_1" x="1650" y="0" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_2" x="1815" y="0" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_3" x="0" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_4" x="165" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_5" x="330" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_6" x="495" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_7" x="660" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_8" x="825" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_9" x="990" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_1_10" x="1155" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_1" x="1320" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_2" x="1485" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_3" x="1650" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_4" x="1815" y="108" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_5" x="0" y="216" width="165" height="108" />
+    <texture id="icon_stalker_neutral_2_6" x="165" y="216" width="165" height="108" />
+    <texture id="icon_stalker_neutral_5" x="330" y="216" width="165" height="108" />
+    <texture id="icon_stalker_neutral_3" x="495" y="216" width="165" height="108" />
+    <texture id="icon_stalker_neutral_4" x="660" y="216" width="165" height="108" />
+    <texture id="icon_stalker_bandit_1_1" x="825" y="216" width="165" height="108" />
+    <texture id="icon_stalker_bandit_1_2" x="990" y="216" width="165" height="108" />
+    <texture id="icon_stalker_bandit_1_3" x="1155" y="216" width="165" height="108" />
+    <texture id="icon_stalker_bandit_1_4" x="1320" y="216" width="165" height="108" />
+    <texture id="icon_stalker_bandit_1_5" x="1485" y="216" width="165" height="108" />
+    <texture id="icon_stalker_bandit_3" x="1650" y="216" width="165" height="108" />
+    <texture id="icon_stalker_bandit_3_1" x="1815" y="216" width="165" height="108" />
+    <texture id="icon_stalker_bandit_3_2" x="0" y="324" width="165" height="108" />
+    <texture id="icon_stalker_bandit_4" x="165" y="324" width="165" height="108" />
+    <texture id="icon_stalker_bandit_4_1" x="330" y="324" width="165" height="108" />
+    <texture id="icon_stalker_bandit_4_2" x="495" y="324" width="165" height="108" />
+    <texture id="icon_stalker_bandit_2" x="660" y="324" width="165" height="108" />
+    <texture id="icon_stalker_bandit_2_1" x="825" y="324" width="165" height="108" />
+    <texture id="icon_stalker_bandit_2_2" x="990" y="324" width="165" height="108" />
+    <texture id="icon_stalker_bandit_2_3" x="1155" y="324" width="165" height="108" />
+    <texture id="icon_stalker_digger_1_1" x="1320" y="324" width="165" height="108" />
+    <texture id="icon_stalker_digger_1_2" x="1485" y="324" width="165" height="108" />
+    <texture id="icon_stalker_digger_1_3" x="1650" y="324" width="165" height="108" />
+    <texture id="icon_stalker_digger_1_4" x="1815" y="324" width="165" height="108" />
+    <texture id="icon_stalker_digger_1_5" x="0" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_2_1" x="165" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_2_2" x="330" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_2_3" x="495" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_2_4" x="660" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_2_5" x="825" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_2_6" x="990" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_1" x="1155" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_3_1" x="1320" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_3_2" x="1485" y="432" width="165" height="108" />
+    <texture id="icon_stalker_dolg_4" x="1650" y="432" width="165" height="108" />
+    <texture id="icon_stalker_freedom_1_1" x="1815" y="432" width="165" height="108" />
+    <texture id="icon_stalker_freedom_1_2" x="0" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_1_3" x="165" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_1_4" x="330" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_1_5" x="495" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_1_6" x="660" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_2_1" x="825" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_2_2" x="990" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_2_3" x="1155" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_2_4" x="1320" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_2_5" x="1485" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_2_6" x="1650" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_5" x="1815" y="540" width="165" height="108" />
+    <texture id="icon_stalker_freedom_3" x="0" y="648" width="165" height="108" />
+    <texture id="icon_stalker_freedom_3_1" x="165" y="648" width="165" height="108" />
+    <texture id="icon_stalker_freedom_4" x="330" y="648" width="165" height="108" />
+    <texture id="icon_stalker_merc_2" x="495" y="648" width="165" height="108" />
+    <texture id="icon_stalker_merc_2_1" x="660" y="648" width="165" height="108" />
+    <texture id="icon_stalker_merc_2_2" x="825" y="648" width="165" height="108" />
+    <texture id="icon_stalker_merc_2_3" x="990" y="648" width="165" height="108" />
+    <texture id="icon_stalker_merc_1" x="1155" y="648" width="165" height="108" />
+    <texture id="icon_stalker_merc_3" x="1320" y="648" width="165" height="108" />
+    <texture id="icon_stalker_merc_4" x="1485" y="648" width="165" height="108" />
+    <texture id="icon_stalker_monolith_2_1" x="1650" y="648" width="165" height="108" />
+    <texture id="icon_stalker_monolith_2_2" x="1815" y="648" width="165" height="108" />
+    <texture id="icon_stalker_monolith_2_3" x="0" y="756" width="165" height="108" />
+    <texture id="icon_stalker_monolith_2_4" x="165" y="756" width="165" height="108" />
+    <texture id="icon_stalker_monolith_2_5" x="330" y="756" width="165" height="108" />
+    <texture id="icon_stalker_monolith_2_6" x="495" y="756" width="165" height="108" />
+    <texture id="icon_stalker_monolith_1" x="660" y="756" width="165" height="108" />
+    <texture id="icon_stalker_monolith_3" x="825" y="756" width="165" height="108" />
+    <texture id="icon_stalker_monolith_4" x="990" y="756" width="165" height="108" />
+    <texture id="icon_stalker_soldier_1_1" x="1155" y="756" width="165" height="108" />
+    <texture id="icon_stalker_soldier_1_2" x="1320" y="756" width="165" height="108" />
+    <texture id="icon_stalker_soldier_1_3" x="1485" y="756" width="165" height="108" />
+    <texture id="icon_stalker_soldier_5_1" x="1650" y="756" width="165" height="108" />
+    <texture id="icon_stalker_soldier_5_2" x="1815" y="756" width="165" height="108" />
+    <texture id="icon_stalker_soldier_5_3" x="0" y="864" width="165" height="108" />
+    <texture id="icon_stalker_soldier_5_4" x="165" y="864" width="165" height="108" />
+    <texture id="icon_stalker_soldier_5_5" x="330" y="864" width="165" height="108" />
+    <texture id="icon_stalker_soldier_2" x="495" y="864" width="165" height="108" />
+    <texture id="icon_stalker_soldier_3" x="660" y="864" width="165" height="108" />
+    <texture id="icon_stalker_soldier_4_1" x="825" y="864" width="165" height="108" />
+    <texture id="icon_stalker_soldier_4_2" x="990" y="864" width="165" height="108" />
+    <texture id="icon_stalker_zombied_1_1" x="1155" y="864" width="165" height="108" />
+    <texture id="icon_stalker_zombied_1_2" x="1320" y="864" width="165" height="108" />
+    <texture id="icon_stalker_zombied_1_3" x="1485" y="864" width="165" height="108" />
+    <texture id="icon_stalker_zombied_1_4" x="1650" y="864" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_1" x="1815" y="864" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_2" x="0" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_3" x="165" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_4" x="330" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_5" x="495" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_6" x="660" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_7" x="825" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_8" x="990" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_9" x="1155" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_2_10" x="1320" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_3_1" x="1485" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_3_2" x="1650" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_3_3" x="1815" y="972" width="165" height="108" />
+    <texture id="icon_stalker_zombied_3_4" x="0" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_zombied_3_5" x="165" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_zombied_3_6" x="330" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_zombied_3_7" x="495" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_zombied_3_8" x="660" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_zombied_4_1" x="825" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_zombied_4_2" x="990" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_zombied_4_3" x="1155" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_zombied_4_4" x="1320" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_scientist_red" x="1485" y="1080" width="165" height="108" />
+    <texture id="icon_stalker_scientist_green" x="1650" y="1080" width="165" height="108" />
+
+    <texture id="icon_stalker_empty" x="1815" y="1080" width="165" height="108" />
+
+    <texture id="icon_stalker_sidorovich" x="0"    y="1296" width="165" height="108" />
+    <texture id="icon_stalker_saharov"    x="165"  y="1296" width="165" height="108" />
+    <texture id="icon_stalker_lesnik"     x="330"  y="1296" width="165" height="108" />
+    <texture id="icon_stalker_lebedev"    x="495"  y="1296" width="165" height="108" />
+    <texture id="icon_stalker_kalancha"   x="660"  y="1296" width="165" height="108" />
+    <texture id="icon_stalker_novikov"    x="825"  y="1296" width="165" height="108" />
+    <texture id="icon_stalker_holod"      x="990"  y="1296" width="165" height="108" />
+    <texture id="icon_stalker_yoga"       x="1155" y="1296" width="165" height="108" />
+    <texture id="icon_stalker_borov"      x="1320" y="1296" width="165" height="108" />
+    <texture id="icon_stalker_otec"       x="1485" y="1296" width="165" height="108" />
+    <texture id="icon_stalker_zak"        x="1650" y="1296" width="165" height="108" />
+    <texture id="icon_stalker_chehov"     x="1815" y="1296" width="165" height="108" />
+    <texture id="icon_stalker_krilov"     x="0"    y="1404" width="165" height="108" />
+    <texture id="icon_stalker_kolobok"    x="165"  y="1404" width="165" height="108" />
+    <texture id="icon_stalker_napr"       x="330"  y="1404" width="165" height="108" />
+    <texture id="icon_stalker_yar"        x="495"  y="1404" width="165" height="108" />
+    <texture id="icon_stalker_wolf"       x="660"  y="1404" width="165" height="108" />
+    <texture id="icon_stalker_jivoder"    x="825"  y="1404" width="165" height="108" />
+    <texture id="icon_stalker_ganzha"     x="990"  y="1404" width="165" height="108" />
+    <texture id="icon_stalker_strelok"    x="1155" y="1404" width="165" height="108" />
+    <texture id="icon_stalker_leshiy"     x="1320" y="1404" width="165" height="108" />
 
    </file>
 </w>

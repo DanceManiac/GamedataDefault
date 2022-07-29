@@ -9,10 +9,8 @@ $npc					= on						; option for Level Editor
 $prefetch 				 = 16
 visual					= monsters\burer\burer
 corpse_visual			= monsters\burer\burer
-MaxHealthValue		    = 100						; range [0..200]
-
-Spawn_Inventory_Item_Section = mutant_burer_hand
-Spawn_Inventory_Item_Probability = 0.0
+MaxHealthValue		    = 200						; range [0..200]
+icon = ui_npc_monster_burer	;
 
 ;------------------------------------------------------------------------
 ; Offline Alife
@@ -36,17 +34,16 @@ ph_box1_size 			= 0.35, 0.6,  0.35
 ph_crash_speed_min			= 10
 ph_crash_speed_max			= 30
 ph_collision_damage_factor	= 0.1
-ph_mass 				= 70;	100
+ph_mass 				= 70
 
-destroyed_vis_name	 = dynamics\Dead_Body\skelet_crash
+destroyed_vis_name = dynamics\Dead_Body\skelet_crash_monster
 
 ;----------------------------------------------------------------------------
-ph_skeleton_airr_lin_factor   = 2.0 ;550.0 (изменно из-за того, что убрано домножение коэффициент 0.002 из кода)
-ph_skeleton_airr_ang_factor   = 0.0 ;0.0 (изменно из-за того, что убрано домножение на коэффициент 0.3 из кода (0.0*0.3=0.0))
-ph_skeleton_hinger_factor1    = 1.0 ;1.0 (изменно из-за того, что убрано домножение на коэффициент 5.0 из кода)
-ph_skeleton_ddelay	     	  = 15.0 ;Время изменения значения трения в суставе с момента создания шелла, сек
-
-ph_skel_fatal_impulse_factor  = 6.0
+ph_skeleton_airr_lin_factor   = -0.4
+ph_skeleton_airr_ang_factor   = -0.2
+ph_skeleton_hinger_factor1    = 1.0
+ph_skeleton_ddelay	      = 5.0
+ph_skel_fatal_impulse_factor  = 2.0
 ph_after_death_velocity_factor= 0.75
 ph_skel_shot_up_factor        = 0.25
 ;----------------------------------------------------------------------------
@@ -54,8 +51,9 @@ ph_skel_shot_up_factor        = 0.25
 ;----------------------------------------------------------------------------
 ; Movement::Velocities & Acceleration
 ;----------------------------------------------------------------------------
-
+;----------------------------------------------------------------------------
 ; speed factors			linear | angular_real | angular_path | min |  max
+;----------------------------------------------------------------------------
 Velocity_Stand			= 0,		6.0,			6.0,		0.2,	0.5
 Velocity_RunFwdNormal	= 5.0,		2.5,			2.5,		0.2,	1
 Velocity_RunFwdDamaged	= 3.5,  	3.0,			3.0,		0.2,	1
@@ -79,8 +77,6 @@ as_step					= 0.3
 
 attack_effector			= m_burer_attack_effector
 attack_params			= m_burer_attack_params
-
-feel_enemy_who_just_hit_max_distance = 20  ;дистанция на которой монстр почувствует стрельнувшего игрока даже спиной
 
 Melee_Rotation_Factor	= 1.8
 ;-------------------------------------------------------------------------
@@ -120,7 +116,7 @@ DayTime_End				= 21		; конец дня для монстра
 Min_Satiety				= 0.6		; мин. норма сытости (меньше - уже голодный)
 Max_Satiety				= 0.9		; макс. норма сытости (больше - очень сытый)
 
-satiety_threshold		= 0.5							; below this value monster fill hunger
+satiety_threshold		= 0.5							; ниже этого значения монстр считается голодным
 ;---------------------------------------------------------
 ; Sounds and sound parameters
 ;---------------------------------------------------------
@@ -159,19 +155,21 @@ max_hear_dist			= 60
 ;-------------------------------------------------------------------------
 ; Vision
 ;-------------------------------------------------------------------------
-DynamicObjectsCount		= 32
-eye_fov					= 130
-eye_range				= 110
+eye_fov					= 100
+eye_range				= 30	;60	;30
 
-min_view_distance   		= 0.6				; коэффициент, который множится на eye_range, в зависимости от угла
+; number of visible objects monster can handle
+DynamicObjectsCount		= 32
+
+min_view_distance   		= 0.4				; коэффициент, который множится на eye_range, в зависимости от угла
 max_view_distance	 		= 1.0				; коэффициент, который множится на eye_range, в зависимости от угла
 visibility_threshold	 	= 100.0				; значение, при достижении суммой которого объект считается видимым
-always_visible_distance 	= 0.3
+always_visible_distance 	= 0.2
 time_quant					= 0.001
 decrease_value				= 0.01				; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
 velocity_factor		     	= 0.5
 luminocity_factor			= 0.5 				; фактор освещения (только для Актёра)
-transparency_threshold		= 0.25
+transparency_threshold		= 0.25				; видимость через камыши и кустарники
 
 ;-------------------------------------------------------------------------
 ; Morale
@@ -193,8 +191,8 @@ Gravi_Step					= 2		; meter
 Gravi_Time_To_Hold			= 1200	; milisec
 Gravi_Radius				= 3.0
 Gravi_Impulse_To_Objects	= 60.0
-Gravi_Impulse_To_Enemy		= 400.0
-Gravi_Hit_Power				= 50.0
+Gravi_Impulse_To_Enemy		= 250.0
+Gravi_Hit_Power				= 0.45
 
 ;-------------------------------------------------------------------------
 ; Tele Ability
@@ -239,7 +237,7 @@ critical_wound_decrease_quant	= 0.
 ef_creature_type		= 18							; option for evaluation functions
 ef_weapon_type			= 12
 ef_detector_type		= 1
-panic_threshold			= 0.1
+panic_threshold			= 0.0
 
 cform					= skeleton					; collision class
 class					= SM_BURER					; AI class
@@ -268,10 +266,10 @@ damage					= m_burer_damage
 
 ;species of monster
 species					= burer
-rank					= 100
+rank					= 400
 spec_rank				= weak
 community				= burer
-monster_type			= indoor
+;monster_type			= indoor
 
 ;=================================================================================
 ; Burer Attack Params
@@ -336,7 +334,7 @@ radiation_immunity		= 0.0
 telepatic_immunity		= 1.0
 chemical_burn_immunity	= 1.0
 explosion_immunity		= 0.5
-fire_wound_immunity		= 0.5
+fire_wound_immunity		= 0.3
 
 ;=================================================================================
 ; Burer Damage
@@ -353,7 +351,7 @@ bip01_pelvis 			= 0.2, -1, 0.1
 bip01_spine 			= 0.3, -1, 0.1
 bip01_spine1 			= 0.3, -1, 0.1
 bip01_neck 				= 0.3, -1, 0.5
-bip01_head 				= 1.0, -1, 0.2
+bip01_head 				= 0.3, -1, 0.2
 ;=================================================================================
 ; Burer Scan Effector
 ;=================================================================================
@@ -385,57 +383,21 @@ time_release		= 0.85		; fade out
 ;=================================================================================
 
 
-[burer_arena]:m_burer_e
-$spawn			= "monsters\arena\burer_arena"
-visual				= monsters\burer\burer_1
-panic_threshold		= 0.05
-species				= arena_monstr
-spec_rank			= weak
-rank				= 100
-community			= burer
-
-explosion_immunity		= 0.2
-fire_wound_immunity		= 0.1
-
-; Gravi Strike
-Gravi_Speed					= 76	; meter/sec
-Gravi_Step					= 2		; meter
-Gravi_Time_To_Hold			= 1200	; milisec
-Gravi_Radius				= 3.0
-Gravi_Impulse_To_Objects	= 60.0
-Gravi_Impulse_To_Enemy		= 400.0
-Gravi_Hit_Power				= 0.5
-
-; Tele Strike
-Tele_Max_Handled_Objects = 3	;1;3
-Tele_Time_To_Hold		 = 100	;600
-Tele_Object_Min_Mass	 = 30.0
-Tele_Object_Max_Mass	 = 2000.0 ;1000.0
-Tele_Find_Radius		 = 15	;7.0
-
-
-[m_burer_normal]:m_burer_e
+[burer_weak]:m_burer_e
 $spawn		= "monsters\burers\burer_normal"
 monster_type		= indoor
-rank				= 100
+rank				= 400
 spec_rank			= weak
 community			= burer
 Tele_Time_To_Hold	= 200
 
-[m_burer_normal_black]:m_burer_e
-$spawn		= "monsters\burers\burer_normal_black"
-visual				= monsters\burer\burer_1
+[psy_burer]:m_burer_e
+$spawn		= "monsters\burers\burer_normal"
+visual			= monsters\burer\burer_1
 monster_type		= indoor
-rank				= 100
-spec_rank			= weak
+rank				= 901
+spec_rank			= strong
 community			= burer
-Tele_Time_To_Hold	= 200
-
-[burer_indoor]:m_burer_normal
-$spawn			= "monsters\burers\burer_indoor"
-monster_type	= indoor
-Tele_Time_To_Hold		 = 200
-
-[burer_outdoor]:m_burer_normal
-$spawn			= "monsters\burers\burer_outdoor"
-;monster_type	= outdoor
+icon = ui_npc_monster_psyburer
+scan_radius				= 0.01
+Particle_Gravi_Wave		= ogsm\ogsm_burer_wave

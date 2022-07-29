@@ -58,7 +58,7 @@
 			<background>
 				<texture a="90" r="55" g="255" b="255">ui_buymenu_progBar</texture>
 			</background>
-			<color_less color="pda_red"  />
+			<color_less color="pda_red"/>
 			<color_more color="pda_green"/>
 		</progress_accuracy>
 		<progress_handling x="142" y="24" width="121" height="8" horz="1">
@@ -68,7 +68,7 @@
 			<background>
 				<texture a="90" r="55" g="255" b="255">ui_buymenu_progBar</texture>
 			</background>
-			<color_less color="pda_red"  />
+			<color_less color="pda_red"/>
 			<color_more color="pda_green"/>
 		</progress_handling>
 		<progress_damage x="0" y="55" width="121" height="8" horz="1">
@@ -78,7 +78,7 @@
 			<background>
 				<texture a="90" r="55" g="255" b="255">ui_buymenu_progBar</texture>
 			</background>
-			<color_less color="pda_red"  />
+			<color_less color="pda_red"/>
 			<color_more color="pda_green"/>
 		</progress_damage>
 		<progress_rpm x="142" y="55" width="121" height="8" horz="1">
@@ -88,7 +88,7 @@
 			<background>
 				<texture a="90" r="55" g="255" b="255">ui_buymenu_progBar</texture>
 			</background>
-			<color_less color="pda_red"  />
+			<color_less color="pda_red"/>
 			<color_more color="pda_green"/>
 		</progress_rpm>
 
@@ -160,7 +160,7 @@
 		</burn_immunity>
 
 		<strike_immunity x="0" y="0" width="18" height="18">
-			<texture>ui_inv_icon_strike_immunity</texture>
+			<texture>ui_inv_icon_shock_immunity</texture>
 			<text font="letterica16" x="22" y="0" color="ui_3" align="l" vert_align="c"/>
 			<progress_immunity x="130" y="4" width="100" height="8" horz="1">
 				<progress>
@@ -178,7 +178,7 @@
 		</strike_immunity>
 
 		<shock_immunity x="0" y="0" width="18" height="18">
-			<texture>ui_inv_icon_shock_immunity</texture>
+			<texture>ui_inv_icon_strike_immunity</texture>
 			<text font="letterica16" x="22" y="0" color="ui_3" align="l" vert_align="c"/>
 			<progress_immunity x="130" y="4" width="100" height="8" horz="1">
 				<progress>
@@ -194,24 +194,6 @@
 				<text font="letterica16" color="ui_6" align="r" vert_align="c"/>
 			</static_value>
 		</shock_immunity>
-
-		<wound_immunity x="0" y="0" width="18" height="18">
-			<texture>ui_inv_icon_wound_immunity</texture>
-			<text font="letterica16" x="22" y="0" color="ui_3" align="l" vert_align="c"/>
-			<progress_immunity x="130" y="4" width="100" height="8" horz="1">
-				<progress>
-					<texture a="255" r="55" g="255" b="255">ui_buymenu_progBar</texture>
-				</progress>
-				<background>
-					<texture a="90" r="55" g="255" b="255">ui_buymenu_progBar</texture>
-				</background>
-				<color_less color="pda_red"  />
-				<color_more color="pda_green"/>
-			</progress_immunity>
-			<static_value x="225" y="0" width="40" height="18" magnitude="100">
-				<text font="letterica16" color="ui_6" align="r" vert_align="c"/>
-			</static_value>
-		</wound_immunity>
 
 		<radiation_immunity x="0" y="0" width="18" height="18">
 			<texture>ui_inv_icon_radiation_immunity</texture>
@@ -231,6 +213,24 @@
 			</static_value>
 		</radiation_immunity>
 
+		<chemical_burn_immunity x="0" y="0" width="18" height="18">
+			<texture>ui_inv_icon_chemical_burn_immunity</texture>
+			<text font="letterica16" x="22" y="0" color="ui_3" align="l" vert_align="c"/>
+			<progress_immunity x="130" y="4" width="100" height="8" horz="1">
+				<progress>
+					<texture a="255" r="55" g="255" b="255">ui_buymenu_progBar</texture>
+				</progress>
+				<background>
+					<texture a="90" r="55" g="255" b="255">ui_buymenu_progBar</texture>
+				</background>
+				<color_less color="pda_red"  />
+				<color_more color="pda_green"/>
+			</progress_immunity>
+			<static_value x="225" y="0" width="40" height="18" magnitude="100">
+				<text font="letterica16" color="ui_6" align="r" vert_align="c"/>
+			</static_value>
+		</chemical_burn_immunity>
+
 		<telepatic_immunity x="0" y="0" width="18" height="18">
 			<texture>ui_inv_icon_telepatic_immunity</texture>
 			<text font="letterica16" x="22" y="0" color="ui_3" align="l" vert_align="c"/>
@@ -249,8 +249,8 @@
 			</static_value>
 		</telepatic_immunity>
 
-		<chemical_burn_immunity x="0" y="0" width="18" height="18">
-			<texture>ui_inv_icon_chemical_burn_immunity</texture>
+		<wound_immunity x="0" y="0" width="18" height="18">
+			<texture>ui_inv_icon_wound_immunity</texture>
 			<text font="letterica16" x="22" y="0" color="ui_3" align="l" vert_align="c"/>
 			<progress_immunity x="130" y="4" width="100" height="8" horz="1">
 				<progress>
@@ -265,7 +265,7 @@
 			<static_value x="225" y="0" width="40" height="18" magnitude="100">
 				<text font="letterica16" color="ui_6" align="r" vert_align="c"/>
 			</static_value>
-		</chemical_burn_immunity>
+		</wound_immunity>
 
 		<explosion_immunity x="0" y="0" width="18" height="18">
 			<texture>ui_inv_icon_explosion_immunity</texture>

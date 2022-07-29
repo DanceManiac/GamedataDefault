@@ -3,6 +3,7 @@ red_pursuit_strelok_task
 red_pursuit_destroy_ambush
 red_pursuit_talk_csky
 red_find_forester
+red_forest_back_to_the_gate
 red_go_to_signal_sos
 red_take_red_forest_map_pda
 red_find_teleport
@@ -21,25 +22,24 @@ red_bridge_cover_bridge
 red_bridge_kill_sniper
 red_artefact_hunters_defend_squad
 red_artefact_huntesr_defend_smart
-;red_forest_stalker_bring_map
+red_return_for_a_reward
 red_stalker_reinforced
 red_recover_item_1
 red_recover_item_2
 red_recover_item_3
 
-[red_pursuit_strelok_task]
+[red_pursuit_strelok_task]   ;Догнать Стрелка
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
 target_cond = true
 prior = 5
-name = red_pursuit_strelok_name
-text = red_pursuit_strelok_text
+name = red_pursuit_talk_csky_name
+text = red_pursuit_talk_csky_text
 target_story_ids = 505
-condlist_0 = {+red_pursuit_csky_talk2} fail
-;on_complete = %+red_pursuit_task_end%
+condlist_0 = {+red_pursuit_csky_talk2} reversed
 
-[red_pursuit_destroy_ambush]
+[red_pursuit_destroy_ambush]   ;Уничтожить засаду
 type = storyline
 task_type = additional
 icon = ui_mt_image_attack_tower
@@ -48,13 +48,11 @@ prior = 20
 name = red_pursuit_destroy_ambush_name
 text = red_pursuit_destroy_ambush_text
 target_story_ids = 511
-;condlist_0 = {+red_pursuit_strelok_spich +red_pursuit_tunnel_explode} complete
 condlist_0 = {+red_pursuit_bounty_hunter_surrender_info} complete, {!squad_exist(red_pursuit_bounty_hunters_squad_1) !squad_exist(red_pursuit_bounty_hunters_squad_2)} complete, {+red_bounty_hunters_free} reversed
-;condlist_1 = {!squad_exist(red_pursuit_bounty_hunters_squad_2)} complete
 on_complete = %+red_strelok_task_end%
 on_reversed = %+red_strelok_task_end%
-	
-[red_pursuit_talk_csky]
+
+[red_pursuit_talk_csky]   ;Остановить Стрелка
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -66,7 +64,7 @@ target_story_ids = 512
 condlist_0 = {+red_pursuit_csky_talk2} complete
 on_complete = %+red_pursuit_task_end%
 
-[red_go_to_signal_sos]
+[red_go_to_signal_sos]   ;Идти на сигнал SOS
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -78,7 +76,7 @@ target_story_ids = 521
 condlist_0 = {+red_go_to_sos_signal_task_complete} reversed
 condlist_1 = {+red_actor_find_forester} reversed
 
-[red_take_red_forest_map_pda]
+[red_take_red_forest_map_pda]   ;Поднять КПК
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -90,7 +88,7 @@ target_story_ids = 521
 condlist_0 = {+red_teleport_way} complete
 condlist_1 = {+red_actor_find_forester} reversed
 
-[red_find_teleport]
+[red_find_teleport]   ;Найти проход в аномальную зону
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -102,7 +100,7 @@ target_story_ids = 525
 condlist_0 = {+red_teleport_way_2} complete
 condlist_1 = {+red_actor_find_forester} reversed
 
-[red_find_teleport_2]
+[red_find_teleport_2]   ;Найти пространственную аномалию
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -114,7 +112,7 @@ target_story_ids = 522
 condlist_0 = {+red_actor_find_teleport} complete
 condlist_1 = {+red_actor_find_forester} reversed
 
-[red_find_forester]
+[red_find_forester]   ;Поговорить с Лесником
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -123,11 +121,20 @@ prior = 10
 name = red_find_forester_name
 text = red_find_forester_text
 target_story_ids = 515
-;target_story_ids = 521
 condlist_0 = {+red_actor_find_forester} complete
+
+[red_forest_back_to_the_gate] ; Поговорить с охранником у ворот
+type = storyline
+task_type = additional
+icon = ui_mt_image_attack_factory
+name = red_forest_back_to_the_gate_name
+text = red_forest_back_to_the_gate_text
+target_story_ids = 530
+condlist_0 = {+red_forest_open} complete
+condlist_1 = {+red_forester_actor_has_compas} reversed
 on_complete = %+red_forest_open%
 
-[red_find_compass]
+[red_find_compass]   ;Найти артефакт «Компас»
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -137,8 +144,9 @@ name = red_find_compass_name
 text = red_find_compass_text
 target_story_ids = 517
 condlist_0 = {+red_forester_actor_has_compas} complete
+on_complete = %+red_forest_open%
 
-[red_bring_compass]
+[red_bring_compass]   ;Принести «Компас» Леснику
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -149,7 +157,7 @@ text = red_bring_compass_text
 target_story_ids = 515
 condlist_0 = {+red_forester_take_compas} complete
 
-[red_help_with_bridge]
+[red_help_with_bridge]   ;Помочь «Чистому небу» захватить мост
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -165,7 +173,7 @@ community_relation_delta_fail = -100
 reward_money = 50000
 reward_item = wpn_fn2000
 
-[red_bridge_talk_with_comander]
+[red_bridge_talk_with_comander]   ;Поговорить с Лебедевым
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -177,7 +185,7 @@ target_story_ids = 501
 condlist_0 = {+red_bridge_actor_come} complete
 condlist_1 = {+red_bridge_clear_path} complete
 
-[red_bridge_go_to_positon]
+[red_bridge_go_to_positon]   ;Занять огневую позицию
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -188,8 +196,9 @@ text = red_bridge_go_to_positon_text
 target_story_ids = 502
 condlist_0 = {+red_bridge_actor_in_position} complete
 condlist_1 = {+red_bridge_clear_path} complete
+condlist_2 = {+red_bridge_actor_fail} fail
 
-[red_bridge_wait_for_allyes]
+[red_bridge_wait_for_allyes]   ;Ожидать подхода отряда Лешего
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -200,8 +209,9 @@ text = red_bridge_wait_for_allyes_text
 target_story_ids = 502
 spot = red_bridge_wait_for_allyes_location
 condlist_0 = {+red_bridge_clear_path} complete
+condlist_1 = {+red_bridge_actor_fail} fail
 
-[red_bridge_cover_allyes]
+[red_bridge_cover_allyes]   ;Прикрывать наёмников
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -211,8 +221,9 @@ name = red_bridge_cover_allyes_attack_name
 text = red_bridge_cover_allyes_attack_text
 target_story_ids = 503
 condlist_0 = {+red_bridge_cover_allyes_complete} complete
+condlist_1 = {+red_bridge_actor_fail} fail
 
-[red_bridge_cover_allyes2]
+[red_bridge_cover_allyes2]   ;Уничтожить бандитов
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -224,7 +235,7 @@ target_story_ids = 503
 spot = red_bridge_cover_allyes2_location
 condlist_0 = {+red_bridge_cover_allyes2_complete} complete
 
-[red_bridge_cover_bridge]
+[red_bridge_cover_bridge]   ;Прикрывать наёмника у пульта
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -237,7 +248,7 @@ spot = red_bridge_cover_bridge_location
 condlist_0 = {+red_bridge_down_done} complete
 condlist_1 = {+red_bridge_allyes_out} fail
 
-[red_bridge_kill_sniper]
+[red_bridge_kill_sniper]   ;Уничтожить снайперов на холме
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -248,9 +259,9 @@ text = red_bridge_kill_sniper_text
 target_story_ids = 504
 condlist_0 = {+red_bridge_sniper_task_complete} complete
 
-;************* connect with military level *****************
+;************* Connected with the Army Warehouses *****************
 
-[red_find_signals_on_military]
+[red_find_signals_on_military]   ;Получить радиопередачу сообщения
 type = storyline
 task_type = storyline
 icon = ui_mt_image_defend_tower
@@ -259,7 +270,7 @@ text = red_find_signals_on_military_text
 target_story_ids = 1209
 condlist_0 = {+mil_actor_inside_wtower} complete
 
-[red_go_to_military_base]
+[red_go_to_military_base]   ;Идти на базу военных
 type = storyline
 task_type = storyline
 icon = ui_mt_image_defend_tower
@@ -267,12 +278,12 @@ spot = red_go_to_military_base_location
 name = red_go_to_military_base_name
 text = red_go_to_military_base_text
 target_story_ids = 1215
-condlist_0 = {+forester_talked_2 =actor_on_level(military)} complete
-on_complete = %+red_bridge_scene_begin%
+condlist_0 = {+forester_talked_2 =actor_on_level(military) -mil_hog_death} reversed
+condlist_1 = {+forester_talked_2 =actor_on_level(military) +mil_hog_death} complete
 
-;*********** additional quest **********************
+;*********** Additional quests **********************
 
-[red_artefact_hunters_defend_squad]
+[red_artefact_hunters_defend_squad]   ;Охранять сталкеров на пути к аномальной зоне
 type = storyline
 task_type = additional
 icon = ui_mt_image_attack_tower
@@ -282,45 +293,51 @@ name = red_artefact_huntesr_capture_smart_name
 text = red_artefact_huntesr_capture_smart_text
 target_story_ids = 519
 spot = secondary_task_location_complex
-condlist_0 = {+red_artefact_hunters_task_complete} complete
-condlist_1 = {+red_artefact_hunters_task_fail} fail
+condlist_0 = {!squad_exist(red_snork_attack_1)} complete
+condlist_1 = {+red_artefact_hunters_task_fail} fail, {+red_stalker_artefact_hunters_1_death} fail
+on_complete = %+red_artefact_hunters_task_complete%
 play_regard = nil
 
-[red_artefact_huntesr_defend_smart]
+[red_artefact_huntesr_defend_smart]   ;Защищать сталкеров в аномальной зоне
 type = defend_smart
 task_type = additional
 icon = ui_mt_image_attack_tower
-target_cond = {=squad_exist(red_stalker_artefact_hunters_1) !is_smart_defending(red_smart_terrain_6_3) =target_smart_name(red_smart_terrain_6_3) -red_artefact_hunters_task_2_complete +red_artefact_hunters_task_complete} true
+target_cond = {-red_stalker_artefact_hunters_1_death !is_smart_defending(red_smart_terrain_6_3) =target_smart_name(red_smart_terrain_6_3) -red_artefact_hunters_task_2_complete +red_artefact_hunters_task_complete} true
 prior = 7
 name = red_artefact_huntesr_defend_smart_name
 text = red_artefact_huntesr_defend_smart_text
-on_complete = % +red_artefact_hunters_task_2_complete%
-;reward_money = 2500
-reward_item = af_cristall_flower
+condlist_0 = {=squad_exist(red_stalker_artefact_hunters_1)} complete
+condlist_1 = {+red_stalker_artefact_hunters_1_death} fail
+on_complete = %+red_artefact_hunters_task_2_complete%
 
-[red_forest_stalker_bring_map]
-type = recover_item
+[red_return_for_a_reward]   ;Вернуться за наградой
+type = storyline
 task_type = additional
-icon = ui_mt_image_attack_tower
-target_cond = {-red_forest_allyes_have_map =check_npc_squad(red_stalker_artefact_hunters_1)}
 prior = 9
-name = red_forest_stalker_bring_map_name
-text = red_forest_stalker_bring_map_text
-requested_items = red_forest_pda_map
-on_complete = %+red_forest_allyes_have_map%
-reward_money = 1000
+icon = ui_mt_image_attack_tower
+target_cond = {+red_artefact_hunters_task_complete} true
+name = red_return_for_a_reward_name
+text = red_return_for_a_reward_text
+condlist_0 = {+red_return_for_a_reward_complete} complete
+condlist_1 = {+red_stalker_artefact_hunters_1_death} fail
+target_story_ids = 519
+auto_name = false
+auto_faction = true
 
-[red_stalker_reinforced]
-type = capture_smart
+[red_stalker_reinforced]   ;Захватить старую шахту
+type = eliminate_smart
 task_type = additional
 icon = ui_mt_image_attack_tower
-target_cond = {=target_smart_name(red_smart_terrain_3_2) =actor_on_level(red_forest) -red_capture_undeground_camp_done}
+target_cond = {=target_smart_name(red_smart_terrain_monsters_2) -red_capture_undeground_camp_done} true
 prior = 7
 name = red_stalker_reinforced_name
 text = red_stalker_reinforced_text
+condlist_0 = {!squad_exist(red_snork_dangeon_keepers_2)} complete
+condlist_1 = {+red_stalker_artefact_hunters_1_death} fail
 on_complete = %+red_capture_undeground_camp_done%
-reward_money = 3000
-
+on_reversed = %+red_capture_undeground_camp_done%
+auto_name = false
+auto_faction = true
 
 ;Recover Items
 
@@ -332,14 +349,17 @@ text = red_recover_item_1_text
 target_npc_or_box_name = red_recover_item_1_spawn
 distanse = 100
 prior = 2
+auto_faction = false
 target_cond = {=actor_on_level(red_forest) -red_recover_item_1_done} true, false
 on_init = %+red_recover_item_1_done%
 requested_items = red_forest_pda_map_2
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete =+50
 reward_money = 1500
 auto_faction = true
+immediate_reward = true
 
-[red_recover_item_2]   ;Принести пулемет из танка
+[red_recover_item_2]   ;Принести танковый пулемёт
 type = recover_item
 task_type = additional
 name = red_recover_item_2_name
@@ -347,12 +367,15 @@ text = red_recover_item_2_text
 target_npc_or_box_name = red_recover_item_2_spawn
 distanse = 100
 prior = 2
+auto_faction = false
 target_cond = {=actor_on_level(red_forest) -red_recover_item_2_done} true, false
 on_init = %+red_recover_item_2_done%
 requested_items = red_quest_tank_minigun
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete =+50
 reward_money = 7500
 auto_faction = true
+immediate_reward = true
 
 [red_recover_item_3]   ;Вернуть экспериментальное устройство
 type = recover_item
@@ -362,9 +385,13 @@ text = red_recover_item_3_text
 target_npc_or_box_name = red_recover_item_3_spawn
 distanse = 100
 prior = 2
+faction = stalker
 target_cond = {=actor_on_level(red_forest) -red_recover_item_3_done} true, false
 on_init = %+red_recover_item_3_done%
+on_complete = %+red_recover_item_3_done_complete%
 requested_items = red_quest_prototipe_device
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete =+50
 reward_money = 3500
 auto_faction = true
+immediate_reward = true

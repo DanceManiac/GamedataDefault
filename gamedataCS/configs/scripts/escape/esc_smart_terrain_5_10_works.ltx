@@ -1,0 +1,20 @@
+[logic@work1]
+active = walker@enter_work1
+suitable = {=check_npc_name(esc_st_patrol_lead) =npc_is_squad_leader -esc_stalker_leader_meet}, {+esc_st_patrol_lead_death =npc_community(stalker) =npc_is_squad_leader -esc_stalker_leader_meet}
+on_death = death@work1
+prior = 41
+
+[walker@enter_work1]
+path_walk = wlkr_1_walk
+path_look = wlkr_1_look
+on_info = {=dist_to_actor_le(250) -esc_defend_stalkers_bus_station_complete -esc_st_patrol_lead_death} %=play_sound(esc_stalker_patrol_help:stalker_4:esc_smart_terrain_5_10)%
+on_info2 = {+esc_stalker_neutral} %=set_squad_goodwill(esc_smart_terrain_6_8_stalker_patrol_2:friend)%
+meet = meet
+
+[meet]
+meet_dialog = esc_st_patrol_lead_dialog
+use	= true
+use_wpn = false
+
+[death@work1]
+on_info = %+esc_st_patrol_lead_death%

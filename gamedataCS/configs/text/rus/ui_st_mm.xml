@@ -454,6 +454,9 @@
 		<text>Загрузить</text>
 	</string>
 	<string id="ui_mm_load_game">
+		<text>ЗАГРУЗИТЬ ИГРУ</text>
+	</string>
+	<string id="ui_mm_load_game_n">
 		<text>Загрузить игру</text>
 	</string>
 	<string id="ui_mm_master">
@@ -479,6 +482,9 @@
 	</string>
 	<string id="ui_mm_newgame">
 		<text>Новая игра</text>
+	</string>
+	<string id="ui_mm_arenagame">
+		<text>Полигон</text>
 	</string>
 	<string id="ui_mm_novice">
 		<text>Новичок</text>
@@ -520,7 +526,7 @@
 		<text>Steep parallax</text>
 	</string>
 	<string id="ui_mm_r2_sun">
-		<text>Тень от солнца</text>
+		<text>Тень от Солнца</text>
 	</string>
 	<string id="ui_mm_r2_sun_details">
 		<text>Тень травы</text>
@@ -550,6 +556,9 @@
 		<text>Сохранить</text>
 	</string>
 	<string id="ui_mm_save_game">
+		<text>СОХРАНИТЬ ИГРУ</text>
+	</string>
+	<string id="ui_mm_save_game_n">
 		<text>Сохранить игру</text>
 	</string>
 	<string id="ui_mm_show_crosshair">
@@ -640,7 +649,7 @@
 		<text>Использовать DX10.1</text>
 	</string>
 	<string id="ui_mm_r3_gbuffer_opt">
-		<text>Оптимизировать геометр. Буфер</text>
+		<text>Оптимизировать геометр. буфер</text>
 	</string>
 	<string id="ui_mm_r3_MSAA">
 		<text>Полноэкранное сглаживание</text>
@@ -673,15 +682,15 @@
 		<text>высоко</text>
 	</string>
 	<string id="ui_st_invalid_saved_game">
-		<text>Версия сохраненного файла не совпадат с версией игры.</text>
+		<text>Версия сохранённого файла не совпадает с версией игры.</text>
 	</string>
 	<string id="st_opt_atest_msaa_dx10_0">
-		<text>режим DX10.0 [Стандартный]</text>
+		<text>режим DX10.0 [стандартный]</text>
 	</string>
 	<string id="st_opt_atest_msaa_dx10_1">
-		<text>режим DX10.1 [Улучшенный]</text>
+		<text>режим DX10.1 [улучшенный]</text>
 	</string>
 	<string id="st_opt_ultra">
-		<text>Ультра</text>
+		<text>ультра</text>
 	</string>
 </string_table>

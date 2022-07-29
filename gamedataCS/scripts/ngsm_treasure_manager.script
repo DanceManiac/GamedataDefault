@@ -1,0 +1,640 @@
+--Спауним все тайники игроку
+function main()
+    for i=1,44 do
+	    treasure_manager.give_treasure("mar_treasure_"..i, "mod")
+	end
+    for i=1,16 do
+	    treasure_manager.give_treasure("mar_quest_treasure_"..i, "mod")
+	end
+    for i=1,17 do
+	    treasure_manager.give_treasure("esc_treasure_"..i, "mod")
+	end
+    for i=1,10 do
+	    treasure_manager.give_treasure("esc_quest_treasure_"..i, "mod")
+	end
+    for i=1,20 do
+	    treasure_manager.give_treasure("gar_treasure_"..i, "mod")
+	end
+    for i=1,10 do
+	    treasure_manager.give_treasure("gar_quest_treasure_"..i, "mod")
+	end
+    for i=1,22 do
+	    treasure_manager.give_treasure("dark_valley_treasure_"..i, "mod")
+	end
+    for i=1,11 do
+	    treasure_manager.give_treasure("val_quest_treasure_"..i, "mod")
+	end
+    for i=1,15 do
+	    treasure_manager.give_treasure("agr_treasure_"..i, "mod")
+	end
+    for i=1,10 do
+	    treasure_manager.give_treasure("agr_quest_treasure_"..i, "mod")
+	end
+    for i=1,15 do
+	    treasure_manager.give_treasure("yantar_treasure_"..i, "mod")
+	end
+    for i=1,9 do treasure_manager.give_treasure("yan_quest_treasure_"..i, "mod") end
+    for i=1,24 do treasure_manager.give_treasure("red_treasure_"..i, "mod") end
+    for i=1,10 do treasure_manager.give_treasure("red_quest_treasure_"..i, "mod") end
+    for i=1,21 do treasure_manager.give_treasure("mil_treasure_"..i, "mod") end
+    for i=1,10 do treasure_manager.give_treasure("mil_quest_treasure_"..i, "mod") end
+    for i = 1,14 do treasure_manager.give_treasure("lim_treasure_"..i, "mod") end
+    for i = 1,3 do treasure_manager.give_treasure("hos_treasure_"..i, "mod") end
+    for i = 1,5 do treasure_manager.give_treasure("agru_treasure_"..i, "mod") end
+    for i = 1,4 do
+	    treasure_manager.give_treasure("agru_quest_treasure_"..i, "mod")
+	end
+	treasure_manager.give_treasure("esc_treasure_weapon_box", "mod2")
+	treasure_manager.give_treasure("esc_treasure_weapon_prisoner", "mod2")
+	treasure_manager.give_treasure("esc_treasure_novice_stalker", "mod2")
+	treasure_manager.give_treasure("gar_treasure_quest_old_pda", "mod2")
+	treasure_manager.give_treasure("gar_treasure_quest_smuggler_weapons", "mod2")
+	treasure_manager.give_treasure("gar_treasure_quest_reward_in_anomaly", "mod2")
+	treasure_manager.give_treasure("gar_treasure_quest_digger_reward", "mod2")
+	treasure_manager.give_treasure("agr_duty_trader_secret_1", "mod2")
+	treasure_manager.give_treasure("agr_duty_bar_secret_1", "mod2")
+	treasure_manager.give_treasure("agr_duty_bar_secret_2", "mod2")
+	treasure_manager.give_treasure("agr_duty_bar_secret_3", "mod2")
+	treasure_manager.give_treasure("agr_duty_bar_secret_4", "mod2")
+	treasure_manager.give_treasure("mil_treasure_weapon_box", "mod2")
+end
+
+function set_marker(t_id, descr, name, mode) --' Пометить на карте
+    if mode ~= "mod" and mode ~= "mod2" then
+	    local text = "%c[255,238,155,23]"..game.translate_string(name).."\\n".."%c[default]"..game.translate_string(descr)
+        news_manager.send_treasure(name, descr)
+		if mode == "trup" then
+            level.map_add_object_spot_ser(t_id, "treasure", text)
+		else
+            level.map_add_object_spot_ser(t_id, "spec_treasure", text)
+		end
+    end
+end
+
+-- _c = максимальное кол-во предметов в тайнике (строго больше 1)
+-- _r = вероятность появления предмета в тайнике(строго больше 1; высчитывается 1\_r, при _r = 5, 1\5 = 20%; по умолчанию: 1 к 2 ==> 50%)
+-- _u = вероятность заполнения тайника предметом из другого уровня(строго больше 1)
+
+
+local eat_c = 10
+local eat_r = 2 --50%
+
+local eatr_c = 10
+local eatr_r = 4 --50%
+
+local med_c = 8
+local med_r = 4 --25%
+
+local mut_c =  6
+local mut_r =  6
+
+local dev_c =  4
+local dev_r =  8
+
+local ammu_c = 2
+local ammu_r = 10 --10%
+
+local det_r =  12
+
+local art_c =  3
+local art_u =  14
+local art_r =  14
+
+local wpn_r =  5
+local wpn_u =  12
+
+local otf_r =  16
+
+local eat = {		--Продукты
+    "bread",
+    "kolbasa",
+    "conserva",
+    "nuts",
+    "olives",
+    "cheese",
+    "sardines",
+    "vegetables",
+    "vodka",
+    "energy_drink"
+}
+
+local eat_rad = {		--Продукты
+    "bread_rad",
+    "kolbasa_rad",
+    "cheese_rad"
+}
+
+local prop_1 = {	  -- Медикаменты
+    "bandage",
+    "antirad"
+}
+
+local prop = {
+    "medkit",
+    "bandage",
+    "antirad",
+    "yadulin"
+}
+-- Различные девайсы
+local other = {
+    "hand_radio",
+    "guitar_a",
+    "harmonica_a"
+}
+-- Части мутантов
+local m_parts = {
+    "mutant_dog_tail",
+    "mutant_flesh_eye",
+    "mutant_boar_leg",
+    "mutant_zombie_hand",
+    "mutant_cat_tail",
+    "mutant_psevdodog_tail",
+    "mutant_tushkano_face"
+}
+
+local m_parts_2 = {
+    "mutant_dog_tail",
+    "mutant_flesh_eye",
+    "mutant_boar_leg",
+    "mutant_zombie_hand",
+    "mutant_izlom_hand",
+    "mutant_snork_leg",
+    "mutant_cat_tail",
+    "mutant_psevdodog_tail",
+    "mutant_poltergeist_hand",
+    "mutant_burer_hand",
+    "mutant_krovosos_jaw",
+    "mutant_chimera_nail",
+    "mutant_controller_hand",
+    "mutant_pseudogigant_nail",
+    "mutant_tushkano_face"
+}
+
+local ammunition_table = {
+    "grenade_rgd5",
+    "grenade_f1",
+    "wpn_addon_scope",
+    "wpn_addon_scope_susat",
+    "wpn_addon_scope_acog",
+    "wpn_addon_grenade_launcher",
+    "wpn_addon_grenade_launcher_m203",
+    "wpn_silencer"
+}
+
+-- Артефакты
+local tr_art_table = {
+
+    marsh = {"af_medusa", "af_vyvert",
+	         "af_night_star",
+             "af_thorn",
+             "af_dummy_glassbeads",
+             "af_blood",
+             "af_soul",
+             "af_electra_sparkler",
+             "af_mica",
+             "af_dummy_battery"},
+
+    escape = {"af_medusa", "af_vyvert",
+	         "af_night_star",
+             "af_thorn", "af_cristall",
+             "af_dummy_glassbeads",
+             "af_blood", "af_mincer_meat",
+             "af_soul",
+             "af_electra_sparkler", "af_electra_flash",
+             "af_mica",
+              "af_dummy_battery"},
+
+    garbage = {"af_medusa", "af_vyvert",
+	         "af_night_star",
+             "af_thorn", "af_cristall",
+             "af_dummy_glassbeads",
+             "af_blood", "af_mincer_meat",
+             "af_soul",
+             "af_electra_sparkler", "af_electra_flash",
+             "af_mica", "af_slug",
+              "af_dummy_battery"},
+
+    darkvalley = {"af_medusa", "af_vyvert",
+	         "af_night_star", "af_gravi",
+             "af_thorn", "af_cristall",
+             "af_dummy_glassbeads", "af_eye",
+             "af_blood", "af_mincer_meat",
+             "af_soul", "af_fuzz_kolobok",
+             "af_electra_sparkler", "af_electra_flash",
+             "af_mica", "af_slug",
+             "af_dummy_battery", "af_dummy_dummy"},
+
+	agroprom = {"af_medusa", "af_vyvert",
+             "af_thorn", "af_cristall",
+			 "af_night_star", "af_gravi",
+             "af_dummy_glassbeads", "af_eye",
+             "af_blood", "af_mincer_meat",
+             "af_soul", "af_fuzz_kolobok",
+             "af_electra_sparkler", "af_electra_flash",
+             "af_mica", "af_slug",
+             "af_dummy_battery", "af_dummy_dummy"},
+			 
+    agroprom_underground  = {"af_medusa", "af_vyvert", "af_cristall_flower",
+             "af_thorn", "af_cristall", "af_fire",
+			 "af_night_star", "af_gravi",
+             "af_dummy_glassbeads", "af_eye",
+             "af_blood", "af_mincer_meat", "af_baloon",
+             "af_soul", "af_fuzz_kolobok",
+             "af_electra_sparkler", "af_electra_flash", "af_electra_moonlight",
+             "af_mica", "af_slug", "af_ball",
+             "af_dummy_battery","af_dummy_dummy"},
+
+	yantar = {"af_medusa", "af_vyvert", "af_cristall_flower",
+	         "af_night_star", "af_gravi",
+             "af_thorn", "af_cristall", "af_fire",
+             "af_dummy_glassbeads", "af_eye",
+             "af_blood", "af_mincer_meat", "af_baloon",
+             "af_soul", "af_fuzz_kolobok",
+             "af_electra_sparkler", "af_electra_flash", "af_electra_moonlight",
+             "af_mica", "af_slug", "af_ball",
+             "af_dummy_battery","af_dummy_dummy"},
+
+	red_forest = {"af_medusa", "af_vyvert", "af_cristall_flower",
+             "af_thorn", "af_cristall", "af_fire",
+			 "af_night_star", "af_gravi",
+             "af_dummy_glassbeads", "af_eye",
+             "af_blood", "af_mincer_meat", "af_baloon",
+             "af_soul", "af_fuzz_kolobok",
+             "af_electra_sparkler", "af_electra_flash", "af_electra_moonlight",
+             "af_mica", "af_slug", "af_ball",
+             "af_dummy_battery", "af_dummy_dummy"},
+
+	military = {"af_medusa", "af_cristall_flower","af_night_star",
+             "af_vyvert", "af_gravi", "af_gold_fish",
+             "af_thorn", "af_cristall", "af_fireball",
+             "af_dummy_glassbeads", "af_eye", "af_fire",
+             "af_mica", "af_slug", "af_ball",
+             "af_blood", "af_mincer_meat", "af_soul",
+             "af_fuzz_kolobok", "af_baloon", "af_glass",
+             "af_electra_sparkler", "af_electra_flash", "af_electra_moonlight",
+             "af_dummy_battery", "af_dummy_dummy", "af_ice"},
+
+	limansk = {"af_medusa", "af_cristall_flower","af_night_star",
+             "af_vyvert", "af_gravi", "af_gold_fish",
+             "af_thorn", "af_cristall", "af_fireball",
+             "af_dummy_glassbeads", "af_eye", "af_fire",
+             "af_mica", "af_slug", "af_ball",
+             "af_blood", "af_mincer_meat", "af_soul",
+             "af_fuzz_kolobok", "af_baloon", "af_glass",
+             "af_electra_sparkler", "af_electra_flash", "af_electra_moonlight",
+             "af_dummy_battery", "af_dummy_dummy", "af_ice"},
+
+	hospital = {"af_medusa", "af_cristall_flower","af_night_star",
+             "af_vyvert", "af_gravi", "af_gold_fish",
+             "af_thorn", "af_cristall", "af_fireball",
+             "af_dummy_glassbeads", "af_eye", "af_fire",
+             "af_mica", "af_slug", "af_ball",
+             "af_blood", "af_mincer_meat", "af_soul",
+             "af_fuzz_kolobok", "af_baloon", "af_glass",
+             "af_electra_sparkler", "af_electra_flash", "af_electra_moonlight",
+             "af_dummy_battery", "af_dummy_dummy", "af_ice"}
+}
+
+-- Таблица оружия на уровнях
+local tr_wpn_table = {
+
+    marsh = {"wpn_pm", "wpn_fort",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34",
+    "wpn_mp5", "wpn_ak74u"},
+
+    escape = {"wpn_pm", "wpn_fort", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_ak74_priklad", "wpn_l85", "wpn_lr_300"},
+	
+	garbage = {"wpn_pm", "wpn_fort", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34", "wpn_wincheaster1300", "wpn_spas12",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_ak74_priklad", "wpn_l85", "wpn_lr_300", "wpn_vihr"},
+
+    darkvalley = {"wpn_pm", "wpn_fort", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther", "wpn_colt1911", "wpn_sig220", "wpn_usp",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34", "wpn_wincheaster1300", "wpn_spas12",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_ak74_priklad", "wpn_l85", "wpn_lr_300", "wpn_vihr", "wpn_sig550", "wpn_sig552", "wpn_g36",
+    "wpn_vintorez", "wpn_svd"},
+
+	agroprom = {"wpn_pm", "wpn_fort", "wpn_pb", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther", "wpn_colt1911", "wpn_sig220", "wpn_usp",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34", "wpn_wincheaster1300", "wpn_spas12",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_ak74_priklad", "wpn_abakan", "wpn_groza", "wpn_l85", "wpn_lr_300", "wpn_vihr", "wpn_val", "wpn_sig550", "wpn_sig552", "wpn_g36",
+    "wpn_vintorez", "wpn_svd"},
+	
+    agroprom_underground = {"wpn_pm", "wpn_fort", "wpn_pb", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther", "wpn_colt1911", "wpn_sig220", "wpn_usp",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34", "wpn_wincheaster1300", "wpn_spas12",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_ak74_priklad", "wpn_abakan", "wpn_groza", "wpn_l85", "wpn_lr_300", "wpn_vihr", "wpn_val", "wpn_sig550", "wpn_sig552", "wpn_g36",
+    "wpn_vintorez", "wpn_svd"},
+	
+	yantar = {"wpn_pm", "wpn_fort", "wpn_pb", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther", "wpn_colt1911", "wpn_sig220", "wpn_usp",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34", "wpn_wincheaster1300", "wpn_spas12",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_ak74_priklad", "wpn_abakan", "wpn_groza", "wpn_l85", "wpn_lr_300", "wpn_vihr", "wpn_val", "wpn_sig550", "wpn_sig552", "wpn_g36",
+    "wpn_vintorez", "wpn_svd", "wpn_svu"},
+
+	red_forest = {"wpn_pm", "wpn_fort", "wpn_pb", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther", "wpn_colt1911", "wpn_sig220", "wpn_usp",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34", "wpn_wincheaster1300", "wpn_spas12",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_abakan", "wpn_groza", "wpn_l85", "wpn_lr_300", "wpn_vihr", "wpn_val", "wpn_sig550", "wpn_sig552", "wpn_g36",
+    "wpn_vintorez", "wpn_svd", "wpn_svu", "wpn_pkm", "wpn_rg-6"},
+
+	military = {"wpn_pm", "wpn_fort", "wpn_pb", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther", "wpn_colt1911", "wpn_sig220", "wpn_usp",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34", "wpn_wincheaster1300", "wpn_spas12",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_abakan", "wpn_groza", "wpn_l85", "wpn_lr_300", "wpn_vihr", "wpn_val", "wpn_sig550", "wpn_sig552", "wpn_g36",
+    "wpn_vintorez", "wpn_svd", "wpn_svu", "wpn_pkm", "wpn_rg-6"},
+
+	limansk = {"wpn_pm", "wpn_fort", "wpn_pb", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther", "wpn_colt1911", "wpn_sig220", "wpn_usp",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34", "wpn_wincheaster1300", "wpn_spas12",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_abakan", "wpn_groza", "wpn_l85", "wpn_lr_300", "wpn_vihr", "wpn_val", "wpn_sig550", "wpn_sig552", "wpn_g36",
+    "wpn_vintorez", "wpn_svd", "wpn_svu", "wpn_pkm", "wpn_rg-6", "wpn_rpg7"},
+
+	hospital = {"wpn_pm", "wpn_fort", "wpn_pb", "wpn_pb_short", "wpn_hpsa", "wpn_beretta", "wpn_walther", "wpn_colt1911", "wpn_sig220", "wpn_usp",
+    "wpn_bm16", "wpn_toz34_obrez", "wpn_bm16_full", "wpn_toz34", "wpn_wincheaster1300", "wpn_spas12",
+    "wpn_mp5", "wpn_ak74u", "wpn_ak74", "wpn_abakan", "wpn_groza", "wpn_l85", "wpn_lr_300", "wpn_vihr", "wpn_val", "wpn_sig550", "wpn_sig552", "wpn_g36",
+    "wpn_vintorez", "wpn_svd", "wpn_svu", "wpn_pkm", "wpn_rg-6", "wpn_rpg7"}
+}
+
+local detectors   = {"detector_simple", "detector_advanced", "detector_elite"}
+local detectors_l = {"detector_simple", "detector_advanced"} -- Чтобы на начальных локах не разжились Велесом, выбираем лишь из них двух
+
+--Костюмы
+local tr_otf_table = {	 
+	marsh = {"cs_novice_outfit", "cs_light_outfit", "cs_light_extra_outfit", "cs_standart_outfit",
+	"novice_outfit", "novice_outfit_white", "stalker_light_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit"},
+	
+	escape = {"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit",
+	"soldier_outfit_green", "soldier_outfit_grey", "soldier_outfit_brown"},
+	
+	garbage = {"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit", "digger_novice_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit", "bandit_heavy_outfit"},
+	
+	darkvalley = {"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit", "digger_novice_outfit",
+	"svoboda_light_outfit", "svoboda_light2_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit", "bandit_heavy_outfit"},
+	
+	agroprom = {"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit", "scientific_outfit", "digger_novice_outfit",
+	"dolg_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit", "bandit_heavy_outfit"},
+	
+	agroprom_underground = {"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit", "scientific_outfit", "digger_novice_outfit",
+	"dolg_outfit", "dolg_heavy_outfit", "dolg_scientific_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit", "bandit_heavy_outfit"},
+
+	yantar = {"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit", "scientific_outfit", "digger_novice_outfit",
+	"svoboda_light_outfit", "svoboda_light2_outfit",
+	"red_ecolog_outfit", "green_ecolog_outfit",
+	"dolg_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit", "bandit_heavy_outfit"},
+	
+	red_forest  = {"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit", "scientific_outfit", "digger_novice_outfit", "stalker_heavy_outfit",
+	"svoboda_light_outfit", "svoboda_light2_outfit", "svoboda_heavy_outfit",
+	"red_ecolog_outfit", "green_ecolog_outfit",
+	"dolg_outfit", "dolg_heavy_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit", "bandit_heavy_outfit"},
+	
+	military = {"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit", "scientific_outfit", "digger_novice_outfit", "stalker_heavy_outfit",
+	"svoboda_light_outfit", "svoboda_light2_outfit", "svoboda_heavy_outfit", "svoboda_scientific_outfit",
+	"dolg_outfit", "dolg_heavy_outfit", "dolg_scientific_outfit",
+	"red_ecolog_outfit", "green_ecolog_outfit",
+	"killer_outfit", "killer_outfit_dark",
+	"monolith_light_outfit", "monolith_outfit",
+	"soldier_outfit_green", "soldier_outfit_grey", "soldier_outfit_brown", "specops_outfit", "military_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit", "bandit_heavy_outfit"},
+	
+	limansk = {"cs_novice_outfit", "cs_light_outfit", "cs_light_extra_outfit", "cs_standart_outfit", "cs_heavy_outfit",
+	"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit", "scientific_outfit", "stalker_heavy_outfit", "digger_novice_outfit",
+	"svoboda_light_outfit", "svoboda_light2_outfit", "svoboda_heavy_outfit", "svoboda_scientific_outfit",
+	"dolg_outfit", "dolg_heavy_outfit", "dolg_scientific_outfit", "dolg_heavy_extra_outfit",
+	"red_ecolog_outfit", "green_ecolog_outfit",
+	"killer_outfit", "killer_outfit_dark", "killer_scientific_outfit", "killer_heavy_outfit",
+	"monolith_light_outfit", "monolith_outfit", "monolith_scientific_outfit", "monolith_heavy_outfit",
+	"soldier_outfit_green", "soldier_outfit_grey", "soldier_outfit_brown", "specops_outfit", "military_outfit", "military_extra_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit", "bandit_heavy_outfit"},
+	
+	hospital = {"cs_novice_outfit", "cs_light_outfit", "cs_light_extra_outfit", "cs_standart_outfit", "cs_heavy_outfit", "cs_heavy_extra_outfit",
+	"novice_outfit", "novice_outfit_white", "stalker_light_outfit", "stalker_outfit", "scientific_outfit", "stalker_heavy_outfit", "digger_novice_outfit", "exo_outfit",
+	"svoboda_light_outfit", "svoboda_light2_outfit", "svoboda_heavy_outfit", "svoboda_scientific_outfit", "svoboda_exo_outfit",
+	"dolg_outfit", "dolg_heavy_outfit", "dolg_scientific_outfit", "dolg_heavy_extra_outfit", "dolg_exo_outfit",
+	"red_ecolog_outfit", "green_ecolog_outfit",
+	"killer_outfit", "killer_outfit_dark", "killer_scientific_outfit", "killer_heavy_outfit", "killer_exo_outfit",
+	"monolith_light_outfit", "monolith_outfit", "monolith_scientific_outfit", "monolith_heavy_outfit", "monolith_exo_outfit",
+	"soldier_outfit_green", "soldier_outfit_grey", "soldier_outfit_brown", "specops_outfit", "military_outfit", "military_extra_outfit",
+	"bandit_outfit", "bandit_veteran_outfit", "bandit_master_outfit", "bandit_heavy_outfit"}
+}
+
+local map_text = ""
+
+function build_treasure(obj, trs)
+    --'Продукты
+    for i=1, eat_c do
+        if math.random(1,eat_r) == 1 then
+            local item = eat[math.random(table.getn(eat))]
+            send_t(trs, item, obj)
+        end
+    end
+    for i=1, eatr_c do
+        if math.random(1,eatr_r) == 1 then
+            local item = eat_rad[math.random(table.getn(eat_rad))]
+            send_t(trs, item, obj)
+        end
+    end
+    --'Предметы
+	for i=1, dev_c do
+        if math.random(1,dev_r) == 1 then
+            local item = other[math.random(table.getn(other))]
+            send_t(trs, item,obj)
+        end
+	end
+    --'Устройства
+    if math.random(1,det_r) == 1 then
+        local item
+        local tlv = alife():level_name(game_graph():vertex(obj.m_game_vertex_id):level_id())
+        if tlv=="marsh" or tlv=="escape" or tlv=="garbage" then
+            item = detectors_l[math.random(table.getn(detectors_l))]
+        else
+            item = detectors[math.random(table.getn(detectors))]
+        end
+        send_t(trs, item,obj)
+    end
+    --'Медикаменты
+    for i=1, med_c do
+        if math.random(1,med_r) == 1 then
+            local item
+            local tlv = alife():level_name(game_graph():vertex(obj.m_game_vertex_id):level_id())
+            if tlv=="marsh" or tlv=="escape" then
+                item = prop_1[math.random(table.getn(prop_1))] --'Тайники без крутых медикаментов
+            else
+                item = prop[math.random(table.getn(prop))]
+            end
+            send_t(trs,item,obj)
+        end
+    end
+	--'Аммуниция
+	for i=1, ammu_c do
+        if math.random(1,ammu_r) == 1 then
+            local item = ammunition_table[math.random(table.getn(ammunition_table))]
+            send_t(trs, item,obj)
+        end
+	end
+	
+    if math.random(1,wpn_r) == 1 then
+        local t_level 
+        if math.random(1,wpn_u)~=1 then
+            t_level = alife():level_name(game_graph():vertex(obj.m_game_vertex_id):level_id()) 
+        else
+            local t = math.random(1,11)
+            if t==1 then 
+                t_level = "agroprom_underground"
+            end
+            if t==2 then
+                t_level = "marsh"
+            end
+            if t==3 then
+                t_level = "escape"
+            end
+            if t==4 then
+                t_level = "garbage"
+            end
+            if t==5 then
+                t_level = "darkvalley"
+            end
+            if t==6 then
+                t_level = "agroprom"
+            end
+            if t==7 then
+                t_level = "red_forest"
+            end
+            if t==8 then
+                t_level = "military"
+            end
+            if t==9 then
+                t_level = "yantar"
+            end
+            if t==10 then
+                t_level = "limansk"
+            end
+            if t==11 then
+                t_level = "hospital"
+            end
+        end
+        local w_tbl = tr_wpn_table[t_level]
+        local item = w_tbl[math.random(table.getn(w_tbl))]
+        send_t(trs, item,obj,"w")
+    end
+    --'Оружие
+    if math.random(1,wpn_r) == 1 then
+        local t_level 
+        if math.random(1,wpn_u)~=1 then
+            t_level = alife():level_name(game_graph():vertex(obj.m_game_vertex_id):level_id()) 
+        else
+            local t = math.random(1,11)
+            if t==1 then 
+                t_level = "agroprom_underground"
+            end
+            if t==2 then
+                t_level = "marsh"
+            end
+            if t==3 then
+                t_level = "escape"
+            end
+            if t==4 then
+                t_level = "garbage"
+            end
+            if t==5 then
+                t_level = "darkvalley"
+            end
+            if t==6 then
+                t_level = "agroprom"
+            end
+            if t==7 then
+                t_level = "red_forest"
+            end
+            if t==8 then
+                t_level = "military"
+            end
+            if t==9 then
+                t_level = "yantar"
+            end
+            if t==10 then
+                t_level = "limansk"
+            end
+            if t==11 then
+                t_level = "hospital"
+            end
+        end
+        local w_tbl = tr_wpn_table[t_level]
+        local item = w_tbl[math.random(table.getn(w_tbl))]
+        send_t(trs, item,obj,"w")
+    end
+    --'Артефакты
+	for i=1, art_c do
+        if math.random(1,art_r)==1 then
+            local a_level 
+            if math.random(1,art_u)~=1 then
+                a_level = alife():level_name(game_graph():vertex(obj.m_game_vertex_id):level_id()) 
+            else
+                local t = math.random(1,11)
+                if t==1 then
+                    a_level = "agroprom_underground"
+            end
+            if t==2 then
+                a_level = "marsh"
+            end
+            if t==3 then
+                a_level = "escape"
+            end
+            if t==4 then
+                a_level = "garbage"
+            end
+            if t==5 then
+                a_level = "darkvalley"
+            end
+            if t==6 then
+                a_level = "agroprom"
+            end
+            if t==7 then
+                a_level = "red_forest"
+            end
+            if t==8 then
+                a_level = "military"
+            end
+            if t==9 then
+                a_level = "yantar"
+            end
+            if t==10 then
+                a_level = "limansk"
+            end
+            if t==11 then
+                a_level = "hospital"
+            end
+            end
+            local a_tbl = tr_art_table[a_level]
+            local item = a_tbl[math.random(table.getn(a_tbl))]
+            send_t(trs, item,obj)
+        end
+	end
+    --Костюмы
+    if math.random(1,otf_r)==1 then
+        local o_level = alife():level_name(game_graph():vertex(obj.m_game_vertex_id):level_id()) 
+        local o_tbl = tr_otf_table[o_level]
+        local item = o_tbl[math.random(table.getn(o_tbl))]
+        send_t(trs, item,obj)
+    end
+    map_text = ""
+end
+
+function send_t(trs, item, obj, w)
+    if not system_ini():section_exist(item) then
+        return
+    end
+    local leveln = alife():level_name(game_graph():vertex(obj.m_game_vertex_id):level_id())
+    alife():create(item, obj.position, obj.m_level_vertex_id, obj.m_game_vertex_id, obj.id)
+    map_text = map_text.." , "..item
+    trs.items_descr = trs.items_descr..item.."," --#SM+#--
+    if w then
+        local a_item_tbl = xr_s.str_explode(",",ngsm.get_ltx_new(item,"ammo_class","str"),true)
+        local a_item = a_item_tbl[math.random(table.getn(a_item_tbl))]
+        for i=1, math.random(0, 2) do
+            alife():create( a_item, obj.position, obj.m_level_vertex_id, obj.m_game_vertex_id, obj.id)
+            trs.items_descr = trs.items_descr..a_item.."," --#SM+#--
+        end
+    end
+end

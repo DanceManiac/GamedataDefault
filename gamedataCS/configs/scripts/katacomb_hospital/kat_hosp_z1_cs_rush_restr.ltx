@@ -1,0 +1,10 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {+kat_door_dynamite} sr_idle@explosion %=spawn_kat_grenade%
+
+[sr_idle@explosion]
+on_info = {+door_blow_up} sr_idle@nil %=destroy_object(235)%
+
+[sr_idle@nil]

@@ -1,0 +1,47 @@
+[logic@boss]
+active = kamp
+suitable = {=check_npc_name(mar_renegade_boss) !is_smart_in_combat(mar_smart_terrain_10_5)} true
+on_death = death
+prior = 101
+
+[kamp]
+center_point = kamp_3
+path_walk = kamp_3_task
+
+[death]
+on_info = %+mar_boss_renegade_dead%
+
+;------------------------------------------
+
+[logic@work1]
+active = kamp@work1
+suitable = {!is_smart_in_combat(mar_smart_terrain_10_5) =smart_population_ge(mar_smart_terrain_10_5:8) !npc_is_squad_leader} true
+prior = 101
+
+[kamp@work1]
+center_point = kamp_3
+path_walk = kamp_3_task
+
+[logic@work2]
+active = kamp@work2
+suitable = {!is_smart_in_combat(mar_smart_terrain_10_5) =smart_population_ge(mar_smart_terrain_10_5:8) !npc_is_squad_leader} true
+prior = 101
+
+[kamp@work2]
+center_point = kamp_3
+path_walk = kamp_3_task
+
+[logic@work3]
+active = kamp@work3
+suitable = {!is_smart_in_combat(mar_smart_terrain_10_5) =smart_population_ge(mar_smart_terrain_10_5:8) !npc_is_squad_leader} true
+prior = 101
+
+[kamp@work3]
+center_point = kamp_3
+path_walk = kamp_3_task
+
+[meet]
+meet_state = 3 | nil@nil
+meet_state_wpn = 3 | nil@nil
+victim = 0 | actor
+victim_wpn = 0 | actor

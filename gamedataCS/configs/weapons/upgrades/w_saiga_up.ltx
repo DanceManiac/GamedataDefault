@@ -1,0 +1,254 @@
+; Модификация затвора. Технологическая доработка затвора позволяет увеличить темп стрельбы.
+[up_sect_a_saiga]
+cost		      		= 1000
+value					= +10
+rpm                     = 12
+
+; Модификация затвора. Точная подгонка затвора уменьшает разброс пуль при стрельбе.
+[up_sect_b_saiga]
+cost		      		= 1000
+value					= +10
+fire_dispersion_base	= -0.11
+
+; Модификация газового поршня. Установка компенсатора газового поршня позволяет уменьшить отдачу.
+[up_sect_c_saiga]
+cost		      		= 1000
+value					= -10
+cam_dispersion              = -0.54
+cam_dispersion_inc         	= -0.54
+cam_step_angle_horz        	= -0.54
+zoom_cam_dispersion          = -0.46
+zoom_cam_dispersion_inc      = -0.46
+zoom_cam_step_angle_horz     = -0.46
+
+; Модификация газового поршня. Снижение массы газового поршня замедляет темп стрельбы, но уменьшает отдачу.
+[up_sect_d_saiga]
+cost		      		= 1000
+value					= -20
+value2					= st_upgr_rpm_lowered
+rpm                     = -24
+cam_dispersion              = -1.08
+cam_dispersion_inc         	= -1.08
+cam_step_angle_horz        	= -1.08
+zoom_cam_dispersion          = -0.92
+zoom_cam_dispersion_inc      = -0.92
+zoom_cam_step_angle_horz     = -0.92
+
+; Облегчённый приклад. Замена стандартного приклада на более лёгкий аналог.
+[up_sect_e_saiga]
+cost	      	     	= 1000
+value					= -0.35  ;-10
+inv_weight				= -0.35
+control_inertion_factor	= -0.13
+
+; Пневмоприклад. Особая конструкция приклада позволяет существенно уменьшить отдачу.
+[up_sect_f_saiga]
+cost		      		= 1000
+value					= -10
+cam_dispersion              = -0.54
+cam_dispersion_inc         	= -0.54
+cam_step_angle_horz        	= -0.54
+zoom_cam_dispersion          = -0.46
+zoom_cam_dispersion_inc      = -0.46
+zoom_cam_step_angle_horz     = -0.46
+
+; Модификация газоотвода. Более современная система газоотвода, позволяющая повысить темп стрельбы.
+[up_sect_ac_saiga]
+cost		      		= 2000
+value					= +20
+rpm						= 24
+
+; Замена ствола. Ствол из прочной стали не подвергается деформации даже при интенсивной стрельбе, в результате чего точность боя оружия повышается.
+[up_sect_bd_saiga]
+cost		      		= 2000
+value					= +20
+bullet_speed			= 84
+
+
+
+[up_a_saiga]
+scheme_index            = 0, 0
+known                   = 1
+effects                 = up_gr_ac_saiga
+section                 = up_sect_a_saiga
+property                = prop_rpm
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = true
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = on_weapon_upgrade_something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_zatvor_rpm
+description             = st_upg_zatvor_rpm_descr
+icon                    = ui_wp_upgrade_30
+
+
+[up_b_saiga]
+scheme_index            = 0, 1
+known                   = 1
+effects                 = up_gr_bd_saiga
+section                 = up_sect_b_saiga
+property                = prop_dispersion
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = true
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_zatvor_recoil
+description             = st_upg_zatvor_recoil_descr
+icon                    = ui_wp_upgrade_31
+
+
+[up_c_saiga]
+scheme_index            = 0, 2
+known                   = 1
+effects                 = up_gr_ac_saiga
+section                 = up_sect_c_saiga
+property                = prop_recoil
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = true
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_porsh_recoil
+description             = st_upg_porsh_recoil_descr
+icon                    = ui_wp_upgrade_41
+
+
+[up_d_saiga]
+scheme_index            = 0, 3
+known                   = 1
+effects                 = up_gr_bd_saiga
+section                 = up_sect_d_saiga
+property                = prop_recoil
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = true
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_porsh_rpm
+description             = st_upg_porsh_rpm_descr
+icon                    = ui_wp_upgrade_42
+
+
+[up_e_saiga]
+scheme_index            = 0, 4
+known                   = 1
+effects                 = 
+section                 = up_sect_e_saiga
+property                = prop_weight
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = true
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_butt_recoil3
+description             = st_upg_butt_recoil3_descr
+icon                    = ui_wp_upgrade_15
+
+
+[up_f_saiga]
+scheme_index            = 0, 5
+known                   = 1
+effects                 = 
+section                 = up_sect_f_saiga
+property                = prop_recoil
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = true
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here_h
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_butt_recoil4
+description             = st_upg_butt_recoil4_descr
+icon                    = ui_wp_upgrade_16
+
+
+[up_ac_saiga]
+scheme_index            = 1, 0
+known                   = 1
+effects                 = 
+section                 = up_sect_ac_saiga
+property                = prop_rpm
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = true
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_gas_rpm
+description             = st_upg_gas_rpm_descr
+icon                    = ui_wp_upgrade_40
+
+
+[up_bd_saiga]
+scheme_index            = 1, 1
+known                   = 1
+effects                 = 
+section                 = up_sect_bd_saiga
+property                = prop_bullet_speed
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = true
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_hard_barrel_curved
+description             = st_upg_hard_barrel_curved_descr
+icon                    = ui_wp_upgrade_12
+
+
+
+[up_gr_ab_saiga]
+elements                = up_a_saiga, up_b_saiga
+
+[up_gr_cd_saiga]
+elements                = up_c_saiga, up_d_saiga
+
+[up_gr_e_saiga]
+elements                = up_e_saiga
+
+[up_gr_f_saiga]
+elements                = up_f_saiga
+
+[up_gr_ac_saiga]
+elements                = up_ac_saiga
+
+[up_gr_bd_saiga]
+elements                = up_bd_saiga

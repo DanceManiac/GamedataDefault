@@ -1,3 +1,6 @@
+;===========================================================================
+; DOG
+;===========================================================================
 [m_dog_e]:monster_base
 GroupControlSection	= spawn_group
 SpaceRestrictionSection = space_restrictor,zone_mosquito_bald
@@ -18,9 +21,6 @@ icon				 = ui_npc_monster_dog
 MaxHealthValue		     = 100			; range [0..200]
 DynamicObjectsCount	 = 32
 smart_terrain_choose_interval	= 00:15:00
-
-Spawn_Inventory_Item_Section = mutant_dog_tail
-Spawn_Inventory_Item_Probability = 0.0
 
 cform                = skeleton					; collision class
 class                = SM_DOG_S					; AI class
@@ -49,6 +49,7 @@ ph_crash_speed_min			= 10
 ph_crash_speed_max			= 30
 ph_collision_damage_factor	= 0.1
 ph_mass 		     = 40	;70
+
 actor_restrictor	 = medium_monster ;medium_monster,stalker,none
 destroyed_vis_name	 = dynamics\Dead_Body\skelet_crash_monster
 
@@ -73,6 +74,7 @@ separate_range  = 1   ; радиус в котором расталкивание действует
 ; Movement::Velocities & Acceleration
 ;----------------------------------------------------------------------------
 ; speed factors			linear | angular_real | angular_path | min |  max
+;----------------------------------------------------------------------------
 Velocity_Stand			= 0,		2.0,			2.0,		1,		1
 Velocity_WalkFwdNormal	= 1.45,		3.0,			3.0,		0.2,	1.5
 Velocity_WalkFwdDamaged	= 1.3,		1.0,			1.0,		0.2,	1
@@ -146,17 +148,17 @@ bleeding_v					= 0.04						;потеря крови при номинальной ране в секунду
 wound_incarnation_v			= 0.05				;крутизна кривой заживления (какой процент раны останется после заживления в игровую секунду)
 min_wound_size				= 0.01
 
-sleep_health = 1.0		;1.5				;ъю¤ЇЇшЎшхэЄv ёъюЁюёЄхщ шчьхэхэш  ярЁрьхЄЁют тю тЁхь  ёэр
+sleep_health = 1.0		;1.5				;коэффициенты скоростей изменения параметров во время сна
 sleep_power = 1.0		;1.5
 sleep_satiety = 1.0		;0.8
 sleep_radiation = 1.0	;1.1
 sleep_psy_health = 1.0
 
-eat_freq			=	5.0		; ўрёЄюЄр єъєёют т ёхъ
-eat_slice			=	0.01	; єтхышўхэшх ёvЄюёЄш яЁш 1 єъєёх
-eat_slice_weight	=	10.0	; єьхэ№°хэшх хфv є ЄЁєяр
+eat_freq			=	5.0		; частота укусов в сек
+eat_slice			=	0.01	; увеличение сытости при 1 укусе
+eat_slice_weight	=	10.0	; уменьшение еды у трупа
 
-satiety_threshold		= 0.5							; below this value monster fill hunger
+satiety_threshold		= 0.5							; ниже этого значения монстр считается голодным
 
 ;-------------------------------------------------------------------------
 ; Morale
@@ -216,7 +218,7 @@ time_quant					= 0.001
 decrease_value				= 0.01				; значение, на которое уменьшается вес, если объект попал в фрустум, но отсёкся по каким-то причинам
 velocity_factor		     	= 0.5
 luminocity_factor			= 0.5 				; фактор освещения (только для Актёра)
-transparency_threshold		= 0.25
+transparency_threshold		= 0.25				; видимость через камыши и кустарники
 
 ;-------------------------------------------------------------------------
 ; Damages
@@ -240,12 +242,12 @@ critical_wound_bones_legs	= dog_critical_wound_bones_legs
 ;-------------------------------------------------------------------------
 ; Other Stuff (refactoring needed)
 ;-------------------------------------------------------------------------
-DayTime_Begin		= 0	;6		; эрўрыр фэ  фы  ьюэёЄЁр
-DayTime_End			= 21		; ъюэхЎ фэ  фы  ьюэёЄЁр
-Min_Satiety			= 0.5	;0.06 ; ьшэ. эюЁьр ёvЄюёЄш (ьхэ№°х - єцх уюыюфэvщ)
-Max_Satiety			= 1.0	;0.9 ; ьръё. эюЁьр ёvЄюёЄш (сюы№°х - юўхэ№ ёvЄvщ)
+DayTime_Begin		= 0	;6		; начало дня для монстра
+DayTime_End			= 21		; конец дня для монстра
+Min_Satiety			= 0.5	;0.06 ; мин. норма сытости (меньше - уже голодный)
+Max_Satiety			= 1.0	;0.9 ; макс. норма сытости (больше - очень сытый)
 
-distance_to_corpse	= 1.3		; фшёЄ. фю ЄЁєяр, яЁш ъюЄюЁющ юэ яхЁхїюфшЄ т ёюёЄю эшх хфv
+distance_to_corpse	= 1.3		; дист. до трупа, при которой он переходит в состояние еды
 
 
 terrain				 = dogs_terrain
@@ -310,7 +312,7 @@ ce_power		= 0.7 ; power
 ;===========================================================================
 ; Step Events
 ;===========================================================================
-[m_dog_step_params]			    fwdleftleg	    fwdrightleg     backrightleg     backleftleg
+[m_dog_step_params]			    ;fwdleftleg	    fwdrightleg     backrightleg     backleftleg
 ;------------------------------------------------------------------------------------------------------------
 ;	anim			Cycles 	| time1 | power1 | time2 | power2 | time3 | power3 | time4 | power4 |
 ;------------------------------------------------------------------------------------------------------------
@@ -424,12 +426,12 @@ time_quant			 = 0.003
 burn_immunity			= 1.0
 strike_immunity			= 1.0
 shock_immunity			= 1.0
-wound_immunity			= 1.0
+wound_immunity			= 0.8
 radiation_immunity		= 0.0
 telepatic_immunity		= 0.0
 chemical_burn_immunity	= 1.0
-explosion_immunity		= 1.0
-fire_wound_immunity		= 1.0
+explosion_immunity		= 0.8
+fire_wound_immunity		= 0.8
 
 [dog_attack_params_weak]
 ;---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -465,12 +467,12 @@ community			= dog
 burn_immunity			= 0.7
 strike_immunity			= 0.7
 shock_immunity			= 0.7
-wound_immunity			= 1.0
+wound_immunity			= 0.5
 radiation_immunity		= 0.0
 telepatic_immunity		= 0.0
 chemical_burn_immunity	= 0.7
 explosion_immunity		= 0.85
-fire_wound_immunity		= 0.85
+fire_wound_immunity		= 0.65
 
 [dog_attack_params_normal]
 ;---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -505,12 +507,12 @@ community			= dog
 burn_immunity			= 0.5
 strike_immunity			= 0.5
 shock_immunity			= 0.5
-wound_immunity			= 1.0
+wound_immunity			= 0.3
 radiation_immunity		= 0.0
 telepatic_immunity		= 0.0
 chemical_burn_immunity	= 0.5
 explosion_immunity		= 0.7
-fire_wound_immunity		= 0.7
+fire_wound_immunity		= 0.5
 
 [dog_attack_params_strong]
 ;---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -528,10 +530,16 @@ jump_ataka_02  =		0.2,		0.41,	    200,        0.0, 1.0, 4.0,		 -1.8, 1.8, -1.8, 
 ;*********************************************************************************
 ; FEARLESS PROFILES FOR GARBAGE
 ;*********************************************************************************
-;[dog_normal_fearless_garbage]:dog_normal
-;$spawn				= "monsters\dogs\dog_02_normal_fearless_garbage"
-;panic_threshold		= 0
+[dog_normal_fearless_garbage]:dog_normal
+$spawn				= "monsters\dogs\dog_02_normal_fearless_garbage"
+panic_threshold		= 0
+visual				= monsters\dog\dog_bulterier
+corpse_visual		= monsters\dog\dog_bulterier_dead
+icon				= ui_npc_monster_dog_bulterier
 
-;[dog_weak_fearless_garbage]:dog_weak
-;$spawn				= "monsters\dogs\dog_01_weak_fearless_garbage"
-;panic_threshold		= 0
+[dog_weak_fearless_garbage]:dog_weak
+$spawn				= "monsters\dogs\dog_01_weak_fearless_garbage"
+panic_threshold		= 0
+visual				= monsters\dog\dog_bulterier
+corpse_visual		= monsters\dog\dog_bulterier_dead
+icon				= ui_npc_monster_dog_bulterier

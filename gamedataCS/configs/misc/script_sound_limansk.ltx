@@ -1,8 +1,10 @@
 [list_lim]
+lim_cs_limansk_intro
 lim_bandit_wounded_help
 lim_bandit_wounded_help2_snd
 lim_cs_stalker_spich
 lim_cs_stalker_hint
+lim_cs_stalker_request_help
 lim_cs_storm_troop_leader_clear_street
 lim_cs_storm_troop2_leader_to_actor1
 lim_cs_storm_troop2_leader_to_actor2
@@ -14,6 +16,8 @@ lim_cs_storm_troop2_leader_order1
 lim_cs_storm_troop2_leader_order2
 lim_cs_storm_troop2_leader_order3
 lim_cs_stalker_oreder_1
+lim_cs_stalker_oreder_2
+lim_cs_stalker_oreder_3
 lim_cs_storm_troop_leader_to_actor1
 lim_cs_storm_troop_leader_to_actor2
 lim_cs_storm_troop_leader_order1
@@ -45,6 +49,18 @@ lim_cs_reconnaissance_squad_electricity_off_pda
 lim_cs_leader_next_task
 lim_electro_fience_transformer
 lim_electro_fience_swither
+lim_military_1
+
+;***********LIMANSK**
+;********************
+
+[lim_cs_limansk_intro]
+type = actor
+actor_stereo = false
+npc_prefix = false
+path = characters_voice\scenario\limansk\lim_cs_limansk_intro
+shuffle = rnd
+idle = 10,15,100
 
 [lim_cs_stalker_hint]
 type = npc
@@ -52,6 +68,15 @@ actor_stereo = false
 npc_prefix = false
 avail_communities = killer
 path = scenario\limansk\lim_cs_stalker_hint
+shuffle = rnd
+play_always = true
+idle = 10,15,100
+
+[lim_cs_stalker_request_help]
+type = actor
+actor_stereo = false
+npc_prefix = false
+path = characters_voice\scenario\limansk\lim_cs_stalker_request_help
 shuffle = rnd
 play_always = true
 idle = 10,15,100
@@ -176,11 +201,27 @@ path = scenario\limansk\lim_cs_stalker_oreder_1
 shuffle = rnd
 idle = 10,15,100
 
-[lim_cs_storm_troop_leader_to_actor1]
-type = actor
+[lim_cs_stalker_oreder_2]
+type = npc
 actor_stereo = false
 npc_prefix = false
-path = characters_voice\scenario\limansk\lim_cs_storm_troop_leader_to_actor1
+path = scenario\limansk\lim_cs_stalker_oreder_2
+shuffle = rnd
+idle = 10,15,100
+
+[lim_cs_stalker_oreder_3]
+type = npc
+actor_stereo = false
+npc_prefix = false
+path = scenario\limansk\lim_cs_stalker_oreder_3
+shuffle = rnd
+idle = 10,15,100
+
+[lim_cs_storm_troop_leader_to_actor1]
+type = npc
+actor_stereo = false
+npc_prefix = false
+path = scenario\limansk\lim_cs_storm_troop_leader_to_actor1
 shuffle = seq
 idle = 10,15,100
 
@@ -217,26 +258,26 @@ shuffle = rnd
 idle = 10,15,100
 
 [lim_cs_reconnaissance_squad_alert]
-type = actor
+type = npc
 actor_stereo = false
 npc_prefix = false
-path = characters_voice\scenario\limansk\lim_cs_reconnaissance_squad_alert
+path = scenario\limansk\lim_cs_reconnaissance_squad_alert
 shuffle = rnd
 idle = 10,15,100
 
 [lim_cs_reconnaissance_squad_clear]
-type = actor
+type = npc
 actor_stereo = false
 npc_prefix = false
-path = characters_voice\scenario\limansk\lim_cs_reconnaissance_squad_clear
+path = scenario\limansk\lim_cs_reconnaissance_squad_clear
 shuffle = rnd
 idle = 10,15,100
 
 [lim_cs_reconnaissance_squad_to_actor]
-type = actor
+type = npc
 actor_stereo = false
 npc_prefix = false
-path = characters_voice\scenario\limansk\lim_cs_reconnaissance_squad_to_actor
+path = scenario\limansk\lim_cs_reconnaissance_squad_to_actor
 shuffle = rnd
 idle = 10,15,100
 
@@ -281,26 +322,26 @@ shuffle = rnd
 idle = 10,15,100
 
 [lim_cs_enter_squad_attention]
-type = actor
+type = npc
 actor_stereo = false
 npc_prefix = false
-path = characters_voice\scenario\limansk\lim_cs_enter_squad_attention
+path = scenario\limansk\lim_cs_enter_squad_attention
 shuffle = seq
 idle = 1,1,100
 
 [lim_cs_enter_squad_see_target]
-type = actor
+type = npc
 actor_stereo = false
 npc_prefix = false
-path = characters_voice\scenario\limansk\lim_cs_enter_squad_see_target
+path = scenario\limansk\lim_cs_enter_squad_see_target
 shuffle = seq
 idle = 1,1,100
 
 [lim_cs_enter_squad_check]
-type = actor
+type = npc
 actor_stereo = false
 npc_prefix = false
-path = characters_voice\scenario\limansk\lim_cs_enter_squad_check
+path = scenario\limansk\lim_cs_enter_squad_check
 shuffle = seq
 idle = 1,1,100
 
@@ -425,5 +466,13 @@ type = actor
 actor_stereo = false
 npc_prefix = false
 path = characters_voice\scenario\limansk\lim_cs_storm_troop_leader_stay
+shuffle = rnd
+idle = 10,15,100
+
+[lim_military_1]
+type = actor
+actor_stereo = false
+npc_prefix = false
+path = characters_voice\scenario\limansk\lim_military_1
 shuffle = rnd
 idle = 10,15,100

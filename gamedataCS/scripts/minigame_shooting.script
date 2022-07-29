@@ -1,4 +1,7 @@
-inventory_items = {}
+-- inventory_items = {}
+-- вместо передачи предметов НПС теперь используется складывание в невидимый ящик
+-- SID = 1038 (all.spawn)
+-- (c) Kirgudu
 --------------------------------------------------------------------------------
 class "CMGShooting"
 -- Class constructor
@@ -6,6 +9,7 @@ function CMGShooting:__init()
 	self.cur_game = nil
 	self.obj_name = ""
 	self.wpn_type = ""
+	self.wpn_ammo_type = ""
 	self.ammo = 0
 	self.prev_time = 0
     self.breaked = true
@@ -15,6 +19,7 @@ function CMGShooting:reinit(params)
 	self.cur_game = minigame_shooting[params.game_type](params)
 	self.obj_name = params.obj_name
 	self.wpn_type = params.wpn_type
+	self.wpn_ammo_type = params.wpn_ammo_type
 	self.ammo = params.ammo
 	self.prev_time = 0
 	self.breaked = true
@@ -152,6 +157,7 @@ function CMGShooting:save(thread, params_list)
 --------------------------------------------------------------------------------
 	thread:w_stringZ(params_list.game_type)
 	thread:w_stringZ(params_list.wpn_type)
+	thread:w_stringZ(params_list.wpn_ammo_type)
 	thread:w_stringZ(tostring(params_list.stand_way))
     thread:w_stringZ(tostring(params_list.look_way))
 	thread:w_stringZ(tostring(params_list.stand_way_back))
@@ -179,6 +185,7 @@ function CMGShooting:save(thread, params_list)
 	end
     thread:w_u8(params_list.target_counter)
 --------------------------------------------------------------------------------
+--[[
 	n = 0
 	for k,v in pairs(inventory_items) do
 		n = n + 1
@@ -187,6 +194,7 @@ function CMGShooting:save(thread, params_list)
 	for k,v in pairs(inventory_items) do
 		thread:w_u16(v)
 	end
+--]]
 --------------------------------------------------------------------------------
 	thread:w_u32(self.prev_time)
 	if(self.cur_game==nil) then
@@ -204,6 +212,7 @@ function CMGShooting:load(thread, params_list)
 --------------------------------------------------------------------------------
 	params_list.game_type = thread:r_stringZ()
 	params_list.wpn_type = thread:r_stringZ()
+	params_list.wpn_ammo_type = thread:r_stringZ()
 	local way = thread:r_stringZ()
 	if(way~="nil") then
 		params_list.stand_way = way
@@ -245,11 +254,13 @@ function CMGShooting:load(thread, params_list)
 	end
 	params_list.target_counter = thread:r_u8()
 --------------------------------------------------------------------------------
+--[[
 	n = thread:r_u8()
 	inventory_items = {}
 	for i=1,n do
 		inventory_items[i] = thread:r_u16()
 	end
+--]]
 --------------------------------------------------------------------------------
 	self.prev_time = thread:r_u32()
 	self.breaked = true
@@ -262,6 +273,7 @@ function CMGShooting:load(thread, params_list)
 	end
 	self.obj_name = params_list.obj_name
 	self.wpn_type = params_list.wpn_type
+	self.wpn_ammo_type = params_list.wpn_ammo_type
 	self.ammo = params_list.ammo
 --------------------------------------------------------------------------------
 	set_save_marker(thread, "load", true, "CMGShooting")
@@ -283,22 +295,28 @@ end
 -- Gives actor weapon of selected type and some ammunition
 -- Also transfer all his items to speaking char
 function CMGShooting:spawn_weapon()
-    db.actor:iterate_inventory(store_weapon, db.storage[alife():object(self.obj_name).id].object)
+    local box = level_object_by_sid(1038)
+    -- db.actor:iterate_inventory(store_weapon, db.storage[alife():object(self.obj_name).id].object)
+    db.actor:iterate_inventory(store_weapon, box)
+    db.actor:give_info_portion("agr_store_inventory_box")
     local obj = alife():create(self.wpn_type, vector(), 0, 0, db.actor:id())
 	local ammo = tonumber(system_ini():r_string(self.wpn_type, "ammo_mag_size"))
 	if(self.ammo>ammo) then
-	    se_respawn.create_ammo("ammo_minigame", vector(), 0, 0, db.actor:id(), self.ammo-ammo)
+		se_respawn.create_ammo(self.wpn_ammo_type, vector(), 0, 0, db.actor:id(), self.ammo-ammo)
 	end
 end
 -- Returns all actor items to him and remove all given items
 function CMGShooting:restore_weapon()
+    local box = level_object_by_sid(1038)
     db.actor:iterate_inventory(release_weapon, db.actor)
-    db.storage[alife():object(self.obj_name).id].object:iterate_inventory(get_back_items,db.storage[alife():object(self.obj_name).id].object)
-    inventory_items = {}
+    db.actor:disable_info_portion("agr_store_inventory_box")
+    -- db.storage[alife():object(self.obj_name).id].object:iterate_inventory(get_back_items,db.storage[alife():object(self.obj_name).id].object)
+    box:iterate_inventory_box(get_back_items,box)
+    -- inventory_items = {}
 end
 -- Global function for inventory iteration (called from CMGShooting:spawn_weapon())
 function store_weapon(obj, item)
-    table.insert(inventory_items, item:id())
+    -- table.insert(inventory_items, item:id())
     db.actor:transfer_item(item, obj)
 end
 -- Global function for inventory iteration (called from CMGShooting:restore_weapon())
@@ -311,11 +329,11 @@ function release_weapon(obj, item)
 end
 -- Global function for inventory iteration (called from CMGShooting:restore_weapon())
 function get_back_items(obj, item)
-	for k,v in pairs(inventory_items) do
-		if(item:id()==v) then
+	-- for k,v in pairs(inventory_items) do
+		-- if(item:id()==v) then
 			obj:transfer_item(item, db.actor)
-		end
-	end
+		-- end
+	-- end
 end
 --------------------------------------------------------------------------------
 class "training"

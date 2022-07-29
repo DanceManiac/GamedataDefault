@@ -1,17 +1,17 @@
 	<tab_client>
     <main x="121" y="224" width="738" height="416"/>
     <rust_00 x="258" y="-30" width="310" height="99">
-			<texture>rusty_01</texture>
+			<texture><!-- rusty_01 --></texture>
 		</rust_00>
 		<rust_01 x="550" y="300" width="201" height="134">		
-			<texture>rust_bot_client</texture>
+			<texture><!-- rust_bot_client --></texture>
 		</rust_01>
 		<server_list x="8" y="99" width="539" height="310">			
 			<sizes icon="46" server="155" map="129" game="55" players="54" ping="34" version="63"/>
 			<frame x="0" y="20" width="515" height="290">
 				<texture>ui_cb_listbox</texture>
 			</frame>
-			<list x="0" y="20" width="535" height="250" height2="140" item_height="18" always_show_scroll="1"/>
+			<list x="0" y="20" width="535" height="250" height2="140" item_height="18" always_show_scroll="0"/>
 			<list_item>
 				<text r="131" g="131" b="131" font="letterica16" complex_mode="0"/>
 			</list_item>
@@ -56,14 +56,14 @@
 				<text font="arial_14" r="215" g="195" b="170" x="2" y="1" vert_align="c" complex_mode="0">mm_mp_deaths</text>
 				<texture>ui_table_button_e</texture>
 			</cap_death>
-			<list_server_properties x="0" y="210" width="327" height="96" item_height="18" always_show_scroll="1">
+			<list_server_properties x="0" y="210" width="327" height="96" item_height="18" always_show_scroll="0">
 				<texture>ui_cb_listbox</texture>
 				<font r="131" g="131" b="131" font="letterica16"/>
 				<frame x="0" y="210" width="309" height="96">
 					<texture>ui_cb_listbox</texture>
 				</frame>
 			</list_server_properties>
-			<list_players_list x="337" y="210" width="198" height="96" item_height="18" always_show_scroll="1">
+			<list_players_list x="337" y="210" width="198" height="96" item_height="18" always_show_scroll="0">
 				<texture>ui_cb_listbox</texture>
 				<font r="131" g="131" b="131" font="letterica16"/>
 				<frame x="337" y="210" width="180" height="96">

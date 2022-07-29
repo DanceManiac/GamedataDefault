@@ -1,0 +1,27 @@
+[logic@bandit_commander]
+active = walker@bandit_commander
+suitable = {=check_npc_name(esc_bandit_commander) =npc_is_squad_leader -start_surge_info -esc_wolf_brother_4}
+prior = 100
+
+[walker@bandit_commander]
+path_walk = bandit_commander_walk
+path_look = bandit_commander_look
+on_info = {+esc_krutoy_stvol_attack} walker@bandit_commander_enemy %=set_squad_goodwill(esc_smart_terrain_9_10_bandit_other_squad:enemy) =hit_npc_from_actor%
+on_info2 = {+esc_wolf_brother_fail -esc_brother_kaput_info} walker@bandit_commander_enemy %=set_squad_goodwill(esc_smart_terrain_9_10_bandit_other_squad:enemy) =hit_npc_from_actor%
+on_actor_dist_le_nvis = 4 | {-esc_bandit_commander_meet_info !actor_enemy} %=play_sound(esc_bandit_commander_meet) +esc_bandit_commander_meet_info%
+meet = meet@bandit_commander
+
+[walker@bandit_commander_enemy]
+path_walk = bandit_commander_walk
+path_look = bandit_commander_look
+on_info = {!is_alive_one(429)} %=play_sound(gar_robbery_scene_kill_actor:bandit:esc_bandit_commander_name)%
+meet = no_meet
+
+[meet@bandit_commander]
+meet_state = 10 | guard@nil
+meet_state_wpn = 40 | threat@esc_bandit_commander_greetings | 30 | threat@esc_bandit_commander_greetings | 20 | threat@esc_bandit_commander_greetings | 10 | nil@nil %=hit_npc_from_actor%
+victim = 30|actor
+victim_wpn = 40|actor
+use	= true
+use_wpn	= false
+trade_enable = false

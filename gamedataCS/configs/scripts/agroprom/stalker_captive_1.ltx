@@ -1,7 +1,10 @@
 [logic]
 active = remark@captive
 relation = enemy
+on_death = death
+on_hit = hit
 sympathy = 0
+prior = 140
 
 [remark@captive]
 combat_ignore_cond = always
@@ -9,3 +12,10 @@ combat_ignore_keep_when_attacked = true
 anim = prisoner
 target = nil
 meet = no_meet
+on_info = {+freeplay} %=destroy_object%
+
+[death]
+on_info = %+agr_stalker_captive_1_dead%
+
+[hit]
+on_info = %=kill_npc%

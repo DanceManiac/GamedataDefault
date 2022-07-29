@@ -9,9 +9,22 @@ on_death = death
 [walker]
 path_walk = esc_voditel_walk
 path_look = esc_voditel_look
+on_info = {!actor_see_npc} %=play_sound(esc_driver_idle)% 
+on_info2 = {=actor_see_npc} walker@see_actor
+on_info3 = {+esc_driver_fight} walker@think, {=npc_has_weapon(435)} walker@think %+esc_driver_fight%
+on_info4 = {+esc_actor_kill_driver} %=kill_npc%
+on_info5 = {+esc_driver_friend_3 =dist_to_actor_ge(150)} %=destroy_object%
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+meet = meet
+
+[walker@see_actor]
+path_walk = esc_voditel_walk
+path_look = esc_voditel_look
 on_info = {=actor_in_zone(esc_voditel_restrictor) -esc_voditel_talked} %=play_sound(esc_driver_treat)% remark
-on_info2 = {+esc_driver_fight} walker@think
+on_info2 = {+esc_driver_fight} walker@think, {=npc_has_weapon(435)} walker@think %+esc_driver_fight%
 on_info3 = {+esc_actor_kill_driver} %=kill_npc%
+on_info4 = {+esc_driver_friend_3 =dist_to_actor_ge(150) !actor_see_npc} %=destroy_object%
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 meet = meet
@@ -23,7 +36,7 @@ combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 meet = meet
 on_info = {!actor_in_zone(esc_voditel_restrictor)} walker
-on_info2 = {+esc_driver_fight} walker@think
+on_info2 = {+esc_driver_fight} walker@think, {=npc_has_weapon(435)} walker@think %+esc_driver_fight%
 on_info3 = {+esc_actor_kill_driver} %=kill_npc%
 
 [walker@think]
@@ -42,14 +55,14 @@ meet = no_meet
 on_info = {+esc_actor_kill_driver} %=kill_npc%
 
 [hit]
-on_info = %=play_sound(esc_driver_treat) +esc_actor_kill_driver%
+on_info = %+esc_actor_kill_driver%
 
 [death]
 on_info = %+esc_driver_dead%
 
 [meet]
 meet_state = 30| wait@nil| 20| wait@nil| 10| wait@nil
-meet_state_wpn = 30| wait@esc_driver_treat
+meet_state_wpn = 30| wait@nil
 victim = 30| nil| 20| actor
 victim_wpn = 30| nil| 20| actor
 use	= true

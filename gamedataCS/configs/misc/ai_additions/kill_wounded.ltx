@@ -1,0 +1,78 @@
+;--------------------------------------
+; ћодуль kill_wounded
+; Rulix aka Bak
+;--------------------------------------
+
+[main]
+
+;---------------------------------------
+; настройки дл€ разных группировок
+; веро€тности дл€ выбора способа казни
+
+[stalker]
+strike = 0	; удар
+knife = 0	; нож
+pistol = 50	; пистолет
+sound = 90	; веро€тность произнесени€ фразы
+aim_time = 2500	; мс; врем€ ожидани€ перед казнью
+
+[stalker_enemy]:stalker
+
+[bandit]
+strike = 20
+knife = 50
+pistol = 10
+sound = 90
+aim_time = 2000
+
+[bandit_enemy]:bandit
+
+[csky]
+strike = 5
+knife = 5
+pistol = 20
+sound = 70
+aim_time = 1500
+
+[renegate]
+strike = 10
+knife = 10
+pistol = 30
+sound = 40
+aim_time = 1500
+
+[freedom]
+strike = 20
+knife = 10
+pistol = 30
+sound = 90
+aim_time = 3000
+
+[dolg]
+strike = 0
+knife = 0
+pistol = 90
+sound = 70
+aim_time = 2000
+
+[killer]
+strike = 0
+knife = 0
+pistol = 70
+sound = 30
+aim_time = 300
+
+[army]
+strike = 5
+knife = 5
+pistol = 80
+sound = 60
+aim_time = 1000
+
+[monolith]
+strike = 0
+knife = 50
+pistol = 50
+sound = 50
+aim_time = 1500
+

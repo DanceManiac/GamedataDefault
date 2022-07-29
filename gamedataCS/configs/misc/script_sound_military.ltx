@@ -24,8 +24,14 @@ mil_freedom_com_radio_pda
 mil_freedom_com_task_pda
 mil_freedom_com_finish_task_pda
 mil_hires_in_bubble_thanks_1
+mil_hog_com_task
 mil_hog_to_actor
 mil_hog_greetings
+mil_actor_bs_kill
+esc_forester_pda_talk
+
+;***********MILITARY**
+;********************
 
 [mil_enter_first]
 type = npc
@@ -60,10 +66,19 @@ path = ambient\squeak_metal2
 shuffle = rnd
 idle = 10,20,100
 
-[mil_hog_to_actor]
+[mil_hog_com_task]
 type = actor
 actor_stereo = false
-path = characters_voice\scenario\military\mil_hog_to_actor
+npc_prefix = false
+path = characters_voice\scenario\military\mil_hog_com_task
+shuffle = rnd
+idle = 1,1,100
+
+[mil_hog_to_actor]
+type = npc
+actor_stereo = false
+npc_prefix = false
+path = scenario\military\mil_hog_to_actor
 shuffle = seq
 idle = 0,0,100
 
@@ -221,5 +236,20 @@ idle = 1,1,100
 type = actor
 actor_stereo = false
 path = characters_voice\scenario\military\mil_hires_in_bubble_thanks_1
+shuffle = rnd
+idle = 1,1,100
+
+[mil_actor_bs_kill]
+type = actor
+actor_stereo = false
+path = characters_voice\scenario\military\mil_actor_bs_kill
+shuffle = seq
+idle = 0,0,100
+
+[esc_forester_pda_talk]
+type = actor
+actor_stereo = false
+npc_prefix = false
+path = characters_voice\scenario\military\esc_forester_pda_talk
 shuffle = rnd
 idle = 1,1,100

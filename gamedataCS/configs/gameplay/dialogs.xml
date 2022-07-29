@@ -2,6 +2,7 @@
 <game_dialogs>
     <dialog id="dm_hello_dialog">
         <init_func>dialog_manager.init_hello_dialogs</init_func>
+        <precondition>dialogs.precond_inv</precondition>
     </dialog>
     <dialog id="dm_information_dialog">
         <init_func>dialog_manager.init_information_dialogs</init_func>
@@ -17,7 +18,7 @@
     </dialog>
     <dialog id="guiders_dialog">
         <init_func>guiders.init_guiders_dialog</init_func>
-		<precondition>dialogs.allow_guide_dialog</precondition>
+	<precondition>dialogs.allow_guide_dialog</precondition>
     </dialog>
 
     <!-- FINAL DIALOGS -->
@@ -261,6 +262,7 @@
     </dialog>
     <dialog id="treasure_dialog">
 <!--        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition> -->
+	<has_info>mar_tutorial_return_to_base_reversed</has_info>
         <phrase_list>
             <phrase id="131">
                 <text>treasure_dialog_131</text>
@@ -666,7 +668,7 @@
         <phrase_list>
             <phrase id="0">
                 <script_text>dialog_manager.create_question_phrase</script_text>
-<!--                <action>dialog_manager.action_disable_phrase</action> -->
+                <action>dialog_manager.action_disable_phrase</action>
                 <next>1</next>
             </phrase>
             <phrase id="1">
@@ -689,7 +691,6 @@
                 <next>51</next>
                 <next>56</next>
             </phrase>
-
             <phrase id="51">
                 <text>tm_upgr_task_51</text>
                 <action>task_dialogs.give_find_upgrade_task</action>
@@ -697,13 +698,12 @@
             <phrase id="56">
                 <text>tm_upgr_task_56</text>
             </phrase>
-
-
         </phrase_list>
     </dialog>
 
 
     <dialog id="tm_reward_task">
+	<has_info>mar_tutorial_return_to_base_reversed</has_info>
         <phrase_list>
             <phrase id="2">
                 <text>tm_reward_task_2</text>
@@ -732,6 +732,7 @@
             <phrase id="2">
                 <text>tm_random_task_2</text>
                 <precondition>task_dialogs.squad_hasnt_tasks</precondition>
+                <has_info>mar_tutorial_returned_to_base</has_info>
             </phrase>
             <phrase id="14">
                 <text>tm_random_task_14</text>
@@ -794,6 +795,7 @@
             <phrase id="1">
                 <text>tm_random_task_1</text>
                 <precondition>task_dialogs.squad_has_tasks</precondition>
+                <has_info>mar_tutorial_returned_to_base</has_info>
                 <action>task_dialogs.show_tasks</action>
                 <next>11</next>
                 <next>12</next>
@@ -801,11 +803,16 @@
                 <next>14</next>
                 <next>15</next>
             </phrase>
+            <phrase id="5">
+                <text>tm_random_task_5</text>
+                <dont_has_info>mar_tutorial_returned_to_base</dont_has_info>
+            </phrase>
             <phrase id="0">
                 <text>tm_random_task_0</text>
                 <action>task_dialogs.init_squad_task</action>
                 <next>1</next>
                 <next>2</next>
+                <next>5</next>
             </phrase>
         </phrase_list>
     </dialog>
@@ -866,4 +873,1063 @@
             </phrase>
         </phrase_list>
     </dialog>
+
+
+<!-- OGSM CS -->
+
+    <dialog id="dm_ogsm_dialog">
+        <init_func>dialog_manager.init_ogsm_dialogs</init_func>
+        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+    </dialog>
+
+    <dialog id="ecologs_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>dm_intro_118</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="stop_phrase">
+        <phrase_list>
+            <phrase id="0">
+                <text>stop_phrase</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="ecologs_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text>ecologs_dialog_0</text>
+                <next>1</next>
+            </phrase>
+	    <phrase id="1">
+                <text>ecologs_dialog_1</text>
+                <next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>ecologs_dialog_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+<!-- OGSM CS 1.8 CE Fixes -->
+
+    <dialog id="army_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>dm_intro_114</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="esc_wolf_brother_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>esc_wolf_brother_hello</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="guard_hello_1">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>esc_bring_habar_complete</has_info>
+	<dont_has_info>esc_guard_hello_1_info</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>guard_hello_1_0</text>
+                <next>1</next>
+            </phrase>
+	    <phrase id="1">
+                <text>guard_hello_1_1</text>
+                <next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>guard_hello_1_2</text>
+                <next>3</next>
+            </phrase>
+	    <phrase id="3">
+                <text>guard_hello_1_3</text>
+                <give_info>esc_guard_hello_1_info</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="guard_hello_2">
+        <phrase_list>
+            <phrase id="0">
+                <text>guard_hello_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="guard_hello_3">
+        <phrase_list>
+            <phrase id="0">
+                <text>guard_hello_3</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="guard_stalker_tonnel_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>guard_stalker_tonnel_hello</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="guard_stalker_base_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>guard_stalker_base_hello</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="sniper_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>sniper_hello</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="stalker_novice_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>stalker_novice_hello</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="digger_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>digger_hello</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="agr_hourman_hello_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text>agr_hourman_hello_dialog_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="agr_stalker_leader_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>agr_stalker_leader_hello</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="hock_hello">
+        <phrase_list>
+            <phrase id="0">
+                <text>hock_hello</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="red_csky_leader_hello_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text>mar_csky_leader_hello_dialog_91</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="esc_stalkers_dialog">
+        <phrase_list>
+            <phrase id="12">
+                <text>esc_stalkers_dialog_12</text>
+                <has_info>esc_back_wolf</has_info>
+            </phrase>
+            <phrase id="11">
+                <text>esc_stalkers_dialog_11</text>
+                <dont_has_info>esc_back_wolf</dont_has_info>
+            </phrase>
+            <phrase id="0">
+                <text />
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text />
+                <next>11</next>
+                <next>12</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="esc_st_patrol_lead_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>esc_st_patrol_lead_talk</dont_has_info>
+        <phrase_list>
+            <phrase id="3">
+                <text>esc_st_patrol_lead_dialog_3</text>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>esc_st_patrol_lead_dialog_4</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>esc_st_patrol_lead_dialog_5</text>
+                <action>dialogs.break_dialog</action>
+                <give_info>esc_st_patrol_lead_talk</give_info>
+            </phrase>
+            <phrase id="2">
+                <text>esc_st_patrol_lead_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="1">
+                <text>esc_st_patrol_lead_dialog_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="0">
+                <text>esc_st_patrol_lead_dialog_0</text>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="esc_scout_stalker_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>esc_scout_stalker_dialog_info</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>esc_scout_stalker_dialog_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>esc_scout_stalker_dialog_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>esc_scout_stalker_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>esc_scout_stalker_dialog_3</text>
+                <give_info>esc_scout_stalker_dialog_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="esc_puzo_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>esc_puzo_talk</dont_has_info>
+        <phrase_list>
+            <phrase id="3">
+                <text>esc_puzo_dialog_3</text>
+                <action>dialogs.break_dialog</action>
+                <give_info>esc_puzo_talk</give_info>
+            </phrase>
+            <phrase id="2">
+                <text>esc_puzo_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="1">
+                <text>esc_puzo_dialog_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="0">
+                <text>esc_puzo_dialog_0</text>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="esc_stalkers_dialog_debt">
+        <has_info>esc_wolf_brother_1</has_info>
+        <dont_has_info>esc_wolf_brother_has_weapon_info</dont_has_info>
+        <dont_has_info>esc_wolf_brother_fail</dont_has_info>
+        <dont_has_info>esc_bandit_take_all_money</dont_has_info>
+        <dont_has_info>esc_bandit_take_money</dont_has_info>
+        <dont_has_info>esc_bandit_out</dont_has_info>
+        <phrase_list>
+            <phrase id="2">
+                <text>esc_stalkers_dialog_debt_2</text>
+                <next>11</next>
+            </phrase>
+            <phrase id="11142">
+                <text>esc_stalkers_dialog_debt_11142</text>
+                <precondition>dialogs_escape.esc_proverka_wpn_false</precondition>
+                <next>11</next>
+            </phrase>
+            <phrase id="1115">
+                <text>esc_stalkers_dialog_debt_1115</text>
+                <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+                <action>dialog_manager.action_disable_phrase</action>
+                <dont_has_info>esc_debt_wo_percent</dont_has_info>
+                <has_info>esc_threatened</has_info>
+                <next>11141</next>
+                <next>11142</next>
+            </phrase>
+            <phrase id="11131">
+                <text>esc_stalkers_dialog_debt_11131</text>
+                <next>11</next>
+            </phrase>
+            <phrase id="11141">
+                <text>esc_stalkers_dialog_debt_11141</text>
+                <precondition>dialogs_escape.esc_proverka_wpn</precondition>
+                <give_info>esc_debt_wo_percent</give_info>
+                <give_info>esc_threatened</give_info>
+                <next>11</next>
+            </phrase>
+            <phrase id="1114">
+                <text>esc_stalkers_dialog_debt_1114</text>
+                <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+                <action>dialog_manager.action_disable_phrase</action>
+                <dont_has_info>esc_threatened</dont_has_info>
+                <dont_has_info>esc_debt_wo_percent</dont_has_info>
+                <next>11141</next>
+                <next>11142</next>
+            </phrase>
+            <phrase id="11">
+                <text />
+                <next>111</next>
+            </phrase>
+            <phrase id="111">
+                <text />
+                <next>1111</next>
+                <next>1112</next>
+                <next>1113</next>
+                <next>1114</next>
+                <next>1115</next>
+                <next>1116</next>
+                <next>1117</next>
+            </phrase>
+            <phrase id="1111">
+                <text>esc_stalkers_dialog_debt_1111</text>
+                <precondition>dialogs_escape.esc_actor_has_money</precondition>
+                <action>dialogs_escape.esc_actor_give_money</action>
+                <give_info>esc_back_wolf</give_info>
+                <next>11111</next>
+            </phrase>
+            <phrase id="11111">
+                <text>esc_stalkers_dialog_debt_11111</text>
+                <next>111111</next>
+            </phrase>
+            <phrase id="1112">
+                <text>esc_stalkers_dialog_debt_1112</text>
+                <precondition>dialogs_escape.esc_actor_has_not_money</precondition>
+                <next>11121</next>
+            </phrase>
+            <phrase id="11121">
+                <text>esc_stalkers_dialog_debt_11121</text>
+                <next>1117</next>
+            </phrase>
+            <phrase id="1113">
+                <text>esc_stalkers_dialog_debt_1113</text>
+                <dont_has_info>esc_bandit_about_percent_asked</dont_has_info>
+                <dont_has_info>esc_debt_wo_percent</dont_has_info>
+                <give_info>esc_bandit_about_percent_asked</give_info>
+                <next>11131</next>
+            </phrase>
+            <phrase id="111111">
+                <text>esc_stalkers_dialog_debt_111111</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1117">
+                <text>esc_stalkers_dialog_debt_1117</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1116">
+                <text>esc_stalkers_dialog_debt_1116</text>
+                <action>dialogs.break_dialog</action>
+                <give_info>esc_krutoy_stvol_attack</give_info>
+            </phrase>
+            <phrase id="1">
+                <text>esc_stalkers_dialog_debt_1</text>
+                <give_info>esc_bandit_required_appears</give_info>
+                <next>11</next>
+            </phrase>
+            <phrase id="0">
+                <text>esc_stalkers_dialog_debt_0</text>
+                <disable_info>esc_debt_wo_percent</disable_info>
+                <next>1</next>
+                <next>2</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="esc_wolf_brother_has_weapon_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>esc_wolf_brother_has_weapon_info</has_info>
+        <dont_has_info>esc_wolf_brother_2</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>esc_wolf_brother_has_weapon_dialog_0</text>
+                <next>1</next>
+            </phrase>
+	    <phrase id="1">
+                <text>esc_wolf_brother_has_weapon_dialog_1</text>
+                <next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>esc_wolf_brother_has_weapon_dialog_2</text>
+                <give_info>esc_wolf_brother_2</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="gar_digger_fixer_kill_pseudodogs">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>gar_quest_redemption_done</has_info>
+	<dont_has_info>gar_quest_killer_pseudodogs_started</dont_has_info>
+	<phrase_list>
+	    <phrase id="11">
+		<action>dialogs_garbage.quest_kill_pseudodogs</action>
+		<give_info>gar_quest_killer_pseudodogs_started</give_info>
+		<text>gar_digger_fixer_kill_pseudodogs_11</text>
+	    </phrase>
+	    <phrase id="12">
+		<text>gar_digger_fixer_kill_pseudodogs_12</text>
+	    </phrase>
+	    <phrase id="1">
+		<text>gar_digger_fixer_kill_pseudodogs_1</text>
+		<next>11</next>
+		<next>12</next>
+	    </phrase>
+	    <phrase id="0">
+		<text>gar_digger_fixer_kill_pseudodogs_0</text>
+		<next>1</next>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="gar_kill_pseudodogs">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>gar_quest_killer_pseudodogs_done</has_info>
+	<dont_has_info>gar_kill_pseudodogs_complete</dont_has_info>
+	<phrase_list>
+	    <phrase id="2">
+		<text>gar_kill_pseudodogs_2</text>
+	    </phrase>
+	    <phrase id="1">
+		<action>dialogs_garbage.reward_for_killer_pseudodogs</action>
+		<give_info>gar_kill_pseudodogs_complete</give_info>
+		<text>gar_kill_pseudodogs_1</text>
+		<next>2</next>
+	    </phrase>
+	    <phrase id="0">
+		<text>gar_kill_pseudodogs_0</text>
+		<next>1</next>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="gar_prisoner_free_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>gar_quest_talk_with_captive_leader_done</has_info>
+	<!-- dont_has_info>gar_prisoner_free_dialog_info</dont_has_info -->
+	<phrase_list>
+	    <phrase id="0">
+		<text>gar_prisoner_free_dialog_0</text>
+		<next>1</next>
+	    </phrase>
+	    <phrase id="1">
+		<text>gar_prisoner_free_dialog_1</text>
+		<next>2</next>
+	    </phrase>
+	    <phrase id="2">
+		<text>gar_prisoner_free_dialog_2</text>
+		<next>3</next>
+	    </phrase>
+	    <phrase id="3">
+		<!-- give_info>gar_prisoner_free_dialog_info</give_info -->
+		<text>gar_prisoner_free_dialog_3</text>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="val_guard_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>val_go_to_freedom_leader_done</dont_has_info>
+	<dont_has_info>val_guard_talk</dont_has_info>
+        <phrase_list>
+            <phrase id="3">
+                <text>val_guard_dialog_3</text>
+                <next>4</next>
+                <next>44</next>
+            </phrase>
+            <phrase id="4">
+		<has_info>val_talked_to_blockpost_leader_complete</has_info>
+                <text>val_guard_dialog_4</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="44">
+                <text>val_guard_dialog_44</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>val_guard_dialog_5</text>
+                <action>dialogs.break_dialog</action>
+                <give_info>val_guard_talk</give_info>
+            </phrase>
+            <phrase id="2">
+                <text>val_guard_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="1">
+                <text>val_guard_dialog_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="0">
+                <text>val_guard_dialog_0</text>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="val_kill_boars">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>val_destroy_boar_guard_9_2_done</has_info>
+	<dont_has_info>val_destroy_boar_guard_9_2_complete</dont_has_info>
+	<phrase_list>
+	    <phrase id="2">
+		<text>val_kill_boars_2</text>
+	    </phrase>
+	    <phrase id="1">
+		<action>dialogs_darkvalley.kill_boars</action>
+		<give_info>val_destroy_boar_guard_9_2_complete</give_info>
+		<text>val_kill_boars_1</text>
+		<next>2</next>
+	    </phrase>
+	    <phrase id="0">
+		<text>val_kill_boars_0</text>
+		<next>1</next>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="val_freedom_dead_blockpost_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>val_freedom_dead_blockpost_dialog_info</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>val_freedom_dead_blockpost_dialog_0</text>
+                <next>1</next>
+            </phrase>
+	    <phrase id="1">
+                <text>val_freedom_dead_blockpost_dialog_1</text>
+                <next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>val_freedom_dead_blockpost_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>val_freedom_dead_blockpost_dialog_3</text>
+                <next>4</next>
+            </phrase>
+	    <phrase id="4">
+                <text>val_freedom_dead_blockpost_dialog_4</text>
+                <next>5</next>
+            </phrase>
+	    <phrase id="5">
+                <text>val_freedom_dead_blockpost_dialog_5</text>
+                <give_info>val_freedom_dead_blockpost_dialog_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="val_x18_door_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>val_x18_door_dialog_info</dont_has_info>
+	<has_info>val_x18_door_info</has_info>
+	<phrase_list>
+	    <phrase id="1">
+		<text>val_x18_door_dialog_1</text>
+	    </phrase>
+	    <phrase id="0">
+		<text>val_x18_door_dialog_0</text>
+                <give_info>val_x18_door_dialog_info</give_info>
+                <action>dialog_manager.action_disable_phrase</action>
+		<next>1</next>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="agr_blokpost_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>agr_actor_inside_2</dont_has_info>
+	<has_info>agr_garbage_end</has_info>
+        <phrase_list>
+            <phrase id="1">
+                <text>agr_blokpost_dialog_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>agr_blokpost_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>agr_blokpost_dialog_3</text>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>agr_blokpost_dialog_4</text>
+                 <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>agr_blokpost_dialog_5</text>
+		<give_info>agr_blokpost_leader_dialog_info</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+	    <phrase id="0">
+                <text>agr_blokpost_dialog_0</text>
+		<give_info>agr_actor_inside_2</give_info>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="agr_hourman_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>agr_hourman_dialog_info</dont_has_info>
+        <phrase_list>
+            <phrase id="1">
+                <text>agr_hourman_dialog_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>agr_hourman_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>agr_hourman_dialog_3</text>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>agr_hourman_dialog_4</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>agr_hourman_dialog_5</text>
+                <action>dialogs.break_dialog</action>
+                <give_info>agr_hourman_dialog_info</give_info>
+            </phrase>
+            <phrase id="0">
+                <text>agr_hourman_dialog_0</text>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="agr_hourman_quest">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>agr_hourman_quest_story</dont_has_info>
+        <has_info>agr_take_reward_complete</has_info>
+        <phrase_list>
+            <phrase id="11">
+                <text>agr_hourman_quest_11</text>
+                <has_info>agr_hourman_quest_1</has_info>
+            </phrase>
+            <phrase id="2">
+                <text>agr_hourman_quest_2</text>
+                <give_info>agr_hourman_quest_1</give_info>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>agr_hourman_quest_3</text>
+            </phrase>
+            <phrase id="22">
+                <text>agr_hourman_quest_22</text>
+            </phrase>
+            <phrase id="1">
+                <text>agr_hourman_quest_1</text>
+                <dont_has_info>agr_hourman_quest_1</dont_has_info>
+                <next>2</next>
+                <next>22</next>
+            </phrase>
+            <phrase id="0">
+                <text>agr_hourman_quest_0</text>
+                <next>1</next>
+                <next>11</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="agr_hourman_quest_complete">
+        <has_info>agr_hourman_quest_1</has_info>
+        <dont_has_info>agr_hourman_quest_3</dont_has_info>
+        <phrase_list>
+            <phrase id="2">
+                <text>agr_hourman_quest_complete_2</text>
+                <precondition>dialogs_agroprom.actor_has_hourman_electrocharge</precondition>
+                <action>dialogs_agroprom.transfer_hourman_electrocharge</action>
+                <give_info>agr_hourman_quest_3</give_info>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>agr_hourman_quest_complete_3</text>
+            </phrase>
+            <phrase id="22">
+                <text>agr_hourman_quest_complete_22</text>
+                <precondition>dialogs_agroprom.actor_hasnt_hourman_electrocharge</precondition>
+            </phrase>
+            <phrase id="1">
+                <text>agr_hourman_quest_complete_1</text>
+                <next>2</next>
+                <next>22</next>
+            </phrase>
+            <phrase id="0">
+                <text>agr_hourman_quest_complete_0</text>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="agr_stalker_leader_talked_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>agr_smart_terrain_2_3_simulation_task_complete</has_info>
+	<dont_has_info>agr_stalker_leader_talked_dialog_info</dont_has_info>
+	<phrase_list>
+	    <phrase id="2">
+		<text>agr_stalker_leader_talked_dialog_2</text>
+	    </phrase>
+	    <phrase id="1">
+		<action>dialogs_agroprom.leader_stalker_reward</action>
+		<give_info>agr_stalker_leader_talked_dialog_info</give_info>
+		<text>agr_stalker_leader_talked_dialog_1</text>
+		<next>2</next>
+	    </phrase>
+	    <phrase id="0">
+		<text>agr_stalker_leader_talked_dialog_0</text>
+		<next>1</next>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="agr_stalker_mechanic_quest">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>agr_mechanic_pda_quest_story</dont_has_info>
+        <phrase_list>
+            <phrase id="11">
+                <text>agr_stalker_mechanic_quest_11</text>
+                <has_info>agr_mechanic_pda_quest_1</has_info>
+            </phrase>
+            <phrase id="2">
+                <text>agr_stalker_mechanic_quest_2</text>
+                <give_info>agr_mechanic_pda_quest_1</give_info>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>agr_stalker_mechanic_quest_3</text>
+            </phrase>
+            <phrase id="22">
+                <text>agr_stalker_mechanic_quest_22</text>
+            </phrase>
+            <phrase id="1">
+                <text>agr_stalker_mechanic_quest_1</text>
+                <dont_has_info>agr_mechanic_pda_quest_1</dont_has_info>
+                <next>2</next>
+                <next>22</next>
+            </phrase>
+            <phrase id="0">
+                <text>agr_stalker_mechanic_quest_0</text>
+                <next>1</next>
+                <next>11</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="agr_stalker_mechanic_quest_complete">
+	<precondition>dialogs.precond_inv</precondition>
+        <has_info>agr_mechanic_pda_quest_1</has_info>
+        <dont_has_info>agr_mechanic_pda_quest_3</dont_has_info>
+        <phrase_list>
+            <phrase id="2">
+                <text>agr_stalker_mechanic_quest_complete_2</text>
+                <precondition>dialogs_agroprom.actor_has_mechanic_pda</precondition>
+                <action>dialogs_agroprom.transfer_mechanic_pda</action>
+                <give_info>agr_mechanic_pda_quest_3</give_info>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>agr_stalker_mechanic_quest_complete_3</text>
+            </phrase>
+            <phrase id="22">
+                <text>agr_stalker_mechanic_quest_complete_22</text>
+                <precondition>dialogs_agroprom.actor_hasnt_mechanic_pda</precondition>
+            </phrase>
+            <phrase id="1">
+                <text>agr_stalker_mechanic_quest_complete_1</text>
+                <next>2</next>
+                <next>22</next>
+            </phrase>
+            <phrase id="0">
+                <text>agr_stalker_mechanic_quest_complete_0</text>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="yan_tech_ecologbase_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>agr_take_reward_complete</has_info>
+	<dont_has_info>yan_tech_ecologbase_dialog_info</dont_has_info>
+	<phrase_list>
+            <phrase id="0">
+                <text>yan_tech_ecologbase_dialog_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>yan_tech_ecologbase_dialog_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>yan_tech_ecologbase_dialog_2</text>
+                <give_info>yan_tech_ecologbase_dialog_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="yan_tech_gordon_freeman_crowbar_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>agr_take_reward_complete</has_info>
+	<has_info>yan_bunker_inventory_box_use_info</has_info>
+	<dont_has_info>yan_tech_gordon_freeman_crowbar_dialog_info</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>yan_tech_gordon_freeman_crowbar_dialog_0</text>
+                <next>1</next>
+            </phrase>
+	    <phrase id="1">
+                <text>yan_tech_gordon_freeman_crowbar_dialog_1</text>
+                <next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <give_info>yan_tech_gordon_freeman_crowbar_dialog_info</give_info>
+                <text>yan_tech_gordon_freeman_crowbar_dialog_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="yan_dialog_about_after_psi_off">
+        <dont_has_info>yan_talked_about_after_psi_off</dont_has_info>
+        <has_info>yan_stop_spawn_cut6</has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>yan_dialog_about_after_psi_off_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>yan_dialog_about_after_psi_off_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>yan_dialog_about_after_psi_off_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>yan_dialog_about_after_psi_off_3</text>
+	        <next>4</next>
+                <give_info>yan_take_reward_complete</give_info>
+                <give_info>yan_talked_about_after_psi_off</give_info>
+            </phrase>
+            <phrase id="4">
+                <text>yan_dialog_about_after_psi_off_4</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="mil_kostiuk_hello_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>mil_kostiuk_hello_dialog_info</dont_has_info>
+	<has_info>mil_kostiuk_sound_3</has_info>
+	<phrase_list>
+	    <phrase id="1">
+                <give_info>mil_kostiuk_hello_dialog_info</give_info>
+                <action>dialog_manager.action_disable_phrase</action>
+		<text>mil_kostiuk_hello_dialog_1</text>
+	    </phrase>
+	    <phrase id="0">
+		<action>dialogs_military.mil_take_reward</action>
+		<text>mil_kostiuk_hello_dialog_0</text>
+		<next>1</next>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="mil_take_reward_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>mil_take_reward_dialog_info</dont_has_info>
+	<has_info>mil_kostiuk_hello_dialog_info</has_info>
+	<phrase_list>
+	    <phrase id="1">
+	        <has_info>mil_take_reward_complete</has_info>
+		<text>mil_take_reward_dialog_1</text>
+	    </phrase>
+	    <phrase id="0">
+		<text>mil_take_reward_dialog_0</text>
+	        <give_info>mil_take_reward_complete</give_info>
+                <give_info>mil_take_reward_dialog_info</give_info>
+                <action>dialog_manager.action_disable_phrase</action>
+		<next>1</next>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="mil_questman_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>mil_questman_dialog_info</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>mil_questman_dialog_0</text>
+                <next>1</next>
+            </phrase>
+	    <phrase id="1">
+                <text>mil_questman_dialog_1</text>
+                <next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>mil_questman_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>mil_questman_dialog_3</text>
+                <next>4</next>
+            </phrase>
+	    <phrase id="4">
+                <text>mil_questman_dialog_4</text>
+                <next>5</next>
+            </phrase>
+	    <phrase id="5">
+                <text>mil_questman_dialog_5</text>
+                <next>6</next>
+            </phrase>
+            <phrase id="6">
+                <give_info>monolith_info</give_info>
+                <text>mil_questman_dialog_6</text>
+                <next>7</next>
+            </phrase>
+	    <phrase id="7">
+                <text>mil_questman_dialog_7</text>
+                <next>8</next>
+            </phrase>
+            <phrase id="8">
+                <text>mil_questman_dialog_8</text>
+                <next>9</next>
+            </phrase>
+            <phrase id="9">
+                <text>mil_questman_dialog_9</text>
+                <give_info>mil_questman_dialog_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="red_csky_leader_weapons_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>red_csky_leader_weapons_dialog_info</dont_has_info>
+	<phrase_list>
+	    <phrase id="1">
+                <give_info>red_csky_leader_weapons_dialog_info</give_info>
+                <action>dialog_manager.action_disable_phrase</action>
+		<text>red_csky_leader_weapons_dialog_1</text>
+	    </phrase>
+	    <phrase id="0">
+		<text>red_csky_leader_weapons_dialog_0</text>
+		<next>1</next>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="red_csky_leader_fangghost_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<dont_has_info>red_csky_leader_fangghost_dialog_info</dont_has_info>
+	<phrase_list>
+	    <phrase id="1">
+                <give_info>red_csky_leader_fangghost_dialog_info</give_info>
+                <action>dialog_manager.action_disable_phrase</action>
+		<text>red_csky_leader_fangghost_dialog_1</text>
+	    </phrase>
+	    <phrase id="0">
+		<text>red_csky_leader_fangghost_dialog_0</text>
+		<next>1</next>
+	    </phrase>
+	</phrase_list>
+    </dialog>
+
+    <dialog id="mar_csky_doctor_freeplay_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+	<has_info>freeplay</has_info>
+	<dont_has_info>mar_csky_doctor_freeplay_dialog_info</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>mar_csky_doctor_freeplay_dialog_0</text>
+                <next>1</next>
+            </phrase>
+	    <phrase id="1">
+                <text>mar_csky_doctor_freeplay_dialog_1</text>
+                <next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <give_info>mar_csky_doctor_freeplay_dialog_info</give_info>
+                <text>mar_csky_doctor_freeplay_dialog_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+	<dialog id="mini_games_dialog">
+		  <init_func>mini_games.init_mini_games_phr_dlg</init_func> 
+        </dialog>
+
+    <dialog id="red_forest_back_to_the_gate_dialog">
+	<precondition>dialogs.precond_inv</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>red_forest_back_to_the_gate_dialog_0</text>
+                <next>1</next>
+            </phrase>
+	    <phrase id="1">
+                <text>red_forest_back_to_the_gate_dialog_1</text>
+                <next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>red_forest_back_to_the_gate_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>red_forest_back_to_the_gate_dialog_3</text>
+                <next>4</next>
+            </phrase>
+	    <phrase id="4">
+                <text>red_forest_back_to_the_gate_dialog_4</text>
+                <next>5</next>
+            </phrase>
+	    <phrase id="5">
+                <text>red_forest_back_to_the_gate_dialog_5</text>
+                <next>6</next>
+            </phrase>
+            <phrase id="6">
+                <text>red_forest_back_to_the_gate_dialog_6</text>
+                <next>7</next>
+            </phrase>
+	    <phrase id="7">
+                <text>red_forest_back_to_the_gate_dialog_7</text>
+                <next>8</next>
+            </phrase>
+            <phrase id="8">
+                <text>red_forest_back_to_the_gate_dialog_8</text>
+                <next>9</next>
+            </phrase>
+            <phrase id="9">
+                <text>red_forest_back_to_the_gate_dialog_9</text>
+                <give_info>red_forest_gate_keepesr_dialog_off</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
 </game_dialogs>

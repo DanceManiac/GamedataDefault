@@ -1,6 +1,7 @@
 [logic@stalker1]
 active = walker@snork_appear
-suitable = {-yan_stop_spawn_cut6} true
+suitable = {=check_npc_name(yan_scene_6_stalker_1) -yan_stop_spawn_cut6} true
+prior = 95
 post_combat_time = 0,0
 
 [walker@snork_appear]
@@ -135,10 +136,11 @@ on_info = {+typoi +yan_levsha_ready_cut6} remark@1
 [remark@1]
 on_timer = 16000 | {-yan_zabor_2_already_jumping} camper@to_zabor_2 %+yan_zabor_2_already_jumping%
 invulnerable = true
-target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_7_walk,0
+target = yan_smart_terrain_for_squad_levsha_stalker5_cut5_7_walk, 0
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 anim = wait_na
+meet = no_meet
 
 [camper@to_zabor_2]
 path_walk = zabor_2_walk
@@ -211,9 +213,3 @@ hp_state_see    = 0|wounded_heavy@help_heavy
 hp_victim       = 0|nil
 hp_fight        = 0|false
 hp_cover        = 0|false
-
-;[danger_condition]
-;ignore_distance = 0
-;ignore_distance_corpse = 0
-;ignore_distance_sound = 0
-

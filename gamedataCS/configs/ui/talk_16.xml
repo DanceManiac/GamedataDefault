@@ -57,7 +57,7 @@
     </auto_static>
   </frame_bottom>
 
-  <answers_list	  x="36" y="60" width="453" height="444" always_show_scroll="1"/>
+  <answers_list	  x="36" y="60" width="453" height="444" always_show_scroll="0"/>
   <questions_list x="36" y="45" width="453" height="139" always_show_scroll="0"/>
 
 

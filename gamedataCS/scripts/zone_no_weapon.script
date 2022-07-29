@@ -6,13 +6,13 @@ class "CZoneNoWeapon"
 
 function CZoneNoWeapon:__init( zone, binder, ini )
 	-- ≈сли уже есть актер и он в зоне, то убираем оружие
-	if binder.actor_inside then
+	if binder.actor_inside and not ogsm_options.dont_hide_weapon then
 		db.actor:hide_weapon()
 	end
 end
 
 function CZoneNoWeapon:on_enter( actor )
-	actor:hide_weapon()
+	if not ogsm_options.dont_hide_weapon then actor:hide_weapon() end
 end
 
 function CZoneNoWeapon:on_leave( actor )

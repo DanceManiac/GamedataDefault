@@ -1,0 +1,102 @@
+; Модификация ствола. Насадка, увеличивающая длину ствола и, как следствие, начальную скорость пули.
+[up_sect_a_toz34_obrez]
+cost		      		= 125
+value					= +50
+fire_dispersion_base	= -0.7
+bullet_speed			= 160
+value2					= st_no_buck
+ammo_class		 		= ammo_12x76_zhekan,ammo_12x76_dart
+
+; Накладки на рукоять. Высококачественные резиновые накладки увеличивают удобство в обращении с оружием.
+[up_sect_b_toz34_obrez]
+cost		      		= 125
+value					= -20
+control_inertion_factor	= -0.12
+cam_dispersion          = -0.26
+cam_dispersion_inc		= -0.26
+cam_step_angle_horz		= -0.26
+zoom_cam_dispersion         = -0.22
+zoom_cam_dispersion_inc     = -0.22
+zoom_cam_step_angle_horz    = -0.22
+
+; Замена бойка. Повышает надёжность оружия и минимизирует количество осечек.
+[up_sect_c_toz34_obrez]
+cost		      		= 125
+value					= +10
+misfire_probability 	= -0.0004
+condition_shot_dec 		= -0.0003
+
+
+
+[up_a_toz34_obrez]
+scheme_index            = 0, 0
+known                   = 1
+effects                 = 
+section                 = up_sect_a_toz34_obrez
+property                = prop_dispersion
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = on_weapon_upgrade_something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_barrel_rifled
+description             = st_upg_barrel_rifled_descr
+icon                    = ui_wp_upgrade_51
+
+
+[up_b_toz34_obrez]
+scheme_index            = 0, 1
+known                   = 1
+effects                 = 
+section                 = up_sect_b_toz34_obrez
+property                = prop_recoil   
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_handle_accur
+description             = st_upg_handle_accur_descr
+icon                    = ui_wp_upgrade_59
+
+
+[up_c_toz34_obrez]
+scheme_index            = 0, 2
+known                   = 1
+effects                 = 
+section                 = up_sect_c_toz34_obrez
+property                = prop_reliability
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_head_misfire
+description             = st_upg_head_misfire_descr
+icon                    = ui_wp_upgrade_53
+
+
+
+[up_gr_a_toz34_obrez]
+elements                = up_a_toz34_obrez
+
+[up_gr_b_toz34_obrez]
+elements                = up_b_toz34_obrez
+
+[up_gr_c_toz34_obrez]
+elements                = up_c_toz34_obrez

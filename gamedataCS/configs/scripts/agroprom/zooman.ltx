@@ -1,11 +1,15 @@
 [logic]
 active = walker
 on_death = death
-;level_spot = quest_npc
+level_spot = quest_npc
+enable_torch = false
 
 [walker]
+combat_ignore_cond = {!is_enemy_actor}
 path_walk = agr_duty_zooman_walk
 path_look = agr_duty_zooman_look
+on_actor_dist_le_nvis = 2 | {-agr_duty_zooman_meet_info !is_faction_enemy_to_actor(dolg) =actor_see_npc} %=play_sound(agr_duty_zooman_meet) +agr_duty_zooman_meet_info%
+on_actor_dist_ge_nvis = 4 | {+agr_duty_zooman_meet_info !is_faction_enemy_to_actor(dolg) =actor_see_npc} %=play_sound(agr_duty_zooman_meet_bye) -agr_duty_zooman_meet_info%
 meet = meet
 
 [meet]

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
     <dialog id="mar_csky_trader_intro_dialog">
+        <precondition>dialogs_marsh.actor_has_shram_outfit</precondition>
         <phrase_list>
             <phrase id="1">
                 <text>mar_csky_trader_intro_dialog_1</text>
@@ -17,6 +18,7 @@
             </phrase>
             <phrase id="0">
                 <text>mar_csky_trader_intro_dialog_0</text>
+                <action>dialogs_marsh.shram_outfit_return</action>
                 <action>dialogs_marsh.tutorial_give_equipment</action>
                 <give_info>mar_intro_talk_with_trader_done</give_info>
                 <next>1</next>
@@ -226,6 +228,7 @@
     </dialog>
     <dialog id="mar_csky_doctor_about_people">
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <dont_has_info>mar_csky_doctor_about_people_done</dont_has_info>
         <phrase_list>
             <phrase id="0">
                 <text>mar_csky_doctor_about_people_0</text>
@@ -234,6 +237,7 @@
             </phrase>
             <phrase id="1">
                 <text>mar_csky_doctor_about_people_1</text>
+                <give_info>mar_csky_doctor_about_people_done</give_info>
             </phrase>
         </phrase_list>
     </dialog>
@@ -246,10 +250,12 @@
     </dialog>
     <dialog id="mar_csky_doctor_about_me">
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <dont_has_info>mar_csky_doctor_about_me_done</dont_has_info>
         <has_info>mar_intro_talk_with_commander_2_started</has_info>
         <phrase_list>
             <phrase id="7">
                 <text>mar_csky_doctor_about_me_7</text>
+                <give_info>mar_csky_doctor_about_me_done</give_info>
             </phrase>
             <phrase id="6">
                 <text>mar_csky_doctor_about_me_6</text>
@@ -428,6 +434,8 @@
     </dialog>
     <dialog id="mar_csky_doctor_about_zone">
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <dont_has_info>mar_csky_doctor_about_zone_done</dont_has_info>
+        <has_info>mar_csky_doctor_about_people_done</has_info>
         <phrase_list>
             <phrase id="8">
                 <text>mar_csky_doctor_about_zone_8</text>
@@ -459,6 +467,7 @@
             </phrase>
             <phrase id="9">
                 <text>mar_csky_doctor_about_zone_9</text>
+                <give_info>mar_csky_doctor_about_zone_done</give_info>
             </phrase>
             <phrase id="1">
                 <text>mar_csky_doctor_about_zone_1</text>
@@ -472,6 +481,7 @@
         </phrase_list>
     </dialog>
     <dialog id="mar_csky_leader_choose_dialog">
+        <precondition>dialogs.precond_inv</precondition>
         <has_info>mar_intro_talk_with_guide_done</has_info>
         <dont_has_info>mar_intro_talk_with_commander_3_done</dont_has_info>
         <phrase_list>
@@ -495,6 +505,7 @@
             </phrase>
             <phrase id="111">
                 <text>mar_csky_leader_choose_dialog_111</text>
+                <give_info>trader_info</give_info>
                 <next>1111</next>
             </phrase>
             <phrase id="1111">
@@ -640,6 +651,7 @@
             </phrase>
             <phrase id="2">
                 <text>mar_csky_barman_intro_dialog_2</text>
+                <action>dialogs_marsh.barman_give_equipment</action>
                 <next>3</next>
             </phrase>
             <phrase id="4">
@@ -781,15 +793,36 @@
     </dialog>
     <dialog id="mar_csky_leader_hello_dialog">
         <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>1</next>
+                <next>2</next>
+                <next>3</next>
+                <next>4</next>
+                <next>9</next>
+            </phrase>
+            <phrase id="1">
+                <text />
+                <dont_has_info>mar_intro_talk_with_barman_done</dont_has_info>
+                <next>11</next>
+            </phrase>
+            <phrase id="11">
+                <text>mar_csky_leader_hello_dialog_11</text>
+                <next>111</next>
+            </phrase>
+            <phrase id="111">
+                <text>mar_csky_leader_hello_dialog_111</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
             <phrase id="2">
                 <text />
                 <dont_has_info>mar_intro_talk_with_trader_done</dont_has_info>
                 <has_info>mar_intro_talk_with_barman_done</has_info>
                 <next>21</next>
             </phrase>
-            <phrase id="111">
-                <text>mar_csky_leader_hello_dialog_111</text>
-                <action>dialogs.break_dialog</action>
+            <phrase id="21">
+                <text>mar_csky_leader_hello_dialog_21</text>
+                <next>211</next>
             </phrase>
             <phrase id="211">
                 <text>mar_csky_leader_hello_dialog_211</text>
@@ -801,10 +834,6 @@
                 <has_info>mar_intro_talk_with_trader_done</has_info>
                 <next>31</next>
             </phrase>
-            <phrase id="21">
-                <text>mar_csky_leader_hello_dialog_21</text>
-                <next>211</next>
-            </phrase>
             <phrase id="31">
                 <text>mar_csky_leader_hello_dialog_31</text>
                 <next>311</next>
@@ -813,23 +842,14 @@
                 <text>mar_csky_leader_hello_dialog_311</text>
                 <action>dialogs.break_dialog</action>
             </phrase>
-            <phrase id="11">
-                <text>mar_csky_leader_hello_dialog_11</text>
-                <next>111</next>
-            </phrase>
-            <phrase id="1">
-                <text />
-                <dont_has_info>mar_intro_talk_with_barman_done</dont_has_info>
-                <next>11</next>
-            </phrase>
-            <phrase id="41">
-                <text>mar_csky_leader_hello_dialog_41</text>
-            </phrase>
             <phrase id="4">
                 <text />
                 <dont_has_info>mar_intro_talk_with_commander_3_done</dont_has_info>
                 <has_info>mar_intro_talk_with_guide_done</has_info>
                 <next>41</next>
+            </phrase>
+            <phrase id="41">
+                <text>mar_csky_leader_hello_dialog_41</text>
             </phrase>
             <phrase id="9">
                 <text />
@@ -838,23 +858,17 @@
             </phrase>
             <phrase id="91">
                 <text>mar_csky_leader_hello_dialog_91</text>
-                <next>911</next>
+
+                <!-- next>911</next>
             </phrase>
             <phrase id="911">
-                <text>mar_csky_leader_hello_dialog_911</text>
-                <action>dialogs.break_dialog</action>
-            </phrase>
-            <phrase id="0">
-                <text />
-                <next>1</next>
-                <next>2</next>
-                <next>3</next>
-                <next>4</next>
-                <next>9</next>
+                <text>mar_csky_leader_hello_dialog_911</text  -->
+
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="mar_csky_guide_at_base_dialog">
+        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="212">
                 <text>mar_csky_guide_at_base_dialog_212</text>
@@ -1022,6 +1036,7 @@
         </phrase_list>
     </dialog>
     <dialog id="mar_csky_barman_hello_dialog">
+        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="3">
                 <text></text>
@@ -1072,7 +1087,8 @@
         </phrase_list>
     </dialog>
     <dialog id="mar_csky_tehnik_about_dialog">
-	<precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <dont_has_info>mar_csky_tehnik_about_dialog_info</dont_has_info>
+        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="2">
                 <text>mar_csky_tehnik_about_dialog_2</text>
@@ -1096,8 +1112,57 @@
             <phrase id="0">
                 <text>mar_csky_tehnik_about_dialog_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>mar_csky_tehnik_about_dialog_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
+
+    <dialog id="mar_csky_trader_gauss">
+        <has_info>mar_free_gauss_return_init</has_info>
+        <dont_has_info>mar_free_gauss_return_suslov_talked</dont_has_info>
+        <dont_has_info>mar_free_gauss_return_end</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>mar_csky_trader_gauss_dialog_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>mar_csky_trader_gauss_dialog_1</text>
+                <give_info>mar_free_gauss_return_suslov_talked</give_info>
+                <action>dialogs_marsh.free_gauss_talk_to_novikov</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="mar_csky_tehnik_gauss">
+        <has_info>mar_free_gauss_return_init</has_info>
+        <has_info>mar_free_gauss_return_suslov_talked</has_info>
+        <dont_has_info>mar_free_gauss_return_end</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>mar_csky_tehnik_gauss_dialog_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>mar_csky_tehnik_gauss_dialog_1</text>
+                <give_info>mar_free_gauss_return_novikov_talked</give_info>
+                <next>21</next>
+                <next>22</next>
+            </phrase>
+            <phrase id="21">
+                <text>mar_csky_tehnik_gauss_dialog_21</text>
+            </phrase>
+            <phrase id="22">
+                <precondition>dialogs_marsh.check_gauss</precondition>
+                <text>mar_csky_tehnik_gauss_dialog_22</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>mar_csky_tehnik_gauss_dialog_3</text>
+                <action>dialogs_marsh.free_gauss_return</action>
+                <give_info>mar_free_gauss_return_end</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
 </game_dialogs>

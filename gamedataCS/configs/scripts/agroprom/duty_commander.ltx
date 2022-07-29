@@ -1,7 +1,7 @@
 [logic]
 active = walker@no_storyline
-on_use = use
-level_spot = quest_npc
+level_spot = leader
+on_death = death
 
 [task_manager]
 reward = dolg
@@ -10,96 +10,130 @@ reward = dolg
 path_walk = agr_duty_commander_walk
 path_look = agr_duty_commander_look
 on_info = {+agr_actor_inside_3} walker
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
 meet = no_meet
-invulnerable = true
+;invulnerable = true
 
 [walker]
 path_walk = agr_duty_commander_walk
 path_look = agr_duty_commander_look
 on_info = {+agr_duty_leader_raciya_end} walker@2
 on_info2 = {+agr_actor_inside_4 -agr_actor_inside_11 -agr_hole_leader_death} remark@1
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+on_actor_dist_le_nvis = 2 | {-agr_duty_leader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_leader_meet) +agr_duty_leader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+agr_duty_leader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_leader_meet_bye) -agr_duty_leader_meet_info%
 meet = meet
-invulnerable = true
+;invulnerable = true
 
 [remark@1]
 target = actor
 anim = guard_rac
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-on_signal = sound_end | %+agr_racya_dialog_1% remark@2
+combat_ignore_cond = {!is_enemy_actor}
+on_game_timer = 1 | remark@2 %=disable_ui%
+combat_ignore_cond = {!is_enemy_actor}
 meet = no_meet
-snd = agr_base_leader_sergant_1_1
-invulnerable = true
 
 [remark@2]
 target = actor
 anim = guard_rac
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-on_info = {+agr_racya_dialog_1_end} remark@3
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+on_game_timer = 22 | remark@3 %=play_sound(agr_base_leader_sergant_1_1:dolg:agr_duty_base_commander_name)%
 meet = no_meet
-invulnerable = true
+;snd = agr_base_leader_sergant_1_1
+;invulnerable = true
 
 [remark@3]
 target = actor
 anim = guard_rac
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-snd = agr_base_leader_sergant_3_3
-on_signal = sound_end | %+agr_racya_dialog_2% remark@4
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+on_signal = sound_end | remark@4 %+agr_racya_dialog_1%
 meet = no_meet
-invulnerable = true
+;invulnerable = true
 
 [remark@4]
 target = actor
 anim = guard_rac
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-on_info = {+agr_racya_dialog_2_end} remark@5
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+on_info = {+agr_racya_dialog_1_end} remark@5
 meet = no_meet
-invulnerable = true
+;invulnerable = true
 
 [remark@5]
 target = actor
-anim = wait
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-on_info = remark@end %=play_sound(agr_base_leader_sergant_5:dolg:agr_duty_base_commander_name)%
-meet = meet
-invulnerable = true
+anim = guard_rac
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+snd = agr_base_leader_sergant_3_3
+on_signal = sound_end | remark@6 %+agr_racya_dialog_2%
+meet = no_meet
+;invulnerable = true
 
-[remark@end]
+[remark@6]
 target = actor
 anim = guard_rac
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
-on_signal = sound_end | walker@2 %+agr_duty_leader_raciya_end%
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+on_game_timer = 4 | walker@1
 meet = no_meet
-invulnerable = true
+;invulnerable = true
+
+[walker@1]
+path_walk = agr_duty_commander_walk
+path_look = agr_duty_commander_look
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+on_info = {+agr_racya_dialog_2_end} walker@2
+meet = no_meet
+;invulnerable = true
 
 [walker@2]
 path_walk = agr_duty_commander_walk
 path_look = agr_duty_commander_look
-combat_ignore_cond = true
-combat_ignore_keep_when_attacked = true
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+on_info = {=see_actor} remark@end %=play_sound(agr_base_leader_sergant_5:dolg:agr_duty_base_commander_name)%
+on_info2 = {+agru_go_out_end_task_complete} walker@3
+meet = no_meet
+;invulnerable = true
+
+[remark@end]
+target = actor
+anim = guard
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+on_signal = sound_end | walker@3 %+agr_duty_leader_raciya_end +agr_actor_duty_leader_talk_end =enable_ui%
+meet = no_meet
+;invulnerable = true
+
+[walker@3]
+path_walk = agr_duty_commander_walk
+path_look = agr_duty_commander_look
+combat_ignore_cond = {!is_enemy_actor}
+;combat_ignore_keep_when_attacked = true
+on_actor_dist_le_nvis = 2 | {-agr_duty_leader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_leader_meet) +agr_duty_leader_meet_info%
+on_actor_dist_ge_nvis = 4 | {+agr_duty_leader_meet_info !is_faction_enemy_to_actor(dolg)} %=play_sound(agr_duty_leader_meet_bye) -agr_duty_leader_meet_info%
 meet = meet
-invulnerable = true
+;invulnerable = true
 
 [meet]
-meet_state 		= 5|ward@nil|10|wait@nil
-meet_state_wpn 		= 5|ward@nil|10|wait@nil
+meet_state 		= 5|guard@nil|10|guard@nil
+meet_state_wpn 		= 5|guard@nil|10|guard@nil
 victim 			= 5|actor
 victim_wpn 		= 10|actor
 use			= true
 use_wpn			= true
 trade_enable 		= false
-sound_start 		= agr_duty_leader_meet
-sound_stop 		= agr_duty_leader_meet_bye
-quest_npc = true
+;sound_start 		= agr_duty_leader_meet
+;sound_stop 		= agr_duty_leader_meet_bye
+;quest_npc = true
 
 [use]
 on_info = {+agr_actor_inside_11} %+agr_take_reward_complete%
+
+[death]
+on_info = %+agr_duty_base_commander_dead =set_faction_community_to_actor(dolg:enemy)%

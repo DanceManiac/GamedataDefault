@@ -420,10 +420,10 @@
     <texture id="ui_PDA_checker_d" x="146" y="283" width="17" height="17" />
     <texture id="ui_PDA_checker_h" x="146" y="249" width="17" height="17" />
 
-
     <texture id="ui_mapQuest_gold" x="720" y="794" width="29" height="29" />
+    <texture id="ui_mapQuest_spec" x="797" y="967" width="29" height="29" />
     <texture id="ui_mapQuest_item" x="720" y="823" width="29" height="29" />
-    <texture id="ui_mapQuest_camp_destroy" x="720" y="852" width="27" height="27" />
+    <texture id="ui_mapQuest_camp_destroy" x="720" y="852" width="29" height="29" />
     <texture id="ui_mapQuest_camp_defend" x="720" y="881" width="29" height="29" />
     <texture id="ui_mapQuest_stalker_destroy" x="720" y="910" width="29" height="29" />
     <texture id="ui_mapQuest_artefact" x="720" y="939" width="29" height="29" />
@@ -438,6 +438,7 @@
     <texture id="ui_sm_mapQuest_lair_destroy" x="749" y="985" width="13" height="13" />
     <texture id="ui_sm_mapQuest_artefact" x="749" y="998" width="13" height="13" />
     <texture id="ui_sm_mapQuest_gold" x="749" y="1011" width="13" height="13" />
+    <texture id="ui_sm_mapQuest_spec" x="829" y="982" width="13" height="13" />
 
     <texture id="ui_highlight" x="723" y="627" width="128" height="128" />
 
@@ -613,6 +614,8 @@
   <texture id="ui_scroll_back_16"  x="124" y="189" width="13" height="13" />
   <texture id="ui_scroll_box_16"   x="124" y="206" width="13" height="13" />
 
+  <texture id="ui_sm_rucksuck" x="826" y="1011" width="13" height="13" />
+  <texture id="ui_rucksuck" x="797" y="996" width="29" height="29" />
 
     </file>
 </w>

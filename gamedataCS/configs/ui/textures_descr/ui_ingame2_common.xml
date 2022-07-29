@@ -181,6 +181,7 @@
     <texture id="ui_wp_upgrade_60" 	x="70" y="744" width="70" height="40" />
     <texture id="ui_wp_upgrade_61" 	x="70" y="744" width="70" height="40" />
     <texture id="ui_wp_upgrade_62" 	x="70" y="744" width="70" height="40" />
+    <texture id="ui_wp_upgrade_63" 	x="630" y="984" width="70" height="40" />
 
 <!-- armor - upgrades -->
     <texture id="ui_am_upgrade_01" 	x="630" y="904" width="70" height="40" />
@@ -214,6 +215,7 @@
     <texture id="ui_am_upgrade_29" 	x="0" y="464" width="70" height="40" />
     <texture id="ui_am_upgrade_30" 	x="0" y="424" width="70" height="40" />
     <texture id="ui_am_upgrade_31" 	x="0" y="384" width="70" height="40" />
+    <texture id="ui_am_upgrade_32" 	x="630" y="944" width="70" height="40" />
 
 <!-- weapon - properties -->
     <texture id="ui_wp_propery_01" 	x="78" y="524" width="19" height="19" />
@@ -247,6 +249,9 @@
     <texture id="ui_am_propery_10" 	x="154" y="600" width="19" height="19" />
 
     <texture id="ui_am_propery_11" 	x="173" y="524" width="19" height="19" />
+    <texture id="ui_am_propery_12" 	x="173" y="543" width="19" height="19" />
+    <texture id="ui_am_propery_13" 	x="173" y="562" width="19" height="19" />
+    <texture id="ui_am_propery_14" 	x="173" y="581" width="19" height="19" />
 
    </file>
 </w>

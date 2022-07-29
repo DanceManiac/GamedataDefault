@@ -1,24 +1,29 @@
 [logic]
-active = sr_idle@start %=teleport_actor(start_point:start_look) =give_actor(wpn_fn2000:wpn_gauss_aes)%
+active = sr_idle@start %=teleport_actor(start_point:start_look) =aes_spawn =disable_level_changer(6003) +und_actor_enter_to_stancia_complete%
 
 [sr_idle@start]
 on_actor_inside = {+stc_first_teleport_actor} sr_cutscene@start
 
 [sr_cutscene@start]
 cam_effector 	= stancia_start_cam
-point 			= stc_start_walk
-look 			= stc_start_look 
+point 			= start_point
+look 			= start_look 
 on_timer 		= 4000 | %+stc_scene_start% 
-;on_timer2 		= 5000 | {-stc_strelok_particles_added} %=stc_strelok_particle +stc_strelok_particles_added% 
-on_signal 		= cameff_end | sr_idle@after_cutscene %=stc_activate_weapon(wpn_gauss_aes) +stc_first_scene_cameff_end =give_inited_task(storyline:stc_kill_gunslinger:csky)%
+on_signal 		= cameff_end | sr_idle@after_cutscene %+stc_first_scene_cameff_end =give_inited_task(storyline:stc_get_gauss:csky)%
 
 [sr_idle@after_cutscene]
-on_info = %=play_sound(stc_first_scene_objective_talk)%
-on_timer = 5000 | sr_idle@after_spawn_monolith %=stc_create_some_monolith_stalkers(stc_monolith_spawn_point_1:stc_monolith_stalker:5:5)%
-on_info2 = {+stc_armagedets_start} sr_idle@outro 
+on_timer = 5000 | sr_idle@after_spawn_monolith1 %=stc_create_some_monolith_stalkers(stc_monolith_spawn_point_1:stc_monolith_stalker:5:5)%
+on_info = {+stc_armagedets_start} sr_idle@outro 
 
-[sr_idle@after_spawn_monolith]
-on_timer = 15000 | sr_cutscene@hint %=stc_create_some_monolith_stalkers(stc_monolith_sniper_1_walk:stc_monolith_sniper_1:1:2)%
+[sr_idle@after_spawn_monolith1]
+on_timer = 10000 | sr_idle@after_spawn_monolith2 %=stc_create_some_monolith_stalkers(stc_monolith_spawn_point_1:stc_monolith_stalker:5:5)%
+on_info = {+stc_armagedets_start} sr_idle@outro
+
+[sr_idle@after_spawn_monolith2]
+on_timer = 10000 | sr_idle@after_spawn_monolith3 %=stc_create_some_monolith_stalkers(stc_monolith_spawn_point_1:stc_monolith_stalker:5:5)%
+on_info = {+stc_armagedets_start} sr_idle@outro
+
+[sr_idle@after_spawn_monolith3]
 on_info = {=stc_check_actor_position(2)} sr_cutscene@hint %=stc_create_some_monolith_stalkers(stc_monolith_sniper_1_walk:stc_monolith_sniper_1:1:2)%
 on_info2 = {+stc_strelok_can_run_1} sr_idle@spawn_sniper_1
 on_info3 = {+stc_armagedets_start} sr_idle@outro
@@ -27,7 +32,7 @@ on_info3 = {+stc_armagedets_start} sr_idle@outro
 cam_effector 	= scenario_cam\stc_hint_cam_1
 point 			= stc_way_hint_walk
 look 			= stc_way_hint_look 
-on_timer 		= 1000 | %=play_sound(stc_strelok_kill_reminder_1)%
+on_timer 		= 1000 | %=play_sound(stc_strelok_kill_reminder_1:csky:aes_csky_commander_name)%
 on_signal 		= cameff_end | sr_idle@spawn_sniper_1 %+stc_strelok_can_run_1%
 
 [sr_idle@spawn_sniper_1]
@@ -47,7 +52,7 @@ on_timer = 10000 | sr_idle@after_spawn_monolith_2 %=stc_create_some_monolith_sta
 on_info = {+stc_armagedets_start} sr_idle@outro
 
 [sr_idle@after_spawn_monolith_2]
-on_info = {=actor_in_zone(stc_strelok_enemy_checker_1)} sr_idle@second_enemies	%=stc_create_some_monolith_stalkers(stc_strelok_way_enemies_1_spawn:stc_monolith_stalker_strelok_way_enemy_1:2:5)%
+on_info = {=actor_in_zone(stc_strelok_enemy_checker_1)} sr_idle@second_enemies %=stc_create_some_monolith_stalkers(stc_strelok_way_enemies_1_spawn:stc_monolith_stalker_strelok_way_enemy_1:2:5)%
 on_info2 = {+stc_armagedets_start} sr_idle@outro
 
 [sr_idle@second_enemies]
@@ -55,7 +60,10 @@ on_info = {=actor_in_zone(stc_strelok_enemy_checker_2)} sr_idle@second_enemies_2
 on_info2 = {+stc_armagedets_start} sr_idle@outro
 
 [sr_idle@second_enemies_2]
-;on_info = {=actor_in_zone(stc_strelok_enemy_checker_3) -stc_first_teleport_spawn_4} %=stc_create_some_monolith_stalkers(stc_strelok_way_enemies_4_spawn:stc_monolith_stalker_strelok_way_enemy_4:1:5) +stc_first_teleport_spawn_4%
+on_info = {=actor_in_zone(stc_strelok_enemy_checker_3) -stc_first_teleport_spawn_4} sr_idle@second_enemies_3 %=stc_create_some_monolith_stalkers(stc_strelok_way_enemies_4_spawn:stc_monolith_stalker_strelok_way_enemy_4:1:5) +stc_first_teleport_spawn_4%
+on_info2 = {+stc_armagedets_start} sr_idle@outro
+
+[sr_idle@second_enemies_3]
 on_info = {=actor_in_zone(stc_hint_cam_2_start)} sr_cutscene@hint2
 on_info2 = {+stc_armagedets_start} sr_idle@outro
 
@@ -64,7 +72,7 @@ on_info = %+stc_strelok_can_run_6%
 cam_effector 	= scenario_cam\stc_hint_cam_2
 point 		= stc_way_hint_walk_2
 look 		= stc_way_hint_look_2
-on_timer 	= 1000 | %=play_sound(stc_strelok_kill_reminder_1)% 
+on_timer 	= 1000 | %=play_sound(stc_strelok_kill_reminder_1:csky:aes_csky_commander_name)% 
 on_signal 	= cameff_end | sr_idle@enemy_checker_5_1 
 
 [sr_idle@enemy_checker_5_1]
@@ -80,3 +88,4 @@ on_info = {+stc_armagedets_start} sr_idle@outro
 
 [sr_idle@outro]
 on_info = %=play_sound(stc_armagedets)%
+on_info2 = {+freeplay} nil

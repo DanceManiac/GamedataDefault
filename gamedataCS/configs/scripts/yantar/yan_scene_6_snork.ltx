@@ -5,7 +5,8 @@ on_death = death
 [mob_walker@prepare]
 path_walk = yan_scene_6_snork_prepare_walk
 path_look = yan_scene_6_snork_prepare_look
-on_info = {+yan_space_restrictor_actor_ready_cut5} mob_jump
+on_info = {=actor_on_level(yantar) -yan_quest_levsha} %=destroy_object -yan_scene_6_snork_dead%
+on_info2 = {+yan_space_restrictor_actor_ready_cut5} mob_jump
 
 [mob_jump]
 path_jump = yan_scene_6_snork_jump_way

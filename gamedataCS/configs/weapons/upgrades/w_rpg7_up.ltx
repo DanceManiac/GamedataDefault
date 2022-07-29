@@ -1,0 +1,100 @@
+; ѕолимерные детали. »спользование полимерных деталей существенно снижает массу оружи€ и позвол€ет бегать, держа оружие в руках.
+[up_sect_a_rpg7]
+cost		      		= 10000
+value					= -2.0  ;-20
+inv_weight              = -2.0
+sprint_allowed					= true
+
+; Ќакладки на руко€ть. ¬ысококачественные резиновые накладки увеличивают удобство в обращении с оружием.
+[up_sect_b_rpg7]
+cost		      		= 5000
+value					= +20
+control_inertion_factor	= -0.12
+cam_dispersion          = -0.26
+cam_dispersion_inc		= -0.26
+cam_step_angle_horz		= -0.26
+zoom_cam_dispersion         = -0.22
+zoom_cam_dispersion_inc     = -0.22
+zoom_cam_step_angle_horz    = -0.22 
+
+; «амена бойка. ѕовышает надЄжность оружи€ и минимизирует количество осечек.
+[up_sect_c_rpg7]
+cost		      		= 5000
+value					= -10
+misfire_probability 	= -0.0004
+condition_shot_dec 		= -0.0003
+
+
+
+[up_a_rpg7]
+scheme_index            = 0, 0
+known                   = 1
+effects                 = 
+section                 = up_sect_a_rpg7
+property                = prop_weight
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_poly_weight
+description             = st_upg_poly_rpg_weight_descr
+icon                    = ui_wp_upgrade_52
+
+
+[up_b_rpg7]
+scheme_index            = 0, 1
+known                   = 1
+effects                 = 
+section                 = up_sect_b_rpg7
+property                = prop_recoil   
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_handle_accur
+description             = st_upg_handle_accur_descr
+icon                    = ui_wp_upgrade_26
+
+
+[up_c_rpg7]
+scheme_index            = 0, 2
+known                   = 1
+effects                 = 
+section                 = up_sect_c_rpg7
+property                = prop_reliability
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_head_misfire
+description             = st_upg_head_misfire_descr
+icon                    = ui_wp_upgrade_53
+
+
+
+[up_gr_a_rpg7]
+elements                = up_a_rpg7
+
+[up_gr_b_rpg7]
+elements                = up_b_rpg7
+
+[up_gr_c_rpg7]
+elements                = up_c_rpg7

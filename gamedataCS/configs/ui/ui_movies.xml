@@ -26,9 +26,9 @@ FOR RUSSIAN ONLY !!!
         <texture x="0" y="1" width="800" height="358">intro\intro_gsc-wp</texture>
       </video_wnd>
     </item>
-    
+
 -->
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\intro_gsc</sound>
       <delay>1</delay>
@@ -54,7 +54,7 @@ FOR RUSSIAN ONLY !!!
       </video_wnd>
     </item>
 
-  <!--  
+  <!--
     <item type="image">
       <length_sec>9</length_sec>
       <pause_state>on</pause_state>
@@ -68,7 +68,7 @@ FOR RUSSIAN ONLY !!!
           <texture>ui_asus_02</texture>
         </auto_static>
       </main_wnd>
-    </item> 
+    </item>
   -->
     <!--item type="image">
       <length_sec>5</length_sec>
@@ -80,17 +80,17 @@ FOR RUSSIAN ONLY !!!
         </auto_static>
       </main_wnd>
     </item-->
-  
+
   </intro_logo>
-  
+
 <intro_game>
     <play_each_item>1</play_each_item>
     <global_wnd x="0" y="0" width="1024" height="768">
       <_auto_static x="0" y="0" width="1024" height="768" stretch="1">
-        <window_name>back</window_name>       
-        <texture>intro\intro_back</texture>       
+        <window_name>back</window_name>
+        <texture>intro\intro_back</texture>
       </_auto_static>
-    </global_wnd>   
+    </global_wnd>
     <item type="video">
           <sound>characters_voice\scenario\video\intro</sound>
           <pause_state>on</pause_state>
@@ -98,7 +98,7 @@ FOR RUSSIAN ONLY !!!
           <video_wnd x="0" y="0" width="1024" height="768" stretch="1">
             <texture x="1" y="1" width="628" height="358">intro\intro_half</texture>
           </video_wnd>
-          
+
           <background x="0" y="0" width="1024" height="768" stretch="1">
             <texture>intro\intro_back</texture>
           </background>
@@ -128,7 +128,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\dream_rats</sound>
       <pause_state>on</pause_state>
@@ -148,7 +148,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\dream_sarcofag</sound>
       <pause_state>on</pause_state>
@@ -168,7 +168,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\dream_doctor</sound>
       <pause_state>on</pause_state>
@@ -188,7 +188,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\final_blind</sound>
       <pause_state>on</pause_state>
@@ -208,7 +208,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\final_gold</sound>
       <pause_state>on</pause_state>
@@ -228,7 +228,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\final_to_monolith</sound>
       <pause_state>on</pause_state>
@@ -248,7 +248,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\final_apocal</sound>
       <pause_state>on</pause_state>
@@ -268,7 +268,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\final_immortal</sound>
       <pause_state>on</pause_state>
@@ -288,7 +288,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\dream_doctor_2</sound>
       <pause_state>on</pause_state>
@@ -299,7 +299,7 @@ FOR RUSSIAN ONLY !!!
       </video_wnd>
     </item>
   </mov_join_osoznanie>
-  
+
   <mov_refuse_osoznanie>
     <play_each_item>1</play_each_item>
     <global_wnd x="0" y="0" width="1024" height="768">
@@ -308,7 +308,7 @@ FOR RUSSIAN ONLY !!!
         <texture>intro\intro_back</texture>
       </auto_static>
     </global_wnd>
-    
+
     <item type="video">
       <sound>characters_voice\scenario\video\final_peace</sound>
       <pause_state>on</pause_state>
@@ -321,7 +321,7 @@ FOR RUSSIAN ONLY !!!
   </mov_refuse_osoznanie>
   <mov_csky_outro>
     <play_each_item>1</play_each_item>
-      <global_wnd x="0" y="0" width="1024" height="768">        
+      <global_wnd x="0" y="0" width="1024" height="768">
       </global_wnd>
       <item type="image">
         <length_sec>3</length_sec>
@@ -336,9 +336,9 @@ FOR RUSSIAN ONLY !!!
       <item type="video">
         <sound>characters_voice\scenario\video\outro</sound>
         <pause_state>on</pause_state>
-        <can_be_stopped>off</can_be_stopped>
-        <function_on_start>xr_effects.game_disconnect</function_on_start>
-        <function_on_stop>xr_effects.game_credits</function_on_stop>
+	<can_be_stopped>on</can_be_stopped>
+	<function_on_start>ogsm_freeplay.teleport</function_on_start>
+	<function_on_stop>ogsm_freeplay.awakening</function_on_stop>
         <video_wnd x="0" y="0" width="1024" height="768" stretch="1">
           <texture x="0" y="1" width="512" height="286">intro\outro_half</texture>
         </video_wnd>
@@ -347,4 +347,178 @@ FOR RUSSIAN ONLY !!!
          </background>
       </item>
     </mov_csky_outro>
-  
+
+
+
+	<dream_1>
+		<play_each_item>1</play_each_item>
+		<global_wnd x="0" y="0" width="1024" height="768">
+			<auto_static x="0" y="0" width="1024" height="768" stretch="1">
+				<window_name>back</window_name>
+				<texture>intro\intro_back</texture>
+			</auto_static>
+		</global_wnd>
+
+		<item type="video">
+			<sound>dreams\dream1</sound>
+			<pause_state>on</pause_state>
+			<function_on_stop>ogsm_sleep.stopper</function_on_stop>
+			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
+				<texture x="0" y="1" width="512" height="245">dreams\dream1</texture>
+			</video_wnd>
+		</item>
+	</dream_1>
+
+	<dream_2>
+		<play_each_item>1</play_each_item>
+		<global_wnd x="0" y="0" width="1024" height="768">
+			<auto_static x="0" y="0" width="1024" height="768" stretch="1">
+				<window_name>back</window_name>
+				<texture>intro\intro_back</texture>
+			</auto_static>
+		</global_wnd>
+
+		<item type="video">
+			<sound>heart\3.ogg</sound>
+			<pause_state>on</pause_state>
+			<function_on_stop>ogsm_sleep.stopper</function_on_stop>
+			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
+				<texture x="0" y="1" width="512" height="245">dreams\dream2</texture>
+			</video_wnd>
+		</item>
+	</dream_2>
+
+	<dream_3>
+		<play_each_item>1</play_each_item>
+		<global_wnd x="0" y="0" width="1024" height="768">
+			<auto_static x="0" y="0" width="1024" height="768" stretch="1">
+				<window_name>back</window_name>
+				<texture>intro\intro_back</texture>
+			</auto_static>
+		</global_wnd>
+
+		<item type="video">
+			<sound>ambient\air_2.ogg</sound>
+			<pause_state>on</pause_state>
+			<function_on_stop>ogsm_sleep.stopper</function_on_stop>
+			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
+				<texture x="0" y="1" width="512" height="245">dreams\dream3</texture>
+			</video_wnd>
+		</item>
+	</dream_3>
+
+	<dream_4>
+		<play_each_item>1</play_each_item>
+		<global_wnd x="0" y="0" width="1024" height="768">
+			<auto_static x="0" y="0" width="1024" height="768" stretch="1">
+				<window_name>back</window_name>
+				<texture>intro\intro_back</texture>
+			</auto_static>
+		</global_wnd>
+		
+		<item type="video">
+			<sound>dreams\bloodshock_dream_l</sound>
+			<pause_state>on</pause_state>
+			<function_on_stop>ogsm_sleep.stopper</function_on_stop>
+			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
+				<texture x="0" y="1" width="512" height="245">dreams\bloodshock_dream</texture>
+			</video_wnd>
+		</item>
+	</dream_4>
+	
+	<dream_5>
+		<play_each_item>1</play_each_item>
+		<global_wnd x="0" y="0" width="1024" height="768">
+			<auto_static x="0" y="0" width="1024" height="768" stretch="1">
+				<window_name>back</window_name>
+				<texture>intro\intro_back</texture>
+			</auto_static>
+		</global_wnd>
+		
+		<item type="video">
+			<sound>dreams\dream_the_past</sound>
+			<pause_state>on</pause_state>
+			<function_on_stop>ogsm_sleep.stopper</function_on_stop>
+			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
+				<texture x="0" y="1" width="512" height="245">dreams\dream_the_past</texture>
+			</video_wnd>
+		</item>
+	</dream_5>
+
+	<dream_6>
+		<play_each_item>1</play_each_item>
+		<global_wnd x="0" y="0" width="1024" height="768">
+			<auto_static x="0" y="0" width="1024" height="768" stretch="1">
+				<window_name>back</window_name>
+				<texture>intro\intro_back</texture>
+			</auto_static>
+		</global_wnd>
+		
+		<item type="video">
+			<sound>dreams\gshock_dream_l</sound>
+			<pause_state>on</pause_state>
+			<function_on_stop>ogsm_sleep.stopper</function_on_stop>
+			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
+				<texture x="0" y="1" width="512" height="245">dreams\gshock_dream</texture>
+			</video_wnd>
+		</item>
+	</dream_6>
+		
+	<without_dream>
+		<play_each_item>1</play_each_item>
+		<global_wnd x="0" y="0" width="1024" height="768">
+			<auto_static x="0" y="0" width="1024" height="768" stretch="1">
+				<window_name>back</window_name>
+				<texture>intro\intro_back</texture>
+			</auto_static>
+		</global_wnd>
+
+		<item type="video">
+			<sound>dreams\snoring.ogg</sound>
+			<pause_state>on</pause_state>
+			<function_on_stop>ogsm_sleep.stopper</function_on_stop>
+			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
+				<texture x="0" y="1" width="1024" height="768">intro\intro_back</texture>
+			</video_wnd>
+		</item>
+	</without_dream>
+
+	<time_scaling>
+		<play_each_item>1</play_each_item>
+		<global_wnd x="0" y="0" width="1024" height="768">
+			<auto_static x="0" y="0" width="1024" height="768" stretch="1">
+				<window_name>back</window_name>
+				<texture>intro\intro_back</texture>
+			</auto_static>
+		</global_wnd>
+
+		<item type="video">
+			<sound>dreams\sleepy.ogg</sound>
+			<pause_state>off</pause_state>
+			<can_be_stopped>off</can_be_stopped>
+			<function_on_stop>ogsm_sleep.dreamer</function_on_stop>
+			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
+				<texture x="0" y="1" width="1024" height="768">intro\intro_back</texture>
+			</video_wnd>
+		</item>
+	</time_scaling>
+
+	<time_shift>
+		<play_each_item>1</play_each_item>
+		<global_wnd x="0" y="0" width="1024" height="768">
+			<auto_static x="0" y="0" width="1024" height="768" stretch="1">
+				<window_name>back</window_name>
+				<texture>intro\intro_back</texture>
+			</auto_static>
+		</global_wnd>
+
+		<item type="video">
+			<sound>dreams\breath.ogg</sound>
+			<pause_state>off</pause_state>
+			<can_be_stopped>off</can_be_stopped>
+			<function_on_stop>ogsm_sleep.stopper_time_shift</function_on_stop>
+			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
+				<texture x="0" y="1" width="1024" height="768">intro\intro_back</texture>
+			</video_wnd>
+		</item>
+	</time_shift>

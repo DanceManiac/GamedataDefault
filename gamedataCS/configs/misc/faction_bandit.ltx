@@ -1,126 +1,128 @@
 [settings]
-glory_0 = 2
+glory_0 = 2   ;Количество дополнительных отрядов, в зависимости от числа захваченных территориальных точек.
 glory_1 = 4
 glory_2 = 6
 glory_3 = 8
-glory_4 = 10
-glory_5 = 12
-
-
+glory_4 = 9
+glory_5 = 10
 
 [spawn_by_resource]
-0 = sim_default_bandit_0, 80, sim_default_bandit_1, 20
-1 = sim_default_bandit_0, 50, sim_default_bandit_1, 30, sim_default_bandit_2, 20
-2 = sim_default_bandit_1, 50, sim_default_bandit_2, 30, sim_default_bandit_3, 20
-3 = sim_default_bandit_2, 50, sim_default_bandit_3, 30, sim_default_bandit_4, 20
-
+0 = sim_default_bandit_0, 70, sim_default_bandit_1, 20, sim_default_bandit_2, 10
+1 = sim_default_bandit_0, 35, sim_default_bandit_1, 50, sim_default_bandit_2, 15
+2 = sim_default_bandit_0, 25, sim_default_bandit_1, 50, sim_default_bandit_2, 25
+3 = sim_default_bandit_1, 40, sim_default_bandit_2, 40, sim_default_bandit_0, 20
 
 [spawn_by_level]
-marsh 		= sim_default_bandit_0, 40, sim_default_bandit_1, 30, sim_default_bandit_2, 15, sim_default_bandit_3, 10, sim_default_bandit_4,  5
-escape 		= sim_default_bandit_0, 40, sim_default_bandit_1, 30, sim_default_bandit_2, 15, sim_default_bandit_3, 10, sim_default_bandit_4,  5
-garbage 	= sim_default_bandit_0, 20, sim_default_bandit_1, 30, sim_default_bandit_2, 20, sim_default_bandit_3, 15, sim_default_bandit_4, 15
-darkvalley	= sim_default_bandit_0, 20, sim_default_bandit_1, 30, sim_default_bandit_2, 30, sim_default_bandit_3, 10, sim_default_bandit_4, 10
-agroprom 	= sim_default_bandit_0, 10, sim_default_bandit_1, 20, sim_default_bandit_2, 40, sim_default_bandit_3, 20, sim_default_bandit_4, 10
-yantar 		= sim_default_bandit_0, 10, sim_default_bandit_1, 15, sim_default_bandit_2, 30, sim_default_bandit_3, 45, sim_default_bandit_4, 20
-red_forest 	= sim_default_bandit_0,  5, sim_default_bandit_1, 10, sim_default_bandit_2, 15, sim_default_bandit_3, 30, sim_default_bandit_4, 40
-military 	= sim_default_bandit_0,  5, sim_default_bandit_1, 10, sim_default_bandit_2, 15, sim_default_bandit_3, 30, sim_default_bandit_4, 40
+marsh 		= sim_default_bandit_0, 30, sim_default_bandit_1, 40, sim_default_bandit_2, 30
+escape 		= sim_default_bandit_0, 30, sim_default_bandit_1, 40, sim_default_bandit_2, 30
+garbage 	= sim_default_bandit_0, 30, sim_default_bandit_1, 40, sim_default_bandit_2, 30
+darkvalley	= sim_default_bandit_0, 20, sim_default_bandit_1, 40, sim_default_bandit_2, 40
+agroprom 	= sim_default_bandit_0, 20, sim_default_bandit_1, 40, sim_default_bandit_2, 40
+yantar 		= sim_default_bandit_0, 10, sim_default_bandit_1, 30, sim_default_bandit_2, 60
+red_forest 	= sim_default_bandit_0, 10, sim_default_bandit_1, 30, sim_default_bandit_2, 60
+military 	= sim_default_bandit_0, 10, sim_default_bandit_1, 30, sim_default_bandit_2, 60
+
+[expansion_0]	; Подождать окончания сюжета на Кордоне
+base_squad_number				= 0
+precondition_power				= 0
+precondition_cond				= {+esc_bring_habar_complete} true, false
+
+[expansion_1]	; Накопить сил
+base_squad_number				= 10
+precondition_power				= 0.2
+precondition_target				= gar_smart_terrain_3_5
+
+war_target_title				= st_faction_war_bandit_need_more_power
+
+war_stage_icon					= st_stage_icon_bandit_power_no
+war_stage_icon_complete				= st_stage_icon_bandit_power_yes
+war_stage_icon_hint				= st_stage_icon_bandit_power_no
+war_stage_icon_hint_complete			= st_stage_icon_bandit_power_yes
+
+level_up_snd					= gar_bandit_expansion_1_up
+level_down_snd					= gar_bandit_expansion_1_down
+
+[expansion_2]	; Захватить переходы на свалку
+base_squad_number				= 20
+
+war_target_title				= st_faction_war_bandit_secure_level
+
+war_stage_icon					= st_stage_icon_bandit_secure_garbage_no
+war_stage_icon_complete				= st_stage_icon_bandit_secure_garbage_yes
+war_stage_icon_hint				= st_stage_icon_bandit_secure_garbage_no
+war_stage_icon_hint_complete			= st_stage_icon_bandit_secure_garbage_yes
+
+level_up_snd					= gar_bandit_expansion_2_up
+level_down_snd					= gar_bandit_expansion_2_down
+
+precondition_target				= gar_smart_terrain_3_8, gar_smart_terrain_5_8, gar_smart_terrain_4_7, gar_smart_terrain_1_5, gar_smart_terrain_1_7, gar_smart_terrain_8_7, gar_smart_terrain_8_3
+
+[expansion_3]	; Захватить плацдарм на Кордоне
+base_squad_number				= 40
+war_target_title				= st_faction_war_bandit_capture_placdarm
+
+war_stage_icon					= st_stage_icon_bandit_capture_escape_no
+war_stage_icon_complete				= st_stage_icon_bandit_capture_escape_yes
+war_stage_icon_hint				= st_stage_icon_bandit_capture_escape_no
+war_stage_icon_hint_complete			= st_stage_icon_bandit_capture_escape_yes
+
+level_up_snd					= gar_bandit_expansion_3_up
+level_down_snd					= gar_bandit_expansion_3_down
+
+precondition_target_optional			= esc_smart_terrain_3_6, esc_smart_terrain_5_2
+precondition_actor_in_faction			= true
+
+[expansion_4]	; Уничтожить базу нейтралов
+base_squad_number				= 40
+
+war_target_title				= st_faction_war_bandit_eliminate_base
+
+war_stage_icon					= st_stage_icon_bandit_eliminate_stalker_no
+war_stage_icon_complete				= st_stage_icon_bandit_eliminate_stalker_yes
+war_stage_icon_hint				= st_stage_icon_bandit_eliminate_stalker_no
+war_stage_icon_hint_complete			= st_stage_icon_bandit_eliminate_stalker_yes
+
+level_up_snd					= gar_bandit_expansion_4_up
+level_down_snd					= gar_bandit_expansion_4_down
+
+precondition_target_eliminate			= esc_smart_terrain_5_7
+
+[expansion_5]	; Расслабить булки
+base_squad_number				= 50
+precondition_power 				= 0.5
+
+war_target_title				= st_faction_war_bandit_relax
+
+level_down_snd					= gar_bandit_expansion_5_down
 
 
-
-[expansion_0]  ; Подождать окончания сюжета на Кордоне
-base_squad_number = 12
-precondition_power = 0
-precondition_cond = {+esc_take_habar_complete} true, false
-
-[expansion_1]  ; Накопить сил
-base_squad_number = 20
-precondition_power = 0.2
-precondition_target = gar_smart_terrain_3_5 ;, gar_smart_terrain_6_3
-
-war_target_title = st_faction_war_bandit_need_more_power
-
-war_stage_icon 					= st_stage_icon_bandit_power_no
-war_stage_icon_complete 		= st_stage_icon_bandit_power_yes
-war_stage_icon_hint 			= st_stage_icon_bandit_power_no
-war_stage_icon_hint_complete 	= st_stage_icon_bandit_power_yes
-
-level_up_snd = gar_bandit_expansion_1_up
-level_down_snd = gar_bandit_expansion_1_down
-
-[expansion_2]	; Захватить переходы на свалку.
-base_squad_number = 30
-precondition_target = gar_smart_terrain_3_8, gar_smart_terrain_5_8 ;, gar_smart_terrain_8_7, gar_smart_terrain_8_3, gar_smart_terrain_5_2, gar_smart_terrain_2_3, gar_smart_terrain_1_5, gar_smart_terrain_1_7
-
-war_target_title = st_faction_war_bandit_secure_level
-
-war_stage_icon 					= st_stage_icon_bandit_secure_garbage_no
-war_stage_icon_complete 		= st_stage_icon_bandit_secure_garbage_yes
-war_stage_icon_hint 			= st_stage_icon_bandit_secure_garbage_no
-war_stage_icon_hint_complete 	= st_stage_icon_bandit_secure_garbage_yes
-
-level_up_snd = gar_bandit_expansion_2_up
-level_down_snd = gar_bandit_expansion_2_down
-
-[expansion_3]	; Захватить плацдарм.
-base_squad_number = 40
-precondition_target_optional = esc_smart_terrain_3_6, esc_smart_terrain_5_2
-precondition_actor_in_faction = true
-
-war_target_title = st_faction_war_bandit_capture_placdarm
-
-war_stage_icon 					= st_stage_icon_bandit_capture_escape_no
-war_stage_icon_complete 		= st_stage_icon_bandit_capture_escape_yes
-war_stage_icon_hint 			= st_stage_icon_bandit_capture_escape_no
-war_stage_icon_hint_complete 	= st_stage_icon_bandit_capture_escape_yes
-
-level_up_snd = gar_bandit_expansion_3_up
-level_down_snd = gar_bandit_expansion_3_down
-
-[expansion_4]   ; Уничтожить базу
-base_squad_number = 50
-precondition_target_eliminate = esc_smart_terrain_5_7
-
-war_target_title = st_faction_war_bandit_eliminate_base
-
-war_stage_icon 					= st_stage_icon_bandit_eliminate_stalker_no
-war_stage_icon_complete 		= st_stage_icon_bandit_eliminate_stalker_yes
-war_stage_icon_hint 			= st_stage_icon_bandit_eliminate_stalker_no
-war_stage_icon_hint_complete 	= st_stage_icon_bandit_eliminate_stalker_yes
-
-level_up_snd = gar_bandit_expansion_4_up
-level_down_snd = gar_bandit_expansion_4_down
-
-[expansion_5]   ; Расслабить булки.
-base_squad_number = 50
-precondition_power = 0.5
-
-war_target_title = st_faction_war_bandit_relax
-
-level_down_snd = gar_bandit_expansion_5_down
+[secondary_targets]
+esc_smart_terrain_4_8			= {=is_bandit_at_expansion_5} true, false
+esc_smart_terrain_6_6			= {=is_bandit_at_expansion_5} true, false
+esc_smart_terrain_6_8			= {=is_bandit_at_expansion_5} true, false
 
 [start_position]
-esc_smart_terrain_6_6_bandit_squad = esc_smart_terrain_6_6
-gar_bandit_smart_terrain_1_5_squad_1 = gar_smart_terrain_1_5
-gar_bandit_smart_terrain_1_7_squad_1 = gar_smart_terrain_1_7
-gar_bandit_smart_terrain_1_7_squad_2 = gar_smart_terrain_1_7
-gar_bandit_smart_terrain_3_5_squad_1 = gar_smart_terrain_3_5
-gar_bandit_smart_terrain_3_5_squad_2 = gar_smart_terrain_3_5
-gar_bandit_smart_terrain_3_5_squad_3 = gar_smart_terrain_3_5
-gar_bandit_smart_terrain_3_5_squad_4 = gar_smart_terrain_3_5
-;gar_bandit_smart_terrain_3_5_squad_5 = gar_smart_terrain_3_5
-;gar_bandit_smart_terrain_3_5_squad_6 = gar_smart_terrain_3_5
-;gar_bandit_smart_terrain_3_5_squad_7 = gar_smart_terrain_3_5
-;gar_bandit_smart_terrain_3_5_squad_8 = gar_smart_terrain_3_5
-gar_bandit_smart_terrain_3_7_squad_1 = gar_smart_terrain_3_7
-gar_bandit_smart_terrain_3_7_squad_2 = gar_smart_terrain_3_7
-gar_bandit_smart_terrain_3_8_squad_1 = gar_smart_terrain_3_8
-gar_bandit_smart_terrain_5_2_squad_1 = gar_smart_terrain_5_2
-gar_bandit_smart_terrain_5_2_squad_2 = gar_smart_terrain_5_2
-gar_bandit_smart_terrain_5_8_squad_1 = gar_smart_terrain_5_8
-gar_bandit_smart_terrain_5_8_squad_2 = gar_smart_terrain_5_8
-gar_bandit_smart_terrain_8_3_squad_1 = gar_smart_terrain_8_3
-gar_bandit_smart_terrain_8_7_squad_1 = gar_smart_terrain_8_7
-gar_bandit_smart_terrain_8_7_squad_2 = gar_smart_terrain_8_7
-agr_smart_terrain_6_4_bandits_1_squad = agr_smart_terrain_6_4
-agr_smart_terrain_2_3_bandits_1_squad = agr_smart_terrain_2_3
-agru_smart_terrain_1_bandit_squad = agru_smart_terrain_1
+gar_bandit_smart_terrain_1_5_squad_1	= gar_smart_terrain_1_5
+gar_bandit_smart_terrain_1_5_squad_2	= gar_smart_terrain_1_5
+gar_bandit_smart_terrain_1_7_squad_1	= gar_smart_terrain_1_7
+gar_bandit_smart_terrain_1_7_squad_2	= gar_smart_terrain_1_7
+gar_bandit_smart_terrain_3_5_squad_1	= gar_smart_terrain_3_5
+gar_bandit_smart_terrain_3_5_squad_2	= gar_smart_terrain_3_5
+gar_bandit_smart_terrain_3_5_squad_3	= gar_smart_terrain_3_5
+gar_bandit_smart_terrain_3_5_squad_4	= gar_smart_terrain_3_5
+gar_bandit_smart_terrain_3_5_squad_5	= gar_smart_terrain_3_5
+gar_bandit_smart_terrain_3_5_squad_6	= gar_smart_terrain_3_5
+gar_bandit_smart_terrain_3_5_squad_7	= gar_smart_terrain_3_5
+gar_bandit_smart_terrain_3_7_squad_1	= gar_smart_terrain_3_7
+gar_bandit_smart_terrain_3_7_squad_2	= gar_smart_terrain_3_7
+gar_bandit_smart_terrain_3_8_squad_1	= gar_smart_terrain_3_8
+gar_bandit_smart_terrain_3_8_squad_2	= gar_smart_terrain_3_8
+gar_bandit_smart_terrain_5_2_squad_1	= gar_smart_terrain_5_2
+gar_bandit_smart_terrain_5_2_squad_2	= gar_smart_terrain_5_2
+gar_bandit_smart_terrain_5_8_squad_1	= gar_smart_terrain_5_8
+gar_bandit_smart_terrain_5_8_squad_2	= gar_smart_terrain_5_8
+gar_bandit_smart_terrain_6_1_squad_1	= gar_smart_terrain_6_1
+gar_bandit_smart_terrain_8_3_squad_1	= gar_smart_terrain_8_3
+gar_bandit_smart_terrain_8_3_squad_2	= gar_smart_terrain_8_3
+gar_bandit_smart_terrain_8_7_squad_1	= gar_smart_terrain_8_7
+gar_bandit_smart_terrain_8_7_squad_2	= gar_smart_terrain_8_7

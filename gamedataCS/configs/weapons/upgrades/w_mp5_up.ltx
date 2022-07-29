@@ -1,78 +1,65 @@
+; Модификация затвора. Технологическая доработка затвора позволяет увеличить темп стрельбы.
 [up_sect_a_mp5]
 cost		      		= 750
-value					= +15
-rpm                     = 100
+value					= +25
+rpm                     = 145
 
+; Модификация затвора. Точная подгонка затвора уменьшает разброс пуль при стрельбе.
 [up_sect_b_mp5]
 cost		      		= 750
-value					= +40
-fire_dispersion_base	= -0.3 	
+value					= +20
+fire_dispersion_base	= -0.26 	
 
+; Модификация ствола. Замена стандартного ствола на облегчённый.
 [up_sect_c_mp5]
 cost	      	     	= 750
-value					= +10
-control_inertion_factor = -0.1
-inv_weight              = -0.3
+value					= -0.31  ;-10
+inv_weight              = -0.31
+control_inertion_factor	= -0.12
 
+; Модификация ствола. Насадка, увеличивающая длину ствола и, как следствие, начальную скорость пули.
 [up_sect_d_mp5]
 cost		      		= 750
-value					= +50
-bullet_speed			= 100
-hit_power				= 0.52, 0.52, 0.52, 0.52
+value					= +20
+bullet_speed			= 92
 
+; Модификация газового поршня. Установка компенсатора газового поршня позволяет уменьшить отдачу.
 [up_sect_e_mp5]
 cost		      		= 750
 value					= -20
+cam_dispersion              = -0.24
+cam_dispersion_inc         	= -0.24
+cam_step_angle_horz        	= -0.24
+zoom_cam_dispersion          = -0.16
+zoom_cam_dispersion_inc      = -0.16
+zoom_cam_step_angle_horz     = -0.16
 
-cam_dispersion              = -0.2		;1.0
-cam_dispersion_inc         	= -0.1		;0.5
-cam_step_angle_horz        	= -0.4		;2.0
-
-zoom_cam_dispersion          = -0.1		;0.5
-zoom_cam_dispersion_inc      = -0.1		;0.5
-zoom_cam_step_angle_horz     = -0.4		;2.0
-
+; Модификация газового поршня. Снижение массы газового поршня замедляет темп стрельбы, но уменьшает отдачу.
 [up_sect_f_mp5]
 cost		      		= 750
 value					= -30
 value2					= st_upgr_rpm_lowered
-rpm                     = -200
+rpm                     = -174
+cam_dispersion              = -0.36
+cam_dispersion_inc         	= -0.36
+cam_step_angle_horz        	= -0.36
+zoom_cam_dispersion          = -0.24
+zoom_cam_dispersion_inc      = -0.24
+zoom_cam_step_angle_horz     = -0.24
 
-cam_dispersion              = -0.3		;1.0
-cam_dispersion_inc         	= -0.15		;0.5
-cam_step_angle_horz        	= -0.6		;2.0
-
-zoom_cam_dispersion          = -0.15	;0.5
-zoom_cam_dispersion_inc      = -0.15	;0.5
-zoom_cam_step_angle_horz     = -0.6		;2.0
-
-[up_sect_h_mp5]
-cost		      		= 750
-value					= +15
-ammo_mag_size           = 15
-
-[up_sect_i_mp5]
-cost		      		= 1500
-value					= "9x18"
-ammo_class				= ammo_9x18_fmj, ammo_9x18_pmm
-
+; Сбалансированная автоматика. Более точная балансировка подвижных частей оружия значительно увеличит темп стрельбы.
 [up_sect_ac_mp5]
-cost		      		= 1125
-value					= -20
+cost		      		= 1500
+value					= +30
+rpm						= 174
 
-cam_dispersion              = -0.2		;1.0
-cam_dispersion_inc         	= -0.1		;0.5
-cam_step_angle_horz        	= -0.4		;2.0
-
-zoom_cam_dispersion          = -0.1		;0.5
-zoom_cam_dispersion_inc      = -0.1		;0.5
-zoom_cam_step_angle_horz     = -0.4		;2.0
-
+; Замена ствола. Ствол из прочной стали не подвергается деформации даже при интенсивной стрельбе, в результате чего точность боя оружия повышается.
 [up_sect_bd_mp5]
-cost		      		= 1125
-value					= +50
-bullet_speed			= 100
-hit_power				= 0.55, 0.55, 0.55, 0.55
+cost		      		= 1500
+value					= +25
+bullet_speed			= 115
+
+
 
 [up_a_mp5]
 scheme_index            = 0, 0
@@ -87,7 +74,6 @@ precondition_parameter  = true
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = on_weapon_upgrade_something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
@@ -95,7 +81,7 @@ name                    = st_upg_zatvor_rpm
 description             = st_upg_zatvor_rpm_descr
 icon                    = ui_wp_upgrade_30
 
-;;...
+
 [up_b_mp5]
 scheme_index            = 0, 1
 known                   = 1
@@ -109,7 +95,6 @@ precondition_parameter  = true
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
@@ -117,12 +102,13 @@ name                    = st_upg_zatvor_recoil
 description             = st_upg_zatvor_recoil_descr
 icon                    = ui_wp_upgrade_31
 
+
 [up_c_mp5]
 scheme_index            = 0, 2
 known                   = 1
 effects                 = up_gr_ac_mp5
 section                 = up_sect_c_mp5
-property                = prop_inertion
+property                = prop_weight
 
 precondition_functor    = inventory_upgrades.precondition_functor_a
 precondition_parameter  = a & b
@@ -130,13 +116,13 @@ precondition_parameter  = a & b
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_barrel_weight
 description             = st_upg_barrel_weight_descr
 icon                    = ui_wp_upgrade_52
+
 
 [up_d_mp5]
 scheme_index            = 0, 3
@@ -158,6 +144,7 @@ name                    = st_upg_barrel_curved
 description             = st_upg_barrel_curved_descr
 icon                    = ui_wp_upgrade_25
 
+
 [up_e_mp5]
 scheme_index            = 0, 4
 known                   = 1
@@ -171,13 +158,13 @@ precondition_parameter  = true
 effect_functor          = inventory_upgrades.effect_functor_a
 effect_parameter        = something_here
 
-; ui
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
 name                    = st_upg_porsh_recoil
 description             = st_upg_porsh_recoil_descr
 icon                    = ui_wp_upgrade_41
+
 
 [up_f_mp5]
 scheme_index            = 0, 5
@@ -199,53 +186,13 @@ name                    = st_upg_porsh_rpm
 description             = st_upg_porsh_rpm_descr
 icon                    = ui_wp_upgrade_42
 
-[up_h_mp5]
-scheme_index            = 0, 6
-known                   = 1
-effects                 = 
-section                 = up_sect_h_mp5
-property                = prop_ammo_size
-
-precondition_functor    = inventory_upgrades.precondition_functor_a
-precondition_parameter  = true
-
-effect_functor          = inventory_upgrades.effect_functor_a
-effect_parameter        = something_here
-
-prereq_functor          = inventory_upgrades.prereq_functor_a
-prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
-prereq_params           = money(1000), item(habar)
-name                    = st_upg_charger_big
-description             = st_upg_charger_big_descr
-icon                    = ui_wp_upgrade_19
-
-[up_i_mp5]
-scheme_index            = 0, 7
-known                   = 1
-effects                 = 
-section                 = up_sect_i_mp5
-property                = prop_calibre
-
-precondition_functor    = inventory_upgrades.precondition_functor_a
-precondition_parameter  = true
-
-effect_functor          = inventory_upgrades.effect_functor_a
-effect_parameter        = something_here
-
-prereq_functor          = inventory_upgrades.prereq_functor_a
-prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
-prereq_params           = money(1000), item(habar)
-name                    = st_upg_calibre_9_18
-description             = st_upg_calibre_9_18_descr
-icon                    = ui_wp_upgrade_20
-
 
 [up_ac_mp5]
 scheme_index            = 1, 0
 known                   = 1
 effects                 = 
 section                 = up_sect_ac_mp5
-property                = prop_recoil
+property                = prop_rpm
 
 precondition_functor    = inventory_upgrades.precondition_functor_a
 precondition_parameter  = true
@@ -256,9 +203,10 @@ effect_parameter        = something_here
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
-name                    = st_upg_barrel_recoil
-description             = st_upg_barrel_recoil_descr
-icon                    = ui_wp_upgrade_24
+name                    = st_upg_auto_rpm
+description             = st_upg_auto_rpm_descr
+icon                    = ui_wp_upgrade_38
+
 
 [up_bd_mp5]
 scheme_index            = 1, 1
@@ -276,9 +224,9 @@ effect_parameter        = something_here
 prereq_functor          = inventory_upgrades.prereq_functor_a
 prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
 prereq_params           = money(1000), item(habar)
-name                    = st_upg_barrel_curved
-description             = st_upg_barrel_curved_descr
-icon                    = ui_wp_upgrade_25
+name                    = st_upg_hard_barrel_curved
+description             = st_upg_hard_barrel_curved_descr
+icon                    = ui_wp_upgrade_12
 
 
 
@@ -290,13 +238,6 @@ elements                = up_c_mp5, up_d_mp5
 
 [up_gr_ef_mp5]
 elements                = up_e_mp5, up_f_mp5
-
-[up_gr_h_mp5]
-elements                = up_h_mp5
-
-[up_gr_i_mp5]
-elements                = up_i_mp5
-
 
 [up_gr_ac_mp5]
 elements                = up_ac_mp5

@@ -3,6 +3,9 @@
 <game_information_portions>
   <info_portion id="esc_joined_stalkers"></info_portion>
 
+  <info_portion id="military_trader_dialog"></info_portion>
+  <info_portion id="military_trader_dialogs"></info_portion>
+
   <!-- First Scene - Military Base -->
   <info_portion id="esc_actor_inside"></info_portion>
   <info_portion id="esc_minigunner"></info_portion>
@@ -37,12 +40,12 @@
   <info_portion id="esc_player_sleeps"></info_portion>
   <info_portion id="esc_skip_angry"></info_portion>
 
-
   <info_portion id="esc_trader_talked"></info_portion>
+
   <info_portion id="esc_actor_come_first"></info_portion>
   <info_portion id="esc_actor_inside_traders_dung"></info_portion>
   <info_portion id="esc_trader_angry"></info_portion>
-   <info_portion id="esc_reach_trader_complete"></info_portion>
+   <info_portion id="esc_reach_trader_complete"><article>private_8_note</article></info_portion>
    <info_portion id="esc_actor_comes2door"></info_portion>
 
   <info_portion id="esc_voditel_talked"></info_portion>
@@ -71,19 +74,21 @@
   <!-- forth Scene - Stalker Base and bla bla bla -->
   
   <info_portion id="esc_actor_inside_stalkerbase"></info_portion>
-    <info_portion id="esc_reach_stalker_base_complete"></info_portion>
+  <info_portion id="esc_reach_stalker_base_complete"></info_portion>
   <info_portion id="esc_stalker_leader_meet"></info_portion>
 
   <info_portion id="esc_7_11_mil_1_dead"></info_portion>
   <info_portion id="esc_7_11_mil_2_dead"></info_portion>
   <info_portion id="esc_7_11_mil_3_dead"></info_portion>
   
-  <info_portion id="esc_actor_mission_stalker_leader"></info_portion>
+  <info_portion id="esc_actor_mission_stalker_leader">
+  </info_portion>
+
   <info_portion id="esc_actor_mission_stalker_leader_done"></info_portion>
   <info_portion id="esc_mission_stalker_leader_complete"></info_portion>
   <info_portion id="esc_mission_2_stalker_leader_complete"></info_portion>
 
-  <info_portion id="esc_leader_talked2"></info_portion>
+  <info_portion id="esc_leader_talked2"><article>private_9_note</article></info_portion>
   
   <info_portion id="esc_com_tell_about_habar"></info_portion>
   <info_portion id="esc_leader_final_talked"></info_portion>
@@ -106,7 +111,8 @@
   <info_portion id="esc_take_habar_complete"></info_portion>
 
   <info_portion id="esc_actor_inside_traders_dung_last"></info_portion>
-  <info_portion id="esc_bring_habar_complete"></info_portion>
+
+  <info_portion id="esc_bring_habar_complete"><article>private_10_note</article></info_portion>
 
   <info_portion id="esc_help_prisoner"></info_portion>
   <info_portion id="esc_actor_have_secret"></info_portion>

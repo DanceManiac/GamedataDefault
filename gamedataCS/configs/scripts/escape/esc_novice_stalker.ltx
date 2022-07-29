@@ -1,52 +1,82 @@
 [logic]
 active = walker@prewait
-meet = meet
 on_death = death
 on_hit = hit
 
 [walker@prewait]
-wounded = wounded
 path_walk = esc_novice_stalker_walk_1
 path_look = esc_novice_stalker_look_1
+out_restr = esc_novice_stalker_out_restr
 on_info = {+esc_stalker_novice_defend} walker@wait
 on_info2 = {+esc_wolf_novice_2} walker@run
 on_info3 = {!squad_exist(esc_dogs_lair_guard_5_12)} walker@run %+esc_wolf_novice_2%
-meet = meet
+wounded = wounded
+meet = no_meet
 combat_ignore_cond = true
 combat_ignore_keep_when_attacked = true
 invulnerable = true
-out_restr = esc_novice_stalker_out_restr
 
 [walker@wait]
-wounded = wounded
 path_walk = esc_novice_stalker_walk_1
 path_look = esc_novice_stalker_look_1
+out_restr = esc_novice_stalker_out_restr
 on_info = {+esc_wolf_novice_2} walker@run
 on_info2 = {!squad_exist(esc_dogs_lair_guard_5_12)} walker@run %+esc_wolf_novice_2%
-meet = meet
-out_restr = esc_novice_stalker_out_restr
+wounded = wounded
+meet = no_meet
 
 [walker@run]
+path_walk = esc_novice_stalker_walk_2
+path_look = esc_novice_stalker_look_2
+def_state_moving = assault
 wounded = wounded
+meet = no_meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+on_info = {+esc_wolf_novice_4} walker@walk_final
+on_info2 = {-esc_novice_info_enemy_dogs =squad_exist(esc_dogs_lair_guard_5_12)} %=set_squad_goodwill_to_npc(esc_dogs_lair_guard_5_12:enemy) +esc_novice_info_enemy_dogs%
+on_npc_in_zone = 433 | esc_space_restrictors_2_12_sr_defense | {-esc_stalker_novice_meet_info} walker@walk %=play_sound(esc_novice_stalker_thanx:stalker:esc_stalker_novice_quest_name) +esc_stalker_novice_meet_info +esc_wolf_novice_3%
+on_actor_dist_ge_nvis = 50 | walker@death %=kill_novice%
+
+[walker@death]
+path_walk = esc_novice_stalker_walk_2
+path_look = esc_novice_stalker_look_2
+wounded = wounded
+on_info = {+esc_wolf_novice_4} walker@walk_final
+on_info2 = {+start_surge_info} walker@surge_hide
+on_info3 = {=actor_in_bandit} %=destroy_object%
+meet = meet
+
+[walker@walk]
 path_walk = esc_novice_stalker_walk_2
 path_look = esc_novice_stalker_look_2
 def_state_moving = run
-meet = no_meet
-on_info = {-esc_novice_info_enemy_dogs =squad_exist(esc_dogs_lair_guard_5_12)} %=set_squad_goodwill_to_npc(esc_dogs_lair_guard_5_12:enemy) +esc_novice_info_enemy_dogs%
-on_npc_in_zone = 433 | esc_space_restrictors_2_12_sr_defense | walker@walk
-on_actor_dist_ge_nvis = 100 | walker@death %+esc_stalker_novice_fail =kill_npc%
-
-[walker@death]
 wounded = wounded
+on_info = {+esc_wolf_novice_3} walker@walk_final %=actor_friend%
+on_info2 = {+start_surge_info} walker@surge_hide
+on_info3 = {=actor_in_bandit} %=destroy_object%
+meet = meet
+
+[walker@walk_final]
 path_walk = esc_novice_stalker_walk_2
 path_look = esc_novice_stalker_look_2
-meet = no_meet
+on_info = {=smart_population_le(esc_smart_terrain_2_12:5)} walker@walk_final_work
+on_info2 = {+start_surge_info} walker@surge_hide
+on_info3 = {=actor_in_bandit} %=destroy_object%
+meet = meet
 
-[walker@walk]
-wounded = wounded
-path_walk = esc_novice_stalker_walk_2
-path_look = esc_novice_stalker_look_2
-on_info = %+esc_wolf_novice_3%
+[walker@walk_final_work]
+path_walk = esc_smart_terrain_2_12_guard_1_walk
+path_look = esc_smart_terrain_2_12_guard_1_look
+on_info = {=smart_population_ge(esc_smart_terrain_2_12:7)} walker@walk_final
+on_info2 = {+start_surge_info} walker@surge_hide
+on_info3 = {=actor_in_bandit} %=destroy_object%
+meet = meet
+
+[walker@surge_hide]
+path_walk = esc_smart_terrain_2_12_sleep_3
+on_info = {-start_surge_info} walker@walk_final
+meet = no_meet
 
 [death]
 on_info = %+esc_stalker_novice_fail%
@@ -60,3 +90,11 @@ hp_state_see    = 0|wounded_heavy@help_heavy
 hp_victim       = 0|nil
 hp_fight        = 0|false
 hp_cover        = 0|false
+
+[meet]
+meet_state	= 3| nil@nil
+meet_state_wpn	= 3| nil@nil
+victim 		= 3| actor
+victim_wpn 	= 3| actor
+use	= true
+use_wpn	= true

@@ -8,6 +8,8 @@ local killCountProps = {
 	dolg_novice = 1, dolg_experienced = 2, dolg_veteran = 3, dolg_master = 4,
 	freedom_novice = 1, freedom_experienced = 2, freedom_veteran = 3, freedom_master = 4,
 	bandit_novice = 1, bandit_experienced = 2, bandit_veteran = 3, bandit_master = 4,
+	bandit_enemy_novice = 1, bandit_enemy_experienced = 2, bandit_enemy_veteran = 3, bandit_enemy_master = 4,
+	stalker_enemy_novice = 1, stalker_enemy_experienced = 2, stalker_enemy_veteran = 3, stalker_enemy_master = 4,
 	zombied_novice = 1, zombied_experienced = 2, zombied_veteran = 3, zombied_master = 4,
 
 	tushkano_weak = 1,
@@ -15,20 +17,70 @@ local killCountProps = {
 	boar_weak = 1, boar_normal = 2, boar_strong = 3,
 	dog_weak = 1, dog_normal = 2, dog_strong = 3,
 	pseudodog_weak = 1, pseudodog_normal = 2, pseudodog_strong = 3,
-	psy_dog_weak = 1, psy_dog_normal = 2, psy_dog_strong = 3,
 	snork_weak = 2, snork_normal = 3, snork_strong = 4,
-	poltergeist_weak = 2,
-	pseudo_gigant_weak = 4,
+	poltergeist_weak = 2, poltergeist_strong = 4,
+	gigant_weak = 4,
 	controller_weak = 4,
-	bloodsucker_weak = 1, bloodsucker_normal = 2, bloodsucker_strong = 3
+	bloodsucker_weak = 1, bloodsucker_normal = 2, bloodsucker_strong = 3,
+	cat_weak = 1,
+	burer_weak = 1,	burer_strong = 3,
+	fracture_weak = 1, 
+	chimera_weak = 1, chimera_strong = 3,
+	zombie_weak = 1, zombie_normal = 2, zombie_strong = 3
+
 }
 
 local sect_alias = {
-	tushkano_normal = "tushkano_weak", tushkano_strong = "tushkano_weak",
-	poltergeist_normal = "poltergeist_weak", poltergeist_strong = "poltergeist_weak",
-	pseudo_gigant_normal = "pseudo_gigant_weak", pseudo_gigant_strong = "pseudo_gigant_weak",
-	controller_normal = "controller_weak", controller_strong = "controller_weak",
-	psy_dog_weak = "psy_dog", psy_dog_normal = "psy_dog", psy_dog_strong = "psy_dog", rad_psy_dog = "psy_dog"
+	tushkano_normal_ogsmsim = "tushkano_weak",
+	gigant_strong_ogsmsim = "gigant_weak",
+	m_controller_normal_ogsmsim = "controller_weak", 
+	m_controller_old_ogsmsim = "controller_weak",
+	m_controller_old_fat_ogsmsim = "controller_weak",
+	psy_dog_ogsmsim = "psy_dog",
+	cat_weak_ogsmsim = "cat_weak",
+	burer_weak_ogsmsim = "burer_weak",
+	fracture_weak_ogsmsim = "fracture_weak", 
+	chimera_weak_ogsmsim = "chimera_weak",
+	zombie_rotten_1_ogsmsim = "zombie_normal", 
+	zombie_rotten_2_ogsmsim = "zombie_normal", 
+	zombie_1_ogsmsim = "zombie_normal",
+	zombie_2_ogsmsim = "zombie_weak",
+	zombie_3_ogsmsim = "zombie_weak",
+	zombie_kamikaze_ogsmsim = "zombie_weak",
+	zombie_plague_ogsmsim = "zombie_strong",
+	electro_chimera_ogsmsim = "chimera_weak",
+	psy_burer_ogsmsim = "burer_weak",
+	bloodsucker_normal_ogsmsim = "bloodsucker_normal",
+	bloodsucker_strong_ogsmsim = "bloodsucker_strong",
+
+	tushkano_normal = "tushkano_weak", 
+	tushkano_strong = "tushkano_weak",
+	poltergeist_normal = "poltergeist_weak", 
+	poltergeist_strong = "poltergeist_strong",
+	poltergeist_normal_flame = "poltergeist_weak", 
+	poltergeist_strong_flame = "poltergeist_strong",
+	gigant_normal = "gigant_weak", 
+	gigant_strong = "gigant_weak",
+	bloodsucker_marsh = "bloodsucker_weak",
+	bloodsucker_fast = "bloodsucker_strong",
+	controller_normal = "controller_weak", 
+	controller_strong = "controller_weak",
+	m_controller_normal = "controller_weak", 
+	m_controller_old = "controller_weak",
+	m_controller_old_fat = "controller_weak",
+	psy_dog_weak = "psy_dog", 
+	psy_dog_normal = "psy_dog", 
+	psy_dog_strong = "psy_dog", 
+	rad_psy_dog = "psy_dog",
+	zombie_rotten_1 = "zombie_normal",
+	zombie_rotten_2 = "zombie_normal",
+	zombie_1 = "zombie_normal",
+	zombie_2 = "zombie_weak",
+	zombie_3 = "zombie_weak",
+	zombie_kamikaze = "zombie_strong",
+	zombie_plague = "zombie_strong",
+	electro_chimera = "chimera_weak",
+	psy_burer = "burer_weak"
 }
 
 monster_classes = {
@@ -43,7 +95,13 @@ monster_classes = {
 			[clsid.poltergeist_s ] = "poltergeist",
 			[clsid.gigant_s      ] = "pseudo_gigant",
 			[clsid.controller_s  ] = "controller",
-			[clsid.bloodsucker_s ] = "bloodsucker"
+			[clsid.bloodsucker_s ] = "bloodsucker",
+			[clsid.cat_s         ] = "cat",
+			[clsid.zombie_s      ] = "zombie",
+			[clsid.burer_s       ] = "burer",
+			[clsid.fracture_s    ] = "fracture",
+			[clsid.chimera_s     ] = "chimera"
+
 		}
 
 
@@ -87,6 +145,10 @@ function getNpcType(npc)
 			community = "freedom"
 		elseif npc:character_community() == "bandit" then
 			community = "bandit"
+--		elseif npc:character_community() == "bandit_enemy" then
+--			community = "bandit_enemy"
+--		elseif npc:character_community() == "stalker_enemy" then
+--			community = "stalker_enemy"
 		elseif npc:character_community() == "zombied" then
 			community = "zombied"
 		end
@@ -116,6 +178,7 @@ end
 Найдено секретов: кол-тво
 Получено денег: кол-тво
 Потрачено денег: кол-тво
+Изучено артефактов: кол-тво
 ]]
 actor_statistic = {
 					recieved_quests = 0,
@@ -126,6 +189,7 @@ actor_statistic = {
 					founded_secrets = 0,
 					recieved_money = 0,
 					spent_money = 0,
+					founded_arts = 0,
 				  }
 
 function inc_recieved_quests_counter()
@@ -146,6 +210,9 @@ end
 function inc_founded_secrets_counter()
 	actor_statistic.founded_secrets = actor_statistic.founded_secrets + 1
 end
+function inc_founded_arts_counter()
+	actor_statistic.founded_arts = actor_statistic.founded_arts + 1
+end
 function inc_recieved_money_counter(money)
 	actor_statistic.recieved_money = actor_statistic.recieved_money + money
 end
@@ -161,6 +228,7 @@ function save(package)
 	package:w_u16(actor_statistic.founded_secrets)
 	package:w_u32(actor_statistic.recieved_money)
 	package:w_u32(actor_statistic.spent_money)
+	package:w_u16(actor_statistic.founded_arts)
 end
 function load(package)
 	actor_statistic = {}
@@ -172,4 +240,5 @@ function load(package)
 	actor_statistic.founded_secrets  = package:r_u16()
 	actor_statistic.recieved_money 	 = package:r_u32()
 	actor_statistic.spent_money 	 = package:r_u32()
+	actor_statistic.founded_arts 	 = package:r_u16()
 end

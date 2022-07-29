@@ -1,15 +1,9 @@
 local light_zones = {}
+stalker_overrides = {}
 
 local indoor_levels = {
-	l03u_agr_underground = true,
-	l03u_agr_underground_e3 = true,
-	l03u_agr_underground_hw = true,
-	l04u_labx18 = true,
-	l08u_brainlab = true,
-	l10u_bunker = true,
-	l12u_sarcofag = true,
-	l12u_control_monolith = true,
-	chugai_test = true
+--	agroprom_underground = true,
+--	hospital = true,
 }
 ---------------------------------------------------------------------------------------------------------------------
 class "action_light"
@@ -25,16 +19,16 @@ function action_light:reset_scheme()
 end
 function action_light:update(delta)
 	if xr_logic.try_switch_to_another_section(self.object, self.st, db.actor) then
-	   self.active = false     
+	   self.active = false
 	   self.stalkers = {}
        printf("Light zone set nil")
 	   light_zones[self.id] = nil
 	   return
-	end	
+	end
 	self.active = true
 end
 function action_light:check_stalker(stalker)
-    if self.active == false then 
+    if self.active == false then
        return false, false
     end
 
@@ -63,8 +57,8 @@ end
 ---------------------------------------------------------------------------------------------------------------------
 function check_light(stalker)
 --'	printf("[check_light %s] start", stalker:name())
-    if stalker == nil then 
-       return 
+    if stalker == nil then
+       return
     end
 
 --'	printf("[check_light %s] start_passed", stalker:name())
@@ -76,12 +70,17 @@ function check_light(stalker)
 --'	printf("[check_light %s] torch_passed", stalker:name())
 	local light = false
 	local forced = false
-	
+
 	if benchmark.light then
 		light  = true
 		forced = true
 	end
-	
+
+	if stalker_overrides[stalker:id()] ~= nil then
+		light  = stalker_overrides[stalker:id()]
+		forced = true
+	end
+
 	if stalker:alive() == false then
 		light  = false
 		forced = true
@@ -105,36 +104,34 @@ function check_light(stalker)
 		if htime <= 4 or htime >= 22 then
 			light = true
 		end
-	
+
 		--' Проверка на индор-аутдор (внутри всегда включено)
-		if light == false then
-			if indoor_levels[level.name()] == true then
-				light = true
-			end
-		end
-	end			
+--		if light == false then
+--			if indoor_levels[level.name()] == true then
+--				light = true
+--			end
+--		end
+	end
 
 --'	printf("[check_light %s] timezone_passed: light=%s, forced=%s", stalker:name(), tostring(light), tostring(forced))
 	--' Проверка по активному действию
 	if not forced and light == true then
-		--' Фонарики должны быть выключены у костра
+		--' Фонарики должны быть выключены у костра или если непись спит.
 		local scheme = db.storage[stalker:id()].active_scheme
-		if scheme == "kamp" or
-		   scheme == "camper" 
-		then
+		if scheme and (scheme == "kamp" or scheme == "camper" or scheme == "sleeper") then
 			light = false
 			forced = true
 		end
 	end
 
---'	printf("[check_light %s] scheme_passed: light=%s, forced=%s", stalker:name(), tostring(light), tostring(forced))	
---	if not forced and light == true then
---		--' Фонарики должны быть выключены в бою. Но если в бою идет поиск врага - то включены.
---		if stalker:best_enemy() ~= nil then
---			light = false
---		end				
---	end
-	
+--'	printf("[check_light %s] scheme_passed: light=%s, forced=%s", stalker:name(), tostring(light), tostring(forced))
+	if not forced and light == true and ogsm_options.disable_lights then
+		--' Фонарики должны быть выключены в бою. Но если в бою идет поиск врага - то включены.
+		if stalker:best_enemy() and rx_ai.get_storage(stalker:id()).combat_planner_action_id ~= stalker_ids.action_search_enemy then
+			light = false
+		end
+	end
+
 	if light ~= nil then
 		torch:enable_attachable_item(light)
 	end
@@ -142,5 +139,5 @@ end
 
 function clean_up ()
 --'   printf("Light zones cleanup")
-   light_zones = {} 
+   light_zones = {}
 end

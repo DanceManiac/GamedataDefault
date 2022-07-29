@@ -1,0 +1,242 @@
+; Модификация затвора. Технологическая доработка затвора позволяет увеличить темп стрельбы.
+[up_sect_a_pmm]
+cost		      		= 150
+value					= +25
+rpm						= 105
+
+; Модификация затвора. Точная подгонка затвора уменьшает разброс пуль при стрельбе.
+[up_sect_b_pmm]
+cost		      		= 150
+value					= -20
+cam_dispersion          = -0.1
+cam_dispersion_inc		= -0.1
+cam_step_angle_horz		= -0.1
+
+; Модификация ствола. Замена стандартного ствола на облегчённый.
+[up_sect_c_pmm]
+cost		      		= 150
+value					= -0.118  ;-20
+inv_weight				= -0.118
+
+; Замена ствола. Ствол из прочной стали не подвергается деформации даже при интенсивной стрельбе, в результате чего точность боя оружия повышается.
+[up_sect_d_pmm]
+cost		      		= 150
+value					= +15
+bullet_speed		 	= 60
+
+; Мягкий спуск. Плавный спусковой механизм позволяет повысить точность боя.
+[up_sect_e_pmm]
+cost		      		= 150
+value					= +20
+fire_dispersion_base	= -0.33
+
+; Анатомическая рукоять. Сделанная под заказ индивидуальная эргономичная рукоять, учитывающая анатомические особенности руки стрелка.
+[up_sect_f_pmm]
+cost		      		= 150
+value					= +10
+fire_dispersion_base	= -0.055
+cam_dispersion          = -0.05
+cam_dispersion_inc		= -0.05
+cam_step_angle_horz		= -0.05
+
+; Модификация ствола. Установка дульного тормоза существенно уменьшает отдачу.
+[up_sect_ac_pmm]
+cost		      		= 300
+value					= -50
+cam_dispersion          = -0.2
+cam_dispersion_inc		= -0.2
+cam_step_angle_horz		= -0.2
+
+; Модификация ствола. Насадка, увеличивающая длину ствола и, как следствие, начальную скорость пули.
+[up_sect_bd_pmm]
+cost		      		= 300
+value					= +30
+bullet_speed		 	= 120
+
+
+
+[up_a_pmm]
+scheme_index            = 0, 0
+known                   = 1
+effects                 = up_gr_ac_pmm
+section                 = up_sect_a_pmm
+property                = prop_rpm
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = on_weapon_upgrade_something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_zatvor_rpm
+description             = st_upg_zatvor_rpm_descr
+icon                    = ui_wp_upgrade_01
+
+
+[up_b_pmm]
+scheme_index            = 0, 1
+known                   = 1
+effects                 = up_gr_bd_pmm
+section                 = up_sect_b_pmm
+property                = prop_recoil
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_zatvor_recoil
+description             = st_upg_zatvor_recoil_descr
+icon                    = ui_wp_upgrade_02
+
+
+[up_c_pmm]
+scheme_index            = 0, 2
+known                   = 1
+effects                 = up_gr_ac_pmm
+section                 = up_sect_c_pmm
+property                = prop_weight      
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_barrel_weight
+description             = st_upg_barrel_weight_descr
+icon                    = ui_wp_upgrade_03
+
+
+[up_d_pmm]
+scheme_index            = 0, 3
+known                   = 1
+effects                 = up_gr_bd_pmm
+section                 = up_sect_d_pmm
+property                = prop_bullet_speed
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_hard_barrel_curved
+description             = st_upg_hard_barrel_curved_descr
+icon                    = ui_wp_upgrade_04
+
+
+[up_e_pmm]
+scheme_index            = 0, 4
+known                   = 1
+effects                 = 
+section                 = up_sect_e_pmm
+property                = prop_dispersion
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_trigger_accur
+description             = st_upg_trigger_accur_descr
+icon                    = ui_wp_upgrade_05
+
+
+[up_f_pmm]
+scheme_index            = 0, 5
+known                   = 1
+effects                 = 
+section                 = up_sect_f_pmm
+property                = prop_dispersion
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_handle_accur2
+description             = st_upg_handle_accur2_descr
+icon                    = ui_wp_upgrade_09
+
+
+[up_ac_pmm]
+scheme_index            = 1, 0
+known                   = 1
+effects                 = 
+section                 = up_sect_ac_pmm
+property                = prop_recoil
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_barrel_recoil
+description             = st_upg_barrel_recoil_descr
+icon                    = ui_wp_upgrade_07
+
+
+[up_bd_pmm]
+scheme_index            = 1, 1
+known                   = 1
+effects                 = 
+section                 = up_sect_bd_pmm
+property                = prop_bullet_speed
+
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = money(1000), item(habar)
+name                    = st_upg_barrel_curved
+description             = st_upg_barrel_curved_descr
+icon                    = ui_wp_upgrade_08
+
+
+[up_gr_ab_pmm]
+elements                = up_a_pmm, up_b_pmm
+
+[up_gr_cd_pmm]
+elements                = up_c_pmm, up_d_pmm
+
+[up_gr_e_pmm]
+elements                = up_e_pmm
+
+[up_gr_f_pmm]
+elements                = up_f_pmm
+
+[up_gr_ac_pmm]
+elements                = up_ac_pmm
+
+[up_gr_bd_pmm]
+elements                = up_bd_pmm

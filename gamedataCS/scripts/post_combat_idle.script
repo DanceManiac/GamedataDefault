@@ -1,36 +1,81 @@
+--'-------------------------------------------------------------------------------------------------------------------
+--' post combat idle
+--' ai additions
+--' modified by Bak
+--'--------------------------------------------------------------------------------------------------------------------
+local def_min_post_combat_time = 10000
+local def_max_post_combat_time = 15000
+local squad_play_dist = 25*25
 
 class "evaluator_combat_enemy" (property_evaluator)
 function evaluator_combat_enemy:__init(storage, name) super(nil, name)
 	self.st = storage
-	
+
 	--' Таймер ожидания выхода из боя
 	self.st.timer = time_global()
 end
 function evaluator_combat_enemy:evaluate()
 	local best_enemy = self.object:best_enemy()
-	if best_enemy ~= nil and self.st.timer ~= nil then
-		self.st.last_best_enemy_id = best_enemy:id()
-		self.st.last_best_enemy_name = best_enemy:name()
-		self.st.timer = nil
+	if best_enemy ~= nil and xr_combat_ignore.is_ignored(self.object,best_enemy) then
+		return false
+	end
+	local st = self.st
+	if best_enemy ~= nil and st.timer ~= nil and not best_enemy:wounded() then
+		st.last_best_enemy_id = best_enemy:id()
+--		st.last_best_enemy_name = best_enemy:name()
+		st.timer = nil
 		return true
 	end
 
-	if best_enemy == nil and self.st.timer == nil then
-		--printf("object name is [%s]", self.object:name())
-		local overrides = db.storage[self.object:id()].overrides
-		local min = (overrides and overrides.min_post_combat_time*1000) or 10000
-		local max = (overrides and overrides.max_post_combat_time*1000) or 15000
-		if self.st.last_best_enemy_id == db.actor:id() then
-			self.st.timer = time_global()
-		else			
-			self.st.timer = time_global() + math.random(min, max)
-		end		
+	if st.timer == nil and (best_enemy == nil or best_enemy:wounded()) then
+		local my_id = self.object:id()
+		local squad = get_object_squad(self.object)
+		st.iamcomandeer = not squad or my_id == squad.commander_id
+		local overrides = db.storage[my_id].overrides
+		if overrides and overrides.min_post_combat_time then
+			local min = overrides.min_post_combat_time*1000
+			local max = overrides.max_post_combat_time*1000
+			st.timer = time_global() + math.random(min, max)
+		else
+			if st.iamcomandeer then
+				if st.last_best_enemy_id == db.actor:id() then
+					st.timer = time_global()+ math.random(def_min_post_combat_time/2,def_max_post_combat_time/2)
+				else
+					st.timer = time_global() + math.random(def_min_post_combat_time, def_max_post_combat_time)
+				end
+				if squad then
+					local my_pos = self.object:position()
+					for member_id,_ in pairs(squad.online_object) do
+						if member_id ~= my_id then
+							local stor = db.storage[member_id]
+							if stor and stor.object and stor.object:position():distance_to_sqr(my_pos) <= squad_play_dist then
+								stor.post_combat_wait.timer = st.timer+math.random(400,2500)
+							end
+						end
+					end
+				end
+			else
+				st.timer = time_global() + math.random(def_min_post_combat_time/5,def_max_post_combat_time/3)
+			end
+		end
 	end
 
-	if self.st.timer == nil then	
-  		return best_enemy ~= nil
+	if best_enemy ~= nil then
+		return true
+	elseif st.timer == nil then
+		return false
 	end
-	return time_global() < self.st.timer
+
+	if xr_surge_hide.surge_activated then
+		st.timer = 0
+		return false
+	end
+
+	if time_global() < st.timer then
+		return true
+	end
+
+	return false
 end
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -40,39 +85,134 @@ function action_post_combat_wait:__init(npc, storage, action_name) super(nil, ac
 end
 function action_post_combat_wait:initialize()
 	action_base.initialize(self)
-	if self.st.last_best_enemy_name ~= nil and string.find( self.st.last_best_enemy_name, "bloodsucker_jumper") ~= nil then
-		state_mgr.set_state(self.object, "bloodsucker_search")
-	else
-		state_mgr.set_state(self.object, "hide")
+	local npc = self.object
+	state_mgr.lock(npc,true)
+
+	self.st.animation = state_mgr_animation.animation(npc, db.storage[npc:id()].state_mgr, "state_mgr_animation_list")
+	if self.st.iamcomandeer and self.st.timer > time_global()+def_min_post_combat_time then
+		local squad = get_object_squad(npc)
+		if squad and squad.online_counter > 1 then
+			local my_pos,my_id = self.object:position(),self.object:id()
+			for member_id,_ in pairs(squad.online_object) do
+				if member_id ~= my_id then
+					local stor = db.storage[member_id]
+					if stor and stor.object and stor.object:position():distance_to_sqr(my_pos) <= squad_play_dist then
+						xr_sound.set_sound_play(npc:id(), "post_combat_wait")
+						self.play_relax_sound = true
+						break
+					end
+				end
+			end
+		end
 	end
+
+	npc:set_movement_type(move.stand)
+
+	if npc:in_smart_cover() then
+		npc:set_smart_cover_target()
+		npc:set_smart_cover_target_lookout()
+		return
+	end
+
+	npc:set_mental_state(anim.danger)
+	npc:set_body_state(move.crouch)
+	npc:set_dest_level_vertex_id(npc:level_vertex_id())
+	npc:set_item(object.idle,npc:active_item() or npc:best_weapon())
+
+	local wm = npc:get_wm(true)
+	if wm then
+		wm:disable()
+	end
+
+	if math.random() > 0.2 then
+--		npc:set_sight(look.cur_dir, nil, 0)
+		npc:set_sight(look.direction, npc:direction())
+	else
+		npc:set_sight(look.danger, nil, 0)
+	end
+
 end
 function action_post_combat_wait:execute()
 	action_base.execute(self)
-	if self.st.last_best_enemy_name ~= nil and string.find( self.st.last_best_enemy_name, "bloodsucker_jumper") ~= nil then
-		return 
-	end	
-	
-	xr_sound.set_sound_play(self.object:id(), "post_combat_wait")
+	local npc = self.object
+	if npc:in_smart_cover() then
+		npc:set_smart_cover_target_lookout()
+		return
+	end
+
+	if self.anim_started == nil then
+		self.anim_started = false
+	elseif self.anim_started == false and not weapon_locked(npc) then
+		local wpn = rx_reload and rx_reload.get_weapon_to_reload(npc,true) --!
+		if wpn and wpn:get_ammo_in_magazine() < 20 then
+			npc:set_item(object.aim_force_full1,wpn)
+			return
+		end
+		npc:set_item(object.idle,npc:active_item())
+		self.anim_started = true
+		self.st.animation:set_state("hide")
+	end
+
+	if time_global() > self.st.timer then
+		if self.anim_started == true then
+			self.st.animation:set_state(nil, true)
+		end
+	end
 end
 function action_post_combat_wait:finalize()
-	if self.st.last_best_enemy_name ~= nil and string.find( self.st.last_best_enemy_name, "bloodsucker_jumper") ~= nil then
-		return 
-	end		
-	xr_sound.set_sound_play(self.object:id(), "post_combat_relax")
+	local npc = self.object
+	state_mgr.lock(npc,false)
 
+	if self.anim_started == true then
+		self.st.animation:set_state(nil, true)
+	end
+
+	local wm = npc:get_wm(true)
+	if wm then
+		wm:enable()
+	end
+
+	if self.play_relax_sound and not npc:best_enemy() and self.st.timer and self.st.timer < time_global()+1000 then
+		local squad = get_object_squad(npc)
+		if squad and squad.online_counter > 1 then
+			local my_pos,my_id = npc:position(),npc:id()
+			for member_id,_ in pairs(squad.online_object) do
+				if member_id ~= my_id then
+					local stor = db.storage[member_id]
+					if stor and stor.object and stor.object:position():distance_to_sqr(my_pos) <= squad_play_dist then
+						xr_sound.set_sound_play(npc:id(), "post_combat_relax")
+						break
+					end
+				end
+			end
+		end
+	end
+
+	npc:set_sight(look.danger, nil, 0)
+	npc:clear_animations()
+	self.st.animation = nil
+	self.anim_started = nil
+	self.play_relax_sound = nil
 	action_base.finalize(self)
 end
 
+function weapon_locked(npc)
+	return not (npc:weapon_strapped() or npc:weapon_unstrapped())
+end
+
+function get_object_squad(obj)
+	local st = obj and db.storage[obj:id()]
+	return st and st.squad_obj
+end
 
 function add_post_combat_idle(npc)
-	   	local manager = npc:motivation_action_manager()
-		local combat_action = manager:action(stalker_ids.action_combat_planner)		
-		--combat_action:show("")
+		local manager = npc:motivation_action_manager()
+		local combat_action = manager:action(stalker_ids.action_combat_planner)
 		local combat_action_planner = cast_planner(combat_action)
 
 		db.storage[npc:id()].post_combat_wait = {}
 		local storage = db.storage[npc:id()].post_combat_wait
-		
+
 		manager:remove_evaluator(stalker_ids.property_enemy)
 		manager:add_evaluator(stalker_ids.property_enemy, evaluator_combat_enemy(storage, "evaluator_combat_enemy"))
 
@@ -85,6 +225,11 @@ function add_post_combat_idle(npc)
 		new_action:add_precondition(world_property(stalker_ids.property_pure_enemy, false))
 		new_action:add_precondition(world_property(stalker_ids.property_critically_wounded, false))
 		new_action:add_precondition(world_property(stalker_ids.property_danger_grenade, false))
+--		new_action:add_precondition(world_property(stalker_ids.property_danger, false))	-- !
 		new_action:add_effect(world_property(stalker_ids.property_enemy, false))
 		combat_action_planner:add_action(stalker_ids.action_post_combat_wait, new_action)
+
+		-- temporary fix here
+		local sudden_act = combat_action_planner:action(stalker_ids.action_sudden_attack)
+		sudden_act:add_precondition(world_property(stalker_ids.property_pure_enemy,true))
 end

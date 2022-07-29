@@ -50,6 +50,7 @@ function set_scheme(obj, ini, scheme, section, gulag_name)
 	if not(m:params_exist(st.game_name)) then
 	    m:create_new_minigame_parameter_list(st.game_name, minigame_shooting.CMGShooting())
 	    m:set_minigame_param(st.game_name, "wpn_type", "")
+	    m:set_minigame_param(st.game_name, "wpn_ammo_type", "")
 	    m:set_minigame_param(st.game_name, "game_type", "")
 	    m:set_minigame_param(st.game_name, "win", 0)
 	    m:set_minigame_param(st.game_name, "distance", 0)

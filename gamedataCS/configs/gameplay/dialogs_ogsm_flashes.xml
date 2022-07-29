@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+    <dialog id="flashes_marsh_job_questions">
+        <dont_has_info>flashes_marsh_job_questions_info</dont_has_info>
+        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>flashes_marsh_job_question_0</text>
+                <action>dialog_manager.action_disable_phrase</action>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_marsh_job_question_1</text>
+		<next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>flashes_marsh_job_question_2</text>
+		<next>3</next>
+            </phrase>
+	    <phrase id="3">
+                <text>flashes_marsh_job_question_3</text>
+		<next>4</next>
+            </phrase>
+	    <phrase id="4">
+                <text>flashes_marsh_job_question_4</text>
+                <give_info>flashes_marsh_job_questions</give_info>
+                <give_info>flashes_marsh_job_questions_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_marsh_job_done">
+	<has_info>flashes_marsh_job_questions</has_info>
+	<precondition>ogsm_bring_items.check_flashes</precondition>
+        <phrase_list>
+            <phrase id="0">
+		<text>flashes_marsh_job_done_0</text>
+		<next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_marsh_job_done_1</text>
+		<action>ogsm_bring_items.relocate_flashes</action>
+		<next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>flashes_marsh_job_done_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_escape_job_questions">
+        <dont_has_info>flashes_escape_job_questions_info</dont_has_info>
+        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>flashes_escape_job_question_0</text>
+                <action>dialog_manager.action_disable_phrase</action>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_escape_job_question_1</text>
+		<next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>flashes_escape_job_question_2</text>
+		<next>3</next>
+            </phrase>
+	    <phrase id="3">
+                <text>flashes_escape_job_question_3</text>
+		<next>4</next>
+            </phrase>
+	    <phrase id="4">
+                <text>flashes_escape_job_question_4</text>
+                <give_info>flashes_escape_job_questions</give_info>
+                <give_info>flashes_escape_job_questions_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_escape_job_done">
+	<has_info>flashes_escape_job_questions</has_info>
+	<precondition>ogsm_bring_items.check_flashes</precondition>
+        <phrase_list>
+            <phrase id="0">
+		<text>flashes_escape_job_done_0</text>
+		<next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_escape_job_done_1</text>
+		<action>ogsm_bring_items.relocate_flashes</action>
+		<next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>flashes_escape_job_done_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_garbage_job_questions_1">
+        <dont_has_info>flashes_garbage_job_questions_1_info</dont_has_info>
+        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>flashes_garbage_job_question_1_0</text>
+                <action>dialog_manager.action_disable_phrase</action>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_garbage_job_question_1_1</text>
+		<next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>flashes_garbage_job_question_1_2</text>
+		<next>3</next>
+            </phrase>
+	    <phrase id="3">
+                <text>flashes_garbage_job_question_1_3</text>
+		<next>4</next>
+            </phrase>
+		<phrase id="4">
+                <text>flashes_garbage_job_question_1_4</text>
+                <give_info>flashes_garbage_job_questions_1</give_info>
+                <give_info>flashes_garbage_job_questions_1_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_garbage_job_questions_2">
+        <dont_has_info>flashes_garbage_job_questions_2_info</dont_has_info>
+        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <precondition>ogsm_bring_items.actor_has_vodka_for_garbage_fixer</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>flashes_garbage_job_question_2_0</text>
+                <action>dialog_manager.action_disable_phrase</action>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_garbage_job_question_2_1</text>
+                <action>ogsm_bring_items.give_vodka_to_garbage_fixer</action>
+		<next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>flashes_garbage_job_question_2_2</text>
+		<next>3</next>
+            </phrase>
+	    <phrase id="3">
+                <text>flashes_garbage_job_question_2_3</text>
+		<next>4</next>
+            </phrase>
+	    <phrase id="4">
+                <text>flashes_garbage_job_question_2_4</text>
+                <give_info>flashes_garbage_job_questions_2</give_info>
+                <give_info>flashes_garbage_job_questions_2_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_garbage_job_done">
+	<has_info>flashes_garbage_job_questions_2</has_info>
+	<precondition>ogsm_bring_items.check_flashes</precondition>
+        <phrase_list>
+            <phrase id="0">
+		<text>flashes_garbage_job_done_0</text>
+		<next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_garbage_job_done_1</text>
+		<action>ogsm_bring_items.relocate_flashes</action>
+		<next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>flashes_garbage_job_done_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_darkvalley_job_questions">
+        <dont_has_info>flashes_darkvalley_job_questions_info</dont_has_info>
+        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>flashes_darkvalley_job_question_0</text>
+                <action>dialog_manager.action_disable_phrase</action>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_darkvalley_job_question_1</text>
+		<next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>flashes_darkvalley_job_question_2</text>
+		<next>3</next>
+            </phrase>
+	    <phrase id="3">
+                <text>flashes_darkvalley_job_question_3</text>
+		<next>4</next>
+            </phrase>
+	    <phrase id="4">
+                <text>flashes_darkvalley_job_question_4</text>
+                <give_info>flashes_darkvalley_job_questions</give_info>
+                <give_info>flashes_darkvalley_job_questions_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_darkvalley_job_done">
+	<has_info>flashes_darkvalley_job_questions</has_info>
+	<precondition>ogsm_bring_items.check_flashes</precondition>
+        <phrase_list>
+            <phrase id="0">
+		<text>flashes_darkvalley_job_done_0</text>
+		<next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_darkvalley_job_done_1</text>
+		<action>ogsm_bring_items.relocate_flashes</action>
+		<next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>flashes_darkvalley_job_done_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_agroprom_job_questions">
+	<dont_has_info>flashes_agroprom_job_questions_info</dont_has_info>
+        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>flashes_agroprom_job_question_0</text>
+                <action>dialog_manager.action_disable_phrase</action>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_agroprom_job_question_1</text>
+		<next>2</next>
+            </phrase>
+	    <phrase id="2">
+                <text>flashes_agroprom_job_question_2</text>
+		<next>3</next>
+            </phrase>
+	    <phrase id="3">
+                <text>flashes_agroprom_job_question_3</text>
+		<next>4</next>
+            </phrase>
+	    <phrase id="4">
+                <text>flashes_agroprom_job_question_4</text>
+                <give_info>flashes_agroprom_job_questions</give_info>
+                <give_info>flashes_agroprom_job_questions_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="flashes_agroprom_job_done">
+	<has_info>flashes_agroprom_job_questions</has_info>
+	<precondition>ogsm_bring_items.check_flashes</precondition>
+        <phrase_list>
+            <phrase id="0">
+		<text>flashes_agroprom_job_done_0</text>
+		<next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>flashes_agroprom_job_done_1</text>
+		<action>ogsm_bring_items.relocate_flashes</action>
+		<next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>flashes_agroprom_job_done_2</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+</game_dialogs>

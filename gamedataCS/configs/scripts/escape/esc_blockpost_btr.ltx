@@ -1,0 +1,34 @@
+[logic]
+active = ph_car@idle
+on_hit = hit
+
+[hit]
+on_info = %+esc_alarm%
+
+[ph_car@idle]
+target = actor
+auto_fire = true
+fire_range = 80
+fire_repeat = 50
+fire_angle = 360
+track_target = true
+on_info = {+esc_alarm} ph_car@eliminate
+on_info2 = {=dist_to_actor_ge(100)} ph_car@stop
+on_death_info = esc_btr_killed
+
+[ph_car@eliminate]
+target = actor
+auto_fire = true
+fire_range = 120
+fire_repeat = 50
+fire_angle = 360
+track_target = true
+on_info = {-esc_alarm} ph_car@idle
+on_info2 = {=dist_to_actor_ge(100)} ph_car@stop
+on_death_info = esc_btr_killed
+
+[ph_car@stop]
+target = actor
+auto_fire = false
+on_info = {=dist_to_actor_le(100)} ph_car@idle
+on_death_info = esc_btr_killed

@@ -8,28 +8,30 @@ mil_talk_2_merc_2_task
 mil_talk_2_fr_com
 mil_destroy_all_military
 mil_transfer_coo
+mil_transfer_coo_1
 mil_actor_attack_house
 mil_contact_with_clear_sky_commander
 mil_defend_barrier
+mil_take_reward
 mil_additional_quest_1
 mil_additional_quest_2
 mil_additional_quest_3
 mil_additional_quest_4
 mil_additional_quest_5
-;mil_bring_item_1
-;mil_bring_item_2
-;mil_bring_item_3
-;mil_bring_item_4
-;mil_bring_item_5
-;mil_bring_item_6
-;mil_bring_item_7
-;mil_bring_item_8
-;mil_bring_item_9
-;mil_bring_item_10
-;mil_bring_item_11
-;mil_bring_item_12
+mil_bring_item_1
+mil_bring_item_2
+mil_bring_item_3
+mil_bring_item_4
+mil_bring_item_5
+mil_bring_item_6
+mil_bring_item_7
+mil_bring_item_8
+mil_bring_item_9
+mil_bring_item_10
+mil_bring_item_11
+mil_bring_item_12
 
-[mil_blockpost] ;--поговорить с командиром блокпоста
+[mil_blockpost] ;--Поговорить с командиром блокпоста
 type = storyline
 task_type = storyline
 icon = ui_mt_image_defend_tower
@@ -44,7 +46,7 @@ auto_faction = false
 on_reversed = %+mil_actor_bridge%
 on_fail = %+mil_actor_bridge%
 
-[mil_hires] ;--идти к отряду
+[mil_hires] ;--Встретиться с наёмниками в деревне
 type = storyline
 task_type = storyline
 icon = ui_mt_image_defend_tower
@@ -60,7 +62,7 @@ on_fail = %+mil_reach_merc_done%
 prior = 10
 auto_faction = false
 
-[mil_kill_bloodsucker] ;--убить тварь
+[mil_kill_bloodsucker] ;--Убить кровососа
 type = eliminate_smart
 task_type = additional
 auto_name = false
@@ -72,13 +74,13 @@ wait_time = -1
 target_cond = {=target_smart_name(mil_smart_terrain_4_3)} true
 condlist_0 = {+mil_bs_dead} complete
 condlist_1 = {+mil_actor_inside_wtower} reversed
-on_complete = %+mil_free_2_tower =play_sound(mil_bs_dead)%
-community_relation_delta_fail=-150
-community_relation_delta_complete=+150
+on_complete = %+mil_free_2_tower%
+community_relation_delta_fail=0
+community_relation_delta_complete=+5000
 play_regard = nil
 auto_faction = false
 
-[mil_reach_tower_task] ;--получить все радиосообщения
+[mil_reach_tower_task] ;--Принять радиосообщение
 type = storyline
 task_type = storyline
 icon = ui_mt_image_defend_tower
@@ -88,7 +90,7 @@ target_story_ids = 1209
 condlist_0 = {+mil_actor_inside_wtower} complete
 auto_faction = false
 
-[mil_talk_2_forester2] ;--поговорить с лесником
+[mil_talk_2_forester2] ;--Поговорить с Лесником
 type = storyline
 task_type = storyline
 icon = ui_mt_image_defend_tower
@@ -96,10 +98,9 @@ name = mil_talk_2_forester2
 text = mil_talk_2_forester2_text
 target_story_ids = 515
 condlist_0 = {+forester_talked_2} complete
-;on_complete = %+forester_telled_coordinates%
 auto_faction = false
 
-[mil_talk_2_merc_2_task] ;--узнать у наёмников способ передачи сообщения
+[mil_talk_2_merc_2_task] ;--Поговорить с наёмниками
 type = storyline
 task_type = storyline
 icon = ui_mt_image_defend_tower
@@ -109,7 +110,7 @@ target_story_ids = 1207
 condlist_0 = {+mil_merc_talked_f1_f2_wt1} complete
 auto_faction = false
 
-[mil_talk_2_fr_com] ;--идти к свободовцам на базе
+[mil_talk_2_fr_com] ;--Встретиться с отрядом «Свободы»
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -118,10 +119,9 @@ text = mil_talk_2_fr_com_text
 target_story_ids = 1211
 condlist_0 = {+mil_actor_attack_house} complete
 condlist_1 = {=is_squad_enemy_to_actor(mil_freedom_attack_base_1)} reversed
-;on_reversed = %+mil_actor_with_freedom_squad%
 auto_faction = false
 
-[mil_actor_attack_house] ;--очистить здание штаба от военных
+[mil_actor_attack_house] ;--Выбить военных из здания штаба
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -135,7 +135,7 @@ community_relation_delta_fail=-300
 community_relation_delta_complete=+300
 auto_faction = false
 
-[mil_destroy_all_military] ;--уничтожить всех военных
+[mil_destroy_all_military] ;--Уничтожить военных
 type = eliminate_smart
 task_type = storyline
 auto_name = false
@@ -153,7 +153,7 @@ community_relation_delta_complete=+200
 play_regard = nil
 auto_faction = false
 
-[mil_transfer_coo] ;--координаты передатчика
+[mil_transfer_coo] ;--Передать координаты
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -161,10 +161,21 @@ name = mil_transfer_coo
 text = mil_transfer_coo_text
 target_story_ids = 1215
 condlist_0 = {+mil_actor_go_to_limansk} complete
-on_complete = %+red_bridge_scene_begin%
+on_complete = %+red_bridge_scene_begin =destroy_object(303)%
 auto_faction = false
 
-[mil_contact_with_clear_sky_commander] ;--поговорить с командиром ЧН
+[mil_transfer_coo_1] ;--Перебить всех военных на базе и передать координаты
+type = storyline
+task_type = storyline
+icon = ui_mt_image_attack_tower
+name = mil_transfer_coo_1
+text = mil_transfer_coo_1_text
+target_story_ids = 1215
+condlist_0 = {+mil_actor_go_to_limansk} complete
+on_complete = %+red_bridge_scene_begin =destroy_object(303)%
+auto_faction = false
+
+[mil_contact_with_clear_sky_commander] ;--Встретиться с Лебедевым
 type = storyline
 task_type = storyline
 icon = ui_mt_image_attack_tower
@@ -176,9 +187,9 @@ condlist_0 = {+red_bridge_actor_talk_with_cs_commander} complete
 condlist_1 = {+red_bridge_actor_in_position} reversed
 auto_faction = false
 
-;Other
+;Other quests
 
-[mil_defend_barrier]
+[mil_defend_barrier] ;--Защитить Барьер
 type = defend_smart
 task_type = additional
 auto_name = false
@@ -192,9 +203,23 @@ community_relation_delta_fail=-200
 community_relation_delta_complete=+200
 auto_faction = false
 
+[mil_take_reward] ;--Забрать награду на базе Свободы
+type = storyline
+task_type = additional
+icon = ui_mt_image_attack_factory
+name = mil_take_reward_name
+text = mil_take_reward_text
+target_story_ids = 1106
+condlist_0 = {+mil_take_reward_complete} complete
+immediate_reward = true
+reward_money = 10000
+prior = 1
+auto_faction = true
+community_relation_delta_complete=400
+
 ;Additional quests
 
-[mil_additional_quest_1] ;Вертолет
+[mil_additional_quest_1] ;Забрать груз военных у вертолёта
 type = recover_item
 task_type = additional
 name = mil_additional_quest_1_name
@@ -202,16 +227,16 @@ text = mil_additional_quest_1_text
 target_cond = {-mil_additional_quest_1_info_complete =actor_on_level(military)} true
 prior = 2
 target_npc_or_box_name = mil_additional_quest_1_box
-wait_time = -1
 immediate_reward = true
-reward_money = 2000
-requested_items = ammo_gauss
+reward_money = 3000
+requested_items = ammo_package
 on_complete = %+mil_additional_quest_1_info_complete%
-community_relation_delta_fail=-100
-community_relation_delta_complete=+100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 auto_faction = false
+immediate_reward = true
 
-[mil_additional_quest_2] ;Собаки
+[mil_additional_quest_2] ;Найти КПК
 type = recover_item
 task_type = additional
 name = mil_additional_quest_2_name
@@ -219,34 +244,36 @@ text = mil_additional_quest_2_text
 target_cond = {-mil_additional_quest_2_info_complete =actor_on_level(military)} true
 prior = 2
 target_npc_or_box_name = mil_additional_quest_2_commander
-wait_time = -1
 immediate_reward = true
-reward_money = 3000
+reward_money = 2000
 requested_items = mil_device_pda_lost_squard
+on_init = %+mil_additional_quest_2_spawn%
 on_complete = %+mil_additional_quest_2_info_complete%
-community_relation_delta_fail=-100
-community_relation_delta_complete=+100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 auto_faction = false
+immediate_reward = true
 
-[mil_additional_quest_3] ;Снайпер
+[mil_additional_quest_3] ;Найти хабар пропавшего сталкера
 type = recover_item
 task_type = additional
 name = mil_additional_quest_3_name
 text = mil_additional_quest_3_text
 target_cond = {-mil_additional_quest_3_info_complete =actor_on_level(military)} true
 prior = 2
-target_npc_or_box_name = mil_additional_quest_3_soldier_1, mil_additional_quest_3_soldier_2, mil_additional_quest_3_soldier_3, mil_additional_quest_3_soldier_4
-wait_time = -1
+target_npc_or_box_name = mil_stalker_freedom_dead
 immediate_reward = true
 reward_money = 2000
-requested_items = ammo_7.62x54_7h14
+requested_items = mil_quest_ammo_7.62x54_7h14
+on_init = %+mil_additional_quest_3_spawn%
 on_complete = %+mil_additional_quest_3_info_complete%
-community_relation_delta_fail=-100
-community_relation_delta_complete=+100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 auto_faction = false
 faction = freedom
+immediate_reward = true
 
-[mil_additional_quest_4] ;Болото
+[mil_additional_quest_4] ;Забрать артефакт у мёртвого сталкера
 type = recover_item
 task_type = additional
 name = mil_additional_quest_4_name
@@ -254,18 +281,18 @@ text = mil_additional_quest_4_text
 target_cond = {-mil_additional_quest_4_info_complete =actor_on_level(military)} true
 prior = 2
 target_npc_or_box_name = mil_additional_quest_4_lost_soldier
-wait_time = -1
 immediate_reward = true
 reward_money = 4000
-requested_items = af_mincer_meat
+requested_items = mil_quest_af_mincer_meat_1
 on_init = %+mil_additional_quest_4_spawn%
 on_complete = %+mil_additional_quest_4_info_complete%
-community_relation_delta_fail=-100
-community_relation_delta_complete=+100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 auto_faction = false
 faction = stalker
+immediate_reward = true
 
-[mil_additional_quest_5] ;Кровосос
+[mil_additional_quest_5] ;Забрать артефакт в деревне
 type = recover_item
 task_type = additional
 name = mil_additional_quest_5_name
@@ -273,14 +300,15 @@ text = mil_additional_quest_5_text
 target_cond = {-mil_additional_quest_5_info_complete =actor_on_level(military)} true
 prior = 2
 target_npc_or_box_name = mil_additional_quest_5_soldier
-wait_time = -1
 immediate_reward = true
 reward_item = wpn_g36:ammo_5.56x45_ap:ammo_5.56x45_ap
-requested_items = af_fire
+requested_items = mil_quest_af_fire_1
+on_init = %+mil_additional_quest_5_spawn%
 on_complete = %+mil_additional_quest_5_info_complete%
-community_relation_delta_fail=-100
-community_relation_delta_complete=+100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 auto_faction = false
+immediate_reward = true
 
 
 ;Bring items
@@ -294,9 +322,11 @@ text = mil_bring_item_1_text
 target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = freedom
-requested_items = wpn_val, ammo_9x39_ap
-community_relation_delta_complete = 100
+requested_items = wpn_vintorez, ammo_9x39_ap
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 1500, {~50}, 2000, 1000
+immediate_reward = true
 
 [mil_bring_item_2]
 auto_name = false
@@ -308,8 +338,10 @@ target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = freedom
 requested_items = medkit_army, medkit_army, medkit_army
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 1500, {~50}, 2000, 1000
+immediate_reward = true
 
 [mil_bring_item_3]
 auto_name = false
@@ -321,8 +353,10 @@ target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = freedom
 requested_items = wpn_lr300, ammo_m209
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 1500, {~50}, 2000, 1000
+immediate_reward = true
 
 [mil_bring_item_4]
 auto_name = false
@@ -334,8 +368,10 @@ target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = stalker
 requested_items = medkit_scientic, medkit_scientic
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = 1000
+immediate_reward = true
 
 [mil_bring_item_5]
 auto_name = false
@@ -347,8 +383,10 @@ target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = stalker
 requested_items = detector_elite
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 750, {~50}, 1200, 1000
+immediate_reward = true
 
 [mil_bring_item_6]
 auto_name = false
@@ -359,9 +397,11 @@ text = mil_bring_item_6_text
 target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = stalker
-requested_items = wpn_vintorez, ammo_9x39_ap, ammo_9x39_ap
-community_relation_delta_complete = 100
+requested_items = wpn_val, ammo_9x39_ap, ammo_9x39_ap
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 1500, {~50}, 2500, 2000
+immediate_reward = true
 
 [mil_bring_item_7]
 auto_name = false
@@ -373,8 +413,10 @@ target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = dolg
 requested_items = wpn_groza
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 1500, {~50}, 2500, 2000
+immediate_reward = true
 
 [mil_bring_item_8]
 auto_name = false
@@ -386,8 +428,10 @@ target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = dolg
 requested_items = wpn_pkm
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 4000, {~50}, 5000, 4500
+immediate_reward = true
 
 [mil_bring_item_9]
 auto_name = false
@@ -399,8 +443,10 @@ target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = dolg
 requested_items = wpn_rpg7
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 3500, {~50}, 2500, 3000
+immediate_reward = true
 
 [mil_bring_item_10]
 auto_name = false
@@ -412,8 +458,10 @@ target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = bandit
 requested_items = vodka, vodka, vodka, vodka, vodka, vodka, vodka, vodka, vodka, vodka
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = 500
+immediate_reward = true
 
 [mil_bring_item_11]
 auto_name = false
@@ -425,8 +473,10 @@ target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = bandit
 requested_items = wpn_spas12, ammo_12x76_dart, ammo_12x76_dart
-community_relation_delta_complete = 100
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 1000, {~50}, 2000, 1500
+immediate_reward = true
 
 [mil_bring_item_12]
 auto_name = false
@@ -437,6 +487,8 @@ text = mil_bring_item_12_text
 target_cond = {~20 =actor_on_level(military)} true
 prior = 2
 faction = bandit
-requested_items = wpn_desert_eagle, ammo_11.43x23_hydro
-community_relation_delta_complete = 100
+requested_items = wpn_wincheaster1300, ammo_12x76_zhekan
+community_relation_delta_fail=-50
+community_relation_delta_complete=+50
 reward_money = {~50} 500, {~50}, 1000, 750
+immediate_reward = true

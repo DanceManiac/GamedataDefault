@@ -111,6 +111,20 @@ function action_smartcover_activity:initialize()
 	self.move_mgr:finalize()
 	self:reset_scheme(nil, npc)
 	self.initialized = true
+
+	-- воскрешение def_state_moving (кроме оружия)
+	if self.st.moving and not self.object:in_smart_cover() then
+		local state = state_lib.states[self.st.moving]
+		if state.bodystate then
+			self.object:set_body_state(state.bodystate)
+		end
+		if state.mental then
+			self.object:set_mental_state(state.mental)
+		end
+		if state.movement and state.movement ~= move.stand then
+			self.object:set_movement_type(state.movement)
+		end
+	end
 end
 function action_smartcover_activity:target_selector(obj)
 	if not obj:alive() then return end
@@ -256,6 +270,10 @@ function action_smartcover_activity:execute()
 	if self.st.sound_idle ~= nil then
 		xr_sound.set_sound_play(self.object:id(), self.st.sound_idle)
 	end
+
+	if self.st.moving and not self.object:in_smart_cover() and not self.object:active_item() and state_lib.states[self.st.moving].weapon == "unstrapped" then
+		self.object:set_item(object.idle,rx_utils.get_weapon(self.object))
+	end
 end
 function action_smartcover_activity:finalize()
 	printf("finalize()")
@@ -355,7 +373,7 @@ function set_scheme(npc, ini, scheme, section, gulag_name)
 	st.exit_body_state		= utils.cfg_get_string	(ini, section, "exit_body_state", 	npc ,false, "", "stand")
 	st.use_precalc_cover 	= utils.cfg_get_bool	(ini, section, "use_precalc_cover", npc, false, false)
 	st.use_in_combat	 	= utils.cfg_get_bool	(ini, section, "use_in_combat", 	npc, false, false)
-	st.moving  				= utils.cfg_get_string	(ini, section, "def_state_moving", 	npc, false, "", "sneak")
+	st.moving  				= utils.cfg_get_string	(ini, section, "def_state_moving", 	npc, false, "")
 	st.sound_idle			= utils.cfg_get_string	(ini, section, "sound_idle",		npc, false, "")
 
 	if st.use_precalc_cover == true then

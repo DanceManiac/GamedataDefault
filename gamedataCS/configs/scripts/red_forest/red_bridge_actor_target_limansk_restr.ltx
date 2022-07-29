@@ -1,0 +1,8 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {=actor_in_zone(red_bridge_actor_target_limansk) -red_bridge_csky_go_limansk -lim_visited_level} sr_idle@1 %=disable_ui =actor_look(red_bridge_csky_smart_comander_talk_walk)%
+
+[sr_idle@1]
+on_info = {=actor_in_zone(red_bridge_actor_target_limansk) +red_bridge_csky_go_limansk} nil %=enable_ui%

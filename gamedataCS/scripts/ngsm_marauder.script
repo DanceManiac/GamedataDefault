@@ -1,0 +1,148 @@
+local packet = net_packet()
+local tS = {} --/ данные для спавна и повреждения брони
+local cond = {0.35, 0.1}
+
+function initialize()
+	local ltx = ini_file("misc\\marauder.ltx")
+	tS = {}
+	local n = ltx:line_count("data")
+	for i = 0, n-1 do
+		local result, key, value = ltx:r_line("data", i, "", "")
+		local t = ngsm.get_table_list_from_string('string', value)
+		if t[2] and t[2] == 'nil' then t[2] = nil end
+		tS[key] = {sect = t[1], info = t[2]}
+	end
+end
+-- Вызывается из колбэка на смерть, считывает визуал и запускает таймер на спаун
+function spawn_outfit(npc_id, rnd)
+    local sect, t, vis = nil, nil, nil
+    local obj = alife():object(npc_id)
+	if obj then
+	    t = get_stalker_visual(obj)
+	else
+	    return
+	end
+	if t ~= nil then
+	    vis = ogsm.str_explode("\\", t)
+	else
+	    return
+	end
+	if vis ~= nil then
+	    sect = get_section(vis[3])
+	else
+		return
+	end
+	if not sect then
+	    return
+	end
+
+	local sotf,upgr,otf_id,trans
+	if not rnd then
+		local actor = db.actor
+		local npc = level.object_by_id(npc_id)
+		if npc and actor then			
+		    local upgr = obj.upg
+			if upgr then
+				if type(upgr)=="table" then
+					if #upgr>0 then
+						sotf = alife():create(sect, actor:position():add(actor:direction():mul(-1)), obj.m_level_vertex_id, obj.m_game_vertex_id)
+						if sotf then
+							otf_id = sotf.id
+							local tc = ngsm_netpackets.read_outfit_params(otf_id)
+							if tc then 
+								local tce,tcu = tc.extra_data,tc.upd_extra_data
+								if tce and type(tce)=="table" and #tce==0 and tcu and type(tcu)=="table" and #tcu==0 then
+									tc.upgrades = upgr
+									ngsm_netpackets.write_outfit_params(tc,otf_id)
+								end
+							end
+							trans = true
+						end
+					end
+				end
+			end
+			if not sotf then
+				sotf = alife():create(sect, obj.position, obj.m_level_vertex_id, obj.m_game_vertex_id, npc_id)
+			end
+		end
+	else
+		sotf = alife():create(sect, obj.position, obj.m_level_vertex_id, obj.m_game_vertex_id, npc_id)
+	end
+	if sotf then
+		if sotf then
+			ngsm.save_obj(sotf.id, "sm_dead_otf", true) --'Записать, что броня с трупа
+	    end
+		level.client_spawn_manager():add(sotf.id, 65535, set_condition) --'Повредить костюм
+		otf_id = sotf.id
+		sotf.imm = 1
+		sotf.pid = npc_id
+		sotf.none = npc_id
+		if not rnd then
+			if trans then
+				ngsm_netpackets.convert_npc[otf_id]="transfer_outfit"
+			end 
+			obj.upg = {}
+			obj.con = nil
+			obj.bon = {}
+			if obj.offmoney ~= -1 then
+				obj.offmoney = nil
+			end
+		end
+	end
+end
+-- Получение визуала сталкера
+function get_stalker_visual(pobj)
+    packet:w_begin(0)
+    packet:r_seek(2)
+    pobj:STATE_Write(packet)
+    -- Свойства cse_trader
+    local money = packet:r_s32()
+    local specific_character = packet:r_stringZ()
+    local trader_flags = packet:r_s32()
+    local character_profile = packet:r_stringZ()
+    local community_index = packet:r_s32()
+    local rank = packet:r_s32()
+    local reputation = packet:r_s32()
+    local character_name = packet:r_stringZ()
+    -- Свойства cse_alife_object
+    local game_vertex_id = packet:r_u16()
+    local distance = packet:r_float()
+    local direct_control = packet:r_s32()
+    local level_vertex_id = packet:r_s32()
+    local object_flags = packet:r_s32()
+    local custom_data = packet:r_stringZ()
+    local story_id = packet:r_s32()
+    local spawn_story_id = packet:r_s32()
+    -- Свойства cse_visual
+    local visual_name = packet:r_stringZ()
+    return visual_name
+end
+
+function get_section(vis)
+	local item = tS[vis]
+	if item and (not item.info or has_alife_info(item.info)) then return item.sect end
+end
+	
+function set_condition(id, obj)
+	obj:set_condition(math.random()*cond[1]+cond[2])
+	if obj:condition() >= 0.5 then
+	    obj:set_condition(0.25)
+	end
+end
+
+function dead_change(item)
+	local sobj = alife():object(item:id())
+	if sobj and sobj.imm and sobj.imm==1 then
+		local npc_id = sobj.pid
+		local snpc = alife():object(npc_id)
+		if snpc then
+			snpc.offmoney = -1
+			if ngsm_xr_armor.armors[npc_id] == nil then
+				ngsm_xr_armor.armors[npc_id] = {}
+			end
+			table.insert(ngsm_xr_armor.armors[npc_id],sobj)
+			sobj.pid = nil
+			sobj.imm = nil
+		end
+	end
+end

@@ -169,6 +169,18 @@
 
     <texture id="ui_hud_shk_stamina_new"		x="789" y="862" width="68" height="14" />
 
+<!-- OGSM -->
+    <texture id="ui_hud_psy_back"     x="126" y="198" width="165" height="28" />
+    <texture id="ui_hud_psy_progress" x="161" y="381" width="114" height="9" />
 
     </file>
+
+  <file name="ui\ui_actor_sleep_screen">
+  <texture id="ui_inGame2_panorama_window" x="0" y="273" width="601" height="122" /> 
+  <texture id="ui_inGame2_message_box" x="0" y="0" width="677" height="267" /> 
+  <texture id="ui_inGame2_sky_panorama" x="0" y="413" width="591" height="118" /> 
+  <texture id="ui_inGame2_marker" x="624" y="277" width="30" height="118" /> 
+  <texture id="ui_inGame2_marker_side_cover_1" x="27" y="32" width="10" height="118" /> 
+  <texture id="ui_inGame2_marker_side_cover_2" x="637" y="32" width="10" height="118" /> 
+  </file>
 </w>

@@ -1,0 +1,157 @@
+------------------------- Copyright 15.10.2015 Shoker, Kirgudu -------------------------
+-------------------------- Запрет на продажу поломанных вещей --------------------------
+
+
+
+local tradable_condition = 0.70 --/ минимальное состояние, при котором вещь ещё можно продать
+local return_message_partial = { --/ массив сообщений при возврате только плохих вещей (денег хватает)
+	game.translate_string("return_message_partial_1"),
+	game.translate_string("return_message_partial_2"),
+	game.translate_string("return_message_partial_3")
+}
+local return_message_all = { --/ массив сообщений при полной отмене сделки (денег после возврата плохих вещей не хватает на покупку)
+	game.translate_string("return_message_all_1"),
+	game.translate_string("return_message_all_2"),
+	game.translate_string("return_message_all_3")
+}
+local message_icon = "ui_iconsTotal_lost_money" --/ иконка сообщения о возврате плохих вещей по умолчанию (если не удалось определить для НПС автоматически)
+local tSell = {items = {}, cost = 0}
+local tReturn = {items = {}, cost = 0}
+local tBuy = {items = {}, cost = 0}
+local make_checking = false
+
+--/ коллбэк на торговлю
+function on_trade(item, sell_mode, cost)
+	--/ Сперва идёт true (актор продаёт), потом false (актор покупает).
+	--/ На момент торговли все вещи находятся у своих владельцев, а передаются уже где-то после этой функции
+	--/ Также на момент вызова этого коллбэка деньги за продажу/покупку предмета УЖЕ засчитаны актору и НПС.
+
+	--/ заполняем таблицы покупки, продажи и возврата
+	if sell_mode == true then --/ продажа
+		if item:condition() >= tradable_condition then --/ если предмет качественный --/> продажа
+			table.insert(tSell.items, {item = item, old_parent = item:parent()})
+			tSell.cost = tSell.cost + cost
+		else --/ если предмет повреждён больше, чем допустимо для торговли --/> возврат
+			table.insert(tReturn.items, {item = item, old_parent = item:parent()})
+			tReturn.cost = tReturn.cost + cost
+		end
+	else --/ покупка
+		table.insert(tBuy.items, {item = item, old_parent = item:parent()})
+		tBuy.cost = tBuy.cost + cost
+	end
+
+	if make_checking == false then
+		--/ инициируем запуск проверки при первом апдейте после торговли
+		make_checking = true
+		level.add_call(function() return make_checking end, check_trade_items)
+	end
+end
+
+--/ проверка списков покупки, продажи и возврата
+function check_trade_items()
+	--/ возвращаем плохие вещи актору (если есть) и определяем НПС для возврата
+	local npc = transfer_items(tReturn.items, true)
+	if not npc or tReturn.cost <= db.actor:money() then
+		--/ нет плохих вещей (не определён НПС при цикле по плохим вещам) или денег хватает на покупку без учёта их возврата
+		if npc then
+			--/ возвращаем деньги за плохие товары и выдаём сообщение о частичной отмене сделки
+			transfer_money_and_send_message(npc, -tReturn.cost, true)
+		end
+		--/ проверяем на наличие заряженных стволов
+		extract_and_return_ammo(tSell.items)
+		extract_and_return_ammo(tBuy.items)
+		--/ обновляем статистику, так как сделка состоялась хотя бы частично, при этом стоимость возвращённых вещей не учитываем
+		local money = tSell.cost - tBuy.cost
+		game_stats.money_trade_update(money)
+		if money >= 0 then
+			xr_statistic.inc_recieved_money_counter(money)
+		else
+			xr_statistic.inc_spent_money_counter(-money)
+		end
+	else
+		--/ денег на покупку вещей без учёта проданных плохих не хватает
+		--/ возвращаем все проданные вещи актору
+		transfer_items(tSell.items, false)
+		--/ возвращаем все купленные вещи НПС
+		transfer_items(tBuy.items, false)
+		--/ делаем полный возврат денег
+		local money = tBuy.cost - tSell.cost - tReturn.cost
+		--/ возвращаем все деньги и выдаём сообщение о полной отмене сделки
+		transfer_money_and_send_message(npc, money, false)
+	end
+
+	--/ обнуляем переменные
+	tSell = {items = {}, cost = 0}
+	tBuy = {items = {}, cost = 0}
+	tReturn = {items = {}, cost = 0}
+	make_checking = false
+end
+
+--/ проверка на наличие и возврат патронов при продаже/покупке заряженного оружия
+function extract_and_return_ammo(items)
+	local old_parent_id, is_new_parent_trader, sim, pos = nil, nil, alife(), vector()
+	for _,t in ipairs(items) do
+		if t.item == nil then
+			abort("ogsm_trade_manager - item is NIL!")
+		end
+		if isWeaponOnly(t.item) then --/ это оружие
+			if not old_parent_id then old_parent_id = t.old_parent:id() end
+			if not is_new_parent_trader then is_new_parent_trader = (string.find(t.item:parent():section(), "trader") and true or false) end
+			if t.item:parent():id() ~= old_parent_id then
+				if old_parent_id == 0 and is_new_parent_trader == true then --/ оружие было продано актором торговцу - возвращаем ему патроны
+					local count = t.item:get_ammo_in_magazine()
+					if count > 0 then
+						--/ патроны в стволе есть; определяем тип и спавним у актора
+						local sobj = lua_helper.Get_Server_Object(t.item)
+						local ammo_type, grenade_mode = lua_helper.Get_AmmoType(sobj)
+						local sect = lua_helper.Get_AmmoSection(sobj:section_name(), ammo_type, grenade_mode)
+						sim:create_ammo(sect, pos, 0, 0, old_parent_id, count)
+					end
+				end
+				--/ разряжаем проданное/купленное оружие (только активный тип зарядов и кроме продажи НПС)
+				if is_new_parent_trader == true or old_parent_id ~= 0 then t.item:unload_magazine() end
+			end
+		end
+	end
+end
+
+--/ передача вещей, также возвращает текущего владельца при необходимости
+function transfer_items(items, get_npc)
+	local npc = nil
+	for _,t in ipairs(items) do
+		--/ передаём предметы старому владельцу
+		if t.item == nil then
+			abort("ogsm_trade_manager - item is NIL!")
+		end
+		local cur_parent = t.item:parent()
+		if cur_parent:id() ~= t.old_parent:id() then --/ трансферим предмет
+			cur_parent:transfer_item(t.item, t.old_parent)
+		end
+		if get_npc and not npc then
+			--/ определяем НПС (текущего владельца) при необходимости
+			npc = cur_parent
+		end
+	end
+	return npc
+end
+
+--/ передача денег и показ сообщения
+function transfer_money_and_send_message(npc, money, partial)
+	--/ изменяем деньги у актора
+	db.actor:give_money(money)
+	--/ зеркально изменяем деньги у НПС
+	if not xr_logic.pstor_retrieve(npc, "rft", false) then
+		npc:give_money(-money)
+	end
+	--/ посылаем сообщение
+	local message = partial and return_message_partial[math.random(#return_message_partial)] or return_message_all[math.random(#return_message_all)]
+	xr_sound.set_sound_play(db.actor:id(), "pda_tips")
+	local news_caption = game.translate_string("st_tip").." "..npc:character_name()..":"
+	db.actor:give_game_news(news_caption, message, npc:character_icon() or message_icon, 0, 5000, 1)
+end
+
+
+
+
+-------------------------- Запрет на продажу поломанных вещей --------------------------
+------------------------- Copyright 15.10.2015 Shoker, Kirgudu -------------------------

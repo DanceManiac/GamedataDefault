@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<cheat>
+
+	<background x="50" y="0" width="790" height="1000" stretch="1">
+		<texture>ui\ui_notepad</texture>
+	</background>
+
+	<!-- Notepad Off Button -->
+	<off_button x="0" y="0" width="1" height="1">
+		<!--<texture>ui\ui_notepad</texture>-->
+		<text x="0" y="0" font="letterica18" r="255" g="255" b="255"/>
+	</off_button>
+
+	<!-- Main buttons background -->
+	<mbbackground_frame_line x="130" y="556" width="500" height="32">
+		<texture>ui_string_01</texture>
+	</mbbackground_frame_line>
+
+	<!-- Main buttons additional background -->
+	<mbbackground_frame_line2 x="130" y="593" width="500" height="32">
+		<texture>ui_string_01</texture>
+	</mbbackground_frame_line2>
+
+	<!-- Time Display Background -->
+	<timer_frame_line x="635" y="555" width="91" height="32">
+		<texture>ui_string_01</texture>
+		<title x="10" y="7" width="90" height="18">
+			<text font="letterica18" r="255" g="255" b="255" complex_mode="0"/>
+		</title>
+	</timer_frame_line>
+
+	<!-- Data Display Background -->
+	<timer_frame_line2 x="635" y="592" width="91" height="32">
+		<texture>ui_string_01</texture>
+		<title x="10" y="7" width="90" height="18">
+			<text font="letterica18" r="255" g="255" b="255" complex_mode="0"/>
+		</title>
+	</timer_frame_line2>
+
+	<!-- TAB Control -->
+	<tab x="137" y="553" width="800" height="60">
+		<!-- Закладки первого уровня (личное, легенды, документы, трофеи, артефакты, амуниция, помощь) -->
+		<button x="0" width="55" y="6" height="20" id="private" hint="ntpd_btn_private_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_private</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="60" width="60" y="6" height="20" id="stories" hint="ntpd_btn_stories_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_stories</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="125" width="75" y="6" height="20" id="documents" hint="ntpd_btn_documents_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_documents</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="195" width="65" y="6" height="20" id="trophies" hint="ntpd_btn_trophies_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_trophies</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="275" width="55" y="6" height="20" id="artefacts" hint="ntpd_btn_artefacts_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_artefacts</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="350" width="50" y="6" height="20" id="ammunition" hint="ntpd_btn_ammunition_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_ammunition</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="415" width="80" y="6" height="20" id="helping" hint="ntpd_btn_helping_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_helping</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<!-- Закладки второго уровня (мутанты, аномалии, локации, группировки, оружие, броня, снаряжение) -->
+		<button x="0" width="60" y="42" height="20" id="monsters" hint="ntpd_btn_monsters_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_monsters</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="60" width="70" y="42" height="20" id="anomalies" hint="ntpd_btn_anomalies_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_anomalies</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="125" width="60" y="42" height="20" id="locations" hint="ntpd_btn_locations_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_locations</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="195" width="90" y="42" height="20" id="factions" hint="ntpd_btn_factions_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_factions</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="275" width="55" y="42" height="20" id="weapon" hint="ntpd_btn_weapon_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_weapon</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="350" width="50" y="42" height="20" id="outfit" hint="ntpd_btn_outfit_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_outfit</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+		<button x="415" width="80" y="42" height="20" id="equipment" hint="ntpd_btn_equipment_hint" frame_mode="0">
+			<auto_static x="0" y="5" width="9" height="11">
+				<texture>ui_pda_m_update</texture>
+			</auto_static>
+			<text align="l" x="10" y="0" font="letterica18" r="255" g="255" b="255">ntpd_btn_equipment</text>
+			<text_color>
+				<t r="231" g="168" b="12"/>
+				<d r="181" g="170" b="148"/>
+				<e r="127" g="127" b="127"/>
+				<h r="255" g="255" b="255"/>
+			</text_color>
+		</button>
+	</tab>
+<!-- --* новая текстура-фрейм ui_pda2_mapframe2 в ui_common.dds -->
+	<list_frame x="130" y="103" width="210" height="451">
+		<texture>ui_pda2_mapframe2</texture>
+	</list_frame>
+
+ 	<list x="137" y="106" width="200" height="440" item_height="20" always_show_scroll="0">
+		<font font="letterica16" r="216" g="186" b="140" />
+	</list>
+
+	<list_item>
+	<main width="206" height="20"/>
+		<fn width="206" height="20"/>
+		<fa width="0" height="0"/>
+	</list_item>
+
+	<descr_frame x="342" y="103" width="385" height="451">
+		<texture>ui_stroketextbox</texture>
+	</descr_frame>
+
+	<caption_list x="522" y="112" width="284" height="108" item_height="18" always_show_scroll="0">
+		<font font="letterica16" r="216" g="186" b="140" />
+	</caption_list>
+
+	<description_list x="342" y="260" width="385" height="281" item_height="18" always_show_scroll="0">
+		<font font="letterica16" r="216" g="186" b="140" />
+	</description_list>
+
+	<picture_nothing x="347" y="112" width="165" height="108">
+		<texture width="145" height="145">ui\ui_noise</texture>
+		<text font="graffiti22" align="l" x="15" y="65" r="225" g="0" b="0">ui_ntpd_not_chosen</text>
+	</picture_nothing>
+
+	<picture_frame x="347" y="107" width="300" height="150">
+		<texture>ui_stroketextbox</texture>
+	</picture_frame>
+
+	<picture_base x="352" y="107" width="290" height="150">
+		<texture width="280" height="150">ui\ui_empty</texture>
+	</picture_base>
+
+	<caption_item x="0" y="0" width="294" height="0" min_height="13" bottom_footer="5">
+		<content_text x="0" y="0" width="284" height="10" complex_mode="0">
+			<text font="letterica16" r="216" g="186" b="140" />
+		</content_text>
+	</caption_item>
+
+	<description_item x="0" y="0" width="470" height="0" min_height="13" bottom_footer="5">
+		<content_text x="0" y="0" width="460" height="10" complex_mode="0">
+			<text font="letterica16" r="216" g="186" b="140" />
+		</content_text>
+	</description_item>
+
+	<updated_section_static x="0" y="0" width="9" height="11">
+		<texture>ui_pda_m_noupdate</texture>
+	</updated_section_static>
+
+	<hint_wnd x="0" y="0" width="210" height="120">
+		<background x="0" y="0" width="210" height="100" border="5">
+			<texture a="100">ui_icons_PDA_tooltips</texture>
+		</background>
+		<text x="10" y="10" width="190" height="100">
+			<text font="letterica16" color="ui_6" complex_mode="1" align="l" vert_align="t"/>
+		</text>
+	</hint_wnd>
+
+</cheat>

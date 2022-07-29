@@ -2,10 +2,10 @@
 -- STALKER NPC INFO
 ----------------------------------------------------------------------------------------------------------------------
 function set_npc_info(npc, ini, scheme, section)
-	--printf("INFO SECTION [%s]", utils.to_str(section))
+--	printf("INFO SECTION [%s]", utils.to_str(section))
 
-	local in_info	= get_infos_from_data(npc, utils.cfg_get_string(ini, section, "in", npc, false, ""))
-	local out_info	= get_infos_from_data(npc, utils.cfg_get_string(ini, section, "out", npc, false, ""))
+	local in_info = get_infos_from_data(npc, utils.cfg_get_string(ini, section, "in", npc, false, ""))
+	local out_info = get_infos_from_data(npc, utils.cfg_get_string(ini, section, "out", npc, false, ""))
 
 	for k,v in pairs(in_info) do
 		npc:give_info_portion(v)
@@ -14,10 +14,11 @@ function set_npc_info(npc, ini, scheme, section)
 		npc:disable_info_portion(v)
 	end
 end
+
 function get_infos_from_data(npc, s)
 --	printf("get_infos_from_data [%s]", utils.to_str(s))
 	local t = {}
-    if s then
+	if s then
 		for name in string.gfind( s, "(%|*[^%|]+%|*)%p*" ) do
 --			printf("[%s]", utils.to_str(name))
 			local condlist = xr_logic.parse_condlist(npc, "in", name, name)
@@ -26,7 +27,7 @@ function get_infos_from_data(npc, s)
 			end
 		end
 	end
-    return t
+	return t
 end
 
 
@@ -44,13 +45,13 @@ function reset_threshold(npc, scheme, st, section)
 
 	--'printf("THRESHOLD SECTION [%s]", utils.to_str(threshold_section))
 	if threshold_section then
-		local max_ignore_distance	= utils.cfg_get_number(st.ini, threshold_section, "max_ignore_distance", npc, false)
+		local max_ignore_distance = utils.cfg_get_number(st.ini, threshold_section, "max_ignore_distance", npc, false)
 		if max_ignore_distance then
 			npc:max_ignore_monster_distance(max_ignore_distance)
 		else
 			npc:restore_max_ignore_monster_distance()
 		end
-		local ignore_monster		= utils.cfg_get_number(st.ini, threshold_section, "ignore_monster", npc, false)
+		local ignore_monster = utils.cfg_get_number(st.ini, threshold_section, "ignore_monster", npc, false)
 		if ignore_monster then
 			npc:ignore_monster_threshold(ignore_monster)
 		else
@@ -76,8 +77,8 @@ function reset_show_spot(npc, scheme, st, section)
 		map_spot = utils.cfg_get_string(st.ini, section, "level_spot", npc, false, "")
 	end
 	if map_spot ~= nil then
-	    map_spot = xr_logic.parse_condlist(npc, section, "level_spot", map_spot)
-	    map_spot = xr_logic.pick_section_from_condlist(db.actor, npc, map_spot)
+		map_spot = xr_logic.parse_condlist(npc, section, "level_spot", map_spot)
+		map_spot = xr_logic.pick_section_from_condlist(db.actor, npc, map_spot)
 	end
 	--' printf("STALKER SPOT SECTION [%s]", utils.to_str(spot_section))
 
@@ -85,68 +86,90 @@ function reset_show_spot(npc, scheme, st, section)
 		spot_section = "true"
 	end
 
-    local spot = "false"
---    if npc:character_community() ~= "zombied" then
-	    local spot_condlist = xr_logic.parse_condlist(npc, section, "show_spot", spot_section)
-	    spot = xr_logic.pick_section_from_condlist(db.actor, npc, spot_condlist)
---    end
+	local spot = "false"
+--	if npc:character_community() ~= "zombied" then
+	local spot_condlist = xr_logic.parse_condlist(npc, section, "show_spot", spot_section)
+	spot = xr_logic.pick_section_from_condlist(db.actor, npc, spot_condlist)
+--	end
 
-	local sim  = alife()
+	local sim = alife()
 	if not sim then
 		return
 	end
 
-	local obj  = sim:object(npc:id())
+	local obj = sim:object(npc:id())
 	if obj and obj.online then
 		local npc_id = npc:id()
-		if spot == "false" then
+
+-- Kirgudu
+		local hide_radar_spots = ogsm_options.radar_spots_like_pda_spots
+		if hide_radar_spots and db.actor and npc then
+			if ogsm_options.spots_mode <= 1 or
+				(ogsm_options.spots_mode == 2 and npc:general_goodwill(db.actor) > -1000) then
+				hide_radar_spots = false
+			end
+		end
+
+		if spot == "false" or hide_radar_spots then
 			-- пр€чем
 			obj:visible_for_map(false)
 		else
 			-- ставим
 			obj:visible_for_map(true)
 		end
+-- Kirgudu
+
 		if map_spot ~= nil and not xr_surge_hide.surge_activated then
-	        local map_location = ""
-	        local hint = ""
-	        if map_spot == "trader" then
-	            map_location = "ui_pda2_trader_location"
-	            hint = "st_ui_pda_legend_trader"
-	        elseif map_spot == "mechanic" then
-	            map_location = "ui_pda2_mechanic_location"
-	            hint = game.translate_string("st_ui_pda_legend_mechanic").."\\n"..inventory_upgrades.get_technic_specialization(npc:section())
-	        elseif map_spot == "guider" then
-	            map_location = "ui_pda2_scout_location"
-	            hint = "st_ui_pda_legend_scout"
-	            local smarts_tbl = sim_board.get_sim_board().smarts
-	            local npc_smrt_id = obj.m_smart_terrain_id
-	            if npc_smrt_id ~= 65535 and npc_smrt_id ~= nil then
-	                local npc_smart = smarts_tbl[npc_smrt_id].smrt
-	                if npc_smart then
-	                    local smart_name = smart_names.get_smart_terrain_name(npc_smart)
-	                    hint = game.translate_string(hint).."\\n"..game.translate_string("st_location").." "..smart_name
-	                end
-	            end
-	        elseif map_spot == "quest_npc" then
-	            map_location = "ui_pda2_quest_npc_location"
-	            hint = "st_ui_pda_legend_vip"
-	        end
-			if level.map_has_object_spot(npc_id, map_location) ~= 0 then
-		        level.map_remove_object_spot(npc_id, map_location)
+			local map_location = ""
+			local hint = ""
+			if map_spot == "trader" then
+				map_location = "ui_pda2_trader_location"
+				hint = game.translate_string("st_ui_pda_legend_trader").."\\n"..npc:character_name()
+			elseif map_spot == "mechanic" then
+				map_location = "ui_pda2_mechanic_location"
+				hint = game.translate_string("st_ui_pda_legend_mechanic").."\\n"..npc:character_name().."\\n"..inventory_upgrades.get_technic_specialization(npc:section())
+			elseif map_spot == "guider" then
+				map_location = "ui_pda2_scout_location"
+				hint = game.translate_string("st_ui_pda_legend_scout").."\\n"..npc:character_name()
+				local smarts_tbl = sim_board.get_sim_board().smarts
+				local npc_smrt_id = obj.m_smart_terrain_id
+				if npc_smrt_id ~= 65535 and npc_smrt_id ~= nil then
+					local npc_smart = smarts_tbl[npc_smrt_id].smrt
+					if npc_smart then
+						local smart_name = smart_names.get_smart_terrain_name(npc_smart)
+						hint = game.translate_string(hint).."\\n"..game.translate_string("st_location").." "..smart_name
+					end
+				end
+			elseif map_spot == "quest_npc" then
+				map_location = "ui_pda2_quest_npc_location"
+				hint = game.translate_string("st_ui_pda_legend_vip").."\\n"..npc:character_name()
+			elseif map_spot == "leader" then
+				map_location = "ui_pda2_leader_location"
+				hint = game.translate_string("st_ui_pda_legend_leader").."\\n"..npc:character_name()
+			elseif map_spot == "barman" then
+				map_location = "ui_pda2_barman_location"
+				hint = game.translate_string("st_ui_pda_legend_barman").."\\n"..npc:character_name()
 			end
-            if db.actor and npc and npc:general_goodwill(db.actor) > -1000 then
+			if level.map_has_object_spot(npc_id, map_location) ~= 0 then
+				level.map_remove_object_spot(npc_id, map_location)
+			end
+			if db.actor and npc and npc:general_goodwill(db.actor) > -1000 then
 				level.map_add_object_spot(npc_id, map_location, hint)
 			end
 		else
-	        if level.map_has_object_spot(npc_id, "ui_pda2_trader_location") ~= 0 then
-		        level.map_remove_object_spot(npc_id, "ui_pda2_trader_location")
-	        elseif level.map_has_object_spot(npc_id, "ui_pda2_mechanic_location") ~= 0 then
-		        level.map_remove_object_spot(npc_id, "ui_pda2_mechanic_location")
-	        elseif level.map_has_object_spot(npc_id, "ui_pda2_scout_location") ~= 0 then
-		        level.map_remove_object_spot(npc_id, "ui_pda2_scout_location")
-	        elseif level.map_has_object_spot(npc_id, "ui_pda2_quest_npc_location") ~= 0 then
-		        level.map_remove_object_spot(npc_id, "ui_pda2_quest_npc_location")
-	        end
+			if level.map_has_object_spot(npc_id, "ui_pda2_trader_location") ~= 0 then
+				level.map_remove_object_spot(npc_id, "ui_pda2_trader_location")
+			elseif level.map_has_object_spot(npc_id, "ui_pda2_mechanic_location") ~= 0 then
+				level.map_remove_object_spot(npc_id, "ui_pda2_mechanic_location")
+			elseif level.map_has_object_spot(npc_id, "ui_pda2_scout_location") ~= 0 then
+				level.map_remove_object_spot(npc_id, "ui_pda2_scout_location")
+			elseif level.map_has_object_spot(npc_id, "ui_pda2_quest_npc_location") ~= 0 then
+				level.map_remove_object_spot(npc_id, "ui_pda2_quest_npc_location")
+			elseif level.map_has_object_spot(npc_id, "ui_pda2_leader_location") ~= 0 then
+				level.map_remove_object_spot(npc_id, "ui_pda2_leader_location")
+			elseif level.map_has_object_spot(npc_id, "ui_pda2_barman_location") ~= 0 then
+				level.map_remove_object_spot(npc_id, "ui_pda2_barman_location")
+			end
 		end
 	end
 end
@@ -157,34 +180,39 @@ function remove_level_spot(npc, st)
 		map_spot = utils.cfg_get_string(st.ini, st.active_section, "level_spot", npc, false, "")
 	end
 	if map_spot ~= nil then
-	    map_spot = xr_logic.parse_condlist(npc, st.active_section, "level_spot", map_spot)
-	    map_spot = xr_logic.pick_section_from_condlist(db.actor, npc, map_spot)
+		map_spot = xr_logic.parse_condlist(npc, st.active_section, "level_spot", map_spot)
+		map_spot = xr_logic.pick_section_from_condlist(db.actor, npc, map_spot)
 	end
-	local sim  = alife()
+	local sim = alife()
 	if not sim then
 		return
 	end
 
-	local obj  = sim:object(npc:id())
+	local obj = sim:object(npc:id())
 	if obj then
 		local npc_id = npc:id()
 		if map_spot ~= "" and map_spot ~= nil then
-	        local map_location = ""
-	        if map_spot == "trader" then
-	            map_location = "ui_pda2_trader_location"
-	        elseif map_spot == "mechanic" then
-	            map_location = "ui_pda2_mechanic_location"
-	        elseif map_spot == "guider" then
-	            map_location = "ui_pda2_scout_location"
-	        elseif map_spot == "quest_npc" then
-	            map_location = "ui_pda2_quest_npc_location"
-	        end
+			local map_location = ""
+			if map_spot == "trader" then
+				map_location = "ui_pda2_trader_location"
+			elseif map_spot == "mechanic" then
+				map_location = "ui_pda2_mechanic_location"
+			elseif map_spot == "guider" then
+				map_location = "ui_pda2_scout_location"
+			elseif map_spot == "quest_npc" then
+				map_location = "ui_pda2_quest_npc_location"
+			elseif map_spot == "leader" then
+				map_location = "ui_pda2_leader_location"
+			elseif map_spot == "barman" then
+				map_location = "ui_pda2_barman_location"
+			end
 			if level.map_has_object_spot(npc_id, map_location) ~= 0 then
-		        level.map_remove_object_spot(npc_id, map_location)
+				level.map_remove_object_spot(npc_id, map_location)
 			end
 		end
 	end
 end
+
 
 --'--------------------------------------------------------------------------------------------------------------------
 --' INVULNERABILITY
@@ -198,12 +226,11 @@ function reset_invulnerability(npc, ini, section)
 		npc:invulnerable(invulnerability)
 	end
 end
+
 function disable_invulnerability(npc)
 	printf("DISABLE INVULNERABILITY. npc[%s] = [false]", npc:name())
 	npc:invulnerable(false)
 end
-
-
 
 
 --'--------------------------------------------------------------------------------------------------------------------
@@ -219,11 +246,35 @@ function reset_group(npc, ini, section)
 end
 
 function take_items_enabled(npc, scheme, st, section)
-    local take_items = nil
-    if(st.ini:line_exist(section, "take_items")) then
-        take_items = utils.cfg_get_bool(st.ini, section, "take_items", npc, false, true)
-    else
-        take_items = utils.cfg_get_bool(st.ini, st.section_logic, "take_items", npc, false, true)
-    end
-    npc:take_items_enabled(take_items)
+	local take_items = nil
+	if(st.ini:line_exist(section, "take_items")) then
+		take_items = utils.cfg_get_bool(st.ini, section, "take_items", npc, false, true)
+	else
+		take_items = utils.cfg_get_bool(st.ini, st.section_logic, "take_items", npc, false, true)
+	end
+	npc:take_items_enabled(take_items)
 end
+
+function can_throw_grenades(npc, scheme, st, section)
+	local can,str = true
+	if st.ini:line_exist(section,"can_throw_grenades") then
+		str = st.ini:r_string(section,"can_throw_grenades")
+	else
+		str = utils.cfg_get_string(st.ini, st.section_logic, "can_throw_grenades", npc, false, "")
+	end
+	if str then
+		local cond = xr_logic.parse_condlist(npc, section, "can_throw_grenades", str)
+		can = xr_logic.pick_section_from_condlist(db.actor, npc, cond) == "true"
+	end
+	npc:can_throw_grenades(can)
+	
+	-- ”правление фонарЄм
+	local light = nil
+	if st.ini:line_exist(section,"enable_torch") then
+		light = st.ini:r_bool(section,"enable_torch")
+	elseif st.ini:line_exist(st.section_logic,"enable_torch") then
+		light = st.ini:r_bool(st.section_logic,"enable_torch")
+	end
+	sr_light.stalker_overrides[npc:id()] = light
+end
+

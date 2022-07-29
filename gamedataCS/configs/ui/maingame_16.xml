@@ -104,7 +104,7 @@
 			<texture>ui_hud2_rad01_arrow_shadow</texture>
 		</arrow_shadow>
 
-		<bleeding x="4" y="50" width="18" height="22" light_anim="ui_slow_blinking" la_cyclic="1" la_texture="1" la_text="0" la_alpha="1">
+		<bleeding x="4" y="50" width="18" height="22" stretch="1" light_anim="ui_slow_blinking" la_cyclic="1" la_texture="1" la_text="0" la_alpha="1">
 			<texture a="255">ui_char_bleeding</texture>
 		</bleeding>
 		
@@ -163,7 +163,7 @@
         <texture>ui_hud_shk_stamina_new</texture>
       </progress>
     </progress_bar_stamina>
-*
+
     <static_ammo x="66" y="80" width="60" height="28" stretch="1">
 			<text align="r" complex_mode="0" font="graffiti22" color="ui_7">Ammo</text>
 		</static_ammo>

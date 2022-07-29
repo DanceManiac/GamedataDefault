@@ -4,7 +4,7 @@
 		<texture>ui_actor_overlay</texture>
 	</icon_over>
 
-	<name_static x="19" y="141" width="190" height="20">
+	<name_static x="14" y="141" width="190" height="20">
 		<text font="graffiti22" color="ui_6"  complex_mode="0"/>
 	</name_static>
 
@@ -14,10 +14,10 @@
     	<texture>ui_fraction_overlay</texture>
 	</commumity_icon_over>
   
-	<community_caption x="19" y="161" width="80" height="15">
+	<community_caption x="14" y="161" width="80" height="15">
 		<text align="l" font="letterica16" color="ui_9">ui_st_community</text>
 	</community_caption>
-	<community_static x="100" y="161" width="110" height="15">
+	<community_static x="105" y="161" width="110" height="15">
 		<text align="l" font="letterica16" color="ui_9"/>
 	</community_static>
 

@@ -23,6 +23,7 @@ red_treasure_21
 red_treasure_22
 red_treasure_23
 red_treasure_24
+red_treasure_25
 red_quest_treasure_1
 red_quest_treasure_2
 red_quest_treasure_3
@@ -38,256 +39,293 @@ red_quest_treasure_10
 target = red_treasure_1
 name = st_red_pipe_02
 description = st_red_pipe_02_descr
-items = ammo_m209, 2
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = ammo_9x39_ap, 300, ammo_11.43x23_hydro, 200, ammo_vog-25p, 5
+community = renegade
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_2] ;Синий ящик
 target = red_treasure_2
 name = st_red_box_01_0000
 description = st_red_box_01_0000_descr
-items = wpn_spas12, 1, ammo_12x70_buck, 30
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = af_fuzz_kolobok, 1
+community = renegade
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_3] ;Рюкзак в кустах
 target = red_treasure_3
 name = st_red_rucksack_02
 description = st_red_rucksack_02_descr
-items = medkit_scientic, 1, ammo_m209, 1
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = wpn_g36, 1, wpn_usp, 1
+community = renegade
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_4] ;Вещи в дупле дерева
 target = red_treasure_4
 name = st_red_trees_log_01
 description = st_red_trees_log_01_descr
-items = ammo_pkm_100, 100
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = vodka, 9, olives, 4, sardines, 3
+community = renegade
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_5] ;Дырявый пень
 target = red_treasure_5
 name = st_red_trees_stump_01
 description = st_red_trees_stump_01_descr
-items = medkit, 3, antirad, 2
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = wpn_pkm, 1, ammo_pkm_100, 900
+community = renegade
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_6] ;Пень перед лесом
 target = red_treasure_6
 name = st_red_trees_stump_01_0000
 description = st_red_trees_stump_01_0000_descr
-items = wpn_colt1911, 1, ammo_11.43x23_hydro, 16
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = medkit_scientic, 7, bandage, 9, vodka, 3
+community = renegade
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
-[red_treasure_7] ;Пень у оврага
+[red_treasure_7] ;Пень в кустах
 target = red_treasure_7
 name = st_red_trees_stump_01_2_0000
 description = st_red_trees_stump_01_2_0000_descr
-items = ammo_m209, 3
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = mutant_psevdodog_tail, 3, mutant_krovosos_jaw, 2, mutant_zombie_hand, 4, mutant_snork_leg, 4, mutant_burer_hand, 2
+community = stalker, stalker_enemy
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
-[red_treasure_8] ;Черный рюкзак
+[red_treasure_8] ;Чёрный рюкзак
 target = red_treasure_8
 name = st_red_rucksack_01
 description = st_red_rucksack_01_descr
-items = medkit_army, 1, antirad, 1
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = conserva, 4, sardines, 3, vegetables, 2, olives, 1, energy_drink, 2
+community = stalker, stalker_enemy
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_9] ;Рюкзак на ветке
 target = red_treasure_9
 name = st_red_rucksack_01_1_0000
 description = st_red_rucksack_01_1_0000_descr
-items = medkit_scientic, 1, ammo_7.62x54_7h1, 10
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = hand_radio, 2, detector_advanced, 3, detector_simple, 2
+community = stalker, stalker_enemy
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_10] ;Дерево у забора
 target = red_treasure_10
 name = st_red_rucksack_01_on_tree
 description = st_red_rucksack_01_on_tree_descr
-items = medkit_army, 2, ammo_pkm_100, 100
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = medkit, 4, medkit_army, 3, medkit_scientic, 4, bandage, 9
+community = stalker, stalker_enemy
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_11] ;Валун возле оврага
 target = red_treasure_11
 name = st_red_rucksack_01_under_stone_3
 description = st_red_rucksack_01_under_stone_3_descr
-items = ammo_vog-25, 4
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = ammo_5.45x39_ap, 360, ammo_vog-25p, 5
+community = stalker, stalker_enemy
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_12] ;Рюкзак в лесу
 target = red_treasure_12
 name = st_red_rucksack_02_0000
 description = st_red_rucksack_02_0000_descr
-items = ammo_5.56x45_ap, 120, ammo_m209, 1
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = bread, 2, kolbasa, 3, cheese, 1
+community = stalker, stalker_enemy
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_13] ;Рюкзак под валунами
 target = red_treasure_13
 name = st_red_rucksack_02_0001
 description = st_red_rucksack_02_0001_descr
-items = ammo_5.45x39_ap, 120, ammo_vog-25, 1
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = explosive_dinamit, 3
+community = dolg
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_14] ;Проклятый хабар
 target = red_treasure_14
 name = st_red_rucksack_02_4
 description = st_red_rucksack_02_4_descr
-items = antirad, 5
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = vodka, 7
+community = dolg
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_15] ;Странное место
 target = red_treasure_15
 name = st_red_rucksack_02_5
 description = st_red_rucksack_02_5_descr
-items = medkit, 6
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = mutant_psevdodog_tail, 4, mutant_krovosos_jaw, 2
+community = dolg
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_16] ;Рюкзак под обвалом
 target = red_treasure_16
 name = st_red_rucksack_02_6
 description = st_red_rucksack_02_6_descr
-items = ammo_9x39_ap, 120
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = af_gravi, 1
+community = dolg
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_17] ;Потеряшка
 target = red_treasure_17
 name = st_red_rucksack_02_in_stone
 description = st_red_rucksack_02_in_stone_descr
-items = wpn_usp, 1
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = vodka, 12
+community = dolg
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_18] ;Тайник в штольне
 target = red_treasure_18
 name = st_red_rucksack_02_in_tonnel
 description = st_red_rucksack_02_in_tonnel_descr
-items = medkit_scientic, 1
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = ammo_9x39_ap, 300, ammo_vog-25p, 5
+community = dolg
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
-[red_treasure_19] ;Рюкзак в пещере
+[red_treasure_19] ;Рюкзак между камней
 target = red_treasure_19
 name = st_red_rucksack_01_under_stone_2
 description = st_red_rucksack_01_under_stone_2_descr
-items = medkit, 2, ammo_vog-25, 1
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = energy_drink, 3
+community = freedom
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_20] ;Большой пень
 target = red_treasure_20
 name = st_red_trees_stump_01_3
 description = st_red_trees_stump_01_3_descr
-items = medkit_army, 3
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = wpn_mp5, 2, wpn_ak74u, 1, wpn_beretta, 3
+community = freedom
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_21] ;Тайник в пне
 target = red_treasure_21
 name = st_red_trees_stump_01_4
 description = st_red_trees_stump_01_4_descr
-items = ammo_9x39_ap, 180, ammo_vog-25, 1
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = guitar_a, 1
+community = freedom
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_22] ;Пень у оврага
 target = red_treasure_22
 name = st_red_trees_stump_01_7
 description = st_red_trees_stump_01_7_descr
-items = medkit_army, 2, antirad, 2
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = ammo_7.62x54_7h14, 100, grenade_f1, 3
+community = freedom
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_23] ;Запор на капере
 target = red_treasure_23
 name = st_red_zaz968
 description = st_red_zaz968_descr
-items = ammo_og-7b, 1
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = wpn_g36, 1, ammo_5.56x45_ap, 300
+community = freedom
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
 [red_treasure_24] ;Пень в глуши
 target = red_treasure_24
 name = st_red_sekret_trees_stump_01_0000
 description = st_red_sekret_trees_stump_01_0000_descr
-items = ammo_pkm_100, 200
-condlist = {=actor_on_level(red_forest:yantar:military)} true, false
+items = vodka, 2
+community = freedom
+condlist = {=actor_on_level(yantar:red_forest:military)} true, false
 
-[red_quest_treasure_1]
+[red_treasure_25] ;Сейф в диспетчерской
+target = red_treasure_25
+name = st_red_equipment_seif_02_case
+description = st_red_equipment_seif_02_case_descr
+items = af_baloon, 1, medkit_scientic, 2
+condlist = false
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;Quest treasure
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[red_quest_treasure_1] ;Мёртвый сталкер
 target = red_q1_t_l
 name = st_red_q1_t_l
 description = st_red_q1_t_l_descr
-items = medkit_army, 1, antirad, 1
+items = medkit_scientic, 5, bandage, 9
 condlist = {=actor_on_level(red_forest)} true, false
-treasure_cost = 600
-say_item_name = true
-
-[red_quest_treasure_2]
-target = red_q2_t_a
-name = st_red_q2_t_a
-description = st_red_q2_t_a_descr
-items = wpn_usp, 1, ammo_11.43x23_hydro, 8, medkit, 1
-condlist = {=actor_on_level(red_forest)} true, false
-treasure_cost = 2000
-say_item_name = false
-
-[red_quest_treasure_3]
-target = red_q3_n
-name = st_red_q3_n
-description = st_red_q3_n_descr
-items = ammo_vog-25, 4, ammo_9x39_ap, 60
-condlist = {=actor_on_level(red_forest)} true, false
+community = killer
 treasure_cost = 1200
 say_item_name = false
 
-[red_quest_treasure_4]
+[red_quest_treasure_2] ;Опасный тайник
+target = red_q2_t_a
+name = st_red_q2_t_a
+description = st_red_q2_t_a_descr
+items = detector_elite, 1
+condlist = {=actor_on_level(red_forest)} true, false
+community = killer
+treasure_cost = 1400
+say_item_name = false
+
+[red_quest_treasure_3] ;Красный вентиль
+target = red_q3_n
+name = st_red_q3_n
+description = st_red_q3_n_descr
+items = wpn_rg-6, 1
+condlist = {=check_npc_name(red_stalker_artefact_hunter) +red_artefact_hunters_go2} true, false
+treasure_cost = 2200
+say_item_name = false
+
+[red_quest_treasure_4] ;Автобус
 target = red_q4_n
 name = st_red_q4_n
 description = st_red_q4_n_descr
-items = medkit_army, 2, antirad, 1
-condlist = {=actor_on_level(red_forest)} true, false
-treasure_cost = 900
+items = conserva, 2, sardines, 1
+condlist = {=check_npc_name(red_stalker_artefact_hunter) +red_artefact_hunters_go2} true, false
+treasure_cost = 2800
 say_item_name = false
 
-[red_quest_treasure_5]
+[red_quest_treasure_5] ;Труба в завале
 target = red_q5_n
 name = st_red_q5_n
 description = st_red_q5_n_descr
-items = ammo_7.62x54_7h1, 10, bandage, 10
-condlist = {=actor_on_level(red_forest)} true, false
-treasure_cost = 600
+items = explosive_dinamit, 2
+condlist = {=check_npc_name(red_m_lesnik)} true, false
+treasure_cost = 2600
 say_item_name = false
 
-[red_quest_treasure_6]
+[red_quest_treasure_6] ;Ящик с рюкзаком
 target = red_q6_n
 name = st_red_q6_n
 description = st_red_q6_n_descr
-items = af_baloon, 1, medkit_scientic, 2
+items = ammo_vog-25, 5, ammo_vog-25p, 5, ammo_m209, 5
 condlist = false
-;treasure_cost = 1500
-;say_item_name = false
+treasure_cost = 1500
+say_item_name = false
 
-[red_quest_treasure_7]
+[red_quest_treasure_7] ;Рюкзак бедняги
 target = red_q7_t_a
 name = st_red_q7_t_a
 description = st_red_q7_t_a_descr
-items = medkit_army, 2, antirad, 2
-condlist = {=actor_on_level(red_forest)} true, false
-treasure_cost = 1000
-say_item_name = true
+items = killer_heavy_outfit, 1
+condlist = {=check_npc_name(red_m_lesnik) +mil_actor_go_to_limansk} true, false
+treasure_cost = 1400
+say_item_name = false
 
-[red_quest_treasure_8]
+[red_quest_treasure_8] ;Сейф у вагонетки
 target = red_q8_n
 name = st_red_q8_n
 description = st_red_q8_n_descr
-items = ammo_5.45x39_ap, 180
-condlist = {=actor_on_level(red_forest)} true, false
-treasure_cost = 900
+items = af_dummy_glassbeads, 1
+condlist = {=check_npc_name(red_m_lesnik)} true, false
+treasure_cost = 1800
 say_item_name = false
 
-[red_quest_treasure_9]
+[red_quest_treasure_9] ;Обычный старый пень
 target = red_q9_n
 name = st_red_q9_n
 description = st_red_q9_n_descr
-items = ammo_5.56x45_ap, 180
-condlist = {=actor_on_level(red_forest)} true, false
-treasure_cost = 1000
+items = harmonica_a, 1
+condlist = {=check_npc_name(red_m_lesnik)} true, false
+treasure_cost = 1600
 say_item_name = false
 
-[red_quest_treasure_10]
+[red_quest_treasure_10] ;Труба в шахте
 target = red_q10_n
 name = st_red_q10_n
 description = st_red_q10_n_descr
-items = ammo_9x39_ap, 180
-condlist = {=actor_on_level(red_forest)} true, false
-treasure_cost = 1500
+items = killer_scientific_outfit, 1
+condlist = {=check_npc_name(red_m_lesnik)} true, false
+treasure_cost = 4800
 say_item_name = false

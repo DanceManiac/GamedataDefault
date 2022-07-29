@@ -2,11 +2,11 @@
 esc_trader_start_pda
 esc_mil_target_detected
 esc_mil_target_lost
-;esc_trader_spot
 esc_trader_call
 esc_trader_greet
 esc_driver_talk
 esc_driver_treat
+esc_driver_idle
 esc_habar_location_1
 esc_habar_location_2
 esc_habar_location_3
@@ -35,8 +35,12 @@ esc_stalker_assemble_3_4
 esc_stalker_assemble_4_1
 esc_stalker_assemble_4_2
 esc_stalker_assemble_4_3
+esc_actor_take_habar
 esc_trader_bye_give_habar
 esc_wolf_call
+esc_novice_stalker_thanx
+esc_stalker_guard_1_call
+esc_wolf_brother_thanx
 
 esc_stalker_mechanic_meet
 esc_stalker_mechanic_meet_bye
@@ -58,6 +62,11 @@ esc_stalker_expansion_4_down
 esc_stalker_expansion_5_down
 
 esc_can_join_stalker
+esc_actor_laughs
+
+esc_bandit_commander_greetings
+esc_bandit_commander_meet
+esc_prisoner_guard_zak_hit
 
 ;***********ESCAPE**
 ;********************
@@ -133,11 +142,28 @@ path = scenario\escape\esc_wolf_call
 shuffle = rnd
 idle = 20,30,100
 
-[esc_trader_spot]
-type = actor
+[esc_novice_stalker_thanx]
+type = npc
 actor_stereo = false
-path = characters_voice\scenario\escape\esc_trader_spot
-shuffle = seq
+npc_prefix = false
+path = scenario\escape\esc_novice_stalker_thanx
+shuffle = rnd
+idle = 1,1,100
+
+[esc_stalker_guard_1_call]
+type = npc
+actor_stereo = false
+npc_prefix = false
+path = scenario\escape\esc_stalker_guard_1_call
+shuffle = rnd
+idle = 1,1,100
+
+[esc_wolf_brother_thanx]
+type = npc
+actor_stereo = false
+npc_prefix = false
+path = scenario\escape\esc_wolf_brother_thanx
+shuffle = rnd
 idle = 1,1,100
 
 [esc_trader_call]
@@ -235,7 +261,7 @@ idle = 1,1,100
 type = 3d
 path = characters_voice\scenario\escape\megafon_
 shuffle = rnd
-idle = 1,1,20
+idle = 20,30,20
 
 [megafon_alarm]
 type = 3d
@@ -287,6 +313,13 @@ type = npc
 actor_stereo = false
 path = scenario\escape\esc_driver_treat
 shuffle = seq
+idle = 1,10,100
+
+[esc_driver_idle]
+type = npc
+actor_stereo = false
+path = scenario\escape\esc_driver_idle_
+shuffle = loop
 idle = 1,10,100
 
 [esc_comandir_megafon]
@@ -346,9 +379,9 @@ shuffle = seq
 idle = 1,1,100
 
 [esc_stalker_assemble_3_2]
-type = actor
+type = npc
 actor_stereo = false
-path = characters_voice\scenario\escape\esc_stalker_assemble_3_2
+path = scenario\escape\esc_stalker_assemble_3_2
 shuffle = seq
 idle = 1,1,100
 
@@ -360,9 +393,9 @@ shuffle = seq
 idle = 1,1,100
 
 [esc_stalker_assemble_3_4]
-type = actor
+type = npc
 actor_stereo = false
-path = characters_voice\scenario\escape\esc_stalker_assemble_3_4
+path = scenario\escape\esc_stalker_assemble_3_4
 shuffle = seq
 idle = 1,1,100
 
@@ -384,6 +417,13 @@ idle = 1,1,100
 type = actor
 actor_stereo = false
 path = characters_voice\scenario\escape\esc_stalker_assemble_4_3
+shuffle = seq
+idle = 1,1,100
+
+[esc_actor_take_habar]
+type = actor
+actor_stereo = false
+path = characters_voice\scenario\escape\esc_actor_take_habar
 shuffle = seq
 idle = 1,1,100
 
@@ -496,3 +536,31 @@ path = characters_voice\scenario\escape\esc_can_join_stalker_1
 shuffle = rnd
 idle = 1,1,100
 play_always = true
+
+[esc_actor_laughs]
+type = actor
+actor_stereo = false
+path = characters_voice\scenario\escape\esc_actor_laughs
+shuffle = rnd
+idle = 1,1,100
+
+[esc_bandit_commander_greetings]
+type = npc
+actor_stereo = false
+path = scenario\escape\esc_bandit_commander_greetings
+shuffle = rnd
+idle = 5,10,100
+
+[esc_bandit_commander_meet]
+type = npc
+actor_stereo = false
+npc_prefix = false
+path = scenario\escape\esc_bandit_commander_meet_
+shuffle = rnd
+idle = 3,5,100
+
+[esc_prisoner_guard_zak_hit]
+type = npc
+path = scenario\escape\esc_prisoner_guard_zak_hit
+shuffle = seq
+idle = 3,5,100

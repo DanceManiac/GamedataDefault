@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="windows-1251" ?>
 <game_dialogs>
     <dialog id="esc_stalker_bridge_talk">
+        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="11">
                 <text>esc_stalker_bridge_talk_11</text>
@@ -12,6 +13,14 @@
             </phrase>
             <phrase id="1111">
                 <text>esc_stalker_bridge_talk_1111</text>
+                <next>11111</next>
+            </phrase>
+            <phrase id="11111">
+                <text>esc_stalker_bridge_talk_11111</text>
+                <next>111111</next>
+            </phrase>
+            <phrase id="111111">
+                <text>esc_stalker_bridge_talk_111111</text>
                 <give_info>esc_nasip_commander_talked</give_info>
             </phrase>
             <phrase id="1">
@@ -23,24 +32,20 @@
                 <text>esc_stalker_bridge_talk_0</text>
                 <next>1</next>
                 <next>2</next>
-                <next>3</next>
             </phrase>
             <phrase id="2">
                 <text>esc_stalker_bridge_talk_2</text>
-                <action>dialogs.break_dialog</action>
+                <!-- action>dialogs.break_dialog</action -->
                 <has_info>esc_nasip_commander_talked</has_info>
-            </phrase>
-            <phrase id="3">
-                <text>esc_stalker_bridge_talk_3</text>
-                <next>33</next>
-            </phrase>
-            <phrase id="33">
-                <text>esc_stalker_bridge_talk_33</text>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_stalker_support_attack_atp">
-        <phrase_list>
+        <precondition>dialogs.precond_inv</precondition>
+        <precondition>dialogs_escape.army_controls_vehicle_station</precondition>
+        <dont_has_info>esc_support_squad_attack</dont_has_info>
+        <dont_has_info>esc_mission_2_stalker_leader_complete</dont_has_info>
+	<phrase_list>
             <phrase id="0">
                 <text>esc_stalker_support_attack_atp_0</text>
                 <next>1</next>
@@ -51,24 +56,41 @@
             </phrase>
             <phrase id="2">
                 <text>esc_stalker_support_attack_atp_2</text>
+                <action>dialogs_escape.show_money_for_support</action>
                 <next>3</next>
                 <next>33</next>
+                <next>333</next>
             </phrase>
             <phrase id="3">
                 <text>esc_stalker_support_attack_atp_3</text>
-                <action>dialogs_escape.give_money_for_support</action>
-                <give_info>esc_support_squad_attack</give_info>
+                <precondition>dialogs_escape.has_money_for_support</precondition>
+                <action>dialogs_escape.transfer_money_for_support</action>
                 <next>4</next>
             </phrase>
             <phrase id="4">
                 <text>esc_stalker_support_attack_atp_4</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <give_info>esc_support_squad_attack</give_info>
+                <text>esc_stalker_support_attack_atp_5</text>
             </phrase>
             <phrase id="33">
+                <precondition>dialogs_escape.has_money_for_support</precondition>
                 <text>esc_stalker_support_attack_atp_33</text>
+            </phrase>
+            <phrase id="333">
+                <precondition>dialogs_escape.not_has_money_for_support</precondition>
+                <text>esc_stalker_support_attack_atp_333</text>
+                <next>6</next>
+            </phrase>
+            <phrase id="6">
+                <text>esc_stalker_support_attack_atp_6</text>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_stalker_trader_about_you">
+        <dont_has_info>esc_stalker_trader_about_you_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="111">
@@ -88,11 +110,13 @@
             <phrase id="0">
                 <text>esc_stalker_trader_about_you_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>esc_stalker_trader_about_you_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_stalker_mechanic_about_you">
+        <dont_has_info>esc_stalker_mechanic_about_you_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1111">
@@ -117,12 +141,14 @@
             <phrase id="0">
                 <text>esc_stalker_mechanic_about_you_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>esc_stalker_mechanic_about_you_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_stalker_about_prisoner">
-        <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <has_info>esc_prisoner_guard_restored</has_info>
+        <dont_has_info>esc_stalker_about_prisoner_info</dont_has_info>
         <phrase_list>
             <phrase id="11">
                 <text>esc_stalker_about_prisoner_11</text>
@@ -130,6 +156,7 @@
             </phrase>
             <phrase id="1111">
                 <text>esc_stalker_about_prisoner_1111</text>
+                <give_info>esc_stalker_about_prisoner_info</give_info>
             </phrase>
             <phrase id="111">
                 <text>esc_stalker_about_prisoner_111</text>
@@ -142,12 +169,12 @@
             </phrase>
             <phrase id="0">
                 <text>esc_stalker_about_prisoner_0</text>
-                <action>dialog_manager.action_disable_phrase</action>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_leader_what_happens">
+        <dont_has_info>esc_leader_what_happens_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -156,11 +183,14 @@
             <phrase id="0">
                 <text>esc_leader_what_happens_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>esc_leader_what_happens_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_leader_talk">
+        <precondition>dialogs.precond_inv</precondition>
+        <has_info>esc_reach_trader_complete</has_info>
         <phrase_list>
             <phrase id="111">
                 <text>esc_leader_talk_111</text>
@@ -275,6 +305,7 @@
         </phrase_list>
     </dialog>
     <dialog id="esc_leader_about_you">
+        <dont_has_info>esc_leader_about_you_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="11">
@@ -291,11 +322,13 @@
             <phrase id="0">
                 <text>esc_leader_about_you_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>esc_leader_about_you_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_driver_about_you">
+        <dont_has_info>esc_driver_about_you_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -304,11 +337,13 @@
             <phrase id="0">
                 <text>esc_driver_about_you_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>esc_driver_about_you_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_leader_about_home">
+        <dont_has_info>esc_leader_about_home_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="11">
@@ -333,11 +368,13 @@
             <phrase id="0">
                 <text>esc_leader_about_home_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>esc_leader_about_home_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_leader_about_zone">
+        <dont_has_info>esc_leader_about_zone_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -346,12 +383,14 @@
             <phrase id="0">
                 <text>esc_leader_about_zone_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>esc_leader_about_zone_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_comm_about_prisoner">
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+        <precondition>dialogs.precond_inv</precondition>
         <has_info>esc_military_comm_talked</has_info>
         <phrase_list>
             <phrase id="11">
@@ -381,6 +420,7 @@
         </phrase_list>
     </dialog>
     <dialog id="esc_driver_fear">
+        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="11">
                 <text>esc_driver_fear_11</text>
@@ -452,6 +492,7 @@
             </phrase>
             <phrase id="111">
                 <text>esc_comm_talk_111</text>
+                <give_info>esc_actor_scoffs</give_info>
                 <next>1111</next>
             </phrase>
             <phrase id="6666">
@@ -631,6 +672,8 @@
         </phrase_list>
     </dialog>
     <dialog id="esc_wolf_about_around">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>esc_wolf_about_around_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="222">
@@ -639,7 +682,6 @@
             <phrase id="1">
                 <text>esc_wolf_about_around_1</text>
                 <next>11</next>
-                <next>22</next>
             </phrase>
             <phrase id="22">
                 <text>esc_wolf_about_around_22</text>
@@ -659,15 +701,19 @@
             </phrase>
             <phrase id="11111">
                 <text>esc_wolf_about_around_11111</text>
+                <next>22</next>
             </phrase>
             <phrase id="0">
                 <text>esc_wolf_about_around_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>esc_wolf_about_around_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_wolf_about_you">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>esc_wolf_about_you_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="1">
@@ -676,11 +722,14 @@
             <phrase id="0">
                 <text>esc_wolf_about_you_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>esc_wolf_about_you_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_wolf_about_zone">
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>esc_wolf_about_zone_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="111">
@@ -692,11 +741,13 @@
             <phrase id="0">
                 <text>esc_wolf_about_zone_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+		<give_info>esc_wolf_about_zone_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_wolf_novice_fail">
+        <precondition>dialogs.precond_inv</precondition>
         <has_info>esc_stalker_novice_fail</has_info>
         <dont_has_info>esc_stalker_novice_dialog_fail</dont_has_info>
         <dont_has_info>esc_wolf_novice_4</dont_has_info>
@@ -712,6 +763,7 @@
         </phrase_list>
     </dialog>
     <dialog id="esc_wolf_other_works">
+        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="3">
                 <text>esc_wolf_other_works_3</text>
@@ -756,17 +808,24 @@
                 <dont_has_info>esc_bring_habar_complete</dont_has_info>
                 <has_info>esc_wolf_novice</has_info>
             </phrase>
+            <phrase id="11">
+                <text>esc_wolf_other_works_11</text>
+                <has_info>esc_wolf_novice</has_info>
+                <dont_has_info>esc_wolf_novice_4</dont_has_info>
+                <dont_has_info>esc_wolf_brother_4</dont_has_info>
+            </phrase>
             <phrase id="1">
                 <text>esc_wolf_other_works_1</text>
                 <dont_has_info>esc_wolf_brother_1</dont_has_info>
                 <has_info>esc_bring_habar_complete</has_info>
-                <has_info>esc_wolf_novice</has_info>
+                <has_info>esc_wolf_novice_4</has_info>
                 <next>2</next>
                 <next>3</next>
             </phrase>
             <phrase id="0">
                 <text>esc_wolf_other_works_0</text>
                 <next>1</next>
+                <next>11</next>
                 <next>111</next>
                 <next>1111</next>
                 <next>11111</next>
@@ -774,6 +833,7 @@
         </phrase_list>
     </dialog>
     <dialog id="esc_wolf_talk">
+        <precondition>dialogs.precond_inv</precondition>
         <phrase_list>
             <phrase id="22222">
                 <text />
@@ -820,7 +880,8 @@
         </phrase_list>
     </dialog>
     <dialog id="esc_wolf_stalker_novice">
-        <dont_has_info>esc_wolf_brother_2</dont_has_info>
+        <precondition>dialogs.precond_inv</precondition>
+        <dont_has_info>esc_wolf_stalker_novice_info</dont_has_info>
         <phrase_list>
             <phrase id="0">
                 <text>esc_wolf_stalker_novice_0</text>
@@ -828,18 +889,19 @@
             </phrase>
             <phrase id="11">
                 <text>esc_wolf_stalker_novice_11</text>
+		<give_info>esc_wolf_stalker_novice_info</give_info>
             </phrase>
         </phrase_list>
     </dialog>
     <dialog id="esc_trader_about_questions">
+        <precondition>dialogs.precond_inv</precondition>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
-        <has_info>esc_bring_habar_complete</has_info>
+        <dont_has_info>all_questions_to_the_merchant</dont_has_info>
+	<has_info>esc_bring_habar_complete</has_info>
         <phrase_list>
-            <phrase id="333">
-                <text>esc_trader_about_questions_333</text>
-            </phrase>
-            <phrase id="444">
-                <text>esc_trader_about_questions_444</text>
+            <phrase id="0">
+                <text>esc_trader_about_questions_0</text>
+                <next>1</next>
             </phrase>
             <phrase id="1">
                 <text>esc_trader_about_questions_1</text>
@@ -847,33 +909,84 @@
                 <next>22</next>
                 <next>33</next>
                 <next>44</next>
+                <next>55</next>
+                <next>66</next>
+                <next>77</next>
+                <next>88</next>
+            </phrase>
+            <phrase id="11">
+		<dont_has_info>question_to_the_merchant_1</dont_has_info>
+                <text>esc_trader_about_questions_11</text>
+                <next>111</next>
             </phrase>
             <phrase id="111">
                 <text>esc_trader_about_questions_111</text>
+		<give_info>question_to_the_merchant_1</give_info>
             </phrase>
             <phrase id="22">
-                <text>esc_trader_about_questions_22</text>
+                <has_info>question_to_the_merchant_1</has_info>
+                <dont_has_info>question_to_the_merchant_2</dont_has_info>
+		<text>esc_trader_about_questions_22</text>
                 <next>222</next>
             </phrase>
             <phrase id="222">
                 <text>esc_trader_about_questions_222</text>
-            </phrase>
-            <phrase id="11">
-                <text>esc_trader_about_questions_11</text>
-                <next>111</next>
+		<give_info>question_to_the_merchant_2</give_info>
             </phrase>
             <phrase id="33">
+		<dont_has_info>question_to_the_merchant_3</dont_has_info>
                 <text>esc_trader_about_questions_33</text>
                 <next>333</next>
             </phrase>
+            <phrase id="333">
+                <text>esc_trader_about_questions_333</text>
+		<give_info>question_to_the_merchant_3</give_info>
+            </phrase>
             <phrase id="44">
-                <text>esc_trader_about_questions_44</text>
+                <dont_has_info>question_to_the_merchant_4</dont_has_info>
+		<text>esc_trader_about_questions_44</text>
                 <next>444</next>
             </phrase>
-            <phrase id="0">
-                <text>esc_trader_about_questions_0</text>
-                <action>dialog_manager.action_disable_phrase</action>
-                <next>1</next>
+            <phrase id="444">
+                <text>esc_trader_about_questions_444</text>
+		<give_info>question_to_the_merchant_4</give_info>
+            </phrase>
+            <phrase id="55">
+                <dont_has_info>question_to_the_merchant_5</dont_has_info>
+		<text>esc_trader_about_questions_55</text>
+                <next>555</next>
+            </phrase>
+            <phrase id="555">
+                <text>esc_trader_about_questions_555</text>
+		<give_info>question_to_the_merchant_5</give_info>
+            </phrase>
+            <phrase id="66">
+                <dont_has_info>question_to_the_merchant_6</dont_has_info>
+		<text>esc_trader_about_questions_66</text>
+                <next>666</next>
+            </phrase>
+            <phrase id="666">
+                <text>esc_trader_about_questions_666</text>
+		<give_info>question_to_the_merchant_6</give_info>
+            </phrase>
+            <phrase id="77">
+                <dont_has_info>question_to_the_merchant_7</dont_has_info>
+		<text>esc_trader_about_questions_77</text>
+                <next>777</next>
+            </phrase>
+            <phrase id="777">
+                <text>esc_trader_about_questions_777</text>
+		<give_info>question_to_the_merchant_7</give_info>
+            </phrase>
+            <phrase id="88">
+                <has_info>question_to_the_merchant_7</has_info>
+                <dont_has_info>question_to_the_merchant_8</dont_has_info>
+		<text>esc_trader_about_questions_88</text>
+                <next>888</next>
+            </phrase>
+            <phrase id="888">
+                <text>esc_trader_about_questions_888</text>
+		<give_info>question_to_the_merchant_8</give_info>
             </phrase>
         </phrase_list>
     </dialog>
@@ -915,43 +1028,52 @@
     </dialog>
     <dialog id="esc_wolf_brother">
         <has_info>esc_wolf_brother_1</has_info>
+        <dont_has_info>esc_wolf_brother_has_weapon_info</dont_has_info>
         <dont_has_info>esc_wolf_brother_2</dont_has_info>
         <phrase_list>
-            <phrase id="55">
-                <text>esc_wolf_brother_55</text>
+            <phrase id="0">
+                <text>esc_wolf_brother_0</text>
+                <next>1</next>
             </phrase>
-            <phrase id="1">
-                <text>esc_wolf_brother_1</text>
-                <next>2</next>
-                <next>22</next>
-                <next>222</next>
-                <next>2222</next>
+            <phrase id="2">
+                <text>esc_wolf_brother_2</text>
+                <next>3</next>
+                <next>33</next>
+                <next>333</next>
+                <next>3333</next>
+                <next>33333</next>
             </phrase>
-            <phrase id="22">
-                <text>esc_wolf_brother_22</text>
+            <phrase id="33">
+                <text>esc_wolf_brother_33</text>
                 <precondition>dialogs.have_actor_any_shootgun</precondition>
                 <action>dialogs_escape.transfer_prisoner_shootgun</action>
                 <give_info>esc_wolf_brother_2</give_info>
             </phrase>
-            <phrase id="222">
-                <text>esc_wolf_brother_222</text>
+            <phrase id="333">
+                <text>esc_wolf_brother_333</text>
                 <precondition>dialogs.have_actor_any_gun</precondition>
                 <action>dialogs_escape.transfer_prisoner_gun</action>
                 <give_info>esc_wolf_brother_2</give_info>
             </phrase>
-            <phrase id="2222">
-                <text>esc_wolf_brother_2222</text>
+            <phrase id="3333">
+                <text>esc_wolf_brother_3333</text>
+                <precondition>dialogs.have_actor_any_snipergun</precondition>
+                <action>dialogs_escape.transfer_prisoner_snipergun</action>
+                <give_info>esc_wolf_brother_2</give_info>
+            </phrase>
+            <phrase id="33333">
+                <text>esc_wolf_brother_33333</text>
                 <action>dialogs.break_dialog</action>
             </phrase>
-            <phrase id="2">
-                <text>esc_wolf_brother_2</text>
+            <phrase id="3">
+                <text>esc_wolf_brother_3</text>
                 <precondition>dialogs.have_actor_any_pistol</precondition>
                 <action>dialogs_escape.transfer_prisoner_pistol</action>
                 <give_info>esc_wolf_brother_2</give_info>
             </phrase>
-            <phrase id="0">
-                <text>esc_wolf_brother_0</text>
-                <next>1</next>
+            <phrase id="1">
+                <text>esc_wolf_brother_1</text>
+                <next>2</next>
             </phrase>
         </phrase_list>
     </dialog>
@@ -1018,6 +1140,7 @@
         </phrase_list>
     </dialog>
     <dialog id="esc_stalker_trader_quest_complete">
+        <precondition>dialogs.precond_inv</precondition>
         <has_info>esc_trader_bandits_1</has_info>
         <dont_has_info>esc_trader_bandits_3</dont_has_info>
         <phrase_list>
@@ -1217,6 +1340,7 @@
         </phrase_list>
     </dialog>
     <dialog id="esc_driver_who_are_you">
+        <dont_has_info>esc_driver_who_are_you_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <phrase_list>
             <phrase id="2">
@@ -1261,6 +1385,7 @@
             <phrase id="0">
                 <text>esc_driver_who_are_you_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>esc_driver_who_are_you_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
@@ -1308,6 +1433,7 @@
         </phrase_list>
     </dialog>
     <dialog id="esc_leader_about_prisoner">
+        <dont_has_info>esc_leader_about_prisoner_info</dont_has_info>
         <precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
         <has_info>esc_prisoner_go_out</has_info>
         <phrase_list>
@@ -1317,6 +1443,7 @@
             <phrase id="0">
                 <text>esc_leader_about_prisoner_0</text>
                 <action>dialog_manager.action_disable_phrase</action>
+                <give_info>esc_leader_about_prisoner_info</give_info>
                 <next>1</next>
             </phrase>
         </phrase_list>
@@ -1327,12 +1454,13 @@
         <phrase_list>
             <phrase id="2">
                 <text>esc_leader_join_stalker_2</text>
-                <dont_has_info>esc_join_stalker_on</dont_has_info>
+                <give_info>esc_join_need_sound</give_info>
+                <dont_has_info>esc_bring_habar_complete</dont_has_info>
             </phrase>
             <phrase id="4">
                 <text>esc_leader_join_stalker_4</text>
                 <precondition>dialogs.actor_in_freedom</precondition>
-                <has_info>esc_join_stalker_on</has_info>
+                <has_info>esc_bring_habar_complete</has_info>
                 <next>33</next>
                 <next>3334</next>
             </phrase>
@@ -1340,7 +1468,7 @@
                 <text>esc_leader_join_stalker_5</text>
                 <precondition>dialogs.actor_not_in_dolg</precondition>
                 <precondition>dialogs.actor_not_in_freedom</precondition>
-                <has_info>esc_join_stalker_on</has_info>
+                <has_info>esc_bring_habar_complete</has_info>
                 <next>33</next>
                 <next>3334</next>
             </phrase>
@@ -1350,7 +1478,7 @@
             <phrase id="3">
                 <text>esc_leader_join_stalker_3</text>
                 <precondition>dialogs.actor_in_dolg</precondition>
-                <has_info>esc_join_stalker_on</has_info>
+                <has_info>esc_bring_habar_complete</has_info>
                 <next>33</next>
                 <next>3334</next>
             </phrase>
@@ -1395,6 +1523,80 @@
             </phrase>
             <phrase id="33333333">
                 <text>esc_leader_join_stalker_33333333</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="military_trader_dialog">
+        <has_info>esc_prisoner_go_out</has_info>
+        <dont_has_info>military_trader_dialog_info</dont_has_info>
+        <phrase_list>
+            <phrase id="3">
+                <text>military_trader_dialog_3</text>
+                <give_info>military_trader_dialog</give_info>
+            </phrase>
+            <phrase id="2">
+                <text>military_trader_dialog_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="1">
+                <text>military_trader_dialog_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="0">
+                <text>military_trader_dialog_0</text>
+                <give_info>military_trader_dialog_info</give_info>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="military_trader_dialogs">
+        <has_info>military_trader_dialog</has_info>
+        <dont_has_info>military_trader_dialogs_info</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>military_trader_dialogs_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>military_trader_dialogs_1</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>military_trader_dialogs_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>military_trader_dialogs_3</text>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>military_trader_dialogs_4</text>
+                <give_info>military_trader_dialogs_info</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="esc_prisoner_guard">
+        <has_info>esc_prisoner_guard_wounded</has_info>
+        <dont_has_info>esc_prisoner_guard_restored</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>actor_help_wounded_1</text>
+                <next>1</next>
+                <next>2</next>
+            </phrase>
+            <phrase id="1">
+                <text>actor_help_wounded_11</text>
+                <precondition>dialogs.actor_have_medkit_2</precondition>
+                <action>dialogs.transfer_medkit_2</action>
+                <next>11</next>
+            </phrase>
+            <phrase id="11">
+                <text>actor_help_wounded_111</text>
+                <give_info>esc_prisoner_guard_restored</give_info>
+            </phrase>
+            <phrase id="2">
+                <text>actor_help_wounded_13</text>
+                <action>dialogs.break_dialog</action>
             </phrase>
         </phrase_list>
     </dialog>

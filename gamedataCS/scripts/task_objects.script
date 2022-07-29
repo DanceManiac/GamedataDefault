@@ -82,6 +82,7 @@ function CGeneralTask:__init(task_ini, id, type)
 	self.on_init = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_init", nil, false, "", ""))
 	self.on_complete = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_complete", nil, false, "", ""))
 	self.on_reversed = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_reversed", nil, false, "", ""))
+	self.on_fail = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_fail", nil, false, "", ""))
 
 	self.reward_money = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "reward_money", nil, false, "", ""))
 	self.reward_item = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "reward_item", nil, false, "", ""))
@@ -112,6 +113,8 @@ function CGeneralTask:give_task(community)
 		str = "ui_st_name_freedom"
 	elseif str == "stalker" then
 		str = "ui_st_name_stalker"
+	elseif str == "ecolog" then
+		str = "ui_st_name_ecolog"
 	end
 	self.community_name = str
 	local t = CGameTask()
@@ -179,7 +182,7 @@ function CGeneralTask:give_task(community)
 			if(self.task_type==task_types.storyline) then
 				self.spot = "primary_task_location"
 			else
-				self.spot = "secondary_task_location"
+				self.spot = "secondary_task_location_complex_"..type
 			end
 		else
 			if(self.task_type==task_types.storyline) then
@@ -359,6 +362,7 @@ function CGeneralTask:deactivate_task(task)
 
 	self.check_time = nil
 	if self.last_check_task == "fail" then
+		xr_logic.pick_section_from_condlist(db.actor, db.actor, self.on_fail)
 		news_manager.send_task(db.actor, "fail", task)
 	elseif self.last_check_task == "reversed" then
 		xr_logic.pick_section_from_condlist(db.actor, db.actor, self.on_reversed)
@@ -420,6 +424,8 @@ function CGeneralTask:load(reader)
 			str = "ui_st_name_freedom"
 		elseif str == "stalker" then
 			str = "ui_st_name_stalker"
+		elseif str == "ecolog" then
+			str = "ui_st_name_ecolog"
 		end
 	self.community_name = str
 
@@ -460,7 +466,7 @@ function CEliminateSmartTask:init_task(smart, faction)
 	self.id	= self.id .. "_" .. smart.id
 	self.community = faction
 	--self.name = smart:name()
-
+	self.spot = "secondary_task_location_complex_eliminate_smart"
 	self.prior = self.base_prior --'+ smart.sim_prior[faction]
 end
 --' Получить этот же квест, но инициализированный
@@ -580,7 +586,7 @@ function CCaptureSmartTask:init_task(smart, faction)
 	self.id	= self.id .. "_" .. smart.id
 	self.community = faction
 	--self.name = smart:name()
-
+	self.spot = "secondary_task_location_complex_capture_smart"
 	self.prior = self.base_prior --'+ smart.sim_prior[faction]
 end
 --' Получить этот же квест, но инициализированный
@@ -715,7 +721,13 @@ end
 function CCaptureSmartTask:give_task(community)
 	--' Указать скваду что у него есть выданное задание
 	if self.src_obj ~= nil then
-		sim_board.get_sim_board().squads[self.src_obj]:give_squad_task(self.target)
+		-- Kirgudu
+		--sim_board.get_sim_board().squads[self.src_obj]:give_squad_task(self.target)
+		local squad = sim_board.get_sim_board().squads[self.src_obj]
+		if squad ~= nil then
+			squad:give_squad_task(self.target)
+		end
+		-- Kirgudu
 	end
 
 	task_objects.CGeneralTask.give_task(self, community)
@@ -858,7 +870,7 @@ function CDefendSmartTask:init_task(smart, faction)
 	self.community = faction
 	--self.name = smart:name()
 	--self.id	= self.id .. "_" .. smart.id
-
+	self.spot = "secondary_task_location_complex_defend_smart"
 	self.prior = self.base_prior --'+ smart.sim_prior[faction]
 end
 --' Получить этот же квест, но инициализированный
@@ -918,6 +930,7 @@ function CDefendSmartTask:check_task(tm)
 			if game.get_game_time():diffSec(self.last_called_time) > 50 then
 				local target_squads = self.board.smarts[self.target].squads
 				for k,squad in pairs(target_squads) do
+					--' Кидаем озвучку.
 					if(self.play_regard=="") then
 						squad:issue_order("defend_wait")
 					end
@@ -937,6 +950,7 @@ function CDefendSmartTask:actor_comed(target_obj_combat_manager)
 		self.actor_come = true
 		local target_squads = self.board.smarts[self.target].squads
 		for k,squad in pairs(target_squads) do
+			--' Кидаем озвучку.
 			if(self.play_regard=="") then
 				squad:issue_order("defend_actor_come")
 			end
@@ -955,6 +969,7 @@ function CDefendSmartTask:actor_ignored(target_obj_combat_manager)
 	target_obj_combat_manager:request_squad_stage(nil, "combat")
 	local target_squads = self.board.smarts[self.target].squads
 	for k,squad in pairs(target_squads) do
+		--' Кидаем озвучку.
 		if(self.play_regard=="") then
 			squad:issue_order("defend_actor_ignore")
 		end
@@ -973,6 +988,7 @@ function CDefendSmartTask:give_task(community)
 	end
 	local target_squads = self.board.smarts[self.target].squads
 	for k,squad in pairs(target_squads) do
+		--' Кидаем озвучку.
 		if(self.play_regard=="") then
 			squad:issue_order("defend_sos_"..enemy_squad.player_id)
 		end
@@ -1045,7 +1061,7 @@ function CDefendSmartTaskDelay:init_task(smart, faction)
 	self.community = faction
 	--self.name = smart:name()
 	--self.id	= self.id .. "_" .. smart.id
-
+	self.spot = "secondary_task_location_complex_defend_smart"
 	self.prior = self.base_prior --'+ smart.sim_prior[faction]
 end
 --' Получить этот же квест, но инициализированный
@@ -1080,6 +1096,7 @@ function CDefendSmartTaskDelay:check_task(tm)
 		if self.actor_helped then
 			local target_squads = self.board.smarts[self.target].squads
 			for k,squad in pairs(target_squads) do
+				--' Кидаем озвучку.
 				if(self.play_regard=="") then
 					squad:issue_order("defend_actor_help")
 				end
@@ -1101,6 +1118,7 @@ function CDefendSmartTaskDelay:check_task(tm)
 			self.actor_come = actor_come
 			local target_squads = self.board.smarts[self.target].squads
 			for k,squad in pairs(target_squads) do
+				--' Кидаем озвучку.
 				if(self.play_regard=="") then
 					squad:issue_order("defend_actor_come")
 				end
@@ -1111,6 +1129,7 @@ function CDefendSmartTaskDelay:check_task(tm)
 			if game.get_game_time():diffSec(self.last_called_time) > 50 then
 				local target_squads = self.board.smarts[self.target].squads
 				for k,squad in pairs(target_squads) do
+					--' Кидаем озвучку.
 					if(self.play_regard=="") then
 						squad:issue_order("defend_wait")
 					end
@@ -1150,6 +1169,7 @@ function CDefendSmartTaskDelay:give_task(community)
 	local enemy_squad = self.board.squads[self.src_squad_id]
 	local target_squads = self.board.smarts[self.target].squads
 	for k,squad in pairs(target_squads) do
+		--' Кидаем озвучку.
 		if(self.play_regard=="") then
 			squad:issue_order("defend_sos_"..enemy_squad.player_id)
 		end
@@ -1214,41 +1234,47 @@ function CGetRewardTask:get_inited_task(npc, faction,entity_id)
 end
 --' Проверка текущего выполнения квеста
 function CGetRewardTask:check_task(tm)
+
+	local global_time = time_global()
 	if self.check_time ~= nil and
 		 self.last_check_task ~= nil and
-		 time_global() - self.check_time <= 50
+		 global_time - self.check_time <= 50
 	then
 		--' Возвращаем результат прошлой проверки (для оптимизации)
 		return
 	end
+	self.check_time = global_time
 
-	self.check_time = time_global()
+	local act, rewards = db.actor, tm.rewards[self.community]
+	if self.target then
+		local obj = alife():object(self.target)
+		if not obj or not obj:alive() then
+			self.last_check_task = "reversed"
+			rewards = nil
+			return
+		end
 
-	if tm.rewards[self.community] == nil then
-		self.last_check_task = "complete"
+		local sobj = db.storage[self.target]
+		obj = sobj and sobj.object
+		if act and obj and obj:general_goodwill(act) <= -1000 then
+			self.last_check_task = "reversed"
+			rewards = nil
+			return
+		end
 	end
 
-	if #tm.rewards[self.community] == 0 then
-		self.last_check_task = "complete"
-	end
-
-	local obj = alife():object(self.target)
-	if obj and not obj:alive() then
-		self.last_check_task = "fail"
-		tm.rewards[self.community] = nil
-		return
-	end
-
- 	for k,v in pairs(self.condlist) do
-		local cond = xr_logic.pick_section_from_condlist(db.actor, db.actor, v)
+	local cond = nil
+ 	for _,v in pairs(self.condlist) do
+		cond = xr_logic.pick_section_from_condlist(act, act, v)
 		if cond ~= nil then
 			self.last_check_task = cond
 			return
 		end
 	end
 
-
-	return
+	if rewards == nil or #rewards == 0 then
+		self.last_check_task = "complete"
+	end
 end
 
 --' Описание наград
@@ -1269,7 +1295,7 @@ function CGetRewardTask:change_description()
 		end
 	end
 	if amount_money ~= 0 then
-		s = s.."\\n>"..tostring(amount_money).." RU"
+		s = s.."\\n>"..tostring(amount_money).." руб."
 	end
 	for k,v in pairs(ancillary_item_table) do
 		local ltx = system_ini()
@@ -1516,6 +1542,7 @@ function CBringItemTask:init_task(commander_id)
 --	db.actor:iterate_inventory(get_inventory_item_count, self) -- iterate on give task
 --	db.actor:iterate_inventory(set_task_text_for_bring_item, self)
 	self:set_task_text_for_bring_item()
+	self.spot = "secondary_task_location_complex_find_upgrade"
 end
 -- Generating new items list for quest
 function CBringItemTask:generate_requested_items(community)
@@ -1544,7 +1571,8 @@ end
 -- Iterate through inventory to get requested items count
 function get_inventory_item_count(task, item)
 	for k,v in pairs(task.requested_items) do
-		if(k==item:section()) then
+		-- if(k==item:section()) then
+		if(string.find(item:section(), "^"..k)) then  -- Kirgudu
 			for i = 1, #v do
 				if not(v[i]) then
 					v[i] = true
@@ -1679,7 +1707,8 @@ function CBringItemTask:transfer_items_looking_for(npc)
 		for i = 1, 4 do
 			local item_in_slot = db.actor:item_in_slot(i)
 			for k,v in pairs(self.requested_items) do
-				if(item_in_slot~=nil) and (item_in_slot:section()==k) then
+				-- if(item_in_slot~=nil) and (item_in_slot:section()==k) then
+				if(item_in_slot~=nil) and (string.find(item_in_slot:section(), "^"..k)) then  -- Kirgudu
 					for ii = 1, #v do
 						if(v[ii]) then
 							db.actor:transfer_item(item_in_slot, self.npc)
@@ -1693,7 +1722,8 @@ function CBringItemTask:transfer_items_looking_for(npc)
 end
 function transfer_quest_items(task, item)
 	for k,v in pairs(task.requested_items) do
-		if(item:section()==k) then
+		-- if(item:section()==k) then
+		if(string.find(item:section(), "^"..k)) then  -- Kirgudu
 			for i = 1, #v do
 				if(v[i]) then
 					for ii = 1, 4 do
@@ -1968,13 +1998,15 @@ function CRecoverItemTask:check_task(tm)
 		if self.target ~= commander_id then
 --			self.commander_id = commander_id
 			self.target = commander_id
-			self.t:change_map_location(self.spot, self.target)
+			self.t:change_map_location("secondary_task_location_complex_take_reward", self.target)
+			xr_sound.set_sound_play(db.actor:id(), "pda_task")
 		end
 	elseif(self.state=="have_item") and not(self:has_requested_item()) then
 		self.state = "started"
 		self.target	= self.target_obj_id
 --		self.commander_id = nil
-		self.t:change_map_location(self.spot, self.target)
+		self.t:change_map_location("secondary_task_location_complex_bring_item", self.target)
+		xr_sound.set_sound_play(db.actor:id(), "pda_task")
 	elseif(self.state=="finished") then
 		self.last_check_task = "complete"
 	end
@@ -2084,7 +2116,7 @@ function CRecoverItemTask:load(reader)
 --	if not self.squad then
 --		self.last_check_task = "reversed"
 --	end
-	self.spot = "secondary_task_location_complex_recover_item"
+	self.spot = "secondary_task_location_complex_bring_item"
 	str = reader:r_u16()
 	if str~=65535 then
 		self.target_obj_id = str
@@ -2180,6 +2212,13 @@ function CHideFromSurgeTask:check_task(tm)
 		xr_surge_hide.start_surge = false
 		xr_surge_hide.phase = 0
 		xr_surge_hide.surge_activated = false
+-- Kirgudu
+-- старт таймера часовой отсрочки для непересечения следующего выброса с предыдущим
+-- таймер следующего выброса (bl1) запускается из таймера отсрочки
+		if ogsm_options.surge_type == 2 and not ogsm.is_g_timer_exists("bl2") then
+			ogsm.g_start_timer("bl2",0, 1, 0)
+		end
+-- Kirgudu
 	end
 
 	if(self.t==nil) then
@@ -2219,14 +2258,16 @@ function CHideFromSurgeTask:check_task(tm)
 			self.kill_em_all = true
 			local sr = db.storage[self.target]
 			if not(sr and sr.object:inside(db.actor:position())) then
-				if level.name()=="marsh" or level.name()=="marsh_nvidia" then
+				if string.find(level.name(), "^marsh") and not has_alife_info("mar_tutorial_returned_got_on_feet") then
 					level.remove_pp_effector(200208)
 					level.remove_cam_effector(200209)
 					xr_sound.stop_sound_looped(db.actor:id())
 					end_surge("reversed")
+					ngsm_callbacks.on_surge_end() --' NGSM
 				else
 					xr_effects.kill_actor()
 					end_surge("fail")
+					ngsm_callbacks.on_surge_end() --' NGSM
 				end
 			end
 		elseif(_delta>=35000) then
@@ -2234,6 +2275,8 @@ function CHideFromSurgeTask:check_task(tm)
 			level.remove_pp_effector(200208)
 			xr_sound.stop_sound_looped(db.actor:id())
 			end_surge("complete")
+			ngsm_callbacks.on_surge_end() --' NGSM
+			-- ogsm_art_spawn_surge.spawn_art()
 		elseif(_delta>=32500) then
 			level.remove_cam_effector(200209)
 			level.add_cam_effector("camera_effects\\earthquake.anm", 200209, false, "")
@@ -2277,6 +2320,13 @@ function CHideFromSurgeTask:check_task(tm)
 		xr_surge_hide.start_surge = false
 		xr_surge_hide.phase = 0
 		xr_surge_hide.surge_activated = false
+-- Kirgudu
+-- старт таймера часовой отсрочки для непересечения следующего выброса с предыдущим
+-- таймер следующего выброса (bl1) запускается из таймера отсрочки
+		if ogsm_options.surge_type == 2 and not ogsm.is_g_timer_exists("bl2") then
+			ogsm.g_start_timer("bl2",0, 1, 0)
+		end
+-- Kirgudu
 	end
 	if (self.blowout_rumble_level < 1) and  (xr_surge_hide.phase > 1) and (xr_surge_hide.phase < 4 or xr_surge_hide.phase == 5) then
 		self.blowout_rumble_level = self.blowout_rumble_level + 0.015

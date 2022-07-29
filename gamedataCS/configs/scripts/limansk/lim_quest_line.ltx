@@ -2,6 +2,12 @@
 active = sr_idle@first_task
 
 [sr_idle@first_task]
+on_info = {!black_screen =actor_on_level(limansk)} sr_idle@first_task_1 %+lim_visited_level =disable_level_changer(620) =disable_ui =play_sound(lim_cs_limansk_intro:csky:red_csky_commander_name)%
+
+[sr_idle@first_task_1]
+on_signal = sound_end | sr_idle@first_task_2 %+lim_ambush_start =enable_ui%
+
+[sr_idle@first_task_2]
 on_info = {-red_bridge_finished} sr_idle@ambush_2_task %=give_inited_task(storyline:lim_go_into_limansk:csky)%, sr_idle@ambush_2_task
 
 [sr_idle@ambush_2_task]
@@ -33,6 +39,12 @@ on_info = {+lim_recon_squad_order_1} sr_idle@find_transformer %=give_inited_task
 on_info = {+lim_shut_transformer_task} sr_idle@shutdown_transformer %=give_inited_task(storyline:lim_electro_fence_find_transformator:csky)%
 
 [sr_idle@shutdown_transformer]
-on_info = {=actor_in_zone(lim_final_find_transformer)} sr_idle@nil %+lim_final_actor_find_transformer =give_inited_task(storyline:lim_electro_fence:csky)%
+on_info = {=actor_in_zone(lim_final_find_transformer)} sr_idle@lim_electro_fence_sniper %+lim_final_actor_find_transformer =give_inited_task(storyline:lim_electro_fence:csky)%
+
+[sr_idle@lim_electro_fence_sniper]
+on_info = {=actor_in_zone(lim_final_transformer)} sr_idle@kill_sniper %+lim_electro_fence_sniper_kill =give_inited_task(storyline:lim_electro_fence_sniper:csky)%
+
+[sr_idle@kill_sniper]
+on_info = {+lim_final_sniper_off} sr_idle@nil %=give_inited_task(storyline:lim_electro_fence:csky)%
 
 [sr_idle@nil]

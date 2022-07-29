@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+    <dialog id="rare_items_dialog">
+	<precondition>ogsm_rare_items_dialogs.rare_items_allowed</precondition>
+        <has_info>mar_tutorial_returned_to_base</has_info>
+	<phrase_list>
+            <phrase id="0">
+		<text>ogsm_rare_items_dialog_0</text>
+		<next>1</next>
+            </phrase>
+            <phrase id="1">
+		<script_text>ogsm_rare_items_dialogs.rare_list_text</script_text>
+		<action>ogsm_rare_items_dialogs.rare_list</action>
+		<next>11</next>
+		<next>12</next>
+		<next>13</next>
+		<next>2</next>
+		<next>3</next>
+		<next>4</next>
+            </phrase>
+            <phrase id="11">
+		<text>ogsm_rare_items_dialog_11</text>
+		<precondition>ogsm_rare_items_dialogs.check_first_rare_item</precondition>
+		<action>ogsm_rare_items_dialogs.give_first_rare_item</action>
+            </phrase>
+            <phrase id="12">
+		<text>ogsm_rare_items_dialog_12</text>
+		<precondition>ogsm_rare_items_dialogs.check_second_rare_item</precondition>
+		<action>ogsm_rare_items_dialogs.give_second_rare_item</action>
+            </phrase>
+            <phrase id="13">
+		<text>ogsm_rare_items_dialog_13</text>
+		<precondition>ogsm_rare_items_dialogs.check_third_rare_item</precondition>
+		<action>ogsm_rare_items_dialogs.give_third_rare_item</action>
+            </phrase>
+            <phrase id="2">
+		<text>ogsm_rare_items_dialog_2</text>
+		<precondition>ogsm_rare_items_dialogs.not_news</precondition>
+		<action>ogsm_rare_items_dialogs.allow_news</action>
+		<next>21</next>
+            </phrase>
+            <phrase id="21">
+		<text>ogsm_rare_items_dialog_21</text>
+            </phrase>
+            <phrase id="3">
+		<text>ogsm_rare_items_dialog_3</text>
+		<precondition>ogsm_rare_items_dialogs.have_news</precondition>
+		<action>ogsm_rare_items_dialogs.not_allow_news</action>
+		<next>31</next>
+            </phrase>
+            <phrase id="31">
+		<text>ogsm_rare_items_dialog_31</text>
+            </phrase>
+            <phrase id="4">
+		<text>ogsm_rare_items_dialog_4</text>
+            </phrase>
+	</phrase_list>
+    </dialog>
+</game_dialogs>

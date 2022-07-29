@@ -1,107 +1,154 @@
 <?xml version='1.0' encoding="windows-1251"?>
 
 <xml>
-  <specific_character id="gar_digger_messenger_man" team_default = "1">
-    <name>gar_digger_messenger_man_name</name>
-    <icon>ui_npc_u_neutral_1</icon>
+
+<!-- 
+Йога				Бандиты, лидер
+Зуб				Бандиты, торговец
+Прозрачный			Бандиты, механик
+Боров				Бандиты, бармен
+Живодёр				Бандиты, аниматор
+Сенька				Бандиты, незадействованный квестовый персонаж
+Бандит-грабитель 1		Бандиты, квестовый персонаж
+Бандит-грабитель 2		Бандиты, квестовый персонаж
+Дикий Напр			Диггеры, лидер
+Гарин				Диггеры, механик
+Васян				Диггеры, квестовый персонаж
+Авоська				Диггеры, квестовый персонаж
+Контрабандист			Диггеры, квестовый персонаж
+Свежак				Диггеры, квестовый персонаж
+-->
+
+<specific_character id="gar_bandit_leader" team_default = "1"> <!-- Йога -->
+	<name>gar_bandit_leader_name</name>
+	<icon>icon_stalker_yoga</icon>
+	<map_icon x="1" y="0"></map_icon>
+	<bio></bio>
+	<class>gar_bandit_leader</class>
+	<community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
+	<rank>875</rank>
+	<reputation>0</reputation>
+	<visual>actors\stalker_bandit\stalker_bandit_3_face_1</visual>
+	<snd_config>characters_voice\human_02\bandit\</snd_config>
+	<supplies>
+	[spawn] \n
+	device_torch \n
+	hand_radio \n
+	wpn_ak74u \n
+	ammo_5.45x39_fmj = 1 \n
+	wpn_fort \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items_2.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+	</supplies>
+#include "gameplay\character_criticals_1.xml"
+	<start_dialog>gar_bandit_leader_hello</start_dialog>
+	<actor_dialog>gar_bandit_leader_join_first</actor_dialog>
+	<actor_dialog>gar_bandit_leader_join_main</actor_dialog>
+	<actor_dialog>gar_bandit_leader_kill_digger_traitor</actor_dialog>
+	<actor_dialog>gar_bandit_leader_kill_digger_traitor_told</actor_dialog>
+	<actor_dialog>gar_bandit_leader_reward</actor_dialog>
+	<actor_dialog>gar_bandit_leader_questions</actor_dialog>
+	<actor_dialog>rt_yoga_task_dialog</actor_dialog>
+	<actor_dialog>rt_yoga_reward_dialog</actor_dialog>
+	<actor_dialog>bandit_base_commander_items_dialog</actor_dialog>
+	<actor_dialog>gar_bandit_leader_break</actor_dialog>
+</specific_character>
+
+<specific_character id="gar_bandit_trader" team_default = "1"> <!-- Зуб -->
+    <name>gar_bandit_trader_name</name>
+    <icon>icon_stalker_zyb</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
-    <class>gar_digger_messenger_man</class>
-    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
+    <class>gar_bandit_trader</class>
+    <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>375</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_1</visual>
-    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <money min="1000000" max="1000000" infinitive="1"/>
+    <visual>actors\stalker_bandit\stalker_bandit_zyb</visual>
+    <snd_config>characters_voice\human_01\bandit\</snd_config>
     <supplies>
-      [spawn] \n
-      wpn_pm = 1 \n
-      ammo_9x18_fmj = 1 \n
-      device_torch \n
-#include "gameplay\character_items.xml"
+	[spawn] \n
+	device_torch \n
+	hand_radio \n
+	wpn_ak74u \n
+	ammo_5.45x39_fmj = 1 \n
+	wpn_fort \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items_2.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
- <!--#include "gameplay\character_dialogs.xml"-->
-
-    <start_dialog>gar_digger_messenger_hello_dialog</start_dialog>
+    <start_dialog>gar_bandit_trader_hello</start_dialog>
+    <actor_dialog>gar_bandit_trader_reward</actor_dialog>
+    <actor_dialog>gar_bandit_trader_join</actor_dialog>
+    <actor_dialog>gar_bandit_trader_questions</actor_dialog>
+    <actor_dialog>rare_items_dialog</actor_dialog>
+    <actor_dialog>rt_squad_courier_dialog</actor_dialog>
     <actor_dialog>treasure_dialog</actor_dialog>
-	<actor_dialog>guiders_dialog</actor_dialog>
-  </specific_character>
+    <actor_dialog>tm_reward_task</actor_dialog>
+</specific_character>
 
-  <specific_character id="gar_bandit_leader" team_default = "1">
-    <name>gar_bandit_leader_name</name>
-    <icon>ui_npc_u_bandit_3_face_1</icon>
+<specific_character id="gar_bandit_fixer" team_default = "1"> <!-- Прозрачный -->
+    <name>gar_bandit_fixer_name</name>
+    <icon>icon_stalker_prozrachniy</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
-    <class>gar_bandit_leader</class>
+    <class>gar_bandit_fixer</class>
     <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>900</rank>
+    <rank>375</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_bandit\stalker_bandit_3_face_1</visual>
+    <visual>actors\stalker_bandit\stalker_bandit_prozrachniy</visual>
     <snd_config>characters_voice\human_02\bandit\</snd_config>
     <supplies>
-      [spawn] \n
-      wpn_desert_eagle \n
-      ammo_11.43x23_fmj \n
-      device_torch \n
-      wpn_ak74 \n
-      ammo_5.45x39_fmj \n
-      hand_radio \n
-
-#include "gameplay\character_items.xml"
+	[spawn] \n
+	device_torch \n
+	hand_radio \n
+	wpn_ak74u \n
+	ammo_5.45x39_fmj = 1 \n
+	wpn_fort \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items_2.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
+    <mechanic_mode>1</mechanic_mode>
 #include "gameplay\character_criticals_1.xml"
-<!--#include "gameplay\character_dialogs.xml"-->
+    <start_dialog>gar_bandit_tech_hello</start_dialog>
+    <actor_dialog>gar_bandit_tech_join</actor_dialog>
+    <actor_dialog>gar_bandit_tech_questions</actor_dialog>
+    <actor_dialog>flashes_garbage_job_questions_1</actor_dialog>
+    <actor_dialog>flashes_garbage_job_questions_2</actor_dialog>
+    <actor_dialog>flashes_garbage_job_done</actor_dialog>
+    <actor_dialog>gar_bandit_fixer_gauss</actor_dialog>
+</specific_character>
 
-    <start_dialog>gar_bandit_leader_hello</start_dialog>
-    <actor_dialog>gar_bandit_leader_join_first</actor_dialog>
-    <actor_dialog>gar_bandit_leader_join_main</actor_dialog>
-    <actor_dialog>gar_bandit_leader_kill_digger_traitor</actor_dialog>
-    <actor_dialog>gar_bandit_leader_kill_digger_traitor_told</actor_dialog>
-    <actor_dialog>gar_bandit_leader_reward</actor_dialog>
-    <actor_dialog>gar_bandit_leader_questions</actor_dialog>
-    <actor_dialog>gar_bandit_leader_break</actor_dialog>
-  </specific_character>
-
-  <specific_character id="gar_bandit_barman" team_default = "1">
+<specific_character id="gar_bandit_barman" team_default = "1"> <!-- Боров -->
     <name>gar_bandit_barman_name</name>
-    <icon>ui_npc_u_bandit_3_face_2</icon>
+    <icon>icon_stalker_borov</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
     <class>gar_bandit_barman</class>
     <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>650</rank>
+    <rank>375</rank>
     <reputation>0</reputation>
-    
-    <money min="1000000" max="1000000" infinitive="1"/>
-
-    <visual>actors\stalker_bandit\stalker_bandit_3_face_2</visual>
-    <snd_config>characters_voice\human_02\bandit\</snd_config>
+	<money min="1000000" max="1000000" infinitive="1"/>
+    <visual>actors\stalker_bandit\stalker_bandit_borov</visual>
+    <snd_config>characters_voice\human_01\bandit\</snd_config>
     <supplies>
-      [spawn] \n
-      wpn_desert_eagle \n
-      ammo_11.43x23_fmj \n
-      device_torch \n
-      wpn_ak74 \n
-      ammo_5.45x39_fmj \n
-#include "gameplay\character_items.xml"
+	[spawn] \n
+	device_torch \n
+	hand_radio \n
+	wpn_ak74u \n
+	ammo_5.45x39_fmj = 1 \n
+	wpn_fort \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items_2.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
     <start_dialog>gar_bandit_barman_hello</start_dialog>
     <actor_dialog>gar_bandit_barman_join</actor_dialog>
@@ -110,128 +157,84 @@
     <actor_dialog>gar_bandit_barman_kill_smuggler</actor_dialog>
     <actor_dialog>gar_bandit_barman_destroy_flea_market</actor_dialog>
     <actor_dialog>gar_bandit_barman_bandit_secret</actor_dialog>
+    <actor_dialog>rt_borov_task_dialog</actor_dialog>
+    <actor_dialog>rt_borov_reward_dialog</actor_dialog>
     <actor_dialog>treasure_dialog</actor_dialog>
-  </specific_character>
+</specific_character>
 
-  <specific_character id="gar_bandit_trader" team_default = "1">
-    <name>gar_bandit_trader_name</name>
-    <icon>ui_npc_u_bandit_3</icon>
+<specific_character id="gar_bandit_minigame" team_default = "1"> <!-- Живодер -->
+    <name>gar_bandit_minigame_name</name>
+    <icon>icon_stalker_jivoder</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
-    <class>gar_bandit_trader</class>
+    <class>gar_bandit_minigame</class>
     <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>600</rank>
+    <rank>375</rank>
     <reputation>0</reputation>
-    
-    <money min="1000000" max="1000000" infinitive="1"/>
-
-    <visual>actors\stalker_bandit\stalker_bandit_3</visual>
+	<money min="1000000" max="1000000" infinitive="1"/>
+    <visual>actors\stalker_bandit\stalker_bandit_3_face_2</visual>
     <snd_config>characters_voice\human_01\bandit\</snd_config>
     <supplies>
-      [spawn] \n
-      wpn_desert_eagle \n
-      ammo_11.43x23_fmj \n
-      device_torch \n
-      wpn_ak74 \n
-      ammo_5.45x39_fmj \n
-#include "gameplay\character_items.xml"
+	[spawn] \n
+	device_torch \n
+	hand_radio \n
+	wpn_bm16 \n
+	ammo_12x70_buck = 1 \n
+	wpn_pm \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items_2.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
-    <start_dialog>gar_bandit_trader_hello</start_dialog>
-    <actor_dialog>gar_bandit_trader_reward</actor_dialog>
-    <actor_dialog>gar_bandit_trader_join</actor_dialog>
-    <actor_dialog>gar_bandit_trader_questions</actor_dialog>
-    <actor_dialog>tm_reward_task</actor_dialog>
-    <actor_dialog>treasure_dialog</actor_dialog>
+    <start_dialog>gar_bandit_bookmaker_hello</start_dialog>
+    <actor_dialog>gar_bandit_bookmaker_training</actor_dialog>
+    <actor_dialog>gar_bandit_bookmaker_money</actor_dialog>
+    <actor_dialog>gar_bandit_bookmaker_record</actor_dialog>
+    <actor_dialog>gar_bandit_bookmaker_questions</actor_dialog>
+    <actor_dialog>gar_bandit_bookmaker_quit</actor_dialog>
   </specific_character>
 
-  <specific_character id="gar_bandit_fixer" team_default = "1">
-    <name>gar_bandit_fixer_name</name>
-    <icon>ui_npc_u_bandit_3</icon>
-    <map_icon x="1" y="0"></map_icon>
-    <bio></bio>
-
-    <class>gar_bandit_fixer</class>
-    <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>700</rank>
-    <reputation>0</reputation>
-
-    <visual>actors\stalker_bandit\stalker_bandit_3</visual>
-    <snd_config>characters_voice\human_02\bandit\</snd_config>
-    <supplies>
-      [spawn] \n
-      wpn_desert_eagle \n
-      ammo_11.43x23_fmj \n
-      device_torch \n
-      wpn_ak74 \n
-      ammo_5.45x39_fmj \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
-    </supplies>
-    
-    <mechanic_mode>1</mechanic_mode>
-
-#include "gameplay\character_criticals_1.xml"
-
-    <start_dialog>gar_bandit_tech_hello</start_dialog>
-    <actor_dialog>gar_bandit_tech_join</actor_dialog>
-    <actor_dialog>gar_bandit_tech_questions</actor_dialog>
-    <actor_dialog>tm_upgr_task</actor_dialog>
-    <actor_dialog>find_upgrade_task</actor_dialog> 
-  </specific_character>
-  
-  <specific_character id="gar_bandit_senya" team_default = "1">
+<specific_character id="gar_bandit_senya" team_default = "1"> <!-- Сенька -->
     <name>gar_bandit_senya</name>
-    <icon>ui_npc_u_bandit_2</icon>
+    <icon>icon_stalker_senya</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
     <class>gar_bandit_senya</class>
     <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>150</rank>
+    <rank>375</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_bandit\stalker_bandit_2</visual>
-    <snd_config>characters_voice\human_01\bandit\</snd_config>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_bandit\stalker_bandit_senya</visual>
+    <snd_config>characters_voice\human_02\bandit\</snd_config>
     <supplies>
-      [spawn] \n
-      wpn_desert_eagle \n
-      ammo_11.43x23_fmj \n
-      device_torch \n
-#include "gameplay\character_items.xml"
+	[spawn] \n
+	device_torch \n
+	hand_radio \n
+	wpn_bm16 \n
+	ammo_12x70_buck = 1 \n
+	wpn_pm \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items_3.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
     <start_dialog>hello_dialog</start_dialog>
     <actor_dialog>treasure_dialog</actor_dialog>
 #include "gameplay\character_dialogs.xml"
-  </specific_character>
+</specific_character>
 
-  <specific_character id="gar_bandit_ambush_1" team_default = "1">
-    <name>GENERATE_NAME_stalker</name>
-    <icon>ui_npc_u_bandit_3</icon>
+  <specific_character id="gar_bandit_ambush_1" team_default = "1"> <!-- Бандит-грабитель 1 -->
+    <name>gar_bandit_gangster1_name</name>
+    <icon>icon_stalker_gangster1</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
     <class>gar_bandit_ambush_1</class>
     <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>250</rank>
+    <rank>375</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_bandit\stalker_bandit_3</visual>
+    <visual>actors\stalker_bandit\stalker_bandit_gangster1</visual>
     <snd_config>characters_voice\human_02\bandit\</snd_config>
     <supplies>
       [spawn] \n
@@ -241,30 +244,25 @@
       wpn_hpsa \n
       ammo_9x19_fmj = 1 \n
       grenade_rgd5 = 1 \n
-#include "gameplay\character_items.xml"
+#include "gameplay\character_items_2.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
     <start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
   </specific_character>
 
-  <specific_character id="gar_bandit_ambush_2" team_default = "1">
-    <name>GENERATE_NAME_stalker</name>
-    <icon>ui_npc_u_bandit_4</icon>
+  <specific_character id="gar_bandit_ambush_2" team_default = "1"> <!-- Бандит-грабитель 2 -->
+    <name>gar_bandit_gangster2_name</name>
+    <icon>icon_stalker_gangster2</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
     <class>gar_bandit_ambush_2</class>
     <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>150</rank>
+    <rank>375</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_bandit\stalker_bandit_4</visual>
+    <visual>actors\stalker_bandit\stalker_bandit_gangster2</visual>
     <snd_config>characters_voice\human_01\bandit\</snd_config>
     <supplies>
       [spawn] \n
@@ -274,31 +272,222 @@
       wpn_beretta \n
       ammo_9x19_fmj = 1 \n
       grenade_rgd5 = 1 \n
-#include "gameplay\character_items.xml"
+#include "gameplay\character_items_2.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
     <start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
   </specific_character>
 
-  <specific_character id="gar_digger_captive" team_default = "1">
-    <name>GENERATE_NAME_stalker</name>
-    <icon>ui_npc_u_neutral_1</icon>
+<specific_character id="gar_digger_quester" team_default = "1"> <!-- Дикий Напр -->
+    <name>gar_digger_quester_name</name>
+    <icon>icon_stalker_napr</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
-    <class>gar_digger_captive</class>
+    <class>gar_digger_quester</class>
     <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
+    <rank>625</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_1</visual>
+    <visual>actors\stalker_neutral\stalker_neutral_2_face_1</visual>
     <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+	[spawn] \n
+	device_torch \n
+	hand_radio \n
+	wpn_pm \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items_2.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>gar_digger_leader_hello</start_dialog>
+    <actor_dialog>gar_digger_leader_attack</actor_dialog>
+    <actor_dialog>gar_digger_leader_bring_money</actor_dialog>
+    <actor_dialog>gar_digger_leader_old_pda</actor_dialog>
+    <actor_dialog>gar_digger_leader_old_pda_dialog</actor_dialog>
+    <actor_dialog>gar_digger_leader_break</actor_dialog>
+    <actor_dialog>gar_digger_leader_svejak_pda_dialog</actor_dialog>
+</specific_character>
+
+<specific_character id="gar_digger_fixer" team_default = "1"> <!-- Гарин -->
+    <name>gar_digger_fixer_name</name>
+    <icon>icon_stalker_garin</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_fixer</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>375</rank>
+    <reputation>0</reputation>
+    <visual>actors\stalker_digger\stalker_digger_garin</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <supplies>
+	[spawn] \n
+	device_torch \n
+	wpn_pm \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+    <mechanic_mode>1</mechanic_mode>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>hello_dialog</start_dialog>
+    <actor_dialog>gar_digger_fixer_kill_pseudodogs</actor_dialog>
+    <actor_dialog>gar_kill_pseudodogs</actor_dialog>
+    <actor_dialog>treasure_dialog</actor_dialog>
+</specific_character>
+
+<specific_character id="gar_digger_messenger_man" team_default = "1"> <!-- Васян -->
+    <name>gar_digger_messenger_man_name</name>
+    <icon>icon_stalker_vasyan</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_messenger_man</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>375</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_vasyan</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+	[spawn] \n
+	device_torch \n
+	wpn_pm \n
+	ammo_9x18_fmj = 1 \n
+        gar_digger_messenger_pda \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>gar_digger_messenger_hello_dialog</start_dialog>
+    <actor_dialog>treasure_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="gar_digger_traitor" team_default = "1"> <!-- Авоська -->
+    <name>gar_digger_traitor_name</name>
+    <icon>icon_stalker_avoska</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_traitor</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>375</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_avoska</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <supplies>
+	[spawn] \n
+	device_torch \n
+	wpn_pm \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>gar_digger_traitor_hello</start_dialog>
+    <actor_dialog>gar_digger_traitor_smuggler</actor_dialog>
+    <actor_dialog>gar_digger_traitor_kill</actor_dialog>
+</specific_character>
+
+<specific_character id="gar_bandit_digger_traitor" team_default = "1"> <!-- Авоська для квеста -->
+    <name>gar_digger_traitor_name</name>
+    <icon>icon_stalker_avoska</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_bandit_digger_traitor</class>
+    <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>375</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_avoska</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <supplies>
+	[spawn] \n
+	device_torch \n
+	wpn_pm \n
+	ammo_9x18_fmj = 1 \n
+	device_pda_garbage_traitor \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>hello_dialog</start_dialog>
+</specific_character>
+
+<specific_character id="gar_digger_smuggler" team_default = "1"> <!-- Контрабандист -->
+    <name>gar_digger_smuggler_name</name>
+    <icon>icon_stalker_smuggler</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_smuggler</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>375</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_smuggler</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <supplies>
+	[spawn] \n
+	device_torch \n
+	wpn_pm \n
+	ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>hello_dialog</start_dialog>
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="gar_digger_leader_dead" team_default = "1"> <!-- Свежак -->
+    <name>gar_digger_leader_dead_name</name>
+    <icon>icon_stalker_svejak</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_leader_dead</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>375</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_svejak</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <supplies>
+	[spawn] \n
+	device_torch \n
+	wpn_pm \n
+	ammo_9x18_fmj = 1 \n
+	gar_digger_dead_pda \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>hello_dialog</start_dialog>
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+    <!------------------ digger_captive ----------------->
+
+  <specific_character id="gar_digger_captive_1" team_default = "1">
+    <name>GENERATE_NAME_stalker</name>
+    <icon>icon_stalker_digger_1_2</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_captive_1</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>125</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_2</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
     <supplies>
       [spawn] \n
       device_torch \n
@@ -306,368 +495,242 @@
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
-    <start_dialog>hello_dialog</start_dialog>
-#include "gameplay\character_dialogs.xml"
+    <start_dialog>digger_hello</start_dialog>
   </specific_character>
+
+  <specific_character id="gar_digger_captive_2" team_default = "1">
+    <name>GENERATE_NAME_stalker</name>
+    <icon>icon_stalker_digger_1_3</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_captive_2</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>125</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_3</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <supplies>
+      [spawn] \n
+      device_torch \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>digger_hello</start_dialog>
+  </specific_character>
+
+  <specific_character id="gar_digger_captive_3" team_default = "1">
+    <name>GENERATE_NAME_stalker</name>
+    <icon>icon_stalker_digger_1_4</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_captive_3</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>125</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_4</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <supplies>
+      [spawn] \n
+      device_torch \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>digger_hello</start_dialog>
+  </specific_character>
+
+  <specific_character id="gar_digger_captive_4" team_default = "1">
+    <name>GENERATE_NAME_stalker</name>
+    <icon>icon_stalker_digger_1_5</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_captive_4</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>125</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_5</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <supplies>
+      [spawn] \n
+      device_torch \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>digger_hello</start_dialog>
+  </specific_character>
+
+  <specific_character id="gar_digger_captive_5" team_default = "1">
+    <name>GENERATE_NAME_stalker</name>
+    <icon>icon_stalker_digger_1_5</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio></bio>
+    <class>gar_digger_captive_5</class>
+    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>125</rank>
+    <reputation>0</reputation>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_5</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
+    <supplies>
+      [spawn] \n
+      device_torch \n
+#include "gameplay\character_items.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals_1.xml"
+    <start_dialog>digger_hello</start_dialog>
+  </specific_character>
+
+    <!------------------ digger_fighter ----------------->
 
   <specific_character id="gar_digger_fighter_1" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
-    <icon>ui_npc_u_neutral_1</icon>
+    <icon>icon_stalker_digger_1_1</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
     <class>gar_digger_fighter_1</class>
     <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
+    <rank>125</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_1</visual>
-    <snd_config>characters_voice\human_01\stalker\</snd_config>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_1</visual>
+    <snd_config>characters_voice\human_03\stalker\</snd_config>
     <supplies>
       [spawn] \n
-      wpn_fort \n
-      ammo_9x18_fmj \n
       device_torch \n
+      wpn_fort \n
+      ammo_9x18_fmj = 1 \n
       wpn_ak74u \n
-      ammo_5.45x39_fmj \n
+      ammo_5.45x39_fmj = 1 \n
 #include "gameplay\character_items.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
     <start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
   </specific_character>
 
   <specific_character id="gar_digger_fighter_2" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
-    <icon>ui_npc_u_neutral_2</icon>
+    <icon>icon_stalker_digger_1_2</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
     <class>gar_digger_fighter_2</class>
     <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
+    <rank>125</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_2</visual>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_2</visual>
     <snd_config>characters_voice\human_02\stalker\</snd_config>
     <supplies>
       [spawn] \n
-      wpn_fort \n
-      ammo_9x18_fmj \n
       device_torch \n
+      wpn_fort \n
+      ammo_9x18_fmj = 1 \n
       wpn_ak74 \n
-      ammo_5.45x39_fmj \n
+      ammo_5.45x39_fmj = 1 \n
 #include "gameplay\character_items.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
     <start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
   </specific_character>
 
   <specific_character id="gar_digger_fighter_3" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
-    <icon>ui_npc_u_neutral_2_mask</icon>
+    <icon>icon_stalker_digger_1_3</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
     <class>gar_digger_fighter_3</class>
     <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
+    <rank>125</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_2_mask</visual>
-    <snd_config>characters_voice\human_01\stalker\</snd_config>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_3</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
     <supplies>
       [spawn] \n
-      wpn_fort \n
-      ammo_9x18_fmj \n
       device_torch \n
-      wpn_l85 \n
-      ammo_5.56x45_ss190 \n
+      wpn_fort \n
+      ammo_9x18_fmj = 1 \n
+      wpn_ak74u \n
+      ammo_5.45x39_fmj = 1 \n
 #include "gameplay\character_items.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
     <start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
   </specific_character>
 
   <specific_character id="gar_digger_fighter_4" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
-    <icon>ui_npc_u_neutral_1</icon>
+    <icon>icon_stalker_digger_1_4</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
     <class>gar_digger_fighter_4</class>
     <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
+    <rank>125</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_1</visual>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_4</visual>
     <snd_config>characters_voice\human_02\stalker\</snd_config>
     <supplies>
       [spawn] \n
-      wpn_fort \n
-      ammo_9x18_fmj \n
       device_torch \n
-      wpn_wincheaster1300 \n
-      ammo_12x70_buck \n
+      wpn_fort \n
+      ammo_9x18_fmj = 1 \n
+      wpn_mp5 \n
+      ammo_9x19_fmj = 1 \n
 #include "gameplay\character_items.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
     <start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
   </specific_character>
 
   <specific_character id="gar_digger_fighter_5" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
-    <icon>ui_npc_u_neutral_2_mask</icon>
+    <icon>icon_stalker_digger_1_5</icon>
     <map_icon x="1" y="0"></map_icon>
     <bio></bio>
-
     <class>gar_digger_fighter_5</class>
     <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
+    <rank>125</rank>
     <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_2_mask</visual>
-    <snd_config>characters_voice\human_01\stalker\</snd_config>
+	<money min="250" max="500" infinitive="0"/>
+    <visual>actors\stalker_digger\stalker_digger_1_5</visual>
+    <snd_config>characters_voice\human_02\stalker\</snd_config>
     <supplies>
       [spawn] \n
+      device_torch \n
       wpn_fort \n
-      ammo_9x18_fmj \n
-      device_torch \n
-      wpn_mp5 \n
-      ammo_9x19_fmj \n
+      ammo_9x18_fmj = 1 \n
+      wpn_wincheaster1300 \n
+      ammo_12x70_buck = 1 \n
 #include "gameplay\character_items.xml"
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
     </supplies>
-
 #include "gameplay\character_criticals_1.xml"
-
     <start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
   </specific_character>
 
-  <specific_character id="gar_digger_traitor" team_default = "1">
-    <name>gar_digger_traitor_name</name>
-    <icon>ui_npc_u_neutral_1</icon>
-    <map_icon x="1" y="0"></map_icon>
-    <bio></bio>
-
-    <class>gar_digger_traitor</class>
-    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
-    <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_1</visual>
-    <snd_config>characters_voice\human_02\stalker\</snd_config>
-    <supplies>
-      [spawn] \n
-      wpn_beretta \n
-      ammo_9x19_fmj \n
-      device_torch \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
-    </supplies>
-
-#include "gameplay\character_criticals_1.xml"
-<!--#include "gameplay\character_dialogs.xml"-->
-
-    <start_dialog>gar_digger_traitor_hello</start_dialog>
-    <actor_dialog>gar_digger_traitor_smuggler</actor_dialog>
-    <actor_dialog>gar_digger_traitor_kill</actor_dialog>
-  </specific_character>
-
-  <specific_character id="gar_bandit_digger_traitor" team_default = "1">
-    <name>gar_digger_traitor_name</name>
-    <icon>ui_npc_u_neutral_1</icon>
-    <map_icon x="1" y="0"></map_icon>
-    <bio></bio>
-
-    <class>gar_bandit_digger_traitor</class>
-    <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>150</rank>
-    <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_1</visual>
-    <snd_config>characters_voice\human_01\bandit\</snd_config>
-    <supplies>
-      [spawn] \n
-      wpn_beretta \n
-      ammo_9x19_fmj \n
-      device_torch \n
-      device_pda_garbage_traitor \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
-    </supplies>
-
-#include "gameplay\character_criticals_1.xml"
-<!--#include "gameplay\character_dialogs.xml"-->
-
-    <start_dialog>hello_dialog</start_dialog>
-  </specific_character>
-
-  <specific_character id="gar_digger_quester" team_default = "1">
-    <name>gar_digger_quester_name</name>
-    <icon>ui_npc_u_neutral_2_face_1</icon>
-    <map_icon x="1" y="0"></map_icon>
-    <bio></bio>
-
-    <class>gar_digger_quester</class>
-    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
-    <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_2_face_1</visual>
-    <snd_config>characters_voice\human_01\stalker\</snd_config>
-    <supplies>
-      [spawn] \n
-      wpn_beretta \n
-      ammo_9x19_fmj \n
-      device_torch \n
-      energy_drink \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
-    </supplies>
-
-#include "gameplay\character_criticals_1.xml"
-<!--#include "gameplay\character_dialogs.xml"-->
-
-    <start_dialog>gar_digger_leader_hello</start_dialog>
-    <actor_dialog>gar_digger_leader_attack</actor_dialog>
-    <actor_dialog>gar_digger_leader_bring_money</actor_dialog>
-    <actor_dialog>gar_digger_leader_old_pda</actor_dialog>
-    <actor_dialog>gar_digger_leader_break</actor_dialog>
-  </specific_character>
-  
-  <specific_character id="gar_digger_fixer" team_default = "1">
-    <name>gar_digger_fixer_name</name>
-    <icon>ui_npc_u_neutral_2_mask</icon>
-    <map_icon x="1" y="0"></map_icon>
-    <bio></bio>
-
-    <class>gar_digger_fixer</class>
-    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>100</rank>
-    <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_2_mask</visual>
-    <snd_config>characters_voice\human_02\stalker\</snd_config>
-    <supplies>
-      [spawn] \n
-      wpn_beretta \n
-      ammo_9x19_fmj \n
-      device_torch \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
-    </supplies>
-    
-    <mechanic_mode>1</mechanic_mode>
-
-#include "gameplay\character_criticals_1.xml"
-
-    <start_dialog>hello_dialog</start_dialog>
-    <actor_dialog>treasure_dialog</actor_dialog>
-#include "gameplay\character_dialogs.xml"
-  </specific_character>
-
-  <specific_character id="gar_digger_smuggler" team_default = "1">
-    <name>gar_digger_smuggler_name</name>
-    <icon>ui_npc_u_neutral_1</icon>
-    <map_icon x="1" y="0"></map_icon>
-    <bio></bio>
-
-    <class>gar_digger_smuggler</class>
-    <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>200</rank>
-    <reputation>0</reputation>
-
-    <visual>actors\stalker_neutral\stalker_neutral_1</visual>
-    <snd_config>characters_voice\human_02\stalker\</snd_config>
-    <supplies>
-      [spawn] \n
-      wpn_beretta \n
-      ammo_9x19_fmj \n
-      device_torch \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
-    </supplies>
-
-#include "gameplay\character_criticals_1.xml"
-
-    <start_dialog>hello_dialog</start_dialog>
-#include "gameplay\character_dialogs.xml"
-  </specific_character>
-
-  <specific_character id="gar_bandit_minigame" team_default = "1">
-    <name>gar_bandit_minigame_name</name>
-    <icon>ui_npc_u_bandit_1</icon>
-    <map_icon x="1" y="0"></map_icon>
-    <bio></bio>
-
-    <class>gar_bandit_minigame</class>
-    <community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
-
-    <rank>250</rank>
-    <reputation>0</reputation>
-    
-    <money min="1000" max="2750" infinitive="1"/>
-
-    <visual>actors\stalker_bandit\stalker_bandit_1</visual>
-    <snd_config>characters_voice\human_02\bandit\</snd_config>
-    <supplies>
-      [spawn] \n
-      wpn_beretta \n
-      ammo_9x19_fmj \n
-      device_torch \n
-#include "gameplay\character_items.xml"
-#include "gameplay\character_food.xml"
-#include "gameplay\character_drugs.xml"
-    </supplies>
-
-#include "gameplay\character_criticals_1.xml"
-<!--#include "gameplay\character_dialogs.xml"-->
-
-    <start_dialog>gar_bandit_bookmaker_hello</start_dialog>
-    <actor_dialog>gar_bandit_bookmaker_training</actor_dialog>
-    <actor_dialog>gar_bandit_bookmaker_money</actor_dialog>
-    <actor_dialog>gar_bandit_bookmaker_record</actor_dialog>
-    <actor_dialog>gar_bandit_bookmaker_questions</actor_dialog>
-    <actor_dialog>gar_bandit_bookmaker_quit</actor_dialog>
-  </specific_character>
 </xml>
